@@ -1,16 +1,16 @@
 {
   "name": "pergel",
-  "version": "0.0.1",
-  "description": "",
   "type": "module",
+  "version": "0.0.1",
   "packageManager": "pnpm@8.8.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.18",
     "eslint": "^8.50.0",
