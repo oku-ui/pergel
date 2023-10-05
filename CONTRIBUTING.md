@@ -31,6 +31,8 @@ Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to i
 ### Scripts
 
 ```shell
+pnpm build # Build the project
+
 pnpm lint # Run ESLint
 pnpm lint:fix # Run ESLint and fix errors
 
