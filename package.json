@@ -5,22 +5,57 @@
   "packageManager": "pnpm@8.8.0",
   "description": "",
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "pergel": "bin/pergel.mjs"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
+    "dev": "esno src/index.ts",
+    "build": "unbuild",
+    "stub": "unbuild --stub",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage"
   },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "citty": "^0.1.4",
+    "globby": "^13.2.2",
+    "picocolors": "^1.0.0",
+    "shelljs": "^0.8.5"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.18",
     "@types/node": "^20.8.2",
+    "@types/shelljs": "^0.8.13",
     "@vitest/coverage-v8": "^0.34.6",
     "eslint": "^8.50.0",
+    "esno": "^0.17.0",
     "lint-staged": "^14.0.1",
     "simple-git-hooks": "^2.9.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
     "vitest": "^0.34.6"
   },
   "simple-git-hooks": {
