@@ -1,4 +1,5 @@
 import { defineCommand } from 'citty'
+import { intro, multiselect, select } from '@clack/prompts'
 
 export default defineCommand({
   meta: {
@@ -7,6 +8,22 @@ export default defineCommand({
     version: '0.0.1',
   },
   async run({ args }) {
-    console.log('init', args)
+    console.clear()
+    intro('OS - Pergel')
+    const selectOS = await select({
+      message: 'select os',
+      options: [
+        {
+          label: 'Linux',
+          value: 'linux',
+        },
+        {
+          label: 'Macos',
+          value: 'macos',
+        },
+      ],
+    })
+
+    console.log(selectOS)
   },
 })
