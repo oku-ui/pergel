@@ -25,8 +25,8 @@ importers:
         version: 0.8.5
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.18
-        version: 1.0.0-beta.18(eslint@8.50.0)(typescript@5.2.2)(vitest@0.34.6)
+        specifier: 1.0.0-beta.21
+        version: 1.0.0-beta.21(eslint@8.50.0)(typescript@5.2.2)(vitest@0.34.6)
       '@types/node':
         specifier: ^20.8.2
         version: 20.8.2
@@ -85,8 +85,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.19
     dev: true
 
-  /@antfu/eslint-config@1.0.0-beta.18(eslint@8.50.0)(typescript@5.2.2)(vitest@0.34.6):
-    resolution: {integrity: sha512-WfVw0PCrNOHYcRkYY2YpVmuXYjWSVd/B59i4BEK6djaeRvE7F5bQXTt71Y6wi5jWUkL+iwMQ7gGqgXexpILPPw==}
+  /@antfu/eslint-config@1.0.0-beta.21(eslint@8.50.0)(typescript@5.2.2)(vitest@0.34.6):
+    resolution: {integrity: sha512-bMTD0IZ6pPxLEANuxbBAQV8cQRCGcGKrsVjghcojtzhEqJjt6iirPrptKk+j/HKOqMDXH2ZaXuqSJfXrY4U+Ng==}
     peerDependencies:
       eslint: '>=8.0.0'
     dependencies:
@@ -111,7 +111,7 @@ packages:
       eslint-plugin-yml: 1.9.0(eslint@8.50.0)
       globals: 13.22.0
       jsonc-eslint-parser: 2.3.0
-      local-pkg: 0.4.3
+      local-pkg: 0.5.0
       vue-eslint-parser: 9.3.1(eslint@8.50.0)
       yaml-eslint-parser: 1.2.2
     transitivePeerDependencies:
@@ -2833,6 +2833,14 @@ packages:
   /local-pkg@0.4.3:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==}
     engines: {node: '>=14'}
+    dev: true
+
+  /local-pkg@0.5.0:
+    resolution: {integrity: sha512-ok6z3qlYyCDS4ZEU27HaU6x/xZa9Whf8jD4ptH5UZTQYZVYeb9bnZ3ojVhiJNLiXK1Hfc0GNbLXcmZ5plLDDBg==}
+    engines: {node: '>=14'}
+    dependencies:
+      mlly: 1.4.2
+      pkg-types: 1.0.3
     dev: true
 
   /locate-path@5.0.0:
