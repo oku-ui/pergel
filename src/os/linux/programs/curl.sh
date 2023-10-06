@@ -41,8 +41,8 @@ else
   fi
 fi
 
-# Get the latest version of Curl
-latest_version=$(curl -sI https://curl.se/download/ | grep -i "location" | awk -F'/' '{print $NF}' | tr -d '\r')
+# Get the latest version of Curl from the official website
+latest_version=$(curl -s https://curl.se/download/ | grep -oE 'curl-[0-9]+\.[0-9]+\.[0-9]+' | head -n 1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
 
 # Check if Curl is outdated
 if [ "$(version_compare "$installed_version" "$latest_version")" -eq "1" ]; then
