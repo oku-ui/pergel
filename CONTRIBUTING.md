@@ -28,13 +28,14 @@ Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to i
 2. Install the project dependencies  
    `pnpm install`
 3. Run the project in dev mode  
-   `pnpm stub`
+   `pnpm dev`
 
 ### Scripts
 
 ```shell
 pnpm build # Build the project
-pnpm stub # Dev mode and watch mode for the library
+pnpm dev # Run the project in dev mode
+pnpm stub # Dev mode and watch mode change dist folder
 
 pnpm lint # Run ESLint
 pnpm lint:fix # Run ESLint and fix errors
