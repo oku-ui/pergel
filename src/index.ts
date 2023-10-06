@@ -8,6 +8,7 @@ const main = defineCommand({
   },
   subCommands: {
     os: () => import('./commands/os').then(m => m.default),
+    upgrade: () => import('./commands/upgrade').then(m => m.default),
   },
   run() {
     console.warn('Pergel CLI')

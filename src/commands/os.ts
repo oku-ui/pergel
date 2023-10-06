@@ -2,9 +2,10 @@ import { join, resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
 import { intro, multiselect, select } from '@clack/prompts'
-import { exec } from 'shelljs'
+import shell from 'shelljs'
 import type { ProgramList } from '../os/linux/programs'
 import { programLists } from '../os/linux/programs'
+import { getDirname } from '../utils'
 
 export default defineCommand({
   meta: {
@@ -13,6 +14,7 @@ export default defineCommand({
     version: '0.0.1',
   },
   async run() {
+    const __dirname = getDirname(import.meta.url)
     const _osLinuxPath = join(__dirname, '..', 'os', 'linux')
 
     // console.clear()
@@ -83,7 +85,7 @@ export default defineCommand({
                 }
               }
 
-              exec(`sh ${resolve(program.path)}`)
+              shell.exec(`sh ${resolve(program.path)}`)
               console.warn(`✅ ${program.label} installed`)
             }
             catch (error) {

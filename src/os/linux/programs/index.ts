@@ -1,4 +1,5 @@
 import { join } from 'node:path'
+import { getDirname } from '../../../utils'
 
 export interface ProgramList {
   label: string
@@ -7,6 +8,7 @@ export interface ProgramList {
   dependencies: string[]
 }
 
+const __dirname = getDirname(import.meta.url)
 export const programLists: ProgramList[] = [
   {
     label: 'Git',
