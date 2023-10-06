@@ -1,8 +1,7 @@
-import { basename, join, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
 import { intro, multiselect, select } from '@clack/prompts'
-import { globbySync } from 'globby'
 import { exec } from 'shelljs'
 import type { ProgramList } from '../os/linux/programs'
 import { programLists } from '../os/linux/programs'
@@ -13,7 +12,7 @@ export default defineCommand({
     description: 'Auto install OS programs',
     version: '0.0.1',
   },
-  async run({ args }) {
+  async run() {
     const _osLinuxPath = join(__dirname, '..', 'os', 'linux')
 
     // console.clear()

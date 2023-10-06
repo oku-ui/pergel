@@ -3,16 +3,16 @@
   "display": "Node 18",
   "_version": "18.2.0",
   "compilerOptions": {
+    "target": "ESNext",
     "lib": [
       "ESNext"
     ],
-    "target": "ESNext",
-    "strict": true,
     "module": "ESNext",
-    "esModuleInterop": true,
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node"
+    "strict": true,
+    "skipLibCheck": true
   }
 }

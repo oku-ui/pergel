@@ -21,8 +21,8 @@
     "pergel": "bin/pergel.mjs"
   },
   "files": [
-    "dist",
-    "bin"
+    "bin",
+    "dist"
   ],
   "engines": {
     "node": ">=18"
@@ -36,6 +36,13 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "citty": "^0.1.4",
+    "globby": "^13.2.2",
+    "picocolors": "^1.0.0",
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.18",
@@ -56,12 +63,5 @@
   },
   "lint-staged": {
     "*": "eslint . --fix"
-  },
-  "dependencies": {
-    "@clack/prompts": "^0.7.0",
-    "citty": "^0.1.4",
-    "globby": "^13.2.2",
-    "picocolors": "^1.0.0",
-    "shelljs": "^0.8.5"
   }
 }

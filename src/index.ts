@@ -9,7 +9,7 @@ const main = defineCommand({
   subCommands: {
     os: () => import('./commands/os').then(m => m.default),
   },
-  run({ args }) {
+  run() {
     console.warn('Pergel CLI')
     console.warn('Use --help to see all commands')
   },
