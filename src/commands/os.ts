@@ -4,6 +4,8 @@ import { defineCommand } from 'citty'
 import { intro, multiselect, select } from '@clack/prompts'
 import { globbySync } from 'globby'
 import { exec } from 'shelljs'
+import type { ProgramList } from '../os/linux/programs'
+import { programLists } from '../os/linux/programs'
 
 export default defineCommand({
   meta: {
@@ -12,7 +14,7 @@ export default defineCommand({
     version: '0.0.1',
   },
   async run({ args }) {
-    const osLinuxPath = join(__dirname, '..', 'os', 'linux')
+    const _osLinuxPath = join(__dirname, '..', 'os', 'linux')
 
     // console.clear()
     intro('OS - Pergel')
@@ -50,34 +52,43 @@ export default defineCommand({
               label: 'All',
               hint: 'If you select this, all programs will be installed',
             },
-            ...globbySync(`${osLinuxPath}/programs/*.sh`).map(i => ({
-              value: i,
-              label: basename(i).slice(0, -3),
+            ...programLists.map(i => ({
+              value: i.label,
+              label: i.label,
             })),
           ],
         }) as string[]
 
         if (selectPrograms.length > 0) {
+          const programs: ProgramList[] = []
+
           if (selectPrograms.includes('all')) {
-            for await (const program of globbySync(`${osLinuxPath}/programs/*.sh`)) {
-              try {
-                exec(`sh ${resolve(program)}`)
-                console.warn(`✅ ${basename(program).slice(0, -3)} installed`)
-              }
-              catch (error) {
-                console.error(`❌ ${basename(program).slice(0, -3)} not installed`)
-              }
-            }
+            programs.push(...programLists)
           }
           else {
-            for await (const program of selectPrograms) {
-              try {
-                exec(`sh ${resolve(program)}`)
-                console.warn(`✅ ${basename(program).slice(0, -3)} installed`)
+            for await (const program of selectPrograms)
+              programs.push(programLists.find(i => i.label === program)!)
+          }
+
+          for await (const program of programs) {
+            try {
+              if (program.dependencies.length > 0) {
+                for await (const dependency of program.dependencies) {
+                  try {
+                    execSync(`sh ${programLists.find(i => i.label === dependency)!.path}`)
+                    console.warn(`-- Dependency: ${dependency} installed`)
+                  }
+                  catch (error) {
+                    console.error(`❌ ${dependency} not installed`)
+                  }
+                }
               }
-              catch (error) {
-                console.error(`❌ ${basename(program).slice(0, -3)} not installed`)
-              }
+
+              exec(`sh ${resolve(program.path)}`)
+              console.warn(`✅ ${program.label} installed`)
+            }
+            catch (error) {
+              console.error(`❌ ${program.label} not installed`)
             }
           }
         }
