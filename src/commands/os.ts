@@ -44,20 +44,40 @@ export default defineCommand({
       if (whichDo.includes('install')) {
         const selectPrograms = await multiselect({
           message: 'select programs',
-          options: globbySync(`${osLinuxPath}/programs`).map(i => ({
-            value: i,
-            label: basename(i).slice(0, -3),
-          })),
+          options: [
+            {
+              value: 'all',
+              label: 'All',
+              hint: 'If you select this, all programs will be installed',
+            },
+            ...globbySync(`${osLinuxPath}/programs/*.sh`).map(i => ({
+              value: i,
+              label: basename(i).slice(0, -3),
+            })),
+          ],
         }) as string[]
 
         if (selectPrograms.length > 0) {
-          for await (const program of selectPrograms) {
-            try {
-              exec(`sh ${resolve(program)}`)
-              console.warn(`✅ ${basename(program).slice(0, -3)} installed`)
+          if (selectPrograms.includes('all')) {
+            for await (const program of globbySync(`${osLinuxPath}/programs/*.sh`)) {
+              try {
+                exec(`sh ${resolve(program)}`)
+                console.warn(`✅ ${basename(program).slice(0, -3)} installed`)
+              }
+              catch (error) {
+                console.error(`❌ ${basename(program).slice(0, -3)} not installed`)
+              }
             }
-            catch (error) {
-              console.error(`❌ ${basename(program).slice(0, -3)} not installed`)
+          }
+          else {
+            for await (const program of selectPrograms) {
+              try {
+                exec(`sh ${resolve(program)}`)
+                console.warn(`✅ ${basename(program).slice(0, -3)} installed`)
+              }
+              catch (error) {
+                console.error(`❌ ${basename(program).slice(0, -3)} not installed`)
+              }
             }
           }
         }
