@@ -82,8 +82,6 @@ fi
 # Check if nvm is not installed
 if command -v nvm &>/dev/null; then
   echo "nvm is already installed."
-  npm install -g pergel
-  npm list -g pergel
 else
   echo "nvm is not installed, starting the installation..."
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
@@ -108,8 +106,8 @@ else
   fi
 fi
 
-# npm check
-if command -v npm &>/dev/null; then
+# node check
+if command -v node &>/dev/null; then
   echo "npm is already installed."
 
   # Install the latest version of Pergel
