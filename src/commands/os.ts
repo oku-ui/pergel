@@ -16,7 +16,6 @@ export default defineCommand({
   async run() {
     const __dirname = getDirname(import.meta.url)
     const root = join(__dirname, '..')
-    console.log(root, 'root')
     const programLists = programList(root)
 
     // console.clear()

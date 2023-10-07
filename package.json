@@ -38,9 +38,9 @@
     "pergel": "bin/pergel.mjs"
   },
   "files": [
-    "os",
     "bin",
     "dist",
+    "os",
     "package.json"
   ],
   "engines": {
