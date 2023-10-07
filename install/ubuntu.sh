@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # Function to compare two version numbers
 version_compare() {
   local version1=$1
@@ -33,7 +31,7 @@ else
     exit 1
   fi
 
-  # Display a message if the installation was successful
+  # Check if the installation was successful
   if [ $? -eq 0 ]; then
     installed_version=$(wget --version | awk 'NR==1{print $3}')
     echo "Wget has been installed successfully (Version $installed_version)."
@@ -65,7 +63,7 @@ if [ "$(version_compare "$installed_version" "$latest_version")" -eq "1" ]; then
       echo "Unsupported package manager, please update Wget manually."
     fi
 
-    # Display a message if the update was successful
+    # Check if the update was successful
     if [ $? -eq 0 ]; then
       updated_version=$(wget --version | awk 'NR==1{print $3}')
       echo "Wget has been updated to Version $updated_version."
@@ -80,13 +78,16 @@ else
 fi
 
 # Check if nvm is not installed
-if command -v nvm &>/dev/null; then
-  echo "nvm is already installed."
-else
+if ! command -v nvm &>/dev/null; then
   echo "nvm is not installed, starting the installation..."
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-  # Display a message if the installation was successful
+
+  # Check if the installation was successful
   if [ $? -eq 0 ]; then
+    # Load nvm into the current shell session
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
     # Install the latest LTS version of Node.js using nvm
     echo "Installing the latest LTS version of Node.js..."
@@ -106,37 +107,35 @@ else
   fi
 fi
 
-# node check
-if command -v node &>/dev/null; then
-  echo "npm is already installed."
 
-  # Install the latest version of Pergel
-  echo "Installing the latest version of Pergel..."
-  npm install -g pergel
-  npm list -g pergel
-else
-  # Install the latest LTS version of Node.js using nvm
-  echo "Installing the latest LTS version of Node.js..."
+# Check if Node.js is installed
+if ! command -v node &>/dev/null; then
+  echo "Node.js is not installed."
   nvm install --lts
-
-  # Set the LTS version as the default
   nvm alias default $(nvm ls --lts | tail -n 1)
-
-  # Verify the installation and default version
   echo "Default Node.js version: $(node --version)"
   echo "Default npm version: $(npm --version)"
 
-  echo "nvm has been installed successfully."
+else
+  echo "Node.js is already installed."
+fi
+
+# Check if npm is installed
+if ! command -v node &>/dev/null; then
+  echo "npm is not installed."
 
   # Install the latest version of Pergel
   echo "Installing the latest version of Pergel..."
   npm install -g pergel
   npm list -g pergel
-  # Display a message if the installation was successful
+
+  # Check if the installation was successful
   if [ $? -eq 0 ]; then
     echo "npm has been installed successfully."
   else
     echo "An error occurred while installing npm."
     exit 1
   fi
+else
+  echo "npm is already installed."
 fi
