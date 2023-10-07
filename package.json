@@ -1,7 +1,7 @@
 {
   "name": "pergel",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3-beta.0",
   "packageManager": "pnpm@8.8.0",
   "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
   "author": "Mehmet @productdevbook",
@@ -54,7 +54,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
-    "release": "pnpm build && bumpp --commit --push --tag && pnpm publish"
+    "release": "pnpm build && bumpp --commit --push --tag && pnpm publish",
+    "release:local": "pnpm build && bumpp && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
