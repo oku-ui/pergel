@@ -102,11 +102,6 @@ else
     echo "Default npm version: $(npm --version)"
 
     echo "nvm has been installed successfully."
-
-    # Install the latest version of Pergel
-    echo "Installing the latest version of Pergel..."
-    npm install -g pergel
-    npm list -g pergel
   else
     echo "An error occurred while installing nvm."
     exit 1
@@ -116,6 +111,11 @@ fi
 # npm check
 if command -v npm &>/dev/null; then
   echo "npm is already installed."
+
+  # Install the latest version of Pergel
+  echo "Installing the latest version of Pergel..."
+  npm install -g pergel
+  npm list -g pergel
 else
   # Install the latest LTS version of Node.js using nvm
   echo "Installing the latest LTS version of Node.js..."
