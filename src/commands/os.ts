@@ -89,6 +89,9 @@ export default defineCommand({
                 execSync(`sh ${resolve(program.path)}`, { stdio: 'inherit' })
                 console.warn(`✅ ${program.label} installed`)
               }
+              else {
+                console.warn(`✅ ${program.label} is already installed`)
+              }
             }
             catch (error) {
               console.error(`❌ ${program.label} not installed`)
