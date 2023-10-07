@@ -1,6 +1,5 @@
 import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
-import packageJson from '../../package.json'
 
 export default defineCommand({
   meta: {
