@@ -2,10 +2,9 @@ import { join, resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
 import { intro, multiselect, select } from '@clack/prompts'
-import shell from 'shelljs'
-import type { ProgramList } from '../os/linux/programs'
-import { programLists } from '../os/linux/programs'
 import { getDirname } from '../utils'
+import type { ProgramList } from '../../os/linux/programs'
+import { programList } from '../../os/linux/programs'
 
 export default defineCommand({
   meta: {
@@ -15,7 +14,8 @@ export default defineCommand({
   },
   async run() {
     const __dirname = getDirname(import.meta.url)
-    const _osLinuxPath = join(__dirname, '..', 'os', 'linux')
+    const root = join(__dirname, '..')
+    const programLists = programList(root)
 
     // console.clear()
     intro('OS - Pergel')
@@ -84,9 +84,11 @@ export default defineCommand({
                   }
                 }
               }
-
-              shell.exec(`sh ${resolve(program.path)}`)
-              console.warn(`✅ ${program.label} installed`)
+              const data = await program.isActive()
+              if (!data) {
+                execSync(`sh ${resolve(program.path)}`, { stdio: 'inherit' })
+                console.warn(`✅ ${program.label} installed`)
+              }
             }
             catch (error) {
               console.error(`❌ ${program.label} not installed`)

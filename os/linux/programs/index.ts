@@ -1,0 +1,81 @@
+import { execSync } from 'node:child_process'
+import { join } from 'node:path'
+
+export interface ProgramList {
+  label: string
+  value: string
+  path: string
+  dependencies: string[]
+  isActive: () => Promise<boolean>
+}
+
+export function programList(root: string) {
+  const programLists: ProgramList[] = [
+    {
+      label: 'Git',
+      value: 'git',
+      path: join(root, 'os', 'linux', 'programs', 'git.sh'),
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('git --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
+      dependencies: [],
+    },
+    {
+      label: 'wget',
+      value: 'wget',
+      path: join(root, 'os', 'linux', 'programs', 'wget.sh'),
+      dependencies: [],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('wget --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
+    },
+    {
+      label: 'curl',
+      value: 'curl',
+      path: join(root, 'os', 'linux', 'programs', 'curl.sh'),
+      dependencies: [],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('curl --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
+    },
+    {
+      label: 'nvm',
+      value: 'nvm',
+      path: join(root, 'os', 'linux', 'programs', 'nvm.sh'),
+      dependencies: [
+        'wget',
+      ],
+      isActive: async () => {
+        return false
+      },
+    },
+  ]
+  return programLists
+}
