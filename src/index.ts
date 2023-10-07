@@ -20,9 +20,7 @@ const main = defineCommand({
   run({ args }) {
     console.warn('Pergel CLI')
     if (args.version)
-      // eslint-disable-next-line ts/ban-ts-comment
-      // @ts-expect-error
-      console.warn('Pergel CLI version:', this.meta.version)
+      console.warn('Pergel CLI version:', packageJson.version)
   },
 })
 
