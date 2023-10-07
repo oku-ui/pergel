@@ -3,9 +3,9 @@ import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
 import { intro, multiselect, select } from '@clack/prompts'
 import shell from 'shelljs'
-import type { ProgramList } from '../os/linux/programs'
-import { programLists } from '../os/linux/programs'
 import { getDirname } from '../utils'
+import type { ProgramList } from '../../os/linux/programs'
+import { programList } from '../../os/linux/programs'
 
 export default defineCommand({
   meta: {
@@ -15,7 +15,9 @@ export default defineCommand({
   },
   async run() {
     const __dirname = getDirname(import.meta.url)
-    const _osLinuxPath = join(__dirname, '..', 'os', 'linux')
+    const root = join(__dirname, '..')
+    console.log(root, 'root')
+    const programLists = programList(root)
 
     // console.clear()
     intro('OS - Pergel')
