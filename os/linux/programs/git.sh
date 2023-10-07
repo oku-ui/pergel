@@ -1,14 +1,8 @@
-#!/bin/bash
-# Install Git
+#!/usr/bin/env bash
 
-if command -v git &> /dev/null
-then
-    echo "Git is already installed"
-else
-    echo "Installing Git"
+echo "Installing Git"
+sudo apt update
+sudo apt install git
+echo "✅ Git has been installed successfully."
 
-    sudo apt update
-    sudo apt install git
-
-    exec bash
-fi
+e

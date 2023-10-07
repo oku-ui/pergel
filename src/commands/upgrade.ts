@@ -9,7 +9,7 @@ export default defineCommand({
   },
   async run() {
     console.warn('Please wait...')
-    execSync('npm i -g pergel@latest', { stdio: 'inherit' })
+    execSync('npm i -g pergel@latest --force', { stdio: 'inherit' })
     console.warn('Done! ✅')
   },
 })

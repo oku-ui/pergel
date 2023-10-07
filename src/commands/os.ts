@@ -85,9 +85,11 @@ export default defineCommand({
                   }
                 }
               }
-
-              shell.exec(`sh ${resolve(program.path)}`)
-              console.warn(`✅ ${program.label} installed`)
+              const data = await program.isActive()
+              if (!data) {
+                execSync(`sh ${resolve(program.path)}`, { stdio: 'inherit' })
+                console.warn(`✅ ${program.label} installed`)
+              }
             }
             catch (error) {
               console.error(`❌ ${program.label} not installed`)

@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process'
 import { join } from 'node:path'
 
 export interface ProgramList {
@@ -5,6 +6,7 @@ export interface ProgramList {
   value: string
   path: string
   dependencies: string[]
+  isActive: () => Promise<boolean>
 }
 
 export function programList(root: string) {
@@ -13,6 +15,18 @@ export function programList(root: string) {
       label: 'Git',
       value: 'git',
       path: join(root, 'os', 'linux', 'programs', 'git.sh'),
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('git --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
       dependencies: [],
     },
     {
@@ -20,12 +34,36 @@ export function programList(root: string) {
       value: 'wget',
       path: join(root, 'os', 'linux', 'programs', 'wget.sh'),
       dependencies: [],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('wget --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
     },
     {
       label: 'curl',
       value: 'curl',
       path: join(root, 'os', 'linux', 'programs', 'curl.sh'),
       dependencies: [],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('curl --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
     },
     {
       label: 'nvm',
@@ -34,6 +72,9 @@ export function programList(root: string) {
       dependencies: [
         'wget',
       ],
+      isActive: async () => {
+        return false
+      },
     },
   ]
   return programLists
