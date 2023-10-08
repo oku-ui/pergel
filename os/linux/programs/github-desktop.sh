@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing Curl"
+echo "Installing Github Desktop"
 
 release_url="https://api.github.com/repos/shiftkey/desktop/releases/latest"
 
