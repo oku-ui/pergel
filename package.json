@@ -54,7 +54,7 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
-    "release": "pnpm build && bumpp --commit --push --tag && pnpm publish",
+    "release": "pnpm build && bumpp --commit --push --tag && pnpm build && pnpm publish",
     "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks"
   },
   "dependencies": {
