@@ -123,6 +123,29 @@ export function programList(root: string) {
         return false
       },
     },
+    {
+      label: 'github desktop',
+      value: 'github-desktop',
+      path: join(root, 'os', 'linux', 'programs', 'github-desktop.sh'),
+      dependencies: [
+        'wget',
+        'curl',
+        'jq',
+        'gdebi',
+      ],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('dpkg -s github-desktop', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
+    },
   ]
   return programLists
 }
