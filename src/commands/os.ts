@@ -73,19 +73,19 @@ export default defineCommand({
 
           for await (const program of programs) {
             try {
-              if (program.dependencies.length > 0) {
-                for await (const dependency of program.dependencies) {
-                  try {
-                    execSync(`sh ${programLists.find(i => i.label === dependency)!.path}`)
-                    console.warn(`-- Dependency: ${dependency} installed`)
-                  }
-                  catch (error) {
-                    console.error(`❌ ${dependency} not installed`)
-                  }
-                }
-              }
               const data = await program.isActive()
               if (!data) {
+                if (program.dependencies.length > 0) {
+                  for await (const dependency of program.dependencies) {
+                    try {
+                      execSync(`sh ${programLists.find(i => i.label === dependency)!.path}`)
+                      console.warn(`-- Dependency: ${dependency} installed`)
+                    }
+                    catch (error) {
+                      console.error(`❌ ${dependency} not installed`)
+                    }
+                  }
+                }
                 execSync(`sh ${resolve(program.path)}`, { stdio: 'inherit' })
                 console.warn(`✅ ${program.label} installed`)
               }
