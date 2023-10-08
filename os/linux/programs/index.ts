@@ -16,16 +16,7 @@ export function programList(root: string) {
       value: 'git',
       path: join(root, 'os', 'linux', 'programs', 'git.sh'),
       isActive: async () => {
-        let isInstalled = false
-        try {
-          const data = execSync('git --version', { encoding: 'utf-8' })
-          if (data.length > 3)
-            isInstalled = true
-        }
-        catch (error) {
-          isInstalled = false
-        }
-        return isInstalled
+        return isActive('git --version')
       },
       dependencies: [],
     },
@@ -35,16 +26,7 @@ export function programList(root: string) {
       path: join(root, 'os', 'linux', 'programs', 'wget.sh'),
       dependencies: [],
       isActive: async () => {
-        let isInstalled = false
-        try {
-          const data = execSync('wget --version', { encoding: 'utf-8' })
-          if (data.length > 3)
-            isInstalled = true
-        }
-        catch (error) {
-          isInstalled = false
-        }
-        return isInstalled
+        return isActive('wget --version')
       },
     },
     {
@@ -53,16 +35,7 @@ export function programList(root: string) {
       path: join(root, 'os', 'linux', 'programs', 'gdebi.sh'),
       dependencies: [],
       isActive: async () => {
-        let isInstalled = false
-        try {
-          const data = execSync('gdebi --version', { encoding: 'utf-8' })
-          if (data.length > 3)
-            isInstalled = true
-        }
-        catch (error) {
-          isInstalled = false
-        }
-        return isInstalled
+        return isActive('gdebi --version')
       },
     },
     {
@@ -71,16 +44,7 @@ export function programList(root: string) {
       path: join(root, 'os', 'linux', 'programs', 'curl.sh'),
       dependencies: [],
       isActive: async () => {
-        let isInstalled = false
-        try {
-          const data = execSync('curl --version', { encoding: 'utf-8' })
-          if (data.length > 3)
-            isInstalled = true
-        }
-        catch (error) {
-          isInstalled = false
-        }
-        return isInstalled
+        return isActive('curl --version')
       },
     },
     {
@@ -89,16 +53,7 @@ export function programList(root: string) {
       path: join(root, 'os', 'linux', 'programs', 'jq.sh'),
       dependencies: [],
       isActive: async () => {
-        let isInstalled = false
-        try {
-          const data = execSync('jq --version', { encoding: 'utf-8' })
-          if (data.length > 3)
-            isInstalled = true
-        }
-        catch (error) {
-          isInstalled = false
-        }
-        return isInstalled
+        return isActive('jq --version')
       },
     },
     {
@@ -134,18 +89,33 @@ export function programList(root: string) {
         'gdebi',
       ],
       isActive: async () => {
-        let isInstalled = false
-        try {
-          const data = execSync('dpkg -s github-desktop', { encoding: 'utf-8' })
-          if (data.length > 3)
-            isInstalled = true
-        }
-        catch (error) {
-          isInstalled = false
-        }
-        return isInstalled
+        return isActive('dpkg -s github-desktop')
+      },
+    },
+    {
+      label: 'pnpm',
+      value: 'pnpm',
+      path: join(root, 'os', 'linux', 'programs', 'pnpm.sh'),
+      dependencies: [
+        'curl',
+      ],
+      isActive: async () => {
+        return isActive('pnpm --version')
       },
     },
   ]
   return programLists
+}
+
+function isActive(command: string) {
+  let isInstalled = false
+  try {
+    const data = execSync(command, { encoding: 'utf-8' })
+    if (data.length > 3)
+      isInstalled = true
+  }
+  catch (error) {
+    isInstalled = false
+  }
+  return isInstalled
 }
