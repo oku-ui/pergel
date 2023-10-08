@@ -68,6 +68,17 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'pnpm',
+      value: 'pnpm',
+      path: join(root, 'os', 'linux', 'programs', 'pnpm.sh'),
+      dependencies: [
+        'curl',
+      ],
+      isActive: async () => {
+        return isActive('pnpm --version')
+      },
+    },
+    {
       label: 'google chrome',
       value: 'google-chrome',
       path: join(root, 'os', 'linux', 'programs', 'chrome.sh'),
@@ -93,16 +104,17 @@ export function programList(root: string) {
       },
     },
     {
-      label: 'pnpm',
-      value: 'pnpm',
-      path: join(root, 'os', 'linux', 'programs', 'pnpm.sh'),
+      label: 'vscode',
+      value: 'vscode',
+      path: join(root, 'os', 'linux', 'programs', 'vscode.sh'),
       dependencies: [
-        'curl',
+        'wget',
       ],
       isActive: async () => {
-        return isActive('pnpm --version')
+        return isActive('code --version')
       },
     },
+
   ]
   return programLists
 }
