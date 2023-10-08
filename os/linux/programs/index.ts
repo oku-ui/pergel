@@ -48,6 +48,24 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'gdebi',
+      value: 'gdebi',
+      path: join(root, 'os', 'linux', 'programs', 'gdebi.sh'),
+      dependencies: [],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('gdebi --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
+    },
+    {
       label: 'curl',
       value: 'curl',
       path: join(root, 'os', 'linux', 'programs', 'curl.sh'),
