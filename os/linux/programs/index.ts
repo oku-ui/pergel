@@ -76,6 +76,17 @@ export function programList(root: string) {
         return false
       },
     },
+    {
+      label: 'google chrome',
+      value: 'google-chrome',
+      path: join(root, 'os', 'linux', 'programs', 'chrome.sh'),
+      dependencies: [
+        'wget',
+      ],
+      isActive: async () => {
+        return false
+      },
+    },
   ]
   return programLists
 }
