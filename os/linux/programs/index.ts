@@ -84,6 +84,24 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'jq',
+      value: 'jq',
+      path: join(root, 'os', 'linux', 'programs', 'jq.sh'),
+      dependencies: [],
+      isActive: async () => {
+        let isInstalled = false
+        try {
+          const data = execSync('jq --version', { encoding: 'utf-8' })
+          if (data.length > 3)
+            isInstalled = true
+        }
+        catch (error) {
+          isInstalled = false
+        }
+        return isInstalled
+      },
+    },
+    {
       label: 'nvm',
       value: 'nvm',
       path: join(root, 'os', 'linux', 'programs', 'nvm.sh'),
