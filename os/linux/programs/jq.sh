@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing Curl"
+echo "Installing Jq"
 
 sudo apt update
 sudo apt install -y jq
