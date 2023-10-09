@@ -48,6 +48,15 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'snap',
+      value: 'snap',
+      path: join(root, 'os', 'linux', 'programs', 'snap.sh'),
+      dependencies: [],
+      isActive: async () => {
+        return isActive('snap --version')
+      },
+    },
+    {
       label: 'jq',
       value: 'jq',
       path: join(root, 'os', 'linux', 'programs', 'jq.sh'),
