@@ -123,6 +123,15 @@ export function programList(root: string) {
         return isActive('code --version')
       },
     },
+    {
+      label: 'beekeeper studio',
+      value: 'beekeeper-studio',
+      path: join(root, 'os', 'linux', 'programs', 'beekeeper-studio.sh'),
+      dependencies: [],
+      isActive: async () => {
+        return isActive('dpkg -s beekeeper-studio')
+      },
+    },
 
   ]
   return programLists
@@ -132,6 +141,8 @@ function isActive(command: string) {
   let isInstalled = false
   try {
     const data = execSync(command, { encoding: 'utf-8' })
+    console.warn(data, 'data')
+
     if (data.length > 3)
       isInstalled = true
   }
