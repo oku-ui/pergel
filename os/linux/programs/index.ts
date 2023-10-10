@@ -123,6 +123,17 @@ export function programList(root: string) {
         return isActive('code --version')
       },
     },
+    {
+      label: 'docker desktop',
+      value: 'docker-desktop',
+      path: join(root, 'os', 'linux', 'programs', 'docker-desktop.sh'),
+      dependencies: [
+        'curl',
+      ],
+      isActive: async () => {
+        return isActive('dpkg -s docker-desktop')
+      },
+    },
 
   ]
   return programLists
