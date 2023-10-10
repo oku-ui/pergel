@@ -141,8 +141,6 @@ function isActive(command: string) {
   let isInstalled = false
   try {
     const data = execSync(command, { encoding: 'utf-8' })
-    console.warn(data, 'data')
-
     if (data.length > 3)
       isInstalled = true
   }
