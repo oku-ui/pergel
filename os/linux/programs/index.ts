@@ -57,6 +57,17 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'brew',
+      value: 'brew',
+      path: join(root, 'os', 'linux', 'programs', 'brew.sh'),
+      dependencies: [
+        'curl',
+      ],
+      isActive: async () => {
+        return isActive('brew --version')
+      },
+    },
+    {
       label: 'jq',
       value: 'jq',
       path: join(root, 'os', 'linux', 'programs', 'jq.sh'),
