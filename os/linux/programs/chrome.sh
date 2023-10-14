@@ -1,11 +1,6 @@
 #!/bin/bash
 
-# Check if google chrome is not installed
-INSTALLED_CHROME_VERSION=$(google-chrome-stable --version)
-echo $INSTALLED_CHROME_VERSION
-if [ -z "$INSTALLED_CHROME_VERSION" ]; then
-  echo "google chrome is not installed, starting the installation..."
-
+if [ $OPERATION = "install" ]; then
   sudo apt update
   sudo apt upgrade
 
@@ -17,7 +12,9 @@ if [ -z "$INSTALLED_CHROME_VERSION" ]; then
 
   # Display a message if the installation was successful
   echo "google chrome has been installed successfully."
-else
-  echo "google chrome is already installed."
+elif [ $OPERATION = "uninstall" ]; then
+  sudo dpkg -r google-chrome-stable
+  echo "✅ google chrome has been uninstalled successfully."
 fi
+
 exec bash

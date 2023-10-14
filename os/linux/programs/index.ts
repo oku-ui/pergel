@@ -93,7 +93,7 @@ export function programList(root: string) {
         'wget',
       ],
       isActive: async () => {
-        return false
+        return isActive('nvm --version')
       },
     },
     {
@@ -127,7 +127,7 @@ export function programList(root: string) {
         'wget',
       ],
       isActive: async () => {
-        return false
+        return isActive('google-chrome-stable --version')
       },
     },
     {
