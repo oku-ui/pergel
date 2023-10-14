@@ -12,7 +12,7 @@ export interface ProgramList {
 export function programList(root: string) {
   const programLists: ProgramList[] = [
     {
-      label: 'Git',
+      label: 'git',
       value: 'git',
       path: join(root, 'os', 'linux', 'programs', 'git.sh'),
       isActive: async () => {
@@ -176,7 +176,8 @@ export function programList(root: string) {
       },
     },
   ]
-  return programLists
+
+  return sortArrayAlphabetically(programLists)
 }
 
 function isActive(command: string) {
@@ -190,4 +191,8 @@ function isActive(command: string) {
     isInstalled = false
   }
   return isInstalled
+}
+
+function sortArrayAlphabetically(unsortedArray: ProgramList[]) {
+  return unsortedArray.sort((a, b) => a?.label.localeCompare(b?.label))
 }
