@@ -1,5 +1,6 @@
 #!/bin/bash
 
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
@@ -9,7 +10,8 @@ if [ $OPERATION = "install" ]; then
     brew install gcc
     echo "✅ Brew has been installed successfully."
 elif [ $OPERATION = "uninstall" ]; then
-    bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+    source ~/.bashrc
     echo "✅ Brew has been uninstalled successfully."
 fi
 

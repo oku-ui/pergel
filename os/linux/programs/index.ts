@@ -82,7 +82,7 @@ export function programList(root: string) {
       path: join(root, 'os', 'linux', 'programs', 'unzip.sh'),
       dependencies: [],
       isActive: async () => {
-        return isActive('which unzip')
+        return isActive('dpkg -s unzip | grep -w "install" | head')
       },
     },
     {
@@ -163,7 +163,7 @@ export function programList(root: string) {
         'curl',
       ],
       isActive: async () => {
-        return isActive('dpkg -s docker-desktop')
+        return isActive('dpkg -s docker-desktop | grep -w "install" | head')
       },
     },
     {
@@ -172,7 +172,7 @@ export function programList(root: string) {
       path: join(root, 'os', 'linux', 'programs', 'beekeeper-studio.sh'),
       dependencies: [],
       isActive: async () => {
-        return isActive('dpkg -s beekeeper-studio')
+        return isActive('dpkg -s beekeeper-studio | grep -w "install" | head')
       },
     },
   ]

@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
     echo "Installing Wget"
 

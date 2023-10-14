@@ -90,7 +90,7 @@ export default defineCommand({
                     }
                   }
                 }
-                execSync(`sh ${resolve(program.path)}`, { stdio: 'inherit' })
+                execSync(`sh ${resolve(program.path)} install`, { stdio: 'inherit' })
                 console.warn(`✅ ${program.label} installed`)
               }
               else {
@@ -119,8 +119,11 @@ export default defineCommand({
 
           for await (const program of selectPrograms)
             programs.push(programLists.find(i => i.label === program)!)
+          console.warn(programs)
 
           for await (const program of programs) {
+            console.warn(program)
+
             try {
               const data = await program.isActive()
               console.warn(data, 'uninstall')

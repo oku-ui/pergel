@@ -1,4 +1,6 @@
 #!/bin/bash
+
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   # Display a message if the installation was successful
