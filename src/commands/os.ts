@@ -119,11 +119,8 @@ export default defineCommand({
 
           for await (const program of selectPrograms)
             programs.push(programLists.find(i => i.label === program)!)
-          console.warn(programs)
 
           for await (const program of programs) {
-            console.warn(program)
-
             try {
               const data = await program.isActive()
               console.warn(data, 'uninstall')
