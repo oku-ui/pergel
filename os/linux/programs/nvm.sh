@@ -1,10 +1,5 @@
 #!/bin/bash
-
-# Check if nvm is not installed
-if command -v nvm &>/dev/null; then
-  echo "nvm is already installed."
-else
-  echo "nvm is not installed, starting the installation..."
+if [ $OPERATION = "install" ]; then
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   # Display a message if the installation was successful
   if [ $? -eq 0 ]; then
@@ -20,11 +15,16 @@ else
     echo "Default Node.js version: $(node --version)"
     echo "Default npm version: $(npm --version)"
 
-    
     echo "nvm has been installed successfully."
   else
     echo "An error occurred while installing nvm."
     exit 1
   fi
+
+elif [ $OPERATION = "uninstall" ]; then
+  echo "Uninstalling nvm"
+  nvm deactivate
+  nvm unload
+  echo "✅ nvm has been uninstalled successfully."
 fi
 exec bash
