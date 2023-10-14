@@ -141,7 +141,7 @@ export function programList(root: string) {
         'gdebi',
       ],
       isActive: async () => {
-        return isActive('dpkg -s github-desktop')
+        return isActive('dpkg -s github-desktop | grep -w "install" | head')
       },
     },
     {
