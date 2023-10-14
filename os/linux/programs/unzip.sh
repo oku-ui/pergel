@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing Curl"
+echo "Installing Unzip"
 
 sudo apt update
 sudo apt install unzip
