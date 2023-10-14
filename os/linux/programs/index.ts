@@ -77,6 +77,15 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'unzip',
+      value: 'unzip',
+      path: join(root, 'os', 'linux', 'programs', 'unzip.sh'),
+      dependencies: [],
+      isActive: async () => {
+        return isActive('which unzip')
+      },
+    },
+    {
       label: 'nvm',
       value: 'nvm',
       path: join(root, 'os', 'linux', 'programs', 'nvm.sh'),
@@ -96,6 +105,18 @@ export function programList(root: string) {
       ],
       isActive: async () => {
         return isActive('pnpm --version')
+      },
+    },
+    {
+      label: 'bun',
+      value: 'bun',
+      path: join(root, 'os', 'linux', 'programs', 'bun.sh'),
+      dependencies: [
+        'curl',
+        'unzip',
+      ],
+      isActive: async () => {
+        return isActive('bun --version')
       },
     },
     {
