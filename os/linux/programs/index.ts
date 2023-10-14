@@ -135,6 +135,17 @@ export function programList(root: string) {
       },
     },
     {
+      label: 'docker desktop',
+      value: 'docker-desktop',
+      path: join(root, 'os', 'linux', 'programs', 'docker-desktop.sh'),
+      dependencies: [
+        'curl',
+      ],
+      isActive: async () => {
+        return isActive('dpkg -s docker-desktop')
+      },
+    },
+    {
       label: 'beekeeper studio',
       value: 'beekeeper-studio',
       path: join(root, 'os', 'linux', 'programs', 'beekeeper-studio.sh'),
@@ -143,7 +154,6 @@ export function programList(root: string) {
         return isActive('dpkg -s beekeeper-studio')
       },
     },
-
   ]
   return programLists
 }
