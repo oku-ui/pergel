@@ -90,7 +90,7 @@ export default defineCommand({
                     }
                   }
                 }
-                execSync(`sh ${resolve(program.path)}`, { stdio: 'inherit' })
+                execSync(`sh ${resolve(program.path)} install`, { stdio: 'inherit' })
                 console.warn(`✅ ${program.label} installed`)
               }
               else {

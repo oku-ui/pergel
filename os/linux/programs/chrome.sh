@@ -1,5 +1,6 @@
 #!/bin/bash
 
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
   sudo apt update
   sudo apt upgrade
@@ -11,7 +12,7 @@ if [ $OPERATION = "install" ]; then
   sudo rm ./google-chrome-stable_current_amd64.deb
 
   # Display a message if the installation was successful
-  echo "google chrome has been installed successfully."
+  echo "✅ google chrome has been installed successfully."
 elif [ $OPERATION = "uninstall" ]; then
   sudo dpkg -r google-chrome-stable
   echo "✅ google chrome has been uninstalled successfully."

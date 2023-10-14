@@ -1,5 +1,6 @@
 #!/bin/bash
 
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
     echo "Installing Beekeeper Studio"
 

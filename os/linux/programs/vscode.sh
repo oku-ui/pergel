@@ -1,5 +1,6 @@
 #!/bin/bash
 
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
     sudo apt update
     sudo apt install software-properties-common apt-transport-https -y

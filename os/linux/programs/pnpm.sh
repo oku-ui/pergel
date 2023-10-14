@@ -1,5 +1,6 @@
 #!/bin/bash
 
+OPERATION=$1
 if [ $OPERATION = "install" ]; then
     sudo apt update
     curl -fsSL https://get.pnpm.io/install.sh | sh -
