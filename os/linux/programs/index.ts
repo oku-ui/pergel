@@ -184,6 +184,15 @@ export function programList(root: string) {
         return isActive('starship --version')
       },
     },
+    {
+      label: 'starship',
+      value: 'starship',
+      path: join(root, 'os', 'linux', 'programs', 'starship.sh'),
+      dependencies: ['curl'],
+      isActive: async () => {
+        return isActive('starship --version')
+      },
+    },
   ]
 
   return sortArrayAlphabetically(programLists)
