@@ -175,6 +175,15 @@ export function programList(root: string) {
         return isActive('dpkg -s beekeeper-studio | grep -w "install" | head')
       },
     },
+    {
+      label: 'starship',
+      value: 'starship',
+      path: join(root, 'os', 'linux', 'programs', 'starship.sh'),
+      dependencies: [],
+      isActive: async () => {
+        return isActive('starship --version')
+      },
+    },
   ]
 
   return sortArrayAlphabetically(programLists)
