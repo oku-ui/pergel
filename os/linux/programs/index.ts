@@ -185,12 +185,14 @@ export function programList(root: string) {
       },
     },
     {
-      label: 'starship',
-      value: 'starship',
-      path: join(root, 'os', 'linux', 'programs', 'starship.sh'),
-      dependencies: ['curl'],
+      label: 'android studio',
+      value: 'android-studio',
+      path: join(root, 'os', 'linux', 'programs', 'android-studio.sh'),
+      dependencies: [
+        'snap',
+      ],
       isActive: async () => {
-        return isActive('starship --version')
+        return isActive('which android-studio')
       },
     },
   ]
