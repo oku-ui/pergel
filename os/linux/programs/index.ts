@@ -175,6 +175,17 @@ export function programList(root: string) {
         return isActive('dpkg -s beekeeper-studio | grep -w "install" | head')
       },
     },
+    {
+      label: 'android studio',
+      value: 'android-studio',
+      path: join(root, 'os', 'linux', 'programs', 'android-studio.sh'),
+      dependencies: [
+        'snap',
+      ],
+      isActive: async () => {
+        return isActive('which android-studio')
+      },
+    },
   ]
 
   return sortArrayAlphabetically(programLists)
