@@ -13,7 +13,7 @@ We're so excited you're interested in helping with Oku! We are happy to help you
 
 
 ### Prerequisites
--   [Min Nodejs 18] & [PNPM >= 8.8.0](https://pnpm.io) installed 
+-   [Min Nodejs 20] & [PNPM >= 8.8.0](https://pnpm.io) installed
 -   IDE: [VSCode](https://code.visualstudio.com/download)(recommended) or equivalent IDE
 
 Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to install the required version.
@@ -25,9 +25,9 @@ Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to i
 ### Project Setup
 
 1. Fork the [oku-ui](https://github.com/oku-ui/pergel) repository
-2. Install the project dependencies  
+2. Install the project dependencies
    `pnpm install`
-3. Run the project in dev mode  
+3. Run the project in dev mode
    `pnpm dev`
 
 ### Scripts
@@ -43,20 +43,20 @@ pnpm lint:fix # Run ESLint and fix errors
 pnpm test # Run tests
 pnpm test:watch # Run tests in watch mode
 pnpm test testfilename # Run a specific test file name
-``` 
+```
 
 ## Testing
 
 1. We use [Vitest](https://vitest.dev/) for testing
-2. To run the tests  
+2. To run the tests
    `pnpm test`
-3. Watch mode  
+3. Watch mode
    `pnpm test:watch`
-4. To run a specific test file name  
+4. To run a specific test file name
    `pnpm test testfilename`
 
 ## ESLint
-1. To run the linter  
+1. To run the linter
    `pnpm lint`
 2. All linting errors will be automatically fixed on commit
    `pnpm lint:fix`
