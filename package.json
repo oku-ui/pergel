@@ -59,23 +59,23 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
-    "citty": "^0.1.4",
+    "citty": "^0.1.5",
     "globby": "^14.0.0",
     "picocolors": "^1.0.0",
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.1.1",
-    "@types/node": "^20.9.0",
+    "@antfu/eslint-config": "2.1.0",
+    "@types/node": "^20.10.0",
     "@types/shelljs": "^0.8.15",
     "@vitest/coverage-v8": "^0.34.6",
     "bumpp": "^9.2.0",
-    "eslint": "^8.53.0",
+    "eslint": "^8.54.0",
     "esno": "^4.0.0",
     "lint-staged": "^15.1.0",
     "simple-git-hooks": "^2.9.0",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2",
     "vitest": "^0.34.6"
   },
   "simple-git-hooks": {
