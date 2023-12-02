@@ -1,31 +1,44 @@
 {
   "name": "pergel-system",
+  "type": "module",
+  "version": "",
   "private": true,
+  "packageManager": "pnpm@8.11.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oku-ui/pergel.git"
   },
-  "packageManager": "pnpm@8.11.0",
   "engines": {
     "node": "^20.10.0 || >=20.10.0"
   },
-  "version": "",
+  "scripts": {
+    "build": "pnpm --filter './packages/**' build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "pnpm build && bumpp --commit --push --tag && pnpm build && pnpm publish",
+    "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.1.2",
+    "@types/node": "^20.10.0",
+    "bumpp": "^9.2.0",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.2",
+    "vite": "5.0.4",
+    "vitest": "^0.34.6",
+    "lint-staged": "^15.1.0",
+    "simple-git-hooks": "^2.9.0"
+  },
   "resolutions": {
     "pergel": "workspace:*",
     "vite": "5.0.4",
     "vue": "3.3.9"
   },
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
   },
-  "devDependencies": {
-    "@antfu/eslint-config": "^2.1.2",
-    "@types/node": "^20.10.0",
-    "eslint": "^8.55.0",
-    "typescript": "^5.3.2",
-    "vite": "5.0.4",
-    "vitest": "^0.34.6"
+  "lint-staged": {
+    "*": "eslint . --fix"
   }
 }
