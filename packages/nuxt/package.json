@@ -1,0 +1,48 @@
+{
+  "name": "@pergel/nuxt",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
+  "author": "Mehmet @productdevbook",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/productdevbook",
+  "homepage": "https://github.com/oku-ui/pergel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oku-ui/pergel.git"
+  },
+  "bugs": "https://github.com/oku-ui/pergel/issues",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "build": "nuxt-module-build build",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.8.2"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxt/module-builder": "^0.5.4",
+    "@nuxt/schema": "^3.8.2",
+    "@nuxt/test-utils": "^3.8.1",
+    "@types/node": "^20.9.3",
+    "nuxt": "^3.8.2",
+    "vitest": "^0.33.0"
+  }
+}
