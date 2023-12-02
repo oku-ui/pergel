@@ -1,0 +1,87 @@
+{
+  "name": "pergel",
+  "type": "module",
+  "version": "0.0.3",
+  "packageManager": "pnpm@8.10.0",
+  "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
+  "author": "Mehmet @productdevbook",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/productdevbook",
+  "homepage": "https://github.com/oku-ui/pergel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oku-ui/pergel.git"
+  },
+  "bugs": "https://github.com/oku-ui/pergel/issues",
+  "keywords": [
+    "nuxt",
+    "fullstack",
+    "full-stack",
+    "nuxt3",
+    "nuxt.js",
+    "linux",
+    "toolkit",
+    "cli",
+    "macos",
+    "starter"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "pergel": "bin/pergel.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "os",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "release": "pnpm build && bumpp --commit --push --tag && pnpm build && pnpm publish",
+    "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "citty": "^0.1.5",
+    "globby": "^14.0.0",
+    "picocolors": "^1.0.0",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/shelljs": "^0.8.15",
+    "@vitest/coverage-v8": "^0.34.6",
+    "bumpp": "^9.2.0",
+    "esno": "^4.0.0",
+    "lint-staged": "^15.1.0",
+    "simple-git-hooks": "^2.9.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint . --fix"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
