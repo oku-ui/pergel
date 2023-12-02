@@ -1,0 +1,31 @@
+{
+  "main": {
+    "graphql": {
+      "project2": {
+        "packageJson": {
+          "dependencies": "@pergel/graphql@0.0.0",
+          "devDependencies": null
+        }
+      },
+      "project1": {
+        "packageJson": {
+          "dependencies": "@pergel/graphql@0.0.0",
+          "devDependencies": null
+        }
+      }
+    },
+    "ses": {
+      "project2": {
+        "env": {
+          "NUXT_MAIN_PROJECT2_SES_REGION": null,
+          "NUXT_MAIN_PROJECT2_SES_ACCESS_KEY_ID": null,
+          "NUXT_MAIN_PROJECT2_SES_SECRET_ACCESS_KEY": null
+        },
+        "packageJson": {
+          "dependencies": "@aws-sdk/client-ses@^3.454.0",
+          "devDependencies": null
+        }
+      }
+    }
+  }
+}

@@ -7,9 +7,12 @@ const external = [
 ]
 
 export default <Options>{
-  entryPoints: ['src/index.ts'],
+  entryPoints: [
+    'src/index.ts',
+    'src/core.ts',
+  ],
   outDir: 'dist',
-  target: 'node16',
+  target: 'esnext',
   format: ['esm'],
   clean: true,
   dts: true,

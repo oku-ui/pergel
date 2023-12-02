@@ -27,13 +27,24 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
     }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
   "bin": {
     "pergel": "bin/pergel.mjs"
   },
@@ -54,11 +65,15 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
+    "@antfu/ni": "^0.21.12",
     "@clack/prompts": "^0.7.0",
+    "c12": "^1.5.1",
     "citty": "^0.1.5",
+    "consola": "^3.2.3",
     "globby": "^14.0.0",
     "picocolors": "^1.0.0",
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
