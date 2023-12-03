@@ -88,7 +88,10 @@ export default defineCommand({
       // }
 
       try {
-        run(parseNr, [selectedScript]).then(() => {
+        await run(async (agent, args, ctx) => {
+          const command = await parseNr(agent, args, ctx)
+          return command ? command.replace(/"/g, '') : undefined
+        }, [selectedScript], { programmatic: true }).then(() => {
           consola.success('Script executed successfully')
         })
       }
