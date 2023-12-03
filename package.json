@@ -1,7 +1,7 @@
 {
   "name": "pergel-system",
   "type": "module",
-  "version": "",
+  "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.11.0",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
-    "release": "pnpm build && bumpp --commit --push --tag && pnpm build && pnpm publish",
+    "release": "pnpm build && bumpp --commit --push --tag",
     "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks"
   },
   "devDependencies": {
