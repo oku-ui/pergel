@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
@@ -36,14 +36,13 @@ export default defineCommand({
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
 
       const json = parse(readmeString)
-      writeFileSync(resolve(file.config.src, 'README.json'), JSON.stringify(json, null, 2))
 
-      const data = json[file.config.activeBranch ?? 'main'] as Record<string, Record<string, { packageJson: { dependencies?: string, devDependencies?: string } }>>
+      const activeBranch = json[file.config.activeBranch ?? 'main'] as Record<string, Record<string, { packageJson: { dependencies?: string, devDependencies?: string } }>>
 
       const dependencies: Set<string> = new Set()
       const devDependencies: Set<string> = new Set()
 
-      for (const [_moduleName, moduleData] of Object.entries(data)) {
+      for (const [_moduleName, moduleData] of Object.entries(activeBranch)) {
         for (const [_projectName, projectData] of Object.entries(moduleData)) {
           if (projectData.packageJson) {
             if (projectData.packageJson.dependencies) {
