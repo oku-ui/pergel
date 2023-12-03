@@ -81,16 +81,16 @@ export default defineCommand({
       if (!selectedScript)
         consola.error('No script found')
 
-      if (file.config.cli.database.driver === 'drizzle')
-        consola.info('If drizzle-kit is not installed globally, install it.')
+      if (file.config.cli.database.driver === 'drizzle') {
+        consola.info('Dont forget to install drizzle-kit and drizzle-orm')
+        consola.info('pnpm -g i drizzle-kit drizzle-orm')
+      }
 
       try {
         execSync(selectedScript, { stdio: 'inherit' })
       }
       catch (error) {
         consola.error(error)
-        if (file.config.cli.database.driver === 'drizzle')
-          consola.info('Please install pnpm -g i drizzle-kit drizzle-orm')
       }
     }
     catch (error) {
