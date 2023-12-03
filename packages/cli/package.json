@@ -63,7 +63,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
-    "prepack": "tsup"
+    "prepack": "tsup",
+    "release": "pnpm build && bumpp"
   },
   "dependencies": {
     "@antfu/ni": "^0.21.12",
