@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   extends: [
     '@nuxt/ui-pro',
   ],
+  build: {
+    transpile: ['#app'],
+  },
   devtools: { enabled: false },
 
   typescript: {
