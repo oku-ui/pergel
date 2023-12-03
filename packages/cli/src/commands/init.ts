@@ -1,10 +1,11 @@
 import { writeFileSync } from 'node:fs'
 import { defineCommand } from 'citty'
 
-const template = `
+const template = `import { definePergel } from 'pergel/core'
 
 export default definePergel({
-  srcDir: 'pergel',
+  src: 'pergel',
+  activeBranch: 'main',
 })
 `
 
