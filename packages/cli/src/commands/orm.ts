@@ -1,11 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import { consola } from 'consola'
 import { parse } from 'yaml'
-import { parseNr, run } from '@antfu/ni'
+import { parseNa, run } from '@antfu/ni'
 import type { PergelConfig, PergelYaml } from '../types'
 
 export default defineCommand({
@@ -89,7 +88,7 @@ export default defineCommand({
 
       try {
         await run(async (agent, args, ctx) => {
-          const command = await parseNr(agent, args, ctx)
+          const command = await parseNa(agent, args, ctx)
           return command ? command.replace(/"/g, '') : undefined
         }, [selectedScript], { programmatic: true }).then(() => {
           consola.success('Script executed successfully')
