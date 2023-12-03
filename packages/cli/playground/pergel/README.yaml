@@ -1,0 +1,42 @@
+main:
+  # Env variables are not supported in this version
+  graphql:
+    project2:
+      # Script Commands
+      scripts:
+        migrate: 'drizzle-kit generate:pg --config=pergel/main/project2/drizzle/drizzle.config.js'
+        push: 'drizzle-kit push:pg --config=pergel/main/project2/drizzle/drizzle.config.js'
+      # Please install the following dependencies:
+      packageJson:
+        dependencies: '@pergel/graphql@0.0.0'
+        devDependencies:
+    project1:
+      # Please install the following dependencies:
+      packageJson:
+        dependencies: '@pergel/graphql@0.0.0'
+        devDependencies:
+  drizzle:
+    project2:
+      # Script Commands
+      scripts:
+        migrate: drizzle-kit generate:pg --config=pergel/main/project2/drizzle/drizzle.config.js
+        push: drizzle-kit push:pg --config=pergel/main/project2/drizzle/drizzle.config.js
+      # Please install the following dependencies:
+      packageJson:
+        dependencies: '@pergel/graphql@0.0.0'
+        devDependencies:
+    project1:
+      # Please install the following dependencies:
+      packageJson:
+        dependencies: '@pergel/graphql@0.0.0'
+        devDependencies:
+  ses:
+    project2:
+      # Please install the following dependencies:
+      env:
+        NUXT_MAIN_PROJECT2_SES_REGION:
+        NUXT_MAIN_PROJECT2_SES_ACCESS_KEY_ID:
+        NUXT_MAIN_PROJECT2_SES_SECRET_ACCESS_KEY:
+      packageJson:
+        dependencies: '@aws-sdk/client-ses@^3.454.0'
+        devDependencies:
