@@ -5,6 +5,7 @@ import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import { consola } from 'consola'
 import { parse } from 'yaml'
+import { parseNr, run } from '@antfu/ni'
 import type { PergelConfig, PergelYaml } from '../types'
 
 export default defineCommand({
@@ -81,13 +82,15 @@ export default defineCommand({
       if (!selectedScript)
         consola.error('No script found')
 
-      if (file.config.cli.database.driver === 'drizzle') {
-        consola.info('Dont forget to install drizzle-kit and drizzle-orm')
-        consola.info('pnpm -g i drizzle-kit drizzle-orm')
-      }
+      // if (file.config.cli.database.driver === 'drizzle') {
+      //   consola.info('Dont forget to install drizzle-kit and drizzle-orm')
+      //   consola.info('pnpm -g i drizzle-kit drizzle-orm')
+      // }
 
       try {
-        execSync(selectedScript, { stdio: 'inherit' })
+        run(parseNr, [selectedScript]).then(() => {
+          consola.success('Script executed successfully')
+        })
       }
       catch (error) {
         consola.error(error)
