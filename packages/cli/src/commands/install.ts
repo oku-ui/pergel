@@ -14,23 +14,21 @@ export default defineCommand({
   },
   async run() {
     try {
-      const file = await loadConfig({
+      const file = await loadConfig<{
+        src: string
+        activeBranch: string
+      }>({
         cwd: process.cwd(),
         configFile: 'pergel.config.ts',
-      }).catch(() => {
-        return {
-          config: {
-            src: 'src',
-            activeBranch: 'main',
-          },
-        }
+        defaultConfig: {
+          src: 'pergel',
+          activeBranch: 'main',
+        },
       })
 
-      if (!file?.config) {
-        file.config = {
-          src: 'src',
-          activeBranch: 'main',
-        }
+      if (!file.config) {
+        consola.error('No config file found')
+        return
       }
 
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
