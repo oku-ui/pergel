@@ -40,7 +40,14 @@ export default defineCommand({
       const devDependencies: Set<string> = new Set()
 
       for (const [_moduleName, moduleData] of Object.entries(selectProject)) {
+        if (!moduleData)
+          continue
+
         for (const [_projectName, projectData] of Object.entries(moduleData)) {
+          if (!projectData) {
+            consola.error(`No project data found for ${_projectName}`)
+            continue
+          }
           if (projectData.packageJson) {
             if (projectData.packageJson.dependencies) {
               const deps = projectData.packageJson.dependencies.split(',').map(item => item.trim())
