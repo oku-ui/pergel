@@ -7,18 +7,8 @@ export default defineNuxtConfig({
   extends: [
     '@nuxt/ui-pro',
   ],
-  build: {
-    transpile: ['#app'],
-  },
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
-  typescript: {
-    strict: false,
-    includeWorkspace: false,
-    tsConfig: {
-      extends: '../tsconfig.json',
-    },
-  },
   routeRules: {
     '/': { redirect: '/pergel' },
   },
