@@ -68,6 +68,12 @@ const links = computed(() => [
     target: '_blank',
   },
 ])
+
+defineOgImage({
+  component: 'OGImagePergel',
+  title: page.value.title,
+  description: page.value.description,
+})
 </script>
 
 <template>

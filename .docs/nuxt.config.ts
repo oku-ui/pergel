@@ -6,11 +6,12 @@ const devConfig = {
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
+    'nuxt-og-image',
   ],
   extends: [
     '@nuxt/ui-pro',
   ],
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   routeRules: {
     '/': { redirect: '/pergel' },
