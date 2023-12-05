@@ -19,11 +19,6 @@ export default defineCommand({
       description: 'Name of the orm',
       alias: 'd',
     },
-    branch: {
-      type: 'string',
-      description: 'Name of the branch',
-      alias: 'b',
-    },
     project: {
       type: 'string',
       description: 'Name of the project',
@@ -42,19 +37,16 @@ export default defineCommand({
         configFile: 'pergel.config.ts',
         defaultConfig: {
           src: 'pergel',
-          activeBranch: 'main',
+          selectProject: args.project,
           cli: {
             database: {
               driver: (args.driver as any) ?? 'drizzle',
-              branch: args.branch,
               project: args.project,
               selectedScript: args.script,
             },
           },
         },
       })
-
-      consola.info(file.config?.cli.database)
 
       if (!file.config) {
         consola.error('No config file found')
@@ -69,7 +61,7 @@ export default defineCommand({
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
       const json = parse(readmeString) as PergelYaml
 
-      const project = json[file.config.activeBranch ?? 'main'][file.config.cli.database.driver ?? 'drizzle'][file.config.cli.database.project]
+      const project = json[file.config.cli.database.driver ?? 'drizzle'][file.config.cli.database.project]
 
       const script = project?.scripts ?? {}
 
@@ -80,11 +72,6 @@ export default defineCommand({
 
       if (!selectedScript)
         consola.error('No script found')
-
-      // if (file.config.cli.database.driver === 'drizzle') {
-      //   consola.info('Dont forget to install drizzle-kit and drizzle-orm')
-      //   consola.info('pnpm -g i drizzle-kit drizzle-orm')
-      // }
 
       try {
         await run(async (agent, args, ctx) => {
