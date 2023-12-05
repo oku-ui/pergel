@@ -13,9 +13,6 @@
     "node": "^20.10.0 || >=20.10.0"
   },
   "scripts": {
-    "docs:dev": "cd .docs && DEV=true nuxi dev",
-    "docs:build": "cd .docs && DEV=true nuxi build",
-    "prepare": "cd .docs && DEV=true nuxi prepare",
     "build": "pnpm --filter './packages/**' build",
     "dev:build": "pnpm --filter './packages/**' dev:build",
     "dev:prepare": "pnpm --filter './packages/**' dev:prepare",
