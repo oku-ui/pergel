@@ -56,8 +56,6 @@ const devConfig = {
 export default defineNuxtConfig(defu({}, process.env.DEV && devConfig, {
   nitro: {
     prerender: {
-      crawlLinks: true,
-      failOnError: false,
       routes: [
         '/pergel/*',
         '/pergel',
