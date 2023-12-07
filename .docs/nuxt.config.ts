@@ -7,6 +7,7 @@ const routeRules = {
   '/pergel/community': { redirect: '/pergel/community/getting-help', prerender: false },
   '/pergel/examples': { redirect: '/pergel/examples/overview', prerender: false },
   '/pergel/directory-structure': { redirect: '/pergel/directory-structure/projectname', prerender: false },
+  '/pergel/nuxt/s3': { redirect: '/pergel/nuxt/s3/installation', prerender: false },
 }
 
 const devConfig = {
