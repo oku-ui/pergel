@@ -56,6 +56,8 @@ provide('links', links)
   <div>
     <NuxtLayout>
       <NuxtLoadingIndicator />
+
+    <UMain>
       <NuxtPage />
     </NuxtLayout>
 
