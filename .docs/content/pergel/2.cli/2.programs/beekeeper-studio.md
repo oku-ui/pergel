@@ -19,16 +19,16 @@ Beekeeper Studio is an open source SQL editor and database management app that i
 
 Docker and a supported database server (PostgreSQL, MySQL, SQLite, SQL Server, Redis & more).
 
-> If you already installed `docker-studio` with [Pergel](/pergel/getting-started), you don't need to install extra docker. Just install the docker database image you want to use with beekeeper.
+> If you already installed `docker-studio` with [Pergel](/pergel/cli), you don't need to install extra docker. Just install the docker database image you want to use with beekeeper.
 
 
 ## Install Beekeeper Studio
 
-You can install the Beekeeper Studio program with [Pergel](/pergel/getting-started).
+You can install the Beekeeper Studio program with [Pergel](/pergel/cli).
 
 ## Start the Application
 
-First, you should run this database image (MySQL, PostgreSQL, etc.) using [Docker Desktop](/pergel/os/programs/docker-desktop) or Docker CLI before connecting to the database system of your choice.
+First, you should run this database image (MySQL, PostgreSQL, etc.) using [Docker Desktop](/pergel/cli/programs/docker-desktop) or Docker CLI before connecting to the database system of your choice.
 
 1. To launch Beekeeper Studio, locate it in the menu or application launcher and click on it.
 2. Once the application is launched, you can use it to manage your database connections and execute SQL queries.

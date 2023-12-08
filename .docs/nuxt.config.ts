@@ -23,12 +23,12 @@ const devConfig = {
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
-    'nuxt-og-image',
+    // 'nuxt-og-image',
   ],
   extends: [
     '@nuxt/ui-pro',
   ],
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   ui: {
     icons: ['heroicons', 'simple-icons', 'ph'],
   },
@@ -57,8 +57,9 @@ export default defineNuxtConfig(defu({}, process.env.DEV && devConfig, {
   nitro: {
     prerender: {
       routes: [
-        '/pergel/*',
         '/pergel',
+        '/pergel/getting-started',
+        '/pergel/nuxt',
       ],
     },
   },

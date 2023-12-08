@@ -90,12 +90,12 @@ useSeoMeta({
   ogTitle: titleTemplate.value?.includes('%s') ? titleTemplate.value.replace('%s', title) : title,
 })
 
-defineOgImage({
-  component: 'Pergel',
-  title,
-  description,
-  headline: breadcrumb.value.length ? breadcrumb.value[breadcrumb.value.length - 1].label : '',
-})
+// defineOgImage({
+//   component: 'Pergel',
+//   title,
+//   description,
+//   headline: breadcrumb.value.length ? breadcrumb.value[breadcrumb.value.length - 1].label : '',
+// })
 </script>
 
 <template>

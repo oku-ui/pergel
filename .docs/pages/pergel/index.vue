@@ -40,43 +40,25 @@ useSeoMeta({
       </template>
       <UPageGrid>
         <ULandingCard
-          to="/getting-started/ssr"
-          title="System Setup"
-          icon="i-ph-computer-tower-duotone"
-          description="Automatic installation of required software on your computer"
+          to="/pergel/cli"
+          title="CLI"
+          icon="i-ph-terminal-duotone"
+          description="Automatic installation and configuration with CLI"
         />
         <ULandingCard
-          to="/getting-started/i18n"
-          title="Auth"
-          icon="i-solar-globus-bold-duotone"
-          description="Authentication and authorization system"
+          to="/pergel/nuxt"
+          title="Nuxt Modules"
+          icon="i-simple-icons-nuxtdotjs"
+          description="S3, GraphQL, Drizzle, and more"
         />
         <ULandingCard
-          to="/components/html"
-          title="Mobile App"
-          icon="i-solar-smartphone-line-duotone"
-          description="Ionic + Capacitor mobile application"
-        />
-        <ULandingCard
-          to="/integrations/mailersend"
-          title="Integrations"
-          icon="i-solar-plug-line-duotone"
+          to="/pergel/nitro"
+          title="Nitro"
+          icon="i-ph-lightning-duotone"
           description="Simple institution cli service with important libraries for the project"
         />
         <ULandingCard
-          to="/getting-started/devtools"
-          title="Web App"
-          icon="i-ph-browser-duotone"
-          description="Website with initial settings prepared."
-        />
-        <ULandingCard
-          to="/components/tailwind"
-          title="Tailwind CSS"
-          icon="i-ph-palette-duotone"
-          description="Nuxt 3 layer structures and components"
-        />
-        <ULandingCard
-          to="/components/tailwind"
+          to="/#"
           title="...more"
           icon="i-ph-palette-duotone"
           description="Much more in the future"
