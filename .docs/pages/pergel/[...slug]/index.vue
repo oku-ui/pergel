@@ -56,7 +56,7 @@ const communityLinks = computed(() => [{
 }, {
   icon: 'i-ph-chat-centered-text-duotone',
   label: 'Chat on Discord',
-  to: 'https://discord.oku-ui.com',
+  to: 'https://chat.productdevbook.com',
   target: '_blank',
 }, {
   icon: 'i-ph-hand-heart-duotone',
