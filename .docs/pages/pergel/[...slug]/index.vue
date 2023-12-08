@@ -19,7 +19,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, async ()
   if (page.value.surround === false)
     return []
 
-  return queryContent('/docs')
+  return queryContent('/pergel')
     .where({ _extension: 'md', navigation: { $ne: false } })
     .without(['body', 'excerpt'])
     .findSurround(withoutTrailingSlash(route.path))
@@ -30,13 +30,6 @@ const breadcrumb = computed(() => {
     label: link.label,
     to: link.to,
   }))
-
-  if (route.path.startsWith('/docs/bridge') || route.path.startsWith('/docs/migration')) {
-    links.splice(1, 0, {
-      label: 'Upgrade Guide',
-      to: '/docs/getting-started/upgrade',
-    })
-  }
 
   return links
 })
@@ -75,7 +68,7 @@ const communityLinks = computed(() => [{
 const ecosystemLinks = [{
   icon: 'i-ph-graduation-cap-duotone',
   label: 'Video Courses',
-  to: 'https://masteringnuxt.com/nuxt3?ref=nuxt',
+  to: 'https://masteringnuxt.com/nuxt3?ref=oku-ui.com',
   target: '_blank',
 }]
 
