@@ -7,12 +7,9 @@ const searchRef = ref()
 const route = useRoute()
 const colorMode = useColorMode()
 
-const { data: nav } = await useAsyncData('navigation', () => fetchContentNavigation())
+const { data: navigation } = await useLazyAsyncData('navigation', () => fetchContentNavigation(), { default: () => [] })
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false })
 
-// Computed
-
-const navigation = computed(() => nav.value)
 const links = computed(() => {
   return [
     {
@@ -42,7 +39,7 @@ useHead({
 })
 
 useServerSeoMeta({
-  ogSiteName: 'Oku',
+  ogSiteName: 'Pergel',
   twitterCard: 'summary_large_image',
 })
 
@@ -54,10 +51,13 @@ provide('links', links)
 
 <template>
   <div>
-    <NuxtLayout>
-      <NuxtLoadingIndicator />
-      <NuxtPage />
-    </NuxtLayout>
+    <NuxtLoadingIndicator />
+
+    <UMain>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UMain>
 
     <Footer />
 
