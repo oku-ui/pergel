@@ -40,18 +40,18 @@ const titleTemplate = computed(() => {
   const titleTemplate = navKeyFromPath(route.path, 'titleTemplate', navigation.value)
   if (titleTemplate)
     return titleTemplate
-  return '%s · Nuxt'
+  return '%s · Pergel · Oku'
 })
 
 const communityLinks = computed(() => [{
   icon: 'i-ph-pen-duotone',
   label: 'Edit this page',
-  to: `https://github.com/nuxt/nuxt/edit/main/docs/${page?.value?._file?.split('/').slice(1).join('/')}`,
+  to: `https://github.com/oku-ui/pergel/edit/main/.docs/content/pergel/${page?.value?._file?.split('/').slice(1).join('/')}`,
   target: '_blank',
 }, {
   icon: 'i-ph-shooting-star-duotone',
   label: 'Star on GitHub',
-  to: 'https://github.com/nuxt/nuxt',
+  to: 'https://github.com/oku-ui/pergel',
   target: '_blank',
 }, {
   icon: 'i-ph-chat-centered-text-duotone',
