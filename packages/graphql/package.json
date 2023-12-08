@@ -1,0 +1,52 @@
+{
+  "name": "@pergel/graphql",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.10.0",
+  "description": "Pergel GraphQL",
+  "author": {
+    "name": "Mehmet @productdevbook",
+    "email": "hi@productdevbook.com",
+    "url": "https://github.com/productdevbookcom"
+  },
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/productdevbook",
+  "homepage": "https://github.com/oku-ui/pergel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oku-ui/pergel.git"
+  },
+  "bugs": "https://github.com/oku-ui/pergel/issues",
+  "keywords": [],
+  "scripts": {
+    "release": "pnpm publish"
+  },
+  "peerDependencies": {
+    "graphql": ">=16.8.0"
+  },
+  "dependencies": {
+    "@apollo/sandbox": "^2.5.1",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/core": "^4.0.0",
+    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "@graphql-codegen/schema-ast": "^4.0.0",
+    "@graphql-codegen/typed-document-node": "^5.0.1",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@graphql-codegen/urql-introspection": "^3.0.0",
+    "@graphql-tools/graphql-file-loader": "^8.0.0",
+    "@graphql-tools/load": "^8.0.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "graphql": "^16.8.1",
+    "graphql-relay": "^0.10.0",
+    "graphql-yoga": "^5.0.0",
+    "ts-relay-cursor-paging": "^2.0.4"
+  },
+  "devDependencies": {
+    "graphql": "^16.8.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
