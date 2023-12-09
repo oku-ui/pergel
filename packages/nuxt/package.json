@@ -36,19 +36,19 @@
     "client:dev": "nuxi dev client --port 3300"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.8.2",
     "@nuxt/devtools-kit": "^1.0.5",
+    "@nuxt/kit": "^3.8.2",
     "sirv": "^2.0.3"
   },
   "devDependencies": {
+    "@iconify-json/carbon": "^1.1.24",
     "@nuxt/devtools": "^1.0.5",
+    "@nuxt/devtools-ui-kit": "^1.0.5",
     "@nuxt/module-builder": "^0.5.4",
     "@nuxt/schema": "^3.8.2",
     "@nuxt/test-utils": "^3.8.1",
     "@types/node": "^20.9.3",
     "nuxt": "^3.8.2",
-    "vitest": "^0.33.0",
-    "@iconify-json/carbon": "^1.1.24",
-    "@nuxt/devtools-ui-kit": "^1.0.5"
+    "vitest": "^0.33.0"
   }
 }
