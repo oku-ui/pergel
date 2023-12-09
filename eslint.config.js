@@ -16,6 +16,7 @@ export default antfu(
       '**/.DS_Store',
       '**/.vscode',
       '**/**.yml',
+      '**/**.md',
     ],
   },
   {

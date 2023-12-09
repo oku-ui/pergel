@@ -41,7 +41,8 @@ export default defineNuxtConfig({
       },
     }),
   ],
-  myModule: {
+  okuPergel: {
     test: 'test',
+    test2: 'test2',
   },
 })

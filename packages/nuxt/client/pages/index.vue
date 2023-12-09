@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { useDevtoolsClient } from '@nuxt/devtools-kit/iframe-client'
+import { onDevtoolsClientConnected, useDevtoolsClient } from '@nuxt/devtools-kit/iframe-client'
+import type { ClientFunctions, ServerFunctions } from '../../src/rpc-types'
 
 const client = useDevtoolsClient()
-const { pergelRpc } = usePergelRpc()
-
-// onMounted(async () => {
-//   if (pergelRpc.value) {
-//     const data = await pergelRpc.value.()
-//     console.log(data)
-//   }
-// })
+onDevtoolsClientConnected(async (client) => {
+  const rpc = client.devtools.extendClientRpc<ServerFunctions, ClientFunctions>('oku-pergel-rpc', {
+    showNotification: (message) => {
+      console.log('showNotification')
+      console.log('showNotification', message)
+    },
+  })
+  const dd = await rpc.getMyModuleOptions()
+  console.log(dd)
+})
 </script>
 
 <template>

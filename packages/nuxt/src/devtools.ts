@@ -1,15 +1,11 @@
 import { existsSync } from 'node:fs'
 import type { Nuxt } from 'nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
-import { extendServerRpc, onDevToolsInitialized } from '@nuxt/devtools-kit'
-import type { ModuleOptions } from './moduleType'
-import type { ClientFunctions, ServerFunctions } from './rpc-types'
 
 const DEVTOOLS_UI_ROUTE = '/__oku-pergel'
 const DEVTOOLS_UI_LOCAL_PORT = 3300
-export const RPC_NAMESPACE = 'oku-pergel-rpc'
 
-export function setupDevToolsUI(options: ModuleOptions, nuxt: Nuxt, resolver: Resolver) {
+export function setupDevToolsUI(nuxt: Nuxt, resolver: Resolver) {
   const clientPath = resolver.resolve('./client')
   const isProductionBuild = existsSync(clientPath)
   // Serve production-built client (used when package is published)
@@ -50,19 +46,5 @@ export function setupDevToolsUI(options: ModuleOptions, nuxt: Nuxt, resolver: Re
         src: DEVTOOLS_UI_ROUTE,
       },
     })
-  })
-
-  // wait for DevTools to be initialized
-  onDevToolsInitialized(async () => {
-    const rpc = extendServerRpc<ClientFunctions, ServerFunctions>(RPC_NAMESPACE, {
-      // register server RPC functions
-      getMyModuleOptions() {
-        return options
-      },
-    })
-
-    // // call client RPC functions
-    // // since it might have multiple clients connected, we use `broadcast` to call all of them
-    await rpc.broadcast.showNotification('Hello from My Module!')
   })
 }
