@@ -42,7 +42,6 @@ export default defineNuxtConfig({
     }),
   ],
   okuPergel: {
-    test: 'test',
-    test2: 'test2',
+    devtools: true,
   },
 })
