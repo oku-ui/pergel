@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs'
 import type { Nuxt } from 'nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 
-const DEVTOOLS_UI_ROUTE = '/__oku-pergel'
+const DEVTOOLS_UI_ROUTE = '/__pergel'
 const DEVTOOLS_UI_LOCAL_PORT = 3300
 
 export function setupDevToolsUI(nuxt: Nuxt, resolver: Resolver) {
@@ -35,7 +35,7 @@ export function setupDevToolsUI(nuxt: Nuxt, resolver: Resolver) {
   nuxt.hook('devtools:customTabs', (tabs) => {
     tabs.push({
       // unique identifier
-      name: 'oku-pergel',
+      name: 'pergel',
       // title to display in the tab
       title: 'Pergel',
       // any icon from Iconify, or a URL to an image

@@ -11,6 +11,6 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    baseURL: '/__oku-pergel',
+    baseURL: '/__pergel',
   },
 })

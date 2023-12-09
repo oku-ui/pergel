@@ -4,7 +4,7 @@ import type { ClientFunctions, ServerFunctions } from '../../src/rpc-types'
 
 const client = useDevtoolsClient()
 onDevtoolsClientConnected(async (client) => {
-  const rpc = client.devtools.extendClientRpc<ServerFunctions, ClientFunctions>('oku-pergel-rpc', {
+  const rpc = client.devtools.extendClientRpc<ServerFunctions, ClientFunctions>('pergel-rpc', {
     showNotification: (message) => {
       console.log('showNotification')
       console.log('showNotification', message)
@@ -23,7 +23,7 @@ onDevtoolsClientConnected(async (client) => {
     :padding="false"
     description="Total modules: "
   >
-    hello test
+    asdasdas
   </NSectionBlock>
   <div class="relative p-10 n-bg-base flex flex-col h-screen">
     <h1 class="text-3xl font-bold">

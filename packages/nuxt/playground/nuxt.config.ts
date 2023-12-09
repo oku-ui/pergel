@@ -26,7 +26,7 @@ export default defineNuxtConfig({
             cwd: resolve(__dirname, '../client'),
           },
           {
-            id: 'oku-pergel:client',
+            id: 'pergel:client',
             name: 'My Module Client Dev',
           },
         )
@@ -41,7 +41,7 @@ export default defineNuxtConfig({
       },
     }),
   ],
-  okuPergel: {
+  pergel: {
     devtools: true,
   },
 })

@@ -7,8 +7,8 @@ import type { ClientFunctions, ServerFunctions } from './rpc-types'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'oku-pergel',
-    configKey: 'okuPergel',
+    name: 'pergel',
+    configKey: 'pergel',
   },
   // Default configuration options of the Nuxt module
   defaults: {
@@ -25,7 +25,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.devtools) {
       setupDevToolsUI(nuxt, resolver)
 
-      const RPC_NAMESPACE = 'oku-pergel-rpc'
+      const RPC_NAMESPACE = 'pergel-rpc'
 
       const setupRpc = () => {
         rpc = extendServerRpc<ClientFunctions, ServerFunctions>(RPC_NAMESPACE, {
