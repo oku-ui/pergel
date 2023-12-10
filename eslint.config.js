@@ -27,6 +27,7 @@ export default antfu(
       'n/prefer-global/process': 'off',
       'node/prefer-global/process': 'off',
       'ts/consistent-type-definitions': 'off',
+      'ts/ban-ts-comment': 'off',
     },
   },
   {
