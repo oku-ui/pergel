@@ -7,9 +7,9 @@ import {
 } from '@nuxt/devtools-kit'
 import type {
   ClientFunctions,
+  ModuleOptions,
   ServerFunctions,
 } from './types'
-import type { ModuleOptions } from './module'
 import { useViteWebSocket } from './utils'
 
 import { setupRPC } from './rpc'
