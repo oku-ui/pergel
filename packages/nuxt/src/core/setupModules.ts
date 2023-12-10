@@ -65,7 +65,7 @@ export async function setupModules(data: {
         const indexPath = getIndexExt()
 
         pergelModule = await import(
-          data.resolver.resolve(join('runtime/modules', moduleName, indexPath))
+          data.resolver.resolve(join('modules', moduleName, indexPath))
         ).then(m => m.default).catch((res) => {
           consola.error(`Module ${moduleName} failed to import`)
           consola.error(res)

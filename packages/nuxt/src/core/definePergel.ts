@@ -5,8 +5,8 @@ import type {
   ModuleSetupReturn,
   PergelModule,
   ResolvedPergelOptions,
-} from '../types'
-import { generateProjectReadme } from './generateYaml'
+} from './types'
+import { generateProjectReadme } from './utils/generateYaml'
 
 export function definePergelModule<OptionsT extends ModuleOptions>(
   definition: ModuleDefinition<OptionsT> | PergelModule<OptionsT>,
