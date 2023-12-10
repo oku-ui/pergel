@@ -55,7 +55,7 @@ export async function setupModules(data: {
 
       try {
         const getIndexExt = () => {
-          const datas = readdirSync(data.resolver.resolve(join('runtime/modules', moduleName)))
+          const datas = readdirSync(data.resolver.resolve(join('modules', moduleName)))
           const indexExt = datas.find(file => file.includes('index') && !file.includes('.d.'))
           if (!indexExt)
             throw new Error(`Module ${moduleName} does not have index file`)

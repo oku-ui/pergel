@@ -5,6 +5,10 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   pergel: {
-    text: 'Hello World!',
+    projects: {
+      test: {
+        S3: true,
+      },
+    },
   },
 })

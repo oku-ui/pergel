@@ -31,20 +31,6 @@ export default defineNuxtModule<PergelOptions>({
   },
   async setup(options, nuxt) {
     const _resolver = createResolver(import.meta.url)
-
-    const { status } = await checkOptions(options)
-    if (!status)
-      return
-
-    const { saveNitroImports } = useNitroImports(nuxt)
-    const { saveNuxtImports } = useNuxtImports(nuxt)
-
-    const { resolvedPergelOptions } = await setupPergel(options, nuxt)
-
-    nuxt.options.vite.optimizeDeps ??= {}
-    nuxt.options.vite.optimizeDeps.include ??= []
-    nuxt.options.vite.optimizeDeps.include.push('@nuxt/devtools-kit/iframe-client')
-
     // Pergel _pergel default options
     nuxt._pergel = {
       nitroImports: {},
@@ -60,6 +46,19 @@ export default defineNuxtModule<PergelOptions>({
       ],
       resolver: _resolver,
     }
+
+    const { status } = await checkOptions(options)
+    if (!status)
+      return
+
+    const { saveNitroImports } = useNitroImports(nuxt)
+    const { saveNuxtImports } = useNuxtImports(nuxt)
+
+    const { resolvedPergelOptions } = await setupPergel(options, nuxt)
+
+    nuxt.options.vite.optimizeDeps ??= {}
+    nuxt.options.vite.optimizeDeps.include ??= []
+    nuxt.options.vite.optimizeDeps.include.push('@nuxt/devtools-kit/iframe-client')
 
     if (options.esnext) {
       nuxt.options.vite.build ??= {}
