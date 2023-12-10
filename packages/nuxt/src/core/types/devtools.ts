@@ -1,9 +1,9 @@
 import type { Nuxt } from 'nuxt/schema'
 import type { WebSocketServer } from 'vite'
-import type { ModuleOptions } from './module'
+import type { PergelOptions } from './module'
 
 export interface ServerFunctions {
-  getOptions(): ModuleOptions
+  getOptions(): PergelOptions
 
   reset(): void
 }
@@ -13,6 +13,6 @@ export interface ClientFunctions {
 
 export interface DevtoolsServerContext {
   nuxt: Nuxt
-  options: ModuleOptions
+  options: PergelOptions
   wsServer: Promise<WebSocketServer>
 }

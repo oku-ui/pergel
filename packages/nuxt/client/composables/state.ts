@@ -1,4 +1,4 @@
 import { ref } from 'vue'
-import type { ModuleOptions } from '../../src/core/types'
+import type { PergelOptions } from '../../src/core/types'
 
-export const options = ref<ModuleOptions>()
+export const options = ref<PergelOptions>()
