@@ -14,6 +14,7 @@ async function getOptions() {
 
 <template>
   <div class="relative p-10 n-bg-base flex flex-col h-screen">
+    {{ JSON.stringify(options) }}
     <h1 class="text-3xl font-bold">
       My Module
     </h1>

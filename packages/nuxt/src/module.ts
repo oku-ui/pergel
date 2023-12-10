@@ -3,11 +3,9 @@ import {
   defineNuxtModule,
   logger,
 } from '@nuxt/kit'
-import { setupDevToolsUI } from './devtools'
-import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
-
-export interface ModuleOptions {
-}
+import { setupDevToolsUI } from './core/devtools'
+import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './core/constants'
+import type { ModuleOptions } from './core/types/module'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
