@@ -10,6 +10,7 @@ const external = [
 export default defineBuildConfig({
   entries: [
     { input: 'src/core/', outDir: 'dist/core' },
+    { input: 'src/modules/', outDir: 'dist/modules' },
   ],
   // explicitly externalize consola since Nuxt has it
   externals: [
