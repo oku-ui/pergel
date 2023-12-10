@@ -1,51 +1,30 @@
-import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
-import { extendServerRpc, onDevToolsInitialized } from '@nuxt/devtools-kit'
-import type { BirpcGroup } from 'birpc'
+import {
+  createResolver,
+  defineNuxtModule,
+  logger,
+} from '@nuxt/kit'
 import { setupDevToolsUI } from './devtools'
-import type { ModuleOptions } from './moduleType'
-import type { ClientFunctions, ServerFunctions } from './rpc-types'
+import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
+
+export interface ModuleOptions {
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'pergel',
-    configKey: 'pergel',
+    name: DEVTOOLS_MODULE_NAME,
+    configKey: DEVTOOLS_MODULE_KEY,
   },
-  // Default configuration options of the Nuxt module
-  defaults: {
-    devtools: true,
-    test: 'test',
-  },
+  defaults: {},
   async setup(options, nuxt) {
-    const resolver = createResolver(import.meta.url)
+    const { resolve } = createResolver(import.meta.url)
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+    const isDevToolsEnabled = typeof nuxt.options.devtools === 'boolean'
+      ? nuxt.options.devtools
+      : nuxt.options.devtools.enabled
 
-    let rpc: BirpcGroup<ClientFunctions, ServerFunctions> | undefined
-    if (options.devtools) {
-      setupDevToolsUI(nuxt, resolver)
+    if (nuxt.options.dev && isDevToolsEnabled)
+      setupDevToolsUI(options, resolve, nuxt)
 
-      const RPC_NAMESPACE = 'pergel-rpc'
-
-      const setupRpc = () => {
-        rpc = extendServerRpc<ClientFunctions, ServerFunctions>(RPC_NAMESPACE, {
-          // register server RPC functions
-          getMyModuleOptions() {
-            return options
-          },
-        })
-      }
-
-      try {
-        setupRpc()
-      }
-      catch (error) {
-        // wait for DevTools to be initialized
-        onDevToolsInitialized(async () => {
-          setupRpc()
-        })
-      }
-      await rpc?.broadcast.showNotification('Hello from Nuxt module!')
-    }
+    logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
   },
 })

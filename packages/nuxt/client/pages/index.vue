@@ -1,75 +1,33 @@
-<script setup lang="ts">
-import { onDevtoolsClientConnected, useDevtoolsClient } from '@nuxt/devtools-kit/iframe-client'
-import type { ClientFunctions, ServerFunctions } from '../../src/rpc-types'
+<script lang="ts" setup>
+import { useDevtoolsClient } from '@nuxt/devtools-kit/iframe-client'
+
+import { rpc } from '../composables/rpc'
+import { options } from '../composables/state'
 
 const client = useDevtoolsClient()
-onDevtoolsClientConnected(async (client) => {
-  const rpc = client.devtools.extendClientRpc<ServerFunctions, ClientFunctions>('pergel-rpc', {
-    showNotification: (message) => {
-      console.log('showNotification')
-      console.log('showNotification', message)
-    },
-  })
-  const dd = await rpc.getMyModuleOptions()
-  console.log(dd)
-})
+
+async function getOptions() {
+  options.value = await rpc.value?.getOptions()
+  console.warn(client.value, 'client')
+}
 </script>
 
 <template>
-  <NSectionBlock
-    icon="carbon-3d-mpr-toggle"
-    text="Active Modules"
-    container-class="grid grid-cols-minmax-400px gap3 px4"
-    :padding="false"
-    description="Total modules: "
-  >
-    asdasdas
-  </NSectionBlock>
   <div class="relative p-10 n-bg-base flex flex-col h-screen">
     <h1 class="text-3xl font-bold">
-      Pergel Module
+      My Module
     </h1>
     <div class="opacity-50 mb-4">
-      Powered by oku
+      Nuxt DevTools Integration
     </div>
-    <div
-      v-if="client"
-      class="flex flex-col gap-2"
-    >
-      <NTip
-        n="green"
-        icon="carbon-checkmark"
-      >
-        Nuxt DevTools is connected
-      </NTip>
-      <div>
-        The current app is using
-        <code class="text-green">vue@{{ client.host.nuxt.vueApp.version }}</code>
-      </div>
-      <div>
-        <NButton
-          n="green"
-          class="mt-4"
-          @click="client!.host.devtools.close()"
-        >
-          Close DevTools
-        </NButton>
-      </div>
-    </div>
-    <div v-else>
-      <NTip n="yellow">
-        Failed to connect to the client. Did you open this page inside Nuxt DevTools?
-      </NTip>
-    </div>
+    <div flex="~ gap-2">
+      <NButton n="green" class="mt-4" @click="client!.host.devtools.close()">
+        Close DevTools
+      </NButton>
 
-    <NuxtLink
-      to="/s3"
-      class="absolute top-0 right-0 p-4"
-    >
-      Go to S3
-    </NuxtLink>
-
-    <div class="flex-auto" />
-    <ModuleAuthorNote class="mt-5 " />
+      <NButton n="green" class="mt-4" @click="getOptions()">
+        Get DevTools Options
+      </NButton>
+    </div>
   </div>
 </template>
