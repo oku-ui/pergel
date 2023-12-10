@@ -12,6 +12,7 @@ import { version } from '../package.json'
 import { setupDevToolsUI } from './core/devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './core/constants'
 import type { PergelOptions } from './core/types/module'
+import { checkOptions } from './core/utils/checkOptions'
 
 export default defineNuxtModule<PergelOptions>({
   meta: {
@@ -26,6 +27,10 @@ export default defineNuxtModule<PergelOptions>({
   },
   async setup(options, nuxt) {
     const _resolver = createResolver(import.meta.url)
+
+    const { status } = await checkOptions(options)
+    if (!status)
+      return
 
     nuxt.options.vite.optimizeDeps ??= {}
     nuxt.options.vite.optimizeDeps.include ??= []
