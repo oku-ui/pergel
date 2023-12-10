@@ -7,7 +7,7 @@ import {
 } from '@nuxt/devtools-kit'
 import type {
   ClientFunctions,
-  ModuleOptions,
+  PergelOptions,
   ServerFunctions,
 } from './types'
 import { useViteWebSocket } from './utils'
@@ -23,7 +23,7 @@ import {
 } from './constants'
 
 export function setupDevToolsUI(
-  options: ModuleOptions,
+  options: PergelOptions,
   resolve: Resolver['resolve'],
   nuxt: Nuxt,
 ) {
