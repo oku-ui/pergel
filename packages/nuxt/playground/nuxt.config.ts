@@ -2,9 +2,13 @@ import { resolve } from 'node:path'
 import { defineNuxtModule } from '@nuxt/kit'
 import { startSubprocess } from '@nuxt/devtools-kit'
 
+import { DEVTOOLS_UI_PORT } from '../src/constants'
+
 export default defineNuxtConfig({
+  devtools: {
+    enabled: true,
+  },
   modules: [
-    '@nuxt/devtools',
     /**
      * My module
      */
@@ -22,16 +26,17 @@ export default defineNuxtConfig({
         const subprocess = startSubprocess(
           {
             command: 'npx',
-            args: ['nuxi', 'dev', '--port', '3300'],
+            args: ['nuxi', 'dev', '--port', DEVTOOLS_UI_PORT.toString()],
             cwd: resolve(__dirname, '../client'),
           },
           {
-            id: 'pergel:client',
-            name: 'My Module Client Dev',
+            id: 'nuxt-pergel:client',
+            name: 'Pergel Devtools RPC Client',
           },
         )
 
         subprocess.getProcess().stdout?.on('data', (data) => {
+          // eslint-disable-next-line no-console
           console.log(` sub: ${data.toString()}`)
         })
 
