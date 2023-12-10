@@ -2,7 +2,7 @@ import { resolve } from 'node:path'
 import { defineNuxtModule } from '@nuxt/kit'
 import { startSubprocess } from '@nuxt/devtools-kit'
 
-import { DEVTOOLS_UI_PORT } from '../src/constants'
+import { DEVTOOLS_UI_PORT } from '../src/core/constants'
 
 export default defineNuxtConfig({
   devtools: {

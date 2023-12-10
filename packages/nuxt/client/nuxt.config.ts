@@ -1,5 +1,5 @@
 import { resolve } from 'pathe'
-import { DEVTOOLS_UI_PATH } from '../src/constants'
+import { DEVTOOLS_UI_PATH } from '../src/core/constants'
 
 export default defineNuxtConfig({
   ssr: false,
