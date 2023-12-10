@@ -14,8 +14,9 @@ import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './core/constants'
 import type { PergelOptions } from './core/types/module'
 import { checkOptions } from './core/utils/checkOptions'
 import { useNitroImports, useNuxtImports } from './core/utils/useImports'
-import { usePergelSetup } from './core/utils/usePergelSetup'
+import { setupPergel } from './core/setupPergel'
 import { generateReadmeYaml } from './core/utils/generateYaml'
+import { setupModules } from './core/setupModules'
 
 export default defineNuxtModule<PergelOptions>({
   meta: {
@@ -38,7 +39,7 @@ export default defineNuxtModule<PergelOptions>({
     const { saveNitroImports } = useNitroImports(nuxt)
     const { saveNuxtImports } = useNuxtImports(nuxt)
 
-    const { resolvedPergelOptions } = await usePergelSetup(options, nuxt)
+    const { resolvedPergelOptions } = await setupPergel(options, nuxt)
 
     nuxt.options.vite.optimizeDeps ??= {}
     nuxt.options.vite.optimizeDeps.include ??= []
@@ -78,6 +79,12 @@ export default defineNuxtModule<PergelOptions>({
 
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
+
+    await setupModules({
+      nuxt,
+      options: resolvedPergelOptions,
+      resolver: _resolver,
+    })
 
     saveNitroImports()
     saveNuxtImports()

@@ -2,10 +2,10 @@ import { join, resolve } from 'node:path'
 import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
 import defu from 'defu'
-import type { PergelOptions, ResolvedPergelOptions } from '../types'
-import { rootFolderSync } from './rootFolderSync'
+import type { PergelOptions, ResolvedPergelOptions } from './types'
+import { rootFolderSync } from './utils/rootFolderSync'
 
-export async function usePergelSetup(options: PergelOptions, nuxt: Nuxt) {
+export async function setupPergel(options: PergelOptions, nuxt: Nuxt) {
   const rootDir = options.rootDir ? options.rootDir : './'
   const pergelDir = join(rootDir, options.pergelDir ?? 'pergel')
   const readmePath = join(pergelDir, 'README.yaml')

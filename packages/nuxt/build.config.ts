@@ -3,7 +3,7 @@ import { defineBuildConfig } from 'unbuild'
 import pkg from './package.json'
 
 const external = [
-  // eslint-disable-next-line ts/ban-ts-comment
+
   // @ts-expect-error
   ...Object.keys(pkg.peerDependencies || {}),
 ]
