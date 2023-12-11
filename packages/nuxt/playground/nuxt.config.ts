@@ -51,6 +51,9 @@ export default defineNuxtConfig({
       test: {
         S3: true,
       },
+      test2: {
+        S3: true,
+      },
     },
   },
 })

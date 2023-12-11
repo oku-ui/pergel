@@ -1,9 +1,13 @@
 import type { Nuxt } from 'nuxt/schema'
 import type { WebSocketServer } from 'vite'
-import type { PergelOptions } from './module'
+import type { Modules, PergelOptions } from './module'
 
 export interface ServerFunctions {
   getOptions(): PergelOptions
+  getProjects(): string[]
+  getProject(name: string): Modules
+  getProjectModules(name: string): string[]
+  getProjectModule(name: string): Modules[keyof Modules]
 
   reset(): void
 }

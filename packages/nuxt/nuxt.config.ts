@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     pergelDir: 'pergel',
     rootDir: 'playground',
     projects: {
-      project1: {
+      test: {
         S3: true,
       },
     },

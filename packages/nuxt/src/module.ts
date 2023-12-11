@@ -45,6 +45,7 @@ export default defineNuxtModule<PergelOptions>({
         'S3',
       ],
       resolver: _resolver,
+      devServerHandler: [],
     }
 
     const { status } = await checkOptions(options)
@@ -92,6 +93,8 @@ export default defineNuxtModule<PergelOptions>({
       nuxt,
       options: resolvedPergelOptions,
     })
+
+    nuxt._pergel.devServerHandler.forEach(({ fn }) => fn())
   },
 })
 
@@ -103,6 +106,10 @@ declare module '@nuxt/schema' {
       readmeYaml: Record<string, any>
       modules: string[]
       resolver: Resolver
+      devServerHandler: {
+        id: string
+        fn: () => void
+      }[]
     }
   }
 }
