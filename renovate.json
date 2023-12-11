@@ -23,6 +23,21 @@
       ]
     },
     {
+      "groupName": ".docs",
+      "commitMessageTopic": ".docs",
+      "matchPaths": [
+        ".docs/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ]
+    },
+    {
       "groupName": "examples",
       "commitMessageTopic": "examples",
       "matchPaths": [
@@ -109,7 +124,8 @@
         "**/packages/cli/**",
         "**/packages/nuxt/**",
         "**/packages/graphql/**",
-        "**/packages/s3/**"
+        "**/packages/s3/**",
+        "**/.docs/**"
       ],
       "matchDatasources": [
         "npm",
