@@ -9,7 +9,7 @@ import type {
   ClientFunctions,
   PergelOptions,
   ServerFunctions,
-} from './types'
+} from './runtime/core/types'
 
 import { setupRPC } from './rpc'
 import {
@@ -20,7 +20,7 @@ import {
   DEVTOOLS_UI_PATH,
   DEVTOOLS_UI_PORT,
 } from './constants'
-import { useViteWebSocket } from './utils/useViteWebSocket'
+import { useViteWebSocket } from './useViteWebSocket'
 
 export function setupDevToolsUI(
   options: PergelOptions,

@@ -1,4 +1,4 @@
-import type { DevtoolsServerContext, ServerFunctions } from '../types'
+import type { DevtoolsServerContext, ServerFunctions } from './runtime/core/types'
 
 export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
   return {
