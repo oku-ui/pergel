@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@pergel/nuxt':
-        specifier: 0.0.1-beta.5
-        version: 0.0.1-beta.5(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11)
+        specifier: 0.0.1-beta.6
+        version: 0.0.1-beta.6(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -1228,8 +1228,8 @@ packages:
       '@parcel/watcher-win32-ia32': 2.3.0
       '@parcel/watcher-win32-x64': 2.3.0
 
-  /@pergel/nuxt@0.0.1-beta.5(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11):
-    resolution: {integrity: sha512-Vj+R0bqrAop5eBGL+Pe2ku3LJtImzkj8lQA4qWE99Pdhto4kSEOEWcSm6FaLOZzwRBJsGSAkLQKe1ipXWhvweg==}
+  /@pergel/nuxt@0.0.1-beta.6(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11):
+    resolution: {integrity: sha512-auIQir0S/xRQt6VMjdw9mUDY89d+kra+jGH3+DMssgqrYcFj+F8LnVg3Gv/PPkA/tXZ44ka7/iN/9zG7FgLOCw==}
     dependencies:
       '@nuxt/devtools': 1.0.5(nuxt@3.8.2)(vite@5.0.7)
       '@nuxt/devtools-kit': 1.0.5(nuxt@3.8.2)(vite@5.0.7)
