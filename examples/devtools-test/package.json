@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pergel/nuxt": "0.0.1-beta.4"
+    "@pergel/nuxt": "0.0.1-beta.5"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

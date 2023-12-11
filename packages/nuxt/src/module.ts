@@ -9,14 +9,14 @@ import type { ImportsOptions } from '@nuxt/schema'
 import type { UnimportPluginOptions } from 'unimport/unplugin'
 
 import { version } from '../package.json'
-import { setupDevToolsUI } from './core/devtools'
-import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './core/constants'
-import type { PergelOptions } from './core/types/module'
-import { checkOptions } from './core/utils/checkOptions'
-import { useNitroImports, useNuxtImports } from './core/utils/useImports'
-import { setupPergel } from './core/setupPergel'
-import { generateReadmeYaml } from './core/utils/generateYaml'
-import { setupModules } from './core/setupModules'
+import { setupDevToolsUI } from './runtime/core/devtools'
+import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './runtime/core/constants'
+import type { PergelOptions } from './runtime/core/types/module'
+import { checkOptions } from './runtime/core/utils/checkOptions'
+import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
+import { setupPergel } from './runtime/core/setupPergel'
+import { generateReadmeYaml } from './runtime/core/utils/generateYaml'
+import { setupModules } from './runtime/core/setupModules'
 
 export default defineNuxtModule<PergelOptions>({
   meta: {

@@ -55,7 +55,7 @@ export async function setupModules(data: {
 
       try {
         const getIndexExt = () => {
-          const datas = readdirSync(data.resolver.resolve(join('modules', moduleName)))
+          const datas = readdirSync(data.resolver.resolve(join('runtime', 'modules', moduleName)))
           const indexExt = datas.find(file => file.includes('index') && !file.includes('.d.'))
           if (!indexExt)
             throw new Error(`Module ${moduleName} does not have index file`)
@@ -65,7 +65,7 @@ export async function setupModules(data: {
         const indexPath = getIndexExt()
 
         pergelModule = await import(
-          data.resolver.resolve(join('modules', moduleName, indexPath))
+          data.resolver.resolve(join('runtime', 'modules', moduleName, indexPath))
         ).then(m => m.default).catch((res) => {
           consola.error(`Module ${moduleName} failed to import`)
           consola.error(res)
