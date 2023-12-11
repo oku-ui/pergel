@@ -1,4 +1,4 @@
-import { addServerImportsDir, createResolver } from '@nuxt/kit'
+import { addServerHandler, addServerImportsDir, createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import type { S3ModuleRuntimeConfig } from './types'
@@ -25,6 +25,19 @@ export default definePergelModule({
     const projectName = options.resolvedModule.projectName
 
     addServerImportsDir(resolver.resolve('./composables'))
+
+    if (nuxt.options.dev) {
+      if (!nuxt._pergel.devServerHandler.find(({ id }) => id === 'S3')) {
+        nuxt._pergel.devServerHandler.push({
+          id: 'S3',
+          fn: () => addServerHandler({
+            lazy: true,
+            route: '/__pergel__S3/:projectName',
+            handler: resolver.resolve('./server/s3'),
+          }),
+        })
+      }
+    }
 
     options._contents.push({
       moduleName: 'S3',

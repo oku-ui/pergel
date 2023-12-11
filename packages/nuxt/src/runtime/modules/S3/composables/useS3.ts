@@ -1,6 +1,21 @@
 import type { H3Event } from 'h3'
-import { DeleteObjectCommand, DeleteObjectsCommand, GetObjectCommand, ListObjectsCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
-import type { DeleteObjectCommandInput, DeleteObjectsCommandInput, GetObjectCommandInput, ListObjectsCommandInput, PutObjectCommandInput } from '@aws-sdk/client-s3'
+import {
+  DeleteObjectCommand,
+  DeleteObjectsCommand,
+  GetObjectCommand,
+  ListObjectsCommand,
+  PutObjectCommand,
+  S3Client,
+  paginateListObjectsV2,
+} from '@aws-sdk/client-s3'
+import type {
+  DeleteObjectCommandInput,
+  DeleteObjectsCommandInput,
+  GetObjectCommandInput,
+  ListObjectsCommandInput,
+  PutObjectCommandInput,
+  _Object,
+} from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import consola from 'consola'
 import type { PartinalKey } from '../../../core/types'
@@ -14,12 +29,13 @@ export const pergelS3Client = clientInit
 
 export async function useS3(
   this: PergelGlobalContextOmitModule,
-  event?: H3Event,
   pergel?: PergelGlobalContextOmitModule,
+  event?: H3Event,
 ) {
   const _pergel = pergel || this
-  if (!_pergel)
-    consola.error('Pergel is not defined')
+
+  if (!_pergel || !_pergel.projectName)
+    throw new Error('Pergel is not defined')
 
   const { client, runtime } = await pergelS3Client(_pergel, runtime => new S3Client({
     region: runtime.region,
@@ -97,6 +113,15 @@ export async function useS3(
     return await client!.send(command)
   }
 
+  async function listAllObjects(bucket?: string) {
+    const Bucket = bucket || runtime.bucket
+    const allObjects: _Object[] = []
+    for await (const obj of paginateListObjectsV2({ client }, { Bucket }))
+      allObjects.push(...(obj.Contents ?? []))
+
+    return allObjects
+  }
+
   return {
     client,
     signedUrl,
@@ -104,5 +129,6 @@ export async function useS3(
     removeObject,
     removeObjects,
     getObject,
+    listAllObjects,
   }
 }
