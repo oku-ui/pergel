@@ -23,10 +23,70 @@
       ]
     },
     {
-      "groupName": "playground",
-      "commitMessageTopic": "playground",
+      "groupName": "examples",
+      "commitMessageTopic": "examples",
       "matchPaths": [
-        "playground/**"
+        "examples/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ]
+    },
+    {
+      "groupName": "cli",
+      "commitMessageTopic": "cli",
+      "matchPaths": [
+        "packages/cli/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ]
+    },
+    {
+      "groupName": "nuxt",
+      "commitMessageTopic": "nuxt",
+      "matchPaths": [
+        "packages/nuxt/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ]
+    },
+    {
+      "groupName": "graphql",
+      "commitMessageTopic": "graphql",
+      "matchPaths": [
+        "packages/graphql/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ]
+    },
+    {
+      "groupName": "s3",
+      "commitMessageTopic": "s3",
+      "matchPaths": [
+        "packages/s3/**"
       ],
       "matchUpdateTypes": [
         "major",
@@ -45,7 +105,11 @@
         "major"
       ],
       "ignorePaths": [
-        "**/playground/**"
+        "**/examples/**",
+        "**/packages/cli/**",
+        "**/packages/nuxt/**",
+        "**/packages/graphql/**",
+        "**/packages/s3/**"
       ],
       "matchDatasources": [
         "npm",
