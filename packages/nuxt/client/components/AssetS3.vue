@@ -12,7 +12,7 @@ definePageMeta({
   layout: 'full',
 })
 
-const { data, error, pending } = await useFetch<any[]>(devtoolsUrl('/__pergel__S3', props.selectedTabProject), {
+const { data, error, pending, execute } = await useFetch<any[]>(devtoolsUrl('/__pergel__S3', props.selectedTabProject), {
   method: 'get',
   lazy: true,
 
@@ -26,6 +26,15 @@ const navbar = ref()
 <template>
   <div h-full of-auto>
     <NNavbar ref="navbar" v-model:search="search" pb2>
+      <template #actions>
+        <NButton
+          :disabled="pending"
+          icon="carbon:rocket"
+          @click="execute"
+        >
+          Refresh
+        </NButton>
+      </template>
       <div op50>
         <span>{{ data?.length }} assets in total</span>
       </div>
