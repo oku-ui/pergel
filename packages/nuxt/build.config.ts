@@ -9,21 +9,6 @@ const external = [
 ]
 export default defineBuildConfig([
   {
-    entries: [
-      {
-        input: 'src/core/',
-        outDir: 'dist/core',
-        ext: 'mjs',
-      },
-    ],
-    rollup: {
-      esbuild: {
-        target: 'esnext',
-      },
-      emitCJS: false,
-      cjsBridge: true,
-    },
-
     // explicitly externalize consola since Nuxt has it
     externals: [
       'consola',
