@@ -46,6 +46,7 @@
     "sirv": "^2.0.3"
   },
   "devDependencies": {
+    "@aws-sdk/client-ses": "^3.465.0",
     "@iconify-json/carbon": "^1.1.24",
     "@nuxt/devtools-ui-kit": "^1.0.5",
     "@nuxt/module-builder": "^0.5.4",

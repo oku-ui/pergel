@@ -51,6 +51,7 @@ export default defineNuxtConfig({
       test: {
         S3: true,
         nodeCron: true,
+        ses: true,
       },
       test2: {
         S3: true,
