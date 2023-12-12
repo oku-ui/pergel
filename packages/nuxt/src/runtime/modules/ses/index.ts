@@ -30,7 +30,7 @@ export default definePergelModule({
       content: /* ts */`
         function ses() {
           return {
-            useSes: useSes.bind(ctx),
+            use: usePergelSES.bind(ctx),
           }
         }
           `,

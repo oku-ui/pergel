@@ -45,7 +45,10 @@ export default definePergelModule({
       content: /* TypeScript */ `
           function S3() {
             return {
+              // TODO: change name to 'usePergelS3Client'
               client: pergelS3Client.bind(ctx),
+              // TODO: change name to 'usePergelS3'
+              // TODO: useS3 key name change -> 'use'
               useS3: useS3.bind(ctx),
             }
           }

@@ -12,7 +12,7 @@ export interface Credentials {
 
 const { clientInit } = clientFunctionTemplate<SESClient, SesModuleRuntimeConfig>('ses')
 
-export async function useSes(
+export async function usePergelSES(
   this: PergelGlobalContextOmitModule,
   event?: H3Event,
   data?: PergelGlobalContextOmitModule,
