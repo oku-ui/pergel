@@ -1,4 +1,4 @@
-import { defineEventHandler } from 'h3'
+import { defineEventHandler, getRouterParam } from 'h3'
 import { useS3 } from '../composables/useS3'
 
 export default defineEventHandler(async (event) => {
