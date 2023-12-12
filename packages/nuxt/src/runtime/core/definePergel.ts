@@ -22,13 +22,14 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
 
   async function getOptions(nuxt: Nuxt, options: ResolvedPergelOptions) {
     const dependencies = module.meta.dependencies ?? {}
+    const devDependencies = module.meta.devDependencies ?? {}
 
-    if (Object.keys(dependencies).length > 0) {
+    if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
       generateProjectReadme(nuxt, options, ({ addCommentBlock }) => ({
         ...addCommentBlock('If pergel cli is installed, you can run `pergel install` automatically to install'),
         packageJson: {
           dependencies: `"${Object.entries(dependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
-          devDependencies: `"${Object.entries(module.meta.devDependencies ?? {}).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
+          devDependencies: `"${Object.entries(devDependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
         },
       }))
     }

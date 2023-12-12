@@ -1,7 +1,7 @@
 {
   "name": "pergel-system",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "packageManager": "pnpm@8.11.0",
   "license": "MIT",
@@ -34,6 +34,7 @@
     "@antfu/eslint-config": "^2.1.2",
     "@types/node": "^20.10.0",
     "bumpp": "^9.2.0",
+    "changelogithub": "^0.13.2",
     "eslint": "^8.55.0",
     "json-editor-vue": "^0.11.2",
     "lint-staged": "^15.1.0",

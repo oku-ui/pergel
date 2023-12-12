@@ -8,6 +8,7 @@ import type { Nuxt } from '@nuxt/schema'
 export interface Modules {
   S3?: true
   ses?: true
+  nodeCron?: true
 }
 
 export interface PergelOptions {
