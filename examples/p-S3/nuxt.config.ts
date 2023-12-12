@@ -1,12 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   modules: [
     '@pergel/nuxt',
   ],
-  devtools: { enabled: true },
   pergel: {
     projects: {
-      test: {
+      rocket: {
         S3: true,
       },
     },
