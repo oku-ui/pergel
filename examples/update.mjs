@@ -7,4 +7,4 @@ const folders = readdirSync('./').filter(f => f.startsWith('p-'))
 
 // package json update "@pergel/nuxt"
 for await (const folder of folders)
-  execSync(`cd ${folder} && pnpm install @pergel/nuxt@${version} -w && pnpm nuxt prepare && pergel install -w`, { stdio: 'inherit' })
+  execSync(`cd ${folder} && pnpm install @pergel/nuxt@${version} && pnpm nuxt prepare && pergel install`, { stdio: 'inherit' })

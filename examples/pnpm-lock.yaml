@@ -18,8 +18,8 @@ importers:
         specifier: 0.0.0
         version: 0.0.0
       '@pergel/nuxt':
-        specifier: ^0.0.2
-        version: 0.0.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: ^0.0.4
+        version: 0.0.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -37,8 +37,8 @@ importers:
   p-nodeCron:
     dependencies:
       '@pergel/nuxt':
-        specifier: ^0.0.2
-        version: 0.0.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: ^0.0.4
+        version: 0.0.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
@@ -62,11 +62,11 @@ importers:
   p-ses:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.465.0
+        specifier: ^3.470.0
         version: 3.470.0
       '@pergel/nuxt':
-        specifier: ^0.0.2
-        version: 0.0.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: ^0.0.4
+        version: 0.0.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -1953,8 +1953,8 @@ packages:
       - aws-crt
     dev: false
 
-  /@pergel/nuxt@0.0.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
-    resolution: {integrity: sha512-6QWkjJ0SHQLDtYL2ymHp9o2MMNQD1T5XgPR/sYnERBbZyBAADaUtot4VNaEAV6nsIqe4dWGF/3mpX8S0JYUkzA==}
+  /@pergel/nuxt@0.0.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
+    resolution: {integrity: sha512-PJuaHqp0R2jVqx7hw9ZGgMYIsyjFFZJNBEpolC3OUisDEglZnlhDyUhjqLF07naMJd/2CBqhUPYwpDpt0aBuWg==}
     dependencies:
       '@nuxt/devtools': 1.0.5(nuxt@3.8.2)(vite@5.0.8)
       '@nuxt/devtools-kit': 1.0.5(nuxt@3.8.2)(vite@5.0.8)
