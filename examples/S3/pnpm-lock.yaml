@@ -12,8 +12,8 @@ importers:
         specifier: 0.0.0
         version: 0.0.0
       '@pergel/nuxt':
-        specifier: 0.0.1-beta.8
-        version: 0.0.1-beta.8(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11)
+        specifier: 0.0.1
+        version: 0.0.1(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -1850,8 +1850,8 @@ packages:
       - aws-crt
     dev: false
 
-  /@pergel/nuxt@0.0.1-beta.8(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11):
-    resolution: {integrity: sha512-XGnAdmFgJRXQuR0haM+6aYkAvH2TLR8s6z6y4/dp/mmzu+OZRmY5sM0fLfDO/j27P2jRQtOOzNa5cM+aoHMD5g==}
+  /@pergel/nuxt@0.0.1(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11):
+    resolution: {integrity: sha512-DieYXINtGOCfM5LPHTPyhp4I6D+pF4h8ujZOLB7Ljf/UKjJpQR82RlPBT52uP3WC6x8Av+pCn2qMVsOqcN+oXA==}
     dependencies:
       '@nuxt/devtools': 1.0.5(nuxt@3.8.2)(vite@5.0.7)
       '@nuxt/devtools-kit': 1.0.5(nuxt@3.8.2)(vite@5.0.7)
