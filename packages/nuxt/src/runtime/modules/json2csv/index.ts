@@ -6,7 +6,7 @@ export default definePergelModule({
     name: 'json2csv',
     version: '0.0.1',
     dependencies: {
-      '@json2csv/node': '^7.0.3',
+      '@json2csv/node': '^7.0.4',
     },
   },
   defaults: {},
