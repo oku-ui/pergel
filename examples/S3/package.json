@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pergel/nuxt": "0.0.1-beta.7"
+    "@pergel/module-s3": "0.0.0",
+    "@pergel/nuxt": "0.0.1-beta.8"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
