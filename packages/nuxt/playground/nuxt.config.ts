@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     projects: {
       test: {
         S3: true,
+        nodeCron: true,
       },
       test2: {
         S3: true,

@@ -43,6 +43,7 @@ export default defineNuxtModule<PergelOptions>({
       },
       modules: [
         'S3',
+        'nodeCron',
       ],
       resolver: _resolver,
       devServerHandler: [],
