@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pergel/module-s3": "0.0.0",
+    "@aws-sdk/client-ses": "^3.465.0",
     "@pergel/nuxt": "^0.0.2"
   },
   "devDependencies": {
