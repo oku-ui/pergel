@@ -25,7 +25,7 @@ export default definePergelModule({
       content: /* ts */`
           function nodeCron() {
             return {
-              defineNitroPergelNodeCronPlugin
+              nitroPlugin: defineNitroPergelNodeCronPlugin
             }
           }
         `,

@@ -1,8 +1,8 @@
-export default pergelTest().nodeCron().defineNitroPergelNodeCronPlugin({
-  setup: async (cron) => {
-    cron.every.seconds(3, () => {
-      console.warn('running a task every 3 seconds')
-    })
+export default pergelTest().nodeCron().nitroPlugin({
+  setup: async (_cron) => {
+  // cron.every.seconds(3, () => {
+  //   console.warn('running a task every 3 seconds')
+  // })
   // cron.every.minutes(5, () => {
   //   console.warn('running a task every 5 minutes')
   // })
@@ -15,5 +15,8 @@ export default pergelTest().nodeCron().defineNitroPergelNodeCronPlugin({
   },
   onError: async (error: any) => {
     console.warn(error.message)
+  },
+  config: {
+    log: true,
   },
 })
