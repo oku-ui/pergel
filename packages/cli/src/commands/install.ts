@@ -33,7 +33,7 @@ export default defineCommand({
         return
       }
 
-      const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
+      const readmeString = readFileSync(resolve(process.cwd(), file.config.src, 'README.yaml')).toString()
 
       const json = parse(readmeString) as PergelYaml
 
