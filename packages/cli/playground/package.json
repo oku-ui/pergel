@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.465.0",
-    "@pergel/graphql": "0.0.0",
-    "drizzle-kit": "^0.20.4",
-    "drizzle-orm": "^0.29.0",
+    "@pergel/graphql": "workspace:*",
+    "drizzle-kit": "^0.20.6",
+    "drizzle-orm": "^0.29.1",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
