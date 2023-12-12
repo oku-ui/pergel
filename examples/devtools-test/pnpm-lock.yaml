@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@pergel/nuxt':
-        specifier: 0.0.1-beta.6
-        version: 0.0.1-beta.6(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11)
+        specifier: 0.0.1-beta.7
+        version: 0.0.1-beta.7(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -1228,13 +1228,14 @@ packages:
       '@parcel/watcher-win32-ia32': 2.3.0
       '@parcel/watcher-win32-x64': 2.3.0
 
-  /@pergel/nuxt@0.0.1-beta.6(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11):
-    resolution: {integrity: sha512-auIQir0S/xRQt6VMjdw9mUDY89d+kra+jGH3+DMssgqrYcFj+F8LnVg3Gv/PPkA/tXZ44ka7/iN/9zG7FgLOCw==}
+  /@pergel/nuxt@0.0.1-beta.7(nuxt@3.8.2)(vite@5.0.7)(vue@3.3.11):
+    resolution: {integrity: sha512-cE7dQn0EcrwJJrSMWRrXXeDJr733/rxv2wcYazdiwthzn4lyKZuFouX3Jjs0irzFjlDuRw3JJcsHR6LAI6L2CQ==}
     dependencies:
       '@nuxt/devtools': 1.0.5(nuxt@3.8.2)(vite@5.0.7)
       '@nuxt/devtools-kit': 1.0.5(nuxt@3.8.2)(vite@5.0.7)
       '@nuxt/kit': 3.8.2
       '@vueuse/core': 10.7.0(vue@3.3.11)
+      '@vueuse/math': 10.7.0(vue@3.3.11)
       defu: 6.1.3
       pathe: 1.1.1
       sirv: 2.0.3
@@ -1764,6 +1765,16 @@ packages:
     dependencies:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.7.0
+      '@vueuse/shared': 10.7.0(vue@3.3.11)
+      vue-demi: 0.14.6(vue@3.3.11)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vueuse/math@10.7.0(vue@3.3.11):
+    resolution: {integrity: sha512-JTHFTQ/Mr5nGe6YYC30evYna+981TR6HYFvjD83Aay2dLIEVZGRwM8+f6IxOGcoq9u95hFkhOcer/VsjIDvETg==}
+    dependencies:
       '@vueuse/shared': 10.7.0(vue@3.3.11)
       vue-demi: 0.14.6(vue@3.3.11)
     transitivePeerDependencies:

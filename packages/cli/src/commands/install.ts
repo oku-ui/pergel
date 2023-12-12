@@ -14,6 +14,9 @@ export default defineCommand({
     version: '0.0.1',
   },
   async run() {
+    // remove 'install' and 'pergel' from args
+    const args = process.argv.slice(2).filter(arg => arg !== 'install' && arg !== 'pergel')
+
     try {
       const file = await loadConfig<{
         src: string
@@ -69,12 +72,12 @@ export default defineCommand({
       }
 
       if (dependencies.size) {
-        await run(parseNi, [...dependencies.values()]).then(() => {
+        await run(parseNi, [...dependencies.values(), ...args]).then(() => {
           consola.success('Dependencies installed', dependencies.values())
         })
       }
       if (devDependencies.size) {
-        await run(parseNi, [...devDependencies.values(), '-D']).then(() => {
+        await run(parseNi, [...devDependencies.values(), '-D', ...args]).then(() => {
           consola.success('Dev dependencies installed', devDependencies.values())
         })
       }

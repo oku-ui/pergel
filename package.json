@@ -24,6 +24,12 @@
     "release": "pnpm build && bumpp --commit --push --tag",
     "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks"
   },
+  "dependencies": {
+    "@pergel/graphql": "workspace:0.0.0",
+    "drizzle-kit": "^0.20.4",
+    "drizzle-orm": "^0.29.0",
+    "postgres": "^3.4.3"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.1.2",
     "@types/node": "^20.10.0",
