@@ -45,6 +45,7 @@ export default defineNuxtModule<PergelOptions>({
         'S3',
         'ses',
         'nodeCron',
+        'bullmq',
       ],
       resolver: _resolver,
       devServerHandler: [],
