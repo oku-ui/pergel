@@ -27,40 +27,11 @@ Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to i
 1. Fork the [oku-ui](https://github.com/oku-ui/pergel) repository
 2. Install the project dependencies
    `pnpm install`
-3. Run the project in dev mode
-   `pnpm dev`
 
-### Scripts
+### Packages
 
-```shell
-pnpm build # Build the project
-pnpm dev # Run the project in dev mode
-pnpm stub # Dev mode and watch mode change dist folder
-
-pnpm lint # Run ESLint
-pnpm lint:fix # Run ESLint and fix errors
-
-pnpm test # Run tests
-pnpm test:watch # Run tests in watch mode
-pnpm test testfilename # Run a specific test file name
-```
-
-## Testing
-
-1. We use [Vitest](https://vitest.dev/) for testing
-2. To run the tests
-   `pnpm test`
-3. Watch mode
-   `pnpm test:watch`
-4. To run a specific test file name
-   `pnpm test testfilename`
-
-## ESLint
-1. To run the linter
-   `pnpm lint`
-2. All linting errors will be automatically fixed on commit
-   `pnpm lint:fix`
-
+- [cli](./packages/cli)
+- [nuxt module](./packages/nuxt)
 
 ## Pull Request
 
