@@ -30,7 +30,7 @@ function download(data: any, filename: string) {
   window.URL.revokeObjectURL(blobURL)
 }
 
-export function usePergelJsonCsv() {
+export function usePergelJson2Csv() {
   return {
     download,
   }
