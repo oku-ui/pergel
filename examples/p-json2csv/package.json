@@ -10,11 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pergel/module-s3": "0.0.0",
-    "@pergel/nuxt": "^0.1.0"
+    "@json2csv/node": "^7.0.4",
+    "@pergel/nuxt": "^0.1.0",
+    "node-cron": "^3.0.3"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@types/node-cron": "^3.0.11",
     "nuxt": "^3.8.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
