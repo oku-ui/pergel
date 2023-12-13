@@ -10,6 +10,7 @@ export interface Modules {
   ses?: true
   nodeCron?: true
   bullmq?: true
+  json2csv?: true
 }
 
 export interface PergelOptions {

@@ -46,6 +46,7 @@ export default defineNuxtModule<PergelOptions>({
         'ses',
         'nodeCron',
         'bullmq',
+        'json2csv',
       ],
       resolver: _resolver,
       devServerHandler: [],

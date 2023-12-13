@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.1.2",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -48,6 +48,7 @@
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.465.0",
     "@iconify-json/carbon": "^1.1.24",
+    "@json2csv/node": "^7.0.4",
     "@nuxt/devtools-ui-kit": "^1.0.5",
     "@nuxt/module-builder": "^0.5.4",
     "@nuxt/schema": "^3.8.2",
