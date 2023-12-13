@@ -30,7 +30,7 @@ export default definePergelModule({
       url: '',
     })
 
-    addServerImportsDir(resolver.resolve('./composables'))
+    addServerImportsDir(resolver.resolve('./composables/plugin'))
 
     options._contents.push({
       moduleName: options.resolvedModule.name,
@@ -38,7 +38,7 @@ export default definePergelModule({
       content: /* ts */`
           function bullmq() {
             return {
-              definePergelNitroBullMQPlugin: definePergelNitroBullMQPlugin.bind(ctx),
+              nitroPlugin: definePergelNitroBullMQPlugin.bind(ctx),
               useScheduler: useScheduler.bind(ctx),
             }
           }

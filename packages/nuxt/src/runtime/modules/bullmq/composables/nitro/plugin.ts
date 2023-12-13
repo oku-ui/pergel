@@ -16,7 +16,6 @@ export function definePergelNitroBullMQPlugin(
   },
 ) {
   return defineNitroPlugin(async (_nitro) => {
-    console.warn('Redis plugin started', this)
     data.setup({
       useScheduler: (queueName, prefix) => useScheduler.call(data.pergel || this, {
         queueName,
