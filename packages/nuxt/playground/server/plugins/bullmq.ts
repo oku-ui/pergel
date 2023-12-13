@@ -1,24 +1,21 @@
 import type { Job } from 'bullmq'
 
-export default pergelTest().bullmq().definePergelNitroBullMQPlugin({
-  setup: ({ useScheduler }, nitro) => {
-    const { start, stop } = useScheduler('email')
+export default pergelTest().bullmq().nitroPlugin({
+  setup: ({ useScheduler }) => {
+    const { start } = useScheduler()
 
-    nitro.hooks.hook('close', () => {
-      console.warn('Redis connection closed')
-      stop()
+    const isStarted = start({
+      config: {
+        queueName: 'email',
+      },
+      jobMethod: consumeMethod,
     })
-
-    const isStarted = start(
-      consumeMethod,
-    )
 
     if (!isStarted)
       console.warn('Redis connection not started')
   },
 })
 
-// Send Email
 async function consumeMethod(job: Job<any, any, string>) {
   console.warn('Coming data', job.data)
   const result = await sleep(3000)
@@ -34,10 +31,3 @@ function sleep(time: number) {
     }, time)
   })
 }
-
-// Option 1
-/* const { schedule, start, stop } = pergelProject2().bullmq().useScheduler({
-  queueName: 'email',
-}) */
-
-// Option 2

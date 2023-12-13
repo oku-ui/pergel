@@ -9,18 +9,18 @@ export function definePergelNitroBullMQPlugin(
   data: {
     setup: (
       utils: {
-        useScheduler: (queueName: string, prefix?: string) => Scheduler
+        useScheduler: () => Scheduler
       },
       nitroApp: NitroApp) => void
     pergel?: PergelGlobalContextOmitModule
   },
 ) {
-  return defineNitroPlugin(async (_nitro) => {
+  return defineNitroPlugin(async (nitro) => {
     data.setup({
-      useScheduler: (queueName, prefix) => useScheduler.call(data.pergel || this, {
-        queueName,
-        prefix: prefix || 'nitro',
+      useScheduler: () => useScheduler.call({
+        ...data.pergel || this,
+        nitro,
       }),
-    }, _nitro)
+    }, nitro)
   })
 }

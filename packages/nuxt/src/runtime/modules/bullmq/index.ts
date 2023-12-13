@@ -30,7 +30,7 @@ export default definePergelModule({
       url: '',
     })
 
-    addServerImportsDir(resolver.resolve('./composables/plugin'))
+    addServerImportsDir(resolver.resolve('./composables/nitro'))
 
     options._contents.push({
       moduleName: options.resolvedModule.name,

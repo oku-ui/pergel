@@ -1,9 +1,7 @@
 export default defineEventHandler(async () => {
   const ID = Math.random().toString(36).substring(7) // generate random id
 
-  const { schedule } = pergelTest().bullmq().useScheduler({
-    queueName: 'email',
-  })
+  const { schedule } = pergelTest().bullmq().useScheduler()
 
   if (schedule === null)
     return 'Redis not started'

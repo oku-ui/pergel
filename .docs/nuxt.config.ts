@@ -30,7 +30,7 @@ const devConfig = {
   ],
   devtools: { enabled: true },
   ui: {
-    icons: ['heroicons', 'simple-icons', 'ph'],
+    icons: ['heroicons', 'simple-icons', 'ph', 'game-icons'],
   },
   routeRules: {
     '/': { redirect: '/pergel' },
@@ -58,6 +58,9 @@ export default defineNuxtConfig(defu({}, process.env.DEV && devConfig, {
     prerender: {
       crawlLinks: true,
     },
+  },
+  ui: {
+    icons: ['heroicons', 'simple-icons', 'ph', 'game-icons', 'carbon', 'fa-brands'],
   },
   routeRules: {
     ...routeRules,

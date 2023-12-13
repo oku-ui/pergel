@@ -1,5 +1,6 @@
 import { consola } from 'consola'
 import pTimeout from 'p-timeout'
+import type { NitroApp } from 'nitropack'
 
 import type { Job } from 'bullmq'
 import { Queue, Worker } from 'bullmq'
@@ -8,14 +9,13 @@ import type { PergelGlobalContextOmitModule } from '#pergel'
 
 export type Scheduler = ReturnType<typeof useScheduler>
 
-let myQueue: Queue | null
-let stopped = false
+// Project Name, Queue
+const _myQueue = new Map <string, Queue>()
+const _stopped = new Map <string, boolean>()
 
 export function useScheduler(
-  this: PergelGlobalContextOmitModule,
-  config: {
-    queueName: string
-    prefix?: string
+  this: PergelGlobalContextOmitModule & {
+    nitro?: NitroApp
   },
   pergel?: PergelGlobalContextOmitModule,
 ) {
@@ -43,27 +43,35 @@ export function useScheduler(
   }
 
   async function initQueueAndWorkers(
-    callback: (job: Job<any, any, string>) => Promise<void>,
-    onError?: (source: string, error: Error) => void,
-    onFailed?: (job: any | undefined, error: Error) => void,
-    onCompleted?: (job: any) => void,
+    data: {
+      config: {
+        queueName: string
+        prefix?: string
+      }
+      jobMethod: (job: Job<any, any, string>) => Promise<void>
+      onError?: (source: string, error: Error) => void
+      onFailed?: (job: any | undefined, error: Error) => void
+      onCompleted?: (job: any) => void
+    },
   ) {
+    const { jobMethod, config, onCompleted, onError, onFailed } = data
     if (!redisConnection)
       return false
 
-    myQueue = new Queue(config.queueName, {
+    _myQueue.set(_pergel.projectName, new Queue(config.queueName, {
       prefix: config.prefix || 'pergel',
       connection: redisConnection,
-    })
+    }))
+    const myQueue = _myQueue.get(_pergel.projectName)
 
     // Wait for Queues to be ready
-    await myQueue.waitUntilReady()
+    await myQueue?.waitUntilReady()
 
     // New Worker
     const worker = new Worker(
       config.queueName,
       async (job) => {
-        await callback(job)
+        await jobMethod(job)
       },
       {
         prefix: config.prefix || 'pergel',
@@ -91,11 +99,9 @@ export function useScheduler(
   }
 
   async function start(
-    initQueueCallback: Parameters<typeof initQueueAndWorkers>[0],
-    onError?: Parameters<typeof initQueueAndWorkers>[1],
-    onFailed?: Parameters<typeof initQueueAndWorkers>[2],
-    onCompleted?: Parameters<typeof initQueueAndWorkers>[3],
+    ...args: Parameters<typeof initQueueAndWorkers>
   ) {
+    const { config, jobMethod, onError, onFailed, onCompleted } = args[0]
     const client = await useRedis({
       retryStrategy(times: any) {
         return Math.min(times * 500, 2000)
@@ -124,7 +130,13 @@ export function useScheduler(
 
     client.on('ready', async () => {
       consola.info('Redis connection ready... creating queues and workers...')
-      await initQueueAndWorkers(initQueueCallback, onError, onFailed, onCompleted)
+      await initQueueAndWorkers({
+        config,
+        jobMethod,
+        onError,
+        onFailed,
+        onCompleted,
+      })
     })
 
     client.on('close', () => {
@@ -142,10 +154,13 @@ export function useScheduler(
   }
 
   async function stop() {
+    const myQueue = _myQueue.get(_pergel.projectName)
+
     consola.log('Started Usage shutdown...')
-    stopped = true
+    _stopped.set(_pergel.projectName, true)
 
     consola.log('Clearing BullMQ...')
+
     try {
       if (myQueue) {
         myQueue.removeAllListeners()
@@ -159,7 +174,7 @@ export function useScheduler(
       consola.error('Failed to stop queues', e)
     }
     finally {
-      myQueue = null
+      _myQueue.delete(_pergel.projectName)
       consola.info('BullMQ stopped')
     }
 
@@ -174,22 +189,30 @@ export function useScheduler(
       }
       finally {
         redisConnection = null
-        myQueue = null
+        _myQueue.delete(_pergel.projectName)
         consola.info('Redis stopped')
       }
     }
 
     consola.info('Exiting')
-    process.exit(0)
   }
 
   async function schedule(...data: Parameters<Queue['add']>) {
+    const name = data[0]
+    const myQueue = _myQueue.get(_pergel.projectName)
     if (!myQueue)
       throw new Error('Queue not initialized')
 
     // Add: name, data, opts
-    consola.info('Adding job to queue %s', config.queueName)
+    consola.info('Adding job to queue %s', name)
     return myQueue.add(...data)
+  }
+
+  if (this.nitro) {
+    this.nitro.hooks.hook('close', () => {
+      console.warn('Redis connection closed')
+      stop()
+    })
   }
 
   return {
@@ -197,6 +220,9 @@ export function useScheduler(
     start,
     stop,
     readiness() {
+      const myQueue = _myQueue.get(_pergel.projectName)
+      const stopped = _stopped.get(_pergel.projectName)
+
       if (stopped)
         return false
 
