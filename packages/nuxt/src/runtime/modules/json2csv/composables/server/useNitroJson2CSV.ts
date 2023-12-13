@@ -1,7 +1,7 @@
 import { AsyncParser } from '@json2csv/node'
 
-import type { PartinalKey } from '../../../core/types'
-import type { CsvNodeOpts, NodeJsonParameters, SetResponseCsv } from '../types'
+import type { PartinalKey } from '../../../../core/types'
+import type { CsvNodeOpts, NodeJsonParameters, SetResponseCsv } from '../../types'
 import { setResponseCsv } from './setResponseCsv'
 
 async function nodeCSV(value: NodeJsonParameters) {

@@ -1,5 +1,5 @@
 import { send, setResponseHeader } from 'h3'
-import type { SetResponseCsv } from '../types'
+import type { SetResponseCsv } from '../../types'
 
 export async function setResponseCsv(data: SetResponseCsv) {
   const date = new Date()

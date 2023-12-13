@@ -1,4 +1,4 @@
-import { addServerImportsDir, createResolver } from '@nuxt/kit'
+import { addImportsDir, addServerImportsDir, createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 
 export default definePergelModule({
@@ -14,7 +14,8 @@ export default definePergelModule({
     const resolver = createResolver(import.meta.url)
     const projectName = options.resolvedModule.projectName
 
-    addServerImportsDir(resolver.resolve('./composables'))
+    addServerImportsDir(resolver.resolve('./composables/server'))
+    addImportsDir(resolver.resolve('./composables/vue'))
 
     options._contents.push({
       moduleName: 'json2csv',
