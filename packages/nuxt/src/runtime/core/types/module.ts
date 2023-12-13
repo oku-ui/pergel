@@ -9,6 +9,7 @@ export interface Modules {
   S3?: true
   ses?: true
   nodeCron?: true
+  json2csv?: true
 }
 
 export interface PergelOptions {
