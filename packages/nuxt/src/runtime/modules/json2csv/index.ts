@@ -22,7 +22,7 @@ export default definePergelModule({
       content: /* ts */`
           function json2csv() {
             return {
-              use: useNitroJson2CsvNode,
+              use: useNitroJson2CSV,
             }
           }
         `,

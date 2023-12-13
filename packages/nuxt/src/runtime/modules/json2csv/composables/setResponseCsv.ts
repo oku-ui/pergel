@@ -1,11 +1,5 @@
-import type { H3Event } from 'h3'
 import { send, setResponseHeader } from 'h3'
-
-export interface SetResponseCsv {
-  event: H3Event
-  csv: string | true
-  filename?: string
-}
+import type { SetResponseCsv } from '../types'
 
 export async function setResponseCsv(data: SetResponseCsv) {
   const date = new Date()

@@ -1,19 +1,8 @@
-import type internal from 'node:stream'
 import { AsyncParser } from '@json2csv/node'
-import type { ParserOptions, StreamParserOptions } from '@json2csv/node'
+
 import type { PartinalKey } from '../../../core/types'
-import { type SetResponseCsv, setResponseCsv } from './setResponseCsv'
-
-interface CsvNodeOpts {
-  opts?: ParserOptions<object, object> | undefined
-  asyncOpts?: StreamParserOptions | undefined
-  transformOpts?: internal.TransformOptions | undefined
-}
-
-interface NodeJsonParameters {
-  data: Parameters<InstanceType<typeof AsyncParser>['parse']>[0]
-  opts: CsvNodeOpts
-}
+import type { CsvNodeOpts, NodeJsonParameters, SetResponseCsv } from '../types'
+import { setResponseCsv } from './setResponseCsv'
 
 async function nodeCSV(value: NodeJsonParameters) {
   const parser = new AsyncParser(
