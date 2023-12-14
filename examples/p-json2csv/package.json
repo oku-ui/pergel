@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@json2csv/node": "^7.0.4",
-    "@pergel/nuxt": "^0.1.2",
+    "@pergel/nuxt": "^0.2.0",
     "node-cron": "^3.0.3"
   },
   "devDependencies": {

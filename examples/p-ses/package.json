@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.470.0",
-    "@pergel/nuxt": "^0.1.2"
+    "@pergel/nuxt": "^0.2.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
