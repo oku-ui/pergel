@@ -13,6 +13,9 @@ export type Scheduler<T extends string> = ReturnType<typeof useScheduler<T>>
 const _myQueue = new Map <string, Queue>()
 const _stopped = new Map <string, boolean>()
 
+/**
+ * @credit https://github.com/kamilkisiela/graphql-hive/blob/main/packages/services/emails/src/scheduler.ts
+ */
 export function useScheduler<T extends string>(
   this: PergelGlobalContextOmitModule & {
     nitro?: NitroApp
