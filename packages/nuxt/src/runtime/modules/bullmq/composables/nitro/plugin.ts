@@ -4,12 +4,12 @@ import { useScheduler } from './useScheduler'
 import type { Scheduler } from './useScheduler'
 import type { PergelGlobalContextOmitModule } from '#pergel'
 
-export function definePergelNitroBullMQPlugin(
+export function definePergelNitroBullMQPlugin<T extends string>(
   this: PergelGlobalContextOmitModule,
   data: {
     setup: (
       utils: {
-        useScheduler: () => Scheduler
+        useScheduler: () => Scheduler<T>
       },
       nitroApp: NitroApp) => void
     pergel?: PergelGlobalContextOmitModule
@@ -20,7 +20,8 @@ export function definePergelNitroBullMQPlugin(
       useScheduler: () => useScheduler.call({
         ...data.pergel || this,
         nitro,
-      }),
+      }) as Scheduler<T>,
+
     }, nitro)
   })
 }

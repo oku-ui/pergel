@@ -146,13 +146,13 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
     dir: {
       /**
        * @example
-       * 'pergel/${activeBranch}/${projectName}'
+       * 'pergel/${projectName}'
        */
       project: string
 
       /**
        * @example
-       * 'pergel/${activeBranch}/${projectName}/${moduleName}'
+       * 'pergel/${projectName}/${moduleName}'
        */
       module: string
     }

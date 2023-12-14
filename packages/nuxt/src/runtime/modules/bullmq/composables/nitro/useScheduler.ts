@@ -7,13 +7,13 @@ import { Queue, Worker } from 'bullmq'
 import { redisConnections, useRedis } from './useRedis'
 import type { PergelGlobalContextOmitModule } from '#pergel'
 
-export type Scheduler = ReturnType<typeof useScheduler>
+export type Scheduler<T extends string> = ReturnType<typeof useScheduler<T>>
 
 // Project Name, Queue
 const _myQueue = new Map <string, Queue>()
 const _stopped = new Map <string, boolean>()
 
-export function useScheduler(
+export function useScheduler<T extends string>(
   this: PergelGlobalContextOmitModule & {
     nitro?: NitroApp
   },
@@ -45,7 +45,7 @@ export function useScheduler(
   async function initQueueAndWorkers(
     data: {
       config: {
-        queueName: string
+        queueName: T
         prefix?: string
       }
       jobMethod: (job: Job<any, any, string>) => Promise<void>
@@ -197,7 +197,7 @@ export function useScheduler(
     consola.info('Exiting')
   }
 
-  async function schedule(...data: Parameters<Queue['add']>) {
+  async function schedule(...data: Parameters<Queue<any, any, T>['add']>) {
     const name = data[0]
     const myQueue = _myQueue.get(_pergel.projectName)
     if (!myQueue)

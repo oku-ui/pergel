@@ -1,20 +1,22 @@
 import type { Job } from 'bullmq'
+import type { TestBullmq } from '#pergel/types'
 
-export default pergelTest().bullmq().nitroPlugin({
-  setup: ({ useScheduler }) => {
-    const { start } = useScheduler()
+export default pergelTest()
+  .bullmq<TestBullmq['queueName']>().nitroPlugin({
+    setup: ({ useScheduler }) => {
+      const { start } = useScheduler()
 
-    const isStarted = start({
-      config: {
-        queueName: 'email',
-      },
-      jobMethod: consumeMethod,
-    })
+      const isStarted = start({
+        config: {
+          queueName: 'email',
+        },
+        jobMethod: consumeMethod,
+      })
 
-    if (!isStarted)
-      console.warn('Redis connection not started')
-  },
-})
+      if (!isStarted)
+        console.warn('Redis connection not started')
+    },
+  })
 
 async function consumeMethod(job: Job<any, any, string>) {
   console.warn('Coming data', job.data)

@@ -1,6 +1,7 @@
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import type { BullMQModuleRuntimeConfig } from './types'
 
 export default definePergelModule({
@@ -32,14 +33,22 @@ export default definePergelModule({
 
     addServerImportsDir(resolver.resolve('./composables/nitro'))
 
+    addModuleDTS({
+      template: /* ts */`
+  queueName: 'default'
+      `,
+      options,
+      nuxt,
+    })
+
     options._contents.push({
       moduleName: options.resolvedModule.name,
       projectName,
       content: /* ts */`
-          function bullmq() {
+          function bullmq<NitroPlugin extends string>() {
             return {
-              nitroPlugin: definePergelNitroBullMQPlugin.bind(ctx),
-              useScheduler: useScheduler.bind(ctx),
+              nitroPlugin: (definePergelNitroBullMQPlugin<NitroPlugin>).bind(ctx),
+              useScheduler: (useScheduler<NitroPlugin>).bind(ctx),
             }
           }
         `,
