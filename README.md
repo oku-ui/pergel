@@ -5,7 +5,9 @@
 <span> <a href="https://oku-ui.com/pergel"><img src="https://img.shields.io/badge/Open%20Documentation-18181B" alt="Website"></a> </span>
 </p>
 <p align="center">
-Pergel is here for a fast, powerful and modular development experience! Using this kit, which includes Nuxt.js and Nitro modules, you can customize your projects the way you want. Thanks to the automatic installation of NPM packages and basic setup, you can start your development process immediately and focus on coding. Reduce complexity and speed up your projects by choosing the features that suit your needs thanks to its modular structure. Pergel facilitates ongoing maintenance by providing an up-to-date and secure infrastructure.
+🚀 Pergel Project: Accelerate Your Full-Stack Development with Nuxt and Nitro!
+
+Pergel is a tailor-made solution for Nuxt and Nitro, providing swift project kickstarts and seamless integration of various modules. Named with a Turkish touch, Pergel maximizes the power of TypeScript, streamlining and accelerating your project development process.
 </p>
 
 <p align="center">
@@ -17,9 +19,31 @@ Pergel is here for a fast, powerful and modular development experience! Using th
 
 </p>
 
-
-
 ![Pergel Cover](./.github/assets/pergel-cover.jpg)
+
+
+🧰 Modular and Packaged Structure
+
+Pergel encompasses the core structure of your project, offering essential modules and packages to kickstart your development journey. This allows you to build the foundational infrastructure for your project with an advanced and modular approach.
+
+🚨 Proactive Module Additions
+
+Pergel is continuously evolving to meet your future needs. We consistently add new modules and packages to keep your projects up-to-date and competitive, ensuring a proactive and future-ready development environment.
+
+🚀 Empowered Development with TypeScript
+
+Pergel seamlessly integrates with TypeScript, providing developers with type safety and the advantages of the compilation process. This results in safer, more readable, and sustainable projects.
+🌐 Community-Driven Growth with Feedback
+
+Pergel is a community-centric project. Engage with fellow developers and users to help us make Pergel better and more powerful. Your feedback plays a critical role in making Pergel more user-friendly and functional.
+
+💡 Join In and Progress
+
+If you're a developer, explore Pergel to enhance your projects. You can also contribute to our community by integrating the structures you use in your projects into Pergel and submitting pull requests.
+
+Feel free to share your suggestions or change requests regarding Pergel. Together, let's create a better and more robust development experience!
+
+🚀 Push Boundaries, Invest in the Future with Pergel!
 
 # Contributing
 
