@@ -1,6 +1,6 @@
 // TODO: Clean this file
 import { join, resolve } from 'node:path'
-import type { Nuxt, NuxtTemplate } from '@nuxt/schema'
+import type { Nuxt } from '@nuxt/schema'
 import { addTemplate, updateTemplates } from '@nuxt/kit'
 import consola from 'consola'
 import { buildTime } from '../utils'

@@ -1,6 +1,5 @@
 import { join, resolve } from 'node:path'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
-import defu from 'defu'
 import type { Nuxt } from '@nuxt/schema'
 import type { ResolvedPergelOptions } from '../../../core/types'
 import { matchGlobs } from '../utils'

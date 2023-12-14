@@ -1,7 +1,6 @@
 import { eventHandler } from 'h3'
 import { defineNitroPlugin } from 'nitropack/dist/runtime/plugin'
 import defu from 'defu'
-import { useNuxt } from '@nuxt/kit'
 import type { GraphQLYogaOptions, ResolvedGraphQLNitroPluginConfig } from '../../types'
 import { nitroGraphqlYogaPlugin } from './nitroGraphqlYogaPlugin'
 

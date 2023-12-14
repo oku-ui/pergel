@@ -1,10 +1,8 @@
 import { resolve } from 'node:path'
 import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
-import defu from 'defu'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
-import type { ResolvedPergelOptions } from '../../core/types'
-import type { GraphQLConfig, ResolvedGraphqlConfig } from './types'
+import type { ResolvedGraphqlConfig } from './types'
 import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
 const _logger = useLogger('pergel:graphql:yoga')
