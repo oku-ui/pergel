@@ -9,6 +9,7 @@ export interface Modules {
   S3?: true
   ses?: true
   nodeCron?: true
+  bullmq?: true
   json2csv?: true
 }
 
@@ -133,6 +134,12 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
 
     /**
      * @example
+     * 'Project1S3' | 'Project1NodeCron' | 'Project1GraphQL' | 'Project1Drizzle'
+     */
+    typeName: string
+
+    /**
+     * @example
      * 'users/productdevbook/nuxt3/pergel/${projectName}'
      */
     projectDir: string
@@ -145,13 +152,13 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
     dir: {
       /**
        * @example
-       * 'pergel/${activeBranch}/${projectName}'
+       * 'pergel/${projectName}'
        */
       project: string
 
       /**
        * @example
-       * 'pergel/${activeBranch}/${projectName}/${moduleName}'
+       * 'pergel/${projectName}/${moduleName}'
        */
       module: string
     }
@@ -234,6 +241,7 @@ interface ModuleMeta {
 
   devDependencies?: Record<string, string>
   dependencies?: Record<string, string>
+  dts?: boolean
 
   [key: string]: unknown
 }

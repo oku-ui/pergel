@@ -56,9 +56,11 @@
     "@pergel/module-s3": "workspace:^",
     "@types/node": "^20.9.3",
     "@types/node-cron": "^3.0.11",
+    "bullmq": "^4.15.2",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
     "node-cron": "^3.0.3",
     "nuxt": "^3.8.2",
+    "p-timeout": "^6.1.2",
     "vitest": "^0.33.0"
   },
   "publishConfig": {

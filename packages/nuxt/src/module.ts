@@ -1,4 +1,5 @@
 import {
+  addTemplate,
   createResolver,
   defineNuxtModule,
   logger,
@@ -45,10 +46,13 @@ export default defineNuxtModule<PergelOptions>({
         'S3',
         'ses',
         'nodeCron',
+        'bullmq',
         'json2csv',
       ],
       resolver: _resolver,
       devServerHandler: [],
+      dts: [],
+      activeModules: [],
     }
 
     const { status } = await checkOptions(options)
@@ -98,6 +102,15 @@ export default defineNuxtModule<PergelOptions>({
     })
 
     nuxt._pergel.devServerHandler.forEach(({ fn }) => fn())
+
+    const _template = addTemplate({
+      filename: './pergel/moduleTypes.d.ts',
+      getContents: () => nuxt._pergel.dts.map(dts => dts.template).join('\n\n'),
+    })
+
+    nuxt.options.alias['#pergel/types'] = _template.dst
+    nuxt.options.nitro.alias ??= {}
+    nuxt.options.nitro.alias['#pergel/types'] = _template.dst
   },
 })
 
@@ -113,6 +126,12 @@ declare module '@nuxt/schema' {
         id: string
         fn: () => void
       }[]
+      dts: {
+        projectName: string
+        body: string
+        template: string
+      }[]
+      activeModules: string[]
     }
   }
 }

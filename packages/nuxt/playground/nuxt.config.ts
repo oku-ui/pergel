@@ -52,6 +52,7 @@ export default defineNuxtConfig({
         S3: true,
         nodeCron: true,
         ses: true,
+        bullmq: true,
         json2csv: true,
       },
       test2: {

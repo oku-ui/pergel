@@ -4,7 +4,8 @@ import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
 import type { PergelModule, ResolvedPergelOptions } from './types'
-import { generatePergelTemplate } from './utils/pergelFunctionTemplate'
+import { generatePergelTemplate } from './utils/generatePergelTemplate'
+import { firstLetterUppercase } from './utils'
 
 export async function setupModules(data: {
   resolver: Resolver
@@ -34,6 +35,7 @@ export async function setupModules(data: {
   const modulesArray = Array.from(modulesMap)
 
   data.options._contents = []
+
   for await (const m of modulesArray) {
     const [projectname, moduleName] = m[0].split('/')
 
@@ -42,6 +44,7 @@ export async function setupModules(data: {
 
     data.options.resolvedModule.projectDir = join(data.options.resolvedOptions.resolveDir.pergelRoot, projectname)
     data.options.resolvedModule.moduleDir = join(data.options.resolvedOptions.resolveDir.pergelRoot, projectname, moduleName)
+    data.options.resolvedModule.typeName = `${firstLetterUppercase(projectname)}${firstLetterUppercase(moduleName)}`
 
     data.options.resolvedModule.templateDir.project = join(data.options.resolvedOptions.dir.pergel, projectname)
     data.options.resolvedModule.templateDir.module = join(data.options.resolvedOptions.dir.pergel, projectname, moduleName)
@@ -50,6 +53,7 @@ export async function setupModules(data: {
     data.options.resolvedModule.dir.module = join(data.options.resolvedOptions.dir.pergel, projectname, moduleName)
 
     const selectedModule = data.nuxt._pergel.modules.find(module => module === moduleName)
+
     if (Array.isArray(m) && selectedModule) {
       let pergelModule: PergelModule
 
