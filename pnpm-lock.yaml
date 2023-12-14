@@ -225,6 +225,9 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.8.1
         version: 3.8.1(rollup@3.29.4)(vitest@0.33.0)(vue@3.3.11)
+      '@pergel/graphql':
+        specifier: workspace:^
+        version: link:../graphql
       '@pergel/module-s3':
         specifier: workspace:^
         version: link:../s3

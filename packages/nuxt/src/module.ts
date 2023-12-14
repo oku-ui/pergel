@@ -48,6 +48,7 @@ export default defineNuxtModule<PergelOptions>({
         'nodeCron',
         'bullmq',
         'json2csv',
+        'graphqlYoga',
       ],
       resolver: _resolver,
       devServerHandler: [],

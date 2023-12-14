@@ -4,6 +4,7 @@
  */
 
 import type { Nuxt } from '@nuxt/schema'
+import type { GraphQLConfig } from '../../modules/graphqlYoga/types'
 
 export interface Modules {
   S3?: true
@@ -11,6 +12,7 @@ export interface Modules {
   nodeCron?: true
   bullmq?: true
   json2csv?: true
+  graphqlYoga?: true | GraphQLConfig
 }
 
 export interface PergelOptions {
@@ -161,6 +163,12 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
        * 'pergel/${projectName}/${moduleName}'
        */
       module: string
+
+      /**
+       * @example
+       * '${projectName}/${moduleName}'
+       */
+      projectModule: string
     }
 
     templateDir: {

@@ -51,6 +51,7 @@ export async function setupModules(data: {
 
     data.options.resolvedModule.dir.project = join(data.options.resolvedOptions.dir.pergel, projectname)
     data.options.resolvedModule.dir.module = join(data.options.resolvedOptions.dir.pergel, projectname, moduleName)
+    data.options.resolvedModule.dir.projectModule = join(projectname, moduleName)
 
     const selectedModule = data.nuxt._pergel.modules.find(module => module === moduleName)
 
