@@ -2,7 +2,7 @@ import type { Job } from 'bullmq'
 import type { TestBullmq } from '#pergel/types'
 
 export default pergelTest()
-  .bullmq<TestBullmq['queueName']>().nitroPlugin({
+  .bullmq<TestBullmq>().nitroPlugin({
     setup: ({ useScheduler }) => {
       const { start } = useScheduler()
 

@@ -45,7 +45,7 @@ export default definePergelModule({
       moduleName: options.resolvedModule.name,
       projectName,
       content: /* ts */`
-          function bullmq<NitroPlugin extends string>() {
+          function bullmq<NitroPlugin extends object>() {
             return {
               nitroPlugin: (definePergelNitroBullMQPlugin<NitroPlugin>).bind(ctx),
               useScheduler: (useScheduler<NitroPlugin>).bind(ctx),

@@ -4,7 +4,7 @@ import { useScheduler } from './useScheduler'
 import type { Scheduler } from './useScheduler'
 import type { PergelGlobalContextOmitModule } from '#pergel'
 
-export function definePergelNitroBullMQPlugin<T extends string>(
+export function definePergelNitroBullMQPlugin<T extends object>(
   this: PergelGlobalContextOmitModule,
   data: {
     setup: (

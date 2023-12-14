@@ -7,16 +7,16 @@ import { Queue, Worker } from 'bullmq'
 import { redisConnections, useRedis } from './useRedis'
 import type { PergelGlobalContextOmitModule } from '#pergel'
 
-export type Scheduler<T extends string> = ReturnType<typeof useScheduler<T>>
+export type Scheduler<T extends object> = ReturnType<typeof useScheduler<T>>
 
 // Project Name, Queue
-const _myQueue = new Map <string, Queue>()
-const _stopped = new Map <string, boolean>()
+const _myQueue = new Map<string, Queue>()
+const _stopped = new Map<string, boolean>()
 
 /**
  * @credit https://github.com/kamilkisiela/graphql-hive/blob/main/packages/services/emails/src/scheduler.ts
  */
-export function useScheduler<T extends string>(
+export function useScheduler<T extends object>(
   this: PergelGlobalContextOmitModule & {
     nitro?: NitroApp
   },
@@ -48,7 +48,7 @@ export function useScheduler<T extends string>(
   async function initQueueAndWorkers(
     data: {
       config: {
-        queueName: T
+        queueName: T extends { queueName: infer Q } ? Q : string
         prefix?: string
       }
       jobMethod: (job: Job<any, any, string>) => Promise<void>
@@ -200,7 +200,7 @@ export function useScheduler<T extends string>(
     consola.info('Exiting')
   }
 
-  async function schedule(...data: Parameters<Queue<any, any, T>['add']>) {
+  async function schedule(...data: Parameters<Queue<any, any, T extends { queueName: infer Q } ? Q : string>['add']>) {
     const name = data[0]
     const myQueue = _myQueue.get(_pergel.projectName)
     if (!myQueue)
