@@ -134,6 +134,12 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
 
     /**
      * @example
+     * 'Project1S3' | 'Project1NodeCron' | 'Project1GraphQL' | 'Project1Drizzle'
+     */
+    typeName: string
+
+    /**
+     * @example
      * 'users/productdevbook/nuxt3/pergel/${projectName}'
      */
     projectDir: string
@@ -235,6 +241,7 @@ interface ModuleMeta {
 
   devDependencies?: Record<string, string>
   dependencies?: Record<string, string>
+  dts?: boolean
 
   [key: string]: unknown
 }

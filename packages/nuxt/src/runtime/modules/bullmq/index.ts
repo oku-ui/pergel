@@ -13,6 +13,7 @@ export default definePergelModule({
       'ioredis': '^5.3.2',
       'p-timeout': '^6.1.2',
     },
+    dts: true,
   },
   defaults: {},
   async setup(options, nuxt) {
@@ -45,10 +46,10 @@ export default definePergelModule({
       moduleName: options.resolvedModule.name,
       projectName,
       content: /* ts */`
-          function bullmq<NitroPlugin extends object>() {
+          function bullmq() {
             return {
-              nitroPlugin: (definePergelNitroBullMQPlugin<NitroPlugin>).bind(ctx),
-              useScheduler: (useScheduler<NitroPlugin>).bind(ctx),
+              nitroPlugin: (definePergelNitroBullMQPlugin<${options.resolvedModule.typeName}>).bind(ctx),
+              useScheduler: (useScheduler<${options.resolvedModule.typeName}>).bind(ctx),
             }
           }
         `,

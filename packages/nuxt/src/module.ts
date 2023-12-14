@@ -52,6 +52,7 @@ export default defineNuxtModule<PergelOptions>({
       resolver: _resolver,
       devServerHandler: [],
       dts: [],
+      activeModules: [],
     }
 
     const { status } = await checkOptions(options)
@@ -130,6 +131,7 @@ declare module '@nuxt/schema' {
         body: string
         template: string
       }[]
+      activeModules: string[]
     }
   }
 }

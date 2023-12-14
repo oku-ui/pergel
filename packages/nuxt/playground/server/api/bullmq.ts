@@ -6,9 +6,7 @@ export default defineEventHandler(async () => {
   if (schedule === null)
     return 'Redis not started'
 
-  const QUEUE_NAME = 'email'
-
-  schedule(QUEUE_NAME, {
+  schedule('email', {
     id: ID,
     name: '1020',
     data: {

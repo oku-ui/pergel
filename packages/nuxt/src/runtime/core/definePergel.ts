@@ -1,7 +1,8 @@
-import type { ModuleOptions, Nuxt } from '@nuxt/schema'
+import type { Nuxt } from '@nuxt/schema'
 import defu from 'defu'
 import type {
   ModuleDefinition,
+  ModuleOptions,
   ModuleSetupReturn,
   PergelModule,
   ResolvedPergelOptions,
@@ -33,6 +34,9 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
         },
       }))
     }
+
+    if (module.meta.dts && module.meta.name)
+      nuxt._pergel.activeModules.push(module.meta.name)
 
     const defaultModule = module.defaults instanceof Function ? module.defaults(nuxt, options) : module.defaults
 

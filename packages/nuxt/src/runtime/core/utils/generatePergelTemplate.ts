@@ -53,6 +53,9 @@ export function generatePergelTemplate(
      * }
      * `
      */
+    // import type {
+    //   TestBullmq
+    // } from '#pergel/types'
     const pergel = addTemplate({
       filename: join(data.options.resolvedModule.templateDir.root, projectName, 'pergel.ts'),
       write: true,
@@ -61,6 +64,10 @@ export function generatePergelTemplate(
         const fixReturn = value.resolve.replace(/\\n/g, '\n').replace(/"/g, '').replace(/\\/g, '')
         const source = /* ts */` // Pergel Auto Generated - https://oku-ui.com
           import type { PergelGlobalContextOmitModule } from '#pergel'
+          import type {
+            ${data.nuxt._pergel.activeModules.map(moduleName => `${firstLetterUppercase(projectName) + firstLetterUppercase(moduleName)}`).join(',\n')}
+          } from '#pergel/types'
+
           export function ${funcName}() {
               const ctx: PergelGlobalContextOmitModule = {
                 projectName: '${projectName}'
