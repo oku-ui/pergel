@@ -133,7 +133,7 @@ async function generateTypedDocumentNode(
   // See https://www.graphql-code-generator.com/docs/getting-started/programmatic-usage for more details
   const res = await codegen({
     // Filename is not used. This is because the typescript plugin returns a string instead of writing to a file.
-    filename: process.cwd(),
+    filename: 'a.ts',
     schema: parse(printSchema(schema)),
     // TODO: Add support for fragments
     documents,

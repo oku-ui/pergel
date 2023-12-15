@@ -70,6 +70,7 @@ export async function useGenerateCodegen(data: GenerateCodegenOptions) {
       return `export const schema = \`${printSchema}\``
     },
   })
+
   data.nuxt.options.alias[`${projectModulePath}/schema`] = printSchemaFile.dst
   data.nuxt.options.nitro.alias[`${projectModulePath}/schema`] = printSchemaFile.dst
 
@@ -167,9 +168,10 @@ export interface ${projectNameCapitalized}Context extends YogaInitialContext {
 
       try {
         if (loadDocument) {
-          return await client.generateTypedDocumentNode(schema, loadDocument, {
+          const data = await client.generateTypedDocumentNode(schema, loadDocument, {
             useTypeImports: true,
           })
+          return data
         }
         consola.info(`Generating types client for ${projectName} in ${finish().duration}ms`)
         return ''
@@ -221,13 +223,17 @@ export interface ${projectNameCapitalized}Context extends YogaInitialContext {
 
   if (data.type === 'client') {
     await updateTemplates({
-      filter: template => template.filename === clientTypesTemplateName,
+      filter: (template) => {
+        return template.filename === clientTypes.filename
+      },
     })
   }
 
   if (data.type === 'all') {
     await updateTemplates({
-      filter: template => template.filename === clientTypesTemplateName,
+      filter: (template) => {
+        return template.filename === clientTypes.filename
+      },
     })
     await updateTemplates({
       filter: template => template.filename === schemaFilename,
