@@ -62,9 +62,14 @@ export function generatePergelTemplate(
         const fixReturn = value.resolve.replace(/\\n/g, '\n').replace(/"/g, '').replace(/\\/g, '')
         const source = /* ts */` // Pergel Auto Generated - https://oku-ui.com
           import type { PergelGlobalContextOmitModule } from '#pergel'
-          import type {
-            ${data.nuxt._pergel.activeModules.map(moduleName => `${firstLetterUppercase(projectName) + firstLetterUppercase(moduleName)}`).join(',\n')}
-          } from '#pergel/types'
+
+          ${data.nuxt._pergel.dts.find(dts => dts.projectName === projectName)
+? `
+import type {
+  ${data.nuxt._pergel.dts.map(dts => `${firstLetterUppercase(dts.projectName) + firstLetterUppercase(dts.moduleName)}`).join(',\n')}
+} from '#pergel/types'
+`
+: ''}
 
           export function ${funcName}() {
               const ctx: PergelGlobalContextOmitModule = {

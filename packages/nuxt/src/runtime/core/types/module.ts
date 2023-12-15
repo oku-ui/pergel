@@ -82,6 +82,7 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
     projectName: string
     body: string
     template: string
+    moduleName: string
   }[]
   activeModules: string[]
 

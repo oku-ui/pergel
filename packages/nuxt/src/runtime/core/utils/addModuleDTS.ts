@@ -28,6 +28,7 @@ declare module '#pergel/types' {
     projectName,
     body,
     template,
+    moduleName: data.nuxt._pergel._module.moduleName,
   })
 
   if (!existsSync(data.nuxt._pergel._module.moduleDir))
