@@ -14,6 +14,7 @@ export default defineBuildConfig([
       'consola',
       '@pergel/graphql',
       '@apollo/sandbox',
+      'graphql-yoga',
       '#pergel',
       'h3',
       'pathe',

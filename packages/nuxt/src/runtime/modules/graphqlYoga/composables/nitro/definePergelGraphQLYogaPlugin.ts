@@ -28,20 +28,17 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
       mergeSchemas: false,
     } as ResolvedGraphQLNitroPluginConfig) as ResolvedGraphQLNitroPluginConfig
 
-    // generateGraphQLTemplate({
-    //   schema: options.schema,
-    //   documents: options.documents,
-    //   mergeSchemas: options.mergeSchemas,
-    // })
-
     // console.log('import.meta.dev', import.meta.dev)
     // console.log('process.dev', process.dev)
 
     // TODO: user maybe wants to disable or enable playground
     if (process.dev) {
-      const graphqlVoyager = await import('../../plugins/voyager').then(m => m.default).catch(() => {
-        console.warn('Failed to load GraphQL Voyager plugin')
-      })
+      const graphqlVoyager = await import('../../plugins/voyager')
+        .then(m => m.default)
+        .catch(() => {
+          console.warn('Failed to load GraphQL Voyager plugin')
+        })
+
       if (graphqlVoyager) {
         nitroApp.router.add(
           options.plugins.voyager.endpoint,
