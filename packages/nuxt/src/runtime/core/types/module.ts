@@ -16,6 +16,8 @@ export interface Modules {
   json2csv?: true
 }
 
+export type ModuleName = keyof Modules | string
+
 export interface PergelOptions {
   /**
    * @default {}
@@ -51,8 +53,6 @@ export interface PergelOptions {
    */
   esnext?: boolean
 }
-
-export type ModuleName = keyof Modules | string
 
 export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> extends PergelOptions {
   /**
@@ -185,41 +185,6 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
 
 export interface NuxtPergel<T extends ModuleOptions = ModuleOptions> extends Nuxt {
   _pergel: ResolvedPergelOptions<T>
-}
-
-export interface ResolvedProjectOptions {
-  resolvedPergelOptions: ResolvedPergelOptions
-  /**
-   * @example
-   * 'project1'
-   */
-  currentProject: {
-    /**
-     * @example
-     * 'project1'
-     */
-    name: string
-
-    dir: {
-      /**
-       * @example
-       * 'pergel/dev/${projectname}'
-       */
-      project: string
-
-      /**
-       * @example
-       * 'pergel/project1'
-       */
-      output: string
-
-    }
-    /**
-     * @example
-     * ['S3', 'nodecron', 'graphql', 'drizzle']
-     */
-    modules: Modules
-  }
 }
 
 interface ModuleMeta {
