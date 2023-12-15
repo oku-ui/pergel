@@ -1,16 +1,14 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
-import type { ResolvedPergelOptions } from '../types'
 import { firstLetterUppercase } from '.'
 
 export function addModuleDTS(data: {
   template: string
-  options: ResolvedPergelOptions
   nuxt: Nuxt
 }) {
-  const projectName = data.options.resolvedModule.projectName
+  const projectName = data.nuxt._pergel._module.projectName
   const firstLetterUppercaseProjectName = firstLetterUppercase(projectName)
-  const firstLetterUppercaseModuleName = firstLetterUppercase(data.options.resolvedModule.name)
+  const firstLetterUppercaseModuleName = firstLetterUppercase(data.nuxt._pergel._module.moduleName)
 
   const template = /* ts */`
 export interface ${firstLetterUppercaseProjectName + firstLetterUppercaseModuleName} {
@@ -30,14 +28,15 @@ declare module '#pergel/types' {
     projectName,
     body,
     template,
+    moduleName: data.nuxt._pergel._module.moduleName,
   })
 
-  if (!existsSync(data.options.resolvedModule.moduleDir))
-    mkdirSync(data.options.resolvedModule.moduleDir, { recursive: true })
+  if (!existsSync(data.nuxt._pergel._module.moduleDir))
+    mkdirSync(data.nuxt._pergel._module.moduleDir, { recursive: true })
 
-  if (!existsSync(`${data.options.resolvedModule.moduleDir}/index.d.ts`)) {
+  if (!existsSync(`${data.nuxt._pergel._module.moduleDir}/index.d.ts`)) {
     writeFileSync(
-      `${data.options.resolvedModule.moduleDir}/index.d.ts`,
+      `${data.nuxt._pergel._module.moduleDir}/index.d.ts`,
       body,
     )
   }
