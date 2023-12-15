@@ -2,14 +2,12 @@ import { join } from 'node:path'
 import { camelCase } from 'scule'
 import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
-import type { ResolvedPergelOptions } from '../types'
 import { useNitroImports, useNuxtImports } from './useImports'
 import { firstLetterUppercase, reformatSourceCode } from '.'
 
 export function generatePergelTemplate(
   data: {
     nuxt: Nuxt
-    options: ResolvedPergelOptions
   },
 ) {
   const functionsContents: {
@@ -19,7 +17,7 @@ export function generatePergelTemplate(
     }
   } = {}
 
-  for (const item of data.options._contents) {
+  for (const item of data.nuxt._pergel.contents) {
     const projectName = item.projectName
     functionsContents[projectName] ??= {
       content: '',
@@ -57,7 +55,7 @@ export function generatePergelTemplate(
     //   TestBullmq
     // } from '#pergel/types'
     const pergel = addTemplate({
-      filename: join(data.options.resolvedModule.templateDir.root, projectName, 'pergel.ts'),
+      filename: join(data.nuxt._pergel.options.pergelDir, projectName, 'pergel.ts'),
       write: true,
       getContents: () => {
         const fixFunction = value.content.replace(/\\n/g, '\n').replace(/"/g, '').replace(/\\/g, '')

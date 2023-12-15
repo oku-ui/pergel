@@ -3,7 +3,10 @@
  * https://github.com/nuxt/nuxt/blob/main/packages/schema/src/types/module.ts
  */
 
-import type { Nuxt } from '@nuxt/schema'
+import type { ImportsOptions, Nuxt } from '@nuxt/schema'
+import type { Resolver } from '@nuxt/kit'
+
+import type { UnimportPluginOptions } from 'unimport/unplugin'
 
 export interface Modules {
   S3?: true
@@ -49,148 +52,139 @@ export interface PergelOptions {
   esnext?: boolean
 }
 
-export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> {
+export type ModuleName = keyof Modules | string
+
+export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> extends PergelOptions {
   /**
    * Pergel user defined options.
    */
-  rootOptions: Required<PergelOptions>
+  options: Required<PergelOptions>
+  /**
+   * [S3, nodecron, graphql, drizzle]
+   */
+  modules: string[]
 
   /**
-   * Root Options resolved from `rootOptions`.
+   * @example
+   * ['project1', 'project2']
    */
-  resolvedOptions: {
+  projectNames: string[]
 
-    dir: {
-      /**
-       * @example
-       * 'pergel'
-       */
-      pergel: string
-
-      /**
-       * @example
-       * './'
-       */
-      root: string
-
-      /**
-       * @example
-       * 'pergel/README.yml'
-       */
-      readme: string
-
-    }
-
-    templateDir: {
-      /**
-       * @example
-       * './'
-       */
-      root: string
-    }
-
-    resolveDir: {
-
-      /**
-       * @example
-       * '/users/productdevbook/nuxt3/pergel/README.yml'
-       */
-      readmeDir: string
-
-      /**
-       * @example
-       * 'users/productdevbook/nuxt3'
-       */
-      root: string
-
-      /**
-       * @example
-       * 'users/productdevbook/nuxt3/pergel'
-       */
-      pergelRoot: string
-    }
-
-    /**
-     * @example
-     * ['project1', 'project2']
-     */
-    projectNames: string[]
-
-  }
-
-  resolvedModule: {
-    /**
-     * @example
-     * 'S3' | 'nodecron' | 'graphQL' | 'drizzle'
-     */
-    name: string
-
-    /**
-     * End user defined module options.
-     * @example
-     * 'project1'
-     */
+  nitroImports: Partial<UnimportPluginOptions>
+  nuxtImports: Partial<ImportsOptions>
+  readmeYaml: Record<string, any>
+  resolver: Resolver
+  devServerHandler: {
+    id: string
+    fn: () => void
+  }[]
+  dts: {
     projectName: string
+    body: string
+    template: string
+  }[]
+  activeModules: string[]
 
-    /**
-     * @example
-     * 'Project1S3' | 'Project1NodeCron' | 'Project1GraphQL' | 'Project1Drizzle'
-     */
-    typeName: string
+  projects: {
+    [project: string]: {
+      [key in ModuleName]: {
+        options: T
 
-    /**
-     * @example
-     * 'users/productdevbook/nuxt3/pergel/${projectName}'
-     */
-    projectDir: string
-    /**
-     * @example
-     * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
-     */
-    moduleDir: string
+        /**
+         * @example
+         * 'Project1S3' | 'Project1NodeCron' | 'Project1GraphQL' | 'Project1Drizzle'
+         */
+        typeName: string
 
-    dir: {
-      /**
-       * @example
-       * 'pergel/${projectName}'
-       */
-      project: string
+        /**
+         * @example
+         * 'users/productdevbook/nuxt3/pergel/${projectName}'
+         */
+        projectDir: string
+        /**
+         * @example
+         * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+         */
+        moduleDir: string
 
-      /**
-       * @example
-       * 'pergel/${projectName}/${moduleName}'
-       */
-      module: string
-    }
+        dir: {
 
-    templateDir: {
-      /**
-       * @example
-       * 'pergel'
-       */
-      root: string
-      /**
-       * @example
-       * 'pergel/${projectName}/${moduleName}'
-       */
-      module: string
+          /**
+           * @example
+           * 'pergel/${projectName}'
+           */
+          project: string
 
-      /**
-       * @example
-       * 'pergel/${projectName}'
-       */
-      project: string
+          /**
+           * @example
+           * 'pergel/${projectName}/${moduleName}'
+           */
+          module: string
+
+          /**
+           * @example
+           * 'pergel'
+           */
+          root: string
+        }
+
+      }
     }
   }
 
-  _contents: {
+  dir: {
+    /**
+     * @example
+     * 'pergel'
+     */
+    pergel: string
+
+    /**
+     * @example
+     * './'
+     */
+    root: string
+
+    /**
+     * @example
+     * 'pergel/README.yml'
+     */
+    readme: string
+  }
+
+  _module: ResolvedPergelOptions<T>['projects'][string][ModuleName] & {
+    projectName: string
+    moduleName: string
+  }
+
+  contents: {
     projectName: string
     moduleName: string
     content: string | Promise<string>
     resolve: string | Promise<string>
   }[]
 
-  moduleOptions: T
+  /**
+   * @example
+   * '/users/productdevbook/nuxt3/pergel/README.yml'
+   */
+  readmeDir: string
+
+  /**
+   * @example
+   * 'users/productdevbook/nuxt3'
+   */
+  rootDir: string
+
+  /**
+   * @example
+   * 'users/productdevbook/nuxt3/pergel'
+   */
+  pergelDir: string
+}
+
+export interface NuxtPergel<T extends ModuleOptions = ModuleOptions> extends Nuxt {
+  _pergel: ResolvedPergelOptions<T>
 }
 
 export interface ResolvedProjectOptions {
@@ -266,18 +260,17 @@ type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
 export interface ModuleDefinition<T extends ModuleOptions = ModuleOptions> {
   meta?: ModuleMeta
-  defaults?: T | ((nuxt: Nuxt, resolvedOptions: ResolvedPergelOptions) => T)
+  defaults?: T | ((data: { nuxt: NuxtPergel<T> }) => T)
   setup?: (
     this: void,
-    resolvedOptions: ResolvedPergelOptions<T>,
-    nuxt: Nuxt
+    data: { nuxt: NuxtPergel<T> }
   ) =>
   _ModuleSetupReturn
 }
 
 export interface PergelModule<T extends ModuleOptions = ModuleOptions> {
-  (this: void, inlineOptions: ResolvedPergelOptions<T>, nuxt: Nuxt): _ModuleSetupReturn
-  getOptions?: (inlineOptions?: T, nuxt?: Nuxt) => Promise<T>
+  (this: void, data: { nuxt: NuxtPergel<T> }): _ModuleSetupReturn
+  getOptions?: (inlineOptions?: T, data?: { nuxt: NuxtPergel<T> }) => Promise<T>
   getMeta?: () => ModuleMeta
 }
 

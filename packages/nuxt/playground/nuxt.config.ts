@@ -49,15 +49,15 @@ export default defineNuxtConfig({
   pergel: {
     projects: {
       test: {
-        S3: true,
+        // S3: true,
         nodeCron: true,
-        ses: true,
-        bullmq: true,
-        json2csv: true,
+        // ses: true,
+        // bullmq: true,
+        // json2csv: true,
       },
-      test2: {
-        S3: true,
-      },
+      // test2: {
+      //   S3: true,
+      // },
     },
   },
 })

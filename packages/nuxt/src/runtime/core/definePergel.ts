@@ -1,11 +1,10 @@
-import type { Nuxt } from '@nuxt/schema'
 import defu from 'defu'
 import type {
   ModuleDefinition,
   ModuleOptions,
   ModuleSetupReturn,
+  NuxtPergel,
   PergelModule,
-  ResolvedPergelOptions,
 } from './types'
 import { generateProjectReadme } from './utils/generateYaml'
 
@@ -21,12 +20,13 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
   if (module.meta.configKey === undefined)
     module.meta.configKey = module.meta.name
 
-  async function getOptions(nuxt: Nuxt, options: ResolvedPergelOptions) {
+  async function preparationModule(data: { nuxt: NuxtPergel<OptionsT> }) {
+    const { nuxt } = data
     const dependencies = module.meta.dependencies ?? {}
     const devDependencies = module.meta.devDependencies ?? {}
 
     if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
-      generateProjectReadme(nuxt, options, ({ addCommentBlock }) => ({
+      generateProjectReadme(nuxt, ({ addCommentBlock }) => ({
         ...addCommentBlock('If pergel cli is installed, you can run `pergel install` automatically to install'),
         packageJson: {
           dependencies: `"${Object.entries(dependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
@@ -38,33 +38,38 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
     if (module.meta.dts && module.meta.name)
       nuxt._pergel.activeModules.push(module.meta.name)
 
-    const defaultModule = module.defaults instanceof Function ? module.defaults(nuxt, options) : module.defaults
+    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt }) : module.defaults
 
-    const userModuleOptions = (options.rootOptions.projects[options.resolvedModule.projectName] as any)[options.resolvedModule.name] ?? {}
+    const userModuleOptions = (nuxt._pergel.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
 
     const moduleOptions = defu({
-      ...options,
-      // Example S3 module default options
-      moduleOptions: {
+      ...nuxt._pergel._module,
+      options: {
         ...userModuleOptions,
       },
-    }, {
+    } satisfies NuxtPergel['_pergel']['_module'], {
       // User send S3 module options
-      moduleOptions: {
+      options: {
         ...defaultModule,
       },
-    } as ResolvedPergelOptions<OptionsT>) as ResolvedPergelOptions<OptionsT>
+    } as NuxtPergel['_pergel']['_module']) as NuxtPergel['_pergel']['_module']
+
+    // TODO: Fix any type
+    nuxt._pergel.projects[nuxt._pergel._module.projectName][nuxt._pergel._module.moduleName].options = moduleOptions.options as any
+
+    // TODO: Fix any type
+    nuxt._pergel._module = moduleOptions as any
 
     return Promise.resolve(moduleOptions)
   }
 
-  async function normalizedModule(this: any, pergelOptions: ResolvedPergelOptions, nuxt: Nuxt) {
+  async function normalizedModule(this: any, data: { nuxt: NuxtPergel<OptionsT> }) {
     // Resolve module and options
-    const options = await getOptions(nuxt, pergelOptions)
+    await preparationModule({ nuxt: data.nuxt })
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
-    const res = await module.setup?.call(null as any, options, nuxt) ?? {}
+    const res = await module.setup?.call(null as any, { nuxt: data.nuxt }) ?? {}
     const perf = performance.measure(key, mark)
     const setupTime = perf ? Math.round(perf.duration * 100) / 100 : 0
 
