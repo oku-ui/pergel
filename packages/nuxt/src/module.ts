@@ -33,16 +33,12 @@ export default defineNuxtModule<PergelOptions>({
     if (!status)
       return
 
-    const { resolvedPergelOptions } = await setupPergel({
+    await setupPergel({
       options,
       nuxt,
       resolver: _resolver,
       version,
     })
-    // Pergel _pergel default options
-    nuxt._pergel = {
-      ...resolvedPergelOptions,
-    }
 
     const { saveNitroImports } = useNitroImports(nuxt)
     const { saveNuxtImports } = useNuxtImports(nuxt)

@@ -55,7 +55,7 @@ export function generatePergelTemplate(
     //   TestBullmq
     // } from '#pergel/types'
     const pergel = addTemplate({
-      filename: join(data.nuxt._pergel.options.pergelDir, projectName, 'pergel.ts'),
+      filename: join(data.nuxt._pergel.dir.pergel, projectName, 'pergel.ts'),
       write: true,
       getContents: () => {
         const fixFunction = value.content.replace(/\\n/g, '\n').replace(/"/g, '').replace(/\\/g, '')

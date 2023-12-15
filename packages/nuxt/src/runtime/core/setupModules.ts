@@ -40,8 +40,8 @@ export async function setupModules(data: {
     data.nuxt._pergel.projects[projectName] ??= {}
     data.nuxt._pergel.projects[projectName][moduleName] = {
       typeName: `${firstLetterUppercase(projectName)}${firstLetterUppercase(moduleName)}`,
-      projectDir: join(data.nuxt._pergel.options.pergelDir, projectName),
-      moduleDir: join(data.nuxt._pergel.options.pergelDir, projectName, moduleName),
+      projectDir: join(data.nuxt._pergel.pergelDir, projectName),
+      moduleDir: join(data.nuxt._pergel.pergelDir, projectName, moduleName),
       dir: {
         project: join(data.nuxt._pergel.dir.pergel, projectName),
         module: join(data.nuxt._pergel.dir.pergel, projectName, moduleName),

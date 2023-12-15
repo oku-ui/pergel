@@ -15,6 +15,7 @@ export async function setupPergel(
   },
 ) {
   const { options, nuxt, resolver, version } = data
+  const _options = Object.assign({}, options)
 
   const rootDir = options.rootDir ? options.rootDir : './'
   const pergelDir = join(rootDir, options.pergelDir ?? 'pergel')
@@ -59,8 +60,8 @@ export async function setupPergel(
   } as PergelOptions)
 
   const resolvedPergelOptions = defu({
-    ...options,
-  } satisfies PergelOptions, {
+    options: _options,
+  } as ResolvedPergelOptions, {
     nitroImports: {},
     nuxtImports: {},
     readmeYaml: {
@@ -87,12 +88,7 @@ export async function setupPergel(
     pergelDir: resolve(resolveDir, resolvedOptions.pergelDir ?? 'pergel'),
     readmeDir: resolve(resolveReadmePath),
     projectNames,
-    options: {
-      ...options,
-      esnext: true,
-      pergelDir,
-      rootDir,
-    },
+    options,
     projects: {},
     activeModules: [],
     contents: [],
@@ -114,7 +110,5 @@ export async function setupPergel(
     },
   } as ResolvedPergelOptions) as ResolvedPergelOptions
 
-  return {
-    resolvedPergelOptions,
-  }
+  nuxt._pergel = resolvedPergelOptions
 }
