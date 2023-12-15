@@ -1,11 +1,9 @@
 import { writeFileSync } from 'node:fs'
-import type { Nuxt } from '@nuxt/schema'
 import defu from 'defu'
-import type { ResolvedPergelOptions } from '../types'
+import type { NuxtPergel } from '../types'
 
 export function generateReadmeYaml(data: {
-  nuxt: Nuxt
-  options: ResolvedPergelOptions
+  nuxt: NuxtPergel
 }) {
   const readmeYaml = JSON.stringify(data.nuxt._pergel.readmeYaml)
 
@@ -46,12 +44,11 @@ export function generateReadmeYaml(data: {
     return yamlString
   }
 
-  writeFileSync(data.options.resolvedOptions.resolveDir.readmeDir, jsonToYaml(readmeYaml))
+  writeFileSync(data.nuxt._pergel.readmeDir, jsonToYaml(readmeYaml))
 }
 
 export function generateProjectReadme(
-  nuxt: Nuxt,
-  options: ResolvedPergelOptions<any>,
+  nuxt: NuxtPergel,
   data: (
     ctx: {
       addCommentBlock: (commentBlock: string) => Record<string, any>
@@ -60,8 +57,8 @@ export function generateProjectReadme(
   ) => Record<string, any>,
   customName?: string,
 ) {
-  const projectName = options.resolvedModule.projectName
-  const moduleName = customName || options.resolvedModule.name
+  const projectName = nuxt._pergel._module.projectName
+  const moduleName = customName || nuxt._pergel._module.moduleName
   const uuid = () => Math.random().toString(36).substring(7)
 
   const addCommentBlock = (commentBlock: string) => ({

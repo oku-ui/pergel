@@ -2,14 +2,12 @@ import { join } from 'node:path'
 import { camelCase } from 'scule'
 import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
-import type { ResolvedPergelOptions } from '../types'
 import { useNitroImports, useNuxtImports } from './useImports'
 import { firstLetterUppercase, reformatSourceCode } from '.'
 
 export function generatePergelTemplate(
   data: {
     nuxt: Nuxt
-    options: ResolvedPergelOptions
   },
 ) {
   const functionsContents: {
@@ -19,7 +17,7 @@ export function generatePergelTemplate(
     }
   } = {}
 
-  for (const item of data.options._contents) {
+  for (const item of data.nuxt._pergel.contents) {
     const projectName = item.projectName
     functionsContents[projectName] ??= {
       content: '',
@@ -57,16 +55,21 @@ export function generatePergelTemplate(
     //   TestBullmq
     // } from '#pergel/types'
     const pergel = addTemplate({
-      filename: join(data.options.resolvedModule.templateDir.root, projectName, 'pergel.ts'),
+      filename: join(data.nuxt._pergel.dir.pergel, projectName, 'pergel.ts'),
       write: true,
       getContents: () => {
         const fixFunction = value.content.replace(/\\n/g, '\n').replace(/"/g, '').replace(/\\/g, '')
         const fixReturn = value.resolve.replace(/\\n/g, '\n').replace(/"/g, '').replace(/\\/g, '')
         const source = /* ts */` // Pergel Auto Generated - https://oku-ui.com
           import type { PergelGlobalContextOmitModule } from '#pergel'
-          import type {
-            ${data.nuxt._pergel.activeModules.map(moduleName => `${firstLetterUppercase(projectName) + firstLetterUppercase(moduleName)}`).join(',\n')}
-          } from '#pergel/types'
+
+          ${data.nuxt._pergel.dts.find(dts => dts.projectName === projectName)
+? `
+import type {
+  ${data.nuxt._pergel.dts.map(dts => `${firstLetterUppercase(dts.projectName) + firstLetterUppercase(dts.moduleName)}`).join(',\n')}
+} from '#pergel/types'
+`
+: ''}
 
           export function ${funcName}() {
               const ctx: PergelGlobalContextOmitModule = {

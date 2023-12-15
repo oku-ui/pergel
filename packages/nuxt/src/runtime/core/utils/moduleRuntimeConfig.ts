@@ -1,16 +1,14 @@
 import defu from 'defu'
-import type { Nuxt } from '@nuxt/schema'
-import type { ResolvedPergelOptions } from '../types'
+import type { NuxtPergel } from '../types'
 import { generateProjectName, runtimeConfigToEnv } from '.'
 
 export function generateModuleRuntimeConfig<T>(
-  nuxt: Nuxt,
-  options: ResolvedPergelOptions<any>,
+  nuxt: NuxtPergel,
   config: Record<string, any>,
   customName?: string,
 ) {
-  const projectName = options.resolvedModule.projectName
-  const moduleName = options.resolvedModule.name
+  const projectName = nuxt._pergel._module.projectName
+  const moduleName = nuxt._pergel._module.moduleName
 
   const runtimeConfig = nuxt.options.runtimeConfig
 
@@ -21,7 +19,7 @@ export function generateModuleRuntimeConfig<T>(
 
   const { envs, keyEnvValue } = runtimeConfigToEnv(runtimeConfig[name as any] as any, [name])
 
-  nuxt._pergel.readmeYaml[projectName][options.resolvedModule.name] = defu(nuxt._pergel.readmeYaml[projectName][options.resolvedModule.name], {
+  nuxt._pergel.readmeYaml[projectName][moduleName] = defu(nuxt._pergel.readmeYaml[projectName][moduleName], {
     ...customName
       ? {
           [customName]: {

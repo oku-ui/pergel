@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     rootDir: 'playground',
     projects: {
       test: {
-        S3: true,
       },
     },
   },

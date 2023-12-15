@@ -16,12 +16,12 @@ export default definePergelModule({
     dts: true,
   },
   defaults: {},
-  async setup(options, nuxt) {
-    const projectName = options.resolvedModule.projectName
+  async setup({ nuxt }) {
+    const options = nuxt._pergel._module
 
     const resolver = createResolver(import.meta.url)
 
-    generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, options, {
+    generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, {
       options: {
         host: '',
         port: 6379,
@@ -38,18 +38,17 @@ export default definePergelModule({
       template: /* ts */`
   queueName: 'default'
       `,
-      options,
       nuxt,
     })
 
-    options._contents.push({
-      moduleName: options.resolvedModule.name,
-      projectName,
+    nuxt._pergel.contents.push({
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       content: /* ts */`
           function bullmq() {
             return {
-              nitroPlugin: (definePergelNitroBullMQPlugin<${options.resolvedModule.typeName}>).bind(ctx),
-              useScheduler: (useScheduler<${options.resolvedModule.typeName}>).bind(ctx),
+              nitroPlugin: (definePergelNitroBullMQPlugin<${options.typeName}>).bind(ctx),
+              useScheduler: (useScheduler<${options.typeName}>).bind(ctx),
             }
           }
         `,

@@ -13,13 +13,13 @@ export default definePergelModule({
     },
   },
   defaults: {},
-  async setup(options) {
+  async setup({ nuxt }) {
     const resolver = createResolver(import.meta.url)
-    const projectName = options.resolvedModule.projectName
+    const projectName = nuxt._pergel._module.projectName
 
     addServerImportsDir(resolver.resolve('./composables'))
 
-    options._contents.push({
+    nuxt._pergel.contents.push({
       moduleName: 'nodeCron',
       projectName,
       content: /* ts */`

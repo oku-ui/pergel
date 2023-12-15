@@ -12,21 +12,20 @@ export default definePergelModule({
     },
   },
   defaults: {},
-  async setup(options, nuxt) {
+  async setup({ nuxt }) {
     const resolver = createResolver(import.meta.url)
-    const projectName = options.resolvedModule.projectName
+    const module = nuxt._pergel._module
 
-    generateModuleRuntimeConfig<SesModuleRuntimeConfig>(nuxt, options, {
+    generateModuleRuntimeConfig<SesModuleRuntimeConfig>(nuxt, {
       region: '',
       accessKeyId: '',
       secretAccessKey: '',
     })
 
     addServerImportsDir(resolver.resolve('./composables'))
-
-    options._contents.push({
-      moduleName: 'ses',
-      projectName,
+    nuxt._pergel.contents.push({
+      moduleName: module.moduleName,
+      projectName: module.projectName,
       content: /* ts */`
         function ses() {
           return {

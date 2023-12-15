@@ -11,18 +11,17 @@ export default definePergelModule({
       '@pergel/module-s3': '0.0.0',
     },
   },
-  setup(options, nuxt) {
+  setup({ nuxt }) {
     const resolver = createResolver(import.meta.url)
+    const module = nuxt._pergel._module
 
-    generateModuleRuntimeConfig<S3ModuleRuntimeConfig>(nuxt, options, {
+    generateModuleRuntimeConfig<S3ModuleRuntimeConfig>(nuxt, {
       region: 'auto',
       endpoint: '',
       accessKeyId: '',
       secretAccessKey: '',
       bucket: '',
     })
-
-    const projectName = options.resolvedModule.projectName
 
     addServerImportsDir(resolver.resolve('./composables'))
 
@@ -39,9 +38,9 @@ export default definePergelModule({
       }
     }
 
-    options._contents.push({
-      moduleName: 'S3',
-      projectName,
+    nuxt._pergel.contents.push({
+      moduleName: module.moduleName,
+      projectName: module.projectName,
       content: /* TypeScript */ `
           function S3() {
             return {
