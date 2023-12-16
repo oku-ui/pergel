@@ -77,6 +77,7 @@ export async function setupPergel(
       'nodeCron',
       'bullmq',
       'json2csv',
+      'graphqlYoga',
     ],
     resolver,
     dir: {

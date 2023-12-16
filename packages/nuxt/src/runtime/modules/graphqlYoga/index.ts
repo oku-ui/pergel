@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
+import defu from 'defu'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import type { ResolvedGraphqlConfig } from './types'
@@ -15,10 +16,12 @@ export default definePergelModule<ResolvedGraphqlConfig>({
       '@pergel/graphql': '0.0.0',
     },
   },
-  defaults(nuxt, options) {
-    return {
-      documents: resolve(options.resolvedModule.moduleDir, 'documents'),
-      schema: resolve(options.resolvedModule.moduleDir, 'schema'),
+  defaults({ nuxt }) {
+    const options = nuxt._pergel._module.options
+
+    return defu(options, {
+      documents: resolve(nuxt._pergel._module.moduleDir, options.documents ?? 'documents'),
+      schema: resolve(nuxt._pergel._module.moduleDir, options.schema ?? 'schema'),
       codegen: {
         client: {
           extension: '.graphql',
@@ -29,15 +32,14 @@ export default definePergelModule<ResolvedGraphqlConfig>({
           onlyDevelopment: true,
         },
       },
-    }
+    } as ResolvedGraphqlConfig)
   },
-  async setup(options, nuxt) {
-    const projectName = options.resolvedModule.projectName
+  async setup({ nuxt }) {
+    const module = nuxt._pergel._module
 
     const resolver = createResolver(import.meta.url)
 
     generateGraphQLTemplate({
-      options,
       nuxt,
     })
 
@@ -66,9 +68,9 @@ export default definePergelModule<ResolvedGraphqlConfig>({
       ],
     })
 
-    options._contents.push({
-      moduleName: 'graphqlYoga',
-      projectName,
+    nuxt._pergel.contents.push({
+      moduleName: module.moduleName,
+      projectName: module.projectName,
       content: /* ts */`
           function graphqlYoga() {
             return {

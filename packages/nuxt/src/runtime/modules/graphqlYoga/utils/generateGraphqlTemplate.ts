@@ -1,16 +1,18 @@
 import { join, resolve } from 'node:path'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
-import type { Nuxt } from '@nuxt/schema'
-import type { ResolvedPergelOptions } from '../../../core/types'
+import type { NuxtPergel } from '../../../core/types'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphqlConfig } from '../types'
 import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {
-  nuxt: Nuxt
-  options: ResolvedPergelOptions<ResolvedGraphqlConfig>
+  nuxt: NuxtPergel<ResolvedGraphqlConfig>
 }) {
-  const { codegen, documents, schema } = data.options.moduleOptions
+  const module = data.nuxt._pergel._module
+  const { codegen, documents, schema } = module.options
+
+  // 'pergel/[projectName]/[moduleName]
+
   function globsServerClient(path: string) {
     const absolutePath = resolve(data.nuxt.options.rootDir, path)
 
@@ -60,8 +62,11 @@ type Book {
 
   useGenerateCodegen({
     nuxt: data.nuxt,
-    options: data.options,
     type: 'all',
+    moduleDir: module.dir.module,
+    projectName: module.projectName,
+    schemaDir: schema,
+    documentDir: documents,
   })
 
   data.nuxt.hook('builder:watch', async (event, path) => {
@@ -70,16 +75,23 @@ type Book {
       // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
       await useGenerateCodegen({
         nuxt: data.nuxt,
-        options: data.options,
         type: 'server',
+        moduleDir: module.dir.module,
+        projectName: module.projectName,
+        schemaDir: schema,
+        documentDir: documents,
       })
     }
     else {
       if (clientFolder || serverFolder) {
         await useGenerateCodegen({
           nuxt: data.nuxt,
-          options: data.options,
           type: 'all',
+          moduleDir: module.dir.module,
+          moduleName: module.moduleName,
+          projectName: module.projectName,
+          schemaDir: schema,
+          documentDir: documents,
         })
       }
     }
