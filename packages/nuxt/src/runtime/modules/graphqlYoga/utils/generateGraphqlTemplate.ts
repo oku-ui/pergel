@@ -88,7 +88,6 @@ type Book {
           nuxt: data.nuxt,
           type: 'all',
           moduleDir: module.dir.module,
-          moduleName: module.moduleName,
           projectName: module.projectName,
           schemaDir: schema,
           documentDir: documents,
