@@ -284,7 +284,7 @@ export interface ResolvedGraphQLNitroPluginConfig extends GraphQLNitroPluginConf
 }
 
 export interface GraphQLYogaOptions<Context extends Record<string, any> = object> {
-  config?: GraphQLConfig
+  config?: GraphQLNitroPluginConfig
   onSuccess?: (event: H3Event, result: { user: any, tokens: any }) => Promise<void> | void
   onError?: (event: H3Event, error: H3Error) => Promise<void> | void
   onBeforeOptions?: (options: GraphqlYogaHandleOptions) => Promise<void> | void
