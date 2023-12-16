@@ -1,5 +1,6 @@
 import { join, resolve } from 'node:path'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
+import { relative } from 'pathe'
 import type { NuxtPergel } from '../../../core/types'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphqlConfig } from '../types'
@@ -15,6 +16,9 @@ export function generateGraphQLTemplate(data: {
 
   function globsServerClient(path: string) {
     const absolutePath = resolve(data.nuxt.options.rootDir, path)
+    const relativePath = relative(data.nuxt.options.rootDir, path)
+
+    const { projectName, moduleName } = relativePath.match(/pergel\/(?<projectName>[^\/]+)\/(?<moduleName>[^\/]+)/)?.groups ?? {}
 
     const serverFolder = matchGlobs(absolutePath, [join('**', schema, '**', `*${codegen.server.extension}`)])
     const clientFolder = matchGlobs(absolutePath, [join('**', documents, '**', `*${codegen.client.extension}`)])
@@ -22,6 +26,8 @@ export function generateGraphQLTemplate(data: {
     return {
       serverFolder,
       clientFolder,
+      projectName,
+      moduleName,
     }
   }
 
@@ -70,14 +76,16 @@ type Book {
   })
 
   data.nuxt.hook('builder:watch', async (event, path) => {
-    const { serverFolder, clientFolder } = globsServerClient(path)
+    const { serverFolder, clientFolder, moduleName, projectName } = globsServerClient(path)
+
+    // return
     if (serverFolder) {
       // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
       await useGenerateCodegen({
         nuxt: data.nuxt,
         type: 'server',
-        moduleDir: module.dir.module,
-        projectName: module.projectName,
+        moduleDir: join('pergel', projectName, moduleName),
+        projectName,
         schemaDir: schema,
         documentDir: documents,
       })
@@ -87,8 +95,8 @@ type Book {
         await useGenerateCodegen({
           nuxt: data.nuxt,
           type: 'all',
-          moduleDir: module.dir.module,
-          projectName: module.projectName,
+          moduleDir: join('pergel', projectName, moduleName),
+          projectName,
           schemaDir: schema,
           documentDir: documents,
         })
