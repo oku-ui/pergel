@@ -82,7 +82,7 @@ export async function useGenerateCodegen({
 
   // GraphQL Schema
   const printSchemaFile = addTemplate({
-    filename: `pergel/${schemaFilename}`,
+    filename: schemaFilename,
     write: true,
     async getContents() {
       return `export const schema = \`${printSchema}\``
@@ -94,7 +94,7 @@ export async function useGenerateCodegen({
 
   // Create types in build dir
   const { dst: typeDecSchema } = addTemplate({
-    filename: `pergel/${schemaFilenameTs}`,
+    filename: schemaFilenameTs,
     write: true,
     getContents() {
       return `declare module '${moduleDir}/schema' {
@@ -110,7 +110,7 @@ export async function useGenerateCodegen({
 
   // GraphQL Context Type
   const contextType = addTemplate({
-    filename: `pergel/${contextFilename}`,
+    filename: contextFilename,
     write: true,
     async getContents() {
       return `
@@ -132,7 +132,7 @@ export interface ${projectNameCapitalized}Context extends YogaInitialContext {
 
   // GraphQL Server
   const serverTypes = addTemplate({
-    filename: `pergel/${serverFileName}`,
+    filename: serverFileName,
     write: true,
     async getContents() {
       const { finish } = buildTime()
@@ -157,7 +157,7 @@ export interface ${projectNameCapitalized}Context extends YogaInitialContext {
 
   // GraphQL Urql Introspection
   const urqlInptospection = addTemplate({
-    filename: `pergel/${urqlIntrospectionFileName}`,
+    filename: urqlIntrospectionFileName,
     write: true,
     async getContents() {
       const { finish } = buildTime()
@@ -179,7 +179,7 @@ export interface ${projectNameCapitalized}Context extends YogaInitialContext {
 
   // GraphQL Client
   const clientTypes = addTemplate({
-    filename: `pergel/${clientTypesTemplateName}`,
+    filename: clientTypesTemplateName,
     write: true,
     async getContents() {
       const { finish } = buildTime()

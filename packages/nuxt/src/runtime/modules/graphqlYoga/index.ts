@@ -26,10 +26,12 @@ export default definePergelModule<ResolvedGraphqlConfig>({
         client: {
           extension: '.graphql',
           onlyDevelopment: true,
+          configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
         },
         server: {
           extension: '.graphql',
           onlyDevelopment: true,
+          configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
         },
       },
     } as ResolvedGraphqlConfig)
