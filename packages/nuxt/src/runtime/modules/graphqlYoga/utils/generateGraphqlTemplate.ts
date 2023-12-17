@@ -4,6 +4,7 @@ import { relative } from 'pathe'
 import type { NuxtPergel } from '../../../core/types'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphqlConfig } from '../types'
+import { addModuleDTS } from '../../../core/utils/addModuleDTS'
 import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {
@@ -11,8 +12,6 @@ export function generateGraphQLTemplate(data: {
 }) {
   const module = data.nuxt._pergel._module
   const { codegen, documents, schema } = module.options
-
-  // 'pergel/[projectName]/[moduleName]
 
   function globsServerClient(path: string) {
     const absolutePath = resolve(data.nuxt.options.rootDir, path)
@@ -66,6 +65,24 @@ type Book {
   if (readdirSync(documents).length === 0)
     writeFileSync(join(documents, 'book.graphql'), documentsTemplate)
 
+  const { path } = addModuleDTS({
+    template: /* ts */`
+import type { H3Event } from 'h3'
+import type { IncomingMessage, ServerResponse } from 'node:http'
+import type { YogaInitialContext } from 'graphql-yoga'
+
+export interface GraphqlYogaContext extends YogaInitialContext {
+  res: ServerResponse
+  req: IncomingMessage
+  event: H3Event
+}
+      `,
+    moduleName: module.moduleName,
+    projectName: module.projectName,
+    nuxt: data.nuxt,
+    interfaceNames: ['GraphqlYogaContext'],
+  })
+
   useGenerateCodegen({
     nuxt: data.nuxt,
     type: 'all',
@@ -73,6 +90,10 @@ type Book {
     projectName: module.projectName,
     schemaDir: schema,
     documentDir: documents,
+    moduleDTS: {
+      name: 'GraphqlYogaContext',
+      path,
+    },
   })
 
   data.nuxt.hook('builder:watch', async (event, path) => {
@@ -88,6 +109,10 @@ type Book {
         projectName,
         schemaDir: schema,
         documentDir: documents,
+        moduleDTS: {
+          name: 'GraphqlYogaContext',
+          path,
+        },
       })
     }
     else {
@@ -99,6 +124,10 @@ type Book {
           projectName,
           schemaDir: schema,
           documentDir: documents,
+          moduleDTS: {
+            name: 'GraphqlYogaContext',
+            path,
+          },
         })
       }
     }

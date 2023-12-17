@@ -15,6 +15,7 @@ export default definePergelModule<ResolvedGraphqlConfig>({
     dependencies: {
       '@pergel/graphql': '0.0.0',
     },
+    dts: true,
   },
   defaults({ nuxt }) {
     const options = nuxt._pergel._module.options
@@ -41,10 +42,6 @@ export default definePergelModule<ResolvedGraphqlConfig>({
 
     const resolver = createResolver(import.meta.url)
 
-    generateGraphQLTemplate({
-      nuxt,
-    })
-
     addServerImportsDir(resolver.resolve('./composables/**'))
 
     useNitroImports(nuxt, {
@@ -68,6 +65,10 @@ export default definePergelModule<ResolvedGraphqlConfig>({
           ],
         },
       ],
+    })
+
+    generateGraphQLTemplate({
+      nuxt,
     })
 
     nuxt._pergel.contents.push({

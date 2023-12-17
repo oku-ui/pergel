@@ -66,7 +66,7 @@ export function generatePergelTemplate(
           ${data.nuxt._pergel.dts.find(dts => dts.projectName === projectName)
 ? `
 import type {
-  ${data.nuxt._pergel.dts.map(dts => `${firstLetterUppercase(dts.projectName) + firstLetterUppercase(dts.moduleName)}`).join(',\n')}
+  ${data.nuxt._pergel.dts.map(dts => dts.interfaceNames.map(interfaceName => interfaceName).join(', ')).join(', ')}
 } from '#pergel/types'
 `
 : ''}

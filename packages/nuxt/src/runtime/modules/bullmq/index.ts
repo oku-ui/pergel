@@ -36,9 +36,14 @@ export default definePergelModule({
 
     addModuleDTS({
       template: /* ts */`
-  queueName: 'default'
+export interface TestBullmq {
+  queueName: 'default' | 'email'
+}
       `,
       nuxt,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
+      interfaceNames: ['TestBullmq'],
     })
 
     nuxt._pergel.contents.push({

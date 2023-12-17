@@ -81,11 +81,13 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
     fn: () => void
   }[]
   dts: {
-    projectName: string
-    body: string
-    template: string
-    moduleName: string
-  }[]
+    [projectName: string]: {
+      [moduleName: string]: {
+        interfaceNames: string[]
+        template: string[]
+      }
+    }
+  }
   activeModules: string[]
 
   projects: {

@@ -47,6 +47,7 @@ export async function useGenerateCodegen({
   moduleDir,
   schemaDir,
   documentDir,
+  moduleDTS,
 }: {
   nuxt: NuxtPergel<GraphQLConfig>
   projectName: string
@@ -54,14 +55,15 @@ export async function useGenerateCodegen({
   type: 'server' | 'client' | 'all'
   schemaDir: string
   documentDir: string
+  moduleDTS: {
+    name: string
+    path: string
+  }
 }) {
-  const projectNameCapitalized = projectName.charAt(0).toUpperCase() + projectName.slice(1)
-
   const clientTypesTemplateName = join(moduleDir, 'client.ts')
   const serverFileName = join(moduleDir, 'server.ts')
   const schemaFilename = join(moduleDir, 'schema.mjs')
   const schemaFilenameTs = join(moduleDir, 'schema.ts')
-  const contextFilename = join(moduleDir, 'context.ts')
   const urqlIntrospectionFileName = join(moduleDir, 'urqlIntrospection.ts')
 
   const { client, server } = useCodegen()
@@ -108,28 +110,6 @@ export async function useGenerateCodegen({
     references.push({ path: typeDecSchema })
   })
 
-  // GraphQL Context Type
-  const contextType = addTemplate({
-    filename: contextFilename,
-    write: true,
-    async getContents() {
-      return `
-import type { H3Event } from 'h3'
-import type { IncomingMessage, ServerResponse } from 'node:http'
-import type { YogaInitialContext } from 'graphql-yoga'
-
-export interface ${projectNameCapitalized}Context extends YogaInitialContext {
-  res: ServerResponse
-  req: IncomingMessage
-  event: H3Event
-}
-`
-    },
-  })
-
-  nuxt.options.nitro.alias[`${moduleDir}/context`] = contextType.dst
-  nuxt.options.alias[`${moduleDir}/context`] = contextType.dst
-
   // GraphQL Server
   const serverTypes = addTemplate({
     filename: serverFileName,
@@ -141,7 +121,7 @@ export interface ${projectNameCapitalized}Context extends YogaInitialContext {
         consola.info(`Generating types server for ${projectName} in ${finish().duration}ms`)
         const type = await server.typescriptResolvers(schema, {
           useTypeImports: true,
-          contextType: `${contextType.dst}#${projectNameCapitalized}Context`,
+          contextType: `${moduleDTS.path}#${moduleDTS.name}`,
         })
         return type
       }

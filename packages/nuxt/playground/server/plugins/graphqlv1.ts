@@ -1,7 +1,7 @@
 import { createSchema } from 'graphql-yoga'
 import type { Resolvers } from 'pergel/test/graphqlYoga/server'
 import { schema } from 'pergel/test/graphqlYoga/schema'
-import type { TestContext } from 'pergel/test/graphqlYoga/context'
+import type { GraphqlYogaContext } from 'pergel/test'
 
 const resolvers: Resolvers = {
   Query: {
@@ -21,7 +21,7 @@ const schemas = createSchema({
   resolvers,
 })
 
-export default pergelTest().graphqlYoga().nitro().use<TestContext>({
+export default pergelTest().graphqlYoga().nitro().use<GraphqlYogaContext>({
   config: {
     mergeSchemas: true,
   },
