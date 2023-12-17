@@ -35,8 +35,10 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
       }))
     }
 
-    if (module.meta.dts && module.meta.name)
-      nuxt._pergel.activeModules.push(module.meta.name)
+    if (module.meta.name) {
+      nuxt._pergel.activeModules[nuxt._pergel._module.projectName] ??= []
+      nuxt._pergel.activeModules[nuxt._pergel._module.projectName].push(module.meta.name)
+    }
 
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt }) : module.defaults
 

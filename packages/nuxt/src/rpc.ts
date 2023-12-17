@@ -1,14 +1,20 @@
 import type { DevtoolsServerContext, ModuleName, Modules, ServerFunctions } from './runtime/core/types'
 
 export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
-  const options = ctx.options
+  const options = ctx.nuxt._pergel
   const projects = options.projects
   return {
     getOptions() {
       return options
     },
     getProjects() {
-      return Object.keys(projects)
+      return projects
+    },
+    getTotalModules() {
+      return options.modules
+    },
+    getActiveModules() {
+      return options.activeModules
     },
     getProject(name: string) {
       return projects[name]

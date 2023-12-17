@@ -60,12 +60,6 @@ export default defineNuxtModule<PergelOptions>({
       ? nuxt.options.devtools
       : nuxt.options.devtools.enabled
 
-    if (nuxt.options.dev && isDevToolsEnabled) {
-      setupDevToolsUI(options, _resolver.resolve, nuxt)
-
-      logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
-    }
-
     await setupModules({
       nuxt,
       resolver: _resolver,
@@ -89,6 +83,12 @@ export default defineNuxtModule<PergelOptions>({
       nuxt.options.alias[`pergel/${project}`] = _template.dst
       nuxt.options.nitro.alias ??= {}
       nuxt.options.nitro.alias[`pergel/${project}`] = _template.dst
+    }
+
+    if (nuxt.options.dev && isDevToolsEnabled) {
+      setupDevToolsUI(options, _resolver.resolve, nuxt)
+
+      logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
   },
 })

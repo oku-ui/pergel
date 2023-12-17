@@ -36,6 +36,7 @@
     "bumpp": "^9.2.0",
     "changelogithub": "^0.13.2",
     "eslint": "^8.55.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "json-editor-vue": "^0.11.2",
     "lint-staged": "^15.1.0",
     "simple-git-hooks": "^2.9.0",

@@ -1,5 +1,4 @@
 import { existsSync } from 'node:fs'
-import type { Nuxt } from 'nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import {
   extendServerRpc,
@@ -7,6 +6,7 @@ import {
 } from '@nuxt/devtools-kit'
 import type {
   ClientFunctions,
+  NuxtPergel,
   PergelOptions,
   ServerFunctions,
 } from './runtime/core/types'
@@ -25,7 +25,7 @@ import { useViteWebSocket } from './useViteWebSocket'
 export function setupDevToolsUI(
   options: PergelOptions,
   resolve: Resolver['resolve'],
-  nuxt: Nuxt,
+  nuxt: NuxtPergel,
 ) {
   const clientPath = resolve('./client')
   const isProductionBuild = existsSync(clientPath)

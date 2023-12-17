@@ -74,7 +74,7 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
 
   nitroImports: Partial<UnimportPluginOptions>
   nuxtImports: Partial<ImportsOptions>
-  readmeYaml: Record<string, any>
+  readmeYaml: any
   resolver: Resolver
   devServerHandler: {
     id: string
@@ -88,11 +88,13 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
       }
     }
   }
-  activeModules: string[]
+  activeModules: {
+    [projectName: string]: string[]
+  }
 
   projects: {
     [project: string]: {
-      [key in ModuleName]: {
+      [module in ModuleName]: {
         options: T
 
         /**
