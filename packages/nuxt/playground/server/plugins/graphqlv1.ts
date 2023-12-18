@@ -22,9 +22,6 @@ const schemas = createSchema({
 })
 
 export default pergelTest().graphqlYoga().nitro().use<GraphqlYogaContext>({
-  config: {
-    mergeSchemas: true,
-  },
   onBeforeOptions: async ({ options }) => {
     options.add({
       schema: schemas,

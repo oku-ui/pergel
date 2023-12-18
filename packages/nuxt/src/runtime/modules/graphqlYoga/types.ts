@@ -2,6 +2,7 @@ import type { YogaServerInstance, YogaServerOptions } from 'graphql-yoga'
 import type { H3Error, H3Event } from 'h3'
 
 import type { EmbeddableSandboxOptions } from '@apollo/sandbox/src/EmbeddedSandbox'
+import type { PergelGlobalContextOmitModule } from '#pergel'
 
 export interface GraphqlYogaHandleOptions {
   context: {
@@ -21,88 +22,7 @@ export interface GraphqlYogaContextOptions<Context extends Record<string, any> =
   }
 }
 
-export interface GraphQLConfig {
-  /**
-   * GraphQL schemas
-   * @default 'pergel/${projectName}/graphql/schema'
-   */
-  schema?: string
-
-  /**
-   * GraphQL resolvers
-   * @default 'pergel/${projectName}/graphql/documents'
-   */
-  documents?: string
-
-  codegen?: {
-    /**
-     * Server codegen
-     * @default true
-     */
-    server?: {
-      /**
-       * Codegen config file path
-       * @default 'codegen.yml'
-       */
-      configFilePath?: string
-
-      /**
-       * Only generate codegen in development mode
-       * @default true
-       */
-      onlyDevelopment?: boolean
-
-      /**
-       * Codegen file extension
-       * @default '.graphql'
-       */
-      extension?: '.graphql' | '.gql'
-    }
-
-    /**
-     * Client codegen
-     * @default true
-     */
-    client?: {
-      /**
-       * Codegen config file path
-       * @default 'codegen.yml'
-       */
-      configFilePath?: string
-
-      /**
-       * Only generate codegen in development mode
-       * @default true
-       */
-      onlyDevelopment?: boolean
-
-      /**
-       * Codegen file extension
-       * @default '.graphql'
-       */
-      extension?: '.graphql' | '.gql'
-    }
-  }
-}
-
-export interface ResolvedGraphqlConfig extends GraphQLConfig {
-  schema: string
-  documents: string
-  codegen: {
-    server: {
-      configFilePath?: string
-      onlyDevelopment: boolean
-      extension: '.graphql' | '.gql'
-    }
-    client: {
-      configFilePath?: string
-      onlyDevelopment: boolean
-      extension: '.graphql' | '.gql'
-    }
-  }
-}
-
-export interface GraphQLNitroPluginConfig {
+export interface GraphQLYogaConfig {
   /**
    * GraphQL endpoint
    * @default '/api/graphql'
@@ -247,7 +167,7 @@ export interface GraphQLNitroPluginConfig {
   }
 }
 
-export interface ResolvedGraphQLNitroPluginConfig extends GraphQLNitroPluginConfig {
+export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig {
   endpoint: string
   mergeSchemas: boolean
   schema: string
@@ -284,7 +204,6 @@ export interface ResolvedGraphQLNitroPluginConfig extends GraphQLNitroPluginConf
 }
 
 export interface GraphQLYogaOptions<Context extends Record<string, any> = object> {
-  config?: GraphQLNitroPluginConfig
   onSuccess?: (event: H3Event, result: { user: any, tokens: any }) => Promise<void> | void
   onError?: (event: H3Event, error: H3Error) => Promise<void> | void
   onBeforeOptions?: (options: GraphqlYogaHandleOptions) => Promise<void> | void

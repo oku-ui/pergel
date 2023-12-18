@@ -3,12 +3,13 @@ import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
 import defu from 'defu'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
-import type { ResolvedGraphqlConfig } from './types'
+import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import type { ResolvedGraphQLYogaConfig } from './types'
 import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
 const _logger = useLogger('pergel:graphql:yoga')
 
-export default definePergelModule<ResolvedGraphqlConfig>({
+export default definePergelModule<ResolvedGraphQLYogaConfig>({
   meta: {
     name: 'graphqlYoga',
     version: '0.0.1',
@@ -35,12 +36,35 @@ export default definePergelModule<ResolvedGraphqlConfig>({
           configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
         },
       },
-    } as ResolvedGraphqlConfig)
+      endpoint: '/api/graphql',
+      plugins: {
+        playground: {
+          endpoint: '/api/graphql',
+        },
+        voyager: {
+          endpoint: '/api/graphql/voyager',
+          playgroundEndpoint: '/api/graphql',
+        },
+        sandbox: {
+          endpoint: '/api/graphql/sandbox',
+          playgroundEndpoint: '/api/graphql',
+        },
+      },
+      yogaConfig: {
+        health: '/api/graphql/health',
+        ready: '/api/graphql/ready',
+      },
+      mergeSchemas: false,
+    } as ResolvedGraphQLYogaConfig)
   },
   async setup({ nuxt }) {
     const module = nuxt._pergel._module
 
     const resolver = createResolver(import.meta.url)
+
+    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, {
+      ...nuxt._pergel._module.options,
+    }, true)
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 

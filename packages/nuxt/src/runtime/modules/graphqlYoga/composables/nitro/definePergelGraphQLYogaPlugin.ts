@@ -1,32 +1,21 @@
 import { eventHandler } from 'h3'
 import { defineNitroPlugin } from 'nitropack/dist/runtime/plugin'
-import defu from 'defu'
-import type { GraphQLYogaOptions, ResolvedGraphQLNitroPluginConfig } from '../../types'
+import type { GraphQLYogaOptions, ResolvedGraphQLYogaConfig } from '../../types'
 import { nitroGraphqlYogaPlugin } from './nitroGraphqlYogaPlugin'
+import { useRuntimeConfig } from '#imports'
+import type { PergelGlobalContextOmitModule } from '#pergel'
 
-export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(data: GraphQLYogaOptions<Context>) {
+export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(this: PergelGlobalContextOmitModule, data: GraphQLYogaOptions<Context>) {
   return defineNitroPlugin(async (nitroApp) => {
-    const options = defu(data.config, {
-      endpoint: '/api/graphql',
-      plugins: {
-        playground: {
-          endpoint: '/api/graphql',
-        },
-        voyager: {
-          endpoint: '/api/graphql/voyager',
-          playgroundEndpoint: '/api/graphql',
-        },
-        sandbox: {
-          endpoint: '/api/graphql/sandbox',
-          playgroundEndpoint: '/api/graphql',
-        },
-      },
-      yogaConfig: {
-        health: '/api/graphql/health',
-        ready: '/api/graphql/ready',
-      },
-      mergeSchemas: false,
-    } as ResolvedGraphQLNitroPluginConfig) as ResolvedGraphQLNitroPluginConfig
+    if (!this?.projectName)
+      throw new Error('Missing config.projectName')
+
+    const nitro = useRuntimeConfig()
+    const dd = (nitro.public[this?.projectName] as any).graphqlYoga
+    if (!dd)
+      throw new Error('Missing config.graphqlYoga')
+
+    const options = dd as ResolvedGraphQLYogaConfig
 
     // console.log('import.meta.dev', import.meta.dev)
     // console.log('process.dev', process.dev)

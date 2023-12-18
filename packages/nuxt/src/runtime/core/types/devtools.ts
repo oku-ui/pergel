@@ -8,6 +8,7 @@ export interface ServerFunctions {
   getActiveModules(): ResolvedPergelOptions['activeModules']
   getProject(name: string): Modules
   getProjectModules(name: string): string[]
+  getNitroPlugins(): unknown
   getProjectModule(name: string): Modules[keyof Modules]
   reset(): void
 }

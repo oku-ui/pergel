@@ -7,7 +7,7 @@ import type { ImportsOptions, Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 
 import type { UnimportPluginOptions } from 'unimport/unplugin'
-import type { GraphQLConfig } from '../../modules/graphqlYoga/types'
+import type { GraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
 export interface Modules {
   S3?: true
@@ -15,7 +15,7 @@ export interface Modules {
   nodeCron?: true
   bullmq?: true
   json2csv?: true
-  graphqlYoga?: true | GraphQLConfig
+  graphqlYoga?: true | GraphQLYogaConfig
 }
 
 export type ModuleName = keyof Modules | string
@@ -89,7 +89,13 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
     }
   }
   activeModules: {
-    [projectName: string]: string[]
+    [projectName: string]: {
+      [moduleName: string]: {
+        devtools?: {
+          [key: string]: any
+        }
+      }
+    }
   }
 
   projects: {

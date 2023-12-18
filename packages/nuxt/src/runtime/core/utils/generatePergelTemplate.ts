@@ -2,6 +2,7 @@ import { join } from 'node:path'
 import { camelCase } from 'scule'
 import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
+import type { NuxtPergel, ResolvedPergelOptions } from '../types'
 import { useNitroImports, useNuxtImports } from './useImports'
 import { firstLetterUppercase, reformatSourceCode } from '.'
 
@@ -51,9 +52,16 @@ export function generatePergelTemplate(
      * }
      * `
      */
-    // import type {
-    //   TestBullmq
-    // } from '#pergel/types'
+    function forDTS(nuxt: NuxtPergel) {
+      let _interfaces = ''
+      for (const project of Object.keys(nuxt._pergel.dts)) {
+        const interfaces = Object.values(nuxt._pergel.dts[project]).map(module => module.interfaceNames.join(', ')).join(', ')
+        _interfaces += interfaces
+      }
+
+      return _interfaces
+    }
+
     const pergel = addTemplate({
       filename: join(data.nuxt._pergel.dir.pergel, projectName, 'pergel.ts'),
       write: true,
@@ -63,10 +71,10 @@ export function generatePergelTemplate(
         const source = /* ts */` // Pergel Auto Generated - https://oku-ui.com
           import type { PergelGlobalContextOmitModule } from '#pergel'
 
-          ${data.nuxt._pergel.dts.find(dts => dts.projectName === projectName)
+          ${typeof data.nuxt._pergel.dts[projectName] === 'object'
 ? `
 import type {
-  ${data.nuxt._pergel.dts.map(dts => dts.interfaceNames.map(interfaceName => interfaceName).join(', ')).join(', ')}
+  ${forDTS(data.nuxt)}
 } from '#pergel/types'
 `
 : ''}

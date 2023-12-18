@@ -35,6 +35,8 @@ onMounted(async () => {
   projects.value = await rpc.value?.getProjects()
   totalModules.value = await rpc.value?.getTotalModules()
   activeModules.value = await rpc.value?.getActiveModules()
+  const nitro = await rpc.value?.getNitroPlugins()
+  console.warn(nitro, 'nitro')
   selectedTabProject.value = projects.value[0]
 })
 
@@ -102,15 +104,22 @@ const selectedTab = ref('add')
                 v-for="module in activeModules[project] ?? []"
                 :key="module.id"
               >
-                <button
-                  class="h-10 w-full rounded-md bg-gray-600 text-white"
-                  @click="() => {
-                    tabs.push(`${project}.${module}`)
-                    selectedTab = `${project}.${module}`
-                  }"
-                >
-                  {{ module }}
-                </button>
+                <HelpFab>
+                  <template
+                    #custom="{ click }"
+                  >
+                    <button
+                      class="h-10 w-full rounded-md bg-gray-600 text-white"
+                      @click="() => {
+                        click()
+                        // tabs.push(`${project}.${module}`)
+                        // selectedTab = `${project}.${module}`
+                      }"
+                    >
+                      {{ module }}
+                    </button>
+                  </template>
+                </HelpFab>
               </template>
             </div>
           </NSectionBlock>

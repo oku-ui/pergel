@@ -3,6 +3,7 @@ import type { DevtoolsServerContext, ModuleName, Modules, ServerFunctions } from
 export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
   const options = ctx.nuxt._pergel
   const projects = options.projects
+
   return {
     getOptions() {
       return options
@@ -21,6 +22,10 @@ export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
     },
     getProjectModules(name: string) {
       return Object.keys(projects[name])
+    },
+    getNitroPlugins() {
+      // TODO: change public runtime config
+      return 'asdasd'
     },
     // TODO: fix type
     getProjectModule(projectName: string, moduleName: ModuleName) {
