@@ -120,11 +120,20 @@ const selectedTab = ref('add')
         v-for="tab in tabs"
         :key="tab"
         :value="tab"
-        class="flex h-full w-full grow flex-col rounded-b-md p-5 outline-none dark:bg-gray-950"
+        class="flex h-full w-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
       >
         <AssetS3
           v-if="tab.includes('.S3')"
           :selected-tab-project="tab.split('.')[0]"
+        />
+        <IframeView
+          v-if="tab.includes('.ses')"
+          :tab="{
+            name: 'iframe',
+            view: {
+              src: 'http://localhost:3000/api/graphql',
+            },
+          }"
         />
       </OkuTabsContent>
     </OkuTabs>
