@@ -1,5 +1,5 @@
 import type { WebSocketServer } from 'vite'
-import type { Modules, NuxtPergel, PergelOptions, ResolvedPergelOptions } from './module'
+import type { ModuleName, Modules, NuxtPergel, PergelOptions, ResolvedPergelOptions } from './module'
 
 export interface ServerFunctions {
   getOptions(): ResolvedPergelOptions
@@ -8,7 +8,7 @@ export interface ServerFunctions {
   getActiveModules(): ResolvedPergelOptions['activeModules']
   getProject(name: string): Modules
   getProjectModules(name: string): string[]
-  getNitroPlugins(): unknown
+  getModuleOptions({ projectName, moduleName }: { projectName: string, moduleName: ModuleName }): Modules
   getProjectModule(name: string): Modules[keyof Modules]
   reset(): void
 }

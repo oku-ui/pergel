@@ -1,8 +1,10 @@
-<script lang="ts">
-const iframeCacheMap = new Map<string, HTMLIFrameElement>()
-</script>
-
 <script setup lang="ts">
+const props = defineProps<{
+  tab: ModuleCustomTab
+}>()
+
+const iframeCacheMap = new Map<string, HTMLIFrameElement>()
+
 interface ModuleView {
   src: string
   persistent?: boolean
@@ -12,10 +14,6 @@ interface ModuleCustomTab {
   name: string
   view: ModuleView
 }
-
-const props = defineProps<{
-  tab: ModuleCustomTab
-}>()
 
 const colorMode = useColorMode()
 const anchor = ref<HTMLDivElement>()

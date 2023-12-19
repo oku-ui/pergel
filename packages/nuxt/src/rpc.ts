@@ -23,9 +23,8 @@ export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
     getProjectModules(name: string) {
       return Object.keys(projects[name])
     },
-    getNitroPlugins() {
-      // TODO: change public runtime config
-      return 'asdasd'
+    getModuleOptions({ projectName, moduleName }) {
+      return ((options.activeModules as any)[projectName as any])[moduleName as any]
     },
     // TODO: fix type
     getProjectModule(projectName: string, moduleName: ModuleName) {

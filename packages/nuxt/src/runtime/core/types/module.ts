@@ -9,6 +9,8 @@ import type { Resolver } from '@nuxt/kit'
 import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
+export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
+
 export interface Modules {
   S3?: true
   ses?: true
@@ -18,7 +20,7 @@ export interface Modules {
   graphqlYoga?: true | GraphQLYogaConfig
 }
 
-export type ModuleName = keyof Modules | string
+export type ModuleName = keyof Modules
 
 export interface PergelOptions {
   /**
@@ -56,7 +58,7 @@ export interface PergelOptions {
   esnext?: boolean
 }
 
-export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> extends PergelOptions {
+export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> {
   /**
    * Pergel user defined options.
    */

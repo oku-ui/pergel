@@ -61,6 +61,10 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
 
     // TODO: Fix any type
     nuxt._pergel._module = moduleOptions as any
+    nuxt._pergel.activeModules[nuxt._pergel._module.projectName][nuxt._pergel._module.moduleName] = defu(
+      nuxt._pergel.activeModules[nuxt._pergel._module.projectName][nuxt._pergel._module.moduleName],
+      moduleOptions.options,
+    ) as any
 
     return Promise.resolve(moduleOptions)
   }

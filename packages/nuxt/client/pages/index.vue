@@ -6,37 +6,17 @@ import {
   OkuTabsTrigger,
 } from '@oku-ui/tabs'
 
-// import { useDevtoolsClient } from '@nuxt/devtools-kit/iframe-client'
-
 import { rpc } from '../composables/rpc'
-
-// import { options } from '../composables/state'
-
-// const client = useDevtoolsClient()
-
-// async function getOptions() {
-//   options.value = await rpc.value?.getOptions()
-//   console.warn(client.value, 'client')
-// }
 
 const projects = ref()
 const selectedTabProject = ref()
 const totalModules = ref()
 const activeModules = ref()
-// const selectedTabModule = ref()
-
-// const started = ref(false)
-
-// async function getModules() {
-//   modules.value = await rpc.value?.getProjectModules(selectedTabProject.value)
-// }
 
 onMounted(async () => {
   projects.value = await rpc.value?.getProjects()
   totalModules.value = await rpc.value?.getTotalModules()
   activeModules.value = await rpc.value?.getActiveModules()
-  const nitro = await rpc.value?.getNitroPlugins()
-  console.warn(nitro, 'nitro')
   selectedTabProject.value = projects.value[0]
 })
 
@@ -62,13 +42,13 @@ const selectedTab = ref('add')
           <OkuTabsTrigger
             v-for="tab in tabs"
             :key="tab"
-            class="hover:text-oku-500 dark:hover:text-oku-400 data-[state=active]:text-oku-900 dark:data-[state=active]:text-oku-400 data-[state=active]:focus:shadow-oku-500 flex h-[45px] max-w-fit flex-1 cursor-default select-none items-center justify-center px-5 text-[15px] leading-none text-gray-900 outline-none first:rounded-tl-md last:rounded-tr-md data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] dark:bg-gray-950 dark:text-gray-200"
+            class="flex h-[30px] max-w-fit flex-1 cursor-default select-none items-center justify-center px-3 text-[10px] leading-none text-gray-900 outline-none first:rounded-tl-md last:rounded-tr-md hover:text-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-gray-500 dark:bg-gray-950 dark:text-gray-200 dark:hover:text-gray-400 dark:data-[state=active]:text-gray-400"
             :value="tab"
           >
             {{ tab }}
 
             <button
-              class="i-ph-x h-5 w-5 text-white"
+              class="i-ph-x ml-1 h-3 w-3 dark:text-white"
               @click="() => {
                 tabs.splice(tabs.indexOf(tab), 1)
                 selectedTab = tabs[tabs.length - 1]
@@ -77,11 +57,11 @@ const selectedTab = ref('add')
           </OkuTabsTrigger>
         </template>
         <OkuTabsTrigger
-          class="flex h-[45px] max-w-fit flex-1 cursor-default select-none items-center justify-center px-5 text-[15px] leading-none text-gray-900 outline-none first:rounded-tl-md last:rounded-tr-md hover:text-blue-500 data-[state=active]:text-blue-900 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-blue-500 dark:bg-gray-950 dark:text-gray-200 dark:hover:text-blue-400 dark:data-[state=active]:text-blue-400
+          class="flex h-[30px] max-w-fit flex-1 cursor-default select-none items-center justify-center px-3 text-[10px] leading-none text-gray-900 outline-none first:rounded-tl-md last:rounded-tr-md hover:text-blue-500 data-[state=active]:text-blue-900 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-blue-500 dark:bg-gray-950 dark:text-gray-200 dark:hover:text-blue-400 dark:data-[state=active]:text-blue-400
            "
           value="add"
         >
-          <div class="i-ph-plus h-5 w-5 text-white" />
+          <div class="i-ph-plus h-3 w-3 dark:text-white" />
         </OkuTabsTrigger>
       </OkuTabsList>
       <OkuTabsContent
@@ -101,25 +81,18 @@ const selectedTab = ref('add')
           >
             <div class="grid grid-cols-4 gap-6">
               <template
-                v-for="module in activeModules[project] ?? []"
+                v-for="module in Object.keys(activeModules[project])"
                 :key="module.id"
               >
-                <HelpFab>
-                  <template
-                    #custom="{ click }"
-                  >
-                    <button
-                      class="h-10 w-full rounded-md bg-gray-600 text-white"
-                      @click="() => {
-                        click()
-                        // tabs.push(`${project}.${module}`)
-                        // selectedTab = `${project}.${module}`
-                      }"
-                    >
-                      {{ module }}
-                    </button>
-                  </template>
-                </HelpFab>
+                <button
+                  class="h-10 w-full rounded-md bg-gray-600 text-white"
+                  @click="() => {
+                    tabs.push(`${project}.${module}`)
+                    selectedTab = `${project}.${module}`
+                  }"
+                >
+                  {{ module }}
+                </button>
               </template>
             </div>
           </NSectionBlock>
@@ -135,15 +108,12 @@ const selectedTab = ref('add')
           v-if="tab.includes('.S3')"
           :selected-tab-project="tab.split('.')[0]"
         />
-        <IframeView
-          v-if="tab.includes('.ses')"
-          :tab="{
-            name: 'iframe',
-            view: {
-              src: 'http://localhost:3000/api/graphql',
-            },
-          }"
-        />
+        <ModulesGraphqlYoga
+          v-if="tab.includes('.graphqlYoga')"
+          :selected-tab-project="tab.split('.')[0]"
+          :project-name="tab.split('.')[0]"
+        >
+        </ModulesGraphqlYoga>
       </OkuTabsContent>
     </OkuTabs>
   </div>
