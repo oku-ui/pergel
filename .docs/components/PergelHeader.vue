@@ -25,8 +25,8 @@ const mobileNav = computed(() => {
 <template>
   <UHeader :links="links">
     <template #logo>
-      <NuxtLink to="/" class="flex items-center gap-1.5 font-bold text-xl text-gray-900 dark:text-white" aria-label="Oku">
-        <PergelLogo class="w-auto h-6" />
+      <NuxtLink to="/" class="flex items-center gap-1.5 text-xl font-bold text-gray-900 dark:text-white" aria-label="Oku">
+        <PergelLogo class="h-6 w-auto" />
         Pergel
       </NuxtLink>
     </template>

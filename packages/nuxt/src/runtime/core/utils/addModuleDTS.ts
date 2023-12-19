@@ -20,7 +20,7 @@ export function addModuleDTS(data: {
     mkdirSync(data.nuxt._pergel._module.moduleDir, { recursive: true })
 
   const body = /* ts */`
-declare module '#pergel/types' {
+declare module '#pergel/${data.projectName}/types' {
   ${data.template.replace('export ', '')}
 }
       `.trim()

@@ -103,7 +103,7 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
             return {
               nitro: () => {
                 return {
-                  use: definePergelGraphQLYogaPlugin.bind(ctx)
+                  use: (definePergelGraphQLYogaPlugin<GraphqlYogaContext>).bind(ctx)
                 }
               },
             }

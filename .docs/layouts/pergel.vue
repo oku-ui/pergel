@@ -38,7 +38,7 @@ const navigationLinks = computed(() => {
       <template #left>
         <div class="hidden lg:block">
           <div class="mb-3 lg:mb-6">
-            <label for="menu" class="block mb-1.5 font-semibold text-sm/6">Docs</label>
+            <label for="menu" class="mb-1.5 block text-sm/6 font-semibold">Docs</label>
             <USelectMenu
               id="menu"
               :model-value="select"
@@ -51,7 +51,7 @@ const navigationLinks = computed(() => {
               @change="link => $router.push(link.to)"
             >
               <template #label>
-                <Icon :name="select.icon" class="w-4 h-4 mr-1.5 text-gray-400 dark:text-gray-500" />
+                <Icon :name="select.icon" class="mr-1.5 h-4 w-4 text-gray-400 dark:text-gray-500" />
                 <span class="font-medium">{{ select.label }}</span>
               </template>
             </USelectMenu>

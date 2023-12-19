@@ -2,7 +2,6 @@ import type { YogaServerInstance, YogaServerOptions } from 'graphql-yoga'
 import type { H3Error, H3Event } from 'h3'
 
 import type { EmbeddableSandboxOptions } from '@apollo/sandbox/src/EmbeddedSandbox'
-import type { PergelGlobalContextOmitModule } from '#pergel'
 
 export interface GraphqlYogaHandleOptions {
   context: {

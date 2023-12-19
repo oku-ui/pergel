@@ -21,7 +21,7 @@ import consola from 'consola'
 import type { PartinalKey } from '../../../core/types'
 import type { S3ModuleRuntimeConfig } from '../types'
 import { clientFunctionTemplate } from '../../../core/useClient'
-import type { PergelGlobalContextOmitModule } from '#pergel'
+import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 const { clientInit } = clientFunctionTemplate<S3Client, S3ModuleRuntimeConfig>('S3')
 

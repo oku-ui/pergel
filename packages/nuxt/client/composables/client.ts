@@ -1,4 +1,4 @@
-import type { NuxtDevtoolsClient, NuxtDevtoolsHostClient, NuxtDevtoolsIframeClient, VueInspectorData } from '@nuxt/devtools-kit/types'
+import type { NuxtDevtoolsHostClient, VueInspectorData } from '@nuxt/devtools-kit/types'
 import type { Unhead } from '@unhead/schema'
 
 export function useClient() {

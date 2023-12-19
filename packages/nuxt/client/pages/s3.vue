@@ -5,11 +5,11 @@ const client = useDevtoolsClient()
 </script>
 
 <template>
-  <div class="relative p-10 n-bg-base flex flex-col h-screen">
+  <div class="n-bg-base relative flex h-screen flex-col p-10">
     <h1 class="text-3xl font-bold">
       My Module
     </h1>
-    <div class="opacity-50 mb-4">
+    <div class="mb-4 opacity-50">
       Nuxt DevTools Integration
     </div>
     <div v-if="client" class="flex flex-col gap-2">

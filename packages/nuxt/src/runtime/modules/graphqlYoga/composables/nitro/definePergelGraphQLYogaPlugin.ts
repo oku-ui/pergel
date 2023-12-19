@@ -3,7 +3,7 @@ import { defineNitroPlugin } from 'nitropack/dist/runtime/plugin'
 import type { GraphQLYogaOptions, ResolvedGraphQLYogaConfig } from '../../types'
 import { nitroGraphqlYogaPlugin } from './nitroGraphqlYogaPlugin'
 import { useRuntimeConfig } from '#imports'
-import type { PergelGlobalContextOmitModule } from '#pergel'
+import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(this: PergelGlobalContextOmitModule, data: GraphQLYogaOptions<Context>) {
   return defineNitroPlugin(async (nitroApp) => {

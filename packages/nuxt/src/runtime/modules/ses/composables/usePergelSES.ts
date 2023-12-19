@@ -3,7 +3,7 @@ import type { H3Event } from 'h3'
 import type { SesModuleRuntimeConfig } from '../types'
 import { templates } from '../templates'
 import { clientFunctionTemplate } from '../../../../runtime/core/useClient'
-import type { PergelGlobalContextOmitModule } from '#pergel'
+import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export interface Credentials {
   accessKeyId: string

@@ -47,9 +47,9 @@ export async function setupPergel(
     },
   })
 
-  nuxt.options.alias['#pergel'] = pergelType.dst
+  nuxt.options.alias['#pergel/types'] = pergelType.dst
   nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias['#pergel'] = pergelType.dst
+  nuxt.options.nitro.alias['#pergel/types'] = pergelType.dst
 
   const resolvedOptions = defu(options, {
     projects: {
@@ -105,7 +105,6 @@ export async function setupPergel(
       options: {},
       projectDir: '',
       projectName: '',
-      typeName: '',
     },
   } as ResolvedPergelOptions)
 

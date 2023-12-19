@@ -5,7 +5,6 @@ import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
 import type { ModuleName, PergelModule } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
-import { firstLetterUppercase } from './utils'
 
 export async function setupModules(data: {
   resolver: Resolver
@@ -39,7 +38,6 @@ export async function setupModules(data: {
     const [projectName, moduleName] = m[0].split('/') as [string, ModuleName]
     data.nuxt._pergel.projects[projectName] ??= {}
     data.nuxt._pergel.projects[projectName][moduleName] = {
-      typeName: `${firstLetterUppercase(projectName)}${firstLetterUppercase(moduleName)}`,
       projectDir: join(data.nuxt._pergel.pergelDir, projectName),
       moduleDir: join(data.nuxt._pergel.pergelDir, projectName, moduleName),
       dir: {
