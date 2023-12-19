@@ -75,7 +75,7 @@ export function generatePergelTemplate(
 ? `
 import type {
   ${forDTS(data.nuxt)}
-} from '#pergel/${projectName}/types'
+} from 'pergel/${projectName}/types'
 `
 : ''}
 

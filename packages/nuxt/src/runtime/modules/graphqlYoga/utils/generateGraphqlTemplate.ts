@@ -3,12 +3,12 @@ import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import { relative } from 'pathe'
 import type { NuxtPergel } from '../../../core/types'
 import { matchGlobs } from '../utils'
-import type { ResolvedGraphqlConfig } from '../types'
+import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
 import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {
-  nuxt: NuxtPergel<ResolvedGraphqlConfig>
+  nuxt: NuxtPergel<ResolvedGraphQLYogaConfig>
 }) {
   const module = data.nuxt._pergel._module
   const { codegen, documents, schema } = module.options
@@ -65,7 +65,7 @@ type Book {
   if (readdirSync(documents).length === 0)
     writeFileSync(join(documents, 'book.graphql'), documentsTemplate)
 
-  const { path } = addModuleDTS({
+  addModuleDTS({
     template: /* ts */`
 import type { H3Event } from 'h3'
 import type { IncomingMessage, ServerResponse } from 'node:http'
@@ -92,7 +92,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
     documentDir: documents,
     moduleDTS: {
       name: 'GraphqlYogaContext',
-      path,
+      path: `pergel/${module.projectName}/types`,
     },
   })
 
@@ -111,7 +111,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
         documentDir: documents,
         moduleDTS: {
           name: 'GraphqlYogaContext',
-          path,
+          path: `pergel/${module.projectName}/types`,
         },
       })
     }
@@ -126,7 +126,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
           documentDir: documents,
           moduleDTS: {
             name: 'GraphqlYogaContext',
-            path,
+            path: `pergel/${module.projectName}/types`,
           },
         })
       }
