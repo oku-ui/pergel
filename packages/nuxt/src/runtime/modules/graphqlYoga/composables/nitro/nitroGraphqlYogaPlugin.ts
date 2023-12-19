@@ -3,7 +3,7 @@ import type { YogaServerInstance, YogaServerOptions } from 'graphql-yoga'
 import type { H3Event } from 'h3'
 import { mergeSchemas } from '@graphql-tools/schema'
 import { parseURL } from 'ufo'
-import type { GraphQLYogaOptions, GraphqlYogaContextOptions, GraphqlYogaHandleOptions, ResolvedGraphQLNitroPluginConfig } from '../../types'
+import type { GraphQLYogaOptions, GraphqlYogaContextOptions, GraphqlYogaHandleOptions, ResolvedGraphQLYogaConfig } from '../../types'
 
 const schema = createSchema({
   typeDefs: /* GraphQL */ `
@@ -23,7 +23,7 @@ const yogaStore: Map<string, {
   context: Partial<any> | null
 }> = new Map()
 
-export async function nitroGraphqlYogaPlugin<Context extends Record<string, any> = object>(event: H3Event, config: ResolvedGraphQLNitroPluginConfig, {
+export async function nitroGraphqlYogaPlugin<Context extends Record<string, any> = object>(event: H3Event, config: ResolvedGraphQLYogaConfig, {
   onAfterOptions,
   onBeforeContext,
   onBeforeOptions,

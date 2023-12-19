@@ -43,7 +43,7 @@ const mobileNav = computed(() => {
       <UTooltip text="GitHub Stars">
         <UButton
           icon="i-simple-icons-github" to="https://github.com/oku-ui/pergel" target="_blank"
-          label="32"
+          label="38"
         />
       </UTooltip>
     </template>
