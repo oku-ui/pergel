@@ -1,6 +1,7 @@
-import { resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
 import defu from 'defu'
+import { pascalCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
@@ -68,11 +69,22 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 
+    addServerImportsDir(join(nuxt.options.buildDir, 'pergel', module.projectName, module.moduleName, 'client'))
+
     useNitroImports(nuxt, {
       presets: [
         {
           from: 'graphql',
           imports: ['GraphQLError'],
+        },
+        {
+          from: join(nuxt.options.buildDir, 'pergel', module.projectName, module.moduleName, 'client'),
+          imports: [
+            {
+              as: `${module.projectName}${pascalCase(module.moduleName)}Document`,
+              name: '*',
+            },
+          ],
         },
         {
           from: 'graphql-relay',
