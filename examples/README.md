@@ -6,3 +6,8 @@ Auto upgrade examples to latest version. `0.0.1` example is the first version of
 pnpm install
 node update.mjs 0.0.1
 ```
+
+or 
+```
+pnpm dev 0.3.0
+```
