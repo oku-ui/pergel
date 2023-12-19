@@ -215,7 +215,9 @@ export async function useGenerateCodegen({
 
   if (type === 'server') {
     await updateTemplates({
-      filter: template => template.filename === schemaFilename,
+      filter: (template) => {
+        return template.filename === serverTypes.filename
+      },
     })
   }
 
@@ -234,13 +236,19 @@ export async function useGenerateCodegen({
       },
     })
     await updateTemplates({
-      filter: template => template.filename === schemaFilename,
+      filter: (template) => {
+        return template.filename === schemaFilename
+      },
     })
     await updateTemplates({
-      filter: template => template.filename === serverFileName,
+      filter: (template) => {
+        return template.filename === serverFileName
+      },
     })
     await updateTemplates({
-      filter: template => template.filename === urqlIntrospectionFileName,
+      filter: (template) => {
+        return template.filename === urqlIntrospectionFileName
+      },
     })
   }
 }

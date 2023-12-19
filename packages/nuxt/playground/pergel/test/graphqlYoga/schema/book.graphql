@@ -11,4 +11,3 @@ type Book {
   createdAt: String!
   updatedAt: String
 }
-    

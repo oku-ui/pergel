@@ -98,7 +98,6 @@ export interface GraphqlYogaContext extends YogaInitialContext {
 
   data.nuxt.hook('builder:watch', async (event, path) => {
     const { serverFolder, clientFolder, moduleName, projectName } = globsServerClient(path)
-
     // return
     if (serverFolder) {
       // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
