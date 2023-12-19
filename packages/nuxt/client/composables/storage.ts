@@ -1,10 +1,5 @@
 import { toRefs } from '@vueuse/core'
 
-interface DevToolsFrameState {
-  showSidebar: boolean
-  showHelpButtons: boolean
-}
-
 interface NuxtDevToolsOptions {
   showSidebar: boolean
   showHelpButtons: boolean

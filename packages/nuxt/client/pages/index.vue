@@ -23,9 +23,9 @@ const projects = ref()
 const selectedTabProject = ref()
 const totalModules = ref()
 const activeModules = ref()
-const selectedTabModule = ref()
+// const selectedTabModule = ref()
 
-const started = ref(false)
+// const started = ref(false)
 
 // async function getModules() {
 //   modules.value = await rpc.value?.getProjectModules(selectedTabProject.value)
