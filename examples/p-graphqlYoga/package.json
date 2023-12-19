@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pergel/nuxt": "^0.3.0"
+    "@pergel/graphql": "0.0.0",
+    "@pergel/nuxt": "^0.3.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
