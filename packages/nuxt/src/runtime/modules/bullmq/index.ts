@@ -36,9 +36,14 @@ export default definePergelModule({
 
     addModuleDTS({
       template: /* ts */`
-  queueName: 'default'
+export interface BullmqContext {
+  queueName: 'default' | 'email'
+}
       `,
       nuxt,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
+      interfaceNames: ['BullmqContext'],
     })
 
     nuxt._pergel.contents.push({
@@ -47,8 +52,8 @@ export default definePergelModule({
       content: /* ts */`
           function bullmq() {
             return {
-              nitroPlugin: (definePergelNitroBullMQPlugin<${options.typeName}>).bind(ctx),
-              useScheduler: (useScheduler<${options.typeName}>).bind(ctx),
+              nitroPlugin: (definePergelNitroBullMQPlugin<BullmqContext>).bind(ctx),
+              useScheduler: (useScheduler<BullmqContext>).bind(ctx),
             }
           }
         `,

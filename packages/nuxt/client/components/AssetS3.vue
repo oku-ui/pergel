@@ -15,7 +15,6 @@ definePageMeta({
 const { data, error, pending, execute } = await useFetch<any[]>(devtoolsUrl('/__pergel__S3', props.selectedTabProject), {
   method: 'get',
   lazy: true,
-
 })
 
 const selected = ref()

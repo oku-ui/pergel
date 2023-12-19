@@ -48,11 +48,13 @@
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.465.0",
     "@iconify-json/carbon": "^1.1.24",
+    "@iconify-json/ph": "^1.1.9",
     "@json2csv/node": "^7.0.4",
     "@nuxt/devtools-ui-kit": "^1.0.5",
     "@nuxt/module-builder": "^0.5.4",
     "@nuxt/schema": "^3.8.2",
     "@nuxt/test-utils": "^3.8.1",
+    "@pergel/graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
     "@types/node": "^20.9.3",
     "@types/node-cron": "^3.0.11",

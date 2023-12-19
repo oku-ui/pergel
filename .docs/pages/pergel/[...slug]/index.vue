@@ -114,7 +114,7 @@ useSeoMeta({
     <template v-if="page.toc !== false" #right>
       <UDocsToc :links="page.body?.toc?.links" :ui="{ wrapper: '' }">
         <template #bottom>
-          <div class="hidden lg:block space-y-6" :class="{ '!mt-6': page.body?.toc?.links?.length }">
+          <div class="hidden space-y-6 lg:block" :class="{ '!mt-6': page.body?.toc?.links?.length }">
             <UDivider v-if="page.body?.toc?.links?.length" type="dashed" />
 
             <UPageLinks title="Community" :links="communityLinks" />

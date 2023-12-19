@@ -35,12 +35,14 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
       }))
     }
 
-    if (module.meta.dts && module.meta.name)
-      nuxt._pergel.activeModules.push(module.meta.name)
+    if (module.meta.name) {
+      nuxt._pergel.activeModules[nuxt._pergel._module.projectName] ??= {}
+      nuxt._pergel.activeModules[nuxt._pergel._module.projectName][module.meta.name] ??= {}
+    }
 
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt }) : module.defaults
 
-    const userModuleOptions = (nuxt._pergel.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
+    const userModuleOptions = (nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
 
     const moduleOptions = defu({
       ...nuxt._pergel._module,
@@ -59,6 +61,10 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
 
     // TODO: Fix any type
     nuxt._pergel._module = moduleOptions as any
+    nuxt._pergel.activeModules[nuxt._pergel._module.projectName][nuxt._pergel._module.moduleName] = defu(
+      nuxt._pergel.activeModules[nuxt._pergel._module.projectName][nuxt._pergel._module.moduleName],
+      moduleOptions.options,
+    ) as any
 
     return Promise.resolve(moduleOptions)
   }

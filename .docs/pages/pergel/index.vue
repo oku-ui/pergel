@@ -17,7 +17,7 @@ useSeoMeta({
   <div>
     <span class="gradient" />
 
-    <ULandingHero orientation="horizontal" class="!py-18 md:py-0 md:!pt-32 relative" :ui="{ container: 'flex lg:gap-4' }">
+    <ULandingHero orientation="horizontal" class="!py-18 relative md:py-0 md:!pt-32" :ui="{ container: 'flex lg:gap-4' }">
       <!-- <div class="hidden lg:block relative w-[500px]">
         <Illustration class="h-[480px]" />
       </div> -->

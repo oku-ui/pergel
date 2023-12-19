@@ -60,12 +60,6 @@ export default defineNuxtModule<PergelOptions>({
       ? nuxt.options.devtools
       : nuxt.options.devtools.enabled
 
-    if (nuxt.options.dev && isDevToolsEnabled) {
-      setupDevToolsUI(options, _resolver.resolve, nuxt)
-
-      logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
-    }
-
     await setupModules({
       nuxt,
       resolver: _resolver,
@@ -80,16 +74,22 @@ export default defineNuxtModule<PergelOptions>({
 
     nuxt._pergel.devServerHandler.forEach(({ fn }) => fn())
 
-    const _template = addTemplate({
-      filename: './pergel/moduleTypes.d.ts',
-      getContents: () => nuxt._pergel.dts.map(dts => dts.template).join('\n\n'),
-    })
+    for (const project of Object.keys(nuxt._pergel.dts)) {
+      const contents = Object.values(nuxt._pergel.dts[project]).map(module => module.template.join('\n\n')).join('\n\n')
+      const _template = addTemplate({
+        filename: `./pergel/${project}/modules.d.ts`,
+        getContents: () => contents.trim(),
+      })
+      nuxt.options.alias[`pergel/${project}`] = _template.dst
+      nuxt.options.nitro.alias ??= {}
+      nuxt.options.nitro.alias[`pergel/${project}`] = _template.dst
+    }
 
-    nuxt.options.alias['#pergel/types'] = _template.dst
-    nuxt.options.nitro.alias ??= {}
-    nuxt.options.nitro.alias['#pergel/types'] = _template.dst
+    if (nuxt.options.dev && isDevToolsEnabled) {
+      setupDevToolsUI(options, _resolver.resolve, nuxt)
 
-    // writeFileSync(_resolver.resolve('./pergel.json'), JSON.stringify(nuxt._pergel, null, 2))
+      logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
+    }
   },
 })
 

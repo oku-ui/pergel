@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
 import { generateProjectName } from '.'
-import type { PergelGlobalContext } from '#pergel'
+import type { PergelGlobalContext } from '#pergel/types'
 import { useRuntimeConfig } from '#imports'
 
 export function usePergelRuntime<T>(data: PergelGlobalContext, event?: H3Event) {

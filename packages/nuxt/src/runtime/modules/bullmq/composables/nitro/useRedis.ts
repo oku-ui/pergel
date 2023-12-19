@@ -3,7 +3,7 @@ import type { RedisOptions } from 'ioredis'
 
 import type { BullMQModuleRuntimeConfig } from '../../types'
 import { clientFunctionTemplate } from '../../../../core/useClient'
-import type { PergelGlobalContextOmitModule } from '#pergel'
+import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 const { clientInit, mapValue } = clientFunctionTemplate<Redis, BullMQModuleRuntimeConfig>('bullmq')
 

@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
 import { usePergelRuntime } from './utils/usePergelRuntime'
-import type { PergelGlobalContext } from '#pergel'
+import type { PergelGlobalContext } from '#pergel/types'
 
 // TODO: runtimeClientGenerator
 export function clientFunctionTemplate<ClientType, RuntimeConfigType, MapType = object>(

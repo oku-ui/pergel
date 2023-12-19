@@ -7,6 +7,9 @@ import type { ImportsOptions, Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 
 import type { UnimportPluginOptions } from 'unimport/unplugin'
+import type { GraphQLYogaConfig } from '../../modules/graphqlYoga/types'
+
+export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
 export interface Modules {
   S3?: true
@@ -14,9 +17,10 @@ export interface Modules {
   nodeCron?: true
   bullmq?: true
   json2csv?: true
+  graphqlYoga?: true | GraphQLYogaConfig
 }
 
-export type ModuleName = keyof Modules | string
+export type ModuleName = keyof Modules
 
 export interface PergelOptions {
   /**
@@ -54,11 +58,11 @@ export interface PergelOptions {
   esnext?: boolean
 }
 
-export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> extends PergelOptions {
+export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> {
   /**
    * Pergel user defined options.
    */
-  options: Required<PergelOptions>
+  rootOptions: Required<PergelOptions>
   /**
    * [S3, nodecron, graphql, drizzle]
    */
@@ -72,30 +76,34 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
 
   nitroImports: Partial<UnimportPluginOptions>
   nuxtImports: Partial<ImportsOptions>
-  readmeYaml: Record<string, any>
+  readmeYaml: any
   resolver: Resolver
   devServerHandler: {
     id: string
     fn: () => void
   }[]
   dts: {
-    projectName: string
-    body: string
-    template: string
-    moduleName: string
-  }[]
-  activeModules: string[]
+    [projectName: string]: {
+      [moduleName: string]: {
+        interfaceNames: string[]
+        template: string[]
+      }
+    }
+  }
+  activeModules: {
+    [projectName: string]: {
+      [moduleName: string]: {
+        devtools?: {
+          [key: string]: any
+        }
+      }
+    }
+  }
 
   projects: {
     [project: string]: {
-      [key in ModuleName]: {
+      [module in ModuleName]: {
         options: T
-
-        /**
-         * @example
-         * 'Project1S3' | 'Project1NodeCron' | 'Project1GraphQL' | 'Project1Drizzle'
-         */
-        typeName: string
 
         /**
          * @example

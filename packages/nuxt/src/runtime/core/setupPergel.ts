@@ -47,9 +47,9 @@ export async function setupPergel(
     },
   })
 
-  nuxt.options.alias['#pergel'] = pergelType.dst
+  nuxt.options.alias['#pergel/types'] = pergelType.dst
   nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias['#pergel'] = pergelType.dst
+  nuxt.options.nitro.alias['#pergel/types'] = pergelType.dst
 
   const resolvedOptions = defu(options, {
     projects: {
@@ -59,9 +59,7 @@ export async function setupPergel(
     rootDir,
   } as PergelOptions)
 
-  const resolvedPergelOptions = defu({
-    options: _options,
-  } as ResolvedPergelOptions, {
+  const resolvedPergelOptions = defu({}, {
     nitroImports: {},
     nuxtImports: {},
     readmeYaml: {
@@ -77,6 +75,7 @@ export async function setupPergel(
       'nodeCron',
       'bullmq',
       'json2csv',
+      'graphqlYoga',
     ],
     resolver,
     dir: {
@@ -88,12 +87,12 @@ export async function setupPergel(
     pergelDir: resolve(resolveDir, resolvedOptions.pergelDir ?? 'pergel'),
     readmeDir: resolve(resolveReadmePath),
     projectNames,
-    options,
+    rootOptions: _options,
     projects: {},
-    activeModules: [],
+    activeModules: {},
     contents: [],
     devServerHandler: [],
-    dts: [],
+    dts: {},
     esnext: true,
     _module: {
       dir: {
@@ -106,9 +105,8 @@ export async function setupPergel(
       options: {},
       projectDir: '',
       projectName: '',
-      typeName: '',
     },
-  } as ResolvedPergelOptions) as ResolvedPergelOptions
+  } as ResolvedPergelOptions)
 
   nuxt._pergel = resolvedPergelOptions
 }
