@@ -54,7 +54,9 @@ export default defineNuxtConfig({
         ses: true,
         bullmq: true,
         json2csv: true,
-        graphqlYoga: true,
+        graphqlYoga: {
+          mergeSchemas: true,
+        },
       },
       test2: {
         S3: true,

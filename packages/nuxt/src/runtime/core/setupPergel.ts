@@ -87,7 +87,7 @@ export async function setupPergel(
     pergelDir: resolve(resolveDir, resolvedOptions.pergelDir ?? 'pergel'),
     readmeDir: resolve(resolveReadmePath),
     projectNames,
-    options: _options,
+    rootOptions: _options,
     projects: {},
     activeModules: {},
     contents: [],

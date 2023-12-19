@@ -60,7 +60,7 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
   /**
    * Pergel user defined options.
    */
-  options: Required<PergelOptions>
+  rootOptions: Required<PergelOptions>
   /**
    * [S3, nodecron, graphql, drizzle]
    */

@@ -42,7 +42,7 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
 
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt }) : module.defaults
 
-    const userModuleOptions = (nuxt._pergel.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
+    const userModuleOptions = (nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
 
     const moduleOptions = defu({
       ...nuxt._pergel._module,

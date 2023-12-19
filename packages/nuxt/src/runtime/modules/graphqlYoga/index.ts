@@ -20,6 +20,7 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
   },
   defaults({ nuxt }) {
     const options = nuxt._pergel._module.options
+    console.log('options', options)
 
     return defu(options, {
       documents: resolve(nuxt._pergel._module.moduleDir, options.documents ?? 'documents'),

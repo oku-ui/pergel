@@ -10,7 +10,7 @@ export async function setupModules(data: {
   resolver: Resolver
   nuxt: Nuxt
 }) {
-  const projects = data.nuxt._pergel.options.projects
+  const projects = data.nuxt._pergel.rootOptions.projects
   const modulesMap = new Map<string, PergelModule<any>>()
 
   for await (const [projectKey, modules] of Object.entries(projects)) {
