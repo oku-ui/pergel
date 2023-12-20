@@ -24,6 +24,17 @@ export default definePergelModule<ResolvedDrizzleConfig>({
 
       return data
     },
+    devDependencies(options) {
+      options.driver ??= 'postgresjs:pg'
+
+      const data = {
+      } as Record<string, string>
+
+      if (options.driver === 'postgresjs:pg')
+        data.pg = '^8.11.0'
+
+      return data
+    },
   },
   defaults({ nuxt }) {
     const rootOptions = nuxt._pergel._module.options
@@ -40,6 +51,7 @@ export default definePergelModule<ResolvedDrizzleConfig>({
         name: driverName ?? 'postgresjs',
         driver: driver ?? 'pg',
       } as any,
+      studio: true,
     }
   },
   async setup({ nuxt }) {

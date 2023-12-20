@@ -24,6 +24,7 @@
     "@pergel/nuxt": "link:..",
     "@types/node-cron": "^3.0.11",
     "nuxt": "latest",
-    "pergel": "workspace:^"
+    "pergel": "workspace:^",
+    "pg": "^8.11.0"
   }
 }

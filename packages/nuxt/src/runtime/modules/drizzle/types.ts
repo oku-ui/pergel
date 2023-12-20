@@ -30,6 +30,12 @@ export interface DrizzleConfig {
   autoImportPrefix?: {
     filters: string
   }
+
+  /**
+   * Database seeds
+   * @default true
+   */
+  studio?: false
 }
 
 export interface ResolvedDrizzleConfig {
@@ -76,6 +82,8 @@ export interface ResolvedDrizzleConfig {
   autoImportPrefix?: {
     filters: string
   }
+
+  studio: boolean
 }
 
 export interface PostgresJSOptions {

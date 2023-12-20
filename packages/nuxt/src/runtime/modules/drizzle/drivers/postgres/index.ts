@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { startSubprocess } from '@nuxt/devtools-kit'
 import type { ResolvedDrizzleConfig } from '../../types'
 
 import { createDrizzleConfig } from '../../defaults/postgresjs'
@@ -57,6 +58,29 @@ export default {
 
   createDrizzleConfig({ schemaPaths: nuxt._pergel._module.options.schemaPaths })
 
+  if (nuxt.options.dev) {
+    const subprocess = startSubprocess({
+      command: 'drizzle-kit',
+      args: ['studio', '--port', '3105', `--config=${nuxt._pergel._module.moduleDir}/drizzle.config.js`],
+      cwd: nuxt.options.rootDir,
+      env: {
+        ...process.env,
+      },
+    }, {
+      id: `drizzle-kit-${projectName}`,
+      name: `drizzle-kit ${projectName}`,
+    })
+
+    subprocess.getProcess().stdout?.on('data', (data) => {
+    // eslint-disable-next-line no-console
+      console.log(` sub: ${data.toString()}`)
+    })
+
+    process.on('exit', () => {
+      subprocess.terminate()
+    })
+  }
+
   generateProjectReadme(nuxt, ({ addCommentBlock }) => ({
     ...addCommentBlock('Script Commands'),
     scripts: {
@@ -65,11 +89,15 @@ export default {
       push: `drizzle-kit push:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
       drop: `drizzle-kit drop --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
       up: `drizzle-kit up:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      studio: `drizzle-kit studio --port 3105 --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
     },
     cli: {
-      // TODO: delete cli -b
       migrate: `pergel orm -s=migrate -p=${projectName}`,
       push: `pergel orm -s=push -p=${projectName}`,
+      drop: `pergel orm -s=drop -p=${projectName}`,
+      up: `pergel orm -s=up -p=${projectName}`,
+      generate: `pergel orm -s=generate -p=${projectName}`,
+      studio: `pergel orm -s=studio -p=${projectName}`,
     },
   }))
 }

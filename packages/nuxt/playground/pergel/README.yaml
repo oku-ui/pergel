@@ -10,9 +10,14 @@ test:
       push: drizzle-kit push:postgresjs --config=pergel/test/drizzle/drizzle.config.js
       drop: drizzle-kit drop --config=pergel/test/drizzle/drizzle.config.js
       up: drizzle-kit up:postgresjs --config=pergel/test/drizzle/drizzle.config.js
+      studio: drizzle-kit studio --port 3105 --config=pergel/test/drizzle/drizzle.config.js
     cli:
       migrate: pergel orm -s=migrate -p=test
       push: pergel orm -s=push -p=test
+      drop: pergel orm -s=drop -p=test
+      up: pergel orm -s=up -p=test
+      generate: pergel orm -s=generate -p=test
+      studio: pergel orm -s=studio -p=test
     pg:
       env:
         NUXT_TEST_DRIZZLE_PG_URL: 
@@ -25,7 +30,7 @@ test:
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
       dependencies: "drizzle-kit@^0.20.6, drizzle-orm@^0.29.1, postgres@^3.4.3"
-      devDependencies: ""
+      devDependencies: "pg@^8.11.0"
   graphqlYoga:
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
