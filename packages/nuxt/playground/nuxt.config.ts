@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     /**
      * My module
      */
-    '@pergel/nuxt',
+    '../src/module',
     /**
      * Start a sub Nuxt Server for developing the client
      *

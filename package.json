@@ -52,5 +52,10 @@
   },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt"
+  },
+  "pnpm": {
+    "resolutions": {
+      "@pergel/nuxt": "link:./packages/nuxt"
+    }
   }
 }

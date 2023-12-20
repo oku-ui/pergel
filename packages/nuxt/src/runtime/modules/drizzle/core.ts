@@ -1,6 +1,6 @@
-import { cpSync, existsSync, mkdirSync } from 'node:fs'
+import { cpSync, existsSync, lstatSync, mkdirSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { useLogger } from '@nuxt/kit'
-import { resolve } from 'pathe'
 import { consola } from 'consola'
 import type { NuxtPergel } from '../../core/types'
 import type { ResolvedDrizzleConfig } from './types'
@@ -15,21 +15,33 @@ export async function copyMigrationFolder(
     try {
       const logger = useLogger('pergel:drizzle')
 
-      const outDir = resolve(nitroCtx.options.output.dir, nuxt._pergel._module.dir.module, 'migrations')
+      for (const [projectName, modules] of Object.entries(nuxt._pergel.activeModules)) {
+        for (const [moduleName, _module] of Object.entries(modules)) {
+          if (moduleName === 'drizzle') {
+            const outDir = resolve(nitroCtx.options.output.dir, 'pergel', projectName, moduleName, 'migrations')
+            const folderDir = resolve(nitroCtx.options.rootDir, 'pergel', projectName, moduleName, 'migrations')
+            // check folder in files > 0
+            const folderSize = lstatSync(folderDir).size
+            if (folderSize > 200) {
+              if (!existsSync(outDir))
+                mkdirSync(outDir, { recursive: true })
+              if (!existsSync(outDir))
+                mkdirSync(outDir, { recursive: true })
 
-      if (!existsSync(outDir))
-        mkdirSync(outDir, { recursive: true })
+              logger.info(`Copying drizzle migrations folder to ${folderDir}`)
 
-      const resolvedDrizzleMigrationsPaths = resolve(nuxt._pergel._module.options.migrationsPaths)
-
-      logger.info(`Copying drizzle migrations folder to ${resolvedDrizzleMigrationsPaths}`)
-
-      if (existsSync(resolvedDrizzleMigrationsPaths)) {
-        cpSync(resolvedDrizzleMigrationsPaths, outDir, {
-          recursive: true,
-        })
+              if (existsSync(folderDir)) {
+                cpSync(folderDir, outDir, {
+                  recursive: true,
+                })
+              }
+              else {
+                consola.error(`Drizzle migrations folder not found: ${folderDir}`)
+              }
+            }
+          }
+        }
       }
-      else { consola.error(`Drizzle migrations folder not found: ${resolvedDrizzleMigrationsPaths}`) }
     }
     catch (error) {
       consola.error(error)
