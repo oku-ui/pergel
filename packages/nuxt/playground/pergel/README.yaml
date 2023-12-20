@@ -13,15 +13,15 @@ test:
     cli:
       migrate: pergel orm -s=migrate -p=test
       push: pergel orm -s=push -p=test
-    postgresjs:
+    pg:
       env:
-        NUXT_TEST_DRIZZLE_POSTGRESJS_URL: 
-        NUXT_TEST_DRIZZLE_POSTGRESJS_HOST: 
-        NUXT_TEST_DRIZZLE_POSTGRESJS_PORT: 5432
-        NUXT_TEST_DRIZZLE_POSTGRESJS_DATABASE: 
-        NUXT_TEST_DRIZZLE_POSTGRESJS_USER: 
-        NUXT_TEST_DRIZZLE_POSTGRESJS_PASSWORD: 
-        NUXT_TEST_DRIZZLE_POSTGRESJS_SSL: false
+        NUXT_TEST_DRIZZLE_PG_URL: 
+        NUXT_TEST_DRIZZLE_PG_HOST: 
+        NUXT_TEST_DRIZZLE_PG_PORT: 5432
+        NUXT_TEST_DRIZZLE_PG_DATABASE: 
+        NUXT_TEST_DRIZZLE_PG_USER: 
+        NUXT_TEST_DRIZZLE_PG_PASSWORD: 
+        NUXT_TEST_DRIZZLE_PG_SSL: false
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
       dependencies: "drizzle-kit@^0.20.6, drizzle-orm@^0.29.1, postgres@^3.4.3"

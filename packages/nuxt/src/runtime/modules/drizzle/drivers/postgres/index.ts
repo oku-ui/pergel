@@ -20,7 +20,7 @@ export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
     user: '', // Username of database user
     password: '', // Password of database user
     ssl: false, // Use SSL
-  }, false, name)
+  }, false, 'pg')
 
   // Config generation
   const drizzleConfig = /* ts */`// Pergel Drizzle ${projectName} Config - oku-ui.com/pergel

@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { addImportsDir, addServerImportsDir, addTemplate, createResolver } from '@nuxt/kit'
-import { pascalCase } from 'scule'
+import { camelCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import type { ResolvedDrizzleConfig } from './types'
@@ -141,9 +141,9 @@ export default definePergelModule<ResolvedDrizzleConfig>({
     copyMigrationFolder(nuxt)
 
     const returnDriver = /* ts */`
-      ${moduleOptions.options._driver.name ?? 'postgresjs'}() {
+     ${camelCase(moduleOptions.options._driver.name ?? 'postgresjs')}() {
         return {
-          connect${pascalCase(moduleOptions.options._driver.name ?? 'postgresjs')}: connectPostgresJS.bind(ctx),
+          connect: connectPostgresJS.bind(ctx),
         }
       },
     `
