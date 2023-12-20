@@ -1,0 +1,148 @@
+import { existsSync, mkdirSync } from 'node:fs'
+import { join, resolve } from 'node:path'
+import { addTemplate, createResolver } from '@nuxt/kit'
+import { definePergelModule } from '../../core/definePergel'
+import { useNitroImports } from '../../core/utils/useImports'
+import type { ResolvedDrizzleConfig } from './types'
+import { copyMigrationFolder } from './core'
+import { setupPostgres } from './drivers/postgres'
+
+export * from './core'
+export * from './types'
+
+export default definePergelModule<ResolvedDrizzleConfig>({
+  meta: {
+    name: 'drizzle',
+    version: '0.0.1',
+    dependencies: {
+      'drizzle-kit': '^0.20.4',
+      'drizzle-orm': '^0.29.0',
+      'postgres': '^3.4.3',
+    },
+  },
+  defaults({ nuxt }) {
+    const rootOptions = nuxt._pergel._module.options
+
+    return {
+      driver: 'postgresjs',
+      migrationsPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.migrationsPaths ?? 'migrations'),
+      schemaPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.schemaPaths ?? 'schema'),
+      mergeSchemas: false,
+    }
+  },
+  async setup({ nuxt }) {
+    const projectName = nuxt._pergel._module.projectName
+    const moduleOptions = nuxt._pergel._module
+    const resolver = createResolver(import.meta.url)
+
+    if (!existsSync(moduleOptions.options.schemaPaths))
+      mkdirSync(moduleOptions.options.schemaPaths, { recursive: true })
+
+    if (!existsSync(moduleOptions.options.migrationsPaths))
+      mkdirSync(moduleOptions.options.migrationsPaths, { recursive: true })
+
+    // Driver setup
+    switch (moduleOptions.options.driver) {
+      case 'postgresjs':
+        await setupPostgres(nuxt)
+        break
+    }
+
+    nuxt.options.alias[`${projectName}/drizzle/schema`] = resolve(
+      nuxt.options.rootDir,
+      moduleOptions.options.schemaPaths,
+    )
+
+    nuxt.options.nitro.alias ??= {}
+    nuxt.options.nitro.alias[`${projectName}/drizzle/schema`] = resolve(
+      nuxt.options.rootDir,
+      moduleOptions.options.schemaPaths,
+    )
+
+    const template = addTemplate({
+      filename: join(nuxt._pergel._module.dir.module, 'index.ts'),
+      write: true,
+      getContents: () => /* ts */`// Pergel Drizzle Schema - oku-ui.com
+       export * from '${join(moduleOptions.options.schemaPaths)}'
+    `,
+    })
+
+    useNitroImports(nuxt, {
+      presets: [
+        {
+          from: resolver.resolve('./export'),
+          imports: [
+            'drizzleDriver',
+          ],
+        },
+        {
+          from: template.dst,
+          imports: [
+            {
+              as: `tables${projectName}`,
+              name: '*',
+            },
+          ],
+        },
+        {
+          from: 'drizzle-orm',
+          imports: [
+            'eq',
+            'ne',
+            'gt',
+            'gte',
+            'lt',
+            'lte',
+            'isNull',
+            'isNotNull',
+            'inArray',
+            'notInArray',
+            'exists',
+            'notExists',
+            'between',
+            'notBetween',
+            'like',
+            'ilike',
+            'notLike',
+            'not',
+            'and',
+            'or',
+            'arrayContains',
+            'arrayContained',
+            'arrayOverlaps',
+            'sql',
+          ].map(name => ({
+            name,
+            as: moduleOptions.options.autoImportPrefix?.filters
+              ? `${moduleOptions.options.autoImportPrefix?.filters}${name}`
+              : name,
+            priority: 1,
+            meta: {
+              description: `Drizzle ORM ${name}`,
+              docsUrl: `https://orm.drizzle.team/docs/operators#${name}`,
+            },
+          })),
+        },
+      ],
+    })
+
+    await copyMigrationFolder(nuxt)
+
+    nuxt._pergel.contents.push({
+      moduleName: 'drizzle',
+      projectName,
+      content: /* ts */`
+          function drizzle() {
+            return {
+              ...drizzleDriver(),
+              schema: tables${projectName},
+            }
+          }
+        `,
+      resolve: /* ts */`
+          drizzle: drizzle,
+        `,
+    })
+  },
+
+})

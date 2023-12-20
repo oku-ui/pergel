@@ -76,6 +76,7 @@ export async function setupPergel(
       'bullmq',
       'json2csv',
       'graphqlYoga',
+      'drizzle',
     ],
     resolver,
     dir: {
