@@ -11,10 +11,17 @@ export default definePergelModule<ResolvedDrizzleConfig>({
   meta: {
     name: 'drizzle',
     version: '0.0.1',
-    dependencies: {
-      'drizzle-kit': '^0.20.4',
-      'drizzle-orm': '^0.29.0',
-      'postgres': '^3.4.3',
+    dependencies(options) {
+      options.driver ??= 'postgresjs:pg'
+      const data = {
+        'drizzle-kit': '^0.20.6',
+        'drizzle-orm': '^0.29.1',
+      } as Record<string, string>
+
+      if (options.driver === 'postgresjs:pg')
+        data.postgres = '^3.4.3'
+
+      return data
     },
   },
   defaults({ nuxt }) {

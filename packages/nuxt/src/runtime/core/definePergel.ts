@@ -22,8 +22,8 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
 
   async function preparationModule(data: { nuxt: NuxtPergel<OptionsT> }) {
     const { nuxt } = data
-    const dependencies = module.meta.dependencies ?? {}
-    const devDependencies = module.meta.devDependencies ?? {}
+    const dependencies = module.meta.dependencies instanceof Function ? module.meta.dependencies(data.nuxt._pergel._module.options) : module.meta.dependencies ?? {}
+    const devDependencies = module.meta.devDependencies instanceof Function ? module.meta.devDependencies(data.nuxt._pergel._module.options) : module.meta.devDependencies ?? {}
 
     if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
       generateProjectReadme(nuxt, ({ addCommentBlock }) => ({
