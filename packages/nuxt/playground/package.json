@@ -10,7 +10,8 @@
   "devDependencies": {
     "@pergel/nuxt": "link:..",
     "@types/node-cron": "^3.0.11",
-    "nuxt": "latest"
+    "nuxt": "latest",
+    "pergel": "workspace:^"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.470.0",

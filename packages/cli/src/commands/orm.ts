@@ -61,7 +61,7 @@ export default defineCommand({
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
       const json = parse(readmeString) as PergelYaml
 
-      const project = json[file.config.cli.database.driver ?? 'drizzle'][file.config.cli.database.project]
+      const project = json[file.config.cli.database.project][file.config.cli.database.driver ?? 'drizzle']
 
       const script = project?.scripts ?? {}
 
