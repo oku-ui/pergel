@@ -26,9 +26,6 @@
   },
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
-  "files": [
-    "dist"
-  ],
   "typesVersions": {
     "*": {
       "*": [
@@ -39,6 +36,9 @@
       ]
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "stub": "nuxt-build-module build --stub && nuxt-module-build prepare",
     "prepack": "nuxt-module-build build && npm run client:build",
