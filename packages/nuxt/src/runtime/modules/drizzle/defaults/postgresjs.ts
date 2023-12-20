@@ -6,7 +6,7 @@ export function createDrizzleConfig(data: {
 }) {
   const indexSchema = /* ts */`// Pergel auto generated please change this file as you wish
 import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core'
-import { defaultUserSchema } from 'pergeltest/drizzle/schema/pg'
+import { defaultUserSchema } from '@pergel/nuxt/drizzle/schema/pg'
 import { sql } from 'drizzle-orm'
 
 export const user = defaultUserSchema({})

@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     /**
      * My module
      */
-    '../src/module',
+    '@pergel/nuxt',
     /**
      * Start a sub Nuxt Server for developing the client
      *
@@ -57,6 +57,7 @@ export default defineNuxtConfig({
         graphqlYoga: {
           mergeSchemas: true,
         },
+        drizzle: true,
       },
       test2: {
         S3: true,

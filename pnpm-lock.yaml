@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@pergel/nuxt': link:./packages/nuxt
+
 importers:
 
   .:
@@ -272,7 +275,47 @@ importers:
         version: 0.5.0(vue@3.3.11)
 
   packages/nuxt/playground:
+    dependencies:
+      '@aws-sdk/client-ses':
+        specifier: ^3.470.0
+        version: 3.470.0
+      '@json2csv/node':
+        specifier: ^7.0.4
+        version: 7.0.4
+      '@pergel/graphql':
+        specifier: workspace:0.0.0
+        version: link:../../graphql
+      '@pergel/module-s3':
+        specifier: workspace:0.0.0
+        version: link:../../s3
+      bullmq:
+        specifier: ^4.14.3
+        version: 4.15.2
+      drizzle-kit:
+        specifier: ^0.20.4
+        version: 0.20.6
+      drizzle-orm:
+        specifier: ^0.29.0
+        version: 0.29.1(postgres@3.4.3)
+      ioredis:
+        specifier: ^5.3.2
+        version: 5.3.2
+      node-cron:
+        specifier: ^3.0.3
+        version: 3.0.3
+      p-timeout:
+        specifier: ^6.1.2
+        version: 6.1.2
+      postgres:
+        specifier: ^3.4.3
+        version: 3.4.3
     devDependencies:
+      '@pergel/nuxt':
+        specifier: link:..
+        version: link:..
+      '@types/node-cron':
+        specifier: ^3.0.11
+        version: 3.0.11
       nuxt:
         specifier: latest
         version: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(typescript@5.3.3)(vite@5.0.4)
@@ -3275,20 +3318,17 @@ packages:
 
   /@json2csv/formatters@7.0.4:
     resolution: {integrity: sha512-qdlLx0Pk/+BQnu6zreLgGrdLyUzLNVdsyCUU/+2aduHg4zemVo/e0iWjPk1sy/QZXXh+1RXBe+IiP9eDyj95qg==}
-    dev: true
 
   /@json2csv/node@7.0.4:
     resolution: {integrity: sha512-ZDK56yyn5WFuUNovyjQU14mtSxktL+tV332g3PgqdGcBdIfQhtsGHWugBdD1jmfAHOfacNKkoMZm/JLUOZDJRw==}
     dependencies:
       '@json2csv/plainjs': 7.0.4
-    dev: true
 
   /@json2csv/plainjs@7.0.4:
     resolution: {integrity: sha512-IHLyosebSdXMtVKusHHGqvp8mCpEkVk0Qvc0lAGcdAYdvO8lBvry8o665+CX78uPj/QZBhu+s0cOWyxanxlrQw==}
     dependencies:
       '@json2csv/formatters': 7.0.4
       '@streamparser/json': 0.0.17
-    dev: true
 
   /@kamilkisiela/fast-url-parser@1.1.4:
     resolution: {integrity: sha512-gbkePEBupNydxCelHCESvFSFM8XPh1Zs/OAVRW/rKpEqPAl5PbOM90Si8mv9bvnR53uPD2s/FiRxdvSejpRJew==}
@@ -3349,7 +3389,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-darwin-x64@3.0.2:
@@ -3357,7 +3396,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-linux-arm64@3.0.2:
@@ -3365,7 +3403,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-linux-arm@3.0.2:
@@ -3373,7 +3410,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-linux-x64@3.0.2:
@@ -3381,7 +3417,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-win32-x64@3.0.2:
@@ -3389,7 +3424,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@netlify/functions@2.4.0:
@@ -5025,7 +5059,6 @@ packages:
 
   /@streamparser/json@0.0.17:
     resolution: {integrity: sha512-mW54K6CTVJVLwXRB6kSS1xGWPmtTuXAStWnlvtesmcySgtop+eFPWOywBFPpJO4UD173epYsPSP6HSW8kuqN8w==}
-    dev: true
 
   /@stylistic/eslint-plugin-js@1.5.0(eslint@8.55.0):
     resolution: {integrity: sha512-TuGQv1bsIshkbJUInCewp4IUWy24W5RFiVNMV0quPSkuZ8gsYoqq6kLHvvaxpjxN9TvwSoOIwnhgrYKei2Tgcw==}
@@ -6709,7 +6742,6 @@ packages:
       uuid: 9.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /bumpp@9.2.0:
     resolution: {integrity: sha512-pgp7y3jp33QTaXFVDrE0IKuZF5Y8EsIz+ywZXFALW2nD+ZD+4crxJe/GypBQBoJuZrr5dc6TGrR3wl7fk3+C6w==}
@@ -7298,7 +7330,6 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       luxon: 3.4.4
-    dev: true
 
   /cross-fetch@3.1.8:
     resolution: {integrity: sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg==}
@@ -10050,7 +10081,6 @@ packages:
   /luxon@3.4.4:
     resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
     engines: {node: '>=12'}
-    dev: true
 
   /magic-string-ast@0.3.0:
     resolution: {integrity: sha512-0shqecEPgdFpnI3AP90epXyxZy9g6CRZ+SZ7BcqFwYmtFEnZ1jpevcV5HoyVnlDS9gCnc1UIg3Rsvp3Ci7r8OA==}
@@ -10408,14 +10438,12 @@ packages:
       '@msgpackr-extract/msgpackr-extract-linux-arm64': 3.0.2
       '@msgpackr-extract/msgpackr-extract-linux-x64': 3.0.2
       '@msgpackr-extract/msgpackr-extract-win32-x64': 3.0.2
-    dev: true
     optional: true
 
   /msgpackr@1.10.0:
     resolution: {integrity: sha512-rVQ5YAQDoZKZLX+h8tNq7FiHrPJoeGHViz3U4wIcykhAEpwF/nH2Vbk8dQxmpX5JavkI8C7pt4bnkJ02ZmRoUw==}
     optionalDependencies:
       msgpackr-extract: 3.0.2
-    dev: true
 
   /mustache@4.2.0:
     resolution: {integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==}
@@ -10565,7 +10593,6 @@ packages:
 
   /node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
-    dev: true
 
   /node-addon-api@7.0.0:
     resolution: {integrity: sha512-vgbBJTS4m5/KkE16t5Ly0WW9hz46swAstv0hYYwMtbG7AznRhNyfLRe8HZAiWIpcHzoO7HxhLuBQj9rJ/Ho0ZA==}
@@ -10575,7 +10602,6 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       uuid: 8.3.2
-    dev: true
 
   /node-fetch-native@1.4.1:
     resolution: {integrity: sha512-NsXBU0UgBxo2rQLOeWNZqS3fvflWePMECr8CoSWoSTqCqGbVVsvl9vZu1HfQicYN0g5piV9Gh8RTEvo/uP752w==}
@@ -10599,7 +10625,6 @@ packages:
     resolution: {integrity: sha512-YlCCc6Wffkx0kHkmam79GKvDQ6x+QZkMjFGrIMxgFNILFvGSbCp2fCBC55pGTT9gVaz8Na5CLmxt/urtzRv36w==}
     hasBin: true
     requiresBuild: true
-    dev: true
     optional: true
 
   /node-gyp-build@4.7.1:
@@ -11135,7 +11160,6 @@ packages:
   /p-timeout@6.1.2:
     resolution: {integrity: sha512-UbD77BuZ9Bc9aABo74gfXhNvzC9Tx7SxtHSh1fxvx3jTLLYvmVhiQZZrJzqqU0jKbN32kb5VOKiLEQI/3bIjgQ==}
     engines: {node: '>=14.16'}
-    dev: true
 
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
@@ -13408,7 +13432,6 @@ packages:
   /uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
-    dev: true
 
   /v-lazy-show@0.2.4(@vue/compiler-core@3.3.11):
     resolution: {integrity: sha512-Lx9Str2i+HTh+zGzs9O3YyhGAZOAAfU+6MUUPcQPPiPxQO1sHBEv9sH3MO9bPc4T09gsjsS2+sbaCWQ1MdhpJQ==}
