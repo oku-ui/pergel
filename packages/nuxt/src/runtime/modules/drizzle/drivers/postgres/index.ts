@@ -10,6 +10,7 @@ import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
   const module = nuxt._pergel._module
   const projectName = module.projectName
+  const { driver, name } = module.options._driver
 
   const { env } = generateModuleRuntimeConfig(nuxt, {
     url: '',
@@ -19,7 +20,7 @@ export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
     user: '', // Username of database user
     password: '', // Password of database user
     ssl: false, // Use SSL
-  }, false, module.options.driver)
+  }, false, name)
 
   // Config generation
   const drizzleConfig = /* ts */`// Pergel Drizzle ${projectName} Config - oku-ui.com/pergel
@@ -28,7 +29,7 @@ export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
 export default {
   schema: '${nuxt._pergel._module.dir.module}/schema/index.ts',
   out: '${nuxt._pergel._module.dir.module}/migrations',
-  driver: 'pg',
+  ${driver === 'pg' ? `driver: '${driver}',` : ''}
   dbCredentials: process.env.${env.url}
     ? {
         connectionString: process.env.${env.url},
@@ -59,8 +60,11 @@ export default {
   generateProjectReadme(nuxt, ({ addCommentBlock }) => ({
     ...addCommentBlock('Script Commands'),
     scripts: {
-      migrate: `drizzle-kit generate:pg --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-      push: `drizzle-kit push:pg --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      migrate: `drizzle-kit generate:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      generate: `drizzle-kit generate:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      push: `drizzle-kit push:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      drop: `drizzle-kit drop --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      up: `drizzle-kit up:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
     },
     cli: {
       // TODO: delete cli -b

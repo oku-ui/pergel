@@ -1,4 +1,5 @@
 // Pergel Drizzle test Config - oku-ui.com/pergel
+
 /** @type { import("drizzle-kit").Config } */
 export default {
   schema: 'pergel/test/drizzle/schema/index.ts',

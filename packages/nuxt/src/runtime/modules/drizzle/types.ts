@@ -5,9 +5,9 @@ export interface DrizzleConfig {
   /**
    * Postres.js database
    * @link https://github.com/porsager/postgres
-   * @default 'postgresjs'
+   * @default 'postgresjs:pg'
    */
-  driver?: 'postgresjs'
+  driver?: 'postgresjs:pg'
 
   /**
    * Database schemas
@@ -34,12 +34,20 @@ export interface DrizzleConfig {
 
 export interface ResolvedDrizzleConfig {
 
-  /**
-   * Postres.js database
-   * @link https://github.com/porsager/postgres
-   * @default 'postgresjs'
-   */
-  driver: 'postgresjs'
+  driver: 'postgresjs:pg'
+
+  _driver: {
+    /**
+     * Postres.js database
+     * @default 'postgresjs'
+     */
+    name: 'postgresjs'
+    /**
+     * Postres.js database
+     * @default 'pg'
+     */
+    driver: 'pg'
+  }
 
   /**
    * Database schemas
@@ -58,6 +66,12 @@ export interface ResolvedDrizzleConfig {
    * @default true
    */
   mergeSchemas?: boolean
+
+  /**
+   * Database seeds
+   * @default 'pergel/{projectName}/{moduleName}/seeds'
+   */
+  seedPaths: string
 
   autoImportPrefix?: {
     filters: string

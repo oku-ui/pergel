@@ -20,11 +20,18 @@ export default definePergelModule<ResolvedDrizzleConfig>({
   defaults({ nuxt }) {
     const rootOptions = nuxt._pergel._module.options
 
+    const [driverName, driver] = rootOptions.driver?.split(':') ?? ['postgresjs', 'pg']
+
     return {
-      driver: 'postgresjs',
+      driver: rootOptions.driver ?? 'postgresjs:pg',
       migrationsPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.migrationsPaths ?? 'migrations'),
       schemaPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.schemaPaths ?? 'schema'),
+      seedPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.seedPaths ?? 'seeds'),
       mergeSchemas: false,
+      _driver: {
+        name: driverName ?? 'postgresjs',
+        driver: driver ?? 'pg',
+      } as any,
     }
   },
   async setup({ nuxt }) {
@@ -38,8 +45,11 @@ export default definePergelModule<ResolvedDrizzleConfig>({
     if (!existsSync(moduleOptions.options.migrationsPaths))
       mkdirSync(moduleOptions.options.migrationsPaths, { recursive: true })
 
+    if (!existsSync(moduleOptions.options.seedPaths))
+      mkdirSync(moduleOptions.options.seedPaths, { recursive: true })
+
     // Driver setup
-    switch (moduleOptions.options.driver) {
+    switch (moduleOptions.options._driver.name) {
       case 'postgresjs':
         await setupPostgres(nuxt)
         break
@@ -123,9 +133,9 @@ export default definePergelModule<ResolvedDrizzleConfig>({
     copyMigrationFolder(nuxt)
 
     const returnDriver = /* ts */`
-      ${moduleOptions.options.driver ?? 'postgresjs'}() {
+      ${moduleOptions.options._driver.name ?? 'postgresjs'}() {
         return {
-          connect: connect${moduleOptions.options.driver ?? 'postgresjs'},
+          connect: connect${moduleOptions.options._driver.name ?? 'postgresjs'},
         }
       },
     `
