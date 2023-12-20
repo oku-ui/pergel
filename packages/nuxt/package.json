@@ -25,6 +25,7 @@
     "dist"
   ],
   "scripts": {
+    "stub": "nuxt-build-module build --stub && nuxt-module-build prepare",
     "prepack": "nuxt-module-build build && npm run client:build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
@@ -60,10 +61,13 @@
     "@types/node": "^20.9.3",
     "@types/node-cron": "^3.0.11",
     "bullmq": "^4.15.2",
+    "drizzle-kit": "^0.20.7",
+    "drizzle-orm": "^0.29.1",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
     "node-cron": "^3.0.3",
     "nuxt": "^3.8.2",
     "p-timeout": "^6.1.2",
+    "postgres": "^3.4.3",
     "vitest": "^0.33.0"
   },
   "publishConfig": {
