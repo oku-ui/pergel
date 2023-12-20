@@ -2,8 +2,8 @@ import { type PostgresJsDatabase, drizzle } from 'drizzle-orm/postgres-js'
 import type { H3Event } from 'h3'
 import postgres from 'postgres'
 import type { PostgresJSOptions } from '../../types'
+import { clientFunctionTemplate } from '../../../../core/useClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
-import { clientFunctionTemplate } from '~/src/runtime/core/useClient'
 
 const { clientInit } = clientFunctionTemplate<PostgresJsDatabase, PostgresJSOptions>('drizzle')
 
