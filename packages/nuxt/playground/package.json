@@ -7,11 +7,6 @@
     "build": "nuxi build",
     "generate": "nuxi generate"
   },
-  "devDependencies": {
-    "@pergel/nuxt": "link:..",
-    "@types/node-cron": "^3.0.11",
-    "nuxt": "latest"
-  },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.470.0",
     "@json2csv/node": "^7.0.4",
@@ -24,5 +19,10 @@
     "node-cron": "^3.0.3",
     "p-timeout": "^6.1.2",
     "postgres": "^3.4.3"
+  },
+  "devDependencies": {
+    "@pergel/nuxt": "link:..",
+    "@types/node-cron": "^3.0.11",
+    "nuxt": "latest"
   }
 }

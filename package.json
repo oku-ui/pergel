@@ -44,13 +44,13 @@
     "vite": "5.0.4",
     "vitest": "^0.34.6"
   },
+  "resolutions": {
+    "@pergel/nuxt": "link:./packages/nuxt"
+  },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*": "eslint . --fix"
-  },
-  "resolutions": {
-    "@pergel/nuxt": "link:./packages/nuxt"
   }
 }
