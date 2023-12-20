@@ -1,7 +1,4 @@
 import type { Options } from 'postgres'
-import type { ResolvedPergelOptions } from '../../core/types'
-
-export type DrizzleModuleOptions = ResolvedPergelOptions<ResolvedDrizzleConfig>
 
 export interface DrizzleConfig {
 
@@ -14,13 +11,13 @@ export interface DrizzleConfig {
 
   /**
    * Database schemas
-   * @default 'server/database/schema'
+   * @default 'pergel/{projectName}/{moduleName}/schema'
    */
   schemaPaths?: string
 
   /**
    * Database migrations
-   * @default 'server/database/migrations'
+   * @default 'pergel/{projectName}/{moduleName}/migrations'
    */
   migrationsPaths?: string
 
@@ -46,13 +43,13 @@ export interface ResolvedDrizzleConfig {
 
   /**
    * Database schemas
-   * @default 'pergel/{activeBranch}/{projectName}/schema'
+   * @default 'pergel/{projectName}/{moduleName}/schema'
    */
   schemaPaths: string
 
   /**
    * Database migrations
-   * @default 'pergel/{activeBranch}/{projectName}/migrations'
+   * @default 'pergel/{projectName}/{moduleName}/migrations'
    */
   migrationsPaths: string
 

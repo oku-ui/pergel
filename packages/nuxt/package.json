@@ -17,6 +17,11 @@
       "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
+    },
+    "./drizzle/*": {
+      "types": "./dist/drizzle/*.d.ts",
+      "import": "./dist/drizzle/*.mjs",
+      "require": "./dist/drizzle/*.cjs"
     }
   },
   "main": "./dist/module.cjs",
@@ -24,6 +29,16 @@
   "files": [
     "dist"
   ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ],
+      "./drizzle/*": [
+        "dist/drizzle/*"
+      ]
+    }
+  },
   "scripts": {
     "stub": "nuxt-build-module build --stub && nuxt-module-build prepare",
     "prepack": "nuxt-module-build build && npm run client:build",
@@ -61,13 +76,10 @@
     "@types/node": "^20.9.3",
     "@types/node-cron": "^3.0.11",
     "bullmq": "^4.15.2",
-    "drizzle-kit": "^0.20.7",
-    "drizzle-orm": "^0.29.1",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
     "node-cron": "^3.0.3",
     "nuxt": "^3.8.2",
     "p-timeout": "^6.1.2",
-    "postgres": "^3.4.3",
     "vitest": "^0.33.0"
   },
   "publishConfig": {

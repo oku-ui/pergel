@@ -8,7 +8,7 @@ import type { Resolver } from '@nuxt/kit'
 
 import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig } from '../../modules/graphqlYoga/types'
-import type { DrizzleConfig } from '../../modules/drizzle'
+import type { DrizzleConfig } from '../../modules/drizzle/types'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
