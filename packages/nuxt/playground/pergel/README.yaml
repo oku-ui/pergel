@@ -24,7 +24,7 @@ test:
         NUXT_TEST_DRIZZLE_POSTGRESJS_SSL: false
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: "drizzle-kit@^0.20.4, drizzle-orm@^0.29.0, postgres@^3.4.3"
+      dependencies: "drizzle-kit@^0.20.6, drizzle-orm@^0.29.1, postgres@^3.4.3"
       devDependencies: ""
   graphqlYoga:
     # If pergel cli is installed, you can run `pergel install` automatically to install

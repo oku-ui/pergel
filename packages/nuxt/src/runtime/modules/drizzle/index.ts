@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { addImportsDir, addServerImportsDir, addTemplate, createResolver } from '@nuxt/kit'
+import { pascalCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import type { ResolvedDrizzleConfig } from './types'
@@ -142,7 +143,7 @@ export default definePergelModule<ResolvedDrizzleConfig>({
     const returnDriver = /* ts */`
       ${moduleOptions.options._driver.name ?? 'postgresjs'}() {
         return {
-          connect: connect${moduleOptions.options._driver.name ?? 'postgresjs'},
+          connect${pascalCase(moduleOptions.options._driver.name ?? 'postgresjs')}: connectPostgresJS.bind(ctx),
         }
       },
     `

@@ -7,12 +7,14 @@ import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 const { clientInit } = clientFunctionTemplate<PostgresJsDatabase, PostgresJSOptions>('drizzle')
 
-export async function connectPostgresJS(ctx: {
-  pergel: PergelGlobalContextOmitModule
+export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx: {
   options: PostgresJSOptions
   event?: H3Event
+  pergel?: PergelGlobalContextOmitModule
 }) {
-  const { client } = await clientInit(ctx.pergel, (runtime) => {
+  const _pergel: PergelGlobalContextOmitModule = ctx.pergel || this
+
+  const { client } = await clientInit(_pergel, (runtime) => {
     if (runtime.url)
       return drizzle(postgres(runtime.url, {}))
 
