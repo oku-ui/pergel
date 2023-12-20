@@ -114,6 +114,12 @@ const selectedTab = ref('add')
           :project-name="tab.split('.')[0]"
         >
         </ModulesGraphqlYoga>
+        <ModulesDrizzle
+          v-if="tab.includes('.drizzle')"
+          :selected-tab-project="tab.split('.')[0]"
+          :project-name="tab.split('.')[0]"
+        >
+        </ModulesDrizzle>
       </OkuTabsContent>
     </OkuTabs>
   </div>
