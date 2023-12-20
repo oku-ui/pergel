@@ -22,7 +22,8 @@ export async function copyMigrationFolder(
             const folderDir = resolve(nitroCtx.options.rootDir, 'pergel', projectName, moduleName, 'migrations')
             // check folder in files > 0
             const folderSize = lstatSync(folderDir).size
-            if (folderSize > 200) {
+
+            if (folderSize > 100) {
               if (!existsSync(outDir))
                 mkdirSync(outDir, { recursive: true })
               if (!existsSync(outDir))

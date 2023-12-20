@@ -79,6 +79,8 @@ export default defineCommand({
           return command ? command.replace(/"/g, '') : undefined
         }, [selectedScript], { programmatic: true }).then(() => {
           consola.success('Script executed successfully')
+        }).catch((error) => {
+          consola.error(error)
         })
       }
       catch (error) {

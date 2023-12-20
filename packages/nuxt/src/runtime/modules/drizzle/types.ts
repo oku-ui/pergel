@@ -66,7 +66,6 @@ export interface ResolvedDrizzleConfig {
 
 export interface PostgresJSOptions {
   /**
-   * @default process.env.POSTGRES_URL
    */
   url?: string
   /**

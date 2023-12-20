@@ -16,8 +16,9 @@ export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
     host: '', // Postgres ip address[s] or domain name[s]
     port: 5432, // Postgres server port[s]
     database: '', // Name of database to connect to
-    username: '', // Username of database user
+    user: '', // Username of database user
     password: '', // Password of database user
+    ssl: false, // Use SSL
   }, false, module.options.driver)
 
   // Config generation
@@ -36,8 +37,9 @@ export default {
         host: process.env.${env.host},
         port: process.env.${env.port},
         database: process.env.${env.database},
-        username: process.env.${env.username},
+        user: process.env.${env.user},
         password: process.env.${env.password},
+        ssl: process.env.${env.ssl},
       },
 }
 `
