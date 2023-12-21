@@ -45,7 +45,8 @@ export default defineBuildConfig([
       },
     ],
     failOnWarn: false,
-    stub: false,
+    // TODO: if open all /src/ in export mode, then it will be a problem
+    // stub: false,
     externals: [
       '@pergel/nuxt/drizzle/schema/pg',
       'drizzle-orm/pg-core',
