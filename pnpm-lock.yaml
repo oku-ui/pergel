@@ -271,6 +271,8 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0
 
+  packages/nuxt/build-script/drizzle: {}
+
   packages/nuxt/client:
     dependencies:
       '@oku-ui/tabs':
