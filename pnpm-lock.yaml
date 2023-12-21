@@ -168,10 +168,10 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(graphql@16.8.1)
       '@graphql-tools/load':
-        specifier: ^8.0.0
+        specifier: ^8.0.1
         version: 8.0.1(graphql@16.8.1)
       '@graphql-tools/schema':
-        specifier: ^10.0.0
+        specifier: ^10.0.2
         version: 10.0.2(graphql@16.8.1)
       graphql:
         specifier: ^16.8.1
@@ -180,7 +180,7 @@ importers:
         specifier: ^0.10.0
         version: 0.10.0(graphql@16.8.1)
       graphql-yoga:
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: 5.0.2(graphql@16.8.1)
       ts-relay-cursor-paging:
         specifier: ^2.0.4
