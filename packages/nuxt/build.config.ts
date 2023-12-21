@@ -26,15 +26,16 @@ export default defineBuildConfig([
       builder: 'mkdist',
       format: 'cjs',
       ext: 'cjs',
-      outDir: './dist/drizzle/schema',
+      outDir: './lib/drizzle/schema',
     }, {
       input: './src/runtime/modules/drizzle/templates',
       builder: 'mkdist',
       format: 'esm',
       declaration: true,
       addRelativeDeclarationExtensions: true,
-      outDir: './dist/drizzle/schema',
+      outDir: './lib/drizzle/schema',
     }],
+    stub: false,
     externals: [
       ...external,
     ],

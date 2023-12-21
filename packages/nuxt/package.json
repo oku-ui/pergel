@@ -19,9 +19,9 @@
       "require": "./dist/module.cjs"
     },
     "./drizzle/*": {
-      "types": "./dist/drizzle/*.d.ts",
-      "import": "./dist/drizzle/*.mjs",
-      "require": "./dist/drizzle/*.cjs"
+      "types": "./lib/drizzle/*.d.ts",
+      "import": "./lib/drizzle/*.mjs",
+      "require": "./lib/drizzle/*.cjs"
     }
   },
   "main": "./dist/module.cjs",
@@ -32,7 +32,7 @@
         "dist/*"
       ],
       "./drizzle/*": [
-        "dist/drizzle/*"
+        "lib/drizzle/*"
       ]
     }
   },
@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.465.0",
+    "@faker-js/faker": "^8.3.1",
     "@iconify-json/carbon": "^1.1.24",
     "@iconify-json/ph": "^1.1.9",
     "@json2csv/node": "^7.0.4",

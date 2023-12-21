@@ -1,4 +1,5 @@
-import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
+export default function () {
+  return /* TS */ `import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
 import { faker } from '@faker-js/faker'
 import * as tablesTest from '../schema/index'
@@ -22,4 +23,6 @@ export async function seed1(db: PostgresJsDatabase) {
   })
 
   console.warn('Seeding database... done')
+}
+`
 }

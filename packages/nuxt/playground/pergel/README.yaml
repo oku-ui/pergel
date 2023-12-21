@@ -33,7 +33,7 @@ test:
         NUXT_TEST_DRIZZLE_PG_SEED: false
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: "drizzle-kit@^0.20.6, drizzle-orm@^0.29.1, postgres@^3.4.3"
+      dependencies: "drizzle-kit@^0.20.6, drizzle-orm@^0.29.1, @faker-js/faker@^8.3.1, dotenv@^16.3.1, postgres@^3.4.3"
       devDependencies: "pg@^8.11.0"
   graphqlYoga:
     # If pergel cli is installed, you can run `pergel install` automatically to install

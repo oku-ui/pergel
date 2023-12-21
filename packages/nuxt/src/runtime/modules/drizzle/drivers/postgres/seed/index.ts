@@ -1,5 +1,12 @@
-
-  import { resolve } from 'node:path'
+export default function (data: {
+  env: {
+    dbUrl: string
+    dbDrop: string
+    dbSeed: string
+  }
+  migrationDir: string
+}) {
+  return /* TS */ `import { resolve } from 'node:path'
 import { sql } from 'drizzle-orm'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import { drizzle } from 'drizzle-orm/postgres-js'
@@ -9,11 +16,11 @@ import { seed1 } from './seed1'
 
 config()
 
-const dbUrl = process.env.NUXT_TEST_DRIZZLE_PG_URL
-const dbDrop = process.env.NUXT_TEST_DRIZZLE_PG_DROP
-const dbSeed = process.env.NUXT_TEST_DRIZZLE_PG_SEED
+const dbUrl = process.env.${data.env.dbUrl}
+const dbDrop = process.env.${data.env.dbDrop}
+const dbSeed = process.env.${data.env.dbSeed}
 
-const migrationDir = resolve('/Users/productdevbook/works/pergel/packages/nuxt/playground/pergel/test/drizzle/migrations')
+const migrationDir = resolve('${data.migrationDir}')
 
 async function runMigrationsAndSeed() {
   if (!dbUrl)
@@ -30,14 +37,14 @@ async function runMigrationsAndSeed() {
 
   if (dbDrop) {
     console.warn('Dropping database...')
-    await db.execute(sql/* SQL */ `
+    await db.execute(sql/* SQL */ \`
 DROP SCHEMA IF EXISTS drizzle CASCADE;
 DROP SCHEMA IF EXISTS public CASCADE;
 CREATE SCHEMA public;
 CREATE SCHEMA drizzle;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
-`)
+\`)
   }
   console.warn('Migrating database...')
   await migrate(db, { migrationsFolder: migrationDir })
@@ -52,4 +59,5 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 }
 
 runMigrationsAndSeed()
-  
+  `
+}

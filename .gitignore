@@ -16,3 +16,7 @@ capacitor.config.json
 **capacitor.config.json
 __generated__
 coverage
+
+# Pergel
+lib
+dist

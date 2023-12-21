@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { startSubprocess } from '@nuxt/devtools-kit'
+import { createResolver } from '@nuxt/kit'
 import type { ResolvedDrizzleConfig } from '../../types'
 
 import { createDrizzleConfig } from '../../defaults/postgresjs'
@@ -9,6 +10,7 @@ import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntim
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 
 export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
+  const _resolver = createResolver(import.meta.url)
   const module = nuxt._pergel._module
   const projectName = module.projectName
   const { driver } = module.options._driver
@@ -58,7 +60,40 @@ export default {
     })
   }
 
-  createDrizzleConfig({ schemaPaths: nuxt._pergel._module.options.schemaPaths })
+  // Seed generation
+  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds')))
+    mkdirSync(resolve(nuxt._pergel._module.moduleDir, 'seeds'), { recursive: true, mode: 0o777 })
+
+  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/index.ts'))) {
+    const readFile = await import(_resolver.resolve('./seed/index.ts')).then(m => m.default).catch(() => null)
+    if (readFile) {
+      const file = readFile({
+        env: {
+          dbUrl: env.url,
+          dbDrop: env.drop,
+          dbSeed: env.seed,
+        },
+        migrationDir: `${nuxt._pergel._module.options.migrationsPath}`,
+      })
+      writeFileSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/index.ts'), file, {
+        mode: 0o777,
+        encoding: 'utf8',
+      })
+    }
+  }
+
+  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/seed1.ts'))) {
+    const readFile = await import(_resolver.resolve('./seed/seed1.ts')).then(m => m.default).catch(() => null)
+    if (readFile) {
+      const file = readFile()
+      writeFileSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/seed1.ts'), file, {
+        mode: 0o777,
+        encoding: 'utf8',
+      })
+    }
+  }
+
+  createDrizzleConfig({ schemaPath: nuxt._pergel._module.options.schemaPath })
 
   if (nuxt.options.dev) {
     const subprocess = startSubprocess({

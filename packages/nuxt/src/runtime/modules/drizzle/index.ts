@@ -17,6 +17,8 @@ export default definePergelModule<ResolvedDrizzleConfig>({
       const data = {
         'drizzle-kit': '^0.20.6',
         'drizzle-orm': '^0.29.1',
+        '@faker-js/faker': '^8.3.1',
+        'dotenv': '^16.3.1',
       } as Record<string, string>
 
       if (options.driver === 'postgresjs:pg')
@@ -43,8 +45,8 @@ export default definePergelModule<ResolvedDrizzleConfig>({
 
     return {
       driver: rootOptions.driver ?? 'postgresjs:pg',
-      migrationsPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.migrationsPaths ?? 'migrations'),
-      schemaPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.schemaPaths ?? 'schema'),
+      migrationsPath: resolve(nuxt._pergel._module.moduleDir, rootOptions.migrationsPath ?? 'migrations'),
+      schemaPath: resolve(nuxt._pergel._module.moduleDir, rootOptions.schemaPath ?? 'schema'),
       seedPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.seedPaths ?? 'seeds'),
       mergeSchemas: false,
       _driver: {
@@ -59,11 +61,11 @@ export default definePergelModule<ResolvedDrizzleConfig>({
     const moduleOptions = nuxt._pergel._module
     const resolver = createResolver(import.meta.url)
 
-    if (!existsSync(moduleOptions.options.schemaPaths))
-      mkdirSync(moduleOptions.options.schemaPaths, { recursive: true })
+    if (!existsSync(moduleOptions.options.schemaPath))
+      mkdirSync(moduleOptions.options.schemaPath, { recursive: true })
 
-    if (!existsSync(moduleOptions.options.migrationsPaths))
-      mkdirSync(moduleOptions.options.migrationsPaths, { recursive: true })
+    if (!existsSync(moduleOptions.options.migrationsPath))
+      mkdirSync(moduleOptions.options.migrationsPath, { recursive: true })
 
     if (!existsSync(moduleOptions.options.seedPaths))
       mkdirSync(moduleOptions.options.seedPaths, { recursive: true })
@@ -77,20 +79,20 @@ export default definePergelModule<ResolvedDrizzleConfig>({
 
     nuxt.options.alias[`${projectName}/drizzle/schema`] = resolve(
       nuxt.options.rootDir,
-      moduleOptions.options.schemaPaths,
+      moduleOptions.options.schemaPath,
     )
 
     nuxt.options.nitro.alias ??= {}
     nuxt.options.nitro.alias[`${projectName}/drizzle/schema`] = resolve(
       nuxt.options.rootDir,
-      moduleOptions.options.schemaPaths,
+      moduleOptions.options.schemaPath,
     )
 
     const template = addTemplate({
       filename: join(nuxt._pergel._module.dir.module, 'index.ts'),
       write: true,
       getContents: () => /* ts */`// Pergel Drizzle Schema - oku-ui.com
-       export * from '${join(moduleOptions.options.schemaPaths)}'
+       export * from '${join(moduleOptions.options.schemaPath)}'
     `,
     })
 

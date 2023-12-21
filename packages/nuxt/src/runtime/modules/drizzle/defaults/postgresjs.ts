@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 export function createDrizzleConfig(data: {
-  schemaPaths: string
+  schemaPath: string
 }) {
   const indexSchema = /* ts */`// Pergel auto generated please change this file as you wish
 import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core'
@@ -19,7 +19,7 @@ export const hello = pgTable('hello', {
 })
 `
 
-  const path = resolve(data.schemaPaths)
+  const path = resolve(data.schemaPath)
 
   if (!existsSync(path))
     mkdirSync(path, { recursive: true, mode: 0o777 })

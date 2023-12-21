@@ -13,13 +13,13 @@ export interface DrizzleConfig {
    * Database schemas
    * @default 'pergel/{projectName}/{moduleName}/schema'
    */
-  schemaPaths?: string
+  schemaPath?: string
 
   /**
    * Database migrations
    * @default 'pergel/{projectName}/{moduleName}/migrations'
    */
-  migrationsPaths?: string
+  migrationsPath?: string
 
   /**
    * Merge schemas
@@ -59,13 +59,13 @@ export interface ResolvedDrizzleConfig {
    * Database schemas
    * @default 'pergel/{projectName}/{moduleName}/schema'
    */
-  schemaPaths: string
+  schemaPath: string
 
   /**
    * Database migrations
    * @default 'pergel/{projectName}/{moduleName}/migrations'
    */
-  migrationsPaths: string
+  migrationsPath: string
 
   /**
    * Merge schemas
