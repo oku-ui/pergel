@@ -11,7 +11,7 @@ import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
   const module = nuxt._pergel._module
   const projectName = module.projectName
-  const { driver, name } = module.options._driver
+  const { driver } = module.options._driver
 
   const { env } = generateModuleRuntimeConfig(nuxt, {
     url: '',
@@ -21,6 +21,8 @@ export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
     user: '', // Username of database user
     password: '', // Password of database user
     ssl: false, // Use SSL
+    drop: false, // Drop database before migration
+    seed: false, // Seed database after migration
   }, false, 'pg')
 
   // Config generation
@@ -84,12 +86,13 @@ export default {
   generateProjectReadme(nuxt, ({ addCommentBlock }) => ({
     ...addCommentBlock('Script Commands'),
     scripts: {
-      migrate: `drizzle-kit generate:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-      generate: `drizzle-kit generate:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-      push: `drizzle-kit push:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      migrate: `drizzle-kit generate:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      generate: `drizzle-kit generate:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      push: `drizzle-kit push:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
       drop: `drizzle-kit drop --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-      up: `drizzle-kit up:${name} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      up: `drizzle-kit up:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
       studio: `drizzle-kit studio --port 3105 --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
+      seed: `tsx ${nuxt._pergel._module.dir.module}/seeds/index.ts`,
     },
     cli: {
       migrate: `pergel orm -s=migrate -p=${projectName}`,
@@ -98,6 +101,7 @@ export default {
       up: `pergel orm -s=up -p=${projectName}`,
       generate: `pergel orm -s=generate -p=${projectName}`,
       studio: `pergel orm -s=studio -p=${projectName}`,
+      seed: `pergel orm -s=seed -p=${projectName}`,
     },
   }))
 }

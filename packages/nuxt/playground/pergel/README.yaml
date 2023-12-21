@@ -5,12 +5,13 @@ test:
   drizzle:
     # Script Commands
     scripts:
-      migrate: drizzle-kit generate:postgresjs --config=pergel/test/drizzle/drizzle.config.js
-      generate: drizzle-kit generate:postgresjs --config=pergel/test/drizzle/drizzle.config.js
-      push: drizzle-kit push:postgresjs --config=pergel/test/drizzle/drizzle.config.js
+      migrate: drizzle-kit generate:pg --config=pergel/test/drizzle/drizzle.config.js
+      generate: drizzle-kit generate:pg --config=pergel/test/drizzle/drizzle.config.js
+      push: drizzle-kit push:pg --config=pergel/test/drizzle/drizzle.config.js
       drop: drizzle-kit drop --config=pergel/test/drizzle/drizzle.config.js
-      up: drizzle-kit up:postgresjs --config=pergel/test/drizzle/drizzle.config.js
+      up: drizzle-kit up:pg --config=pergel/test/drizzle/drizzle.config.js
       studio: drizzle-kit studio --port 3105 --config=pergel/test/drizzle/drizzle.config.js
+      seed: tsx pergel/test/drizzle/seeds/index.ts
     cli:
       migrate: pergel orm -s=migrate -p=test
       push: pergel orm -s=push -p=test
@@ -18,6 +19,7 @@ test:
       up: pergel orm -s=up -p=test
       generate: pergel orm -s=generate -p=test
       studio: pergel orm -s=studio -p=test
+      seed: pergel orm -s=seed -p=test
     pg:
       env:
         NUXT_TEST_DRIZZLE_PG_URL: 
