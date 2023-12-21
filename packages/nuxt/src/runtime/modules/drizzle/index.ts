@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync } from 'node:fs'
-import { join, resolve } from 'node:path'
-import { addImportsDir, addServerImportsDir, addTemplate, createResolver } from '@nuxt/kit'
-import { camelCase } from 'scule'
+import { resolve } from 'node:path'
+import { addImportsDir, addServerImportsDir, createResolver } from '@nuxt/kit'
+import { camelCase, pascalCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import type { ResolvedDrizzleConfig } from './types'
@@ -88,24 +88,16 @@ export default definePergelModule<ResolvedDrizzleConfig>({
       moduleOptions.options.schemaPath,
     )
 
-    const template = addTemplate({
-      filename: join(nuxt._pergel._module.dir.module, 'index.ts'),
-      write: true,
-      getContents: () => /* ts */`// Pergel Drizzle Schema - oku-ui.com
-       export * from '${join(moduleOptions.options.schemaPath)}'
-    `,
-    })
-
     addImportsDir(resolver.resolve('./drivers/postgres'))
     addServerImportsDir(resolver.resolve('./drivers/postgres'))
 
     useNitroImports(nuxt, {
       presets: [
         {
-          from: template.dst,
+          from: `${nuxt._pergel._module.options.schemaPath}`,
           imports: [
             {
-              as: `tables${projectName}`,
+              as: `tables${pascalCase(projectName)}`,
               name: '*',
             },
           ],
@@ -169,7 +161,7 @@ export default definePergelModule<ResolvedDrizzleConfig>({
           function drizzle() {
             return {
               ${returnDriver}
-              schema: tables${projectName},
+              schema: tables${pascalCase(projectName)},
             }
           }
         `,
