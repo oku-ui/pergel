@@ -1,0 +1,7 @@
+{
+  "name": "drizzle-build",
+  "private": true,
+  "scripts": {
+    "build": "unbuild"
+  }
+}

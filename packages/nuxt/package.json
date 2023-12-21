@@ -19,9 +19,9 @@
       "require": "./dist/module.cjs"
     },
     "./drizzle/*": {
-      "types": "./dist/drizzle/*.d.ts",
-      "import": "./dist/drizzle/*.mjs",
-      "require": "./dist/drizzle/*.cjs"
+      "types": "./lib/drizzle/*.d.ts",
+      "import": "./lib/drizzle/*.mjs",
+      "require": "./lib/drizzle/*.cjs"
     }
   },
   "main": "./dist/module.cjs",
@@ -32,7 +32,7 @@
         "dist/*"
       ],
       "./drizzle/*": [
-        "dist/drizzle/*"
+        "lib/drizzle/*"
       ]
     }
   },
@@ -44,13 +44,14 @@
     "prepack": "pnpm nuxt-module-build build && pnpm run client:build",
     "dev": "pnpm nuxi dev playground",
     "dev:build": "pnpm nuxi build playground",
-    "build": "pnpm nuxt-module-build build",
+    "build": "pnpm build:script && pnpm nuxt-module-build build",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "client:build": "nuxi generate client",
     "client:dev": "nuxi dev client --port 3300",
-    "release": "pnpm dev:prepare && pnpm prepack && pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish"
+    "release": "pnpm dev:prepare && pnpm prepack && pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish",
+    "build:script": "pnpm --filter './build-script/**' build"
   },
   "dependencies": {
     "@nuxt/devtools": "^1.0.5",
