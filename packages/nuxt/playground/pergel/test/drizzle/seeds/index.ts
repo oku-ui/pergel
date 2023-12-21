@@ -1,5 +1,4 @@
-
-  import { resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { sql } from 'drizzle-orm'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import { drizzle } from 'drizzle-orm/postgres-js'
@@ -30,7 +29,7 @@ async function runMigrationsAndSeed() {
 
   if (dbDrop) {
     console.warn('Dropping database...')
-    await db.execute(sql/* SQL */ `
+    await db.execute(sql/* SQL */`
 DROP SCHEMA IF EXISTS drizzle CASCADE;
 DROP SCHEMA IF EXISTS public CASCADE;
 CREATE SCHEMA public;
@@ -52,4 +51,3 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 }
 
 runMigrationsAndSeed()
-  
