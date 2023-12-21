@@ -45,7 +45,7 @@
     "dev": "pnpm nuxi dev playground",
     "dev:build": "pnpm nuxi build playground",
     "build": "pnpm build:script && pnpm nuxt-module-build build",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
+    "dev:prepare": "pnpm build:script && nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "client:build": "nuxi generate client",
