@@ -32,7 +32,6 @@ export default defineBuildConfig([
       builder: 'mkdist',
       format: 'esm',
       declaration: true,
-      addRelativeDeclarationExtensions: true,
       outDir: './lib/drizzle/schema',
     }],
     stub: false,
