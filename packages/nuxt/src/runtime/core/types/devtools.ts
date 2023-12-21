@@ -9,7 +9,6 @@ export interface ServerFunctions {
   getProject(name: string): Modules
   getProjectModules(name: string): string[]
   getModuleOptions({ projectName, moduleName }: { projectName: string, moduleName: ModuleName }): Modules
-  getProjectModule(name: string): Modules[keyof Modules]
   reset(): void
 }
 

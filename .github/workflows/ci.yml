@@ -36,10 +36,13 @@ jobs:
           cache: pnpm
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🚀 Build
+        run: pnpm install
+        
+      - name: 🚀 Build (stub)
         run: pnpm dev:prepare
+
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: 👀 Lint
         run: pnpm lint

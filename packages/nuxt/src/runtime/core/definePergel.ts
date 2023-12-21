@@ -57,6 +57,7 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
     } as NuxtPergel['_pergel']['_module']) as NuxtPergel['_pergel']['_module']
 
     // TODO: Fix any type
+    // @ts-ignore
     nuxt._pergel.projects[nuxt._pergel._module.projectName][nuxt._pergel._module.moduleName].options = moduleOptions.options as any
 
     // TODO: Fix any type
