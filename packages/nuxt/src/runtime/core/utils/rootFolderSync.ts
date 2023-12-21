@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { join, resolve } from 'node:path'
 import type { PergelOptions } from '../types'
 
 /**
@@ -16,6 +16,13 @@ export function rootFolderSync(resolvePergelDir: string, options: PergelOptions)
 
     if (!existsSync(projectFolder))
       mkdirSync(projectFolder, { recursive: true })
+  }
+
+  // Check ts.config.json
+  if (!existsSync(resolve(join(resolvePergelDir, 'tsconfig.json')))) {
+    writeFileSync(resolve(join(resolvePergelDir, 'tsconfig.json')), JSON.stringify({
+      extends: '../.nuxt/tsconfig.server.json',
+    }, null, 2))
   }
 
   return {
