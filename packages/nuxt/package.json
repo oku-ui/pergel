@@ -37,7 +37,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "stub": "pnpm nuxt-build-module build --stub && nuxt-module-build prepare",
