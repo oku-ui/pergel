@@ -24,21 +24,26 @@ export default defineBuildConfig([
     externals: [
       ...external,
     ],
+    failOnWarn: false,
   },
   {
-    entries: [{
-      input: './src/runtime/modules/drizzle/templates',
-      builder: 'mkdist',
-      format: 'cjs',
-      ext: 'cjs',
-      outDir: './dist/drizzle/schema',
-    }, {
-      input: './src/runtime/modules/drizzle/templates',
-      builder: 'mkdist',
-      format: 'esm',
-      declaration: true,
-      outDir: './dist/drizzle/schema',
-    }],
+    entries: [
+      {
+        input: './src/runtime/modules/drizzle/templates',
+        builder: 'mkdist',
+        format: 'cjs',
+        ext: 'cjs',
+        outDir: './dist/drizzle/schema',
+      },
+      {
+        input: './src/runtime/modules/drizzle/templates',
+        builder: 'mkdist',
+        format: 'esm',
+        declaration: true,
+        outDir: './dist/drizzle/schema',
+      },
+    ],
+    failOnWarn: false,
     stub: false,
     externals: [
       ...external,
