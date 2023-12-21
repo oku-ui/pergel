@@ -10,11 +10,13 @@ export function clientFunctionTemplate<ClientType, RuntimeConfigType, MapType = 
     client: ClientType
   }>()
 
+  // TODO: maybe params should be an object
   async function clientInit(
     data: Omit<PergelGlobalContext, 'moduleName'>,
     clientObject: (runtime: RuntimeConfigType) => ClientType,
     event?: H3Event,
     additionalMapValues?: object,
+    customName?: string,
   ): Promise<{
     client: ClientType
     mapValue: Map<string, {
@@ -27,7 +29,7 @@ export function clientFunctionTemplate<ClientType, RuntimeConfigType, MapType = 
     const { selectProject } = usePergelRuntime<RuntimeConfigType>({
       moduleName,
       projectName: data.projectName,
-    }, event)
+    }, event, customName)
 
     if (moduleClient) {
       return {

@@ -7,7 +7,26 @@
     "build": "nuxi build",
     "generate": "nuxi generate"
   },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.470.0",
+    "@faker-js/faker": "^8.3.1",
+    "@json2csv/node": "^7.0.4",
+    "@pergel/graphql": "workspace:*",
+    "@pergel/module-s3": "workspace:*",
+    "bullmq": "^4.15.2",
+    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.20.6",
+    "drizzle-orm": "^0.29.1",
+    "ioredis": "^5.3.2",
+    "node-cron": "^3.0.3",
+    "p-timeout": "^6.1.2",
+    "postgres": "^3.4.3"
+  },
   "devDependencies": {
-    "nuxt": "latest"
+    "@pergel/nuxt": "link:..",
+    "@types/node-cron": "^3.0.11",
+    "nuxt": "latest",
+    "pergel": "workspace:^",
+    "pg": "^8.11.3"
   }
 }

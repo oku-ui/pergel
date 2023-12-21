@@ -36,6 +36,8 @@ export async function setupModules(data: {
 
   for await (const m of modulesArray) {
     const [projectName, moduleName] = m[0].split('/') as [string, ModuleName]
+    // TODO: fix any type
+    // @ts-ignore
     data.nuxt._pergel.projects[projectName] ??= {}
     data.nuxt._pergel.projects[projectName][moduleName] = {
       projectDir: join(data.nuxt._pergel.pergelDir, projectName),

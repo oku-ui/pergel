@@ -1,16 +1,58 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "ESNext"
-    ],
     "module": "ESNext",
     "moduleResolution": "Node",
+    "paths": {
+      "#pergel/types": [
+        "./packages/nuxt/.nuxt/pergel/types"
+      ],
+      "#imports": [
+        "./packages/nuxt/.nuxt/imports"
+      ],
+      "#app": [
+        "./packages/nuxt/src/app/index"
+      ],
+      "#app/*": [
+        "./packages/nuxt/src/app/*"
+      ],
+      "#internal/nitro": [
+        "./node_modules/nitropack/dist/runtime"
+      ],
+      "#internal/nitro/app": [
+        "./node_modules/nitropack/dist/runtime/app"
+      ],
+      "#internal/nitro/utils": [
+        "./node_modules/nitropack/dist/runtime/utils"
+      ],
+      "#vue-router": [
+        "./node_modules/vue-router"
+      ]
+    },
     "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
+    "allowJs": true,
     "strict": true,
-    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": [
+    "**/dist/**",
+    "**/.nuxt/**",
+    "**/nuxt.d.ts",
+    "**/examples/**",
+    "**/docs/**",
+    "**/playground/**",
+    "**/test/fixtures/**",
+    "test/nuxt/**",
+    "**/client/**",
+    "packages/nuxt/nuxt.config.ts"
+  ]
 }

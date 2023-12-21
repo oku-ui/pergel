@@ -61,7 +61,7 @@ export default defineCommand({
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
       const json = parse(readmeString) as PergelYaml
 
-      const project = json[file.config.cli.database.driver ?? 'drizzle'][file.config.cli.database.project]
+      const project = json[file.config.cli.database.project][file.config.cli.database.driver ?? 'drizzle']
 
       const script = project?.scripts ?? {}
 
@@ -79,6 +79,8 @@ export default defineCommand({
           return command ? command.replace(/"/g, '') : undefined
         }, [selectedScript], { programmatic: true }).then(() => {
           consola.success('Script executed successfully')
+        }).catch((error) => {
+          consola.error(error)
         })
       }
       catch (error) {

@@ -2,26 +2,29 @@ import { defineBuildConfig } from 'unbuild'
 
 import pkg from './package.json'
 
-const external = [
-
+export const external = [
+  'consola',
+  '@pergel/graphql',
+  '@apollo/sandbox',
+  'graphql-yoga',
+  '#pergel',
+  'h3',
+  'pathe',
+  'scule',
+  'unimport',
+  'defu',
+  'drizzle-orm',
+  'drizzle-kit',
+  'postgres',
   // @ts-expect-error
   ...Object.keys(pkg.peerDependencies || {}),
 ]
 export default defineBuildConfig([
+  // Auto preset
   {
-    // explicitly externalize consola since Nuxt has it
     externals: [
-      'consola',
-      '@pergel/graphql',
-      '@apollo/sandbox',
-      'graphql-yoga',
-      '#pergel',
-      'h3',
-      'pathe',
-      'scule',
-      'unimport',
-      'defu',
       ...external,
     ],
+    outDir: './dist',
   },
 ])

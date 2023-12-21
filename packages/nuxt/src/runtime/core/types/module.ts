@@ -8,6 +8,7 @@ import type { Resolver } from '@nuxt/kit'
 
 import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig } from '../../modules/graphqlYoga/types'
+import type { DrizzleConfig } from '../../modules/drizzle/types'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
@@ -18,6 +19,7 @@ export interface Modules {
   bullmq?: true
   json2csv?: true
   graphqlYoga?: true | GraphQLYogaConfig
+  drizzle?: true | DrizzleConfig
 }
 
 export type ModuleName = keyof Modules
@@ -196,7 +198,7 @@ export interface NuxtPergel<T extends ModuleOptions = ModuleOptions> extends Nux
   _pergel: ResolvedPergelOptions<T>
 }
 
-interface ModuleMeta {
+interface ModuleMeta<T extends ModuleOptions = ModuleOptions> {
   /** Module name. */
   name?: string
   /** Module version. */
@@ -207,8 +209,8 @@ interface ModuleMeta {
    */
   configKey?: string
 
-  devDependencies?: Record<string, string>
-  dependencies?: Record<string, string>
+  devDependencies?: Record<string, string> | ((options: T) => Record<string, string>)
+  dependencies?: Record<string, string> | ((options: T) => Record<string, string>)
   dts?: boolean
 
   [key: string]: unknown
@@ -233,7 +235,7 @@ export type Awaitable<T> = T | Promise<T>
 type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
 export interface ModuleDefinition<T extends ModuleOptions = ModuleOptions> {
-  meta?: ModuleMeta
+  meta?: ModuleMeta<T>
   defaults?: T | ((data: { nuxt: NuxtPergel<T> }) => T)
   setup?: (
     this: void,
