@@ -20,6 +20,7 @@ const external = [
   ...Object.keys(pkg.peerDependencies || {}),
 ]
 export default defineBuildConfig([
+  // Auto preset
   {
     externals: [
       ...external,
@@ -34,19 +35,19 @@ export default defineBuildConfig([
         builder: 'mkdist',
         format: 'cjs',
         ext: 'cjs',
-        outDir: './dist/drizzle/schema',
+        outDir: 'dist/drizzle/schema',
       },
       {
         input: './src/runtime/modules/drizzle/templates',
         builder: 'mkdist',
         format: 'esm',
-        declaration: true,
-        outDir: './dist/drizzle/schema',
+        outDir: 'dist/drizzle/schema',
       },
     ],
     failOnWarn: false,
     // TODO: if open all /src/ in export mode, then it will be a problem
     // stub: false,
+    declaration: true,
     externals: [
       '@pergel/nuxt/drizzle/schema/pg',
       'drizzle-orm/pg-core',
