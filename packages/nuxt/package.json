@@ -45,11 +45,11 @@
     "dev": "pnpm nuxi dev playground",
     "dev:build": "pnpm nuxi build playground",
     "build": "pnpm nuxt-module-build build",
-    "dev:prepare": "pnpm nuxt-module-build build --stub && pnpm nuxt-module-build prepare && pnpm nuxi prepare playground && pnpm nuxi prepare client",
-    "test": "pnpm vitest run",
-    "test:watch": "pnpm vitest watch",
-    "client:build": "pnpm nuxi generate client",
-    "client:dev": "pnpm nuxi dev client --port 3300",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "client:build": "nuxi generate client",
+    "client:dev": "nuxi dev client --port 3300",
     "release": "pnpm dev:prepare && pnpm prepack && pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish"
   },
   "dependencies": {
