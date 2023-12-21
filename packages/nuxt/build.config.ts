@@ -24,6 +24,7 @@ export default defineBuildConfig([
     externals: [
       ...external,
     ],
+    outDir: './dist',
     failOnWarn: false,
   },
   {
