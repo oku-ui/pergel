@@ -64,7 +64,7 @@ export default {
   if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds')))
     mkdirSync(resolve(nuxt._pergel._module.moduleDir, 'seeds'), { recursive: true, mode: 0o777 })
 
-  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/index.ts'))) {
+  if (!existsSync(resolve(nuxt._pergel._module.options.seedPaths, 'index.ts'))) {
     const readFile = await import(_resolver.resolve('./seed/index.ts')).then(m => m.default).catch(() => null)
     if (readFile) {
       const file = readFile({
@@ -75,21 +75,18 @@ export default {
         },
         migrationDir: `${nuxt._pergel._module.options.migrationsPath}`,
       })
-      writeFileSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/index.ts'), file, {
+      writeFileSync(resolve(nuxt._pergel._module.options.seedPaths, 'index.ts'), file, {
         mode: 0o777,
         encoding: 'utf8',
       })
     }
   }
 
-  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/seed1.ts'))) {
+  if (!existsSync(resolve(nuxt._pergel._module.options.seedPaths, 'seeds', 'seed1.ts'))) {
     const readFile = await import(_resolver.resolve('./seed/seed1.ts')).then(m => m.default).catch(() => null)
     if (readFile) {
       const file = readFile()
-      writeFileSync(resolve(nuxt._pergel._module.moduleDir, 'seeds/seed1.ts'), file, {
-        mode: 0o777,
-        encoding: 'utf8',
-      })
+      writeFileSync(resolve(nuxt._pergel._module.options.seedPaths, 'seed1.ts'), file)
     }
   }
 

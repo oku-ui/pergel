@@ -17,7 +17,7 @@ export async function seed1(db: PostgresJsDatabase) {
         },
       ],
     ).catch((res) => {
-      consola.warn('Seeding database... catch', res)
+      console.warn('Seeding database... catch', res)
     })
   }).catch((_err: any) => {
   })
