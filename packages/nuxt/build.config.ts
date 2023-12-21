@@ -47,6 +47,8 @@ export default defineBuildConfig([
     failOnWarn: false,
     stub: false,
     externals: [
+      '@pergel/nuxt/drizzle/schema/pg',
+      'drizzle-orm/pg-core',
       ...external,
     ],
   },
