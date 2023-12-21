@@ -189,10 +189,10 @@ importers:
   packages/nuxt:
     dependencies:
       '@nuxt/devtools':
-        specifier: ^1.0.5
+        specifier: ^1.0.6
         version: 1.0.6(nuxt@3.8.2)(rollup@3.29.4)(vite@4.5.1)
       '@nuxt/devtools-kit':
-        specifier: ^1.0.5
+        specifier: ^1.0.6
         version: 1.0.6(nuxt@3.8.2)(rollup@3.29.4)(vite@4.5.1)
       '@nuxt/kit':
         specifier: ^3.8.2
@@ -210,17 +210,17 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       sirv:
-        specifier: ^2.0.3
+        specifier: ^2.0.4
         version: 2.0.4
     devDependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.465.0
+        specifier: ^3.478.0
         version: 3.478.0
       '@faker-js/faker':
         specifier: ^8.3.1
         version: 8.3.1
       '@iconify-json/carbon':
-        specifier: ^1.1.24
+        specifier: ^1.1.27
         version: 1.1.27
       '@iconify-json/ph':
         specifier: ^1.1.9
@@ -229,7 +229,7 @@ importers:
         specifier: ^7.0.4
         version: 7.0.4
       '@nuxt/devtools-ui-kit':
-        specifier: ^1.0.5
+        specifier: ^1.0.6
         version: 1.0.6(@nuxt/devtools@1.0.6)(@vue/compiler-core@3.3.13)(nuxt@3.8.2)(postcss@8.4.32)(rollup@3.29.4)(vite@4.5.1)(vue@3.3.13)(webpack@5.89.0)
       '@nuxt/module-builder':
         specifier: ^0.5.4
@@ -238,8 +238,8 @@ importers:
         specifier: ^3.8.2
         version: 3.8.2(rollup@3.29.4)
       '@nuxt/test-utils':
-        specifier: ^3.8.1
-        version: 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.33.0)(vue-router@4.2.5)(vue@3.3.13)
+        specifier: ^3.9.0
+        version: 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13)
       '@pergel/graphql':
         specifier: workspace:^
         version: link:../graphql
@@ -247,13 +247,13 @@ importers:
         specifier: workspace:^
         version: link:../s3
       '@types/node':
-        specifier: ^20.9.3
+        specifier: ^20.10.5
         version: 20.10.5
       '@types/node-cron':
         specifier: ^3.0.11
         version: 3.0.11
       bullmq:
-        specifier: ^4.15.2
+        specifier: ^4.16.0
         version: 4.16.0
       esbuild-plugin-file-path-extensions:
         specifier: ^2.0.0
@@ -268,8 +268,8 @@ importers:
         specifier: ^6.1.2
         version: 6.1.2
       vitest:
-        specifier: ^0.33.0
-        version: 0.33.0
+        specifier: ^0.34.6
+        version: 0.34.6
 
   packages/nuxt/build-script/drizzle: {}
 
@@ -282,7 +282,7 @@ importers:
   packages/nuxt/playground:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.470.0
+        specifier: ^3.478.0
         version: 3.478.0
       '@faker-js/faker':
         specifier: ^8.3.1
@@ -297,13 +297,13 @@ importers:
         specifier: workspace:*
         version: link:../../s3
       bullmq:
-        specifier: ^4.15.2
+        specifier: ^4.16.0
         version: 4.16.0
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
       drizzle-kit:
-        specifier: ^0.20.6
+        specifier: ^0.20.7
         version: 0.20.7
       drizzle-orm:
         specifier: ^0.29.1
@@ -3968,7 +3968,7 @@ packages:
       - rollup
       - supports-color
 
-  /@nuxt/test-utils@3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.33.0)(vue-router@4.2.5)(vue@3.3.13):
+  /@nuxt/test-utils@3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13):
     resolution: {integrity: sha512-17qaU4vfFJWIaT4BJ/R6C2rIuvxaF5HaiRusXHhA/34SyiduNEhezIvIVqhWVkn33y5CNueduE0AykBEj1IgEA==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -4026,8 +4026,8 @@ packages:
       unenv: 1.8.0
       unplugin: 1.5.1
       vite: 4.5.1(@types/node@20.10.5)
-      vitest: 0.33.0
-      vitest-environment-nuxt: 1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.33.0)(vue-router@4.2.5)(vue@3.3.13)
+      vitest: 0.34.6
+      vitest-environment-nuxt: 1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13)
       vue: 3.3.13(typescript@5.3.3)
       vue-router: 4.2.5(vue@3.3.13)
     transitivePeerDependencies:
@@ -5953,28 +5953,12 @@ packages:
       - supports-color
     dev: true
 
-  /@vitest/expect@0.33.0:
-    resolution: {integrity: sha512-sVNf+Gla3mhTCxNJx+wJLDPp/WcstOe0Ksqz4Vec51MmgMth/ia0MGFEkIZmVGeTL5HtjYR4Wl/ZxBxBXZJTzQ==}
-    dependencies:
-      '@vitest/spy': 0.33.0
-      '@vitest/utils': 0.33.0
-      chai: 4.3.10
-    dev: true
-
   /@vitest/expect@0.34.6:
     resolution: {integrity: sha512-QUzKpUQRc1qC7qdGo7rMK3AkETI7w18gTCUrsNnyjjJKYiuUB9+TQK3QnR1unhCnWRC0AbKv2omLGQDF/mIjOw==}
     dependencies:
       '@vitest/spy': 0.34.6
       '@vitest/utils': 0.34.6
       chai: 4.3.10
-    dev: true
-
-  /@vitest/runner@0.33.0:
-    resolution: {integrity: sha512-UPfACnmCB6HKRHTlcgCoBh6ppl6fDn+J/xR8dTufWiKt/74Y9bHci5CKB8tESSV82zKYtkBJo9whU3mNvfaisg==}
-    dependencies:
-      '@vitest/utils': 0.33.0
-      p-limit: 4.0.0
-      pathe: 1.1.1
     dev: true
 
   /@vitest/runner@0.34.6:
@@ -5985,14 +5969,6 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /@vitest/snapshot@0.33.0:
-    resolution: {integrity: sha512-tJjrl//qAHbyHajpFvr8Wsk8DIOODEebTu7pgBrP07iOepR5jYkLFiqLq2Ltxv+r0uptUb4izv1J8XBOwKkVYA==}
-    dependencies:
-      magic-string: 0.30.5
-      pathe: 1.1.1
-      pretty-format: 29.7.0
-    dev: true
-
   /@vitest/snapshot@0.34.6:
     resolution: {integrity: sha512-B3OZqYn6k4VaN011D+ve+AA4whM4QkcwcrwaKwAbyyvS/NB1hCWjFIBQxAQQSQir9/RtyAAGuq+4RJmbn2dH4w==}
     dependencies:
@@ -6001,24 +5977,10 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
-  /@vitest/spy@0.33.0:
-    resolution: {integrity: sha512-Kv+yZ4hnH1WdiAkPUQTpRxW8kGtH8VRTnus7ZTGovFYM1ZezJpvGtb9nPIjPnptHbsyIAxYZsEpVPYgtpjGnrg==}
-    dependencies:
-      tinyspy: 2.2.0
-    dev: true
-
   /@vitest/spy@0.34.6:
     resolution: {integrity: sha512-xaCvneSaeBw/cz8ySmF7ZwGvL0lBjfvqc1LpQ/vcdHEvpLn3Ff1vAvjw+CoGn0802l++5L/pxb7whwcWAw+DUQ==}
     dependencies:
       tinyspy: 2.2.0
-    dev: true
-
-  /@vitest/utils@0.33.0:
-    resolution: {integrity: sha512-pF1w22ic965sv+EN6uoePkAOTkAPWM03Ri/jXNyMIKBb/XHLDPfhLvf/Fa9g0YECevAIz56oVYXhodLvLQ/awA==}
-    dependencies:
-      diff-sequences: 29.6.3
-      loupe: 2.3.7
-      pretty-format: 29.7.0
     dev: true
 
   /@vitest/utils@0.34.6:
@@ -13194,11 +13156,6 @@ packages:
     resolution: {integrity: sha512-65NKvSuAVDP/n4CqH+a9w2kTlLReS9vhsAP06MWx+/89nMinJyB2icyl58RIcqCmIggpojIGeuJGhjU1aGMBSg==}
     dev: true
 
-  /tinypool@0.6.0:
-    resolution: {integrity: sha512-FdswUUo5SxRizcBc6b1GSuLpLjisa8N8qMyYoP3rl+bym+QauhtJP5bvZY1ytt8krKGmMLYIRl36HBZfeAoqhQ==}
-    engines: {node: '>=14.0.0'}
-    dev: true
-
   /tinypool@0.7.0:
     resolution: {integrity: sha512-zSYNUlYSMhJ6Zdou4cJwo/p7w5nmAH17GRfU/ui3ctvjXFErXXkruT4MWW6poDeXgCaIBlGLrfU6TbTXxyGMww==}
     engines: {node: '>=14.0.0'}
@@ -14154,10 +14111,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest-environment-nuxt@1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.33.0)(vue-router@4.2.5)(vue@3.3.13):
+  /vitest-environment-nuxt@1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13):
     resolution: {integrity: sha512-AWMO9h4HdbaFdPWZw34gALFI8gbBiOpvfbyeZwHIPfh4kWg/TwElYHvYMQ61WPUlCGaS5LebfHkaI0WPyb//Iw==}
     dependencies:
-      '@nuxt/test-utils': 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.33.0)(vue-router@4.2.5)(vue@3.3.13)
+      '@nuxt/test-utils': 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13)
     transitivePeerDependencies:
       - '@jest/globals'
       - '@testing-library/vue'
@@ -14173,71 +14130,6 @@ packages:
       - vitest
       - vue
       - vue-router
-    dev: true
-
-  /vitest@0.33.0:
-    resolution: {integrity: sha512-1CxaugJ50xskkQ0e969R/hW47za4YXDUfWJDxip1hwbnhUjYolpfUn2AMOulqG/Dtd9WYAtkHmM/m3yKVrEejQ==}
-    engines: {node: '>=v14.18.0'}
-    hasBin: true
-    peerDependencies:
-      '@edge-runtime/vm': '*'
-      '@vitest/browser': '*'
-      '@vitest/ui': '*'
-      happy-dom: '*'
-      jsdom: '*'
-      playwright: '*'
-      safaridriver: '*'
-      webdriverio: '*'
-    peerDependenciesMeta:
-      '@edge-runtime/vm':
-        optional: true
-      '@vitest/browser':
-        optional: true
-      '@vitest/ui':
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-      playwright:
-        optional: true
-      safaridriver:
-        optional: true
-      webdriverio:
-        optional: true
-    dependencies:
-      '@types/chai': 4.3.11
-      '@types/chai-subset': 1.3.5
-      '@types/node': 20.10.5
-      '@vitest/expect': 0.33.0
-      '@vitest/runner': 0.33.0
-      '@vitest/snapshot': 0.33.0
-      '@vitest/spy': 0.33.0
-      '@vitest/utils': 0.33.0
-      acorn: 8.11.2
-      acorn-walk: 8.3.1
-      cac: 6.7.14
-      chai: 4.3.10
-      debug: 4.3.4
-      local-pkg: 0.4.3
-      magic-string: 0.30.5
-      pathe: 1.1.1
-      picocolors: 1.0.0
-      std-env: 3.6.0
-      strip-literal: 1.3.0
-      tinybench: 2.5.1
-      tinypool: 0.6.0
-      vite: 4.5.1(@types/node@20.10.5)
-      vite-node: 0.33.0(@types/node@20.10.5)
-      why-is-node-running: 2.2.2
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
     dev: true
 
   /vitest@0.34.6:
