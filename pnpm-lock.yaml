@@ -239,7 +239,7 @@ importers:
         version: 3.8.2(rollup@3.29.4)
       '@nuxt/test-utils':
         specifier: ^3.9.0
-        version: 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13)
+        version: 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@1.1.0)(vue-router@4.2.5)(vue@3.3.13)
       '@pergel/graphql':
         specifier: workspace:^
         version: link:../graphql
@@ -268,8 +268,8 @@ importers:
         specifier: ^6.1.2
         version: 6.1.2
       vitest:
-        specifier: ^0.34.6
-        version: 0.34.6
+        specifier: ^1.1.0
+        version: 1.1.0(@types/node@20.10.5)
 
   packages/nuxt/build-script/drizzle: {}
 
@@ -3968,7 +3968,7 @@ packages:
       - rollup
       - supports-color
 
-  /@nuxt/test-utils@3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13):
+  /@nuxt/test-utils@3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@1.1.0)(vue-router@4.2.5)(vue@3.3.13):
     resolution: {integrity: sha512-17qaU4vfFJWIaT4BJ/R6C2rIuvxaF5HaiRusXHhA/34SyiduNEhezIvIVqhWVkn33y5CNueduE0AykBEj1IgEA==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -4026,8 +4026,8 @@ packages:
       unenv: 1.8.0
       unplugin: 1.5.1
       vite: 4.5.1(@types/node@20.10.5)
-      vitest: 0.34.6
-      vitest-environment-nuxt: 1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13)
+      vitest: 1.1.0(@types/node@20.10.5)
+      vitest-environment-nuxt: 1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@1.1.0)(vue-router@4.2.5)(vue@3.3.13)
       vue: 3.3.13(typescript@5.3.3)
       vue-router: 4.2.5(vue@3.3.13)
     transitivePeerDependencies:
@@ -14184,10 +14184,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest-environment-nuxt@1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13):
+  /vitest-environment-nuxt@1.0.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@1.1.0)(vue-router@4.2.5)(vue@3.3.13):
     resolution: {integrity: sha512-AWMO9h4HdbaFdPWZw34gALFI8gbBiOpvfbyeZwHIPfh4kWg/TwElYHvYMQ61WPUlCGaS5LebfHkaI0WPyb//Iw==}
     dependencies:
-      '@nuxt/test-utils': 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@0.34.6)(vue-router@4.2.5)(vue@3.3.13)
+      '@nuxt/test-utils': 3.9.0(h3@1.9.0)(rollup@3.29.4)(vite@4.5.1)(vitest@1.1.0)(vue-router@4.2.5)(vue@3.3.13)
     transitivePeerDependencies:
       - '@jest/globals'
       - '@testing-library/vue'
