@@ -21,6 +21,11 @@ const external = [
 ]
 export default defineBuildConfig([
   {
+    externals: [
+      ...external,
+    ],
+  },
+  {
     entries: [{
       input: './src/runtime/modules/drizzle/templates',
       builder: 'mkdist',
@@ -35,11 +40,6 @@ export default defineBuildConfig([
       outDir: './lib/drizzle/schema',
     }],
     stub: false,
-    externals: [
-      ...external,
-    ],
-  },
-  {
     externals: [
       ...external,
     ],
