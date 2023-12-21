@@ -40,6 +40,7 @@ export default defineBuildConfig([
       outDir: './lib/drizzle/schema',
     }],
     stub: false,
+    declaration: true,
     externals: [
       ...external,
     ],
