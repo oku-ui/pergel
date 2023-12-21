@@ -83,7 +83,7 @@
     "node-cron": "^3.0.3",
     "nuxt": "^3.8.2",
     "p-timeout": "^6.1.2",
-    "vitest": "^0.34.6"
+    "vitest": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"
