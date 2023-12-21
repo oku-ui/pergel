@@ -1,15 +1,18 @@
-import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
+import consola from 'consola'
 
 export default defineCommand({
   meta: {
     name: 'Pergel Upgrade',
     description: 'Upgrade Pergel CLI',
-    version: '0.0.1',
+    version: '0.0.2',
   },
   async run() {
-    console.warn('Please wait...')
-    execSync('npm i -g pergel@latest --force', { stdio: 'inherit' })
+    // execSync('npm i -g pergel@latest --force', { stdio: 'inherit' })
+    consola.info('Please run one of the following commands:')
+    consola.info('npm i -g pergel@latest --force')
+    consola.info('yarn global add pergel@latest --force')
+    consola.info('pnpm i -g pergel@latest --force')
     console.warn('Done! ✅')
   },
 })
