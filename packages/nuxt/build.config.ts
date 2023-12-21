@@ -31,16 +31,15 @@ export default defineBuildConfig([
       builder: 'mkdist',
       format: 'cjs',
       ext: 'cjs',
-      outDir: './lib/drizzle/schema',
+      outDir: './dist/drizzle/schema',
     }, {
       input: './src/runtime/modules/drizzle/templates',
       builder: 'mkdist',
       format: 'esm',
       declaration: true,
-      outDir: './lib/drizzle/schema',
+      outDir: './dist/drizzle/schema',
     }],
     stub: false,
-    declaration: true,
     externals: [
       ...external,
     ],

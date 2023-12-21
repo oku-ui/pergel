@@ -19,9 +19,9 @@
       "require": "./dist/module.cjs"
     },
     "./drizzle/*": {
-      "types": "./lib/drizzle/*.d.ts",
-      "import": "./lib/drizzle/*.mjs",
-      "require": "./lib/drizzle/*.cjs"
+      "types": "./dist/drizzle/*.d.ts",
+      "import": "./dist/drizzle/*.mjs",
+      "require": "./dist/drizzle/*.cjs"
     }
   },
   "main": "./dist/module.cjs",
@@ -32,13 +32,12 @@
         "dist/*"
       ],
       "./drizzle/*": [
-        "lib/drizzle/*"
+        "dist/drizzle/*"
       ]
     }
   },
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "scripts": {
     "stub": "pnpm nuxt-build-module build --stub && nuxt-module-build prepare",
