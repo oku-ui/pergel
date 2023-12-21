@@ -43,6 +43,8 @@ export default defineNuxtModule<PergelOptions>({
     const { saveNitroImports } = useNitroImports(nuxt)
     const { saveNuxtImports } = useNuxtImports(nuxt)
 
+    nuxt.options.experimental.typescriptBundlerResolution = true
+
     nuxt.options.vite.optimizeDeps ??= {}
     nuxt.options.vite.optimizeDeps.include ??= []
     nuxt.options.vite.optimizeDeps.include.push('@nuxt/devtools-kit/iframe-client')
