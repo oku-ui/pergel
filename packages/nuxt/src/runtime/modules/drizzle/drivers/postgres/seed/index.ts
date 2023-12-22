@@ -6,7 +6,7 @@ export default function (data: {
   }
   migrationDir: string
 }) {
-  return /* TS */ `import { resolve } from 'node:path'
+  return `import { resolve } from 'node:path'
 import { sql } from 'drizzle-orm'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import { drizzle } from 'drizzle-orm/postgres-js'

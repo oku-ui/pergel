@@ -82,7 +82,7 @@ export default {
   }
 
   if (!existsSync(resolve(nuxt._pergel._module.options.seedPaths, 'seeds', 'seed1.ts'))) {
-    const readFile = await import('./seed/seed1').then(m => m.default).catch(() => null)
+    const readFile = await import('./seed/s-seed1').then(m => m.default).catch(() => null)
     if (readFile) {
       const file = readFile()
       writeFileSync(resolve(nuxt._pergel._module.options.seedPaths, 'seed1.ts'), file)
