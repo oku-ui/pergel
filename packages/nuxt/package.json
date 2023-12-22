@@ -14,14 +14,24 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "import": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/module.mjs"
+      },
+      "require": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/module.cjs"
+      }
     },
     "./drizzle/*": {
-      "types": "./lib/drizzle/*.d.ts",
-      "import": "./lib/drizzle/*.mjs",
-      "require": "./lib/drizzle/*.cjs"
+      "import": {
+        "types": "./lib/drizzle/*.d.ts",
+        "default": "./lib/drizzle/*.mjs"
+      },
+      "require": {
+        "types": "./lib/drizzle/*.d.ts",
+        "default": "./lib/drizzle/*.cjs"
+      }
     }
   },
   "main": "./dist/module.cjs",
@@ -30,10 +40,10 @@
   "typesVersions": {
     "*": {
       "*": [
-        "dist/*"
+        "./dist/*"
       ],
-      "./drizzle/*": [
-        "lib/drizzle/*"
+      "drizzle/*": [
+        "./lib/drizzle/*"
       ]
     }
   },
