@@ -17,7 +17,7 @@ for await (const folder of folders) {
   writeFileSync(`./${folder}/package.json`, JSON.stringify(packageJson, null, 2), 'utf8')
 }
 
-execSync('pnpm install')
+execSync('pnpm install', { stdio: 'inherit' })
 
 for await (const folder of folders)
   execSync(`cd ${folder} && pnpm nuxt prepare && pergel install`, { stdio: 'inherit' })
