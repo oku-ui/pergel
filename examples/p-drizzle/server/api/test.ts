@@ -3,6 +3,6 @@ export default defineEventHandler(async () => {
   const result = await connect.select().from(tablesRocket.user)
   return {
     statusCode: 200,
-    body: JSON.stringify(result),
+    body: result,
   }
 })

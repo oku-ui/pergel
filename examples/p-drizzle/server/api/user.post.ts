@@ -1,8 +1,15 @@
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event)
+
   const connect = await pergelRocket().drizzle().postgresjs().connect({})
-  const result = await connect.insert(tablesRocket.user).values({})
+  const result = await connect.insert(tablesRocket.user).values({
+    name: body.name,
+    email: body.email,
+    password: body.password,
+  }).returning()
+
   return {
     statusCode: 200,
-    body: JSON.stringify(result),
+    body: result,
   }
 })
