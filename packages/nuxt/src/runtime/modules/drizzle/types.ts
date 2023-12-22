@@ -40,7 +40,7 @@ export interface DrizzleConfig {
   dev?: {
     /**
      * Database seeds
-     * @default 'pergel orm -s=push -p={projectName}''
+     * @default 'pergel module -s=push -p={projectName} -m={moduleName}'
      */
     cli?: string | false
   }
@@ -96,7 +96,7 @@ export interface ResolvedDrizzleConfig {
   dev?: {
     /**
      * Database seeds
-     * @default 'pergel orm -s=push -p={projectName}''
+     * @default 'pergel module -s=push -p={projectName} -m={moduleName}'
      */
     cli: string | boolean
   }

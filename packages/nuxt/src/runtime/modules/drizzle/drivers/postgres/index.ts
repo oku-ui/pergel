@@ -13,6 +13,7 @@ export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
   const _resolver = createResolver(import.meta.url)
   const module = nuxt._pergel._module
   const projectName = module.projectName
+  const moduleName = module.moduleName
   const { driver } = module.options._driver
 
   const { env } = generateModuleRuntimeConfig(nuxt, {
@@ -127,13 +128,13 @@ export default {
       seed: `tsx ${nuxt._pergel._module.dir.module}/seeds/index.ts`,
     },
     cli: {
-      migrate: `pergel orm -s=migrate -p=${projectName}`,
-      push: `pergel orm -s=push -p=${projectName}`,
-      drop: `pergel orm -s=drop -p=${projectName}`,
-      up: `pergel orm -s=up -p=${projectName}`,
-      generate: `pergel orm -s=generate -p=${projectName}`,
-      studio: `pergel orm -s=studio -p=${projectName}`,
-      seed: `pergel orm -s=seed -p=${projectName}`,
+      migrate: `pergel module -s=migrate -p=${projectName} -m=${moduleName}`,
+      push: `pergel module -s=push -p=${projectName} -m=${moduleName}`,
+      drop: `pergel module -s=drop -p=${projectName} -m=${moduleName}`,
+      up: `pergel module -s=up -p=${projectName} -m=${moduleName}`,
+      generate: `pergel module -s=generate -p=${projectName} -m=${moduleName}`,
+      studio: `pergel module -s=studio -p=${projectName} -m=${moduleName}`,
+      seed: `pergel module -s=seed -p=${projectName} -m=${moduleName}`,
     },
   }))
 }

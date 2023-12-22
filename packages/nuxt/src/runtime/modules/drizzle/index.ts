@@ -176,7 +176,7 @@ export default definePergelModule<ResolvedDrizzleConfig>({
         if (match) {
           if (activeProject.dev?.cli !== false) {
             execSync(
-              activeProject.dev?.cli ?? `pergel orm -s=push -p=${projectName}`,
+              activeProject.dev?.cli ?? `pergel module -s=push -p=${projectName} -m=${moduleName}`,
               {
                 stdio: 'inherit',
                 cwd: nuxt.options.rootDir,
