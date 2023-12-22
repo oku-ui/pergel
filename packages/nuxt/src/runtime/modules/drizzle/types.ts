@@ -36,6 +36,14 @@ export interface DrizzleConfig {
    * @default true
    */
   studio?: false
+
+  dev?: {
+    /**
+     * Database seeds
+     * @default 'pergel orm -s=push -p={projectName}''
+     */
+    cli?: string | false
+  }
 }
 
 export interface ResolvedDrizzleConfig {
@@ -84,6 +92,14 @@ export interface ResolvedDrizzleConfig {
   }
 
   studio: boolean
+
+  dev?: {
+    /**
+     * Database seeds
+     * @default 'pergel orm -s=push -p={projectName}''
+     */
+    cli: string | boolean
+  }
 }
 
 export interface PostgresJSOptions {

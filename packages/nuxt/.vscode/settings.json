@@ -1,0 +1,4 @@
+{
+    "eslint.experimental.useFlatConfig": true,
+    "references.preferredLocation": "peek"
+}

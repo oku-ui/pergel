@@ -1,12 +1,16 @@
 import { existsSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { addImportsDir, addServerImportsDir, createResolver } from '@nuxt/kit'
+import { execSync } from 'node:child_process'
+import { addImportsDir, addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
 import { camelCase, pascalCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
-import type { ResolvedDrizzleConfig } from './types'
+import { globsBuilderWatch } from '../../core/utils/globs'
+import type { DrizzleConfig, ResolvedDrizzleConfig } from './types'
 import { setupPostgres } from './drivers/postgres'
 import { copyMigrationFolder } from './core'
+
+const _logger = useLogger('pergel:drizzle')
 
 export default definePergelModule<ResolvedDrizzleConfig>({
   meta: {
@@ -153,6 +157,36 @@ export default definePergelModule<ResolvedDrizzleConfig>({
         }
       },
     `
+
+    nuxt.hook('builder:watch', async (event, path) => {
+      // TODO: add support module name
+      const { match, projectName, moduleName } = globsBuilderWatch(
+        nuxt,
+        path,
+        'drizzle',
+        '.ts',
+      )
+
+      if (projectName) {
+        const activeProject = nuxt._pergel.rootOptions.projects[projectName][moduleName] as DrizzleConfig
+
+        if (!activeProject)
+          return
+
+        if (match) {
+          if (activeProject.dev?.cli !== false) {
+            execSync(
+              activeProject.dev?.cli ?? `pergel orm -s=push -p=${projectName}`,
+              {
+                stdio: 'inherit',
+                cwd: nuxt.options.rootDir,
+              },
+            )
+            _logger.info(`Pushed ${projectName} schema`)
+          }
+        }
+      }
+    })
 
     nuxt._pergel.contents.push({
       moduleName: 'drizzle',
