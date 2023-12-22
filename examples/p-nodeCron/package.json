@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pergel/nuxt": "0.4.0",
+    "@pergel/nuxt": "0.4.1",
     "node-cron": "^3.0.3"
   },
   "devDependencies": {

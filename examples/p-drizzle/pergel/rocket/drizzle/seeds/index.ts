@@ -4,7 +4,7 @@ import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import { config } from 'dotenv'
-import { seed1 } from './seed1.mjs'
+import { seed1 } from './seed1'
 
 config()
 
@@ -12,7 +12,7 @@ const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_PG_URL
 const dbDrop = process.env.NUXT_ROCKET_DRIZZLE_PG_DROP
 const dbSeed = process.env.NUXT_ROCKET_DRIZZLE_PG_SEED
 
-const migrationDir = resolve('/Users/productdevbook/works/pergel/examples/p-drizzle/pergel/rocket/drizzle/migrations')
+const migrationDir = resolve('pergel/rocket/drizzle/migrations')
 
 async function runMigrationsAndSeed() {
   if (!dbUrl)

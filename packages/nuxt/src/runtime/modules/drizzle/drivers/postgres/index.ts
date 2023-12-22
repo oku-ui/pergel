@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { startSubprocess } from '@nuxt/devtools-kit'
 import type { ResolvedDrizzleConfig } from '../../types'
 
@@ -72,7 +72,7 @@ export default {
           dbDrop: env.drop,
           dbSeed: env.seed,
         },
-        migrationDir: `${nuxt._pergel._module.options.migrationsPath}`,
+        migrationDir: join(nuxt._pergel._module.dir.module, nuxt._pergel._module.options.dir.migrations),
       })
       writeFileSync(resolve(nuxt._pergel._module.options.seedPaths, 'index.ts'), file, {
         mode: 0o777,

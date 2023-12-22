@@ -53,6 +53,10 @@ export default definePergelModule<ResolvedDrizzleConfig>({
       schemaPath: resolve(nuxt._pergel._module.moduleDir, rootOptions.schemaPath ?? 'schema'),
       seedPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.seedPaths ?? 'seeds'),
       mergeSchemas: false,
+      dir: {
+        schema: rootOptions.schemaPath ?? 'schema',
+        migrations: rootOptions.migrationsPath ?? 'migrations',
+      },
       _driver: {
         name: driverName ?? 'postgresjs',
         driver: driver ?? 'pg',

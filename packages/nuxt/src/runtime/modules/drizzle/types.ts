@@ -65,13 +65,13 @@ export interface ResolvedDrizzleConfig {
 
   /**
    * Database schemas
-   * @default 'pergel/{projectName}/{moduleName}/schema'
+   * @default 'home/user/project1/pergel/{projectName}/{moduleName}/schema'
    */
   schemaPath: string
 
   /**
    * Database migrations
-   * @default 'pergel/{projectName}/{moduleName}/migrations'
+   * @default 'home/user/project1/pergel/{projectName}/{moduleName}/migrations'
    */
   migrationsPath: string
 
@@ -80,6 +80,19 @@ export interface ResolvedDrizzleConfig {
    * @default true
    */
   mergeSchemas?: boolean
+
+  dir: {
+    /**
+     * Database schemas
+     * @default 'schema'
+     */
+    schema: string
+    /**
+     * Database migrations
+     * @default 'migrations'
+     */
+    migrations: string
+  }
 
   /**
    * Database seeds
