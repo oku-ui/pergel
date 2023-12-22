@@ -9,20 +9,20 @@ import type { PergelConfig, PergelYaml } from '../types'
 
 export default defineCommand({
   meta: {
-    name: 'Orm Command',
-    description: 'Orm Command',
+    name: 'Module Command',
+    description: 'Module Command',
     version: '0.0.0',
   },
   args: {
-    driver: {
-      type: 'string',
-      description: 'Name of the orm',
-      alias: 'd',
-    },
     project: {
       type: 'string',
       description: 'Name of the project',
       alias: 'p',
+    },
+    module: {
+      type: 'string',
+      description: 'Name of the module',
+      alias: 'm',
     },
     script: {
       type: 'string',
@@ -37,13 +37,11 @@ export default defineCommand({
         configFile: 'pergel.config.ts',
         defaultConfig: {
           src: 'pergel',
-          selectProject: args.project,
+          packageManager: 'pnpm',
           cli: {
-            database: {
-              driver: (args.driver as any) ?? 'drizzle',
-              project: args.project,
-              selectedScript: args.script,
-            },
+            project: args.project,
+            module: args.module,
+            script: args.script,
           },
         },
       })
@@ -53,7 +51,7 @@ export default defineCommand({
         return
       }
 
-      if (!file.config.cli || !file.config.cli.database) {
+      if (!file.config.cli || !file.config.cli.project || !file.config.cli.module) {
         consola.error('Pergel config file is not configured')
         return
       }
@@ -61,14 +59,14 @@ export default defineCommand({
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
       const json = parse(readmeString) as PergelYaml
 
-      const project = json[file.config.cli.database.project][file.config.cli.database.driver ?? 'drizzle']
+      const project = json[file.config.cli.project]?.[file.config.cli.module]
 
       const script = project?.scripts ?? {}
 
       if (Object.keys(script).length === 0)
         consola.error('No script found')
 
-      const selectedScript = script[file.config.cli.database.selectedScript ?? 'undefined']
+      const selectedScript = script[file.config.cli.script ?? '']
 
       if (!selectedScript)
         consola.error('No script found')

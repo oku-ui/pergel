@@ -6,16 +6,15 @@ export interface PergelConfig {
   src?: string
 
   /**
-   * The branch to use for the active version of the project.
+   * The package manager to use.
+   * @default 'pnpm'
    */
-  selectProject?: string
+  packageManager?: 'npm' | 'yarn' | 'pnpm'
 
   cli?: {
-    database?: {
-      driver: 'drizzle'
-      project: string
-      selectedScript?: string
-    }
+    project?: string
+    module?: string
+    script?: string
   }
 }
 
