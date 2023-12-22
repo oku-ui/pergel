@@ -62,11 +62,11 @@ export default {
   }
 
   // Seed generation
-  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'seeds')))
+  if (!existsSync(resolve(nuxt._pergel._module.options.seedPaths)))
     mkdirSync(resolve(nuxt._pergel._module.moduleDir, 'seeds'), { recursive: true, mode: 0o777 })
 
   if (!existsSync(resolve(nuxt._pergel._module.options.seedPaths, 'index.ts'))) {
-    const readFile = await import(_resolver.resolve('./seed/index.ts')).then(m => m.default).catch(() => null)
+    const readFile = await import('./seed').then(m => m.default).catch(() => null)
     if (readFile) {
       const file = readFile({
         env: {
@@ -84,7 +84,7 @@ export default {
   }
 
   if (!existsSync(resolve(nuxt._pergel._module.options.seedPaths, 'seeds', 'seed1.ts'))) {
-    const readFile = await import(_resolver.resolve('./seed/seed1.ts')).then(m => m.default).catch(() => null)
+    const readFile = await import('./seed/seed1').then(m => m.default).catch(() => null)
     if (readFile) {
       const file = readFile()
       writeFileSync(resolve(nuxt._pergel._module.options.seedPaths, 'seed1.ts'), file)
