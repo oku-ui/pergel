@@ -18,8 +18,8 @@ importers:
         specifier: 0.0.0
         version: 0.0.0
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -37,8 +37,8 @@ importers:
   p-bullmq:
     dependencies:
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
       bullmq:
         specifier: ^4.15.3
         version: 4.15.3
@@ -68,8 +68,8 @@ importers:
         specifier: ^8.3.1
         version: 8.3.1
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -105,8 +105,8 @@ importers:
         specifier: 0.0.0
         version: 0.0.0(@types/node@20.10.0)(graphql@16.8.1)
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -127,8 +127,8 @@ importers:
         specifier: ^7.0.4
         version: 7.0.4
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
@@ -152,8 +152,8 @@ importers:
   p-nodeCron:
     dependencies:
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
@@ -180,8 +180,8 @@ importers:
         specifier: ^3.470.0
         version: 3.470.0
       '@pergel/nuxt':
-        specifier: 0.4.3
-        version: 0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.4.4
+        version: 0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -3588,8 +3588,8 @@ packages:
       - aws-crt
     dev: false
 
-  /@pergel/nuxt@0.4.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
-    resolution: {integrity: sha512-MXbVnzEY/V6oyjOj8B78uFXttXjaaq0/rxTxwsZecpjiza9iUTnQAF6L0LKdsdZlWRMamWfpzlQ6+C/lsAjwYg==}
+  /@pergel/nuxt@0.4.4(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
+    resolution: {integrity: sha512-MDfSEy0CMJtheSOTUL/jV7NxdIhKSfVPgnwfegyfETelDUijA7lIpqnP03G9znh1zk4PQF5s1ang3ZQ0fLJdpA==}
     dependencies:
       '@nuxt/devtools': 1.0.6(nuxt@3.8.2)(vite@5.0.8)
       '@nuxt/devtools-kit': 1.0.6(nuxt@3.8.2)(vite@5.0.8)
