@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { startSubprocess } from '@nuxt/devtools-kit'
-import { createResolver } from '@nuxt/kit'
 import type { ResolvedDrizzleConfig } from '../../types'
 
 import { createDrizzleConfig } from '../../defaults/postgresjs'
@@ -10,7 +9,6 @@ import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntim
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 
 export async function setupPostgres(nuxt: NuxtPergel<ResolvedDrizzleConfig>) {
-  const _resolver = createResolver(import.meta.url)
   const module = nuxt._pergel._module
   const projectName = module.projectName
   const moduleName = module.moduleName
