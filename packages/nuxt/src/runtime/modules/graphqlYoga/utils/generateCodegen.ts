@@ -5,7 +5,6 @@ import consola from 'consola'
 import { buildTime } from '../utils'
 import type { NuxtPergel } from '../../../core/types'
 import { useNuxtImports } from '../../../core/utils/useImports'
-import type { GraphQLYogaConfig } from '../types'
 import { useCodegen } from './codegen'
 
 export async function loadGraphQLFiles(
@@ -49,7 +48,7 @@ export async function useGenerateCodegen({
   documentDir,
   moduleDTS,
 }: {
-  nuxt: NuxtPergel<GraphQLYogaConfig>
+  nuxt: NuxtPergel
   projectName: string
   moduleDir: string
   type: 'server' | 'client' | 'all'

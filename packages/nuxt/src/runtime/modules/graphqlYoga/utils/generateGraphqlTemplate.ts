@@ -1,17 +1,17 @@
 import { join, resolve } from 'node:path'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import { relative } from 'pathe'
-import type { NuxtPergel } from '../../../core/types'
+import type { NuxtPergel, ResolvedModuleOptions } from '../../../core/types'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
 import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {
-  nuxt: NuxtPergel<ResolvedGraphQLYogaConfig>
+  nuxt: NuxtPergel
   options: ResolvedGraphQLYogaConfig
+  moduleOptions: ResolvedModuleOptions
 }) {
-  const module = data.nuxt._pergel._module
   const { codegen, documents, schema } = data.options
 
   function globsServerClient(path: string) {
@@ -78,22 +78,23 @@ export interface GraphqlYogaContext extends YogaInitialContext {
   event: H3Event
 }
       `,
-    moduleName: module.moduleName,
-    projectName: module.projectName,
+    moduleName: data.moduleOptions.moduleName,
+    projectName: data.moduleOptions.projectName,
     nuxt: data.nuxt,
     interfaceNames: ['GraphqlYogaContext'],
+    moduleOptions: data.moduleOptions,
   })
 
   useGenerateCodegen({
     nuxt: data.nuxt,
     type: 'all',
-    moduleDir: module.dir.module,
-    projectName: module.projectName,
+    moduleDir: data.moduleOptions.dir.module,
+    projectName: data.moduleOptions.projectName,
     schemaDir: schema,
     documentDir: documents,
     moduleDTS: {
       name: 'GraphqlYogaContext',
-      path: `pergel/${module.projectName}/types`,
+      path: `pergel/${data.moduleOptions.projectName}/types`,
     },
   })
 
@@ -111,7 +112,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
         documentDir: documents,
         moduleDTS: {
           name: 'GraphqlYogaContext',
-          path: `pergel/${module.projectName}/types`,
+          path: `pergel/${data.moduleOptions.projectName}/types`,
         },
       })
     }
@@ -126,7 +127,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
           documentDir: documents,
           moduleDTS: {
             name: 'GraphqlYogaContext',
-            path: `pergel/${module.projectName}/types`,
+            path: `pergel/${data.moduleOptions.projectName}/types`,
           },
         })
       }

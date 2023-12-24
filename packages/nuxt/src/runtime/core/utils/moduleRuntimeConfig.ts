@@ -1,16 +1,17 @@
 import defu from 'defu'
 import { addTemplate } from '@nuxt/kit'
-import type { NuxtPergel } from '../types'
+import type { NuxtPergel, ResolvedModuleOptions } from '../types'
 import { generateProjectName, runtimeConfigToEnv } from '.'
 
 export function generateModuleRuntimeConfig<T>(
   nuxt: NuxtPergel,
+  moduleOptions: ResolvedModuleOptions,
   config: Record<string, any>,
   publicRuntime?: boolean,
   customName?: string,
 ) {
-  const projectName = nuxt._pergel._module.projectName
-  const moduleName = nuxt._pergel._module.moduleName
+  const projectName = moduleOptions.projectName
+  const moduleName = moduleOptions.moduleName
 
   const runtimeConfig = nuxt.options.runtimeConfig
 

@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
@@ -57,13 +57,9 @@ export async function setupModules(data: {
           },
         }
 
-        data.nuxt._pergel._module = {
-          ...(data.nuxt._pergel.projects[projectName] as any)[moduleName],
-          projectName,
-          moduleName,
-        }
-
         let pergelModule: PergelModule
+
+        const module = (data.nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
 
         try {
           const getIndexExt = () => {
@@ -98,7 +94,17 @@ export async function setupModules(data: {
         } as any, {
           nuxt: data.nuxt,
           options: {},
-          rootOptions: (data.nuxt._pergel.rootOptions.projects[projectName as any] as any)[moduleName as keyof ModuleName],
+          rootOptions: module,
+          moduleOptions: {
+            dir: {
+              module: join(data.nuxt._pergel.dir.pergel, projectName, moduleName),
+              project: join(data.nuxt._pergel.dir.pergel, projectName),
+              root: join(data.nuxt._pergel.dir.pergel),
+            },
+            moduleName: moduleName as ModuleName,
+            projectName,
+            moduleDir: resolve(data.nuxt._pergel.pergelDir, projectName, moduleName),
+          },
         })
 
         if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
@@ -216,7 +222,17 @@ export async function setupModules(data: {
       const resolvedModule = await moduleSetup.defineModule({
         nuxt: data.nuxt,
         options: {},
-        rootOptions: (data.nuxt._pergel.rootOptions.projects[projectName as any] as any)[moduleName as keyof ModuleName],
+        rootOptions: module,
+        moduleOptions: {
+          dir: {
+            module: join(data.nuxt._pergel.dir.pergel, projectName, moduleName),
+            project: join(data.nuxt._pergel.dir.pergel, projectName),
+            root: join(data.nuxt._pergel.dir.pergel),
+          },
+          moduleName: moduleName as ModuleName,
+          projectName,
+          moduleDir: resolve(data.nuxt._pergel.pergelDir, projectName, moduleName),
+        },
       })
 
       if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {

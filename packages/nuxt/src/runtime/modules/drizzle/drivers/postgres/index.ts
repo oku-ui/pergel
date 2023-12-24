@@ -4,20 +4,20 @@ import { startSubprocess } from '@nuxt/devtools-kit'
 import type { ResolvedDrizzleConfig } from '../../types'
 
 import { createDrizzleConfig } from '../../defaults/postgresjs'
-import type { NuxtPergel } from '../../../../core/types'
+import type { NuxtPergel, ResolvedModuleOptions } from '../../../../core/types'
 import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 
 export async function setupPostgres(
-  nuxt: NuxtPergel<ResolvedDrizzleConfig>,
+  nuxt: NuxtPergel,
   options: ResolvedDrizzleConfig,
+  moduleOptions: ResolvedModuleOptions,
 ) {
-  const module = nuxt._pergel._module
-  const projectName = module.projectName
-  const moduleName = module.moduleName
+  const projectName = moduleOptions.projectName
+  const moduleName = moduleOptions.moduleName
   const { driver } = options._driver
 
-  const { env } = generateModuleRuntimeConfig(nuxt, {
+  const { env } = generateModuleRuntimeConfig(nuxt, moduleOptions, {
     url: '',
     host: '', // Postgres ip address[s] or domain name[s]
     port: 5432, // Postgres server port[s]
@@ -34,8 +34,8 @@ export async function setupPostgres(
 
 /** @type { import("drizzle-kit").Config } */
 export default {
-  schema: '${nuxt._pergel._module.dir.module}/schema/index.ts',
-  out: '${nuxt._pergel._module.dir.module}/migrations',
+  schema: '${moduleOptions.dir.module}/schema/index.ts',
+  out: '${moduleOptions.dir.module}/migrations',
   ${driver === 'pg' ? `driver: '${driver}',` : ''}
   dbCredentials: process.env.${env.url}
     ? {
@@ -52,11 +52,11 @@ export default {
 }
 `
 
-  if (!existsSync(nuxt._pergel._module.moduleDir))
-    mkdirSync(nuxt._pergel._module.moduleDir, { recursive: true, mode: 0o777 })
+  if (!existsSync(moduleOptions.moduleDir))
+    mkdirSync(moduleOptions.moduleDir, { recursive: true, mode: 0o777 })
 
-  if (!existsSync(resolve(nuxt._pergel._module.moduleDir, 'drizzle.config.js'))) {
-    writeFileSync(resolve(nuxt._pergel._module.moduleDir, 'drizzle.config.js'), drizzleConfig, {
+  if (!existsSync(resolve(moduleOptions.moduleDir, 'drizzle.config.js'))) {
+    writeFileSync(resolve(moduleOptions.moduleDir, 'drizzle.config.js'), drizzleConfig, {
       mode: 0o777,
       encoding: 'utf8',
     })
@@ -64,7 +64,7 @@ export default {
 
   // Seed generation
   if (!existsSync(resolve(options.seedPaths)))
-    mkdirSync(resolve(nuxt._pergel._module.moduleDir, 'seeds'), { recursive: true, mode: 0o777 })
+    mkdirSync(resolve(moduleOptions.moduleDir, 'seeds'), { recursive: true, mode: 0o777 })
 
   if (!existsSync(resolve(options.seedPaths, 'index.ts'))) {
     const readFile = await import('./seed').then(m => m.default).catch(() => null)
@@ -75,7 +75,7 @@ export default {
           dbDrop: env.drop,
           dbSeed: env.seed,
         },
-        migrationDir: join(nuxt._pergel._module.dir.module, options.dir.migrations),
+        migrationDir: join(moduleOptions.dir.module, options.dir.migrations),
       })
       writeFileSync(resolve(options.seedPaths, 'index.ts'), file, {
         mode: 0o777,
@@ -97,7 +97,7 @@ export default {
   if (nuxt.options.dev) {
     const subprocess = startSubprocess({
       command: 'drizzle-kit',
-      args: ['studio', '--port', '3105', `--config=${nuxt._pergel._module.moduleDir}/drizzle.config.js`],
+      args: ['studio', '--port', '3105', `--config=${moduleOptions.moduleDir}/drizzle.config.js`],
       cwd: nuxt.options.rootDir,
       env: {
         ...process.env,
@@ -121,13 +121,13 @@ export default {
     data: ({ addCommentBlock }) => ({
       ...addCommentBlock('Script Commands'),
       scripts: {
-        migrate: `drizzle-kit generate:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-        generate: `drizzle-kit generate:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-        push: `drizzle-kit push:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-        drop: `drizzle-kit drop --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-        up: `drizzle-kit up:${driver} --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-        studio: `drizzle-kit studio --port 3105 --config=${nuxt._pergel._module.dir.module}/drizzle.config.js`,
-        seed: `tsx ${nuxt._pergel._module.dir.module}/seeds/index.ts`,
+        migrate: `drizzle-kit generate:${driver} --config=${moduleOptions.dir.module}/drizzle.config.js`,
+        generate: `drizzle-kit generate:${driver} --config=${moduleOptions.dir.module}/drizzle.config.js`,
+        push: `drizzle-kit push:${driver} --config=${moduleOptions.dir.module}/drizzle.config.js`,
+        drop: `drizzle-kit drop --config=${moduleOptions.dir.module}/drizzle.config.js`,
+        up: `drizzle-kit up:${driver} --config=${moduleOptions.dir.module}/drizzle.config.js`,
+        studio: `drizzle-kit studio --port 3105 --config=${moduleOptions.dir.module}/drizzle.config.js`,
+        seed: `tsx ${moduleOptions.dir.module}/seeds/index.ts`,
       },
       cli: {
         migrate: `pergel module -s=migrate -p=${projectName} -m=${moduleName}`,

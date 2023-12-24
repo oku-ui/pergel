@@ -70,7 +70,7 @@ export interface PergelOptions {
   esnext?: boolean
 }
 
-export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> {
+export interface ResolvedPergelOptions {
   /**
    * Pergel user defined options.
    */
@@ -170,43 +170,6 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
     readme: string
   }
 
-  _module: ResolvedPergelOptions<T>['projects'][string][ModuleName] & {
-    projectName: string
-    moduleName: string
-
-    /**
-     * @example
-     * 'users/productdevbook/nuxt3/pergel/${projectName}'
-     */
-    projectDir: string
-    /**
-     * @example
-     * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
-     */
-    moduleDir: string
-
-    dir: {
-
-      /**
-       * @example
-       * 'pergel/${projectName}'
-       */
-      project: string
-
-      /**
-       * @example
-       * 'pergel/${projectName}/${moduleName}'
-       */
-      module: string
-
-      /**
-       * @example
-       * 'pergel'
-       */
-      root: string
-    }
-  }
-
   contents: {
     projectName: string
     moduleName: string
@@ -235,8 +198,19 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
   esnext?: boolean
 }
 
-export interface NuxtPergel<T extends ModuleOptions = ModuleOptions> extends Nuxt {
-  _pergel: ResolvedPergelOptions<T>
+export interface NuxtPergel extends Nuxt {
+  _pergel: ResolvedPergelOptions
+}
+
+export interface ResolvedModuleOptions {
+  dir: {
+    module: string
+    project: string
+    root: string
+  }
+  moduleName: string
+  projectName: string
+  moduleDir: string
 }
 
 interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
@@ -280,14 +254,19 @@ type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
   meta?: ModuleMeta<RootOptions>
   defaults?: ResolvedOptions
-  | ((data: { nuxt: NuxtPergel<ResolvedOptions>, rootOptions: RootOptions })
+  | ((data: {
+    nuxt: NuxtPergel
+    rootOptions: RootOptions
+    moduleOptions: ResolvedModuleOptions
+  })
   => ResolvedOptions)
   setup?: (
     this: void,
     data: {
-      nuxt: NuxtPergel<ResolvedOptions>
+      nuxt: NuxtPergel
       options: ResolvedOptions
       rootOptions: RootOptions
+      moduleOptions: ResolvedModuleOptions
     }
   ) =>
   _ModuleSetupReturn
@@ -295,13 +274,14 @@ export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOpti
 
 export interface PergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
   (this: void, data: {
-    nuxt: NuxtPergel<ResolvedOptions>
+    nuxt: NuxtPergel
     options: ResolvedOptions
     rootOptions: RootOptions
+    moduleOptions: ResolvedModuleOptions
   }): _ModuleSetupReturn
   getOptions?: (
     inlineOptions?: ResolvedOptions,
-    data?: { nuxt: NuxtPergel<ResolvedOptions>, rootOptions: RootOptions }) => Promise<ResolvedOptions>
+    data?: { nuxt: NuxtPergel, rootOptions: RootOptions }) => Promise<ResolvedOptions>
   getMeta?: () => ModuleMeta
 }
 

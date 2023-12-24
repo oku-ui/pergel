@@ -6,6 +6,7 @@ import type {
   ModuleSetupReturn,
   NuxtPergel,
   PergelModule,
+  ResolvedModuleOptions,
 } from './types'
 
 export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions>(
@@ -20,24 +21,24 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
   if (module.meta.configKey === undefined)
     module.meta.configKey = module.meta.name
 
-  async function getOptions(inlineOptions: RootOptions, nuxt: NuxtPergel<RootOptions> = useNuxt()) {
-    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, rootOptions: inlineOptions }) : module.defaults
+  async function getOptions(inlineOptions: RootOptions, moduleOptions: ResolvedModuleOptions, nuxt: NuxtPergel = useNuxt()) {
+    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, rootOptions: inlineOptions, moduleOptions }) : module.defaults
 
-    const rootOptions = (nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
+    const rootOptions = (nuxt._pergel.rootOptions.projects[moduleOptions.projectName] as any)[moduleOptions.moduleName] ?? {}
     const _options = defu(rootOptions, defaultModule)
 
     return Promise.resolve(_options)
   }
 
-  async function normalizedModule(this: any, data: { nuxt: NuxtPergel<RootOptions>, rootOptions: RootOptions }) {
-    const options = await getOptions(data.rootOptions, data.nuxt)
+  async function normalizedModule(this: any, data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions }) {
+    const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt)
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
     if (!this.prepare) {
       // Resolve module and options
 
-      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options, rootOptions: data.rootOptions }) ?? {}
+      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options, rootOptions: data.rootOptions, moduleOptions: data.moduleOptions }) ?? {}
       const perf = performance.measure(key, mark)
       const setupTime = perf ? Math.round(perf.duration * 100) / 100 : 0
 

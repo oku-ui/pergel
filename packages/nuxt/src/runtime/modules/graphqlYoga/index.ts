@@ -19,20 +19,20 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
     },
     dts: true,
   },
-  defaults({ nuxt, rootOptions }) {
+  defaults({ rootOptions, moduleOptions }) {
     return defu(rootOptions, {
-      documents: resolve(nuxt._pergel._module.moduleDir, rootOptions.documents ?? 'documents'),
-      schema: resolve(nuxt._pergel._module.moduleDir, rootOptions.schema ?? 'schema'),
+      documents: resolve(moduleOptions.moduleDir, rootOptions.documents ?? 'documents'),
+      schema: resolve(moduleOptions.moduleDir, rootOptions.schema ?? 'schema'),
       codegen: {
         client: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(nuxt._pergel._module.moduleDir, rootOptions.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
+          configFilePath: resolve(moduleOptions.moduleDir, rootOptions.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
         },
         server: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(nuxt._pergel._module.moduleDir, rootOptions.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
+          configFilePath: resolve(moduleOptions.moduleDir, rootOptions.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
         },
       },
       endpoint: '/api/graphql',
@@ -56,18 +56,16 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       mergeSchemas: false,
     } satisfies ResolvedGraphQLYogaConfig) as ResolvedGraphQLYogaConfig
   },
-  async setup({ nuxt, options }) {
-    const module = nuxt._pergel._module
-
+  async setup({ nuxt, options, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 
-    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, {
+    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, moduleOptions, {
       ...options,
     }, true)
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 
-    addServerImportsDir(join(nuxt.options.buildDir, 'pergel', module.projectName, module.moduleName, 'client'))
+    addServerImportsDir(join(nuxt.options.buildDir, 'pergel', moduleOptions.projectName, moduleOptions.moduleName, 'client'))
 
     useNitroImports(nuxt, {
       presets: [
@@ -76,10 +74,10 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           imports: ['GraphQLError'],
         },
         {
-          from: join(nuxt.options.buildDir, 'pergel', module.projectName, module.moduleName, 'client'),
+          from: join(nuxt.options.buildDir, 'pergel', moduleOptions.projectName, moduleOptions.moduleName, 'client'),
           imports: [
             {
-              as: `${module.projectName}${pascalCase(module.moduleName)}Document`,
+              as: `${moduleOptions.projectName}${pascalCase(moduleOptions.moduleName)}Document`,
               name: '*',
             },
           ],
@@ -104,11 +102,12 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
     generateGraphQLTemplate({
       nuxt,
       options,
+      moduleOptions,
     })
 
     nuxt._pergel.contents.push({
-      moduleName: module.moduleName,
-      projectName: module.projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
           function graphqlYoga() {
             return {
