@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
-import { type Resolver, installModule } from '@nuxt/kit'
+import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
 import type { PergelModule } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
