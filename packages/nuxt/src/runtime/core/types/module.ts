@@ -7,8 +7,8 @@ import type { ImportsOptions, Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 
 import type { UnimportPluginOptions } from 'unimport/unplugin'
-import type { GraphQLYogaConfig } from '../../modules/graphqlYoga/types'
-import type { DrizzleConfig } from '../../modules/drizzle/types'
+import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
+import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
@@ -20,6 +20,16 @@ export interface Modules {
   json2csv?: true
   graphqlYoga?: true | GraphQLYogaConfig
   drizzle?: true | DrizzleConfig
+}
+
+export interface ResolvedModules {
+  S3?: true
+  ses?: true
+  nodeCron?: true
+  bullmq?: true
+  json2csv?: true
+  graphqlYoga?: ResolvedGraphQLYogaConfig
+  drizzle?: ResolvedDrizzleConfig
 }
 
 export type ModuleName = keyof Modules
@@ -65,6 +75,7 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
    * Pergel user defined options.
    */
   rootOptions: Required<PergelOptions>
+
   /**
    * [S3, nodecron, graphql, drizzle]
    */
@@ -103,42 +114,37 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
   }
 
   projects: {
-    [project: string]: {
-      [module in ModuleName]: {
-        options: T
+    [project: string]: ResolvedModules & {
+      /**
+       * @example
+       * 'users/productdevbook/nuxt3/pergel/${projectName}'
+       */
+      projectDir: string
+      /**
+       * @example
+       * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+       */
+      moduleDir: string
+
+      dir: {
 
         /**
          * @example
-         * 'users/productdevbook/nuxt3/pergel/${projectName}'
+         * 'pergel/${projectName}'
          */
-        projectDir: string
+        project: string
+
         /**
          * @example
-         * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+         * 'pergel/${projectName}/${moduleName}'
          */
-        moduleDir: string
+        module: string
 
-        dir: {
-
-          /**
-           * @example
-           * 'pergel/${projectName}'
-           */
-          project: string
-
-          /**
-           * @example
-           * 'pergel/${projectName}/${moduleName}'
-           */
-          module: string
-
-          /**
-           * @example
-           * 'pergel'
-           */
-          root: string
-        }
-
+        /**
+         * @example
+         * 'pergel'
+         */
+        root: string
       }
     }
   }
@@ -212,6 +218,8 @@ interface ModuleMeta<T extends ModuleOptions = ModuleOptions> {
   devDependencies?: Record<string, string> | ((options: T) => Record<string, string>)
   dependencies?: Record<string, string> | ((options: T) => Record<string, string>)
   dts?: boolean
+
+  waitModule?: ModuleName[] | ((options: T) => ModuleName[])
 
   [key: string]: unknown
 }

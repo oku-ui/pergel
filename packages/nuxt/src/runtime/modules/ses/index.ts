@@ -10,6 +10,7 @@ export default definePergelModule({
     dependencies: {
       '@aws-sdk/client-ses': '^3.470.0',
     },
+    waitModule: ['nodeCron'],
   },
   defaults: {},
   async setup({ nuxt }) {

@@ -44,6 +44,8 @@ export function generateModuleRuntimeConfig<T>(
 
     const { envs, keyEnvValue } = runtimeConfigToEnv(runtimeConfig[name as any] as any, [name])
 
+    nuxt._pergel.readmeYaml[projectName] ??= {}
+    nuxt._pergel.readmeYaml[projectName][moduleName] ??= {}
     nuxt._pergel.readmeYaml[projectName][moduleName] = defu(nuxt._pergel.readmeYaml[projectName][moduleName], {
       ...customName
         ? {

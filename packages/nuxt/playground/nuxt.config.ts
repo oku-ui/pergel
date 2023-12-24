@@ -52,12 +52,12 @@ export default defineNuxtConfig({
         S3: true,
         nodeCron: true,
         ses: true,
-        bullmq: true,
-        json2csv: true,
-        graphqlYoga: {
-          mergeSchemas: true,
-        },
-        drizzle: true,
+        // bullmq: true,
+        // json2csv: true,
+        // graphqlYoga: {
+        //   mergeSchemas: true,
+        // },
+        // drizzle: true,
       },
       test2: {
         S3: true,
