@@ -74,7 +74,7 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
   /**
    * Pergel user defined options.
    */
-  rootOptions: Required<PergelOptions>
+  rootOptions: PergelOptions
 
   /**
    * [S3, nodecron, graphql, drizzle]
@@ -103,6 +103,7 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
       }
     }
   }
+
   activeModules: {
     [projectName: string]: {
       [moduleName: string]: {
@@ -198,6 +199,8 @@ export interface ResolvedPergelOptions<T extends ModuleOptions = ModuleOptions> 
    * 'users/productdevbook/nuxt3/pergel'
    */
   pergelDir: string
+
+  esnext?: boolean
 }
 
 export interface NuxtPergel<T extends ModuleOptions = ModuleOptions> extends Nuxt {
