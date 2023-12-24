@@ -8,20 +8,20 @@ import type {
   PergelModule,
 } from './types'
 
-export function definePergelModule<OptionsT extends ModuleOptions>(
-  definition: ModuleDefinition<OptionsT> | PergelModule<OptionsT>,
-): PergelModule<OptionsT> {
+export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions>(
+  definition: ModuleDefinition<RootOptions, ResolvedOptions> | PergelModule<RootOptions, ResolvedOptions>,
+): PergelModule<RootOptions, ResolvedOptions> {
   if (typeof definition === 'function')
     return definePergelModule({ setup: definition })
 
   // Normalize definition and meta
-  const module: ModuleDefinition<OptionsT> & Required<Pick<ModuleDefinition<OptionsT>, 'meta'>> = defu(definition, { meta: {} })
+  const module: ModuleDefinition<RootOptions, ResolvedOptions> & Required<Pick<ModuleDefinition<RootOptions, ResolvedOptions>, 'meta'>> = defu(definition, { meta: {} })
 
   if (module.meta.configKey === undefined)
     module.meta.configKey = module.meta.name
 
-  async function getOptions(nuxt: NuxtPergel<OptionsT> = useNuxt()) {
-    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt }) : module.defaults
+  async function getOptions(inlineOptions: RootOptions, nuxt: NuxtPergel<RootOptions> = useNuxt()) {
+    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, rootOptions: inlineOptions }) : module.defaults
 
     const rootOptions = (nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
     const _options = defu(rootOptions, defaultModule)
@@ -29,15 +29,15 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
     return Promise.resolve(_options)
   }
 
-  async function normalizedModule(this: any, data: { nuxt: NuxtPergel<OptionsT> }) {
-    await getOptions(data.nuxt)
+  async function normalizedModule(this: any, data: { nuxt: NuxtPergel<RootOptions>, rootOptions: RootOptions }) {
+    const options = await getOptions(data.rootOptions, data.nuxt)
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
     if (!this.prepare) {
       // Resolve module and options
 
-      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, _setup: true }) ?? {}
+      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options, rootOptions: data.rootOptions }) ?? {}
       const perf = performance.measure(key, mark)
       const setupTime = perf ? Math.round(perf.duration * 100) / 100 : 0
 
