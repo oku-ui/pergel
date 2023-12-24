@@ -3,7 +3,7 @@ import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
-import type { PergelModule } from './types'
+import type { ModuleName, PergelModule } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
 
@@ -95,7 +95,11 @@ export async function setupModules(data: {
         // const resolvedModule = await pergelModule({ nuxt: data.nuxt })
         const resolvedModule = await pergelModule.call({
           prepare: true,
-        } as any, { nuxt: data.nuxt })
+        } as any, {
+          nuxt: data.nuxt,
+          options: {},
+          rootOptions: (data.nuxt._pergel.rootOptions.projects[projectName as any] as any)[moduleName as keyof ModuleName],
+        })
 
         if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
           consola.error(`Module ${moduleName} failed to setup`)
@@ -209,7 +213,11 @@ export async function setupModules(data: {
       if (typeof moduleSetup.defineModule !== 'function')
         throw new TypeError(`Nuxt module should be a function: ${moduleSetup.defineModule}`)
 
-      const resolvedModule = await moduleSetup.defineModule({ nuxt: data.nuxt })
+      const resolvedModule = await moduleSetup.defineModule({
+        nuxt: data.nuxt,
+        options: {},
+        rootOptions: (data.nuxt._pergel.rootOptions.projects[projectName as any] as any)[moduleName as keyof ModuleName],
+      })
 
       if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
         consola.error(`Module ${moduleName} failed to setup`)
