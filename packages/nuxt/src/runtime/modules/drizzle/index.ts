@@ -42,14 +42,14 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       return data
     },
   },
-  defaults({ nuxt, rootOptions }) {
+  defaults({ rootOptions, moduleOptions }) {
     const [driverName, driver] = rootOptions.driver?.split(':') ?? ['postgresjs', 'pg']
 
     return {
       driver: rootOptions.driver ?? 'postgresjs:pg',
-      migrationsPath: resolve(nuxt._pergel._module.moduleDir, rootOptions.migrationsPath ?? 'migrations'),
-      schemaPath: resolve(nuxt._pergel._module.moduleDir, rootOptions.schemaPath ?? 'schema'),
-      seedPaths: resolve(nuxt._pergel._module.moduleDir, rootOptions.seedPaths ?? 'seeds'),
+      migrationsPath: resolve(moduleOptions.moduleDir, rootOptions.migrationsPath ?? 'migrations'),
+      schemaPath: resolve(moduleOptions.moduleDir, rootOptions.schemaPath ?? 'schema'),
+      seedPaths: resolve(moduleOptions.moduleDir, rootOptions.seedPaths ?? 'seeds'),
       mergeSchemas: false,
       dir: {
         schema: rootOptions.schemaPath ?? 'schema',
@@ -62,8 +62,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       studio: true,
     }
   },
-  async setup({ nuxt, options }) {
-    const projectName = nuxt._pergel._module.projectName
+  async setup({ nuxt, options, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 
     if (!existsSync(options.schemaPath))
@@ -78,17 +77,17 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     // Driver setup
     switch (options._driver.name) {
       case 'postgresjs':
-        await setupPostgres(nuxt, options)
+        await setupPostgres(nuxt, options, moduleOptions)
         break
     }
 
-    nuxt.options.alias[`${projectName}/drizzle/schema`] = resolve(
+    nuxt.options.alias[`${moduleOptions.projectName}/drizzle/schema`] = resolve(
       nuxt.options.rootDir,
       options.schemaPath,
     )
 
     nuxt.options.nitro.alias ??= {}
-    nuxt.options.nitro.alias[`${projectName}/drizzle/schema`] = resolve(
+    nuxt.options.nitro.alias[`${moduleOptions.projectName}/drizzle/schema`] = resolve(
       nuxt.options.rootDir,
       options.schemaPath,
     )
@@ -102,7 +101,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
           from: `${options.schemaPath}`,
           imports: [
             {
-              as: `tables${pascalCase(projectName)}`,
+              as: `tables${pascalCase(moduleOptions.projectName)}`,
               name: '*',
             },
           ],
@@ -190,13 +189,13 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     })
 
     nuxt._pergel.contents.push({
-      moduleName: 'drizzle',
-      projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
           function drizzle() {
             return {
               ${returnDriver}
-              schema: tables${pascalCase(projectName)},
+              schema: tables${pascalCase(moduleOptions.projectName)},
             }
           }
         `,

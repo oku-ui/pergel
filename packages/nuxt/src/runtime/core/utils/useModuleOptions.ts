@@ -1,11 +1,12 @@
-import type { ModuleName, NuxtPergel } from '../types'
+import type { NuxtPergel, ResolvedModuleOptions } from '../types'
 
 export function useModuleOptions<Options, ResolvedOptions>(
   nuxt: NuxtPergel,
-  moduleName: ModuleName,
+  moduleOptions: ResolvedModuleOptions,
 ) {
-  const resolvedOptions = nuxt._pergel.projects[nuxt._pergel._module.projectName][moduleName] as ResolvedOptions
-  const rootOptions = nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName][moduleName] as Options
+  const { moduleName, projectName } = moduleOptions
+  const resolvedOptions = (nuxt._pergel.projects[projectName as any] as any)[moduleName as any] as ResolvedOptions
+  const rootOptions = (nuxt._pergel.rootOptions.projects[projectName as any] as any)[moduleName] as Options
 
   return {
     rootOptions,

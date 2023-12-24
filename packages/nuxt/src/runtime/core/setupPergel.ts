@@ -89,7 +89,6 @@ export async function setupPergel(
       readme: join('pergel', 'README.yaml'),
       root: options.rootDir ?? './',
     },
-    _module: {} as any,
     contents: [],
     pergelDir: resolve(resolveDir, resolvedOptions.pergelDir ?? 'pergel'),
     rootDir: resolveDir,
