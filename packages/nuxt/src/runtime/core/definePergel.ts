@@ -23,11 +23,10 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
   async function getOptions(nuxt: NuxtPergel<OptionsT> = useNuxt()) {
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt }) : module.defaults
 
-    const userModuleOptions = (nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
+    const rootOptions = (nuxt._pergel.rootOptions.projects[nuxt._pergel._module.projectName] as any)[nuxt._pergel._module.moduleName] ?? {}
+    const _options = defu(rootOptions, defaultModule)
 
-    const moduleOptions = defu(userModuleOptions, defaultModule)
-
-    return Promise.resolve(moduleOptions)
+    return Promise.resolve(_options)
   }
 
   async function normalizedModule(this: any, data: { nuxt: NuxtPergel<OptionsT> }) {
@@ -65,8 +64,8 @@ export function definePergelModule<OptionsT extends ModuleOptions>(
     })
   }
 
-  normalizedModule.getMeta = () => Promise.resolve(module.meta)
-  normalizedModule.getOptions = getOptions
+  normalizedModule.getMeta = () => Promise.resolve(module.meta) as any
+  normalizedModule.getOptions = getOptions as any
 
   return normalizedModule
 }
