@@ -9,9 +9,10 @@ import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {
   nuxt: NuxtPergel<ResolvedGraphQLYogaConfig>
+  options: ResolvedGraphQLYogaConfig
 }) {
   const module = data.nuxt._pergel._module
-  const { codegen, documents, schema } = module.options
+  const { codegen, documents, schema } = data.options
 
   function globsServerClient(path: string) {
     const absolutePath = resolve(data.nuxt.options.rootDir, path)

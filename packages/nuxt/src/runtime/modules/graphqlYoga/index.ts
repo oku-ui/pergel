@@ -5,12 +5,12 @@ import { pascalCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
-import type { ResolvedGraphQLYogaConfig } from './types'
+import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
 import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
 // const _logger = useLogger('pergel:graphql:yoga')
 
-export default definePergelModule<ResolvedGraphQLYogaConfig>({
+export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>({
   meta: {
     name: 'graphqlYoga',
     version: '0.0.1',
@@ -19,22 +19,20 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
     },
     dts: true,
   },
-  defaults({ nuxt }) {
-    const options = nuxt._pergel._module.options
-
-    return defu(options, {
-      documents: resolve(nuxt._pergel._module.moduleDir, options.documents ?? 'documents'),
-      schema: resolve(nuxt._pergel._module.moduleDir, options.schema ?? 'schema'),
+  defaults({ nuxt, rootOptions }) {
+    return defu(rootOptions, {
+      documents: resolve(nuxt._pergel._module.moduleDir, rootOptions.documents ?? 'documents'),
+      schema: resolve(nuxt._pergel._module.moduleDir, rootOptions.schema ?? 'schema'),
       codegen: {
         client: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
+          configFilePath: resolve(nuxt._pergel._module.moduleDir, rootOptions.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
         },
         server: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
+          configFilePath: resolve(nuxt._pergel._module.moduleDir, rootOptions.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
         },
       },
       endpoint: '/api/graphql',
@@ -56,15 +54,15 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
         ready: '/api/graphql/ready',
       },
       mergeSchemas: false,
-    } as ResolvedGraphQLYogaConfig)
+    } satisfies ResolvedGraphQLYogaConfig) as ResolvedGraphQLYogaConfig
   },
-  async setup({ nuxt }) {
+  async setup({ nuxt, options }) {
     const module = nuxt._pergel._module
 
     const resolver = createResolver(import.meta.url)
 
     generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, {
-      ...nuxt._pergel._module.options,
+      ...options,
     }, true)
 
     addServerImportsDir(resolver.resolve('./composables/**'))
@@ -105,6 +103,7 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
 
     generateGraphQLTemplate({
       nuxt,
+      options,
     })
 
     nuxt._pergel.contents.push({
