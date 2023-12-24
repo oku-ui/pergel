@@ -197,8 +197,8 @@ export async function setupModules(data: {
       if (!getMeta)
         throw new Error(`Module ${moduleName} does not have meta`)
 
-      const dependencies = getMeta.dependencies instanceof Function ? getMeta.dependencies(module._module.options) : getMeta.dependencies ?? {}
-      const devDependencies = getMeta.devDependencies instanceof Function ? getMeta.devDependencies(module._module.options) : getMeta.devDependencies ?? {}
+      const dependencies = getMeta.dependencies instanceof Function ? getMeta.dependencies(module) : getMeta.dependencies ?? {}
+      const devDependencies = getMeta.devDependencies instanceof Function ? getMeta.devDependencies(module) : getMeta.devDependencies ?? {}
 
       if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
         generateProjectReadme({

@@ -57,7 +57,7 @@ export default defineNuxtConfig({
         graphqlYoga: {
           mergeSchemas: true,
         },
-        // drizzle: true,
+        drizzle: true,
       },
       test2: {
         S3: true,
