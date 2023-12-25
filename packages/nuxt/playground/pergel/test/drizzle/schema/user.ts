@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm'
-import { date, pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
+import { pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { session } from './session'
 
 export const roleEnum = pgEnum('role', ['user', 'admin', 'userAdmin'])
