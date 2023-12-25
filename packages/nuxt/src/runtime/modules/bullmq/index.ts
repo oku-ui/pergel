@@ -16,12 +16,10 @@ export default definePergelModule({
     dts: true,
   },
   defaults: {},
-  async setup({ nuxt }) {
-    const options = nuxt._pergel._module
-
+  async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 
-    generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, {
+    generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, moduleOptions, {
       options: {
         host: '',
         port: 6379,
@@ -41,14 +39,15 @@ export interface BullmqContext {
 }
       `,
       nuxt,
-      moduleName: options.moduleName,
-      projectName: options.projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       interfaceNames: ['BullmqContext'],
+      moduleOptions,
     })
 
     nuxt._pergel.contents.push({
-      moduleName: options.moduleName,
-      projectName: options.projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
           function bullmq() {
             return {

@@ -22,6 +22,11 @@ export interface DrizzleConfig {
   migrationsPath?: string
 
   /**
+   * Database seeds
+   * @default 'pergel/{projectName}/{moduleName}/seeds'
+   */
+  seedPaths?: string
+  /**
    * Merge schemas
    * @default true
    */

@@ -11,11 +11,10 @@ export default definePergelModule({
       '@pergel/module-s3': '0.0.0',
     },
   },
-  setup({ nuxt }) {
+  setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
-    const module = nuxt._pergel._module
 
-    generateModuleRuntimeConfig<S3ModuleRuntimeConfig>(nuxt, {
+    generateModuleRuntimeConfig<S3ModuleRuntimeConfig>(nuxt, moduleOptions, {
       region: 'auto',
       endpoint: '',
       accessKeyId: '',
@@ -39,8 +38,8 @@ export default definePergelModule({
     }
 
     nuxt._pergel.contents.push({
-      moduleName: module.moduleName,
-      projectName: module.projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* TypeScript */ `
           function S3() {
             return {

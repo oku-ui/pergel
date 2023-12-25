@@ -10,13 +10,13 @@ export default definePergelModule({
     dependencies: {
       '@aws-sdk/client-ses': '^3.470.0',
     },
+    waitModule: ['nodeCron'],
   },
   defaults: {},
-  async setup({ nuxt }) {
+  async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
-    const module = nuxt._pergel._module
 
-    generateModuleRuntimeConfig<SesModuleRuntimeConfig>(nuxt, {
+    generateModuleRuntimeConfig<SesModuleRuntimeConfig>(nuxt, moduleOptions, {
       region: '',
       accessKeyId: '',
       secretAccessKey: '',
@@ -24,8 +24,8 @@ export default definePergelModule({
 
     addServerImportsDir(resolver.resolve('./composables'))
     nuxt._pergel.contents.push({
-      moduleName: module.moduleName,
-      projectName: module.projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
         function ses() {
           return {

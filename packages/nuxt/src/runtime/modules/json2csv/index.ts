@@ -10,16 +10,15 @@ export default definePergelModule({
     },
   },
   defaults: {},
-  async setup({ nuxt }) {
+  async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
-    const projectName = nuxt._pergel._module.projectName
 
     addServerImportsDir(resolver.resolve('./composables/server'))
     addImportsDir(resolver.resolve('./composables/vue'))
 
     nuxt._pergel.contents.push({
-      moduleName: 'json2csv',
-      projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
           function json2csv() {
             return {

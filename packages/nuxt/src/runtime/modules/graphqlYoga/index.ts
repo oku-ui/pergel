@@ -5,12 +5,12 @@ import { pascalCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
-import type { ResolvedGraphQLYogaConfig } from './types'
+import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
 import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
 // const _logger = useLogger('pergel:graphql:yoga')
 
-export default definePergelModule<ResolvedGraphQLYogaConfig>({
+export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>({
   meta: {
     name: 'graphqlYoga',
     version: '0.0.1',
@@ -19,22 +19,20 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
     },
     dts: true,
   },
-  defaults({ nuxt }) {
-    const options = nuxt._pergel._module.options
-
-    return defu(options, {
-      documents: resolve(nuxt._pergel._module.moduleDir, options.documents ?? 'documents'),
-      schema: resolve(nuxt._pergel._module.moduleDir, options.schema ?? 'schema'),
+  defaults({ rootOptions, moduleOptions }) {
+    return defu(rootOptions, {
+      documents: resolve(moduleOptions.moduleDir, rootOptions.documents ?? 'documents'),
+      schema: resolve(moduleOptions.moduleDir, rootOptions.schema ?? 'schema'),
       codegen: {
         client: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
+          configFilePath: resolve(moduleOptions.moduleDir, rootOptions.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
         },
         server: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(nuxt._pergel._module.moduleDir, options.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
+          configFilePath: resolve(moduleOptions.moduleDir, rootOptions.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
         },
       },
       endpoint: '/api/graphql',
@@ -56,20 +54,18 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
         ready: '/api/graphql/ready',
       },
       mergeSchemas: false,
-    } as ResolvedGraphQLYogaConfig)
+    } satisfies ResolvedGraphQLYogaConfig) as ResolvedGraphQLYogaConfig
   },
-  async setup({ nuxt }) {
-    const module = nuxt._pergel._module
-
+  async setup({ nuxt, options, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 
-    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, {
-      ...nuxt._pergel._module.options,
+    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, moduleOptions, {
+      ...options,
     }, true)
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 
-    addServerImportsDir(join(nuxt.options.buildDir, 'pergel', module.projectName, module.moduleName, 'client'))
+    addServerImportsDir(join(nuxt.options.buildDir, 'pergel', moduleOptions.projectName, moduleOptions.moduleName, 'client'))
 
     useNitroImports(nuxt, {
       presets: [
@@ -78,10 +74,10 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
           imports: ['GraphQLError'],
         },
         {
-          from: join(nuxt.options.buildDir, 'pergel', module.projectName, module.moduleName, 'client'),
+          from: join(nuxt.options.buildDir, 'pergel', moduleOptions.projectName, moduleOptions.moduleName, 'client'),
           imports: [
             {
-              as: `${module.projectName}${pascalCase(module.moduleName)}Document`,
+              as: `${moduleOptions.projectName}${pascalCase(moduleOptions.moduleName)}Document`,
               name: '*',
             },
           ],
@@ -105,11 +101,13 @@ export default definePergelModule<ResolvedGraphQLYogaConfig>({
 
     generateGraphQLTemplate({
       nuxt,
+      options,
+      moduleOptions,
     })
 
     nuxt._pergel.contents.push({
-      moduleName: module.moduleName,
-      projectName: module.projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
           function graphqlYoga() {
             return {
