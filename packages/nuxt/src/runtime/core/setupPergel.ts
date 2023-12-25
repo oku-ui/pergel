@@ -82,7 +82,6 @@ export async function setupPergel(
     resolver,
     devServerHandler: [],
     dts: {},
-    activeModules: {},
     projects: {},
     dir: {
       pergel: pergelDir ?? 'pergel',

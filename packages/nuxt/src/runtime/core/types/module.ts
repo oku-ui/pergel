@@ -93,28 +93,23 @@ export interface ResolvedPergelOptions {
   projectNames: string[]
 
   nitroImports: Partial<UnimportPluginOptions>
+
   nuxtImports: Partial<ImportsOptions>
+
   readmeYaml: any
+
   resolver: Resolver
+
   devServerHandler: {
     id: string
     fn: () => void
   }[]
+
   dts: {
     [projectName: string]: {
       [moduleName: string]: {
         interfaceNames: string[]
         template: string[]
-      }
-    }
-  }
-
-  activeModules: {
-    [projectName: string]: {
-      [moduleName: string]: {
-        devtools?: {
-          [key: string]: any
-        }
       }
     }
   }

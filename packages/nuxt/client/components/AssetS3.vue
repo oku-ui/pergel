@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  selectedTabProject: {
+  projectName: {
     type: String,
     required: true,
   },
@@ -9,10 +9,9 @@ const props = defineProps({
 definePageMeta({
   icon: 'carbon-image-copy',
   title: 'S3',
-  layout: 'full',
 })
 
-const { data, error, pending, execute } = await useFetch<any[]>(devtoolsUrl('/__pergel__S3', props.selectedTabProject), {
+const { data, error, pending, execute } = await useFetch<any[]>(devtoolsUrl('/__pergel__S3', props.projectName), {
   method: 'get',
   lazy: true,
 })

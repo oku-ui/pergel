@@ -9,18 +9,14 @@ import {
 import { rpc } from '../composables/rpc'
 
 const projects = ref()
-const selectedTabProject = ref()
 const totalModules = ref()
-const activeModules = ref()
 
 onMounted(async () => {
   projects.value = await rpc.value?.getProjects()
   totalModules.value = await rpc.value?.getTotalModules()
-  activeModules.value = await rpc.value?.getActiveModules()
-  selectedTabProject.value = projects.value[0]
 })
 
-const tabs = ref([])
+const tabs = ref<string[]>([])
 const selectedTab = ref('add')
 </script>
 
@@ -70,18 +66,18 @@ const selectedTab = ref('add')
         value="add"
       >
         <template
-          v-if="activeModules"
+          v-if="projects"
         >
           <NSectionBlock
-            v-for="project in Object.keys(activeModules)"
+            v-for="project in Object.keys(projects)"
             :key="project"
             icon="carbon-plug"
             :text="project"
-            :description="`Active modules: ${activeModules.length ?? 0}/${totalModules.length ?? 0}`"
+            :description="`Active modules: ${projects.length ?? 0}/${(totalModules && totalModules.length) ?? 0}`"
           >
             <div class="grid grid-cols-4 gap-6">
               <template
-                v-for="module in Object.keys(activeModules[project])"
+                v-for="module in Object.keys(projects[project])"
                 :key="module.id"
               >
                 <button
@@ -98,25 +94,24 @@ const selectedTab = ref('add')
           </NSectionBlock>
         </template>
       </OkuTabsContent>
+
       <OkuTabsContent
         v-for="tab in tabs"
         :key="tab"
         :value="tab"
         class="flex h-full w-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
       >
-        <AssetS3
+        <ModulesAssetS3
           v-if="tab.includes('.S3')"
-          :selected-tab-project="tab.split('.')[0]"
+          :project-name="tab.split('.')[0]"
         />
         <ModulesGraphqlYoga
           v-if="tab.includes('.graphqlYoga')"
-          :selected-tab-project="tab.split('.')[0]"
           :project-name="tab.split('.')[0]"
         >
         </ModulesGraphqlYoga>
         <ModulesDrizzle
           v-if="tab.includes('.drizzle')"
-          :selected-tab-project="tab.split('.')[0]"
           :project-name="tab.split('.')[0]"
         >
         </ModulesDrizzle>

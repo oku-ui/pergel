@@ -14,7 +14,7 @@ export async function copyMigrationFolder(
     try {
       const logger = useLogger('pergel:drizzle')
 
-      for (const [projectName, modules] of Object.entries(nuxt._pergel.activeModules)) {
+      for (const [projectName, modules] of Object.entries(nuxt._pergel)) {
         for (const [moduleName, _module] of Object.entries(modules)) {
           if (moduleName === 'drizzle') {
             const outDir = resolve(nitroCtx.options.output.dir, 'pergel', projectName, moduleName, 'migrations')

@@ -5,7 +5,6 @@ export interface ServerFunctions {
   getOptions(): ResolvedPergelOptions
   getProjects(): ResolvedPergelOptions['projects']
   getTotalModules(): ResolvedPergelOptions['modules']
-  getActiveModules(): ResolvedPergelOptions['activeModules']
   getProject(name: string): Modules
   getProjectModules(name: string): string[]
   getModuleOptions({ projectName, moduleName }: { projectName: string, moduleName: ModuleName }): Modules
