@@ -1,97 +1,256 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
 import type { ModuleName, PergelModule } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
+import { generateProjectReadme } from './utils/generateYaml'
+
+type PrepareModules = {
+  [project: string]: {
+    [module: string]: {
+      defineModule: PergelModule
+      waitModule?: string[]
+    }
+  }
+}
+
+class CircularDependencyError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'CircularDependencyError'
+  }
+}
+
+async function initModules(nuxt: Nuxt, resolver: Resolver) {
+  const projects = nuxt._pergel.rootOptions.projects
+
+  const prepareModules: PrepareModules = {}
+
+  try {
+    for await (const [projectName, modules] of Object.entries(projects)) {
+      for await (const [moduleName, moduleValue] of Object.entries(modules)) {
+        if (typeof moduleValue === 'boolean' && moduleValue === false)
+          continue
+
+        if (
+          (typeof moduleValue === 'object' && moduleValue === null)
+          || (typeof moduleValue === 'object' && !moduleValue)
+        )
+          continue
+
+        if (typeof moduleValue === 'string' && moduleValue === '')
+          continue
+
+        nuxt._pergel.projects[projectName] ??= {} as any
+        (nuxt._pergel.projects[projectName] as any)[moduleName] = {
+          projectDir: join(nuxt._pergel.pergelDir, projectName),
+          moduleDir: join(nuxt._pergel.pergelDir, projectName, moduleName),
+          dir: {
+            project: join(nuxt._pergel.dir.pergel, projectName),
+            module: join(nuxt._pergel.dir.pergel, projectName, moduleName),
+            root: join(nuxt._pergel.dir.pergel),
+          },
+        }
+
+        let pergelModule: PergelModule
+
+        const module = (nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
+
+        try {
+          const getIndexExt = () => {
+            const datas = readdirSync(resolver.resolve(join('runtime', 'modules', moduleName)))
+            const indexExt = datas.find(file => file.includes('index') && !file.includes('.d.'))
+            if (!indexExt)
+              throw new Error(`Module ${moduleName} does not have index file`)
+
+            return indexExt
+          }
+          const indexPath = getIndexExt()
+
+          pergelModule = await import(
+            resolver.resolve(join('runtime', 'modules', moduleName, indexPath))
+          ).then(m => m.default).catch((res) => {
+            consola.error(`Module ${moduleName} failed to import`)
+            consola.error(res)
+          })
+        }
+
+        catch (error) {
+          consola.error(`Module ${moduleName} failed to import`)
+          throw error
+        }
+        // Throw error if input is not a function
+        if (typeof pergelModule !== 'function')
+          throw new TypeError(`Nuxt module should be a function: ${pergelModule}`)
+
+        // const resolvedModule = await pergelModule({ nuxt: nuxt })
+        const resolvedModule = await pergelModule.call({
+          prepare: true,
+        } as any, {
+          nuxt,
+          options: {},
+          rootOptions: module,
+          moduleOptions: {
+            dir: {
+              module: join(nuxt._pergel.dir.pergel, projectName, moduleName),
+              project: join(nuxt._pergel.dir.pergel, projectName),
+              root: join(nuxt._pergel.dir.pergel),
+            },
+            moduleName: moduleName as ModuleName,
+            projectName,
+            moduleDir: resolve(nuxt._pergel.pergelDir, projectName, moduleName),
+          },
+        })
+
+        if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
+          consola.error(`Module ${moduleName} failed to setup`)
+          continue
+        }
+
+        prepareModules[projectName] ??= {}
+        prepareModules[projectName as any][moduleName as any] ??= {} as any
+        prepareModules[projectName][moduleName].defineModule = pergelModule
+        prepareModules[projectName][moduleName].waitModule = await waitModule({
+          defineModule: pergelModule,
+          nuxt,
+          moduleName,
+          projectName,
+        })
+      }
+    }
+  }
+  catch (error) {
+    consola.error(error)
+  }
+
+  return prepareModules
+}
+
+async function waitModule(
+  data: {
+    defineModule: PergelModule
+    nuxt: Nuxt
+    moduleName: string
+    projectName: string
+  },
+) {
+  const { defineModule, nuxt, moduleName, projectName } = data
+  const rootOptions = (nuxt._pergel.rootOptions.projects[projectName] as any)[moduleName as any]
+  const _module = await defineModule
+  const getMeta = await _module.getMeta?.()
+  if (!getMeta)
+    throw new Error(`Module ${moduleName} does not have meta`)
+
+  const _waitModule = typeof getMeta?.waitModule === 'function' ? await getMeta.waitModule?.(rootOptions) : getMeta?.waitModule
+
+  if (_waitModule)
+    return _waitModule
+}
+
+function smartSortModules(projectName: string, modules: PrepareModules): string[] {
+  const sortedModules: string[] = []
+  const visited: Set<string> = new Set()
+  const visiting: Set<string> = new Set()
+
+  const visitModule = (moduleName: string) => {
+    if (visiting.has(moduleName))
+      throw new CircularDependencyError(`Circular dependency detected involving module: ${moduleName}`)
+
+    if (!visited.has(moduleName)) {
+      visiting.add(moduleName)
+
+      const module = modules[projectName][moduleName]
+
+      if (module && module.waitModule) {
+        for (const dependency of module.waitModule)
+          visitModule(dependency)
+      }
+
+      sortedModules.push(moduleName)
+      visited.add(moduleName)
+      visiting.delete(moduleName)
+    }
+  }
+
+  for (const moduleName in modules[projectName])
+    visitModule(moduleName)
+
+  return sortedModules
+}
 
 export async function setupModules(data: {
   resolver: Resolver
   nuxt: Nuxt
 }) {
   const projects = data.nuxt._pergel.rootOptions.projects
-  const modulesMap = new Map<string, PergelModule<any>>()
+  const _projects = projects && Object.values(projects).map(project => Object.keys(project)).flat()
+  if (!projects || !(_projects.length > 0))
+    return
 
-  for await (const [projectKey, modules] of Object.entries(projects)) {
-    for await (const [moduleKey, moduleValue] of Object.entries(modules)) {
-      if (typeof moduleValue === 'boolean' && moduleValue === false)
-        continue
+  const prepareModules = await initModules(data.nuxt, data.resolver)
 
-      if (
-        (typeof moduleValue === 'object' && moduleValue === null)
-        || (typeof moduleValue === 'object' && !moduleValue)
-      )
-        continue
+  for await (const [projectName, _modules] of Object.entries(projects)) {
+    const sortedModules = smartSortModules(projectName, prepareModules)
 
-      if (typeof moduleValue === 'string' && moduleValue === '')
-        continue
-      modulesMap.set(`${projectKey}/${moduleKey}`, moduleValue as any)
-    }
-  }
-
-  const modulesArray = Array.from(modulesMap)
-
-  data.nuxt._pergel.contents = []
-
-  for await (const m of modulesArray) {
-    const [projectName, moduleName] = m[0].split('/') as [string, ModuleName]
-    // TODO: fix any type
-    // @ts-ignore
-    data.nuxt._pergel.projects[projectName] ??= {}
-    data.nuxt._pergel.projects[projectName][moduleName] = {
-      projectDir: join(data.nuxt._pergel.pergelDir, projectName),
-      moduleDir: join(data.nuxt._pergel.pergelDir, projectName, moduleName),
-      dir: {
-        project: join(data.nuxt._pergel.dir.pergel, projectName),
-        module: join(data.nuxt._pergel.dir.pergel, projectName, moduleName),
-        root: join(data.nuxt._pergel.dir.pergel),
-      },
-      options: {},
+    if (data.nuxt._pergel.debug) {
+      consola.info(`Project ${projectName} modules:`)
+      consola.info(sortedModules)
     }
 
-    data.nuxt._pergel._module = {
-      ...data.nuxt._pergel.projects[projectName][moduleName],
-      projectName,
-      moduleName,
-    }
-    const selectedModule = data.nuxt._pergel.modules.find(module => module === moduleName)
+    for await (const moduleName of sortedModules) {
+      const module = (data.nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
+      const moduleSetup = prepareModules[projectName][moduleName]
 
-    if (Array.isArray(m) && selectedModule) {
-      let pergelModule: PergelModule
+      const getMeta = typeof moduleSetup.defineModule.getMeta === 'function' ? await moduleSetup.defineModule.getMeta() : await moduleSetup.defineModule.getMeta
 
-      try {
-        const getIndexExt = () => {
-          const datas = readdirSync(data.resolver.resolve(join('runtime', 'modules', moduleName)))
-          const indexExt = datas.find(file => file.includes('index') && !file.includes('.d.'))
-          if (!indexExt)
-            throw new Error(`Module ${moduleName} does not have index file`)
+      if (!getMeta)
+        throw new Error(`Module ${moduleName} does not have meta`)
 
-          return indexExt
-        }
-        const indexPath = getIndexExt()
+      const dependencies = getMeta.dependencies instanceof Function ? getMeta.dependencies(module) : getMeta.dependencies ?? {}
+      const devDependencies = getMeta.devDependencies instanceof Function ? getMeta.devDependencies(module) : getMeta.devDependencies ?? {}
 
-        pergelModule = await import(
-          data.resolver.resolve(join('runtime', 'modules', moduleName, indexPath))
-        ).then(m => m.default).catch((res) => {
-          consola.error(`Module ${moduleName} failed to import`)
-          consola.error(res)
+      if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
+        generateProjectReadme({
+          data: ({ addCommentBlock }) => ({
+            ...addCommentBlock('If pergel cli is installed, you can run `pergel install` automatically to install'),
+            packageJson: {
+              dependencies: `"${Object.entries(dependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
+              devDependencies: `"${Object.entries(devDependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
+            },
+          }),
+          moduleName,
+          nuxt: data.nuxt,
+          projectName,
         })
-      }
-      catch (error) {
-        consola.error(`Module ${moduleName} failed to import`)
-        throw error
       }
 
       // Throw error if input is not a function
-      if (typeof pergelModule !== 'function')
-        throw new TypeError(`Nuxt module should be a function: ${pergelModule}`)
+      if (typeof moduleSetup.defineModule !== 'function')
+        throw new TypeError(`Nuxt module should be a function: ${moduleSetup.defineModule}`)
 
-      const resolvedModule = await pergelModule({ nuxt: data.nuxt })
+      const resolvedModule = await moduleSetup.defineModule({
+        nuxt: data.nuxt,
+        options: {},
+        rootOptions: module,
+        moduleOptions: {
+          dir: {
+            module: join(data.nuxt._pergel.dir.pergel, projectName, moduleName),
+            project: join(data.nuxt._pergel.dir.pergel, projectName),
+            root: join(data.nuxt._pergel.dir.pergel),
+          },
+          moduleName: moduleName as ModuleName,
+          projectName,
+          moduleDir: resolve(data.nuxt._pergel.pergelDir, projectName, moduleName),
+        },
+      })
 
       if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
-        consola.error(`Module ${moduleName} failed to setup`)
-        continue
+        consola.error(`Module ${
+          moduleName
+        } failed to setup`)
+        return 'continue'
       }
     }
   }

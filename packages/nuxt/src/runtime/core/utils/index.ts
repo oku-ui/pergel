@@ -1,6 +1,6 @@
 import { snakeCase } from 'scule'
 import type { EnvList } from '../types'
-
+export { useModuleOptions } from './useModuleOptions'
 /**
  * Reformat source code for improved readability by adding appropriate newlines and indentation.
  */

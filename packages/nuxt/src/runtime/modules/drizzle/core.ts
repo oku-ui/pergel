@@ -3,10 +3,9 @@ import { resolve } from 'node:path'
 import { useLogger } from '@nuxt/kit'
 import { consola } from 'consola'
 import type { NuxtPergel } from '../../core/types'
-import type { ResolvedDrizzleConfig } from './types'
 
 export async function copyMigrationFolder(
-  nuxt: NuxtPergel<ResolvedDrizzleConfig>,
+  nuxt: NuxtPergel,
 ) {
   /**
    * Public Assets

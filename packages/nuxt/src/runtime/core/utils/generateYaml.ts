@@ -47,31 +47,32 @@ export function generateReadmeYaml(data: {
   writeFileSync(data.nuxt._pergel.readmeDir, jsonToYaml(readmeYaml))
 }
 
-export function generateProjectReadme(
-  nuxt: NuxtPergel,
+export function generateProjectReadme(input:
+{
+  nuxt: NuxtPergel
+  projectName: string
+  moduleName: string
   data: (
     ctx: {
       addCommentBlock: (commentBlock: string) => Record<string, any>
       moduleName: string
     }
-  ) => Record<string, any>,
-  customName?: string,
+  ) => Record<string, any>
+},
 ) {
-  const projectName = nuxt._pergel._module.projectName
-  const moduleName = customName || nuxt._pergel._module.moduleName
   const uuid = () => Math.random().toString(36).substring(7)
 
   const addCommentBlock = (commentBlock: string) => ({
     [`comment-block-${uuid()}`]: commentBlock,
   })
 
-  nuxt._pergel.readmeYaml[projectName] = defu(nuxt._pergel.readmeYaml[projectName], {
-    [moduleName]: {
+  input.nuxt._pergel.readmeYaml[input.projectName] = defu(input.nuxt._pergel.readmeYaml[input.projectName], {
+    [input.moduleName]: {
       // [`comment-block-${uuid()}`]: `${moduleName} Variables`,
-      ...data(
+      ...input.data(
         {
           addCommentBlock,
-          moduleName,
+          moduleName: input.moduleName,
         },
       ),
     },

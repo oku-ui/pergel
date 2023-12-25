@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     }),
   ],
   pergel: {
+    debug: true,
     projects: {
       test: {
         S3: true,
