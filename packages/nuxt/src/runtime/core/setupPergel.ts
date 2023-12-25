@@ -50,15 +50,15 @@ export async function setupPergel(
   nuxt.options.nitro.alias ??= {}
   nuxt.options.nitro.alias['#pergel/types'] = pergelType.dst
 
-  const resolvedOptions = defu(options, {
-    projects: {
-    },
-    esnext: true,
-    pergelDir,
-    rootDir,
-  } as PergelOptions)
+  // const resolvedOptions = defu(options, {
+  //   projects: {
+  //   },
+  //   esnext: true,
+  //   pergelDir,
+  //   rootDir,
+  // } as PergelOptions)
 
-  const resolvedPergelOptions = defu({}, {
+  const resolvedPergelOptions = defu(options, {
     rootOptions: options,
     // Pergel Modules
     modules: [
@@ -85,15 +85,16 @@ export async function setupPergel(
     activeModules: {},
     projects: {},
     dir: {
-      pergel: resolvedOptions.pergelDir ?? 'pergel',
+      pergel: pergelDir ?? 'pergel',
       readme: join('pergel', 'README.yaml'),
       root: options.rootDir ?? './',
     },
     contents: [],
-    pergelDir: resolve(resolveDir, resolvedOptions.pergelDir ?? 'pergel'),
+    pergelDir: resolve(resolveDir, pergelDir ?? 'pergel'),
     rootDir: resolveDir,
     readmeDir: resolve(resolveReadmePath),
     esnext: true,
+    debug: false,
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

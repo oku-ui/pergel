@@ -68,6 +68,11 @@ export interface PergelOptions {
    * @default true
    */
   esnext?: boolean
+
+  /**
+   * @default false
+   */
+  debug?: true
 }
 
 export interface ResolvedPergelOptions {
@@ -195,7 +200,9 @@ export interface ResolvedPergelOptions {
    */
   pergelDir: string
 
-  esnext?: boolean
+  esnext: boolean
+
+  debug: boolean
 }
 
 export interface NuxtPergel extends Nuxt {
