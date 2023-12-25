@@ -2,6 +2,7 @@ import { existsSync, writeFileSync } from 'node:fs'
 import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
+import { useNitroImports } from '../../core/utils/useImports'
 import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
 
@@ -84,6 +85,19 @@ export const auth = pergelTest().lucia().use({
         )
       }
     }
+
+    useNitroImports(nuxt, {
+      presets: [
+        {
+          from: 'oslo/password',
+          imports: [
+            'Argon2id',
+            'Bcrypt',
+            'Scrypt',
+          ],
+        },
+      ],
+    })
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`

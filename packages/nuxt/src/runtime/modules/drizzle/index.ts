@@ -188,6 +188,23 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       }
     })
 
+    // Auto import
+    switch (options._driver.name) {
+      case 'postgresjs':
+        // TODO: bug https://github.com/unjs/mlly/issues/209
+        // useNitroImports(nuxt, {
+        //   presets: [
+        //     {
+        //       from: 'postgres',
+        //       imports: [
+        //         'PostgresError',
+        //       ],
+        //     },
+        //   ],
+        // })
+        break
+    }
+
     nuxt._pergel.contents.push({
       moduleName: moduleOptions.moduleName,
       projectName: moduleOptions.projectName,
