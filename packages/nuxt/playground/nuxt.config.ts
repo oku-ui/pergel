@@ -58,6 +58,7 @@ export default defineNuxtConfig({
         graphqlYoga: {
           mergeSchemas: true,
         },
+        // lucia: true,
         drizzle: true,
       },
       test2: {

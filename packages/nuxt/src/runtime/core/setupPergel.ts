@@ -69,6 +69,7 @@ export async function setupPergel(
       'json2csv',
       'graphqlYoga',
       'drizzle',
+      'lucia',
     ],
     projectNames,
     nitroImports: {},
