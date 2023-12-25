@@ -1,7 +1,7 @@
 import { verifyRequestOrigin } from 'lucia'
-import { defineEventHandler } from 'h3'
+import { appendResponseHeader, defineEventHandler, getCookie, getHeader } from 'h3'
 
-import type { Lucia, Session, User } from 'lucia'
+import type { Lucia } from 'lucia'
 
 export function definePergelLuciaMiddleware(data: {
   lucia: Lucia
@@ -61,11 +61,4 @@ export function definePergelLuciaMiddleware(data: {
     event.context.session = session
     event.context.user = user
   })
-}
-
-declare module 'h3' {
-  interface H3EventContext {
-    user: User | null
-    session: Session | null
-  }
 }

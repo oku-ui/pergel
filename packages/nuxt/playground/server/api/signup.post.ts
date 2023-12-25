@@ -1,11 +1,11 @@
-import { PostgresError } from 'postgres'
+// import { PostgresError } from 'postgres'
 import { auth } from '#pergel/test/lucia'
 
 export default eventHandler(async (event) => {
   const db = await pergelTest().drizzle().postgresjs().connect({})
 
-  const formData = await readFormData(event)
-  const username = formData.get('username')
+  const body = await readBody(event)
+  const username = body.username
   if (
     typeof username !== 'string'
       || username.length < 3
@@ -17,7 +17,7 @@ export default eventHandler(async (event) => {
       statusCode: 400,
     })
   }
-  const password = formData.get('password')
+  const password = body.password
   if (typeof password !== 'string' || password.length < 6 || password.length > 255) {
     throw createError({
       message: 'Invalid password',
@@ -30,6 +30,7 @@ export default eventHandler(async (event) => {
   try {
     const [_user] = await db.insert(tablesTest.user).values({
       username,
+      email: body.email,
       password: hashedPassword,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -39,15 +40,21 @@ export default eventHandler(async (event) => {
     appendHeader(event, 'Set-Cookie', auth.createSessionCookie(session.id).serialize())
   }
   catch (e) {
-    if (e instanceof PostgresError && e.code === '23505') {
-      throw createError({
-        message: 'Username already used',
-        statusCode: 500,
-      })
-    }
+    // /postgres/src/index.js' does not provide an export named 'PostgresError'
     throw createError({
-      message: 'An unknown error occurred',
+      message: 'Username already used',
       statusCode: 500,
     })
+
+    // if (e instanceof PostgresError && e.code === '23505') {
+    //   throw createError({
+    //     message: 'Username already used',
+    //     statusCode: 500,
+    //   })
+    // }
+    // throw createError({
+    //   message: 'An unknown error occurred',
+    //   statusCode: 500,
+    // })
   }
 })

@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 import { pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { session } from './session'
 
@@ -11,7 +11,7 @@ export const user = pgTable('user', {
   username: text('username').notNull().unique(),
   password: text('password'),
   provider: text('provider'),
-  providerId: text('provider_id'),
+  providerId: text('providerId'),
   role: roleEnum('role').notNull().default('user'),
   createdAt: timestamp('createdAt', {
     withTimezone: true,
