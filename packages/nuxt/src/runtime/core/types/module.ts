@@ -235,7 +235,7 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
   dependencies?: Record<string, string> | ((options: RootOptions) => Record<string, string>)
   dts?: boolean
 
-  waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[])
+  waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[] | undefined)
 
   [key: string]: unknown
 }

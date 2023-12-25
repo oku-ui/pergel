@@ -12,7 +12,5 @@ export interface LuciaModuleOptions {
 }
 
 export interface ResolvedLuciaModuleOptions {
-  rootOptions: LuciaModuleOptions
-
   driver: 'drizzle:postgre'
 }

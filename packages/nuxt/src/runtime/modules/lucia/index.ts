@@ -3,7 +3,7 @@ import { definePergelModule } from '../../core/definePergel'
 import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
 
-export default definePergelModule<ResolvedLuciaModuleOptions>({
+export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions>({
   meta: {
     name: 'lucia',
     version: '0.0.1',
@@ -35,35 +35,32 @@ export default definePergelModule<ResolvedLuciaModuleOptions>({
       }
     },
     waitModule(options) {
-      const [driver, db] = options.driver.split(':')
+      const [driver, _db] = options.driver.split(':')
 
       if (driver === 'drizzle')
-        return 'drizzle'
+        return ['drizzle']
 
-      return []
+      return undefined
     },
   },
-  defaults(options) {
-    const [driver, db] = options.nuxt._pergel._module.options.driver.split(':')
+  defaults({ rootOptions }) {
+    // const [driver, db] = rootOptions.driver.split(':')
 
     return {
-      driver: 'drizzle:postgre',
-      rootOptions: options as unknown as LuciaModuleOptions,
+      driver: rootOptions.driver ?? 'drizzle:postgre',
     }
   },
-  async setup({ nuxt }) {
+  async setup({ nuxt, moduleOptions, options }) {
     const resolver = createResolver(import.meta.url)
-    const projectName = nuxt._pergel._module.projectName
-    const moduleName = nuxt._pergel._module.moduleName
 
-    const [driver, db] = nuxt._pergel._module.options.driver.split(':')
+    const [driver, db] = options.driver.split(':')
 
     if (driver === 'drizzle')
       setupDrizzle(db, resolver)
 
     nuxt._pergel.contents.push({
-      moduleName,
-      projectName,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
       content: /* ts */`
           function lucia() {
             return {
