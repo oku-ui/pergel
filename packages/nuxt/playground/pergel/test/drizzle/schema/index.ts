@@ -1,6 +1,5 @@
 // Pergel auto generated please change this file as you wish
 import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core'
-import { defaultUserSchema } from '@pergel/nuxt/drizzle/schema/pg'
 import { sql } from 'drizzle-orm'
 
 export * from './session'

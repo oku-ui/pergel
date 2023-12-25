@@ -1,4 +1,4 @@
-import { type Resolver, addServerImports, addServerImportsDir } from '@nuxt/kit'
+import { type Resolver, addServerImports } from '@nuxt/kit'
 
 export function setupDrizzle(
   db: string,
