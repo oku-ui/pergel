@@ -1,14 +1,14 @@
 import { verifyRequestOrigin } from 'lucia'
-import { appendResponseHeader, defineEventHandler, getCookie, getHeader } from 'h3'
+import { appendResponseHeader, defineEventHandler, getCookie, getHeader, getHeaders, isMethod } from 'h3'
 
 import type { Lucia } from 'lucia'
 
-export function definePergelLuciaMiddleware(data: {
+export function definePergelNitroMiddleware(data: {
   lucia: Lucia
 }) {
   const { lucia } = data
   return defineEventHandler(async (event) => {
-    const authorizationHeader = event.context.request.headers.get('Authorization')
+    const authorizationHeader = getHeaders(event).Authorization
 
     if (authorizationHeader) {
       const sessionId = lucia.readBearerToken(authorizationHeader)
@@ -22,7 +22,7 @@ export function definePergelLuciaMiddleware(data: {
       return
     }
 
-    if (event.context.request.method !== 'GET') {
+    if (!isMethod(event, 'GET')) {
       const originHeader = getHeader(event, 'Origin') ?? null
       const hostHeader = getHeader(event, 'Host') ?? null
       if (

@@ -96,6 +96,12 @@ export const auth = pergelTest().lucia().use({
             'Scrypt',
           ],
         },
+        {
+          from: resolver.resolve('server/middleware'),
+          imports: [
+            'definePergelNitroMiddleware',
+          ],
+        },
       ],
     })
 
@@ -135,6 +141,7 @@ declare module 'h3' {
           function lucia() {
             return {
               use: ${_setupDrizzle.use},
+              definePergelNitroMiddleware: definePergelNitroMiddleware,
             }
           }
         `,
