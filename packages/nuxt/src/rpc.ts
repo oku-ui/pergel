@@ -14,9 +14,6 @@ export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
     getTotalModules() {
       return options.modules
     },
-    getActiveModules() {
-      return options.activeModules
-    },
     getProject(name: string) {
       return projects[name] as any
     },
@@ -24,7 +21,8 @@ export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
       return Object.keys(projects[name])
     },
     getModuleOptions({ projectName, moduleName }) {
-      return ((options.activeModules as any)[projectName as any])[moduleName as any]
+      const data = ((options.projects as any)[projectName as any])[moduleName as any]
+      return data
     },
     async reset() {
       const ws = await ctx.wsServer

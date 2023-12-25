@@ -27,6 +27,10 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     const rootOptions = (nuxt._pergel.rootOptions.projects[moduleOptions.projectName] as any)[moduleOptions.moduleName] ?? {}
     const _options = defu(rootOptions, defaultModule)
 
+    // TODO: Type this
+    // @ts-ignore
+    nuxt._pergel.projects[moduleOptions.projectName][moduleOptions.moduleName] = _options
+
     return Promise.resolve(_options)
   }
 

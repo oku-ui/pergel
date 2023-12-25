@@ -26,17 +26,18 @@ const selectedTab = ref('add')
 const moduleOptions = ref<ResolvedGraphQLYogaConfig>()
 
 onMounted(async () => {
-  await getModuleOptios({
+  await getModuleOptions({
     projectName: props.projectName,
     module: 'graphqlYoga',
   }) as any
 })
 
-async function getModuleOptios({ projectName, module }: { projectName: string, module: ModuleName }) {
+async function getModuleOptions({ projectName, module }: { projectName: string, module: ModuleName }) {
   const data = await rpc.value?.getModuleOptions({
     moduleName: module,
     projectName,
   })
+  console.warn(data, 'data')
   moduleOptions.value = JSON.parse(JSON.stringify(data))
 }
 
