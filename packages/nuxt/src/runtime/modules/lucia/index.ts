@@ -1,5 +1,7 @@
+import { existsSync, writeFileSync } from 'node:fs'
 import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
+import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
 
@@ -42,6 +44,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
 
       return undefined
     },
+    dts: true,
   },
   defaults({ rootOptions }) {
     // const [driver, db] = rootOptions.driver.split(':')
@@ -55,8 +58,61 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
 
     const [driver, db] = options.driver.split(':')
 
-    if (driver === 'drizzle')
-      setupDrizzle(db, resolver)
+    const _setupDrizzle = {
+      use: '',
+    }
+
+    if (driver === 'drizzle') {
+      const { driver } = setupDrizzle(db, resolver)
+      _setupDrizzle.use = driver
+
+      if (!existsSync(`${moduleOptions.moduleDir}/index.ts`)) {
+        writeFileSync(
+          `${moduleOptions.moduleDir}/index.ts`,
+          /* ts */`
+          import { session, user } from 'test/drizzle/schema'
+
+const connect = await pergelTest().drizzle().postgresjs().connect({})
+
+export const auth = pergelTest().lucia().use({
+  db: connect,
+  options: { },
+  session,
+  user,
+})
+        `,
+        )
+      }
+    }
+
+    addModuleDTS({
+      pergelFolderTemplate: /* ts */`
+import type { Session, User } from 'test/drizzle/schema'
+import type { auth } from '#pergel/test/lucia'
+
+declare module 'lucia' {
+  interface Register {
+    Lucia: typeof auth
+  }
+  interface DatabaseUserAttributes extends Omit<User, 'id'> {}
+
+  interface DatabaseSessionAttributes {
+  }
+}
+
+declare module 'h3' {
+  interface H3EventContext {
+    user: User | null
+    session: Session | null
+  }
+}
+      `,
+      nuxt,
+      moduleName: moduleOptions.moduleName,
+      projectName: moduleOptions.projectName,
+      interfaceNames: [],
+      moduleOptions,
+    })
 
     nuxt._pergel.contents.push({
       moduleName: moduleOptions.moduleName,
@@ -64,7 +120,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       content: /* ts */`
           function lucia() {
             return {
-              use: useNitroJson2CSV,
+              use: ${_setupDrizzle.use},
             }
           }
         `,

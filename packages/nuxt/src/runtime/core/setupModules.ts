@@ -31,6 +31,20 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
   try {
     for await (const [projectName, modules] of Object.entries(projects)) {
       for await (const [moduleName, moduleValue] of Object.entries(modules)) {
+        nuxt.options.alias[`#pergel/${projectName}/${moduleName}`] = resolve(
+          nuxt.options.rootDir,
+          'pergel',
+          projectName,
+          moduleName,
+        )
+        nuxt.options.nitro.alias ??= {}
+        nuxt.options.nitro.alias[`#pergel/${projectName}/${moduleName}`] = resolve(
+          nuxt.options.rootDir,
+          'pergel',
+          projectName,
+          moduleName,
+        )
+
         if (typeof moduleValue === 'boolean' && moduleValue === false)
           continue
 

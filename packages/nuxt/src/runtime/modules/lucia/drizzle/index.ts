@@ -1,16 +1,24 @@
-import { type Resolver, addServerImportsDir } from '@nuxt/kit'
+import { type Resolver, addServerImports, addServerImportsDir } from '@nuxt/kit'
 
 export function setupDrizzle(
   db: string,
   resolver: Resolver,
 ) {
+  let driver = ''
   switch (db) {
     case 'postgre': {
-      addServerImportsDir(resolver.resolve('./drizzle/composables/postgre'))
+      addServerImports([{
+        from: resolver.resolve('./drizzle/composables/postgre'),
+        name: 'useLuciaDrizzlePostgre',
+      }])
+      driver = `useLuciaDrizzlePostgre`
       break
     }
     default: {
       throw new Error('Unsupported driver')
     }
+  }
+  return {
+    driver,
   }
 }

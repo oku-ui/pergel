@@ -1,3 +1,4 @@
+import { join } from 'node:path'
 import {
   addTemplate,
   createResolver,
@@ -76,13 +77,26 @@ export default defineNuxtModule<PergelOptions>({
 
     for (const project of Object.keys(nuxt._pergel.dts)) {
       const contents = Object.values(nuxt._pergel.dts[project]).map(module => module.template.join('\n\n')).join('\n\n')
+      const declareModules = Object.values(nuxt._pergel.dts[project]).map(module => module.declareModules).join('\n\n')
       const _template = addTemplate({
-        filename: `./pergel/${project}/modules.d.ts`,
-        getContents: () => contents.trim(),
+        filename: join('pergel', project, 'module-types.ts'),
+        write: true,
+        getContents: () => /* ts */`
+        ${contents}
+        
+        ${declareModules}
+        `.trim(),
       })
-      nuxt.options.alias[`pergel/${project}`] = _template.dst
+
+      nuxt.hooks.hook('prepare:types', ({ references }) => {
+        references.push({
+          path: _template.dst,
+        })
+      })
+
+      nuxt.options.alias[`pergel/${project}/moduleTypes`] = _template.dst
       nuxt.options.nitro.alias ??= {}
-      nuxt.options.nitro.alias[`pergel/${project}`] = _template.dst
+      nuxt.options.nitro.alias[`pergel/${project}/moduleTypes`] = _template.dst
     }
 
     if (nuxt.options.dev && isDevToolsEnabled) {

@@ -5,14 +5,6 @@ import type { PgDatabase } from 'drizzle-orm/pg-core'
 
 import type { LuciaOptions } from '../../types'
 
-// TODO: add `pergel/projectname/lucia/index.d.ts`
-declare module 'lucia' {
-  interface Register {
-    Lucia: typeof lucia
-    DatabaseUserAttributes: Omit<User, 'id'>
-  }
-}
-
 export function useLuciaDrizzlePostgre(
   data: {
     db: PgDatabase<any, any>

@@ -112,6 +112,7 @@ export interface ResolvedPergelOptions {
       [moduleName: string]: {
         interfaceNames: string[]
         template: string[]
+        declareModules?: string
       }
     }
   }

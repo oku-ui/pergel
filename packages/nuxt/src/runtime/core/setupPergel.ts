@@ -50,6 +50,22 @@ export async function setupPergel(
   nuxt.options.nitro.alias ??= {}
   nuxt.options.nitro.alias['#pergel/types'] = pergelType.dst
 
+  nuxt.hooks.hook('prepare:types', ({ references, tsConfig }) => {
+    references.push({
+      path: pergelType.dst,
+    })
+
+    tsConfig.include ??= []
+    tsConfig.include.push('./pergel/**/*')
+  })
+
+  nuxt.hooks.hook('nitro:init', ({ options }) => {
+    options.typescript.tsConfig ??= {}
+    options.typescript.tsConfig.include ??= []
+    options.typescript.tsConfig.include.push('./pergel/**/*')
+    options.typescript.tsConfig.include.push(resolve(join(nuxt.options.rootDir, 'pergel', '/**/*')))
+  })
+
   // const resolvedOptions = defu(options, {
   //   projects: {
   //   },
