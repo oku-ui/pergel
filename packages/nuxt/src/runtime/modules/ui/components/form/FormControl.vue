@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { OkuSlot } from '@oku-ui/slot'
 
-// import { useFormField } from './useFormField'
-
 const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 </script>
 

@@ -1,7 +1,7 @@
 {
   "name": "@pergel/module-ui",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "packageManager": "pnpm@8.10.0",
   "description": "Pergel Module for UI Management",
   "author": {
@@ -29,7 +29,11 @@
     "@vee-validate/zod": "^4.12.3",
     "clsx": "^2.0.0",
     "tailwind-merge": "^2.2.0",
-    "vee-validate": "^4.12.3"
+    "vee-validate": "^4.12.3",
+    "zod": "^3.22.4",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/aspect-ratio": "^0.4.2"
   },
   "publishConfig": {
     "access": "public"

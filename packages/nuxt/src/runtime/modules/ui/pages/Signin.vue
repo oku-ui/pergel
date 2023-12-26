@@ -43,7 +43,7 @@ const onSubmit = form.handleSubmit((values) => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input
+                <PergelAtomInput
                   v-bind="componentField"
                 />
               </FormControl>
@@ -57,7 +57,7 @@ const onSubmit = form.handleSubmit((values) => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input
+                <PergelAtomInput
                   type="password"
                   autocomplete="current-password"
                   required
