@@ -1,8 +1,9 @@
 <script setup>
+
 </script>
 
 <template>
   <div>
-    Nuxt module playground!
+    <PergelPageSignin />
   </div>
 </template>

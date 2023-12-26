@@ -36,6 +36,8 @@ export default antfu(
       'tailwindcss/no-arbitrary-value': 'off',
       'tailwindcss/no-custom-classname': 'off',
       'tailwindcss/no-contradicting-classname': 'error',
+      'import/first': 'off',
+      'symbol-description': 'off',
     },
   },
   {

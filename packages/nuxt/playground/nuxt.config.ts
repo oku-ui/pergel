@@ -59,6 +59,7 @@ export default defineNuxtConfig({
           mergeSchemas: true,
         },
         drizzle: true,
+        ui: true,
       },
       test2: {
         S3: true,

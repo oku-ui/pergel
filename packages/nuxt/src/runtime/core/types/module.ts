@@ -30,6 +30,7 @@ export interface ResolvedModules {
   json2csv?: true
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
+  ui?: true
 }
 
 export type ModuleName = keyof Modules
