@@ -1,16 +1,16 @@
 <script setup lang="ts">
-
 const { buttonVariants } = useVariants()
 </script>
 
 <template>
   <div class="md:hidden">
-    <VPImage
+    <!-- <VPImage
       alt="Authentication" width="1280" height="1214" class="block" :image="{
         dark: '/examples/authentication-dark.png',
         light: '/examples/authentication-light.png',
       }"
-    />
+    /> -->
+    asdasd
   </div>
 
   <div
@@ -58,7 +58,7 @@ const { buttonVariants } = useVariants()
             Enter your email below to create your account
           </p>
         </div>
-        <!-- <UserAuthForm /> -->
+        <MolUserAuthForm />
         <p class="text-muted-foreground px-8 text-center text-sm">
           By clicking continue, you agree to our
           <a href="/terms" class="hover:text-primary underline underline-offset-4">

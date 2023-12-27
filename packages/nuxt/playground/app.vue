@@ -8,6 +8,6 @@
   </Notivue>
 
   <div>
-    <Signin />
+    <Test />
   </div>
 </template>
