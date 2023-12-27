@@ -58,6 +58,7 @@ export default definePergelModule({
     })
 
     nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('brands', selectBrand))
+    nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('brands', selectBrand, '*'))
 
     addImportsDir(resolver.resolve(join('brands', selectBrand, 'composables')))
 
