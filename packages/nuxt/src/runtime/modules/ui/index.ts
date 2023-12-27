@@ -1,8 +1,10 @@
-import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, defineNuxtModule, installModule, logger } from '@nuxt/kit'
+import { join } from 'node:path'
+import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, defineNuxtModule, installModule, useLogger } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
 
+const logger = useLogger('pergel:ui')
 function checkForZod() {
   if (isPackageExists('zod') && !isPackageExists('@vee-validate/zod')) {
     logger.warn(
@@ -21,6 +23,8 @@ function checkForZod() {
   return false
 }
 
+const brands = ['pergel']
+
 export default definePergelModule({
   meta: {
     name: 'ui',
@@ -30,32 +34,32 @@ export default definePergelModule({
     },
   },
   defaults: {},
-  async setup({ nuxt, moduleOptions }) {
+  async setup({ nuxt }) {
     const resolver = createResolver(import.meta.url)
 
+    const selectBrand = 'pergel'
+
+    if (checkForZod())
+      return
+
+    if (!brands.includes(selectBrand))
+      return
+
     addComponentsDir({
-      path: resolver.resolve('components', 'atom'),
-      prefix: 'PergelAtom',
+      path: resolver.resolve(join('brands', selectBrand, 'components')),
       global: true,
       watch: false,
     })
 
     addComponentsDir({
-      path: resolver.resolve('components', 'form'),
+      path: resolver.resolve(join('brands', selectBrand, 'pages')),
       global: true,
       watch: false,
     })
 
-    addComponentsDir({
-      path: resolver.resolve('pages'),
-      prefix: 'PergelPage',
-      global: true,
-      watch: false,
-    })
+    nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('brands', selectBrand))
 
-    nuxt.options.alias['#pergel/ui'] = resolver.resolve('./')
-
-    addImportsDir(resolver.resolve('composables'))
+    addImportsDir(resolver.resolve(join('brands', selectBrand, 'composables')))
 
     useNuxtImports(nuxt, {
       presets: [
@@ -82,6 +86,15 @@ export default definePergelModule({
             'useValidateForm',
           ],
           from: 'vee-validate',
+        },
+        {
+          from: 'zod',
+          imports: [
+            {
+              as: 'zod',
+              name: 'z',
+            },
+          ],
         },
       ],
     })
@@ -123,29 +136,11 @@ export default definePergelModule({
         ],
         content: {
           files: [
-            resolver.resolve('components/**/*.{vue,mjs,ts}'),
-            resolver.resolve('pages/**/*.{vue,mjs,ts}'),
+            resolver.resolve(join('brands', selectBrand, 'components/**/*.{vue,mjs,ts}')),
+            resolver.resolve(join('brands', selectBrand, 'pages/**/*.{vue,mjs,ts}')),
           ],
         },
       },
     })
-
-    // export { Form, Field as FormField } from 'vee-validate'
-
-    // addServerImportsDir(resolver.resolve('./composables'))
-    // nuxt._pergel.contents.push({
-    //   moduleName: moduleOptions.moduleName,
-    //   projectName: moduleOptions.projectName,
-    //   content: /* ts */`
-    //     function ses() {
-    //       return {
-    //         use: usePergelSES.bind(ctx),
-    //       }
-    //     }
-    //       `,
-    //   resolve: /* ts */`
-    //     ses: ses,
-    //       `,
-    // })
   },
 })

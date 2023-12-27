@@ -4,6 +4,6 @@
 
 <template>
   <div>
-    <PergelPageSignin />
+    <Signin />
   </div>
 </template>
