@@ -62,3 +62,4 @@ lib
 dist
 pergel
 schema.graphql
+!src/**/pergel
