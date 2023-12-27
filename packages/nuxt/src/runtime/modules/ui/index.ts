@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, defineNuxtModule, installModule, useLogger } from '@nuxt/kit'
+import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule, useLogger } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import tailwindcssAnimate from 'tailwindcss-animate'
 import { definePergelModule } from '../../core/definePergel'

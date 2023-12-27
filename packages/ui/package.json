@@ -22,25 +22,25 @@
     "release": "pnpm publish"
   },
   "dependencies": {
+    "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@oku-ui/label": "^0.5.0",
-    "@oku-ui/slot": "^0.5.1",
     "@oku-ui/primitives": "^0.5.0",
+    "@oku-ui/slot": "^0.5.1",
     "@oku-ui/use-composable": "^0.5.1",
-    "@vee-validate/zod": "^4.12.3",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.2.0",
-    "vee-validate": "^4.12.3",
-    "zod": "^3.22.4",
-    "radix-vue": "^1.2.5",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@vee-validate/zod": "^4.12.3",
     "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "notivue": "^2.0.1",
+    "nuxt-icons": "^3.2.1",
+    "radix-vue": "^1.2.5",
+    "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
-    "@nuxtjs/color-mode": "^3.3.2",
-    "nuxt-icons": "^3.2.1"
+    "vee-validate": "^4.12.3",
+    "zod": "^3.22.4"
   },
   "publishConfig": {
     "access": "public"
