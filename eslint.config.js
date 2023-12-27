@@ -41,6 +41,12 @@ export default antfu(
     },
   },
   {
+    files: ['**/*.ts'],
+    rules: {
+      'symbol-description': 'off',
+    },
+  },
+  {
     rules: {
       'no-console': 'warn',
       'vue/no-deprecated-slot-attribute': 'off',

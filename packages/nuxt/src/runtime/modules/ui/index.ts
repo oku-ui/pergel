@@ -143,5 +143,10 @@ export default definePergelModule({
         },
       },
     })
+    await installModule('notivue/nuxt')
+    await installModule('radix-vue/nuxt')
+
+    nuxt.options.css.push('notivue/notifications.css')
+    nuxt.options.css.push('notivue/animations.css')
   },
 })
