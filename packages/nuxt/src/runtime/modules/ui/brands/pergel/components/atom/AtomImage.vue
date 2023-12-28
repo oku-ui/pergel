@@ -7,7 +7,7 @@ defineProps<{
     light: string
     alt?: string
     src?: string
-  }
+  } | string
   alt?: string
 }>()
 </script>

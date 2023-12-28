@@ -29,10 +29,12 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       tailwindcss: true,
       veeValidate: true,
       zod: true,
+      i18n: true,
     },
     brand: 'pergel',
   },
   async setup({ nuxt, options }) {
+    console.log('options', options)
     const resolver = createResolver(import.meta.url)
 
     if (!brands.includes(options.brand))
@@ -133,7 +135,10 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         presets: [
           {
             imports: [
-              'z',
+              {
+                name: 'z',
+                as: 'zod',
+              },
             ],
             from: 'zod',
           },
@@ -270,5 +275,9 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         }
       })
     }
+
+    if (options.packages.i18n)
+      await installModule('@nuxtjs/i18n')
   },
+
 })

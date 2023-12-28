@@ -14,6 +14,7 @@ export interface UIOptions {
     nuxtIcon?: boolean
     zod?: boolean
     veeValidate?: boolean
+    i18n?: boolean
   }
 }
 
@@ -21,12 +22,13 @@ export interface ResolvedUIOptions {
   brand: string
   packages: {
     tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
-    tailwindcss?: true
-    colorMode?: true
-    notivue?: true
-    radixVue?: true
-    nuxtIcon?: true
-    zod?: true
-    veeValidate?: true
+    tailwindcss?: boolean
+    colorMode?: boolean
+    notivue?: boolean
+    radixVue?: boolean
+    nuxtIcon?: boolean
+    zod?: boolean
+    veeValidate?: boolean
+    i18n?: boolean
   }
 }
