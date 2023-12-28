@@ -47,7 +47,7 @@ jobs:
         run: pnpm typecheck
 
       - name: 👀 Lint
-        run: pnpm lint
+        run:  npm run lint
 
       - name: 🚀 Build
         run: pnpm build
