@@ -19,6 +19,7 @@ export default antfu(
       '**/**.yml',
       '**/**.md',
       'playground/pergel',
+      'packages/nuxt/pergel',
       '**/README.yaml',
     ],
   },
