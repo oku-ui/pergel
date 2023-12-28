@@ -124,7 +124,7 @@ export default definePergelModule({
 
     await installModule('notivue/nuxt')
     await installModule('radix-vue/nuxt')
-    // await installModule('nuxt-icon')
+    await installModule('nuxt-icon')
     await installModule('@nuxtjs/color-mode', { classSuffix: '' })
 
     const form = await import('@tailwindcss/forms')

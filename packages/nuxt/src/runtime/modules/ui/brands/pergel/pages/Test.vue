@@ -3,6 +3,7 @@ const { buttonVariants } = useVariants()
 </script>
 
 <template>
+  <ColorModeButton></ColorModeButton>
   <div class="md:hidden">
     <!-- <VPImage
       alt="Authentication" width="1280" height="1214" class="block" :image="{
@@ -10,7 +11,6 @@ const { buttonVariants } = useVariants()
         light: '/examples/authentication-light.png',
       }"
     /> -->
-    asdasd
   </div>
 
   <div
