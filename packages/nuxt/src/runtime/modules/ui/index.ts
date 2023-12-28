@@ -2,6 +2,7 @@ import { join } from 'node:path'
 import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule, useLogger } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import tailwindcssAnimate from 'tailwindcss-animate'
+import { type CollectionNames, type IconsPluginOptions, getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
 
@@ -26,7 +27,15 @@ function checkForZod() {
 
 const brands = ['pergel']
 
-export default definePergelModule({
+interface UIOptions {
+  icons?: CollectionNames[] | 'all' | IconsPluginOptions
+}
+
+interface ResolvedUIOptions {
+  icons?: CollectionNames[] | 'all' | IconsPluginOptions
+}
+
+export default definePergelModule<UIOptions, ResolvedUIOptions>({
   meta: {
     name: 'ui',
     version: '0.0.1',
@@ -35,7 +44,7 @@ export default definePergelModule({
     },
   },
   defaults: {},
-  async setup({ nuxt }) {
+  async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
     const selectBrand = 'pergel'
@@ -144,8 +153,7 @@ export default definePergelModule({
         ],
         content: {
           files: [
-            resolver.resolve(join('brands', selectBrand, 'components/**/*.{vue,mjs,ts}')),
-            resolver.resolve(join('brands', selectBrand, 'pages/**/*.{vue,mjs,ts}')),
+            resolver.resolve(join('brands', selectBrand, '**/*.{vue,mjs,ts}')),
           ],
         },
         theme: {
@@ -233,5 +241,10 @@ export default definePergelModule({
     nuxt.options.css.push('notivue/notifications.css')
     nuxt.options.css.push('notivue/animations.css')
     nuxt.options.css.push(resolver.resolve(join('brands', selectBrand, 'style', 'style.css')))
+
+    nuxt.hook('tailwindcss:config', (tailwindConfig) => {
+      tailwindConfig.plugins ??= []
+      tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.icons) ? { collections: getIconCollections(options.icons) } : typeof options.icons === 'object' ? options.icons as IconsPluginOptions : {}))
+    })
   },
 })

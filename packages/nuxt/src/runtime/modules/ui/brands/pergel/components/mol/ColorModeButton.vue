@@ -13,11 +13,12 @@ const isDark = computed({
 
 <template>
   <ClientOnly>
-    <AtomButton
+    <button
       aria-label="Theme"
-      :class="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
       @click="isDark = !isDark"
-    />
+    >
+      <AtomIcon dynamic :name="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" />
+    </button>
 
     <template #fallback>
       <div class="h-8 w-8" />
