@@ -22,6 +22,7 @@
     "release": "pnpm publish"
   },
   "dependencies": {
+    "@egoist/tailwindcss-icons": "^1.7.1",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@oku-ui/label": "^0.5.0",
@@ -40,8 +41,7 @@
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "vee-validate": "^4.12.3",
-    "zod": "^3.22.4",
-    "@egoist/tailwindcss-icons": "^1.7.1"
+    "zod": "^3.22.4"
   },
   "publishConfig": {
     "access": "public"

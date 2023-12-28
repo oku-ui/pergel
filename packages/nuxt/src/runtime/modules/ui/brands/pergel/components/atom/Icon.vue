@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue'
+import { computed } from 'vue'
 import { useAppConfig } from '#imports'
 
 const props = defineProps<{
