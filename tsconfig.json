@@ -4,11 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "paths": {
-      "#pergel/types": [
-        "./packages/nuxt/.nuxt/pergel/types"
-      ],
-      "#imports": [
-        "./packages/nuxt/.nuxt/imports"
+      "@pergel/nuxt/drizzle/*": [
+        "./packages/nuxt/lib/drizzle/*"
       ],
       "#app": [
         "./packages/nuxt/src/app/index"
@@ -46,6 +43,7 @@
   "exclude": [
     "**/dist/**",
     "**/.nuxt/**",
+    "packages/nuxt/src/runtime/**",
     "**/nuxt.d.ts",
     "**/examples/**",
     "**/docs/**",
