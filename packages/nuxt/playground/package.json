@@ -13,7 +13,7 @@
     "@json2csv/node": "^7.0.4",
     "@pergel/graphql": "workspace:*",
     "@pergel/module-s3": "workspace:*",
-    "@pergel/module-ui": "^",
+    "@pergel/module-ui": "workspace:*",
     "bullmq": "^4.17.0",
     "dotenv": "^16.3.1",
     "drizzle-kit": "^0.20.9",

@@ -5,7 +5,7 @@ test:
   ui:
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: "@pergel/module-ui@^0.0.2"
+      dependencies: "@pergel/module-ui@^0.0.5"
       devDependencies: ""
   drizzle:
     # Script Commands

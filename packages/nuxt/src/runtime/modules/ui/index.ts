@@ -31,7 +31,7 @@ export default definePergelModule({
     name: 'ui',
     version: '0.0.1',
     dependencies: {
-      '@pergel/module-ui': '^0.0.2',
+      '@pergel/module-ui': '^0.0.5',
     },
   },
   defaults: {},
