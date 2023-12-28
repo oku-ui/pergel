@@ -21,6 +21,7 @@ export interface Modules {
   json2csv?: true
   graphqlYoga?: true | GraphQLYogaConfig
   drizzle?: true | DrizzleConfig
+  ui?: true | ResolvedUIOptions
 }
 
 export interface ResolvedModules {

@@ -1,7 +1,8 @@
 import { join } from 'node:path'
 import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule, useLogger } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
-import { type IconsPluginOptions, getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
 import type { ResolvedUIOptions, UIOptions } from './types'
@@ -19,14 +20,23 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     },
   },
   defaults: {
-    packages: 'all',
+    packages: {
+      colorMode: true,
+      notivue: true,
+      nuxtIcon: true,
+      radixVue: true,
+      tailwindIcon: ['ph', 'carbon'],
+      tailwindcss: true,
+      veeValidate: true,
+      zod: true,
+    },
     brand: 'pergel',
   },
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
     if (!brands.includes(options.brand))
-      return
+      return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
 
     addComponentsDir({
       path: resolver.resolve(join('brands', options.brand, 'components')),
@@ -45,7 +55,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
 
     addImportsDir(resolver.resolve(join('brands', options.brand, 'composables')))
 
-    if (options.packages === 'all' || options.packages.veeValidate) {
+    if (options.packages.veeValidate) {
       useNuxtImports(nuxt, {
         presets: [
           {
@@ -97,7 +107,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       })
     }
 
-    if (options.packages === 'all' || options.packages.zod) {
+    if (options.packages.zod) {
       function checkForZod() {
         if (isPackageExists('zod') && !isPackageExists('@vee-validate/zod')) {
           logger.warn(
@@ -131,22 +141,22 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       })
     }
 
-    if (options.packages === 'all' || options.packages.notivue) {
+    if (options.packages.notivue) {
       await installModule('notivue/nuxt')
       nuxt.options.css.push('notivue/notifications.css')
       nuxt.options.css.push('notivue/animations.css')
     }
 
-    if (options.packages === 'all' || options.packages.radixVue)
-      await installModule('radix-ui/vue')
+    if (options.packages.radixVue)
+      await installModule('radix-vue/nuxt')
 
-    if (options.packages === 'all' || options.packages.nuxtIcon)
+    if (options.packages.nuxtIcon)
       await installModule('nuxt-icon')
 
-    if (options.packages === 'all' || options.packages.colorMode)
+    if (options.packages.colorMode)
       await installModule('@nuxtjs/color-mode', { classSuffix: '' })
 
-    if (options.packages === 'all' || options.packages.tailwindcss) {
+    if (options.packages.tailwindcss) {
       const form = await import('@tailwindcss/forms')
       const aspect = await import('@tailwindcss/aspect-ratio')
       const typography = await import('@tailwindcss/typography')
@@ -165,7 +175,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           ],
           content: {
             files: [
-              resolver.resolve(join('brands', selectBrand, '**/*.{vue,mjs,ts}')),
+              resolver.resolve(join('brands', options.brand, '**/*.{vue,mjs,ts}')),
             ],
           },
           theme: {
@@ -250,15 +260,15 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         },
       })
 
-      nuxt.options.css.push(resolver.resolve(join('brands', selectBrand, 'style', 'style.css')))
-    }
+      nuxt.options.css.push(resolver.resolve(join('brands', options.brand, 'style', 'style.css')))
 
-    // @ts-ignore
-    nuxt.hook('tailwindcss:config', (tailwindConfig) => {
-      if (typeof options.packages === 'object' && options.packages.tailwindcssIcons) {
-        tailwindConfig.plugins ??= []
-        tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindcssIcons) ? { collections: getIconCollections(options.packages.tailwindcssIcons) } : typeof options.packages.tailwindcssIcons === 'object' ? options.packages.tailwindcssIcons as IconsPluginOptions : {}))
-      }
-    })
+      // @ts-ignore
+      nuxt.hook('tailwindcss:config', (tailwindConfig) => {
+        if (options.packages.tailwindIcon) {
+          tailwindConfig.plugins ??= []
+          tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindIcon) ? { collections: getIconCollections(options.packages.tailwindIcon) } : typeof options.packages.tailwindIcon === 'object' ? options.packages.tailwindIcon as IconsPluginOptions : {}))
+        }
+      })
+    }
   },
 })

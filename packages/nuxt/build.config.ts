@@ -16,6 +16,7 @@ export const external = [
   'drizzle-orm',
   'drizzle-kit',
   'postgres',
+  '@egoist/tailwindcss-icons',
   // @ts-expect-error
   ...Object.keys(pkg.peerDependencies || {}),
 ]
