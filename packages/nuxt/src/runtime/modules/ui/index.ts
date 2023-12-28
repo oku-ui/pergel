@@ -242,6 +242,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     nuxt.options.css.push('notivue/animations.css')
     nuxt.options.css.push(resolver.resolve(join('brands', selectBrand, 'style', 'style.css')))
 
+    // @ts-ignore
     nuxt.hook('tailwindcss:config', (tailwindConfig) => {
       tailwindConfig.plugins ??= []
       tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.icons) ? { collections: getIconCollections(options.icons) } : typeof options.icons === 'object' ? options.icons as IconsPluginOptions : {}))

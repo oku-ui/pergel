@@ -11,8 +11,13 @@ const form = useForm({
 })
 
 const onSubmit = form.handleSubmit((values) => {
-  console.log('Form submitted!', values)
-  push.success('Hello from your first notification!')
+  isLoading.value = true
+
+  setTimeout(() => {
+    isLoading.value = false
+    console.log('Form submitted!', values)
+    push.success('Hello from your first notification!')
+  }, 2000)
 })
 </script>
 
@@ -44,6 +49,7 @@ const onSubmit = form.handleSubmit((values) => {
                   type="password"
                   autocomplete="current-password"
                   required
+                  :disabled="isLoading"
                   v-bind="componentField"
                 />
               </FormControl>
@@ -53,16 +59,9 @@ const onSubmit = form.handleSubmit((values) => {
               <FormMessage />
             </FormItem>
           </FormField>
-          <!-- <Label class="sr-only" for="email">
-            Email
-          </Label>
-          <Input
-            id="email" placeholder="name@example.com" type="email" auto-capitalize="none"
-            auto-complete="email" auto-correct="off" :disabled="isLoading"
-          /> -->
         </div>
         <AtomButton :disabled="isLoading">
-          <!-- <LucideSpinner v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" /> -->
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
           Sign In with Email
         </AtomButton>
       </div>
@@ -78,8 +77,8 @@ const onSubmit = form.handleSubmit((values) => {
       </div>
     </div>
     <AtomButton variant="outline" type="button" :disabled="isLoading">
-      <!-- <LucideSpinner v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" /> -->
-      <!-- <GitHubLogo v-else class="mr-2 h-4 w-4" /> -->
+      <AtomIcon dynamic name="i-simple-icons-github" class="mr-2 h-4 w-4" />
+      <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
       GitHub
     </AtomButton>
   </div>
