@@ -90,6 +90,26 @@ export default defineNuxtModule<PergelOptions>({
 
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
+
+    nuxt.hooks.hook('i18n:registerModule', (register) => {
+      console.log('asdasd')
+      register({
+        // langDir path needs to be resolved
+        langDir: 'asdas',
+        locales: [
+          {
+            code: 'en',
+            file: 'en.json',
+            name: 'English',
+          },
+          {
+            code: 'tr',
+            file: 'tr.json',
+            name: 'Türkçe',
+          },
+        ],
+      })
+    })
   },
 })
 

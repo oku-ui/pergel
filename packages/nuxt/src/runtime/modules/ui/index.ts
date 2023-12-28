@@ -34,7 +34,6 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     brand: 'pergel',
   },
   async setup({ nuxt, options }) {
-    console.log('options', options)
     const resolver = createResolver(import.meta.url)
 
     if (!brands.includes(options.brand))
@@ -269,6 +268,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
 
       // @ts-ignore
       nuxt.hook('tailwindcss:config', (tailwindConfig) => {
+        console.log('BUG:TAILWINDCSS')
         if (options.packages.tailwindIcon) {
           tailwindConfig.plugins ??= []
           tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindIcon) ? { collections: getIconCollections(options.packages.tailwindIcon) } : typeof options.packages.tailwindIcon === 'object' ? options.packages.tailwindIcon as IconsPluginOptions : {}))
@@ -276,8 +276,29 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       })
     }
 
-    if (options.packages.i18n)
+    if (options.packages.i18n) {
       await installModule('@nuxtjs/i18n')
+
+      nuxt.hook('i18n:registerModule', (register) => {
+        console.log('BUG:I18N')
+        register({
+        // langDir path needs to be resolved
+          langDir: resolver.resolve(join('brands', options.brand, 'lang')),
+          locales: [
+            {
+              code: 'en',
+              file: 'en.json',
+              name: 'English',
+            },
+            {
+              code: 'tr',
+              file: 'tr.json',
+              name: 'Türkçe',
+            },
+          ],
+        })
+      })
+    }
   },
 
 })
