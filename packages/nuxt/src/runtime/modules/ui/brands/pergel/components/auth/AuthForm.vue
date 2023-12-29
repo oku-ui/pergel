@@ -52,11 +52,17 @@ withDefaults(defineProps<AuthFormProps>(), {
       <slot />
       <p v-if="!hiddenTerms" class="text-muted-foreground px-8 text-center text-sm">
         By clicking continue, you agree to our
-        <NuxtLink to="/auth/terms" class="hover:text-primary underline underline-offset-4">
+        <NuxtLink
+          :to="terms.href"
+          class="hover:text-primary underline underline-offset-4"
+        >
           {{ terms.label }}
         </NuxtLink>
         and
-        <NuxtLink to="/auth/privacy" class="hover:text-primary underline underline-offset-4">
+        <NuxtLink
+          :to="privacy.href"
+          class="hover:text-primary underline underline-offset-4"
+        >
           {{ privacy.label }}
         </NuxtLink>
         .

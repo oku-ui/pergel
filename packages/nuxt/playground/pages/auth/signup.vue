@@ -21,6 +21,7 @@ function submit(values: any, loading: (value: boolean) => void) {
         :logo="{
           src: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-white.svg',
           alt: 'Your Company',
+          link: '/',
         }"
         quote="This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before."
         footer="Sofia Davis"
@@ -33,6 +34,14 @@ function submit(values: any, loading: (value: boolean) => void) {
           label: 'Already have an account?',
           to: '/auth/login',
           text: 'Sign in',
+        }"
+        :terms="{
+          href: '/auth/terms-of-service',
+          label: 'Terms of Service',
+        }"
+        :privacy="{
+          href: '/auth/privacy-policy',
+          label: 'Privacy Policy',
         }"
       >
         <AuthFormSignup @submit="submit" />

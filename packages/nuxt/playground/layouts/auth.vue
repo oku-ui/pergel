@@ -1,10 +1,8 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <AuthLayout
     :logo="{
-      src: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-white.svg',
+      dark: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-white.svg',
+      light: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-dark.svg',
       alt: 'Your Company',
     }"
   >
