@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const route = useRoute()
+
+const isActivated = route.query.activated === 'true'
 function submit(values: any, loading: (value: boolean) => void) {
   loading(true)
   setTimeout(() => {
@@ -43,10 +46,18 @@ function submit(values: any, loading: (value: boolean) => void) {
           href: '/auth/privacy-policy',
           label: 'Privacy Policy',
         }"
+        :hidden-terms="isActivated"
       >
         <AuthFormLogin
+          v-if="!isActivated"
           @submit="submit"
         />
+        <div v-else>
+          <p class="text-sm">
+            Your account is not activated yet. You have been put on the waiting list. We will notify you when your account is ready.
+            Thank you for your patience.
+          </p>
+        </div>
       </AuthForm>
     </template>
   </NuxtLayout>
