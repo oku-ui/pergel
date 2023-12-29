@@ -13,7 +13,7 @@ const { buttonVariants } = useVariants()
 </script>
 
 <template>
-  <div class="absolute right-4 top-4 md:right-8 md:top-8">
+  <div class="absolute right-4 top-4 flex space-x-2 md:right-8 md:top-8">
     <MolColorModeButton
       :class="cn(
         buttonVariants({ variant: 'ghost' }),

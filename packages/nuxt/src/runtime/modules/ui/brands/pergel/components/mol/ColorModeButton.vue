@@ -20,7 +20,7 @@ const isDark = computed({
       )"
       @click="isDark = !isDark"
     >
-      <AtomIcon dynamic :name="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" />
+      <AtomIcon dynamic :name="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" class="h-4 w-4" />
     </button>
 
     <template #fallback>
