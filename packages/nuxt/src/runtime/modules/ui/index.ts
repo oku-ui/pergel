@@ -37,6 +37,33 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
+    nuxt.hook('i18n:registerModule', (register) => {
+      register({
+        // langDir path needs to be resolved
+        langDir: resolver.resolve(join('brands', options.brand, 'lang')),
+        locales: [
+          {
+            code: 'en',
+            file: 'en.json',
+            name: 'English',
+          },
+          {
+            code: 'tr',
+            file: 'tr.json',
+            name: 'Türkçe',
+          },
+        ],
+      })
+    })
+
+    // @ts-ignore
+    nuxt.hook('tailwindcss:config', (tailwindConfig) => {
+      if (options.packages.tailwindIcon) {
+        tailwindConfig.plugins ??= []
+        tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindIcon) ? { collections: getIconCollections(options.packages.tailwindIcon) } : typeof options.packages.tailwindIcon === 'object' ? options.packages.tailwindIcon as IconsPluginOptions : {}))
+      }
+    })
+
     if (!brands.includes(options.brand))
       return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
 
@@ -272,40 +299,10 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       })
 
       nuxt.options.css.push(resolver.resolve(join('brands', options.brand, 'style', 'style.css')))
-
-      // @ts-ignore
-      nuxt.hook('tailwindcss:config', (tailwindConfig) => {
-        console.log('BUG:TAILWINDCSS')
-        if (options.packages.tailwindIcon) {
-          tailwindConfig.plugins ??= []
-          tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindIcon) ? { collections: getIconCollections(options.packages.tailwindIcon) } : typeof options.packages.tailwindIcon === 'object' ? options.packages.tailwindIcon as IconsPluginOptions : {}))
-        }
-      })
     }
 
-    if (options.packages.i18n) {
+    if (options.packages.i18n)
       await installModule('@nuxtjs/i18n')
-
-      nuxt.hook('i18n:registerModule', (register) => {
-        console.log('BUG:I18N')
-        register({
-        // langDir path needs to be resolved
-          langDir: resolver.resolve(join('brands', options.brand, 'lang')),
-          locales: [
-            {
-              code: 'en',
-              file: 'en.json',
-              name: 'English',
-            },
-            {
-              code: 'tr',
-              file: 'tr.json',
-              name: 'Türkçe',
-            },
-          ],
-        })
-      })
-    }
   },
 
 })
