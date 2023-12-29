@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
-const code = route.query.code
+const code = route.query.code as string | undefined
 
 const success = ref(false)
 const successReset = ref(false)
@@ -17,7 +17,7 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
   loading(true)
   setTimeout(() => {
     loading(false)
-    push.success('Send reset link')
+    push.success('Success reset password')
     successReset.value = true
   }, 1000)
 }
@@ -45,16 +45,23 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
       <AuthForm
         title="Reset Password"
         :description="{
-          label: 'Please enter your email address and we will send you a link to reset your password.',
+          label: code ? 'Please enter your new password.' : 'Please enter your email address and we will send you a link to reset your password.',
         }"
         hidden-terms
       >
         <AuthFormResetPassword
+          v-if="!code"
           :success="success"
           @submit="submitEmail"
         />
         <AuthFormResetPasswordCode
+          v-else
           :success="successReset"
+          :login="{
+            label: 'Back to login',
+            to: '/auth/login',
+          }"
+          :code="code"
           @submit="resetPassword"
         />
       </AuthForm>

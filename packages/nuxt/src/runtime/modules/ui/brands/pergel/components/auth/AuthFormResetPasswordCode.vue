@@ -1,21 +1,37 @@
 <script setup lang="ts">
 interface AuthFormProps {
   success: boolean
+  code: string
+  login: {
+    label: string
+    to: string
+  }
 }
-withDefaults(defineProps<AuthFormProps>(), {
+const props = withDefaults(defineProps<AuthFormProps>(), {
   success: false,
 })
 
 const emit = defineEmits<Emit>()
+const { buttonVariants } = useVariants()
 
 const isLoading = ref(false)
 
 const formSchema = toTypedSchema(zod.object({
-  email: zod.string().email(),
-}))
+  code: zod.string().min(2).max(50),
+  newPassword: zod.string().min(8).max(50),
+  confirmPassword: zod.string().min(8).max(50),
+}).refine(data => data.newPassword === data.confirmPassword, {
+  message: 'Passwords do not match',
+  path: ['confirmPassword'],
+}),
+
+)
 
 const form = useForm({
   validationSchema: formSchema,
+  initialValues: {
+    code: props.code,
+  },
 })
 
 type Emit = {
@@ -38,11 +54,46 @@ const onSubmit = form.handleSubmit((values) => {
     <form v-if="!success" @submit="onSubmit">
       <div class="grid gap-3">
         <div class="grid gap-1">
-          <FormField v-slot="{ componentField }" name="email">
+          <FormField v-slot="{ componentField }" name="code">
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Code</FormLabel>
               <FormControl>
                 <AtomInput
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <FormField v-slot="{ componentField }" name="newPassword">
+            <FormItem>
+              <FormLabel>New Password</FormLabel>
+              <FormControl>
+                <AtomInput
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                  :disabled="isLoading"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormMessage />
+              <FormDescription>
+                Password must be at least 8 characters long.
+              </FormDescription>
+            </FormItem>
+          </FormField>
+
+          <FormField v-slot="{ componentField }" name="confirmPassword">
+            <FormItem>
+              <FormLabel>Confirm Password</FormLabel>
+              <FormControl>
+                <AtomInput
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                  :disabled="isLoading"
                   v-bind="componentField"
                 />
               </FormControl>
@@ -52,29 +103,27 @@ const onSubmit = form.handleSubmit((values) => {
         </div>
         <AtomButton :disabled="isLoading">
           <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
-          Send reset link
-          <AtomIcon dynamic name="i-ph-arrow-right-bold" class="ml-2 h-4 w-4" />
+          Reset Password
         </AtomButton>
       </div>
     </form>
     <div v-else>
       <div class="grid gap-3">
         <div class="grid gap-1">
-          <p class="text-sm">
-            We have sent you an email with a link to reset your password. Please check your inbox. If you don't see the email, check other places it might be, like your junk, spam, social, or other folders.
+          <p class="mb-4 text-sm">
+            Your password has been reset successfully. Please login with your new password.
           </p>
+          <NuxtLink
+            :to="login.to"
+            :class="cn(
+              buttonVariants({ variant: 'outline' }),
+              '',
+            )"
+          >
+            {{ login.label }}
+          </NuxtLink>
         </div>
       </div>
     </div>
-
-    <AtomButton
-      variant="outline"
-      type="button"
-      class="mt-4"
-      @click="$router.back()"
-    >
-      <AtomIcon dynamic name="i-ph-arrow-left-bold" class="mr-2 h-4 w-4" />
-      Back
-    </AtomButton>
   </div>
 </template>
