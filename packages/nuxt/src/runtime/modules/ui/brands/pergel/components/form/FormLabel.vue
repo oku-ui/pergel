@@ -9,7 +9,7 @@ const { error, formItemId } = useFormField()
 <template>
   <OkuLabel
     :class="cn(
-      'block text-sm font-medium leading-6 text-gray-900',
+      'block text-sm font-medium leading-6',
       error && 'text-destructive',
       $attrs.class ?? '',
     )"

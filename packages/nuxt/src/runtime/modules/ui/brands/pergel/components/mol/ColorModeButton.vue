@@ -15,6 +15,9 @@ const isDark = computed({
   <ClientOnly>
     <button
       aria-label="Theme"
+      :class="cn(
+        $attrs.class ?? '',
+      )"
       @click="isDark = !isDark"
     >
       <AtomIcon dynamic :name="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" />

@@ -32,6 +32,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       i18n: true,
     },
     brand: 'pergel',
+    copyStructure: false,
   },
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
@@ -39,22 +40,28 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     if (!brands.includes(options.brand))
       return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
 
-    addComponentsDir({
-      path: resolver.resolve(join('brands', options.brand, 'components')),
-      global: true,
-      watch: false,
-    })
+    if (!options.copyStructure) {
+      addComponentsDir({
+        path: resolver.resolve(join('brands', options.brand, 'components')),
+        watch: false,
+      })
 
-    addComponentsDir({
-      path: resolver.resolve(join('brands', options.brand, 'pages')),
-      global: true,
-      watch: false,
-    })
+      addComponentsDir({
+        path: resolver.resolve(join('brands', options.brand, 'layouts')),
+        prefix: 'Layouts',
+        watch: false,
+      })
 
-    nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('brands', options.brand))
-    nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('brands', options.brand, '*'))
+      addComponentsDir({
+        path: resolver.resolve(join('brands', options.brand, 'pages')),
+        watch: false,
+      })
 
-    addImportsDir(resolver.resolve(join('brands', options.brand, 'composables')))
+      nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('brands', options.brand))
+      nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('brands', options.brand, '*'))
+
+      addImportsDir(resolver.resolve(join('brands', options.brand, 'composables')))
+    }
 
     if (options.packages.veeValidate) {
       useNuxtImports(nuxt, {

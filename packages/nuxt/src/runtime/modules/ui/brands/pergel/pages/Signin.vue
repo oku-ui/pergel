@@ -13,16 +13,24 @@ const { buttonVariants } = useVariants()
   </div>
 
   <div
-    class="h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
+    class="container h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
   >
-    <NuxtLink
-      to="/auth/signup" :class="cn(
-        buttonVariants({ variant: 'ghost' }),
-        'absolute right-4 top-4 md:right-8 md:top-8',
-      )"
-    >
-      {{ $t('pergel.signup') }}
-    </NuxtLink>
+    <div class="absolute right-4 top-4 md:right-8 md:top-8">
+      <MolColorModeButton
+        :class="cn(
+          buttonVariants({ variant: 'ghost' }),
+          '',
+        )"
+      />
+      <NuxtLink
+        to="/auth/signup" :class="cn(
+          buttonVariants({ variant: 'ghost' }),
+          '',
+        )"
+      >
+        Signup
+      </NuxtLink>
+    </div>
     <div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r">
       <div class="absolute inset-0 bg-zinc-900" />
       <div class="relative z-20 flex items-center text-lg font-medium">

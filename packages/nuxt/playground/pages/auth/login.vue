@@ -12,8 +12,8 @@ function submit(values: any, loading: (value: boolean) => void) {
   <NuxtLayout name="auth">
     <template #header>
       <AuthHeader
-        title="Log in"
-        link="/auth/login"
+        title="Sign up"
+        link="/auth/signup"
       />
     </template>
     <template #left>
@@ -28,14 +28,16 @@ function submit(values: any, loading: (value: boolean) => void) {
     </template>
     <template #content>
       <AuthForm
-        title="Sign Up"
+        title="Log in"
         :description="{
-          label: 'Already have an account?',
-          to: '/auth/login',
-          text: 'Sign in',
+          label: 'Don\'t have an account?',
+          to: '/auth/signup',
+          text: 'Sign up',
         }"
       >
-        <AuthFormSignup @submit="submit" />
+        <AuthFormLogin
+          @submit="submit"
+        />
       </AuthForm>
     </template>
   </NuxtLayout>

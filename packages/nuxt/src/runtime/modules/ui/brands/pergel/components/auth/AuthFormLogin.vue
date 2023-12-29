@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const emit = defineEmits<Emit>()
+
 const isLoading = ref(false)
 
 const formSchema = toTypedSchema(zod.object({
@@ -10,21 +12,25 @@ const form = useForm({
   validationSchema: formSchema,
 })
 
+type Emit = {
+  submit: [values: zod.infer<typeof formSchema>, loading: (value: boolean) => void]
+  githubButton: []
+}
+
+function changeLoading(value: boolean) {
+  isLoading.value = value
+}
+
 const onSubmit = form.handleSubmit((values) => {
   isLoading.value = true
-
-  setTimeout(() => {
-    isLoading.value = false
-    console.log('Form submitted!', values)
-    push.success('Hello from your first notification!')
-  }, 2000)
+  emit('submit', values, changeLoading)
 })
 </script>
 
 <template>
   <div :class="cn('grid gap-6', $attrs.class ?? '')">
     <form @submit="onSubmit">
-      <div class="grid gap-2">
+      <div class="grid gap-3">
         <div class="grid gap-1">
           <FormField v-slot="{ componentField }" name="username">
             <FormItem>
@@ -34,9 +40,6 @@ const onSubmit = form.handleSubmit((values) => {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           </FormField>
@@ -53,16 +56,18 @@ const onSubmit = form.handleSubmit((values) => {
                   v-bind="componentField"
                 />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
+              <FormDescription class="pb-4 text-right">
+                Forgot your password? <NuxtLink to="/auth/reset-password" class="hover:text-primary underline underline-offset-4">
+                  Reset it
+                </NuxtLink>
+              </FormDescription>
             </FormItem>
           </FormField>
         </div>
         <AtomButton :disabled="isLoading">
           <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
-          Sign In with Email
+          Log in with email
         </AtomButton>
       </div>
     </form>
@@ -76,7 +81,12 @@ const onSubmit = form.handleSubmit((values) => {
         </span>
       </div>
     </div>
-    <AtomButton variant="outline" type="button" :disabled="isLoading">
+    <AtomButton
+      variant="outline"
+      type="button"
+      :disabled="isLoading"
+      @click="emit('githubButton')"
+    >
       <AtomIcon dynamic name="i-simple-icons-github" class="mr-2 h-4 w-4" />
       <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
       GitHub
