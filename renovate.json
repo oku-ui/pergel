@@ -98,6 +98,21 @@
       ]
     },
     {
+      "groupName": "ui",
+      "commitMessageTopic": "ui",
+      "matchPaths": [
+        "packages/ui/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "matchDatasources": [
+        "npm"
+      ]
+    },
+    {
       "groupName": "s3",
       "commitMessageTopic": "s3",
       "matchPaths": [
@@ -125,7 +140,8 @@
         "**/packages/nuxt/**",
         "**/packages/graphql/**",
         "**/packages/s3/**",
-        "**/.docs/**"
+        "**/.docs/**",
+        "**/packages/ui/**"
       ],
       "matchDatasources": [
         "npm",
