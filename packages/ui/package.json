@@ -1,7 +1,7 @@
 {
   "name": "@pergel/module-ui",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packageManager": "pnpm@8.10.0",
   "description": "Pergel Module for UI Management",
   "author": {
@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm publish"
+    "release": "pnpm build && pnpm bumpp --commit='version(module-ui): release %s' --no-tag && pnpm publish"
   },
   "dependencies": {
     "@egoist/tailwindcss-icons": "^1.7.1",
