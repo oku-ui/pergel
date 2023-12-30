@@ -99,8 +99,8 @@
     "esbuild-plugin-file-path-extensions": "^2.0.0",
     "lucia": "^3.0.0-beta.13",
     "node-cron": "^3.0.3",
-    "oslo": "^0.26.2",
     "nuxt": "^3.9.0",
+    "oslo": "^0.26.2",
     "p-timeout": "^6.1.2",
     "vitest": "^1.1.0"
   },
