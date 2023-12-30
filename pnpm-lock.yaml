@@ -214,7 +214,7 @@ importers:
         version: 2.0.4
     devDependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.481.0
+        specifier: ^3.484.0
         version: 3.484.0
       '@faker-js/faker':
         specifier: ^8.3.1
@@ -250,7 +250,7 @@ importers:
         specifier: workspace:^
         version: link:../ui
       '@types/node':
-        specifier: ^20.10.5
+        specifier: ^20.10.6
         version: 20.10.6
       '@types/node-cron':
         specifier: ^3.0.11
@@ -265,7 +265,7 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       nuxt:
-        specifier: ^3.8.2
+        specifier: ^3.9.0
         version: 3.9.0(@types/node@20.10.6)(eslint@8.56.0)(rollup@3.29.4)(typescript@5.3.3)(vite@5.0.10)
       p-timeout:
         specifier: ^6.1.2
@@ -285,7 +285,7 @@ importers:
   packages/nuxt/playground:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.481.0
+        specifier: ^3.484.0
         version: 3.484.0
       '@faker-js/faker':
         specifier: ^8.3.1
