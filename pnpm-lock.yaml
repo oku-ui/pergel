@@ -375,7 +375,7 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(rollup@3.29.4)(vue@3.4.3)
       '@nuxtjs/tailwindcss':
-        specifier: ^6.10.1
+        specifier: ^6.10.3
         version: 6.10.3(rollup@3.29.4)
       '@oku-ui/label':
         specifier: ^0.5.0
@@ -402,13 +402,13 @@ importers:
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@3.4.0)
       '@vee-validate/zod':
-        specifier: ^4.12.3
+        specifier: ^4.12.4
         version: 4.12.4(vue@3.4.3)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
       clsx:
-        specifier: ^2.0.0
+        specifier: ^2.1.0
         version: 2.1.0
       notivue:
         specifier: ^2.0.1
@@ -429,7 +429,7 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.0)
       vee-validate:
-        specifier: ^4.12.3
+        specifier: ^4.12.4
         version: 4.12.4(vue@3.4.3)
       zod:
         specifier: ^3.22.4
