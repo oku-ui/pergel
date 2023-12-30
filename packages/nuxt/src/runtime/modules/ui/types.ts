@@ -71,6 +71,7 @@ export interface ResolvedUIOptions {
     zod?: boolean
     veeValidate?: boolean
     i18n?: boolean
+    pinia?: boolean
   }
   copyStructure: boolean
 }

@@ -34,7 +34,7 @@ const { t } = useI18n()
     </template>
     <template #content>
       <AuthForm
-        title="Log in"
+        :title="t('auth.signin')"
         :description="{
           label: t('auth.signup_description'),
           to: '/auth/signup',

@@ -16,7 +16,8 @@ const { t } = useI18n()
           src: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-white.svg',
           alt: 'Your Company',
           link: '/',
-        }" quote="This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before."
+        }"
+        quote="This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before."
         footer="Sofia Davis"
       />
     </template>

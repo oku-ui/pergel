@@ -31,6 +31,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       veeValidate: true,
       zod: true,
       i18n: true,
+      pinia: true,
     },
     brand: 'pergel',
     copyStructure: false,
@@ -308,6 +309,9 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         strategy: 'no_prefix',
       } as ModuleOptions)
     }
+
+    if (options.packages.pinia)
+      await installModule('@pinia/nuxt')
   },
 
 })
