@@ -19,6 +19,7 @@ export default antfu(
       '**/**.yml',
       '**/**.md',
       'playground/pergel',
+      'packages/nuxt/pergel',
       '**/README.yaml',
     ],
   },
@@ -36,6 +37,14 @@ export default antfu(
       'tailwindcss/no-arbitrary-value': 'off',
       'tailwindcss/no-custom-classname': 'off',
       'tailwindcss/no-contradicting-classname': 'error',
+      'import/first': 'off',
+      'symbol-description': 'off',
+    },
+  },
+  {
+    files: ['**/*.ts'],
+    rules: {
+      'symbol-description': 'off',
     },
   },
   {

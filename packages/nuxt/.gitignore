@@ -60,3 +60,6 @@ Temporary Items
 
 lib
 dist
+pergel
+schema.graphql
+!src/**/pergel

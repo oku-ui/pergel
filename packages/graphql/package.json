@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm publish"
+    "release": "pnpm build && pnpm bumpp --commit='version(graphql): release %s' --no-tag && pnpm publish"
   },
   "peerDependencies": {
     "graphql": ">=16.8.0"
