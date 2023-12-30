@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits<Emit>()
+const { t } = useI18n()
 
 const isLoading = ref(false)
 
