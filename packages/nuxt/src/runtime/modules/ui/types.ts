@@ -55,6 +55,12 @@ export interface UIOptions {
      * @see https://i18n.nuxtjs.org
      */
     i18n?: boolean
+
+    /**
+     * @default true
+     * @see https://pinia.vuejs.org
+     */
+    pinia?: boolean
   }
   copyStructure?: boolean
 }
