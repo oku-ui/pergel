@@ -30,6 +30,8 @@
     "username_input_subtitle": "Kullanıcı adınız diğer kullanıcılara görünür olacak. Daha sonra değiştirebilirsiniz.",
     "password_input_subtitle": "Şifreniz en az 8 karakter uzunluğunda olmalıdır.",
     "dont_have_an_account": "Hesabınız henüz etkinleştirilmedi. Sizi bekleme listesine aldık. Hesabınız hazır olduğunda sizi bilgilendireceğiz. Sabrınız için teşekkür ederiz.",
-    "login_with_email": "E-posta ile Giriş Yap"
-  }
+    "login_with_email": "E-posta ile Giriş Yap",
+    "terms_of_service_description": "Devam edersiniz, şu şartları kabul etmiş olursunuz."
+  },
+  "and": "ve"
 }

@@ -30,6 +30,8 @@
     "username_input_subtitle": "Your username will be visible to other users. You can change it later.",
     "password_input_subtitle": "Your password must be at least 8 characters long.",
     "dont_have_an_account": "Your account is not activated yet. You have been put on the waiting list. We will notify you when your account is ready. Thank you for your patience.",
-    "login_with_email": "Log in with Email"
-  }
+    "login_with_email": "Log in with Email",
+    "terms_of_service_description": "By clicking continue, you agree to our."
+  },
+  "and": "and"
 }

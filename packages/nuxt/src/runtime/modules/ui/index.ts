@@ -38,33 +38,6 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
-    nuxt.hook('i18n:registerModule', (register) => {
-      register({
-        // langDir path needs to be resolved
-        langDir: resolver.resolve(join('brands', options.brand, 'lang')),
-        locales: [
-          {
-            code: 'en',
-            file: 'en.json',
-            name: 'English',
-          },
-          {
-            code: 'tr',
-            file: 'tr.json',
-            name: 'Türkçe',
-          },
-        ],
-      })
-    })
-
-    // @ts-ignore
-    nuxt.hook('tailwindcss:config', (tailwindConfig) => {
-      if (options.packages.tailwindIcon) {
-        tailwindConfig.plugins ??= []
-        tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindIcon) ? { collections: getIconCollections(options.packages.tailwindIcon) } : typeof options.packages.tailwindIcon === 'object' ? options.packages.tailwindIcon as IconsPluginOptions : {}))
-      }
-    })
-
     if (!brands.includes(options.brand))
       return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
 
@@ -185,6 +158,15 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       await installModule('@nuxtjs/color-mode', { classSuffix: '' })
 
     if (options.packages.tailwindcss) {
+      // First we need to register the module hook
+      // @ts-ignore
+      nuxt.hook('tailwindcss:config', (tailwindConfig) => {
+        if (options.packages.tailwindIcon) {
+          tailwindConfig.plugins ??= []
+          tailwindConfig.plugins.push(iconsPlugin(Array.isArray(options.packages.tailwindIcon) ? { collections: getIconCollections(options.packages.tailwindIcon) } : typeof options.packages.tailwindIcon === 'object' ? options.packages.tailwindIcon as IconsPluginOptions : {}))
+        }
+      })
+
       const form = await import('@tailwindcss/forms')
       const aspect = await import('@tailwindcss/aspect-ratio')
       const typography = await import('@tailwindcss/typography')
@@ -292,6 +274,36 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     }
 
     if (options.packages.i18n) {
+      // First we need to register the module hook
+      nuxt.hook('i18n:registerModule', (register) => {
+        register({
+          // langDir path needs to be resolved
+          langDir: resolver.resolve(join('brands', options.brand, 'lang')),
+          locales: [
+            {
+              code: 'en',
+              file: 'en.json',
+              name: 'English',
+            },
+            {
+              code: 'tr',
+              file: 'tr.json',
+              name: 'Türkçe',
+            },
+            {
+              code: 'fr',
+              file: 'fr.json',
+              name: 'Français',
+            },
+            {
+              code: 'zh',
+              file: 'zh.json',
+              name: '中文',
+            },
+          ],
+        })
+      })
+
       await installModule('@nuxtjs/i18n', {
         strategy: 'no_prefix',
       } as ModuleOptions)

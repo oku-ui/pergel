@@ -7,12 +7,26 @@ const availableLocales = computed(() => {
 </script>
 
 <template>
-  <div>
-    <a
-      v-for="locale in availableLocales"
-      :key="locale.code"
-      href="#"
-      @click.prevent.stop="setLocale(locale.code)"
-    >{{ locale.name }}</a>
-  </div>
+  <UiDropdownMenu>
+    <UiDropdownMenuTrigger
+      :class="cn(
+        $attrs.class ?? '',
+      )"
+    >
+      <AtomIcon dynamic name="i-ph-globe-bold" class="h-4 w-4" />
+      {{ locale.value }}
+    </UiDropdownMenuTrigger>
+    <UiDropdownMenuContent>
+      <UiDropdownMenuLabel>
+        Languages
+      </UiDropdownMenuLabel>
+      <UiDropdownMenuSeparator />
+      <UiDropdownMenuItem
+        v-for="locale in availableLocales" :key="locale.code"
+        @click.prevent.stop="setLocale(locale.code)"
+      >
+        {{ locale.name }}
+      </UiDropdownMenuItem>
+    </UiDropdownMenuContent>
+  </UiDropdownMenu>
 </template>

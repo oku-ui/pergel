@@ -33,6 +33,8 @@ withDefaults(defineProps<AuthFormProps>(), {
     href: '/auth/privacy',
   }),
 })
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -51,14 +53,14 @@ withDefaults(defineProps<AuthFormProps>(), {
       </div>
       <slot />
       <p v-if="!hiddenTerms" class="text-muted-foreground px-8 text-center text-sm">
-        By clicking continue, you agree to our
+        {{ t('auth.terms_of_service_description') }}
         <NuxtLink
           :to="terms.href"
           class="hover:text-primary underline underline-offset-4"
         >
           {{ terms.label }}
         </NuxtLink>
-        and
+        {{ t('and') }}
         <NuxtLink
           :to="privacy.href"
           class="hover:text-primary underline underline-offset-4"
