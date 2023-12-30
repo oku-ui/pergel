@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<AuthFormProps>(), {
 })
 
 const emit = defineEmits<Emit>()
+const { t } = useI18n()
 const { buttonVariants } = useVariants()
 
 const isLoading = ref(false)
@@ -56,7 +57,9 @@ const onSubmit = form.handleSubmit((values) => {
         <div class="grid gap-1">
           <FormField v-slot="{ componentField }" name="code">
             <FormItem>
-              <FormLabel>Code</FormLabel>
+              <FormLabel>
+                {{ t('auth.code') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   v-bind="componentField"
@@ -68,7 +71,9 @@ const onSubmit = form.handleSubmit((values) => {
 
           <FormField v-slot="{ componentField }" name="newPassword">
             <FormItem>
-              <FormLabel>New Password</FormLabel>
+              <FormLabel>
+                {{ t('auth.new_password') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   type="password"
@@ -80,14 +85,16 @@ const onSubmit = form.handleSubmit((values) => {
               </FormControl>
               <FormMessage />
               <FormDescription>
-                Password must be at least 8 characters long.
+                {{ t('auth.password_input_subtitle') }}
               </FormDescription>
             </FormItem>
           </FormField>
 
           <FormField v-slot="{ componentField }" name="confirmPassword">
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>
+                {{ t('auth.confirm_new_password') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   type="password"
@@ -103,7 +110,7 @@ const onSubmit = form.handleSubmit((values) => {
         </div>
         <AtomButton :disabled="isLoading">
           <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
-          Reset Password
+          {{ t('auth.reset_password') }}
         </AtomButton>
       </div>
     </form>
@@ -111,7 +118,7 @@ const onSubmit = form.handleSubmit((values) => {
       <div class="grid gap-3">
         <div class="grid gap-1">
           <p class="mb-4 text-sm">
-            Your password has been reset successfully. Please login with your new password.
+            {{ t('auth.reset_password_success') }}
           </p>
           <NuxtLink
             :to="login.to"

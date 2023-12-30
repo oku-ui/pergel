@@ -41,7 +41,9 @@ const onSubmit = form.handleSubmit((values) => {
         <div class="grid gap-1">
           <FormField v-slot="{ componentField }" name="username">
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormItem>
+                {{ t('auth.username') }}
+              </FormItem>
               <FormControl>
                 <AtomInput
                   v-bind="componentField"
@@ -52,14 +54,16 @@ const onSubmit = form.handleSubmit((values) => {
               </FormControl>
               <FormMessage />
               <FormDescription>
-                Username must be at least 2 characters long.
+                {{ t('auth.username_input_subtitle') }}
               </FormDescription>
             </FormItem>
           </FormField>
 
           <FormField v-slot="{ componentField }" name="email">
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>
+                {{ t('auth.email') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   type="email"
@@ -75,7 +79,9 @@ const onSubmit = form.handleSubmit((values) => {
 
           <FormField v-slot="{ componentField }" name="password">
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>
+                {{ t('auth.password') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   type="password"
@@ -87,14 +93,16 @@ const onSubmit = form.handleSubmit((values) => {
               </FormControl>
               <FormMessage />
               <FormDescription>
-                Password must be at least 8 characters long.
+                {{ t('auth.password_input_subtitle') }}
               </FormDescription>
             </FormItem>
           </FormField>
 
           <FormField v-slot="{ componentField }" name="passwordConfirm">
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>
+                {{ t('auth.confirm_password') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   type="password"
@@ -110,7 +118,7 @@ const onSubmit = form.handleSubmit((values) => {
         </div>
         <AtomButton :disabled="isLoading">
           <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
-          Sign Up with Email
+          {{ t('auth.signup_with_email') }}
         </AtomButton>
       </div>
     </form>
@@ -120,7 +128,7 @@ const onSubmit = form.handleSubmit((values) => {
       </div>
       <div class="relative flex justify-center text-xs uppercase">
         <span class="bg-background text-muted-foreground px-2">
-          Or continue with
+          {{ t('auth.or_continue_with') }}
         </span>
       </div>
     </div>

@@ -9,14 +9,16 @@ function submit(values: any, loading: (value: boolean) => void) {
     push.success('Signin success')
   }, 1000)
 }
+
+const { t } = useI18n()
 </script>
 
 <template>
   <NuxtLayout name="auth">
     <template #header>
       <AuthHeader
-        title="Sign up"
         link="/auth/signup"
+        :title="t('auth.signup')"
       />
     </template>
     <template #left>
@@ -34,17 +36,17 @@ function submit(values: any, loading: (value: boolean) => void) {
       <AuthForm
         title="Log in"
         :description="{
-          label: 'Don\'t have an account?',
+          label: t('auth.signup_description'),
           to: '/auth/signup',
-          text: 'Sign up',
+          text: t('auth.signup'),
         }"
         :terms="{
           href: '/auth/terms-of-service',
-          label: 'Terms of Service',
+          label: t('auth.terms_of_service'),
         }"
         :privacy="{
           href: '/auth/privacy-policy',
-          label: 'Privacy Policy',
+          label: t('auth.privacy_policy'),
         }"
         :hidden-terms="isActivated"
       >
@@ -54,8 +56,7 @@ function submit(values: any, loading: (value: boolean) => void) {
         />
         <div v-else>
           <p class="text-sm">
-            Your account is not activated yet. You have been put on the waiting list. We will notify you when your account is ready.
-            Thank you for your patience.
+            {{ t('auth.dont_have_an_account') }}
           </p>
         </div>
       </AuthForm>

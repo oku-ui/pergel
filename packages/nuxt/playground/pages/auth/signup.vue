@@ -6,13 +6,14 @@ function submit(values: any, loading: (value: boolean) => void) {
     push.success('Signin success')
   }, 1000)
 }
+const { t } = useI18n()
 </script>
 
 <template>
   <NuxtLayout name="auth">
     <template #header>
       <AuthHeader
-        title="Log in"
+        :title="t('auth.login')"
         link="/auth/login"
       />
     </template>
@@ -29,19 +30,19 @@ function submit(values: any, loading: (value: boolean) => void) {
     </template>
     <template #content>
       <AuthForm
-        title="Sign Up"
+        :title="t('auth.signup')"
         :description="{
-          label: 'Already have an account?',
+          label: t('auth.already_have_an_account'),
           to: '/auth/login',
-          text: 'Sign in',
+          text: t('auth.login'),
         }"
         :terms="{
           href: '/auth/terms-of-service',
-          label: 'Terms of Service',
+          label: t('auth.terms_of_service'),
         }"
         :privacy="{
           href: '/auth/privacy-policy',
-          label: 'Privacy Policy',
+          label: t('auth.privacy_policy'),
         }"
       >
         <AuthFormSignup @submit="submit" />

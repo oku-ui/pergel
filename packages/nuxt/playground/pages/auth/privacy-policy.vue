@@ -1,7 +1,14 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <NuxtLayout name="auth">
     <template #header>
-      <AuthHeader title="Login" link="/auth/login" />
+      <AuthHeader
+        :title="t('auth.login')"
+        link="/auth/login"
+      />
     </template>
     <template #left>
       <AuthLeft
@@ -15,7 +22,7 @@
     </template>
     <template #content>
       <AuthContent
-        title="Privacy Policy for Your Company Name"
+        :title="t('auth.privacy_policy')"
       >
         <div class="lg:contents">
           <div class="w-full">

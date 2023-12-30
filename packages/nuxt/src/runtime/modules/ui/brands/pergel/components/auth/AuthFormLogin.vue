@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits<Emit>()
-
+const { t } = useI18n()
 const isLoading = ref(false)
 
 const formSchema = toTypedSchema(zod.object({
@@ -34,7 +34,9 @@ const onSubmit = form.handleSubmit((values) => {
         <div class="grid gap-1">
           <FormField v-slot="{ componentField }" name="username">
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>
+                {{ t('auth.username') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   v-bind="componentField"
@@ -46,7 +48,10 @@ const onSubmit = form.handleSubmit((values) => {
 
           <FormField v-slot="{ componentField }" name="password">
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>
+                {{ t('auth.password') }}
+              </FormLabel>
+
               <FormControl>
                 <AtomInput
                   type="password"
@@ -58,8 +63,9 @@ const onSubmit = form.handleSubmit((values) => {
               </FormControl>
               <FormMessage />
               <FormDescription class="pb-4 text-right">
-                Forgot your password? <NuxtLink to="/auth/reset-password" class="hover:text-primary underline underline-offset-4">
-                  Reset it
+                {{ t('auth.forgot_password_question') }}
+                <NuxtLink to="/auth/reset-password" class="hover:text-primary underline underline-offset-4">
+                  {{ t('auth.forgot_password') }}
                 </NuxtLink>
               </FormDescription>
             </FormItem>
@@ -67,7 +73,7 @@ const onSubmit = form.handleSubmit((values) => {
         </div>
         <AtomButton :disabled="isLoading">
           <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
-          Log in with email
+          {{ t('auth.login_with_email') }}
         </AtomButton>
       </div>
     </form>
@@ -77,7 +83,7 @@ const onSubmit = form.handleSubmit((values) => {
       </div>
       <div class="relative flex justify-center text-xs uppercase">
         <span class="bg-background text-muted-foreground px-2">
-          Or continue with
+          {{ t('auth.or_continue_with') }}
         </span>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
+const { t } = useI18n()
 const code = route.query.code as string | undefined
 
 const success = ref(false)
@@ -27,7 +28,7 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
   <NuxtLayout name="auth">
     <template #header>
       <AuthHeader
-        title="Log in"
+        :title="t('auth.login')"
         link="/auth/login"
       />
     </template>
@@ -44,9 +45,9 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
     </template>
     <template #content>
       <AuthForm
-        title="Reset Password"
+        :title="code ? t('auth.reset_password') : t('auth.forgot_password')"
         :description="{
-          label: code ? 'Please enter your new password.' : 'Please enter your email address and we will send you a link to reset your password.',
+          label: code ? t('auth.reset_password_subtitle') : t('auth.forgot_password_subtitle'),
         }"
         hidden-terms
       >
@@ -59,7 +60,7 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
           v-else
           :success="successReset"
           :login="{
-            label: 'Back to login',
+            label: t('auth.back_to_login'),
             to: '/auth/login',
           }"
           :code="code"

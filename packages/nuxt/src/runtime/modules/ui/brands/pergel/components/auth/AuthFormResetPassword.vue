@@ -7,6 +7,7 @@ withDefaults(defineProps<AuthFormProps>(), {
 })
 
 const emit = defineEmits<Emit>()
+const { t } = useI18n()
 
 const isLoading = ref(false)
 
@@ -40,7 +41,9 @@ const onSubmit = form.handleSubmit((values) => {
         <div class="grid gap-1">
           <FormField v-slot="{ componentField }" name="email">
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>
+                {{ t('auth.email') }}
+              </FormLabel>
               <FormControl>
                 <AtomInput
                   v-bind="componentField"
@@ -52,7 +55,7 @@ const onSubmit = form.handleSubmit((values) => {
         </div>
         <AtomButton :disabled="isLoading">
           <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
-          Send reset link
+          {{ t('auth.send_reset_link') }}
           <AtomIcon dynamic name="i-ph-arrow-right-bold" class="ml-2 h-4 w-4" />
         </AtomButton>
       </div>
@@ -61,7 +64,7 @@ const onSubmit = form.handleSubmit((values) => {
       <div class="grid gap-3">
         <div class="grid gap-1">
           <p class="text-sm">
-            We have sent you an email with a link to reset your password. Please check your inbox. If you don't see the email, check other places it might be, like your junk, spam, social, or other folders.
+            {{ t('auth.reset_password_email_sent') }}
           </p>
         </div>
       </div>
@@ -75,6 +78,7 @@ const onSubmit = form.handleSubmit((values) => {
     >
       <AtomIcon dynamic name="i-ph-arrow-left-bold" class="mr-2 h-4 w-4" />
       Back
+      {{ t('auth.back') }}
     </AtomButton>
   </div>
 </template>

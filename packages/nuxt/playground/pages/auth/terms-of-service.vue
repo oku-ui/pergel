@@ -1,7 +1,14 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <NuxtLayout name="auth">
     <template #header>
-      <AuthHeader title="Login" link="/auth/login" />
+      <AuthHeader
+        link="/auth/login"
+        :title="t('auth.login')"
+      />
     </template>
     <template #left>
       <AuthLeft
@@ -15,9 +22,9 @@
     </template>
     <template #content>
       <AuthContent
-        title="Terms of Service"
+        :title="t('auth.privacy_policy')"
         :description="{
-          label: 'Website Terms and Conditions of Use',
+          label: t('auth.terms_of_service_subtitle'),
         }"
       >
         <div class="lg:contents">
