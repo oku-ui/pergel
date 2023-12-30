@@ -3,6 +3,7 @@ import { addComponent, addComponentsDir, addImports, addImportsDir, createResolv
 import { isPackageExists } from 'local-pkg'
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
+import type { ModuleOptions } from '@nuxtjs/i18n'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
 import type { ResolvedUIOptions, UIOptions } from './types'
@@ -70,17 +71,6 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     if (!options.copyStructure) {
       addComponentsDir({
         path: resolver.resolve(join('brands', options.brand, 'components')),
-        watch: false,
-      })
-
-      addComponentsDir({
-        path: resolver.resolve(join('brands', options.brand, 'layouts')),
-        prefix: 'Layouts',
-        watch: false,
-      })
-
-      addComponentsDir({
-        path: resolver.resolve(join('brands', options.brand, 'pages')),
         watch: false,
       })
 
@@ -301,8 +291,11 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       nuxt.options.css.push(resolver.resolve(join('brands', options.brand, 'style', 'style.css')))
     }
 
-    if (options.packages.i18n)
-      await installModule('@nuxtjs/i18n')
+    if (options.packages.i18n) {
+      await installModule('@nuxtjs/i18n', {
+        strategy: 'no_prefix',
+      } as ModuleOptions)
+    }
   },
 
 })

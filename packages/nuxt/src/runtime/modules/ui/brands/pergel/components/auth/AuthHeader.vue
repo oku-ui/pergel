@@ -20,6 +20,7 @@ const { buttonVariants } = useVariants()
         '',
       )"
     />
+    <!-- <MolLangSwitcherButton /> -->
     <NuxtLink
       :to="link" :class="cn(
         buttonVariants({ variant: 'ghost' }),
