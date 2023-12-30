@@ -19,11 +19,11 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm publish"
+    "release": "pnpm build && pnpm bumpp --commit='version(module-s3): release %s' --no-tag && pnpm publish"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.478.0",
-    "@aws-sdk/s3-request-presigner": "^3.478.0"
+    "@aws-sdk/client-s3": "^3.484.0",
+    "@aws-sdk/s3-request-presigner": "^3.484.0"
   },
   "publishConfig": {
     "access": "public"

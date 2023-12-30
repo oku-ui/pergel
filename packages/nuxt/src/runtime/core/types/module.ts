@@ -10,6 +10,7 @@ import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
+import type { ResolvedUIOptions } from '../../modules/ui/types'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
@@ -22,6 +23,7 @@ export interface Modules {
   graphqlYoga?: true | GraphQLYogaConfig
   drizzle?: true | DrizzleConfig
   lucia?: true | LuciaModuleOptions
+  ui?: true | ResolvedUIOptions
 }
 
 export interface ResolvedModules {
@@ -32,6 +34,7 @@ export interface ResolvedModules {
   json2csv?: true
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
+  ui?: true | ResolvedUIOptions
 }
 
 export type ModuleName = keyof Modules

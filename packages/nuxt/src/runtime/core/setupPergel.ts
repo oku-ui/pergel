@@ -86,6 +86,7 @@ export async function setupPergel(
       'graphqlYoga',
       'drizzle',
       'lucia',
+      'ui',
     ],
     projectNames,
     nitroImports: {},

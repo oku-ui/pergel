@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm publish"
+    "release": "pnpm build && pnpm bumpp --commit='version(graphql): release %s' --no-tag && pnpm publish"
   },
   "peerDependencies": {
     "graphql": ">=16.8.0"
@@ -40,7 +40,7 @@
     "@graphql-tools/schema": "^10.0.2",
     "graphql": "^16.8.1",
     "graphql-relay": "^0.10.0",
-    "graphql-yoga": "^5.0.2",
+    "graphql-yoga": "^5.1.0",
     "ts-relay-cursor-paging": "^2.0.4"
   },
   "devDependencies": {

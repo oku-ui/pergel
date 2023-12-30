@@ -10,10 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.478.0",
+    "@aws-sdk/client-ses": "^3.484.0",
     "@pergel/graphql": "workspace:*",
-    "drizzle-kit": "^0.20.7",
-    "drizzle-orm": "^0.29.1",
+    "drizzle-kit": "^0.20.9",
+    "drizzle-orm": "^0.29.2",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
