@@ -57,15 +57,17 @@ export function defineDownload(options: DefineDownloadOptions) {
 
       return { source, dir }
     }
-    if (options.folder) {
-      const { source, dir } = await downloadTemplate(join(githubRepo, `${options.folder.dir}#${options.branch}`), {
-        dir: options.folder.output,
-        cwd,
-        force: true,
-      })
 
-      logger.success(`Downloaded template folder: ${dir}`)
-      return { source, dir }
+    if (options.folder && options.folder.length) {
+      for (const folder of options.folder) {
+        const { dir } = await downloadTemplate(join(githubRepo, `${folder.dir}#${options.branch}`), {
+          dir: folder.output,
+          cwd,
+          force: true,
+        })
+
+        logger.success(`Downloaded template folder: ${dir}`)
+      }
     }
   }
   return setup

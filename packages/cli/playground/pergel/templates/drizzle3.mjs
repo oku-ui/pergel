@@ -2,8 +2,9 @@ import { defineDownload } from 'pergel/core'
 
 export default defineDownload({
   branch: 'main',
-  folder: {
+  file: {
     dir: 'packages/nuxt',
-    output: 'drizzle3',
+    file: 'package.json',
+    output: 'drizzle3.mjs',
   },
 })

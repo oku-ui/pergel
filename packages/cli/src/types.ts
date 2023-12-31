@@ -73,6 +73,6 @@ export interface DefineDownloadOptions {
   folder?: {
     dir: string
     output: string
-  }
+  }[]
   branch?: string
 }
