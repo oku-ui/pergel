@@ -5,7 +5,7 @@ const template = `import { definePergel } from 'pergel/core'
 
 export default definePergel({
   src: 'pergel',
-  activeBranch: 'main',
+  templateDir: 'pergel/templates',
 })
 `
 

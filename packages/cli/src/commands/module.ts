@@ -37,12 +37,7 @@ export default defineCommand({
         configFile: 'pergel.config.ts',
         defaultConfig: {
           src: 'pergel',
-          packageManager: 'pnpm',
-          cli: {
-            project: args.project,
-            module: args.module,
-            script: args.script,
-          },
+          templateDir: 'pergel/templates',
         },
       })
 
@@ -51,22 +46,17 @@ export default defineCommand({
         return
       }
 
-      if (!file.config.cli || !file.config.cli.project || !file.config.cli.module) {
-        consola.error('Pergel config file is not configured')
-        return
-      }
-
       const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
       const json = parse(readmeString) as PergelYaml
 
-      const project = json[file.config.cli.project]?.[file.config.cli.module]
+      const project = json[args.project]?.[args.module]
 
       const script = project?.scripts ?? {}
 
       if (Object.keys(script).length === 0)
         consola.error('No script found')
 
-      const selectedScript = script[file.config.cli.script ?? '']
+      const selectedScript = script[args.script ?? '']
 
       if (!selectedScript)
         consola.error('No script found')
