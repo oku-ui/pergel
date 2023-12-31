@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       rocket: {
         lucia: true,
         ui: true,
+        drizzle: true,
       },
     },
   },
