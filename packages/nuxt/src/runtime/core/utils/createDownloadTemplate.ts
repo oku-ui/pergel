@@ -1,7 +1,6 @@
 import { resolve } from 'node:path'
 import { writeFileSync } from 'node:fs'
-import type { DefineDownloadOptions } from 'pergel/types'
-import type { NuxtPergel } from '../types'
+import type { DefineDownloadOptions, NuxtPergel } from '../types'
 
 function createDownloadTemplate(data: DefineDownloadOptions) {
   let { file, branch, folder } = data

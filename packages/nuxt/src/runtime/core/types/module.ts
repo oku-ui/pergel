@@ -319,4 +319,43 @@ export interface GenerateReadmeYamlOpts {
 export type PartinalKey<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type MaybePromise<T> = T | Promise<T>
 
-export { }
+export interface DefineDownloadOptions {
+  file?: {
+    /**
+     * Directory of file
+     * @example
+     * `packages/nuxt`
+     */
+    dir: string
+    /**
+     * File name
+     * @example
+     * `pergel.config.ts`
+     */
+    path: {
+      /**
+       * File name
+       * @example
+       * `pergel.config.ts`
+       */
+      fileName: string
+      /**
+       * Output file name
+       * @example
+       * `pergel.config.ts`
+       */
+      outputFileName: string
+    }[]
+    /**
+     * Folder name
+     * @default
+     * `.tempPergel`
+     */
+    tempOutput?: string
+  }
+  folder?: {
+    dir: string
+    output: string
+  }[]
+  branch?: string
+}
