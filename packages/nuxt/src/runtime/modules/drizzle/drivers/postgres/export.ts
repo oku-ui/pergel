@@ -1,6 +1,7 @@
 import { type PostgresJsDatabase, drizzle } from 'drizzle-orm/postgres-js'
 import type { H3Event } from 'h3'
 import postgres from 'postgres'
+import consola from 'consola'
 import type { PostgresJSOptions } from '../../types'
 import { clientFunctionTemplate } from '../../../../core/useClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
@@ -33,6 +34,13 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx
 
   if (!client)
     throw new Error('PostgresJS is not defined')
+
+  client.execute(sql`SELECT 1;`).catch((e) => {
+    if (e.code === 'ECONNREFUSED')
+      consola.error('PostgresJS is not running, please start postgres and try again')
+    else
+      consola.error(e)
+  })
 
   return client
 }
