@@ -19,6 +19,7 @@ const main = defineCommand({
     init: () => import('./commands/init').then(m => m.default),
     install: () => import('./commands/install').then(m => m.default),
     module: () => import('./commands/module').then(m => m.default),
+    download: () => import('./commands/download').then(m => m.default),
   },
   run({ args }) {
     console.warn('Pergel CLI')
