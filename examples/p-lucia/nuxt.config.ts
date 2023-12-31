@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     projects: {
       rocket: {
         lucia: true,
+        ui: true,
       },
     },
   },
