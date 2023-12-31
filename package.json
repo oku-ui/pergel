@@ -23,7 +23,8 @@
     "test:coverage": "vitest --coverage",
     "release": "pnpm build && bumpp --commit --push --tag",
     "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks",
-    "typecheck": "tsc --noEmit -p tsconfig.json"
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "pnpm build && pnpm lint:fix && pnpm typecheck"
   },
   "dependencies": {
     "@pergel/graphql": "workspace:0.0.0",

@@ -22,7 +22,6 @@ const main = defineCommand({
     download: () => import('./commands/download').then(m => m.default),
   },
   run({ args }) {
-    console.warn('Pergel CLI')
     if (args.version)
       console.warn('Pergel CLI version:', packageJson.version)
   },

@@ -51,13 +51,16 @@ export default defineCommand({
 
     for (const file of files) {
       try {
-        await import(join(templateDir, `${file}.mjs`))
+        const data = await import(join(templateDir, `${file}.mjs`))
           .then(m => m.default)
           .catch((error) => {
             logger.error(`Error loading template ${file}:`, error)
           }) as (options: {
           cwd: string
         }) => void
+        data({
+          cwd: process.cwd(),
+        })
       }
       catch (error) {
         logger.error(`Error loading template ${file}:`, error)

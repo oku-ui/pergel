@@ -36,15 +36,14 @@ export function defineDownload(options: DefineDownloadOptions) {
         force: true,
       })
 
-      const output = join(cwd, options.file.output)
-
-      const arrayFile = Array.isArray(options.file.file) ? options.file.file : [options.file.file]
-
-      for (const file of arrayFile) {
+      for (const file of options.file.path) {
+        const output = resolve(join(cwd, file.outputFileName))
         copyFileSync(
-          join(dir, file),
+          join(dir, file.fileName),
           resolve(output),
         )
+
+        logger.success(`Downloaded template file: ${output}`)
       }
 
       rmSync(dir, {
@@ -53,19 +52,19 @@ export function defineDownload(options: DefineDownloadOptions) {
         retryDelay: 100,
       })
 
-      logger.success(`Downloaded template file: ${output}`)
-
       return { source, dir }
     }
-    if (options.folder) {
-      const { source, dir } = await downloadTemplate(join(githubRepo, `${options.folder.dir}#${options.branch}`), {
-        dir: options.folder.output,
-        cwd,
-        force: true,
-      })
 
-      logger.success(`Downloaded template folder: ${dir}`)
-      return { source, dir }
+    if (options.folder && options.folder.length) {
+      for (const folder of options.folder) {
+        const { dir } = await downloadTemplate(join(githubRepo, `${folder.dir}#${options.branch}`), {
+          dir: folder.output,
+          cwd,
+          force: true,
+        })
+
+        logger.success(`Downloaded template folder: ${dir}`)
+      }
     }
   }
   return setup
