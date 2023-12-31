@@ -46,23 +46,28 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
 
-    let packageExists = 0
+    const packageExists = {
+      dependencies: 0,
+      devDependencies: 0,
+    }
     for (const key in module.meta.dependencies) {
       if (!isPackageExists(key)) {
         this.prepare = true
-        packageExists++
+        packageExists.dependencies++
       }
     }
 
     for (const key in module.meta.devDependencies) {
       if (!isPackageExists(key)) {
         this.prepare = true
-        packageExists++
+        packageExists.devDependencies++
       }
     }
 
-    if (packageExists > 0)
-      consola.info(`The dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
+    if (packageExists.dependencies > 0)
+      consola.warn(`${packageExists.dependencies} dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
+    if (packageExists.devDependencies > 0)
+      consola.warn(`${packageExists.devDependencies} devDependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
 
     if (!this.prepare) {
       // Resolve module and options
