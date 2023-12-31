@@ -36,15 +36,14 @@ export function defineDownload(options: DefineDownloadOptions) {
         force: true,
       })
 
-      const output = join(cwd, options.file.output)
-
-      const arrayFile = Array.isArray(options.file.file) ? options.file.file : [options.file.file]
-
-      for (const file of arrayFile) {
+      for (const file of options.file.path) {
+        const output = resolve(join(cwd, file.outputFileName))
         copyFileSync(
-          join(dir, file),
+          join(dir, file.fileName),
           resolve(output),
         )
+
+        logger.success(`Downloaded template file: ${output}`)
       }
 
       rmSync(dir, {
@@ -52,8 +51,6 @@ export function defineDownload(options: DefineDownloadOptions) {
         force: true,
         retryDelay: 100,
       })
-
-      logger.success(`Downloaded template file: ${output}`)
 
       return { source, dir }
     }

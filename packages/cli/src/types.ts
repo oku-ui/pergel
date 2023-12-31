@@ -56,13 +56,20 @@ export interface DefineDownloadOptions {
      * @example
      * `pergel.config.ts`
      */
-    file: string | string[]
-    /**
-     * Output file name
-     * @example
-     * `pergel.config.ts`
-     */
-    output: string
+    path: {
+      /**
+       * File name
+       * @example
+       * `pergel.config.ts`
+       */
+      fileName: string
+      /**
+       * Output file name
+       * @example
+       * `pergel.config.ts`
+       */
+      outputFileName: string
+    }[]
     /**
      * Folder name
      * @default

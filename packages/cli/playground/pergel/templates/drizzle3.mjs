@@ -4,7 +4,9 @@ export default defineDownload({
   branch: 'main',
   file: {
     dir: 'packages/nuxt',
-    file: 'package.json',
-    output: 'drizzle3.mjs',
+    path: [{
+      fileName: 'package.json',
+      outputFileName: 'package2.json',
+    }],
   },
 })
