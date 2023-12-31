@@ -5,9 +5,16 @@ import type { PergelOptions } from '../types'
 /**
  * Syncs the root folder with the pergel folder
  */
-export function rootFolderSync(resolvePergelDir: string, options: PergelOptions) {
+export function rootFolderSync(
+  resolvePergelDir: string,
+  templatesDir: string,
+  options: PergelOptions,
+) {
   if (!existsSync(resolvePergelDir))
     mkdirSync(resolvePergelDir, { recursive: true })
+
+  if (!existsSync(resolve(join(resolvePergelDir, templatesDir))))
+    mkdirSync(resolve(join(resolvePergelDir, templatesDir)), { recursive: true })
 
   const projectNames = Object.keys(options.projects).sort()
 

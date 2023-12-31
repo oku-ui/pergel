@@ -24,7 +24,7 @@ export async function setupPergel(
   const resolvePergelDir = resolve(join(nuxt.options.rootDir, pergelDir))
   const resolveReadmePath = resolve(join(nuxt.options.rootDir, readmePath))
 
-  const { projectNames } = rootFolderSync(resolvePergelDir, options)
+  const { projectNames } = rootFolderSync(resolvePergelDir, 'templates', options)
 
   const pergelType = addTemplate({
     filename: 'pergel/types.ts',

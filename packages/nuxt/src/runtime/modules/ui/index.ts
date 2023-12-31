@@ -6,6 +6,7 @@ import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
+import { writeDownloadTemplate } from '../../core/utils/createDownloadTemplate'
 import type { ResolvedUIOptions, UIOptions } from './types'
 
 const logger = useLogger('pergel:ui')
@@ -312,6 +313,18 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
 
     if (options.packages.pinia)
       await installModule('@pinia/nuxt')
+
+    writeDownloadTemplate(
+      nuxt,
+      'auth-pages',
+      {
+        branch: 'main',
+        folder: [{
+          dir: 'packages/nuxt/playground/pages/auth',
+          output: 'pages/auth',
+        }],
+      },
+    )
   },
 
 })
