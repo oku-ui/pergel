@@ -1,4 +1,3 @@
-
 import type { Session, User } from 'test/drizzle/schema'
 import type { auth } from '#pergel/test/lucia'
 
@@ -18,4 +17,3 @@ declare module 'h3' {
     session: Session | null
   }
 }
-      
