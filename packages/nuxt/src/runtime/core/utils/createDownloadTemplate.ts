@@ -8,7 +8,7 @@ function createDownloadTemplate(data: DefineDownloadOptions) {
   branch ??= 'main'
 
   if (file?.dir) {
-    return /* JS */ `JSON.parse(\`${JSON.stringify({
+    return /* JS */ `${JSON.stringify({
       version: '0.1.0',
       templates: {
         'pergel-auth': {
@@ -17,11 +17,11 @@ function createDownloadTemplate(data: DefineDownloadOptions) {
           file,
         },
       },
-    })}\`)`
+    }, null, 2)}`
   }
 
   if (folder && folder.length > 0) {
-    return /* JS */ `JSON.parse(\`${JSON.stringify({
+    return /* JS */ `${JSON.stringify({
       version: '0.1.0',
       templates: {
         'pergel-auth': {
@@ -30,12 +30,12 @@ function createDownloadTemplate(data: DefineDownloadOptions) {
           folder,
         },
       },
-    })}\`)`
+    }, null, 2)}`
   }
 }
 
 export function writeDownloadTemplate(nuxt: NuxtPergel, fileName: string, options: DefineDownloadOptions) {
-  const pergel = resolve(nuxt._pergel.templateDir, `${fileName}.mjs`)
+  const pergel = resolve(nuxt._pergel.templateDir, `${fileName}.json`)
   const data = createDownloadTemplate(options)
   if (!data)
     return
