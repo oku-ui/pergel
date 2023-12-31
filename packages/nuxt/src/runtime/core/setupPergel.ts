@@ -16,15 +16,16 @@ export async function setupPergel(
 ) {
   const { options, nuxt, resolver, version } = data
 
-  const rootDir = options.rootDir ? options.rootDir : './'
-  const pergelDir = join(rootDir, options.pergelDir ?? 'pergel')
-  const readmePath = join(pergelDir, 'README.yaml')
+  const pergelDir = join(options.pergelDir ?? 'pergel')
+  const templateDir = join(options.templateDir ?? 'pergel', 'templates')
+  const readmePath = join('README.yaml')
 
-  const resolveDir = resolve(join(nuxt.options.rootDir, rootDir))
+  const resolveDir = resolve(nuxt.options.rootDir)
   const resolvePergelDir = resolve(join(nuxt.options.rootDir, pergelDir))
-  const resolveReadmePath = resolve(join(nuxt.options.rootDir, readmePath))
+  const resolveTemplateDir = resolve(join(nuxt.options.rootDir, templateDir))
+  const resolveReadmePath = resolve(join(nuxt.options.rootDir, pergelDir, readmePath))
 
-  const { projectNames } = rootFolderSync(resolvePergelDir, 'templates', options)
+  const { projectNames } = rootFolderSync(resolvePergelDir, resolveTemplateDir, options)
 
   const pergelType = addTemplate({
     filename: 'pergel/types.ts',
@@ -103,11 +104,11 @@ export async function setupPergel(
     projects: {},
     dir: {
       pergel: pergelDir ?? 'pergel',
-      readme: join('pergel', 'README.yaml'),
-      root: options.rootDir ?? './',
+      readme: join(pergelDir, 'README.yaml'),
     },
     contents: [],
     pergelDir: resolve(resolveDir, pergelDir ?? 'pergel'),
+    templateDir: resolveTemplateDir,
     rootDir: resolveDir,
     readmeDir: resolve(resolveReadmePath),
     esnext: true,

@@ -30,14 +30,12 @@ export default defineDownload({
 }
 
 export function writeDownloadTemplate(nuxt: NuxtPergel, fileName: string, options: DefineDownloadOptions) {
-  const pergel = resolve(nuxt._pergel.dir.pergel, 'templates', `${fileName}.mjs`)
+  const pergel = resolve(nuxt._pergel.templateDir, `${fileName}.mjs`)
   const data = createDownloadTemplate(options)
   if (!data)
     return
 
   writeFileSync(pergel, data, {
     encoding: 'utf-8',
-    mode: 0o777,
-    flag: 'w',
   })
 }

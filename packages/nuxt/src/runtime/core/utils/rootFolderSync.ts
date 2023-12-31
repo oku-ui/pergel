@@ -13,8 +13,8 @@ export function rootFolderSync(
   if (!existsSync(resolvePergelDir))
     mkdirSync(resolvePergelDir, { recursive: true })
 
-  if (!existsSync(resolve(join(resolvePergelDir, templatesDir))))
-    mkdirSync(resolve(join(resolvePergelDir, templatesDir)), { recursive: true })
+  if (!existsSync(templatesDir))
+    mkdirSync(templatesDir, { recursive: true })
 
   const projectNames = Object.keys(options.projects).sort()
 

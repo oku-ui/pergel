@@ -63,12 +63,10 @@ export interface PergelOptions {
   pergelDir?: string
 
   /**
-   * The root folder of the application.
-   * Defaults to the path where `nuxt.options.rootDir` is located.
-   * @default '/'
-   * @example '/playground'
+   * @default 'pergel/templates'
    */
-  rootDir?: string
+  templateDir?: string
+
   /**
    * @default true
    */
@@ -165,12 +163,6 @@ export interface ResolvedPergelOptions {
 
     /**
      * @example
-     * './'
-     */
-    root: string
-
-    /**
-     * @example
      * 'pergel/README.yml'
      */
     readme: string
@@ -200,6 +192,12 @@ export interface ResolvedPergelOptions {
    * 'users/productdevbook/nuxt3/pergel'
    */
   pergelDir: string
+
+  /**
+   * @example
+   * 'users/productdevbook/nuxt3/pergel/templates'
+   */
+  templateDir: string
 
   esnext: boolean
 
