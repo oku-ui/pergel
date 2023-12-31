@@ -1,8 +1,10 @@
 import { join, resolve } from 'node:path'
+import { readFileSync } from 'node:fs'
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import consola from 'consola'
 import type { ResolvedPergelConfig } from '../types'
+import { defineDownload } from '../core'
 
 const logger = consola.create({
   defaults: {
@@ -17,6 +19,10 @@ export default defineCommand({
     version: '0.0.1',
   },
   args: {
+    jsonFile: {
+      alias: 'j',
+      description: 'Download file',
+    },
     template: {
       alias: 't',
       description: 'Download file',
@@ -24,9 +30,7 @@ export default defineCommand({
   },
   async run({ args }) {
     const template = args.template as string
-
-    // drizzle or drizzle,drizzle2,drizzle3
-    const files = template.includes(',') ? template.split(',') : [template]
+    const jsonFile = args.jsonFile as string
 
     const file = await loadConfig<ResolvedPergelConfig>({
       cwd: process.cwd(),
@@ -44,27 +48,38 @@ export default defineCommand({
 
     const templateDir = resolve(file.config.templateDir)
 
-    if (!template) {
-      logger.error('No template provided')
+    const data = readFileSync(join(templateDir, `${jsonFile}.json`), 'utf-8')
+
+    if (!data) {
+      logger.error(`No file found for ${file}`)
       return
     }
 
-    for (const file of files) {
-      try {
-        const data = await import(join(templateDir, `${file}.mjs`))
-          .then(m => m.default)
-          .catch((error) => {
-            logger.error(`Error loading template ${file}:`, error)
-          }) as (options: {
-          cwd: string
-        }) => void
-        data({
-          cwd: process.cwd(),
-        })
-      }
-      catch (error) {
-        logger.error(`Error loading template ${file}:`, error)
-      }
+    const jsonData = JSON.parse(data)
+
+    if (!jsonData) {
+      logger.error(`No data found for ${file}`)
+      return
+    }
+
+    if (!jsonData.templates[template]) {
+      logger.error(`No template found for ${template}`)
+      return
+    }
+
+    const _template = jsonData.templates[template]
+    if (_template) {
+      logger.info(`Downloading template: ${template} ...`)
+      const data = defineDownload({
+        file: _template.file,
+        folder: _template.folder,
+      })
+
+      await data({
+        cwd: process.cwd(),
+      })
+
+      logger.success(`Downloaded template: ${template}`)
     }
   },
 })
