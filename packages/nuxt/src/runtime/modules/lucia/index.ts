@@ -23,8 +23,8 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
             case 'postgre': {
               return {
                 ...defaultData,
-                '@lucia-auth/adapter-drizzle': '1.0.0-beta.3',
-                '@lucia-auth/adapter-postgresql': '3.0.0-beta.8',
+                '@lucia-auth/adapter-drizzle': '^1.0.0-beta.4',
+                '@lucia-auth/adapter-postgresql': '^3.0.0-beta.8',
               }
             }
             default: {
