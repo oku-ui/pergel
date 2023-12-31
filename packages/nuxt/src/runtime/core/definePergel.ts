@@ -1,3 +1,4 @@
+import { existsSync, mkdirSync } from 'node:fs'
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import type {
@@ -35,6 +36,9 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
   }
 
   async function normalizedModule(this: any, data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions }) {
+    if (!existsSync(data.moduleOptions.moduleDir))
+      mkdirSync(data.moduleOptions.moduleDir, { recursive: true })
+
     const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt)
 
     const key = `pergel:${module.meta.configKey}`

@@ -1,5 +1,6 @@
 // Pergel auto generated please change this file as you wish
 import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core'
+
 // This pergel auth feature is not yet implemented. Do not use it. It will be implemented in the future.
 import { defaultUserSchema } from '@pergel/nuxt/drizzle/schema/pg'
 import { sql } from 'drizzle-orm'

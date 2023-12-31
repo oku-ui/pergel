@@ -68,14 +68,15 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       _setupDrizzle.use = driver
 
       if (!existsSync(`${moduleOptions.moduleDir}/index.ts`)) {
+        const projectName = `pergel${moduleOptions.firstLetterProjectName}`
         writeFileSync(
           `${moduleOptions.moduleDir}/index.ts`,
           /* ts */`
-          import { session, user } from 'test/drizzle/schema'
+          import { session, user } from '${moduleOptions.projectName}/drizzle/schema'
 
-const connect = await pergelTest().drizzle().postgresjs().connect({})
+const connect = await ${projectName}().drizzle().postgresjs().connect({})
 
-export const auth = pergelTest().lucia().use({
+export const auth = ${projectName}().lucia().use({
   db: connect,
   options: { },
   session,
@@ -104,11 +105,12 @@ export const auth = pergelTest().lucia().use({
         },
       ],
     })
+    const projectName = `pergel${moduleOptions.firstLetterProjectName}`
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
-import type { Session, User } from 'test/drizzle/schema'
-import type { auth } from '#pergel/test/lucia'
+import type { Session, User } from '${projectName}/drizzle/schema'
+import type { auth } from '#pergel/${projectName}/lucia'
 
 declare module 'lucia' {
   interface Register {

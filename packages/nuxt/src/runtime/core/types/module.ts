@@ -215,7 +215,13 @@ export interface ResolvedModuleOptions {
     root: string
   }
   moduleName: string
+  firstLetterModuleName: string
   projectName: string
+  firstLetterProjectName: string
+  /**
+   * @example
+   * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+   */
   moduleDir: string
 }
 
