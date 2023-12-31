@@ -33,6 +33,9 @@
     "./core": {
       "types": "./dist/core.d.ts",
       "import": "./dist/core.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts"
     }
   },
   "main": "./dist/index.js",
