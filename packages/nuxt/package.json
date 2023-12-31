@@ -37,16 +37,6 @@
   "main": "./dist/module.cjs",
   "module": "./dist/module.mjs",
   "types": "./dist/types.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*"
-      ],
-      "drizzle/*": [
-        "./lib/drizzle/*"
-      ]
-    }
-  },
   "files": [
     "dist",
     "lib"
