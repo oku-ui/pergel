@@ -214,6 +214,11 @@ export async function setupModules(data: {
     }
 
     for await (const moduleName of sortedModules) {
+      if (!(data.nuxt._pergel.projects[projectName as any] as any)[moduleName]) {
+        consola.error(`Module ${moduleName} does not exist in project ${projectName}. Please check your nuxt.config.ts and add ${moduleName} to ${projectName} project`)
+        process.exit(1)
+      }
+
       const module = (data.nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
       const moduleSetup = prepareModules[projectName][moduleName]
 
