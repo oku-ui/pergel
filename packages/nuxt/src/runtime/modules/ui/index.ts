@@ -45,15 +45,6 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
-    // for packages that are not installed, we need to install them return
-    for (const [name, value] of Object.entries(options.packages)) {
-      if (!value)
-        continue
-
-      if (!isPackageExists(name))
-        return logger.warn(`The dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
-    }
-
     if (!brands.includes(options.brand))
       return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
 
