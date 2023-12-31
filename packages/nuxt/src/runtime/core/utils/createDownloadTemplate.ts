@@ -9,23 +9,29 @@ function createDownloadTemplate(data: DefineDownloadOptions) {
   branch ??= 'main'
 
   if (file?.dir) {
-    return /* TS */ `import { defineDownload } from 'pergel/core'
-    
-export default defineDownload({
-    branch: '${branch}',
-    file: ${JSON.stringify(file)},
-})
-        `.trim()
+    return /* JS */ `JSON.parse(\`${JSON.stringify({
+      version: '0.1.0',
+      templates: {
+        'pergel-auth': {
+          version: '1.0.0',
+          branch,
+          file,
+        },
+      },
+    })}\`)`
   }
 
   if (folder && folder.length > 0) {
-    return /* TS */ `import { defineDownload } from 'pergel/core'
-    
-export default defineDownload({
-    branch: '${branch}',
-    folder: ${JSON.stringify(folder)},
-})
-            `.trim()
+    return /* JS */ `JSON.parse(\`${JSON.stringify({
+      version: '0.1.0',
+      templates: {
+        'pergel-auth': {
+          version: '1.0.0',
+          branch,
+          folder,
+        },
+      },
+    })}\`)`
   }
 }
 
