@@ -1,9 +1,5 @@
 import type { DefineDownloadOptions } from 'pergel/types'
 
-/**
- * @default
- * branch: 'main'
- */
 export function createDownloadTemplate(data: DefineDownloadOptions) {
   let { file, branch, folder } = data
 
