@@ -1,21 +1,29 @@
 export interface PergelConfig {
   /**
    * The name of the project.
-   * @default 'Pergel'
+   * @default 'pergel'
    */
   src?: string
 
   /**
-   * The package manager to use.
-   * @default 'pnpm'
+   * The version of the project.
+   * @default 'pergel/templates'
    */
-  packageManager?: 'npm' | 'yarn' | 'pnpm'
+  templateDir?: string
+}
 
-  cli?: {
-    project?: string
-    module?: string
-    script?: string
-  }
+export interface ResolvedPergelConfig {
+  /**
+   * The name of the project.
+   * @default 'pergel'
+   */
+  src: string
+
+  /**
+   * The version of the project.
+   * @default 'pergel/templates'
+   */
+  templateDir: string
 }
 
 export interface PergelYaml {
@@ -33,4 +41,38 @@ export interface PergelYaml {
       }
     }
   }
+}
+
+export interface DefineDownloadOptions {
+  file?: {
+    /**
+     * Directory of file
+     * @example
+     * `packages/nuxt`
+     */
+    dir: string
+    /**
+     * File name
+     * @example
+     * `pergel.config.ts`
+     */
+    file: string | string[]
+    /**
+     * Output file name
+     * @example
+     * `pergel.config.ts`
+     */
+    output: string
+    /**
+     * Folder name
+     * @default
+     * `.tempPergel`
+     */
+    tempOutput?: string
+  }
+  folder?: {
+    dir: string
+    output: string
+  }
+  branch?: string
 }
