@@ -18,7 +18,7 @@ export default antfu(
       '**/.vscode',
       '**/**.yml',
       '**/**.md',
-      'packages/playground/pergel',
+      'packages/nuxt/playground/pergel',
       'packages/nuxt/pergel',
       '**/README.yaml',
     ],
