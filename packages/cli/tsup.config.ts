@@ -10,6 +10,7 @@ export default <Options>{
   entryPoints: [
     'src/index.ts',
     'src/core.ts',
+    'src/types.ts',
   ],
   outDir: 'dist',
   target: 'esnext',
