@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
-import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
 import consola from 'consola'
@@ -174,6 +174,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       await installModule('@nuxtjs/color-mode', { classSuffix: '' })
 
     if (options.packages.tailwindcss) {
+      const { getIconCollections, iconsPlugin } = await import('@egoist/tailwindcss-icons')
       // First we need to register the module hook
       // @ts-ignore
       nuxt.hook('tailwindcss:config', (tailwindConfig) => {
