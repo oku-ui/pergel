@@ -30,7 +30,7 @@ export function defineDownload(options: DefineDownloadOptions) {
     }) as DefineDownloadOptions
 
     if (options.file?.dir) {
-      const { source, dir } = await downloadTemplate(join(githubRepo, `${options.file.dir}#${options.branch}`), {
+      const { dir } = await downloadTemplate(join(githubRepo, `${options.file.dir}#${options.branch}`), {
         dir: options.file.tempOutput,
         cwd,
         force: true,
@@ -51,8 +51,6 @@ export function defineDownload(options: DefineDownloadOptions) {
         force: true,
         retryDelay: 100,
       })
-
-      return { source, dir }
     }
 
     if (options.folder && options.folder.length) {
