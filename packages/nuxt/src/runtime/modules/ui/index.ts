@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addComponentsDir, addImports, addImportsDir, addLayout, createResolver, extendPages, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
@@ -15,8 +15,6 @@ const logger = consola.create({
     tag: 'pergel:ui',
   },
 })
-
-const brands = ['pergel']
 
 export default definePergelModule<UIOptions, ResolvedUIOptions>({
   meta: {
@@ -39,25 +37,68 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       i18n: true,
       pinia: true,
     },
-    brand: 'pergel',
-    copyStructure: false,
+    default: {
+      components: true,
+      composables: true,
+      lang: true,
+      style: true,
+      layouts: true,
+      pages: true,
+    },
   },
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
-    if (!brands.includes(options.brand))
-      return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
+    if (options.default !== false) {
+      if (options.default.components) {
+        addComponentsDir({
+          path: resolver.resolve(join('default', 'components')),
+          watch: false,
+        })
+      }
 
-    if (!options.copyStructure) {
-      addComponentsDir({
-        path: resolver.resolve(join('brands', options.brand, 'components')),
-        watch: false,
-      })
+      if (options.default.layouts) {
+        addLayout({
+          src: resolver.resolve(join('default', 'layouts', 'default.vue')),
+        })
+        addLayout({
+          src: resolver.resolve(join('default', 'layouts', 'auth.vue')),
+        })
+      }
 
-      nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('brands', options.brand))
-      nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('brands', options.brand, '*'))
+      if (options.default.pages) {
+        extendPages((pages) => {
+          pages.push({
+            file: resolver.resolve(join('default', 'pages', 'auth', 'login.vue')),
+            path: '/auth/login',
+          })
+          pages.push({
+            file: resolver.resolve(join('default', 'pages', 'auth', 'signup.vue')),
+            path: '/auth/signup',
+          })
+          pages.push({
+            file: resolver.resolve(join('default', 'pages', 'auth', 'reset-password.vue')),
+            path: '/auth/reset-password',
+          })
+          pages.push({
+            file: resolver.resolve(join('default', 'pages', 'auth', 'privacy-policy.vue')),
+            path: '/auth/privacy-policy',
+          })
+          pages.push({
+            file: resolver.resolve(join('default', 'pages', 'auth', 'terms-of-service.vue')),
+            path: '/auth/terms-of-service',
+          })
+        })
+      }
 
-      addImportsDir(resolver.resolve(join('brands', options.brand, 'composables')))
+      if (options.default.composables)
+        addImportsDir(resolver.resolve(join('default', 'composables')))
+
+      if (options.default.style)
+        nuxt.options.css.push(resolver.resolve(join('default', 'style', 'style.css')))
+
+      nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('default'))
+      nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('default', '*'))
     }
 
     if (options.packages.veeValidate) {
@@ -193,7 +234,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           ],
           content: {
             files: [
-              resolver.resolve(join('brands', options.brand, '**/*.{vue,mjs,ts}')),
+              resolver.resolve(join('default', '**/*.{vue,mjs,ts}')),
             ],
           },
           theme: {
@@ -277,8 +318,6 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           },
         },
       })
-
-      nuxt.options.css.push(resolver.resolve(join('brands', options.brand, 'style', 'style.css')))
     }
 
     if (options.packages.i18n) {
@@ -286,7 +325,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       nuxt.hook('i18n:registerModule', (register) => {
         register({
           // langDir path needs to be resolved
-          langDir: resolver.resolve(join('brands', options.brand, 'lang')),
+          langDir: resolver.resolve(join('default', 'lang')),
           locales: [
             {
               code: 'en',

@@ -62,11 +62,22 @@ export interface UIOptions {
      */
     pinia?: boolean
   }
-  copyStructure?: boolean
+
+  /**
+   * Default Theme
+   * @default all true
+   */
+  default?: false | {
+    components?: boolean
+    composables?: boolean
+    lang?: boolean
+    style?: boolean
+    layouts?: boolean
+    pages?: boolean
+  }
 }
 
 export interface ResolvedUIOptions {
-  brand: string
   packages: {
     tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
     tailwindcss?: boolean
@@ -79,5 +90,12 @@ export interface ResolvedUIOptions {
     i18n?: boolean
     pinia?: boolean
   }
-  copyStructure: boolean
+  default: false | {
+    components: boolean
+    composables: boolean
+    lang: boolean
+    style: boolean
+    layouts: boolean
+    pages: boolean
+  }
 }
