@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.5.0-beta.14",
+  "version": "0.5.0-beta.15",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -66,7 +66,8 @@
     "local-pkg": "^0.5.0",
     "minimatch": "^9.0.3",
     "pathe": "^1.1.1",
-    "sirv": "^2.0.4"
+    "sirv": "^2.0.4",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.484.0",
