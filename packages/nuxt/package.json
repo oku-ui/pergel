@@ -94,7 +94,7 @@
     "oslo": "^0.26.2",
     "p-timeout": "^6.1.2",
     "pergel": "workspace:^",
-    "vitest": "^1.1.0"
+    "vitest": "^1.1.1"
   },
   "publishConfig": {
     "access": "public"
