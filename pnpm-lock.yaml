@@ -23,7 +23,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.6.1
-        version: 2.6.1(@vue/compiler-sfc@3.4.3)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.0)
+        version: 2.6.1(@vue/compiler-sfc@3.4.3)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.1)
       '@types/node':
         specifier: ^20.10.6
         version: 20.10.6
@@ -55,8 +55,8 @@ importers:
         specifier: 5.0.10
         version: 5.0.10(@types/node@20.10.6)
       vitest:
-        specifier: ^1.1.0
-        version: 1.1.0(@types/node@20.10.6)
+        specifier: ^1.1.1
+        version: 1.1.1(@types/node@20.10.6)
 
   packages/cli:
     dependencies:
@@ -455,7 +455,7 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
 
-  /@antfu/eslint-config@2.6.1(@vue/compiler-sfc@3.4.3)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.0):
+  /@antfu/eslint-config@2.6.1(@vue/compiler-sfc@3.4.3)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.1):
     resolution: {integrity: sha512-hj7TTLXLLyk4YHp6SC0G3NTpGyn+5v9EHX3K8JMwz8qIQZnOSzpU8xQ4PcJW3wD3qePVoGDa1Q9QvYCKplIStQ==}
     hasBin: true
     peerDependencies:
@@ -506,7 +506,7 @@ packages:
       eslint-plugin-toml: 0.8.0(eslint@8.56.0)
       eslint-plugin-unicorn: 50.0.1(eslint@8.56.0)
       eslint-plugin-unused-imports: 3.0.0(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.56.0)
-      eslint-plugin-vitest: 0.3.20(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.0)
+      eslint-plugin-vitest: 0.3.20(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.1)
       eslint-plugin-vue: 9.19.2(eslint@8.56.0)
       eslint-plugin-yml: 1.11.0(eslint@8.56.0)
       eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.4.3)(eslint@8.56.0)
@@ -10824,7 +10824,7 @@ packages:
       eslint-rule-composer: 0.3.0
     dev: true
 
-  /eslint-plugin-vitest@0.3.20(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.0):
+  /eslint-plugin-vitest@0.3.20(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.1.1):
     resolution: {integrity: sha512-O05k4j9TGMOkkghj9dRgpeLDyOSiVIxQWgNDPfhYPm5ioJsehcYV/zkRLekQs+c8+RBCVXucSED3fYOyy2EoWA==}
     engines: {node: ^18.0.0 || >= 20.0.0}
     peerDependencies:
@@ -10840,7 +10840,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 6.16.0(@typescript-eslint/parser@6.16.0)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/utils': 6.16.0(eslint@8.56.0)(typescript@5.3.3)
       eslint: 8.56.0
-      vitest: 1.1.0(@types/node@20.10.6)
+      vitest: 1.1.1(@types/node@20.10.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
