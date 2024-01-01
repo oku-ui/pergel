@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, rmSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
@@ -40,6 +40,10 @@ export function defineDownload(options: DefineDownloadOptions) {
         const output = resolve(join(cwd, file.outputFileName))
 
         if (!existsSync(output)) {
+          mkdirSync(resolve(output), {
+            recursive: true,
+          })
+
           copyFileSync(
             join(dir, file.fileName),
             resolve(output),
@@ -50,6 +54,12 @@ export function defineDownload(options: DefineDownloadOptions) {
             recursive: true,
             force: true,
           })
+
+          if (!existsSync(resolve(output))) {
+            mkdirSync(resolve(output), {
+              recursive: true,
+            })
+          }
 
           copyFileSync(
             join(dir, file.fileName),

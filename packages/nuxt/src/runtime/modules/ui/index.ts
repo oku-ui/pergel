@@ -181,6 +181,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
               `${nuxt.options.rootDir}/components/**/*.{vue,js,ts}`,
               `${nuxt.options.rootDir}/layouts/**/*.{vue,js,ts}`,
               `${nuxt.options.rootDir}/pages/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/assets/**/*.css`,
             ],
           },
           theme: {
@@ -343,6 +344,10 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
             {
               fileName: 'pages/index.vue',
               outputFileName: 'pages/index.vue',
+            },
+            {
+              fileName: 'assets/pergel.css',
+              outputFileName: 'assets/pergel.css',
             },
           ],
         },
