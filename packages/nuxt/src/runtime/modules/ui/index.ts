@@ -177,10 +177,10 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           ],
           content: {
             files: [
-              `${nuxt.options.rootDir}composables/**/*.{vue,js,ts}`,
-              `${nuxt.options.rootDir}components/**/*.{vue,js,ts}`,
-              `${nuxt.options.rootDir}layouts/**/*.{vue,js,ts}`,
-              `${nuxt.options.rootDir}pages/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/composables/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/components/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/layouts/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/pages/**/*.{vue,js,ts}`,
             ],
           },
           theme: {
