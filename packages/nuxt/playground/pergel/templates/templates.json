@@ -9,10 +9,14 @@
         "path": [
           {
             "fileName": "app.vue",
-            "outputFileName": "app.vue"
+            "outputFileName": "app.vue",
+            "forceClean": true
+          },
+          {
+            "fileName": "pages/index.vue",
+            "outputFileName": "pages/index.vue"
           }
-        ],
-        "forceClean": true
+        ]
       },
       "folder": [
         {
