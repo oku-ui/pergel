@@ -16,6 +16,7 @@
     "build": "pnpm --filter './packages/**' build",
     "dev:build": "pnpm --filter './packages/**' dev:build",
     "dev:prepare": "pnpm --filter './packages/**' dev:prepare",
+    "themes:prepare": "pnpm --filter './themes/**' dev:prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest",

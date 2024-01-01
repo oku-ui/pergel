@@ -1,13 +1,14 @@
 import { join } from 'node:path'
-import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addImports, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
 import consola from 'consola'
+import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
-import { writeDownloadTemplate } from '../../core/utils/createDownloadTemplate'
+import { addDownloadTemplate } from '../../core/utils/createDownloadTemplate'
 import type { ResolvedUIOptions, UIOptions } from './types'
 
 const logger = consola.create({
@@ -15,8 +16,6 @@ const logger = consola.create({
     tag: 'pergel:ui',
   },
 })
-
-const brands = ['pergel']
 
 export default definePergelModule<UIOptions, ResolvedUIOptions>({
   meta: {
@@ -39,26 +38,9 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       i18n: true,
       pinia: true,
     },
-    brand: 'pergel',
-    copyStructure: false,
   },
-  async setup({ nuxt, options }) {
+  async setup({ nuxt, options, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
-
-    if (!brands.includes(options.brand))
-      return logger.warn(`The brand "${options.brand}" is not supported. Supported brands are: ${brands.join(', ')}.`)
-
-    if (!options.copyStructure) {
-      addComponentsDir({
-        path: resolver.resolve(join('brands', options.brand, 'components')),
-        watch: false,
-      })
-
-      nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('brands', options.brand))
-      nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('brands', options.brand, '*'))
-
-      addImportsDir(resolver.resolve(join('brands', options.brand, 'composables')))
-    }
 
     if (options.packages.veeValidate) {
       useNuxtImports(nuxt, {
@@ -182,6 +164,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
 
       await installModule('@nuxtjs/tailwindcss', {
         exposeConfig: true,
+        viewer: false,
         config: {
           darkMode: 'class',
           plugins: [
@@ -193,7 +176,11 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           ],
           content: {
             files: [
-              resolver.resolve(join('brands', options.brand, '**/*.{vue,mjs,ts}')),
+              `${nuxt.options.rootDir}/composables/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/components/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/layouts/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/pages/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}/assets/**/*.css`,
             ],
           },
           theme: {
@@ -276,9 +263,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
             },
           },
         },
-      })
-
-      nuxt.options.css.push(resolver.resolve(join('brands', options.brand, 'style', 'style.css')))
+      } as Partial<TailwindCSSOptions>)
     }
 
     if (options.packages.i18n) {
@@ -286,7 +271,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       nuxt.hook('i18n:registerModule', (register) => {
         register({
           // langDir path needs to be resolved
-          langDir: resolver.resolve(join('brands', options.brand, 'lang')),
+          langDir: resolver.resolve(join('default', 'lang')),
           locales: [
             {
               code: 'en',
@@ -320,17 +305,60 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     if (options.packages.pinia)
       await installModule('@pinia/nuxt')
 
-    writeDownloadTemplate(
+    addDownloadTemplate({
       nuxt,
-      'auth-pages',
-      {
+      data: {
         branch: 'main',
-        folder: [{
-          dir: 'packages/nuxt/playground/pages/auth',
-          output: 'pages/auth',
-        }],
+        folder: [
+          {
+            dir: 'themes/pergel-auth/pages/auth',
+            output: 'pages/auth',
+            forceClean: true,
+          },
+          {
+            dir: 'themes/pergel-auth/components',
+            output: 'components',
+            forceClean: true,
+          },
+          {
+            dir: 'themes/pergel-auth/layouts',
+            output: 'layouts',
+            forceClean: true,
+          },
+          {
+            dir: 'themes/pergel-auth/composables',
+            output: 'composables',
+            forceClean: true,
+          },
+        ],
+        file: {
+          dir: 'themes/pergel-auth',
+          // TODO: change path -> paths
+          path: [
+            {
+              fileName: 'app.vue',
+              outputFileName: 'app.vue',
+              forceClean: true,
+            },
+            {
+              fileName: 'pages/index.vue',
+              outputFileName: 'pages/index.vue',
+            },
+            {
+              fileName: 'assets/pergel.css',
+              outputFileName: 'assets/pergel.css',
+            },
+          ],
+        },
       },
-    )
+      version: '0.0.1',
+      name: 'default-auth-1',
+      write: true,
+      readme: {
+        moduleName: moduleOptions.moduleName,
+        projectName: moduleOptions.projectName,
+      },
+    })
   },
 
 })

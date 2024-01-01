@@ -62,11 +62,10 @@ export interface UIOptions {
      */
     pinia?: boolean
   }
-  copyStructure?: boolean
+
 }
 
 export interface ResolvedUIOptions {
-  brand: string
   packages: {
     tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
     tailwindcss?: boolean
@@ -79,5 +78,4 @@ export interface ResolvedUIOptions {
     i18n?: boolean
     pinia?: boolean
   }
-  copyStructure: boolean
 }

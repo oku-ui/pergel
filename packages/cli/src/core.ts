@@ -1,4 +1,4 @@
-import { copyFileSync, rmSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
@@ -30,7 +30,7 @@ export function defineDownload(options: DefineDownloadOptions) {
     }) as DefineDownloadOptions
 
     if (options.file?.dir) {
-      const { source, dir } = await downloadTemplate(join(githubRepo, `${options.file.dir}#${options.branch}`), {
+      const { dir } = await downloadTemplate(join(githubRepo, `${options.file.dir}#${options.branch}`), {
         dir: options.file.tempOutput,
         cwd,
         force: true,
@@ -38,10 +38,39 @@ export function defineDownload(options: DefineDownloadOptions) {
 
       for (const file of options.file.path) {
         const output = resolve(join(cwd, file.outputFileName))
-        copyFileSync(
-          join(dir, file.fileName),
-          resolve(output),
-        )
+
+        if (!existsSync(output)) {
+          // remove last .file extends and name for create folder
+          if (output.split('/').pop()?.includes('.')) {
+            const folder = output.split('/').slice(0, -1).join('/')
+            mkdirSync(resolve(folder), {
+              recursive: true,
+            })
+          }
+
+          copyFileSync(
+            join(dir, file.fileName),
+            resolve(output),
+          )
+        }
+        else if (file.forceClean) {
+          rmSync(output, {
+            recursive: true,
+            force: true,
+          })
+
+          if (output.split('/').pop()?.includes('.')) {
+            const folder = output.split('/').slice(0, -1).join('/')
+            mkdirSync(resolve(folder), {
+              recursive: true,
+            })
+          }
+
+          copyFileSync(
+            join(dir, file.fileName),
+            resolve(output),
+          )
+        }
 
         logger.success(`Downloaded template file: ${output}`)
       }
@@ -51,8 +80,6 @@ export function defineDownload(options: DefineDownloadOptions) {
         force: true,
         retryDelay: 100,
       })
-
-      return { source, dir }
     }
 
     if (options.folder && options.folder.length) {
@@ -61,6 +88,7 @@ export function defineDownload(options: DefineDownloadOptions) {
           dir: folder.output,
           cwd,
           force: true,
+          forceClean: folder.forceClean !== false,
         })
 
         logger.success(`Downloaded template folder: ${dir}`)

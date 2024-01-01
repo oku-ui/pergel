@@ -202,6 +202,10 @@ export interface ResolvedPergelOptions {
   esnext: boolean
 
   debug: boolean
+
+  templates?: {
+    [name: string]: DefineDownloadOptions
+  }
 }
 
 export interface NuxtPergel extends Nuxt {
@@ -320,6 +324,8 @@ export type PartinalKey<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type MaybePromise<T> = T | Promise<T>
 
 export interface DefineDownloadOptions {
+  version?: string
+  branch?: string
   file?: {
     /**
      * Directory of file
@@ -330,7 +336,11 @@ export interface DefineDownloadOptions {
     /**
      * File name
      * @example
-     * `pergel.config.ts`
+     * [{
+     * fileName: 'pergel.config.ts',
+     * outputFileName: 'pergel.config.ts',
+     * forceClean: false
+     * }]
      */
     path: {
       /**
@@ -345,6 +355,13 @@ export interface DefineDownloadOptions {
        * `pergel.config.ts`
        */
       outputFileName: string
+
+      /**
+       * Force download
+       * @default
+       * `true`
+       */
+      forceClean?: boolean
     }[]
     /**
      * Folder name
@@ -354,8 +371,25 @@ export interface DefineDownloadOptions {
     tempOutput?: string
   }
   folder?: {
+    /**
+     * Directory of file
+     * @example
+     * `templates/default`
+     */
     dir: string
+
+    /**
+     * Output file name
+     * @example
+     * `templates/default`
+     */
     output: string
+
+    /**
+     * Force download
+     * @default
+     * `true`
+     */
+    forceClean: boolean
   }[]
-  branch?: string
 }

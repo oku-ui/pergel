@@ -73,6 +73,7 @@ export default defineCommand({
       const data = defineDownload({
         file: _template.file,
         folder: _template.folder,
+        branch: _template.branch,
       })
 
       await data({
