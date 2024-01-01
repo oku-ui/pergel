@@ -23,15 +23,13 @@ export function defineDownload(options: DefineDownloadOptions) {
     const githubRepo = 'github:oku-ui/pergel'
 
     options = defu(options, {
-      file: {
-        tempOutput: '.tempPergel',
-      },
+      tempOutput: '.tempPergel',
       branch: 'main',
     }) as DefineDownloadOptions
 
     if (options.file?.dir) {
       const { dir } = await downloadTemplate(join(githubRepo, `${options.file.dir}#${options.branch}`), {
-        dir: options.file.tempOutput,
+        dir: options.tempOutput,
         cwd,
         force: true,
       })
@@ -85,11 +83,23 @@ export function defineDownload(options: DefineDownloadOptions) {
     if (options.folder && options.folder.length) {
       for (const folder of options.folder) {
         const { dir } = await downloadTemplate(join(githubRepo, `${folder.dir}#${options.branch}`), {
-          dir: folder.output,
+          dir: options.tempOutput,
           cwd,
           force: true,
           forceClean: folder.forceClean !== false,
         })
+
+        // check folder
+        if (!existsSync(resolve(folder.output))) {
+          mkdirSync(resolve(folder.output), {
+            recursive: true,
+          })
+
+          copyFileSync(
+            join(dir, folder.dir),
+            resolve(folder.output),
+          )
+        }
 
         logger.success(`Downloaded template folder: ${dir}`)
       }

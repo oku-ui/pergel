@@ -74,6 +74,7 @@ export default defineCommand({
         file: _template.file,
         folder: _template.folder,
         branch: _template.branch,
+        tempOutput: '.tempPergel',
       })
 
       await data({
