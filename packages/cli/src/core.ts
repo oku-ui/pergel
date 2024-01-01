@@ -1,5 +1,5 @@
 import { copyFileSync, existsSync, mkdirSync, rmSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
 import { consola } from 'consola'
@@ -36,12 +36,11 @@ export function defineDownload(options: DefineDownloadOptions) {
 
       for (const file of options.file.path) {
         const output = resolve(join(cwd, file.outputFileName))
+        const _dirname = dirname(output)
 
         if (!existsSync(output)) {
-          // remove last .file extends and name for create folder
-          if (output.split('/').pop()?.includes('.')) {
-            const folder = output.split('/').slice(0, -1).join('/')
-            mkdirSync(resolve(folder), {
+          if (!existsSync(_dirname)) {
+            mkdirSync(_dirname, {
               recursive: true,
             })
           }
@@ -57,9 +56,8 @@ export function defineDownload(options: DefineDownloadOptions) {
             force: true,
           })
 
-          if (output.split('/').pop()?.includes('.')) {
-            const folder = output.split('/').slice(0, -1).join('/')
-            mkdirSync(resolve(folder), {
+          if (!existsSync(_dirname)) {
+            mkdirSync(_dirname, {
               recursive: true,
             })
           }
@@ -72,12 +70,6 @@ export function defineDownload(options: DefineDownloadOptions) {
 
         logger.success(`Downloaded template file: ${output}`)
       }
-
-      rmSync(dir, {
-        recursive: true,
-        force: true,
-        retryDelay: 100,
-      })
     }
 
     if (options.folder && options.folder.length) {
@@ -104,6 +96,11 @@ export function defineDownload(options: DefineDownloadOptions) {
         logger.success(`Downloaded template folder: ${dir}`)
       }
     }
+
+    rmSync(options.tempOutput, {
+      recursive: true,
+      force: true,
+    })
   }
   return setup
 }
