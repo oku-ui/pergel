@@ -3,7 +3,10 @@ import { dirname, join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
 import { consola } from 'consola'
+import { filename } from 'pathe/utils'
+import { extname } from 'pathe'
 import type { DefineDownloadOptions, PergelConfig } from './types'
+import { scanAnyFiles } from './scan'
 
 const logger = consola.create({
   defaults: {
@@ -86,14 +89,36 @@ export function defineDownload(options: DefineDownloadOptions) {
           mkdirSync(resolve(folder.output), {
             recursive: true,
           })
-
-          copyFileSync(
-            join(dir, folder.dir),
-            resolve(folder.output),
-          )
         }
 
-        logger.success(`Downloaded template folder: ${dir}`)
+        const scanDir = await scanAnyFiles({
+          options: {
+            scanDirs: [folder.dir],
+          },
+        }, dir)
+
+        if (scanDir.length > 0) {
+          for (const file of scanDir) {
+            const _output = join(folder.output, file.replace(dir, ''))
+
+            const _dirname = dirname(_output)
+            // const _file = filename(_output) + extname(_output)
+
+            if (!existsSync(_output)) {
+              mkdirSync(_dirname, {
+                recursive: true,
+              })
+            }
+
+            if (!existsSync(_output)) {
+              copyFileSync(
+                join(file),
+                join(_output),
+              )
+              logger.success(`Downloaded template folder: ${_dirname}`)
+            }
+          }
+        }
       }
     }
 

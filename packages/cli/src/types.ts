@@ -1,3 +1,10 @@
+export interface Pergel {
+  options: {
+    scanDirs: string[]
+    ignore?: string[]
+  }
+}
+
 export interface PergelConfig {
   /**
    * The name of the project.
