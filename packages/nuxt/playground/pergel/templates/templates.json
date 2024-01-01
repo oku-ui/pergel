@@ -15,6 +15,10 @@
           {
             "fileName": "pages/index.vue",
             "outputFileName": "pages/index.vue"
+          },
+          {
+            "fileName": "assets/pergel.css",
+            "outputFileName": "assets/pergel.css"
           }
         ]
       },
