@@ -1,4 +1,4 @@
-import { copyFileSync, rmSync } from 'node:fs'
+import { copyFileSync, existsSync, rmSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
@@ -39,18 +39,24 @@ export function defineDownload(options: DefineDownloadOptions) {
       for (const file of options.file.path) {
         const output = resolve(join(cwd, file.outputFileName))
 
-        if (file.forceClean !== false) {
+        if (!existsSync(output)) {
+          copyFileSync(
+            join(dir, file.fileName),
+            resolve(output),
+          )
+        }
+        else if (file.forceClean) {
           rmSync(output, {
             recursive: true,
             force: true,
             retryDelay: 100,
           })
-        }
 
-        copyFileSync(
-          join(dir, file.fileName),
-          resolve(output),
-        )
+          copyFileSync(
+            join(dir, file.fileName),
+            resolve(output),
+          )
+        }
 
         logger.success(`Downloaded template file: ${output}`)
       }

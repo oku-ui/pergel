@@ -369,13 +369,6 @@ export interface DefineDownloadOptions {
      * `.tempPergel`
      */
     tempOutput?: string
-
-    /**
-     * Force download
-     * @default
-     * `true`
-     */
-    forceClean: boolean
   }
   folder?: {
     /**

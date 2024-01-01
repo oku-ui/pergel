@@ -334,11 +334,17 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         file: {
           dir: 'themes/pergel-auth',
           // TODO: change path -> paths
-          path: [{
-            fileName: 'app.vue',
-            outputFileName: 'app.vue',
-          }],
-          forceClean: true,
+          path: [
+            {
+              fileName: 'app.vue',
+              outputFileName: 'app.vue',
+              forceClean: true,
+            },
+            {
+              fileName: 'pages/index.vue',
+              outputFileName: 'pages/index.vue',
+            },
+          ],
         },
       },
       version: '0.0.1',

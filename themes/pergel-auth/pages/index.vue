@@ -1,3 +1,3 @@
 <template>
-  index
+  Welcome to the Pergel Auth theme!
 </template>
