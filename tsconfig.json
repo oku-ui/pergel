@@ -54,6 +54,6 @@
     "**/client/**",
     "packages/nuxt/nuxt.config.ts",
     "examples/**",
-    "themes/**",
+    "themes/**"
   ]
 }
