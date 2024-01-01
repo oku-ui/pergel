@@ -49,7 +49,6 @@ export function defineDownload(options: DefineDownloadOptions) {
           rmSync(output, {
             recursive: true,
             force: true,
-            retryDelay: 100,
           })
 
           copyFileSync(
