@@ -202,6 +202,10 @@ export interface ResolvedPergelOptions {
   esnext: boolean
 
   debug: boolean
+
+  templates?: {
+    [name: string]: DefineDownloadOptions
+  }
 }
 
 export interface NuxtPergel extends Nuxt {
@@ -320,6 +324,8 @@ export type PartinalKey<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type MaybePromise<T> = T | Promise<T>
 
 export interface DefineDownloadOptions {
+  version?: string
+  branch?: string
   file?: {
     /**
      * Directory of file
@@ -357,5 +363,4 @@ export interface DefineDownloadOptions {
     dir: string
     output: string
   }[]
-  branch?: string
 }

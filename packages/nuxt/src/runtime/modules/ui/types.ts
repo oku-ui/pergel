@@ -63,18 +63,6 @@ export interface UIOptions {
     pinia?: boolean
   }
 
-  /**
-   * Default Theme
-   * @default all true
-   */
-  default?: false | {
-    components?: boolean
-    composables?: boolean
-    lang?: boolean
-    style?: boolean
-    layouts?: boolean
-    pages?: boolean
-  }
 }
 
 export interface ResolvedUIOptions {
@@ -89,13 +77,5 @@ export interface ResolvedUIOptions {
     veeValidate?: boolean
     i18n?: boolean
     pinia?: boolean
-  }
-  default: false | {
-    components: boolean
-    composables: boolean
-    lang: boolean
-    style: boolean
-    layouts: boolean
-    pages: boolean
   }
 }

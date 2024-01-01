@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0",
+  "templates": {
+    "default-auth-1": {
+      "version": "0.0.1",
+      "branch": "main",
+      "file": {
+        "dir": "themes/pergel-auth",
+        "path": [
+          {
+            "fileName": "app.vue",
+            "outputFileName": "app.vue"
+          }
+        ]
+      },
+      "folder": [
+        {
+          "dir": "themes/pergel-auth/pages/auth",
+          "output": "pages/auth"
+        },
+        {
+          "dir": "themes/pergel-auth/components",
+          "output": "components"
+        },
+        {
+          "dir": "themes/pergel-auth/layouts",
+          "output": "layouts"
+        },
+        {
+          "dir": "themes/pergel-auth/composables",
+          "output": "composables"
+        }
+      ]
+    }
+  }
+}

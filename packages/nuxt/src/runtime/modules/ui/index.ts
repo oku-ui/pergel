@@ -5,9 +5,11 @@ import { isPackageExists } from 'local-pkg'
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
 import consola from 'consola'
+import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
-import { writeDownloadTemplate } from '../../core/utils/createDownloadTemplate'
+import { addDownloadTemplate, writeDownloadTemplate } from '../../core/utils/createDownloadTemplate'
+import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { ResolvedUIOptions, UIOptions } from './types'
 
 const logger = consola.create({
@@ -37,69 +39,9 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       i18n: true,
       pinia: true,
     },
-    default: {
-      components: true,
-      composables: true,
-      lang: true,
-      style: true,
-      layouts: true,
-      pages: true,
-    },
   },
-  async setup({ nuxt, options }) {
+  async setup({ nuxt, options, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
-
-    if (options.default !== false) {
-      if (options.default.components) {
-        addComponentsDir({
-          path: resolver.resolve(join('default', 'components')),
-          watch: false,
-        })
-      }
-
-      if (options.default.layouts) {
-        addLayout({
-          src: resolver.resolve(join('default', 'layouts', 'default.vue')),
-        })
-        addLayout({
-          src: resolver.resolve(join('default', 'layouts', 'auth.vue')),
-        })
-      }
-
-      if (options.default.pages) {
-        extendPages((pages) => {
-          pages.push({
-            file: resolver.resolve(join('default', 'pages', 'auth', 'login.vue')),
-            path: '/auth/login',
-          })
-          pages.push({
-            file: resolver.resolve(join('default', 'pages', 'auth', 'signup.vue')),
-            path: '/auth/signup',
-          })
-          pages.push({
-            file: resolver.resolve(join('default', 'pages', 'auth', 'reset-password.vue')),
-            path: '/auth/reset-password',
-          })
-          pages.push({
-            file: resolver.resolve(join('default', 'pages', 'auth', 'privacy-policy.vue')),
-            path: '/auth/privacy-policy',
-          })
-          pages.push({
-            file: resolver.resolve(join('default', 'pages', 'auth', 'terms-of-service.vue')),
-            path: '/auth/terms-of-service',
-          })
-        })
-      }
-
-      if (options.default.composables)
-        addImportsDir(resolver.resolve(join('default', 'composables')))
-
-      if (options.default.style)
-        nuxt.options.css.push(resolver.resolve(join('default', 'style', 'style.css')))
-
-      nuxt.options.alias['#pergel/ui'] = resolver.resolve(join('default'))
-      nuxt.options.alias['#pergel/ui/*'] = resolver.resolve(join('default', '*'))
-    }
 
     if (options.packages.veeValidate) {
       useNuxtImports(nuxt, {
@@ -223,6 +165,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
 
       await installModule('@nuxtjs/tailwindcss', {
         exposeConfig: true,
+        viewer: false,
         config: {
           darkMode: 'class',
           plugins: [
@@ -234,7 +177,10 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           ],
           content: {
             files: [
-              resolver.resolve(join('default', '**/*.{vue,mjs,ts}')),
+              `${nuxt.options.rootDir}composables/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}components/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}layouts/**/*.{vue,js,ts}`,
+              `${nuxt.options.rootDir}pages/**/*.{vue,js,ts}`,
             ],
           },
           theme: {
@@ -317,7 +263,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
             },
           },
         },
-      })
+      } as Partial<TailwindCSSOptions>)
     }
 
     if (options.packages.i18n) {
@@ -359,17 +305,45 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     if (options.packages.pinia)
       await installModule('@pinia/nuxt')
 
-    writeDownloadTemplate(
+    addDownloadTemplate({
       nuxt,
-      'auth-pages',
-      {
+      data: {
         branch: 'main',
-        folder: [{
-          dir: 'packages/nuxt/playground/pages/auth',
-          output: 'pages/auth',
-        }],
+        folder: [
+          {
+            dir: 'themes/pergel-auth/pages/auth',
+            output: 'pages/auth',
+          },
+          {
+            dir: 'themes/pergel-auth/components',
+            output: 'components',
+          },
+          {
+            dir: 'themes/pergel-auth/layouts',
+            output: 'layouts',
+          },
+          {
+            dir: 'themes/pergel-auth/composables',
+            output: 'composables',
+          },
+        ],
+        file: {
+          dir: 'themes/pergel-auth',
+          // TODO: change path -> paths
+          path: [{
+            fileName: 'app.vue',
+            outputFileName: 'app.vue',
+          }],
+        },
       },
-    )
+      version: '0.0.1',
+      name: 'default-auth-1',
+      write: true,
+      readme: {
+        moduleName: moduleOptions.moduleName,
+        projectName: moduleOptions.projectName,
+      },
+    })
   },
 
 })

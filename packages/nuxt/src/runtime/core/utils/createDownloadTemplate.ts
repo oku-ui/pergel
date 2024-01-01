@@ -1,46 +1,89 @@
 import { resolve } from 'node:path'
 import { writeFileSync } from 'node:fs'
+import defu from 'defu'
 import type { DefineDownloadOptions, NuxtPergel } from '../types'
+import { generateProjectReadme } from './generateYaml'
 
-function createDownloadTemplate(data: DefineDownloadOptions) {
-  let { file, branch, folder } = data
+export function writeDownloadTemplate(nuxt: NuxtPergel) {
+  const templates = nuxt._pergel.templates
 
-  branch ??= 'main'
+  const pergel = resolve(nuxt._pergel.templateDir, 'templates.json')
 
-  if (file?.dir) {
-    return /* JS */ `${JSON.stringify({
-      version: '0.1.0',
-      templates: {
-        'pergel-auth': {
-          version: '1.0.0',
-          branch,
-          file,
-        },
-      },
-    }, null, 2)}`
-  }
+  const content = /* JS */ `${JSON.stringify({
+    version: '0.1.0',
+    templates,
+  }, null, 2)}`
 
-  if (folder && folder.length > 0) {
-    return /* JS */ `${JSON.stringify({
-      version: '0.1.0',
-      templates: {
-        'pergel-auth': {
-          version: '1.0.0',
-          branch,
-          folder,
-        },
-      },
-    }, null, 2)}`
-  }
-}
-
-export function writeDownloadTemplate(nuxt: NuxtPergel, fileName: string, options: DefineDownloadOptions) {
-  const pergel = resolve(nuxt._pergel.templateDir, `${fileName}.json`)
-  const data = createDownloadTemplate(options)
-  if (!data)
-    return
-
-  writeFileSync(pergel, data, {
+  writeFileSync(pergel, content, {
     encoding: 'utf-8',
   })
+}
+
+export function addDownloadTemplate(
+  input: {
+    nuxt: NuxtPergel
+    name?: string
+    version?: string
+    data?: DefineDownloadOptions
+    write?: boolean
+    readme?: {
+      projectName: string
+      moduleName: string
+    }
+  },
+) {
+  let { nuxt, name, version, data, write } = input
+
+  if (!version)
+    version = '0.0.0'
+
+  if (name && data) {
+    nuxt._pergel.templates ??= {}
+    nuxt._pergel.templates[name] ??= {}
+    nuxt._pergel.templates[name].version = version
+    nuxt._pergel.templates[name].branch = data.branch ?? 'main'
+    nuxt._pergel.templates[name].file = defu(nuxt._pergel.templates[name].file, data.file ?? {})
+    nuxt._pergel.templates[name].folder ??= []
+    nuxt._pergel.templates[name].folder?.push(...data.folder ?? [])
+  }
+  const fileName = 'templates'
+  if (write) {
+    const templates = nuxt._pergel.templates ?? {}
+
+    const pergel = resolve(nuxt._pergel.templateDir, `${fileName}.json`)
+
+    if (Object.keys(templates).length > 0) {
+      const content = /* JS */ `${JSON.stringify({
+        version: '0.1.0',
+        templates,
+      }, null, 2)}`
+
+      writeFileSync(pergel, content, {
+        encoding: 'utf-8',
+      })
+    }
+
+    const content = /* JS */ `${JSON.stringify({
+      version: '0.1.0',
+      templates,
+    }, null, 2)}`
+
+    writeFileSync(pergel, content, {
+      encoding: 'utf-8',
+    })
+  }
+
+  if (input.readme) {
+    generateProjectReadme({
+      data: ({ addCommentBlock }) => ({
+        ...addCommentBlock('UI Download Template'),
+        themes: {
+          authDefault: `pergel download -t=${name} -j=${fileName}`,
+        },
+      }),
+      nuxt,
+      moduleName: input.readme.moduleName,
+      projectName: input.readme.projectName,
+    })
+  }
 }
