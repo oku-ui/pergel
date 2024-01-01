@@ -36,8 +36,13 @@ export default defineCommand({
       cwd: process.cwd(),
       configFile: 'pergel.config.ts',
       defaultConfig: {
-        src: 'pergel',
-        templateDir: 'pergel/templates',
+        dir: {
+          pergel: 'pergel',
+          template: 'pergel/templates',
+        },
+        filePath: {
+          nuxtConfig: 'nuxt.config.ts',
+        },
       },
     })
 
@@ -46,7 +51,7 @@ export default defineCommand({
       return
     }
 
-    const templateDir = resolve(file.config.templateDir)
+    const templateDir = resolve(file.config.dir.template)
 
     const data = readFileSync(join(templateDir, `${jsonFile}.json`), 'utf-8')
 

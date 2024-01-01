@@ -5,7 +5,7 @@ import { loadConfig } from 'c12'
 import { consola } from 'consola'
 import { parse } from 'yaml'
 import { parseNa, run } from '@antfu/ni'
-import type { PergelConfig, PergelYaml } from '../types'
+import type { PergelYaml, ResolvedPergelConfig } from '../types'
 
 export default defineCommand({
   meta: {
@@ -32,12 +32,17 @@ export default defineCommand({
   },
   async run({ args }) {
     try {
-      const file = await loadConfig<Required<PergelConfig>>({
+      const file = await loadConfig<Required<ResolvedPergelConfig>>({
         cwd: process.cwd(),
         configFile: 'pergel.config.ts',
         defaultConfig: {
-          src: 'pergel',
-          templateDir: 'pergel/templates',
+          dir: {
+            pergel: 'pergel',
+            template: 'pergel/templates',
+          },
+          filePath: {
+            nuxtConfig: 'nuxt.config.ts',
+          },
         },
       })
 
@@ -46,7 +51,7 @@ export default defineCommand({
         return
       }
 
-      const readmeString = readFileSync(resolve(file.config.src, 'README.yaml')).toString()
+      const readmeString = readFileSync(resolve(file.config.dir.pergel, 'README.yaml')).toString()
       const json = parse(readmeString) as PergelYaml
 
       const project = json[args.project]?.[args.module]

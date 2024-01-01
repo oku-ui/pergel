@@ -6,31 +6,50 @@ export interface Pergel {
 }
 
 export interface PergelConfig {
-  /**
-   * The name of the project.
-   * @default 'pergel'
-   */
-  src?: string
 
-  /**
-   * The version of the project.
-   * @default 'pergel/templates'
-   */
-  templateDir?: string
+  dir?: {
+    /**
+     * The name of the project.
+     * @default 'pergel'
+     */
+    pergel?: string
+    /**
+     * The version of the project.
+     * @default 'pergel/templates'
+     */
+    template?: string
+  }
+  filePath?: {
+
+    /**
+     * The name of the project.
+     * @default 'nuxt.config.ts'
+     */
+    nuxtConfig?: string
+  }
 }
 
 export interface ResolvedPergelConfig {
-  /**
-   * The name of the project.
-   * @default 'pergel'
-   */
-  src: string
+  dir: {
+    /**
+     * The name of the project.
+     * @default 'pergel'
+     */
+    pergel: string
+    /**
+     * The version of the project.
+     * @default 'pergel/templates'
+     */
+    template: string
+  }
+  filePath: {
 
-  /**
-   * The version of the project.
-   * @default 'pergel/templates'
-   */
-  templateDir: string
+    /**
+     * The name of the project.
+     * @default 'nuxt.config.ts'
+     */
+    nuxtConfig: string
+  }
 }
 
 export interface PergelYaml {
