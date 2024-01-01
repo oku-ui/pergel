@@ -102,7 +102,7 @@ export function defineDownload(options: DefineDownloadOptions) {
             const _output = join(folder.output, file.replace(dir, ''))
 
             const _dirname = dirname(_output)
-            // const _file = filename(_output) + extname(_output)
+            const _file = filename(_output) + extname(_output)
 
             if (!existsSync(_output)) {
               mkdirSync(_dirname, {
@@ -115,7 +115,7 @@ export function defineDownload(options: DefineDownloadOptions) {
                 join(file),
                 join(_output),
               )
-              logger.success(`Downloaded template folder: ${_dirname}`)
+              logger.success(`Downloaded template folder: ${_file}`)
             }
           }
         }
