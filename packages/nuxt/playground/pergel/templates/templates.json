@@ -11,24 +11,29 @@
             "fileName": "app.vue",
             "outputFileName": "app.vue"
           }
-        ]
+        ],
+        "forceClean": true
       },
       "folder": [
         {
           "dir": "themes/pergel-auth/pages/auth",
-          "output": "pages/auth"
+          "output": "pages/auth",
+          "forceClean": true
         },
         {
           "dir": "themes/pergel-auth/components",
-          "output": "components"
+          "output": "components",
+          "forceClean": true
         },
         {
           "dir": "themes/pergel-auth/layouts",
-          "output": "layouts"
+          "output": "layouts",
+          "forceClean": true
         },
         {
           "dir": "themes/pergel-auth/composables",
-          "output": "composables"
+          "output": "composables",
+          "forceClean": true
         }
       ]
     }

@@ -69,6 +69,13 @@ export interface DefineDownloadOptions {
        * `pergel.config.ts`
        */
       outputFileName: string
+
+      /**
+       * Force download
+       * @default
+       * `true`
+       */
+      forceClean: boolean
     }[]
     /**
      * Folder name
@@ -80,6 +87,7 @@ export interface DefineDownloadOptions {
   folder?: {
     dir: string
     output: string
+    forceClean: boolean
   }[]
   branch?: string
 }

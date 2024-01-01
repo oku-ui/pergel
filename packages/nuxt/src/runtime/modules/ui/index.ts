@@ -313,18 +313,22 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
           {
             dir: 'themes/pergel-auth/pages/auth',
             output: 'pages/auth',
+            forceClean: true,
           },
           {
             dir: 'themes/pergel-auth/components',
             output: 'components',
+            forceClean: true,
           },
           {
             dir: 'themes/pergel-auth/layouts',
             output: 'layouts',
+            forceClean: true,
           },
           {
             dir: 'themes/pergel-auth/composables',
             output: 'composables',
+            forceClean: true,
           },
         ],
         file: {
@@ -334,6 +338,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
             fileName: 'app.vue',
             outputFileName: 'app.vue',
           }],
+          forceClean: true,
         },
       },
       version: '0.0.1',

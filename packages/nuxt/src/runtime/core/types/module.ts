@@ -336,7 +336,11 @@ export interface DefineDownloadOptions {
     /**
      * File name
      * @example
-     * `pergel.config.ts`
+     * [{
+     * fileName: 'pergel.config.ts',
+     * outputFileName: 'pergel.config.ts',
+     * forceClean: false
+     * }]
      */
     path: {
       /**
@@ -351,6 +355,13 @@ export interface DefineDownloadOptions {
        * `pergel.config.ts`
        */
       outputFileName: string
+
+      /**
+       * Force download
+       * @default
+       * `true`
+       */
+      forceClean?: boolean
     }[]
     /**
      * Folder name
@@ -358,9 +369,34 @@ export interface DefineDownloadOptions {
      * `.tempPergel`
      */
     tempOutput?: string
+
+    /**
+     * Force download
+     * @default
+     * `true`
+     */
+    forceClean: boolean
   }
   folder?: {
+    /**
+     * Directory of file
+     * @example
+     * `templates/default`
+     */
     dir: string
+
+    /**
+     * Output file name
+     * @example
+     * `templates/default`
+     */
     output: string
+
+    /**
+     * Force download
+     * @default
+     * `true`
+     */
+    forceClean: boolean
   }[]
 }

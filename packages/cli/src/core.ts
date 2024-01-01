@@ -38,6 +38,15 @@ export function defineDownload(options: DefineDownloadOptions) {
 
       for (const file of options.file.path) {
         const output = resolve(join(cwd, file.outputFileName))
+
+        if (file.forceClean !== false) {
+          rmSync(output, {
+            recursive: true,
+            force: true,
+            retryDelay: 100,
+          })
+        }
+
         copyFileSync(
           join(dir, file.fileName),
           resolve(output),
@@ -59,6 +68,7 @@ export function defineDownload(options: DefineDownloadOptions) {
           dir: folder.output,
           cwd,
           force: true,
+          forceClean: folder.forceClean !== false,
         })
 
         logger.success(`Downloaded template folder: ${dir}`)
