@@ -330,8 +330,8 @@ importers:
         specifier: '*'
         version: link:../../ui
       bullmq:
-        specifier: ^4.17.0
-        version: 4.17.0
+        specifier: ^5.1.0
+        version: 5.1.0
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -9314,22 +9314,6 @@ packages:
     dependencies:
       semver: 7.5.4
 
-  /bullmq@4.17.0:
-    resolution: {integrity: sha512-URnHgB01rlCP8RTpmW3kFnvv3vdd2aI1OcBMYQwnqODxGiJUlz9MibDVXE83mq7ee1eS1IvD9lMQqGszX6E5Pw==}
-    dependencies:
-      cron-parser: 4.9.0
-      glob: 8.1.0
-      ioredis: 5.3.2
-      lodash: 4.17.21
-      msgpackr: 1.10.1
-      node-abort-controller: 3.1.1
-      semver: 7.5.4
-      tslib: 2.6.2
-      uuid: 9.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /bullmq@5.1.0:
     resolution: {integrity: sha512-08rTUvXlAFIhKNIHVRL6KTc0xJf2pxVxnMH0Bvlq6WfKgW3uTWmTjw+oj1NDYCK5BTr3F8ih7dV2exoM8prA2w==}
     dependencies:
@@ -9344,7 +9328,6 @@ packages:
       uuid: 9.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /bumpp@9.2.1:
     resolution: {integrity: sha512-mq6/e8+bnIsOMy1VceTLC49WucMIZqd2nYn0e7Et5LhTO3yYQ8OWJsTl/B+uJDs5eywZmJ4Yt1WTEd2HCI35pw==}
