@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addComponentsDir, addImports, addImportsDir, addLayout, createResolver, extendPages, installModule } from '@nuxt/kit'
+import { addComponent, addImports, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
@@ -8,8 +8,7 @@ import consola from 'consola'
 import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
-import { addDownloadTemplate, writeDownloadTemplate } from '../../core/utils/createDownloadTemplate'
-import { generateProjectReadme } from '../../core/utils/generateYaml'
+import { addDownloadTemplate } from '../../core/utils/createDownloadTemplate'
 import type { ResolvedUIOptions, UIOptions } from './types'
 
 const logger = consola.create({
