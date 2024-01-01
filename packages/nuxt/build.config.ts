@@ -17,6 +17,12 @@ export const external = [
   'drizzle-kit',
   'postgres',
   '@egoist/tailwindcss-icons',
+  'drizzle',
+  // #Auth
+  'oslo',
+  'lucia',
+  '@lucia-auth/adapter-drizzle',
+  '@lucia-auth/adapter-postgresql',
   // @ts-expect-error
   ...Object.keys(pkg.peerDependencies || {}),
 ]

@@ -9,6 +9,7 @@ import type { Resolver } from '@nuxt/kit'
 import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
+import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { ResolvedUIOptions } from '../../modules/ui/types'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
@@ -21,6 +22,7 @@ export interface Modules {
   json2csv?: true
   graphqlYoga?: true | GraphQLYogaConfig
   drizzle?: true | DrizzleConfig
+  lucia?: true | LuciaModuleOptions
   ui?: true | ResolvedUIOptions
 }
 
@@ -61,12 +63,10 @@ export interface PergelOptions {
   pergelDir?: string
 
   /**
-   * The root folder of the application.
-   * Defaults to the path where `nuxt.options.rootDir` is located.
-   * @default '/'
-   * @example '/playground'
+   * @default 'pergel/templates'
    */
-  rootDir?: string
+  templateDir?: string
+
   /**
    * @default true
    */
@@ -113,6 +113,7 @@ export interface ResolvedPergelOptions {
       [moduleName: string]: {
         interfaceNames: string[]
         template: string[]
+        declareModules?: string
       }
     }
   }
@@ -162,12 +163,6 @@ export interface ResolvedPergelOptions {
 
     /**
      * @example
-     * './'
-     */
-    root: string
-
-    /**
-     * @example
      * 'pergel/README.yml'
      */
     readme: string
@@ -198,6 +193,12 @@ export interface ResolvedPergelOptions {
    */
   pergelDir: string
 
+  /**
+   * @example
+   * 'users/productdevbook/nuxt3/pergel/templates'
+   */
+  templateDir: string
+
   esnext: boolean
 
   debug: boolean
@@ -214,7 +215,13 @@ export interface ResolvedModuleOptions {
     root: string
   }
   moduleName: string
+  firstLetterModuleName: string
   projectName: string
+  firstLetterProjectName: string
+  /**
+   * @example
+   * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+   */
   moduleDir: string
 }
 
@@ -233,7 +240,7 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
   dependencies?: Record<string, string> | ((options: RootOptions) => Record<string, string>)
   dts?: boolean
 
-  waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[])
+  waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[] | undefined)
 
   [key: string]: unknown
 }
@@ -312,4 +319,43 @@ export interface GenerateReadmeYamlOpts {
 export type PartinalKey<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type MaybePromise<T> = T | Promise<T>
 
-export { }
+export interface DefineDownloadOptions {
+  file?: {
+    /**
+     * Directory of file
+     * @example
+     * `packages/nuxt`
+     */
+    dir: string
+    /**
+     * File name
+     * @example
+     * `pergel.config.ts`
+     */
+    path: {
+      /**
+       * File name
+       * @example
+       * `pergel.config.ts`
+       */
+      fileName: string
+      /**
+       * Output file name
+       * @example
+       * `pergel.config.ts`
+       */
+      outputFileName: string
+    }[]
+    /**
+     * Folder name
+     * @default
+     * `.tempPergel`
+     */
+    tempOutput?: string
+  }
+  folder?: {
+    dir: string
+    output: string
+  }[]
+  branch?: string
+}

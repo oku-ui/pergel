@@ -1,5 +1,8 @@
+import { existsSync, mkdirSync } from 'node:fs'
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
+import { isPackageExists } from 'local-pkg'
+import consola from 'consola'
 import type {
   ModuleDefinition,
   ModuleOptions,
@@ -35,10 +38,37 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
   }
 
   async function normalizedModule(this: any, data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions }) {
+    if (!existsSync(data.moduleOptions.moduleDir))
+      mkdirSync(data.moduleOptions.moduleDir, { recursive: true })
+
     const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt)
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
+
+    const packageExists = {
+      dependencies: 0,
+      devDependencies: 0,
+    }
+    for (const key in module.meta.dependencies) {
+      if (!isPackageExists(key)) {
+        this.prepare = true
+        packageExists.dependencies++
+      }
+    }
+
+    for (const key in module.meta.devDependencies) {
+      if (!isPackageExists(key)) {
+        this.prepare = true
+        packageExists.devDependencies++
+      }
+    }
+
+    if (packageExists.dependencies > 0)
+      consola.warn(`${packageExists.dependencies} dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
+    if (packageExists.devDependencies > 0)
+      consola.warn(`${packageExists.devDependencies} devDependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
+
     if (!this.prepare) {
       // Resolve module and options
 

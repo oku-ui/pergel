@@ -63,3 +63,4 @@ dist
 pergel
 schema.graphql
 !src/**/pergel
+!playground/pergel

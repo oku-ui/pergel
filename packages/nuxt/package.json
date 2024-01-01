@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.4.4",
+  "version": "0.5.0-beta.15",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -37,16 +37,6 @@
   "main": "./dist/module.cjs",
   "module": "./dist/module.mjs",
   "types": "./dist/types.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*"
-      ],
-      "drizzle/*": [
-        "./lib/drizzle/*"
-      ]
-    }
-  },
   "files": [
     "dist",
     "lib"
@@ -76,7 +66,8 @@
     "local-pkg": "^0.5.0",
     "minimatch": "^9.0.3",
     "pathe": "^1.1.1",
-    "sirv": "^2.0.4"
+    "sirv": "^2.0.4",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.484.0",
@@ -84,6 +75,8 @@
     "@iconify-json/carbon": "^1.1.27",
     "@iconify-json/ph": "^1.1.9",
     "@json2csv/node": "^7.0.4",
+    "@lucia-auth/adapter-drizzle": "1.0.0-beta.4",
+    "@lucia-auth/adapter-postgresql": "3.0.0-beta.8",
     "@nuxt/devtools-ui-kit": "^1.0.6",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.9.0",
@@ -95,9 +88,12 @@
     "@types/node-cron": "^3.0.11",
     "bullmq": "^5.1.0",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
+    "lucia": "3.0.0-beta.13",
     "node-cron": "^3.0.3",
     "nuxt": "^3.9.0",
+    "oslo": "^0.26.2",
     "p-timeout": "^6.1.2",
+    "pergel": "workspace:^",
     "vitest": "^1.1.1"
   },
   "publishConfig": {

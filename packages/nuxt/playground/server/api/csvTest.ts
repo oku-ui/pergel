@@ -16,7 +16,8 @@ const datas = [
   },
 ]
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (_event) => {
+  // console.warn(event.context.user)
   try {
     const { csv } = await pergelTest().json2csv().use({
       data: datas,

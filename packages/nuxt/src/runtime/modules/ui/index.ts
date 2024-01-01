@@ -1,14 +1,20 @@
 import { join } from 'node:path'
-import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule, useLogger } from '@nuxt/kit'
+import { addComponent, addComponentsDir, addImports, addImportsDir, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
-import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
+import consola from 'consola'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
+import { writeDownloadTemplate } from '../../core/utils/createDownloadTemplate'
 import type { ResolvedUIOptions, UIOptions } from './types'
 
-const logger = useLogger('pergel:ui')
+const logger = consola.create({
+  defaults: {
+    tag: 'pergel:ui',
+  },
+})
 
 const brands = ['pergel']
 
@@ -159,6 +165,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       await installModule('@nuxtjs/color-mode', { classSuffix: '' })
 
     if (options.packages.tailwindcss) {
+      const { getIconCollections, iconsPlugin } = await import('@egoist/tailwindcss-icons')
       // First we need to register the module hook
       // @ts-ignore
       nuxt.hook('tailwindcss:config', (tailwindConfig) => {
@@ -312,6 +319,18 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
 
     if (options.packages.pinia)
       await installModule('@pinia/nuxt')
+
+    writeDownloadTemplate(
+      nuxt,
+      'auth-pages',
+      {
+        branch: 'main',
+        folder: [{
+          dir: 'packages/nuxt/playground/pages/auth',
+          output: 'pages/auth',
+        }],
+      },
+    )
   },
 
 })

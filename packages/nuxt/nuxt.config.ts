@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   devtools: true,
   pergel: {
     pergelDir: 'pergel',
-    rootDir: 'playground',
     debug: true,
     projects: {
       test: {
@@ -24,5 +23,4 @@ export default defineNuxtConfig({
       },
     },
   },
-
 })

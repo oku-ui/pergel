@@ -31,6 +31,20 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
   try {
     for await (const [projectName, modules] of Object.entries(projects)) {
       for await (const [moduleName, moduleValue] of Object.entries(modules)) {
+        nuxt.options.alias[`#pergel/${projectName}/${moduleName}`] = resolve(
+          nuxt.options.rootDir,
+          'pergel',
+          projectName,
+          moduleName,
+        )
+        nuxt.options.nitro.alias ??= {}
+        nuxt.options.nitro.alias[`#pergel/${projectName}/${moduleName}`] = resolve(
+          nuxt.options.rootDir,
+          'pergel',
+          projectName,
+          moduleName,
+        )
+
         if (typeof moduleValue === 'boolean' && moduleValue === false)
           continue
 
@@ -99,6 +113,8 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
               root: join(nuxt._pergel.dir.pergel),
             },
             moduleName: moduleName as ModuleName,
+            firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
+            firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
             projectName,
             moduleDir: resolve(nuxt._pergel.pergelDir, projectName, moduleName),
           },
@@ -200,6 +216,11 @@ export async function setupModules(data: {
     }
 
     for await (const moduleName of sortedModules) {
+      if (!(data.nuxt._pergel.projects[projectName as any] as any)[moduleName]) {
+        consola.error(`Module ${moduleName} does not exist in project ${projectName}. Please check your nuxt.config.ts and add ${moduleName} to ${projectName} project`)
+        process.exit(1)
+      }
+
       const module = (data.nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
       const moduleSetup = prepareModules[projectName][moduleName]
 
@@ -241,6 +262,8 @@ export async function setupModules(data: {
             root: join(data.nuxt._pergel.dir.pergel),
           },
           moduleName: moduleName as ModuleName,
+          firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
+          firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
           projectName,
           moduleDir: resolve(data.nuxt._pergel.pergelDir, projectName, moduleName),
         },
