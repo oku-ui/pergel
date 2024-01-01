@@ -40,9 +40,13 @@ export function defineDownload(options: DefineDownloadOptions) {
         const output = resolve(join(cwd, file.outputFileName))
 
         if (!existsSync(output)) {
-          mkdirSync(resolve(output), {
-            recursive: true,
-          })
+          // remove last .file extends and name for create folder
+          if (output.split('/').pop()?.includes('.')) {
+            const folder = output.split('/').slice(0, -1).join('/')
+            mkdirSync(resolve(folder), {
+              recursive: true,
+            })
+          }
 
           copyFileSync(
             join(dir, file.fileName),
@@ -55,8 +59,9 @@ export function defineDownload(options: DefineDownloadOptions) {
             force: true,
           })
 
-          if (!existsSync(resolve(output))) {
-            mkdirSync(resolve(output), {
+          if (output.split('/').pop()?.includes('.')) {
+            const folder = output.split('/').slice(0, -1).join('/')
+            mkdirSync(resolve(folder), {
               recursive: true,
             })
           }
