@@ -52,6 +52,7 @@
     "**/test/fixtures/**",
     "test/nuxt/**",
     "**/client/**",
-    "packages/nuxt/nuxt.config.ts"
+    "packages/nuxt/nuxt.config.ts",
+    "examples/**"
   ]
 }
