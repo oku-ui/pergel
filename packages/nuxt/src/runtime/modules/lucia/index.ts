@@ -105,12 +105,11 @@ export const auth = ${projectName}().lucia().use({
         },
       ],
     })
-    const projectName = `pergel${moduleOptions.firstLetterProjectName}`
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
-import type { Session, User } from '${projectName}/drizzle/schema'
-import type { auth } from '#pergel/${projectName}/lucia'
+import type { Session, User } from '#pergel/${moduleOptions.firstLetterProjectName}/drizzle/schema'
+import type { auth } from '#pergel/${moduleOptions.firstLetterProjectName}/lucia'
 
 declare module 'lucia' {
   interface Register {
