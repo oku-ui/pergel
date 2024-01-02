@@ -50,25 +50,18 @@ export function defineDownload(options: DefineDownloadOptions) {
             })
           }
 
-          if (file.replace) {
-            const readFile = readFileSync(join(dir, file.fileName), 'utf-8')
+          const readFile = readFileSync(join(dir, file.fileName), 'utf-8')
 
-            if (file.replace.from !== 'changeName')
-              readFile.replace(file.replace.from || 'changeName', file.replace.to)
+          if (file.replace?.from && file.replace?.to)
+            readFile.replace(file.replace?.from, file.replace?.to)
 
-            readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+          readFile.replace(`/changeName/g`, projectName)
+            .replace(`/ChangeName/g`, firstLetterProjectName)
 
-            writeFileSync(
-              resolve(output),
-              readFile,
-            )
-          }
-          else {
-            copyFileSync(
-              join(dir, file.fileName),
-              resolve(output),
-            )
-          }
+          writeFileSync(
+            resolve(output),
+            readFile,
+          )
         }
         else if (file.forceClean) {
           rmSync(output, {
@@ -128,25 +121,17 @@ export function defineDownload(options: DefineDownloadOptions) {
             }
 
             if (!existsSync(_output)) {
-              if (folder.replace) {
-                const readFile = readFileSync(join(file), 'utf-8')
+              const readFile = readFileSync(join(file), 'utf-8')
 
-                if (folder.replace?.from !== 'changeName')
-                  readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
+              if (folder.replace?.from !== 'changeName')
+                readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
 
-                readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+              readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
 
-                writeFileSync(
-                  join(_output),
-                  readFile,
-                )
-              }
-              else {
-                copyFileSync(
-                  join(file),
-                  join(_output),
-                )
-              }
+              writeFileSync(
+                join(_output),
+                readFile,
+              )
 
               logger.success(`Downloaded template folder: ${_file}`)
             }
