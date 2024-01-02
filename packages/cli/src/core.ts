@@ -25,7 +25,7 @@ export function defineDownload(options: DefineDownloadOptions) {
     const { cwd } = data
     const githubRepo = 'github:oku-ui/pergel'
     const projectName = options.projectName
-    const firstLetterProjectName = projectName.charAt(0).toUpperCase()
+    const firstLetterProjectName = projectName.charAt(0).toUpperCase() + projectName.slice(1)
 
     options = defu(options, {
       tempOutput: '.tempPergel',
@@ -134,8 +134,8 @@ export function defineDownload(options: DefineDownloadOptions) {
               readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
 
             readFile = readFile
-              .replace(`/changeName/g`, projectName)
-              .replace(`/ChangeName/g`, firstLetterProjectName)
+              .replace(/changeName/g, projectName)
+              .replace(/ChangeName/g, firstLetterProjectName)
 
             writeFileSync(
               join(_output),
