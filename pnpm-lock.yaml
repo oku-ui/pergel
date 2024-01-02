@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@pergel/nuxt': link:./packages/nuxt
+
 importers:
 
   .:
@@ -493,7 +496,7 @@ importers:
         version: 3.4.3
     devDependencies:
       '@pergel/nuxt':
-        specifier: workspace:*
+        specifier: link:../../packages/nuxt
         version: link:../../packages/nuxt
       nuxt:
         specifier: ^3.9.0

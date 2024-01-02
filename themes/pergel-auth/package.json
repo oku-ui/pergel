@@ -1,14 +1,12 @@
 {
-  "name": "nuxt-app",
+  "name": "pergel-auth",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "prepare": "nuxt prepare"
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
