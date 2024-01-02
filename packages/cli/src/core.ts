@@ -75,9 +75,17 @@ export function defineDownload(options: DefineDownloadOptions) {
             })
           }
 
-          copyFileSync(
-            join(dir, file.fileName),
+          let readFile = readFileSync(join(dir, file.fileName), 'utf-8')
+
+          if (file.replace?.from && file.replace?.to)
+            readFile.replace(file.replace?.from, file.replace?.to)
+
+          readFile = readFile.replace(`/changeName/g`, projectName)
+            .replace(`/ChangeName/g`, firstLetterProjectName)
+
+          writeFileSync(
             resolve(output),
+            readFile,
           )
         }
 
@@ -125,7 +133,9 @@ export function defineDownload(options: DefineDownloadOptions) {
             if (folder.replace?.from !== 'changeName')
               readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
 
-            readFile = readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+            readFile = readFile
+              .replace(`/changeName/g`, projectName)
+              .replace(`/ChangeName/g`, firstLetterProjectName)
 
             writeFileSync(
               join(_output),
