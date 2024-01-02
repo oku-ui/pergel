@@ -22,13 +22,13 @@ export default definePergelModule({
 
     generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, moduleOptions, {
       options: {
-        host: '',
+        host: 'localhost',
         port: 6379,
         db: 0,
-        password: '',
-        username: '',
+        password: 'redis',
+        username: 'default',
       },
-      url: '',
+      url: 'redis://default:redis@localhost:6379/0',
     })
 
     addServerImportsDir(resolver.resolve('./composables/nitro'))
@@ -72,6 +72,11 @@ export interface BullmqContext {
           ],
           volumes: [
             'redis:/data',
+          ],
+          command: [
+            'redis-server',
+            '--appendonly yes',
+            '--requirepass redis',
           ],
         },
       },
