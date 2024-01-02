@@ -14,6 +14,9 @@ export async function seed1(db: PostgresJsDatabase) {
           email: faker.internet.email(),
           name: faker.person.fullName(),
           password: faker.internet.password(),
+          createdAt: faker.date.past(),
+          updatedAt: faker.date.past(),
+          username: faker.internet.userName(),
         },
       ],
     ).catch((res) => {
