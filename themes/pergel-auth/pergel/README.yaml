@@ -43,7 +43,7 @@ changeName:
   ui:
     # UI Download Template
     themes:
-      authDefault: pergel download -t=default-auth-1 -j=templates
+      authDefault: pergel download -t=default-auth-1 -j=templates -p=changeName
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
       dependencies: "@pergel/module-ui@^0.0.5"
