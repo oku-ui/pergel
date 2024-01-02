@@ -7,6 +7,7 @@ import { createDrizzleConfig } from '../../defaults/postgresjs'
 import type { NuxtPergel, ResolvedModuleOptions } from '../../../../core/types'
 import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
+import { createDockerService } from '../../../../core/utils/createDockerService'
 
 export async function setupPostgres(
   nuxt: NuxtPergel,
@@ -142,5 +143,28 @@ export default {
     nuxt,
     moduleName,
     projectName,
+  })
+
+  createDockerService(nuxt, {
+    services: {
+      postgres: {
+        image: 'postgres:16-alpine',
+        volumes: [
+          {
+            type: 'volume',
+            source: 'pergel-postgres',
+            target: '/var/lib/postgresql/data',
+          },
+        ],
+        environment: {
+          POSTGRES_USER: 'postgres',
+          POSTGRES_PASSWORD: 'postgres',
+          POSTGRES_DB: 'postgres',
+        },
+      },
+    },
+    volumes: {
+      'pergel-postgres': {},
+    },
   })
 }

@@ -67,7 +67,8 @@
     "minimatch": "^9.0.3",
     "pathe": "^1.1.1",
     "sirv": "^2.0.4",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.484.0",
