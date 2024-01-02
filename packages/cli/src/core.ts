@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
@@ -52,14 +52,15 @@ export function defineDownload(options: DefineDownloadOptions) {
 
           if (file.replace) {
             const readFile = readFileSync(join(dir, file.fileName), 'utf-8')
+
             if (file.replace.from !== 'changeName')
               readFile.replace(file.replace.from || 'changeName', file.replace.to)
 
             readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
 
-            copyFileSync(
-              join(dir, file.fileName),
+            writeFileSync(
               resolve(output),
+              readFile,
             )
           }
           else {
@@ -127,10 +128,26 @@ export function defineDownload(options: DefineDownloadOptions) {
             }
 
             if (!existsSync(_output)) {
-              copyFileSync(
-                join(file),
-                join(_output),
-              )
+              if (folder.replace) {
+                const readFile = readFileSync(join(file), 'utf-8')
+
+                if (folder.replace?.from !== 'changeName')
+                  readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
+
+                readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+
+                writeFileSync(
+                  join(_output),
+                  readFile,
+                )
+              }
+              else {
+                copyFileSync(
+                  join(file),
+                  join(_output),
+                )
+              }
+
               logger.success(`Downloaded template folder: ${_file}`)
             }
           }

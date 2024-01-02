@@ -163,7 +163,7 @@ export interface DefineDownloadOptions {
        * `rocketProject`
        */
       to: string
-    }[]
+    }
   }[]
   branch?: string
 }
