@@ -1,4 +1,5 @@
-import { existsSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
@@ -72,7 +73,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
         writeFileSync(
           `${moduleOptions.moduleDir}/index.ts`,
           /* ts */`
-          import { session, user } from '${moduleOptions.projectName}/drizzle/schema'
+import { session, user } from '#pergel/${moduleOptions.projectName}/drizzle/schema'
 
 const connect = await ${projectName}().drizzle().postgresjs().connect({})
 
@@ -85,6 +86,21 @@ export const auth = ${projectName}().lucia().use({
         `,
         )
       }
+    }
+
+    if (!existsSync(join(nuxt.options.serverDir, 'middleware', 'auth.ts'))) {
+      mkdirSync(join(nuxt.options.serverDir, 'middleware'), { recursive: true })
+
+      writeFileSync(
+        join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
+        /* ts */`
+import { auth } from '#pergel/${moduleOptions.projectName}/lucia'
+
+export default pergel${moduleOptions.firstLetterProjectName}().lucia().definePergelNitroMiddleware({
+  lucia: auth,
+})
+        `,
+      )
     }
 
     useNitroImports(nuxt, {
@@ -105,12 +121,11 @@ export const auth = ${projectName}().lucia().use({
         },
       ],
     })
-    const projectName = `pergel${moduleOptions.firstLetterProjectName}`
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
-import type { Session, User } from '${projectName}/drizzle/schema'
-import type { auth } from '#pergel/${projectName}/lucia'
+import type { Session, User } from '#pergel/${moduleOptions.projectName}/drizzle/schema'
+import type { auth } from '#pergel/${moduleOptions.projectName}/lucia'
 
 declare module 'lucia' {
   interface Register {

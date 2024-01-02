@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@pergel/nuxt': link:./packages/nuxt
+
 importers:
 
   .:
@@ -81,6 +84,9 @@ importers:
       globby:
         specifier: ^14.0.0
         version: 14.0.0
+      pathe:
+        specifier: ^1.1.1
+        version: 1.1.1
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
@@ -469,10 +475,35 @@ importers:
         version: 3.22.4
 
   themes/pergel-auth:
+    dependencies:
+      '@faker-js/faker':
+        specifier: ^8.3.1
+        version: 8.3.1
+      '@pergel/module-ui':
+        specifier: ^0.0.5
+        version: 0.0.5(tailwindcss@3.4.0)(vue@3.4.3)
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+      drizzle-kit:
+        specifier: ^0.20.6
+        version: 0.20.9
+      drizzle-orm:
+        specifier: ^0.29.1
+        version: 0.29.2(@types/react@18.2.46)(expo-sqlite@13.2.0)(pg@8.11.3)(postgres@3.4.3)(react@18.2.0)
+      postgres:
+        specifier: ^3.4.3
+        version: 3.4.3
     devDependencies:
+      '@pergel/nuxt':
+        specifier: link:../../packages/nuxt
+        version: link:../../packages/nuxt
       nuxt:
         specifier: ^3.9.0
         version: 3.9.0(@types/node@20.10.6)(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.10)
+      pg:
+        specifier: ^8.11.0
+        version: 8.11.3
       vue:
         specifier: ^3.4.3
         version: 3.4.3(typescript@5.3.3)
@@ -5406,7 +5437,6 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
-    dev: true
 
   /@nuxt/kit@3.9.0(rollup@3.29.4):
     resolution: {integrity: sha512-XVFQihMTXM5y7Xj7EXbcDbUbxNkC8+ArQKArAH5PK1ulCWZWyP+VR94Gg2boo9vI2eNLTs+LquxnOtOHRQrg0A==}
@@ -5472,7 +5502,6 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
-    dev: true
 
   /@nuxt/schema@3.9.0(rollup@3.29.4):
     resolution: {integrity: sha512-NaRiq+g6XE4YOZLy7be2e6AmZCW0gfQWDM88TSfNr3Lypo+6PuY2VqzZLpSvOCNlW3CFj/kWtMdhool2BP0yIg==}
@@ -5733,6 +5762,17 @@ packages:
       - vue-tsc
     dev: true
 
+  /@nuxtjs/color-mode@3.3.2:
+    resolution: {integrity: sha512-BLpBfrYZngV2QWFQ4HNEFwAXa3Pno43Ge+2XHcZJTTa1Z4KzRLvOwku8yiyV3ovIaaXKGwduBdv3Z5Ocdp0/+g==}
+    dependencies:
+      '@nuxt/kit': 3.9.0
+      lodash.template: 4.5.0
+      pathe: 1.1.1
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: false
+
   /@nuxtjs/color-mode@3.3.2(rollup@3.29.4):
     resolution: {integrity: sha512-BLpBfrYZngV2QWFQ4HNEFwAXa3Pno43Ge+2XHcZJTTa1Z4KzRLvOwku8yiyV3ovIaaXKGwduBdv3Z5Ocdp0/+g==}
     dependencies:
@@ -5776,6 +5816,31 @@ packages:
       - vue
       - vue-i18n-bridge
       - vue-router
+    dev: false
+
+  /@nuxtjs/tailwindcss@6.10.3:
+    resolution: {integrity: sha512-AXkfAW0RLbJfPtdw0QY6+1q+N0e9790zhu6t9DezEvHqfG0ajBSwDTvuu3P48hOcxZpY3PZ+j8N0LDTqCW9X8w==}
+    dependencies:
+      '@nuxt/kit': 3.9.0
+      autoprefixer: 10.4.16(postcss@8.4.32)
+      chokidar: 3.5.3
+      clear-module: 4.1.2
+      colorette: 2.0.20
+      consola: 3.2.3
+      defu: 6.1.3
+      h3: 1.9.0
+      micromatch: 4.0.5
+      pathe: 1.1.1
+      postcss: 8.4.32
+      postcss-custom-properties: 13.3.3(postcss@8.4.32)
+      postcss-nesting: 12.0.2(postcss@8.4.32)
+      tailwind-config-viewer: 1.7.3(tailwindcss@3.4.0)
+      tailwindcss: 3.4.0
+      ufo: 1.3.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - ts-node
     dev: false
 
   /@nuxtjs/tailwindcss@6.10.3(rollup@3.29.4):
@@ -6018,6 +6083,20 @@ packages:
       - '@vue/composition-api'
     dev: false
 
+  /@oku-ui/label@0.5.0(vue@3.4.3):
+    resolution: {integrity: sha512-LPxPz+jw+oF+oPrYpYUh6396lmmfPoZbE04oScacdycULQVbpVaBaK1Hq9jf93jDJbXtco0lg2HKgM1Wq1B58w==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      vue: ^3.3.0
+    dependencies:
+      '@oku-ui/primitive': 0.6.0(vue@3.4.3)
+      '@oku-ui/use-composable': 0.6.0(vue@3.4.3)
+      '@oku-ui/utils': 0.6.0(vue@3.4.3)
+      vue: 3.4.3(typescript@5.3.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
   /@oku-ui/label@0.6.0(vue@3.4.3):
     resolution: {integrity: sha512-UD0v3ZkhZpaZxZ09GFGn+RwcSOULfSZGcPyti3QEhetv5JZDyI+5pEO452UEgySDAFff1hunqdEyxsK17oX7kQ==}
     engines: {node: '>=18'}
@@ -6135,6 +6214,39 @@ packages:
       '@oku-ui/slot': 0.6.0(vue@3.4.3)
       '@oku-ui/use-composable': 0.6.0(vue@3.4.3)
       filter-anything: 3.0.7
+      vue: 3.4.3(typescript@5.3.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
+  /@oku-ui/primitives@0.5.0(vue@3.4.3):
+    resolution: {integrity: sha512-2bZY6T/LnhR0sP8DwCQI7FkJjp2Q+ZYCRVa90OxiS3WGksqxS9WTb94VCPHEpxToOLpJbKf8SgNXk89R8peIlQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      vue: ^3.3.0
+    dependencies:
+      '@oku-ui/accordion': 0.6.0(vue@3.4.3)
+      '@oku-ui/alert-dialog': 0.6.0(vue@3.4.3)
+      '@oku-ui/aspect-ratio': 0.6.0(vue@3.4.3)
+      '@oku-ui/avatar': 0.6.0(vue@3.4.3)
+      '@oku-ui/checkbox': 0.6.0(vue@3.4.3)
+      '@oku-ui/collapsible': 0.6.0(vue@3.4.3)
+      '@oku-ui/dialog': 0.6.0(vue@3.4.3)
+      '@oku-ui/hover-card': 0.6.0(vue@3.4.3)
+      '@oku-ui/label': 0.6.0(vue@3.4.3)
+      '@oku-ui/popover': 0.6.0(vue@3.4.3)
+      '@oku-ui/progress': 0.6.0(vue@3.4.3)
+      '@oku-ui/radio-group': 0.6.0(vue@3.4.3)
+      '@oku-ui/scroll-area': 0.6.0(vue@3.4.3)
+      '@oku-ui/separator': 0.6.0(vue@3.4.3)
+      '@oku-ui/slider': 0.6.0(vue@3.4.3)
+      '@oku-ui/switch': 0.6.0(vue@3.4.3)
+      '@oku-ui/tabs': 0.6.0(vue@3.4.3)
+      '@oku-ui/toast': 0.6.0(vue@3.4.3)
+      '@oku-ui/toggle': 0.6.0(vue@3.4.3)
+      '@oku-ui/toggle-group': 0.6.0(vue@3.4.3)
+      '@oku-ui/toolbar': 0.6.0(vue@3.4.3)
+      '@oku-ui/tooltip': 0.6.0(vue@3.4.3)
       vue: 3.4.3(typescript@5.3.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -6278,6 +6390,19 @@ packages:
       - '@vue/composition-api'
     dev: false
 
+  /@oku-ui/slot@0.5.1(vue@3.4.3):
+    resolution: {integrity: sha512-/f2Y125Eq10/fG+TRLU8gVhsZhVjHq+6SCW3v9TSJht0BRHK0mU+k+OWPp0qaR+J0ai+jSs2sfqgbln876godQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      vue: ^3.3.0
+    dependencies:
+      '@oku-ui/use-composable': 0.6.0(vue@3.4.3)
+      '@oku-ui/utils': 0.6.0(vue@3.4.3)
+      vue: 3.4.3(typescript@5.3.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
   /@oku-ui/slot@0.6.0(vue@3.4.3):
     resolution: {integrity: sha512-BZaH9PeX66LOgeVXEYJ6c+oz4aAJPCkMohPIdBYQBAIAVTzA0ggaFwHnPPeMorPw7qx5ZzGMN23pN0lM27Y9vQ==}
     engines: {node: '>=18'}
@@ -6409,6 +6534,19 @@ packages:
       '@oku-ui/use-composable': 0.6.0(vue@3.4.3)
       '@oku-ui/utils': 0.6.0(vue@3.4.3)
       '@oku-ui/visually-hidden': 0.6.0(vue@3.4.3)
+      vue: 3.4.3(typescript@5.3.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
+  /@oku-ui/use-composable@0.5.1(vue@3.4.3):
+    resolution: {integrity: sha512-EC8cWVP9gbu65mnQ6Yw5mKBdqkeAbT0qzGE6Q9UM2es3xl9F6aMgegc9SEyNTaPcPfEGu3UhrGgvbSBigncYSQ==}
+    peerDependencies:
+      vue: ^3.3.0
+    dependencies:
+      '@oku-ui/utils': 0.6.0(vue@3.4.3)
+      '@vue/shared': 3.4.3
+      '@vueuse/core': 10.7.1(vue@3.4.3)
       vue: 3.4.3(typescript@5.3.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -6600,6 +6738,40 @@ packages:
       pvtsutils: 1.3.5
       tslib: 2.6.2
       webcrypto-core: 1.7.7
+    dev: false
+
+  /@pergel/module-ui@0.0.5(tailwindcss@3.4.0)(vue@3.4.3):
+    resolution: {integrity: sha512-3kDrlWzvOXkYJ4psVNNV5uGzGkAlux8612yCCDpgscD331zOCyCYpJLNBOWegD6lH69KXSafnM5ZUz8FQblelg==}
+    dependencies:
+      '@nuxtjs/color-mode': 3.3.2
+      '@nuxtjs/tailwindcss': 6.10.3
+      '@oku-ui/label': 0.5.0(vue@3.4.3)
+      '@oku-ui/primitives': 0.5.0(vue@3.4.3)
+      '@oku-ui/slot': 0.5.1(vue@3.4.3)
+      '@oku-ui/use-composable': 0.5.1(vue@3.4.3)
+      '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.4.0)
+      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.0)
+      '@tailwindcss/typography': 0.5.10(tailwindcss@3.4.0)
+      '@vee-validate/zod': 4.12.4(vue@3.4.3)
+      class-variance-authority: 0.7.0
+      clsx: 2.1.0
+      notivue: 2.0.1
+      nuxt-icons: 3.2.1
+      radix-vue: 1.2.5(vue@3.4.3)
+      tailwind-merge: 2.2.0
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.0)
+      vee-validate: 4.12.4(vue@3.4.3)
+      zod: 3.22.4
+    transitivePeerDependencies:
+      - '@nuxt/kit'
+      - '@nuxt/schema'
+      - '@vue/composition-api'
+      - defu
+      - rollup
+      - supports-color
+      - tailwindcss
+      - ts-node
+      - vue
     dev: false
 
   /@pinia/nuxt@0.5.1(rollup@3.29.4)(typescript@5.3.3)(vue@3.4.3):
@@ -14395,6 +14567,15 @@ packages:
       - vue
     dev: false
 
+  /nuxt-icons@3.2.1:
+    resolution: {integrity: sha512-trvAFq9oWYwWEQ0qZDHVxvLK+TwOdFnoXYOXQvN1CRUlp1DBJdxC8vXO3mED2Kb+Suag+bpWLC6eXGrRwhfffQ==}
+    dependencies:
+      '@nuxt/kit': 3.9.0
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: false
+
   /nuxt@3.9.0(@types/node@20.10.6)(eslint@8.56.0)(rollup@3.29.4)(typescript@5.3.3)(vite@5.0.10):
     resolution: {integrity: sha512-PiUQwJRBlclRrotcQAK95ueeRSiFhZmwNBj9MtIdWF4XK97OjNszUmNjKphqB7BsVcm089l0jZm1N0sYr7tMOg==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -17472,7 +17653,6 @@ packages:
       unplugin: 1.6.0
     transitivePeerDependencies:
       - rollup
-    dev: true
 
   /unimport@3.7.1(rollup@3.29.4):
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}

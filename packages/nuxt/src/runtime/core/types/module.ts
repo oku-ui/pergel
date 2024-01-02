@@ -326,6 +326,12 @@ export type MaybePromise<T> = T | Promise<T>
 export interface DefineDownloadOptions {
   version?: string
   branch?: string
+  /**
+   * Folder name
+   * @default
+   * `.tempPergel`
+   */
+  tempOutput?: string
   file?: {
     /**
      * Directory of file
@@ -363,12 +369,6 @@ export interface DefineDownloadOptions {
        */
       forceClean?: boolean
     }[]
-    /**
-     * Folder name
-     * @default
-     * `.tempPergel`
-     */
-    tempOutput?: string
   }
   folder?: {
     /**

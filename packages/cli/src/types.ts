@@ -1,29 +1,55 @@
-export interface PergelConfig {
-  /**
-   * The name of the project.
-   * @default 'pergel'
-   */
-  src?: string
+export interface Pergel {
+  options: {
+    scanDirs: string[]
+    ignore?: string[]
+  }
+}
 
-  /**
-   * The version of the project.
-   * @default 'pergel/templates'
-   */
-  templateDir?: string
+export interface PergelConfig {
+
+  dir?: {
+    /**
+     * The name of the project.
+     * @default 'pergel'
+     */
+    pergel?: string
+    /**
+     * The version of the project.
+     * @default 'pergel/templates'
+     */
+    template?: string
+  }
+  filePath?: {
+
+    /**
+     * The name of the project.
+     * @default 'nuxt.config.ts'
+     */
+    nuxtConfig?: string
+  }
 }
 
 export interface ResolvedPergelConfig {
-  /**
-   * The name of the project.
-   * @default 'pergel'
-   */
-  src: string
+  dir: {
+    /**
+     * The name of the project.
+     * @default 'pergel'
+     */
+    pergel: string
+    /**
+     * The version of the project.
+     * @default 'pergel/templates'
+     */
+    template: string
+  }
+  filePath: {
 
-  /**
-   * The version of the project.
-   * @default 'pergel/templates'
-   */
-  templateDir: string
+    /**
+     * The name of the project.
+     * @default 'nuxt.config.ts'
+     */
+    nuxtConfig: string
+  }
 }
 
 export interface PergelYaml {
@@ -44,6 +70,13 @@ export interface PergelYaml {
 }
 
 export interface DefineDownloadOptions {
+  /**
+   * Folder name
+   * @default
+   * `.tempPergel`
+   */
+  tempOutput: string
+  projectName: string
   file?: {
     /**
      * Directory of file
@@ -70,6 +103,23 @@ export interface DefineDownloadOptions {
        */
       outputFileName: string
 
+      replace?: {
+        /**
+         * Replace string
+         * @default
+         * `changeName`
+         */
+        from: string
+        /**
+         * Replace string
+         * @default
+         * {projectName}
+         * @example
+         * `rocketProject`
+         */
+        to: string
+      }
+
       /**
        * Force download
        * @default
@@ -77,17 +127,43 @@ export interface DefineDownloadOptions {
        */
       forceClean: boolean
     }[]
-    /**
-     * Folder name
-     * @default
-     * `.tempPergel`
-     */
-    tempOutput?: string
   }
   folder?: {
+    /**
+     * Directory of folder
+     * @example
+     * `packages/nuxt`
+     */
     dir: string
+
+    /**
+     * Output folder name
+     * @example
+     * `packages/nuxt`
+     */
     output: string
+
+    /**
+     * Force download
+     * @default
+     * `true`
+     */
     forceClean: boolean
+
+    replace?: {
+      /**
+       * Replace string
+       * @example
+       * `changeName`
+       */
+      from: string
+      /**
+       * Replace string
+       * @example
+       * `rocketProject`
+       */
+      to: string
+    }
   }[]
   branch?: string
 }

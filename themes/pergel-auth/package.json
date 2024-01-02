@@ -1,17 +1,25 @@
 {
-  "name": "nuxt-app",
+  "name": "pergel-auth",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "prepare": "nuxt prepare"
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@pergel/module-ui": "^0.0.5",
+    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.20.6",
+    "drizzle-orm": "^0.29.1",
+    "postgres": "^3.4.3"
   },
   "devDependencies": {
+    "@pergel/nuxt": "workspace:*",
     "nuxt": "^3.9.0",
+    "pg": "^8.11.0",
     "vue": "^3.4.3",
     "vue-router": "^4.2.5"
   }

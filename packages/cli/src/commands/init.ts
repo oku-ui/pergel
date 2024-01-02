@@ -4,8 +4,13 @@ import { defineCommand } from 'citty'
 const template = `import { definePergel } from 'pergel/core'
 
 export default definePergel({
-  src: 'pergel',
-  templateDir: 'pergel/templates',
+  dir: {
+    templateDir: 'pergel/templates',
+    pergelDir: 'pergel',
+  },
+  filePath: {
+    nuxtConfig: 'nuxt.config.ts',
+  }
 })
 `
 

@@ -1,4 +1,4 @@
-// Pergel auto generated please change this 
+// Pergel auto generated please change this
 import { relations, sql } from 'drizzle-orm'
 import { pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { session } from './session'

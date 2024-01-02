@@ -73,12 +73,12 @@ export function addDownloadTemplate(
     })
   }
 
-  if (input.readme) {
+  if (input.readme && input.readme.projectName) {
     generateProjectReadme({
       data: ({ addCommentBlock }) => ({
         ...addCommentBlock('UI Download Template'),
         themes: {
-          authDefault: `pergel download -t=${name} -j=${fileName}`,
+          authDefault: `pergel download -t=${name} -j=${fileName} -p=${input.readme!.projectName}`,
         },
       }),
       nuxt,

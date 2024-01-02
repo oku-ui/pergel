@@ -27,17 +27,27 @@ export default defineCommand({
       alias: 't',
       description: 'Download file',
     },
+    projectName: {
+      alias: 'p',
+      description: 'Project name',
+    },
   },
   async run({ args }) {
     const template = args.template as string
     const jsonFile = args.jsonFile as string
+    const projectName = args.projectName as string
 
     const file = await loadConfig<ResolvedPergelConfig>({
       cwd: process.cwd(),
       configFile: 'pergel.config.ts',
       defaultConfig: {
-        src: 'pergel',
-        templateDir: 'pergel/templates',
+        dir: {
+          pergel: 'pergel',
+          template: 'pergel/templates',
+        },
+        filePath: {
+          nuxtConfig: 'nuxt.config.ts',
+        },
       },
     })
 
@@ -46,7 +56,7 @@ export default defineCommand({
       return
     }
 
-    const templateDir = resolve(file.config.templateDir)
+    const templateDir = resolve(file.config.dir.template)
 
     const data = readFileSync(join(templateDir, `${jsonFile}.json`), 'utf-8')
 
@@ -74,6 +84,8 @@ export default defineCommand({
         file: _template.file,
         folder: _template.folder,
         branch: _template.branch,
+        tempOutput: '.tempPergel',
+        projectName,
       })
 
       await data({
