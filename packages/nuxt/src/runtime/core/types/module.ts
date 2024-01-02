@@ -11,6 +11,7 @@ import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { ResolvedUIOptions } from '../../modules/ui/types'
+import type { ComposeSpecification } from '../../../types/compose-spec-type'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
@@ -205,6 +206,10 @@ export interface ResolvedPergelOptions {
 
   templates?: {
     [name: string]: DefineDownloadOptions
+  }
+
+  composeTemplates?: {
+    [projectName: string]: ComposeSpecification
   }
 }
 

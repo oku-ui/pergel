@@ -2,6 +2,7 @@ import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
+import { createDockerService } from '../../core/utils/createDockerService'
 import type { BullMQModuleRuntimeConfig } from './types'
 
 export default definePergelModule({
@@ -59,6 +60,26 @@ export interface BullmqContext {
       resolve: /* ts */`
             bullmq: bullmq,
         `,
+    })
+
+    createDockerService(nuxt, moduleOptions.projectName, {
+      services: {
+        redis: {
+          image: 'redis:alpine',
+          restart: 'always',
+          ports: [
+            '6379:6379',
+          ],
+          volumes: [
+            'redis:/data',
+          ],
+        },
+      },
+      volumes: {
+        redis: {
+          driver: 'local',
+        },
+      },
     })
   },
 })

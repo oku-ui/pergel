@@ -1,10 +1,12 @@
 import { join } from 'node:path'
+import { writeFileSync } from 'node:fs'
 import {
   addTemplate,
   createResolver,
   defineNuxtModule,
   logger,
 } from '@nuxt/kit'
+import YAML from 'yaml'
 
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
@@ -103,6 +105,18 @@ export default defineNuxtModule<PergelOptions>({
       setupDevToolsUI(options, _resolver.resolve, nuxt)
 
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
+    }
+
+    if (nuxt._pergel.composeTemplates && Object.keys(nuxt._pergel.composeTemplates).length > 0) {
+      for (const projectName of Object.keys(nuxt._pergel.composeTemplates)) {
+        const specYaml = YAML.stringify(
+          JSON.parse(JSON.stringify(nuxt._pergel.composeTemplates[projectName])),
+        )
+
+        writeFileSync(join(nuxt.options.rootDir, 'pergel', projectName, 'docker-compose.yaml'), specYaml, {
+          encoding: 'utf8',
+        })
+      }
     }
   },
 })
