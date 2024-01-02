@@ -107,14 +107,17 @@ export default defineNuxtModule<PergelOptions>({
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
 
-    // Docker compose
-    const specYaml = YAML.stringify(
-      JSON.parse(JSON.stringify(nuxt._pergel.composeTemplates)),
-    )
+    if (nuxt._pergel.composeTemplates && Object.keys(nuxt._pergel.composeTemplates).length > 0) {
+      for (const projectName of Object.keys(nuxt._pergel.composeTemplates)) {
+        const specYaml = YAML.stringify(
+          JSON.parse(JSON.stringify(nuxt._pergel.composeTemplates[projectName])),
+        )
 
-    writeFileSync(join(nuxt.options.rootDir, 'pergel', 'docker-compose.yaml'), specYaml, {
-      encoding: 'utf8',
-    })
+        writeFileSync(join(nuxt.options.rootDir, 'pergel', projectName, 'docker-compose.yaml'), specYaml, {
+          encoding: 'utf8',
+        })
+      }
+    }
   },
 })
 

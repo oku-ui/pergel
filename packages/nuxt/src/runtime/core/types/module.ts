@@ -208,7 +208,9 @@ export interface ResolvedPergelOptions {
     [name: string]: DefineDownloadOptions
   }
 
-  composeTemplates?: ComposeSpecification
+  composeTemplates?: {
+    [projectName: string]: ComposeSpecification
+  }
 }
 
 export interface NuxtPergel extends Nuxt {

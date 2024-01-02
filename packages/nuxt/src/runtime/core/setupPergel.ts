@@ -113,10 +113,6 @@ export async function setupPergel(
     readmeDir: resolve(resolveReadmePath),
     esnext: true,
     debug: false,
-    composeTemplates: {
-      name: 'pergel',
-      version: '0.0.0',
-    },
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

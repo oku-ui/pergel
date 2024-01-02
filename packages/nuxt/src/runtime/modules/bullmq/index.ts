@@ -62,7 +62,7 @@ export interface BullmqContext {
         `,
     })
 
-    createDockerService(nuxt, {
+    createDockerService(nuxt, moduleOptions.projectName, {
       services: {
         redis: {
           image: 'redis:alpine',

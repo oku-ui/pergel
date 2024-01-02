@@ -145,7 +145,7 @@ export default {
     projectName,
   })
 
-  createDockerService(nuxt, {
+  createDockerService(nuxt, projectName, {
     services: {
       postgres: {
         image: 'postgres:16-alpine',

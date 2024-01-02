@@ -1,3 +1,5 @@
+name: pergel
+version: 0.0.0
 services:
   postgres:
     image: postgres:16-alpine
@@ -20,5 +22,3 @@ volumes:
   pergel-postgres: {}
   redis:
     driver: local
-name: pergel
-version: 0.0.0
