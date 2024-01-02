@@ -50,12 +50,12 @@ export function defineDownload(options: DefineDownloadOptions) {
             })
           }
 
-          const readFile = readFileSync(join(dir, file.fileName), 'utf-8')
+          let readFile = readFileSync(join(dir, file.fileName), 'utf-8')
 
           if (file.replace?.from && file.replace?.to)
             readFile.replace(file.replace?.from, file.replace?.to)
 
-          readFile.replace(`/changeName/g`, projectName)
+          readFile = readFile.replace(`/changeName/g`, projectName)
             .replace(`/ChangeName/g`, firstLetterProjectName)
 
           writeFileSync(
@@ -120,12 +120,12 @@ export function defineDownload(options: DefineDownloadOptions) {
               })
             }
 
-            const readFile = readFileSync(join(file), 'utf-8')
+            let readFile = readFileSync(join(file), 'utf-8')
 
             if (folder.replace?.from !== 'changeName')
               readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
 
-            readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+            readFile = readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
 
             writeFileSync(
               join(_output),
