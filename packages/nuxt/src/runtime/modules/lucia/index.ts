@@ -1,4 +1,4 @@
-import { existsSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
@@ -89,6 +89,8 @@ export const auth = ${projectName}().lucia().use({
     }
 
     if (!existsSync(join(nuxt.options.serverDir, 'middleware', 'auth.ts'))) {
+      mkdirSync(join(nuxt.options.serverDir, 'middleware'), { recursive: true })
+
       writeFileSync(
         join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
         /* ts */`
