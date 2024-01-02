@@ -27,10 +27,15 @@ export default defineCommand({
       alias: 't',
       description: 'Download file',
     },
+    projectName: {
+      alias: 'p',
+      description: 'Project name',
+    },
   },
   async run({ args }) {
     const template = args.template as string
     const jsonFile = args.jsonFile as string
+    const projectName = args.projectName as string
 
     const file = await loadConfig<ResolvedPergelConfig>({
       cwd: process.cwd(),
@@ -80,6 +85,7 @@ export default defineCommand({
         folder: _template.folder,
         branch: _template.branch,
         tempOutput: '.tempPergel',
+        projectName,
       })
 
       await data({

@@ -76,6 +76,7 @@ export interface DefineDownloadOptions {
    * `.tempPergel`
    */
   tempOutput: string
+  projectName: string
   file?: {
     /**
      * Directory of file
@@ -102,6 +103,23 @@ export interface DefineDownloadOptions {
        */
       outputFileName: string
 
+      replace?: {
+        /**
+         * Replace string
+         * @default
+         * `changeName`
+         */
+        from: string
+        /**
+         * Replace string
+         * @default
+         * {projectName}
+         * @example
+         * `rocketProject`
+         */
+        to: string
+      }
+
       /**
        * Force download
        * @default
@@ -111,9 +129,41 @@ export interface DefineDownloadOptions {
     }[]
   }
   folder?: {
+    /**
+     * Directory of folder
+     * @example
+     * `packages/nuxt`
+     */
     dir: string
+
+    /**
+     * Output folder name
+     * @example
+     * `packages/nuxt`
+     */
     output: string
+
+    /**
+     * Force download
+     * @default
+     * `true`
+     */
     forceClean: boolean
+
+    replace?: {
+      /**
+       * Replace string
+       * @example
+       * `changeName`
+       */
+      from: string
+      /**
+       * Replace string
+       * @example
+       * `rocketProject`
+       */
+      to: string
+    }[]
   }[]
   branch?: string
 }

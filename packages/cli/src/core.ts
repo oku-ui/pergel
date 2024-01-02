@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, rmSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { downloadTemplate } from 'giget'
 import { defu } from 'defu'
@@ -24,6 +24,8 @@ export function defineDownload(options: DefineDownloadOptions) {
   }) {
     const { cwd } = data
     const githubRepo = 'github:oku-ui/pergel'
+    const projectName = options.projectName
+    const firstLetterProjectName = projectName.charAt(0).toUpperCase()
 
     options = defu(options, {
       tempOutput: '.tempPergel',
@@ -48,10 +50,24 @@ export function defineDownload(options: DefineDownloadOptions) {
             })
           }
 
-          copyFileSync(
-            join(dir, file.fileName),
-            resolve(output),
-          )
+          if (file.replace) {
+            const readFile = readFileSync(join(dir, file.fileName), 'utf-8')
+            if (file.replace.from !== 'changeName')
+              readFile.replace(file.replace.from || 'changeName', file.replace.to)
+
+            readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+
+            copyFileSync(
+              join(dir, file.fileName),
+              resolve(output),
+            )
+          }
+          else {
+            copyFileSync(
+              join(dir, file.fileName),
+              resolve(output),
+            )
+          }
         }
         else if (file.forceClean) {
           rmSync(output, {

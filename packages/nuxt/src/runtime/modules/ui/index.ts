@@ -326,8 +326,23 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
             forceClean: true,
           },
           {
+            dir: 'themes/pergel-auth/middleware',
+            output: 'middleware',
+            forceClean: true,
+          },
+          {
             dir: 'themes/pergel-auth/composables',
             output: 'composables',
+            forceClean: true,
+          },
+          {
+            dir: 'themes/pergel-auth/server/api/auth',
+            output: 'server/api/auth',
+            forceClean: true,
+          },
+          {
+            dir: 'themes/pergel-auth/server/middleware',
+            output: 'server/middleware',
             forceClean: true,
           },
         ],
