@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { writeFileSync } from 'node:fs'
+import { existsSync, writeFileSync } from 'node:fs'
 import {
   addTemplate,
   createResolver,
@@ -107,16 +107,57 @@ export default defineNuxtModule<PergelOptions>({
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
 
+    // Auto generate pergel/[projectName].docker-compose.yml
     if (nuxt._pergel.composeTemplates && Object.keys(nuxt._pergel.composeTemplates).length > 0) {
       for (const projectName of Object.keys(nuxt._pergel.composeTemplates)) {
         const specYaml = YAML.stringify(
           JSON.parse(JSON.stringify(nuxt._pergel.composeTemplates[projectName])),
         )
 
-        writeFileSync(join(nuxt.options.rootDir, 'pergel', projectName, 'docker-compose.yaml'), specYaml, {
-          encoding: 'utf8',
-        })
+        const file = join(nuxt.options.rootDir, 'pergel', `${projectName}.docker-compose.yml`)
+        if (!existsSync(file)) {
+          writeFileSync(file, specYaml, {
+            encoding: 'utf8',
+          })
+        }
       }
+    }
+
+    // Auto generate pergel/.env.template
+    const envs = Object.keys(nuxt._pergel.readmeYaml).map((projectName) => {
+      const project = nuxt._pergel.readmeYaml[projectName]
+      const modules = Object.keys(project).map((moduleName) => {
+        const module = project[moduleName]
+        const env = module.env
+        return { moduleName, env }
+      })
+      return { projectName, modules }
+    })
+
+    let envTemplate = ''
+
+    // write envs to pergel/.env.template
+    for (const project of envs) {
+      const projectName = project.projectName
+      const modules = project.modules
+      for (const module of modules) {
+        const moduleName = module.moduleName
+        const env = module.env
+        if (env) {
+          envTemplate += `# ${projectName}/${moduleName}\n`
+          for (const key of Object.keys(env))
+            envTemplate += `${key}=${env[key]}\n`
+
+          envTemplate += '\n'
+        }
+      }
+    }
+
+    const file = join(nuxt.options.rootDir, 'pergel', '.env.template')
+    if (!existsSync(file)) {
+      writeFileSync(file, envTemplate, {
+        encoding: 'utf8',
+      })
     }
   },
 })

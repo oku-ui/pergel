@@ -19,12 +19,12 @@ export async function setupPostgres(
   const { driver } = options._driver
 
   const { env } = generateModuleRuntimeConfig(nuxt, moduleOptions, {
-    url: '',
-    host: '', // Postgres ip address[s] or domain name[s]
+    url: 'postgres://postgres:postgres@localhost:5432/postgres',
+    host: 'localhost', // Postgres ip address[s] or domain name[s]
     port: 5432, // Postgres server port[s]
-    database: '', // Name of database to connect to
-    user: '', // Username of database user
-    password: '', // Password of database user
+    database: 'postgres', // Name of database to connect to
+    user: 'postgres', // Username of database user
+    password: 'postgres', // Password of database user
     ssl: false, // Use SSL
     drop: false, // Drop database before migration
     seed: false, // Seed database after migration

@@ -100,7 +100,7 @@ export interface ResolvedPergelOptions {
 
   nuxtImports: Partial<ImportsOptions>
 
-  readmeYaml: any
+  readmeYaml: Record<string, any>
 
   resolver: Resolver
 
