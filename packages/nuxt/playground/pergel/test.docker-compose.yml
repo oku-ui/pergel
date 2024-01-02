@@ -18,6 +18,10 @@ services:
       - 6379:6379
     volumes:
       - redis:/data
+    command:
+      - redis-server
+      - --appendonly yes
+      - --requirepass redis
 volumes:
   pergel-postgres: {}
   redis:
