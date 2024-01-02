@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.5.0-beta.21",
+  "version": "0.5.0-beta.22",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -52,7 +52,7 @@
     "test:watch": "vitest watch",
     "client:build": "nuxi generate client",
     "client:dev": "nuxi dev client --port 3300",
-    "release": "pnpm dev:prepare && pnpm prepack && pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish",
+    "release": "pnpm dev:prepare && pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish",
     "release:beta": "pnpm release --tag beta",
     "release:alpha": "pnpm release --tag alpha",
     "build:script": "pnpm --filter './build-script/**' build"
