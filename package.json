@@ -52,8 +52,5 @@
   },
   "lint-staged": {
     "*": "eslint . --fix"
-  },
-  "resolutions": {
-    "@pergel/nuxt": "link:./packages/nuxt"
   }
 }
