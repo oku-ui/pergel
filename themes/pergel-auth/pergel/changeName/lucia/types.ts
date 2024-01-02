@@ -1,4 +1,3 @@
-
 import type { Session, User } from '#pergel/changeName/drizzle/schema'
 import type { auth } from '#pergel/changeName/lucia'
 
@@ -18,4 +17,3 @@ declare module 'h3' {
     session: Session | null
   }
 }
-      
