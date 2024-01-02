@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { existsSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import {
   addTemplate,
   createResolver,
