@@ -120,21 +120,19 @@ export function defineDownload(options: DefineDownloadOptions) {
               })
             }
 
-            if (!existsSync(_output)) {
-              const readFile = readFileSync(join(file), 'utf-8')
+            const readFile = readFileSync(join(file), 'utf-8')
 
-              if (folder.replace?.from !== 'changeName')
-                readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
+            if (folder.replace?.from !== 'changeName')
+              readFile.replace(folder.replace?.from || 'changeName', folder.replace?.to || projectName)
 
-              readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
+            readFile.replace(`/changeName/g`, projectName).replace(`/ChangeName/g`, firstLetterProjectName)
 
-              writeFileSync(
-                join(_output),
-                readFile,
-              )
+            writeFileSync(
+              join(_output),
+              readFile,
+            )
 
-              logger.success(`Downloaded template folder: ${_file}`)
-            }
+            logger.success(`Downloaded template folder: ${_file}`)
           }
         }
       }
