@@ -44,19 +44,8 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx
       consola.error(e)
   })
 
-  if (runtime.drop) {
-    await client.execute(sql`
-DROP SCHEMA IF EXISTS drizzle CASCADE;
-DROP SCHEMA IF EXISTS public CASCADE;
-CREATE SCHEMA public;
-CREATE SCHEMA drizzle;
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
-    `)
-  }
-
   if (runtime.dev) {
-    execSync(`pergel module -s=push -p=${_pergel.projectName} -m=drizzle`, {
+    execSync(`pergel module -s=seed -p=${_pergel.projectName} -m=drizzle`, {
       stdio: 'inherit',
     })
   }

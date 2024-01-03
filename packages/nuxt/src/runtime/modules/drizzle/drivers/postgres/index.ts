@@ -26,9 +26,9 @@ export async function setupPostgres(
     user: 'postgres', // Username of database user
     password: 'postgres', // Password of database user
     ssl: false, // Use SSL
-    drop: false, // Drop database before migration
-    seed: false, // Seed database after migration
-    dev: false, // Run in development mode
+    drop: true, // Drop database before migration
+    seed: true, // Seed database after migration
+    dev: true, // Run in development mode
   }, false, 'pg')
 
   // Config generation
