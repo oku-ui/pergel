@@ -28,6 +28,7 @@ export async function setupPostgres(
     ssl: false, // Use SSL
     drop: false, // Drop database before migration
     seed: false, // Seed database after migration
+    dev: false, // Run in development mode
   }, false, 'pg')
 
   // Config generation
@@ -147,12 +148,12 @@ export default {
 
   createDockerService(nuxt, projectName, {
     services: {
-      postgres: {
+      [`${projectName}-postgres`]: {
         image: 'postgres:16-alpine',
         volumes: [
           {
             type: 'volume',
-            source: 'pergel-postgres',
+            source: `${projectName}-postgres`,
             target: '/var/lib/postgresql/data',
           },
         ],
@@ -167,7 +168,7 @@ export default {
       },
     },
     volumes: {
-      'pergel-postgres': {},
+      [`${projectName}-postgres`]: {},
     },
   })
 }

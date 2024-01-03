@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process'
 import { type PostgresJsDatabase, drizzle } from 'drizzle-orm/postgres-js'
 import type { H3Event } from 'h3'
 import postgres from 'postgres'
@@ -19,7 +20,7 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx
   if (!_pergel || !_pergel.projectName)
     throw new Error('Pergel is not defined')
 
-  const { client } = await clientInit(_pergel, (runtime) => {
+  const { client, runtime } = await clientInit(_pergel, (runtime) => {
     if (runtime.url)
       return drizzle(postgres(runtime.url, {}))
 
@@ -42,6 +43,23 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx
     else
       consola.error(e)
   })
+
+  if (runtime.drop) {
+    await client.execute(sql`
+DROP SCHEMA IF EXISTS drizzle CASCADE;
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+CREATE SCHEMA drizzle;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
+    `)
+  }
+
+  if (runtime.dev) {
+    execSync(`pergel module -s=push -p=${_pergel.projectName} -m=drizzle`, {
+      stdio: 'inherit',
+    })
+  }
 
   return client
 }

@@ -64,14 +64,14 @@ export interface BullmqContext {
 
     createDockerService(nuxt, moduleOptions.projectName, {
       services: {
-        redis: {
+        [`${moduleOptions.projectName}-redis`]: {
           image: 'redis:alpine',
           restart: 'always',
           ports: [
             '6379:6379',
           ],
           volumes: [
-            'redis:/data',
+            `${moduleOptions.projectName}-redis:/data`,
           ],
           command: [
             'redis-server',
@@ -81,9 +81,7 @@ export interface BullmqContext {
         },
       },
       volumes: {
-        redis: {
-          driver: 'local',
-        },
+        [`${moduleOptions.projectName}-redis`]: {},
       },
     })
   },
