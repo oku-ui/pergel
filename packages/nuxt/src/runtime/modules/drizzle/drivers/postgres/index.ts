@@ -76,6 +76,8 @@ export default {
           dbUrl: env.url,
           dbDrop: env.drop,
           dbSeed: env.seed,
+          dbDev: env.dev,
+          dbMigrate: env.migrate,
         },
         migrationDir: join(moduleOptions.dir.module, options.dir.migrations),
       })
