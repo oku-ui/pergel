@@ -29,6 +29,7 @@ export async function setupPostgres(
     drop: true, // Drop database before migration
     seed: true, // Seed database after migration
     dev: true, // Run in development mode
+    migrate: false, // Run migrations
   }, false, 'pg')
 
   // Config generation

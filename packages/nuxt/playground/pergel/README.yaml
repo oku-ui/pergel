@@ -44,6 +44,7 @@ test:
       NUXT_TEST_DRIZZLE_PG_DROP: true
       NUXT_TEST_DRIZZLE_PG_SEED: true
       NUXT_TEST_DRIZZLE_PG_DEV: true
+      NUXT_TEST_DRIZZLE_PG_MIGRATE: false
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
       dependencies: "drizzle-kit@^0.20.6, drizzle-orm@^0.29.1, @faker-js/faker@^8.3.1, dotenv@^16.3.1, postgres@^3.4.3"
