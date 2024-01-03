@@ -61,6 +61,9 @@ export default defineNuxtConfig({
         lucia: true,
         drizzle: true,
         ui: true,
+        ionic: {
+          appName: 'playgroundIonic',
+        },
       },
       test2: {
         S3: true,

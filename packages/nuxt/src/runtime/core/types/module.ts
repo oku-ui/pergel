@@ -12,6 +12,7 @@ import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { ResolvedUIOptions } from '../../modules/ui/types'
 import type { ComposeSpecification } from '../../../types/compose-spec-type'
+import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
@@ -25,6 +26,7 @@ export interface Modules {
   drizzle?: true | DrizzleConfig
   lucia?: true | LuciaModuleOptions
   ui?: true | ResolvedUIOptions
+  ionic?: true | IonicInterface
 }
 
 export interface ResolvedModules {
@@ -36,6 +38,7 @@ export interface ResolvedModules {
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
   ui?: true | ResolvedUIOptions
+  ionic?: true | ResolvedIonicInterface
 }
 
 export type ModuleName = keyof Modules

@@ -17,6 +17,7 @@ export default defineNuxtConfig({
         },
         drizzle: true,
         ui: true,
+        ionic: true,
       },
       test2: {
         S3: true,
