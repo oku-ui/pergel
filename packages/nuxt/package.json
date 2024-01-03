@@ -73,6 +73,7 @@
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.484.0",
+    "@ionic/core":"^7.6.3",
     "@faker-js/faker": "^8.3.1",
     "@iconify-json/carbon": "^1.1.27",
     "@iconify-json/ph": "^1.1.9",
