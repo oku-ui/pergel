@@ -29,10 +29,10 @@ const logger = consola.create({
 config()
 
 const dbUrl = process.env.${data.env.dbUrl}
-const dbDrop = process.env.${data.env.dbDrop}
-const dbSeed = process.env.${data.env.dbSeed}
-const dbDev = process.env.${data.env.dbDev}
-const dbMigrate = process.env.${data.env.dbMigrate}
+const dbDrop = process.env.${data.env.dbDrop} === 'true'
+const dbSeed = process.env.${data.env.dbSeed} === 'true'
+const dbDev = process.env.${data.env.dbDev} === 'true'
+const dbMigrate = process.env.${data.env.dbMigrate} === 'true'
 
 const migrationDir = resolve('${data.migrationDir}')
 
@@ -70,7 +70,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 
   if (dbDev) {
     logger.info('Pushing database...')
-    execSync(\`pnpm pergel module - s=push - p=test - m=drizzle\`, {
+    execSync(\`pergel module -s=push -p=test -m=drizzle\`, {
       stdio: 'inherit',
     })
     logger.success('Pushing database... done')
