@@ -57,20 +57,8 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
         if (typeof moduleValue === 'string' && moduleValue === '')
           continue
 
-        // @productdevbook HATA Burada- burası sıfırlıyor yanlış
-        // nuxt._pergel.projects[projectName] ??= {} as any
-        // (nuxt._pergel.projects[projectName] as any)[moduleName] = {
-        //   projectDir: join(nuxt._pergel.pergelDir, projectName),
-        //   moduleDir: join(nuxt._pergel.pergelDir, projectName, moduleName),
-        //   dir: {
-        //     project: join(nuxt._pergel.dir.pergel, projectName),
-        //     module: join(nuxt._pergel.dir.pergel, projectName, moduleName),
-        //     root: join(nuxt._pergel.dir.pergel),
-        //   },
-        // }
-        // düzeltilmiş hali
+        nuxt._pergel.projects[projectName] ??= {} as any
         (nuxt._pergel.projects[projectName] as any)[moduleName] = {
-          ...(nuxt._pergel.projects[projectName] as any)[moduleName],
           projectDir: join(nuxt._pergel.pergelDir, projectName),
           moduleDir: join(nuxt._pergel.pergelDir, projectName, moduleName),
           dir: {
@@ -78,7 +66,6 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
             module: join(nuxt._pergel.dir.pergel, projectName, moduleName),
             root: join(nuxt._pergel.dir.pergel),
           },
-
         }
 
         let pergelModule: PergelModule
