@@ -59,6 +59,7 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
 
         nuxt._pergel.projects[projectName] ??= {} as any
         (nuxt._pergel.projects[projectName] as any)[moduleName] = {
+          ...(nuxt._pergel.projects[projectName] as any)[moduleName],
           projectDir: join(nuxt._pergel.pergelDir, projectName),
           moduleDir: join(nuxt._pergel.pergelDir, projectName, moduleName),
           dir: {

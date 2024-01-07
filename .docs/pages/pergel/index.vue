@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const title = '1:1 Radix UI components for Vue'
-const desc = 'Unstyled, accessible components for building high‑quality design systems and web apps in React.Unstyled, accessible components for building high‑quality design systems and web apps in Vue.'
+const title = 'Oku Pergel'
+const desc = 'Full Stack Nuxt, Nitro and Vue Modules. Pergel is a full stack Nuxt application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit. Authentication, authorization, user management, role management, and more'
 
 useSeoMeta({
   titleTemplate: '',
@@ -8,8 +8,8 @@ useSeoMeta({
   ogTitle: title,
   description: desc,
   ogDescription: desc,
-  ogImage: 'https://oku-ui.com/primitives-og-image.png',
-  twitterImage: 'https://oku-ui.com/primitives-og-image.png',
+  ogImage: 'https://oku-ui.com/pergel-og-image.png',
+  twitterImage: 'https://oku-ui.com/pergel-og-image.png',
 })
 </script>
 
