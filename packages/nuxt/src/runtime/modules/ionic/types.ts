@@ -1,5 +1,7 @@
 // nuxt.config.d.ts
 
+import type { NuxtConfig } from '@nuxt/schema'
+
 // import type { AnimationBuilder, Mode, PlatformConfig, SpinnerTypes, TabButtonLayout } from '@ionic/core'
 
 interface IonicConfig {
@@ -99,11 +101,14 @@ interface NuxtIonicModuleOptions {
 export interface IonicInterface {
   appName: string
   capacitorConfig: CapacitorConfig
+  nuxtConfig: NuxtConfig
   ionic?: NuxtIonicModuleOptions
+
 }
 export interface ResolvedIonicInterface {
   appName: string
   capacitorConfig: CapacitorConfig
+  nuxtConfig: NuxtConfig
   ionic?: NuxtIonicModuleOptions
 
 }
