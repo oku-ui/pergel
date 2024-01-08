@@ -8,9 +8,9 @@ export default eventHandler(async (event) => {
   const username = body.username
   if (
     typeof username !== 'string'
-      || username.length < 3
-      || username.length > 31
-      || !/^[a-z0-9_-]+$/.test(username)
+    || username.length < 3
+    || username.length > 31
+    || !/^[a-z0-9_-]+$/.test(username)
   ) {
     throw createError({
       message: 'Invalid username',

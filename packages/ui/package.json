@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm build && pnpm bumpp --commit='version(module-ui): release %s' --no-tag && pnpm publish"
+    "release": "pnpm bumpp --commit='version(module-ui): release %s' --no-tag && pnpm publish"
   },
   "dependencies": {
     "@egoist/tailwindcss-icons": "^1.7.1",
