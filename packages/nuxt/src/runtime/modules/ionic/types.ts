@@ -2,11 +2,13 @@
 
 export interface IonicInterface {
   appName: string
+  defaultCss: boolean
   capacitorConfig: CapacitorConfig
 
 }
 export interface ResolvedIonicInterface {
   appName: string
+  defaultCss: boolean
   capacitorConfig: CapacitorConfig
 }
 

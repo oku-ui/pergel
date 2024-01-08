@@ -1,5 +1,5 @@
 import { existsSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { addServerImportsDir, createResolver, installModule } from '@nuxt/kit'
 import type { ModuleOptions } from '@nuxtjs/ionic'
 import { definePergelModule } from '../../core/definePergel'
@@ -45,6 +45,10 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     // env için
     generateModuleRuntimeConfig(nuxt, moduleOptions, {
     })
+
+    // TODO: add docs
+    if (options.defaultCss)
+      nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/css/ionic.css'))
 
     await installModule('@nuxtjs/ionic', {
       integrations: {
