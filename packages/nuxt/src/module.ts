@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { writeFileSync } from 'node:fs'
+import { existsSync, writeFileSync } from 'node:fs'
 import {
   addTemplate,
   createResolver,
@@ -28,9 +28,16 @@ export default defineNuxtModule<PergelOptions>({
     projects: {
 
     },
+    workspaceMode: false,
   },
   async setup(options, nuxt) {
     const _resolver = createResolver(import.meta.url)
+
+    if (!existsSync(join(nuxt.options.rootDir, 'pergel.config.ts'))) {
+      if (!options.workspaceMode)
+        logger.warn('pergel.config.ts not found. Please create it in your project root. See https://oku-ui.com/pergel/nuxt/installation for more details.')
+      return
+    }
 
     const { status } = await checkOptions(options)
     if (!status)

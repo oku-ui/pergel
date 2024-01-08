@@ -77,6 +77,8 @@ export interface PergelOptions {
    * @default false
    */
   debug?: true
+
+  workspaceMode?: false
 }
 
 export interface ResolvedPergelOptions {
