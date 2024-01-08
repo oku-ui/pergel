@@ -69,7 +69,8 @@
     "pathe": "^1.1.1",
     "sirv": "^2.0.4",
     "typescript": "^5.3.3",
-    "yaml": "^2.3.4"
+    "yaml": "^2.3.4",
+    "pergel": "latest"
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.484.0",
@@ -96,7 +97,6 @@
     "nuxt": "^3.9.0",
     "oslo": "^0.26.2",
     "p-timeout": "^6.1.2",
-    "pergel": "workspace:^",
     "vitest": "^1.1.1"
   },
   "publishConfig": {
