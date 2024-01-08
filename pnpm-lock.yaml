@@ -423,16 +423,16 @@ importers:
         specifier: ^6.10.3
         version: 6.10.3(rollup@4.9.4)
       '@oku-ui/label':
-        specifier: ^0.6.0
+        specifier: ^0.6.1
         version: 0.6.1(vue@3.4.5)
       '@oku-ui/primitives':
-        specifier: ^0.6.0
+        specifier: ^0.6.1
         version: 0.6.1(vue@3.4.5)
       '@oku-ui/slot':
-        specifier: ^0.6.0
+        specifier: ^0.6.1
         version: 0.6.1(vue@3.4.5)
       '@oku-ui/use-composable':
-        specifier: ^0.6.0
+        specifier: ^0.6.1
         version: 0.6.1(vue@3.4.5)
       '@pinia/nuxt':
         specifier: ^0.5.1
