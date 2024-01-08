@@ -11,8 +11,9 @@ import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { ResolvedUIOptions } from '../../modules/ui/types'
-import type { ComposeSpecification } from '../../../types/compose-spec-type'
+
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic'
+import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
@@ -80,6 +81,8 @@ export interface PergelOptions {
    * @default false
    */
   debug?: true
+
+  workspaceMode?: false
 }
 
 export interface ResolvedPergelOptions {

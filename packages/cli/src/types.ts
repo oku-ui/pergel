@@ -6,7 +6,6 @@ export interface Pergel {
 }
 
 export interface PergelConfig {
-
   dir?: {
     /**
      * The name of the project.
@@ -18,6 +17,12 @@ export interface PergelConfig {
      * @default 'pergel/templates'
      */
     template?: string
+
+    /**
+     * The name of the project.
+     * @default 'server'
+     */
+    server?: string
   }
   filePath?: {
 

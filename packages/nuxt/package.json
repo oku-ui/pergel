@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.5.0-beta.25",
+  "version": "0.5.0-beta.28",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -67,17 +67,17 @@
     "local-pkg": "^0.5.0",
     "minimatch": "^9.0.3",
     "pathe": "^1.1.1",
+    "pergel": "latest",
     "sirv": "^2.0.4",
     "typescript": "^5.3.3",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@aws-sdk/client-ses": "^3.484.0",
-    "@ionic/core":"^7.6.3",
-    "@nuxtjs/ionic": "^0.12.1",
     "@faker-js/faker": "^8.3.1",
     "@iconify-json/carbon": "^1.1.27",
     "@iconify-json/ph": "^1.1.9",
+    "@ionic/core": "^7.6.3",
     "@json2csv/node": "^7.0.4",
     "@lucia-auth/adapter-drizzle": "1.0.0-beta.4",
     "@lucia-auth/adapter-postgresql": "3.0.0-beta.8",
@@ -85,6 +85,7 @@
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.9.0",
     "@nuxt/test-utils": "^3.9.0",
+    "@nuxtjs/ionic": "^0.12.1",
     "@pergel/graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
     "@pergel/module-ui": "workspace:^",
@@ -98,7 +99,6 @@
     "nuxt": "^3.9.0",
     "oslo": "^0.26.2",
     "p-timeout": "^6.1.2",
-    "pergel": "workspace:^",
     "vitest": "^1.1.1"
   },
   "publishConfig": {
