@@ -2,6 +2,6 @@
   "name": "pergel-client",
   "private": true,
   "dependencies": {
-    "@oku-ui/tabs": "^0.6.0"
+    "@oku-ui/tabs": "^0.6.1"
   }
 }
