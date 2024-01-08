@@ -1,8 +1,10 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { addServerImportsDir, createResolver } from '@nuxt/kit'
+import { addServerImportsDir, createResolver, installModule } from '@nuxt/kit'
+import type { ModuleOptions } from '@nuxtjs/ionic'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { CapacitorConfig, IonicInterface, ResolvedIonicInterface } from './types'
 
 // TODO: Ionic dependencies eklenecek
@@ -15,7 +17,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     version: '0.0.1',
     dependencies: {
       '@nuxtjs/ionic': '^0.12.1',
-      '@ionic/cli': '7.2.0',
+      '@ionic/cli': '^7.2.0',
       '@ionic/core': '^7.6.3',
       '@capacitor/cli': '^5.6.0',
     },
@@ -27,10 +29,6 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       appName: 'My Capacitor App',
       webDir: 'www',
     },
-    nuxtConfig: {
-      modules: ['@nuxtjs/ionic'],
-      ssr: false,
-    },
   },
   async setup({ nuxt, moduleOptions, options }) {
     console.log('ionic test', options.appName)
@@ -40,26 +38,56 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       const config: CapacitorConfig = ${JSON.stringify(options.capacitorConfig)}
 
       export default config;`
-    const nuxtConfig = `
-      import { CapacitorConfig } from '@capacitor/cli';
-  
-        const config: CapacitorConfig = ${JSON.stringify(options.capacitorConfig)}
-  
-        export default config;`
+    // const nuxtConfig = `
+    // export default defineNuxtConfig({
+    //   ${JSON.stringify(options.nuxtConfig)}
+    // })`
     // env için
     generateModuleRuntimeConfig(nuxt, moduleOptions, {
     })
-    if (!existsSync(resolve(moduleOptions.moduleDir, 'nuxt.config.ts'))) {
-      writeFileSync(resolve(moduleOptions.moduleDir, 'nuxt.config.ts'), capacitorConfig, {
-        mode: 0o777,
-        encoding: 'utf8',
-      })
-    }
+
+    await installModule('@nuxtjs/ionic', {
+      integrations: {
+        //
+      },
+      css: {
+        //
+      },
+      config: {
+        //
+      },
+    } satisfies ModuleOptions)
+
     if (!existsSync(resolve(moduleOptions.moduleDir, 'capacitor.config.ts'))) {
       writeFileSync(resolve(moduleOptions.moduleDir, 'capacitor.config.ts'), capacitorConfig, {
         mode: 0o777,
         encoding: 'utf8',
       })
     }
+    //     ionic config set -g npmClient pnpm
+    // ionic integrations enable capacitor
+    // ionic capacitor add ios
+    // ionic capacitor add android
+
+    const { projectName, moduleName } = moduleOptions
+
+    generateProjectReadme({
+      data: ({ addCommentBlock }) => ({
+        ...addCommentBlock('Script Commands'),
+        scripts: {
+          'enable:capacitor': 'ionic config set -g npmClient pnpm & ionic integrations enable capacitor',
+          'create:ios': 'ionic capacitor add ios',
+          'create:android': 'ionic capacitor add android',
+        },
+        cli: {
+          'enable:capacitor': `pergel module -s=enable:capacitor -p=${projectName} -m=${moduleName}`,
+          'create:ios': `pergel module -s=create:ios -p=${projectName} -m=${moduleName}`,
+          'create:android': `pergel module -s=create:android -p=${projectName} -m=${moduleName}`,
+        },
+      }),
+      nuxt,
+      moduleName,
+      projectName,
+    })
   },
 })
