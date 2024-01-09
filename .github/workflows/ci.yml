@@ -40,12 +40,11 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install
         
+      - name: 🚀 Build (stub)
+        run: pnpm dev:prepare
 
       - name: 🚀 Build
         run: pnpm build
-
-      - name: 🚀 Build (stub)
-        run: pnpm dev:prepare
 
       - name: Typecheck
         run: pnpm typecheck
