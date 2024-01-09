@@ -1,4 +1,4 @@
-import { definePergel } from 'pergel'
+import { definePergel } from '../pergel'
 
 export default definePergel({
 
