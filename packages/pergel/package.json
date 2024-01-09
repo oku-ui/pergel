@@ -19,8 +19,7 @@
   "module": "./dist/index.mjs",
   "types": "./types.d.ts",
   "bin": {
-    "pergel": "bin/pergel.mjs",
-    "nuxt": "bin/nuxt.mjs"
+    "pergel": "bin/pergel.mjs"
   },
   "files": [
     "bin",
