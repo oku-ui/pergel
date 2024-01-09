@@ -16,7 +16,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     name: 'ionic',
     version: '0.0.1',
     dependencies: {
-      '@nuxtjs/ionic': '^0.12.1',
+      '@nuxtjs/ionic': '^0.13.0',
       '@ionic/cli': '^7.2.0',
       '@ionic/core': '^7.6.3',
       '@capacitor/cli': '^5.6.0',
@@ -50,6 +50,10 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     // TODO: add docs
     if (options.defaultCss)
       nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/css/ionic.css'))
+
+    nuxt.options.vite.optimizeDeps = nuxt.options.vite.optimizeDeps || {}
+    nuxt.options.vite.optimizeDeps.include = nuxt.options.vite.optimizeDeps.include || []
+    nuxt.options.vite.optimizeDeps.include.push('@ionic/vue')
 
     await installModule('@nuxtjs/ionic', {
       integrations: {
