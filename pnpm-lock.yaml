@@ -134,9 +134,9 @@ importers:
         specifier: ^3.4.3
         version: 3.4.3
     devDependencies:
-      pergel:
+      '@pergel/cli':
         specifier: workspace:^
-        version: link:../../pergel
+        version: link:..
 
   packages/graphql:
     dependencies:
