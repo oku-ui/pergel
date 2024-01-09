@@ -21,3 +21,4 @@ coverage
 lib
 dist
 .nx
+.eslintcache
