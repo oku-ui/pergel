@@ -34,12 +34,26 @@ jobs:
       - run: corepack enable
       - uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '20.x'
           cache: pnpm
+
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./.nx
+            ./.eslintcache
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+
 
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
         
+      - name: 👀 Lint
+        run: pnpm lint
+
       - name: 🚀 Build (stub)
         run: pnpm dev:prepare
 
@@ -49,8 +63,7 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: 👀 Lint
-        run: pnpm lint
+
 
       # - name: 🧪 Test
       #   run: pnpm test
