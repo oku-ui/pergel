@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    '@pergel/nuxt',
+    'pergel/nuxt',
   ],
   ssr: false,
   pergel: {

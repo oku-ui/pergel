@@ -1,11 +1,11 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import { addServerImportsDir, createResolver, installModule } from '@nuxt/kit'
+import { installModule } from '@nuxt/kit'
 import type { ModuleOptions } from '@nuxtjs/ionic'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../core/utils/generateYaml'
-import type { CapacitorConfig, IonicInterface, ResolvedIonicInterface } from './types'
+import type { IonicInterface, ResolvedIonicInterface } from './types'
 
 // TODO: Ionic dependencies eklenecek
 // TODO: Ionic config dosyaları oluşturma
