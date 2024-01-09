@@ -67,7 +67,9 @@
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
     "prepack": "tsup",
-    "release": "pnpm build && pnpm bumpp --commit='version(cli): release %s' --no-tag && pnpm publish"
+    "release:latest": "pnpm build && pnpm bumpp --commit='version(cli): release %s' --no-tag && pnpm publish",
+    "release:beta": "pnpm release --tag beta",
+    "release:alpha": "pnpm release --tag alpha"
   },
   "dependencies": {
     "@antfu/ni": "^0.21.12",

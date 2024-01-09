@@ -31,7 +31,10 @@
     "types.d.ts"
   ],
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "release:latest": "pnpm prepack && pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish",
+    "release:beta": "pnpm release --tag beta",
+    "release:alpha": "pnpm release --tag alpha"
   },
   "dependencies": {
     "@pergel/cli": "latest",
