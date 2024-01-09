@@ -1,6 +1,7 @@
-import { defineCommand, runMain } from 'citty'
+import { runMain as _runMain, defineCommand } from 'citty'
 import packageJson from '../package.json'
 
+export { definePergel } from './core'
 const main = defineCommand({
   meta: {
     name: 'Pergel',
@@ -27,4 +28,4 @@ const main = defineCommand({
   },
 })
 
-runMain(main)
+export const runMain = () => _runMain(main)

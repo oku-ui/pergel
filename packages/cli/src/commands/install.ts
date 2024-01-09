@@ -26,6 +26,11 @@ export default defineCommand({
         defaultConfig: {
           src: 'pergel',
         },
+        rcFile: false,
+        jitiOptions: {
+          interopDefault: true,
+          esmResolve: true,
+        },
       })
 
       if (!file.config) {

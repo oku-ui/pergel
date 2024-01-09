@@ -1,2 +1,5 @@
 #!/usr/bin/env node
-import '@pergel/cli'
+'use strict'
+import { runMain } from '../dist/index.js'
+
+runMain()

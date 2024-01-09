@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-import '@pergel/cli'
+import '@pergel/cli/cli'
