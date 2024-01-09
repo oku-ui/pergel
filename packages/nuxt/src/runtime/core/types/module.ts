@@ -12,7 +12,7 @@ import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { ResolvedUIOptions } from '../../modules/ui/types'
 
-import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic'
+import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
