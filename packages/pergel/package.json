@@ -1,0 +1,42 @@
+{
+  "name": "pergel",
+  "type": "module",
+  "version": "0.4.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./nuxt": {
+      "types": "./nuxt.d.ts",
+      "import": "./nuxt.mjs"
+    }
+  },
+  "module": "./dist/index.mjs",
+  "types": "./types.d.ts",
+  "bin": {
+    "pergel": "bin/pergel.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "nitro.*",
+    "nuxt.*",
+    "package.json",
+    "types.d.ts"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "release:latest": "pnpm prepack && pnpm bumpp --commit='version(pergel): release %s' --no-tag && pnpm publish",
+    "release:beta": "pnpm release --tag beta",
+    "release:alpha": "pnpm release --tag alpha"
+  },
+  "dependencies": {
+    "@pergel/cli": "latest",
+    "@pergel/nuxt": "latest"
+  }
+}

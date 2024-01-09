@@ -18,6 +18,8 @@ import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeYaml } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 
+export type { PergelOptions }
+
 export default defineNuxtModule<PergelOptions>({
   meta: {
     name: DEVTOOLS_MODULE_NAME,
