@@ -40,6 +40,10 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install
         
+
+      - name: 🚀 Build
+        run: pnpm build
+
       - name: 🚀 Build (stub)
         run: pnpm dev:prepare
 
@@ -48,9 +52,6 @@ jobs:
 
       - name: 👀 Lint
         run: pnpm lint
-
-      - name: 🚀 Build
-        run: pnpm build
 
       # - name: 🧪 Test
       #   run: pnpm test
