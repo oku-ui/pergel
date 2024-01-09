@@ -13,7 +13,8 @@
     "node": "^20.10.0 || >=20.10.0"
   },
   "scripts": {
-    "build": "pnpm --filter './packages/**' build",
+    "build": "pnpm nx run-many -t build",
+    "build:skip": "pnpm nx run-many -t build --skip-nx-cache",
     "dev:build": "pnpm --filter './packages/**' dev:build",
     "dev:prepare": "pnpm --filter './packages/**' dev:prepare",
     "themes:prepare": "pnpm --filter './themes/**' dev:prepare",
@@ -43,6 +44,7 @@
     "eslint-plugin-tailwindcss": "^3.13.1",
     "json-editor-vue": "^0.11.2",
     "lint-staged": "^15.2.0",
+    "nx": "^17.2.8",
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.3.3",
     "vite": "5.0.11",
