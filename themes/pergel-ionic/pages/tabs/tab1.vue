@@ -1,7 +1,9 @@
+<script setup lang="ts"></script>
+
 <template>
-  <IonPage>
-    <IonContent>
+  <ion-page>
+    <ion-content>
       Welcome
-    </IonContent>
-  </IonPage>
+    </ion-content>
+  </ion-page>
 </template>

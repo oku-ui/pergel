@@ -29,6 +29,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       appName: 'My Capacitor App',
       webDir: 'www',
     },
+    defaultCss: false,
   },
   async setup({ nuxt, moduleOptions, options }) {
     console.log('ionic test', options.appName)

@@ -4,10 +4,13 @@ export default defineNuxtConfig({
   modules: [
     '@pergel/nuxt',
   ],
+  ssr: false,
   pergel: {
     projects: {
       changeName: {
-        ionic: true,
+        ionic: {
+          defaultCss: true,
+        },
       },
     },
   },
