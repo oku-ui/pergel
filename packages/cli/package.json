@@ -45,6 +45,12 @@
     "*": {
       "*": [
         "./dist/*"
+      ],
+      "./core": [
+        "./dist/core.d.ts"
+      ],
+      "./types": [
+        "./dist/types.d.ts"
       ]
     }
   },
