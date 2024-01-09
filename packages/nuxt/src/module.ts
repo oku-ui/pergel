@@ -35,7 +35,7 @@ export default defineNuxtModule<PergelOptions>({
 
     if (!existsSync(join(nuxt.options.rootDir, 'pergel.config.ts'))) {
       if (!options.workspaceMode)
-        logger.warn('pergel.config.ts not found. Please create it in your project root. See https://oku-ui.com/pergel/nuxt/installation for more details.')
+        logger.error('pergel.config.ts not found. If workspace or layer is used please workspaceMode: true nuxt.config.ts pergel options change. And pergel init command run. Please create it in your project root or layer root. Workspace structures need to have only 1. See https://oku-ui.com/pergel/nuxt/installation for more details.')
       return
     }
 
