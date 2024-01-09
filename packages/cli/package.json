@@ -36,30 +36,21 @@
     },
     "./types": {
       "types": "./dist/types.d.ts"
+    },
+    "./nuxt": {
+      "types": "./nuxt.d.ts",
+      "import": "./nuxt.js"
     }
   },
-  "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*"
-      ],
-      "./core": [
-        "./dist/core.d.ts"
-      ],
-      "./types": [
-        "./dist/types.d.ts"
-      ]
-    }
-  },
+  "types": "./types.d.ts",
   "bin": {
     "pergel": "bin/pergel.mjs"
   },
   "files": [
     "bin",
     "dist",
+    "nuxt.*",
     "os",
     "package.json"
   ],
@@ -78,6 +69,7 @@
   "dependencies": {
     "@antfu/ni": "^0.21.12",
     "@clack/prompts": "^0.7.0",
+    "@pergel/nuxt": "latest",
     "c12": "^1.6.1",
     "citty": "^0.1.5",
     "consola": "^3.2.3",
