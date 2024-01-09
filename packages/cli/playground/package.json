@@ -17,6 +17,6 @@
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "pergel": "workspace:^"
+    "@pergel/cli": "workspace:^"
   }
 }

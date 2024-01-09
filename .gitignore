@@ -20,3 +20,5 @@ coverage
 # Pergel
 lib
 dist
+.nx
+.eslintcache
