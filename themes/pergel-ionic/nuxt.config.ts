@@ -3,13 +3,20 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     'pergel/nuxt',
+    '@nuxtjs/tailwindcss',
   ],
   ssr: false,
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   pergel: {
     projects: {
       changeName: {
         ionic: {
-          defaultCss: true,
+          themeCss: true,
         },
       },
     },

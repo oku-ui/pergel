@@ -30,6 +30,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       webDir: 'www',
     },
     defaultCss: false,
+    themeCss: false,
   },
   async setup({ nuxt, moduleOptions, options }) {
     console.log('ionic test', options.appName)
@@ -50,6 +51,11 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     // TODO: add docs
     if (options.defaultCss)
       nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/css/ionic.css'))
+
+    if (options.themeCss) {
+      nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/themes/dark.css'))
+      nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/themes/default.css'))
+    }
 
     nuxt.options.vite.optimizeDeps = nuxt.options.vite.optimizeDeps || {}
     nuxt.options.vite.optimizeDeps.include = nuxt.options.vite.optimizeDeps.include || []

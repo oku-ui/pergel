@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  plugins: [
+    './plugins/settings',
+  ],
   pergel: {
     pergelDir: 'pergel',
     debug: true,

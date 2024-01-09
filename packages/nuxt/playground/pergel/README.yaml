@@ -15,7 +15,7 @@ test:
     env:
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: "@nuxtjs/ionic@^0.12.1, @ionic/cli@^7.2.0, @ionic/core@^7.6.3, @capacitor/cli@^5.6.0"
+      dependencies: "@nuxtjs/ionic@^0.13.0, @ionic/cli@^7.2.0, @ionic/core@^7.6.3, @capacitor/cli@^5.6.0"
       devDependencies: ""
   ui:
     # UI Download Template
