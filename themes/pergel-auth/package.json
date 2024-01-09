@@ -17,8 +17,8 @@
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "@pergel/nuxt": "workspace:*",
     "nuxt": "^3.9.0",
+    "pergel": "workspace:*",
     "pg": "^8.11.0",
     "vue": "^3.4.3",
     "vue-router": "^4.2.5"

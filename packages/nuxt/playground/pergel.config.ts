@@ -1,4 +1,4 @@
-import { definePergel } from 'pergel/core'
+import { definePergel } from 'pergel'
 
 export default definePergel({
 

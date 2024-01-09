@@ -1,7 +1,7 @@
 {
-  "name": "pergel",
+  "name": "@pergel/cli",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "packageManager": "pnpm@8.10.0",
   "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
   "author": "Mehmet @productdevbook",
@@ -38,7 +38,6 @@
       "types": "./dist/types.d.ts"
     }
   },
-  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typesVersions": {
@@ -54,6 +53,7 @@
   "files": [
     "bin",
     "dist",
+    "nuxt.*",
     "os",
     "package.json"
   ],
@@ -67,7 +67,9 @@
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
     "prepack": "tsup",
-    "release": "pnpm build && pnpm bumpp --commit='version(cli): release %s' --no-tag && pnpm publish"
+    "release:latest": "pnpm build && pnpm bumpp --commit='version(cli): release %s' --no-tag && pnpm publish",
+    "release:beta": "pnpm release --tag beta",
+    "release:alpha": "pnpm release --tag alpha"
   },
   "dependencies": {
     "@antfu/ni": "^0.21.12",

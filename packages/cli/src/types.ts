@@ -172,3 +172,7 @@ export interface DefineDownloadOptions {
   }[]
   branch?: string
 }
+
+export interface DefinePergel {
+  (config: PergelConfig): PergelConfig
+}

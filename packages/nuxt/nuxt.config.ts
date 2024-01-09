@@ -1,7 +1,9 @@
 // nuxt-module-build prepare fix type
 export default defineNuxtConfig({
   modules: ['src/module'],
-  devtools: true,
+  devtools: {
+    enabled: true,
+  },
   pergel: {
     pergelDir: 'pergel',
     debug: true,

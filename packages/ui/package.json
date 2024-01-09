@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm build && pnpm bumpp --commit='version(module-ui): release %s' --no-tag && pnpm publish"
+    "release": "pnpm bumpp --commit='version(module-ui): release %s' --no-tag && pnpm publish"
   },
   "dependencies": {
     "@egoist/tailwindcss-icons": "^1.7.1",
@@ -29,10 +29,10 @@
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/i18n": "^8.0.0",
     "@nuxtjs/tailwindcss": "^6.10.3",
-    "@oku-ui/label": "^0.6.0",
-    "@oku-ui/primitives": "^0.6.0",
-    "@oku-ui/slot": "^0.6.0",
-    "@oku-ui/use-composable": "^0.6.0",
+    "@oku-ui/label": "^0.6.1",
+    "@oku-ui/primitives": "^0.6.1",
+    "@oku-ui/slot": "^0.6.1",
+    "@oku-ui/use-composable": "^0.6.1",
     "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",

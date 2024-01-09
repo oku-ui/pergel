@@ -1,0 +1,15 @@
+name: pergel
+version: 0.0.0
+services:
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - type: volume
+        source: pergel-postgres
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+volumes:
+  pergel-postgres: {}
