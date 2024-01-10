@@ -30,14 +30,14 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs"
     },
     "./nuxt": {
       "types": "./nuxt.d.ts",
       "import": "./nuxt.mjs"
     }
   },
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "bin": {
     "pergel": "bin/pergel.mjs"
