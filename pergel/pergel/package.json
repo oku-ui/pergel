@@ -27,8 +27,18 @@
     "nitro",
     "vue"
   ],
-  "module": "./dist/index.mjs",
-  "types": "./types.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./nuxt": {
+      "types": "./nuxt.d.ts",
+      "import": "./nuxt.mjs"
+    }
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "pergel": "bin/pergel.mjs"
   },
