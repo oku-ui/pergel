@@ -1,0 +1,9 @@
+{
+  "name": "pergel-core",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

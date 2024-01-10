@@ -13,7 +13,7 @@ We're so excited you're interested in helping with Oku! We are happy to help you
 
 
 ### Prerequisites
--   [Min Nodejs 20] & [PNPM >= 8.8.0](https://pnpm.io) installed
+-   [Min Nodejs 20] & [PNPM >= 8.13.0](https://pnpm.io) installed
 -   IDE: [VSCode](https://code.visualstudio.com/download)(recommended) or equivalent IDE
 
 Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to install the required version.
@@ -25,12 +25,14 @@ Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to i
 ### Project Setup
 
 1. Fork the [oku-ui](https://github.com/oku-ui/pergel) repository
-2. Install the project dependencies
+2. Install the project dependencies.
    `pnpm install`
+3. If you are going to deal with packages in `./pergel`, you should install pnpm there too. It is different from root. 
+   `cd ./pergel && pnpm install`
 
 ### Packages
 
-- [cli](./packages/cli)
+- [pergel](./pergel) - CLI and Pergel core packages
 - [nuxt module](./packages/nuxt)
 
 ## Pull Request
