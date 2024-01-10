@@ -4,6 +4,10 @@
   "license": "ISC",
   "keywords": [],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "pnpm typecheck"
   }
 }
