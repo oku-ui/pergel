@@ -50,11 +50,16 @@
 
     },
     "account": {
-      "title": "账户设置",
+      "title": "帐户设置",
       "profile": "个人资料",
-      "security": "安全",
+      "security": "安全性",
       "privacy": "隐私",
-      "change_password": "修改密码"
+      "change_password": "更改密码",
+      "email_address": "电子邮件地址",
+      "verify_email": "验证电子邮件",
+      "where_youre_signed": "您登录的位置",
+      "see_your_active_sessions": "查看您的活动会话，并在需要时退出",
+      "personal_info": "个人信息"
     },
     "advanced": {
       "title": "高级设置",
@@ -66,6 +71,11 @@
       "title": "外观",
       "language": "语言",
       "dark_mode": "深色模式"
+    },
+    "personal": {
+      "firstName": "名字",
+      "lastName": "姓",
+      "bio": "简介"
     }
   }
 

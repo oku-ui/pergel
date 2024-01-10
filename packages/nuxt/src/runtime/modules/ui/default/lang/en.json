@@ -54,7 +54,12 @@
       "profile": "Profile",
       "security": "Security",
       "privacy": "Privacy",
-      "change_password": "Change Password"
+      "change_password": "Change Password",
+      "email_address": "Email address",
+      "verify_email": "Verify email",
+      "where_youre_signed": "Where you're signed in",
+      "see_your_active_sessions": "See your active sessions, and sign out if you'd like",
+      "personal_info": "Personal Information"
     },
     "advanced": {
       "title": "Advanced Settings",
@@ -66,6 +71,11 @@
       "title": "Appearance",
       "language": "Language",
       "dark_mode": "Dark Mode"
+    },
+    "personal": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "bio": "Biography"
     }
   }
 }

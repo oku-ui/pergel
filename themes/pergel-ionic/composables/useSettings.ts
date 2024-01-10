@@ -1,7 +1,7 @@
 // composables/useIonicSettings.js
 
 import { ref } from 'vue'
-import type { LangType } from '#types'
+import type { LangType, ThemeType } from '#types'
 
 export function useSettings() {
   const language = ref<LangType>('en')

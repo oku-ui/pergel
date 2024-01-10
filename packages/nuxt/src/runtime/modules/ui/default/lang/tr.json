@@ -54,7 +54,12 @@
       "profile": "Profil",
       "security": "Güvenlik",
       "privacy": "Gizlilik",
-      "change_password": "Şifre Değiştir"
+      "change_password": "Şifre Değiştirme",
+      "email_address": "E-posta adresi",
+      "verify_email": "E-posta Doğrulama",
+      "where_youre_signed": "Giriş yaptığınız yerler",
+      "see_your_active_sessions": "Etkin oturumlarınızı görüntüleyin ve isterseniz oturum kapatın",
+      "personal_info": "Kişisel Bilgiler"
     },
     "advanced": {
       "title": "Gelişmiş Ayarlar",
@@ -66,6 +71,11 @@
       "title": "Görünüm",
       "language": "Dil",
       "dark_mode": "Karanlık Mod"
+    },
+    "personal": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "bio": "Biyografi"
     }
   }
 

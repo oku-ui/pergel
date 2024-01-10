@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='75' height='100'>
+<rect width='75' height='100' fill='slategray'/>
+<circle cx='75' cy='50' r='28.3%' stroke-width='12' stroke='#9aa6b2' fill='none'/>
+<circle cx='0' r='28.3%' stroke-width='12' stroke='#9aa6b2' fill='none'/>
+<circle cy='100' r='28.3%' stroke-width='12' stroke='#9aa6b2' fill='none'/>
+</svg>

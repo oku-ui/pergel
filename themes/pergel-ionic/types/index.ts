@@ -14,3 +14,13 @@ export interface SettingsItem {
   to: string
   subItems?: SettingsItem[]
 }
+
+export interface User {
+  username: string
+  firstName: string
+  lastName: string
+  bio: string
+  fullName: string
+  email: string
+  avatar: string
+}

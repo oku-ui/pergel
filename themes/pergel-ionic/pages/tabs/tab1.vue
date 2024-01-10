@@ -1,9 +1,24 @@
 <script setup lang="ts">
+import { faker } from '@faker-js/faker'
 import type { SettingsItem } from '#types'
 
 const { t } = useI18n()
+const { user, setUser } = useMe()
+
 const router = useRouter()
 const searchText = ref('')
+
+onMounted(() => {
+  setUser({
+    email: faker.internet.email(),
+    fullName: faker.person.fullName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    bio: faker.person.bio(),
+    username: faker.internet.userName(),
+    avatar: faker.internet.avatar(),
+  })
+})
 
 const settings = ref<SettingsItem[]>([
   { order: 0, name: t('settings.menu.account'), icon: 'i-ph-user', to: '/settings/account', subItems: [
@@ -47,6 +62,7 @@ function itemClick(setting: SettingsItem) {
         </ion-title>
       </ion-toolbar>
     </ion-header>
+    <the-header size="xs" :full-name="user?.fullName" :avatar="user?.avatar"></the-header>
     <div class="relative mt-2 flex items-center">
       <ion-searchbar v-model="searchText" :debounce="500" show-cancel-button="focus" cancel-button-text="Cancel" placeholder="Search" class="m-2" @ion-input="handleSearch($event)"></ion-searchbar>
     </div>
