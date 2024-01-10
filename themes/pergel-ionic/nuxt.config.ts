@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    'pergel/nuxt',
+    '../../packages/nuxt/src/module',
     '@nuxtjs/tailwindcss',
   ],
-  ssr: false,
+  // ssr: false,
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -16,7 +16,14 @@ export default defineNuxtConfig({
     projects: {
       changeName: {
         ionic: {
+          appName: 'MyApp',
           themeCss: true,
+          defaultCss: false,
+        },
+        ui: {
+          packages: {
+            i18n: true,
+          },
         },
       },
     },

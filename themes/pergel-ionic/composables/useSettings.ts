@@ -1,9 +1,8 @@
 // composables/useIonicSettings.js
 
 import { ref } from 'vue'
+import type { LangType } from '#types'
 
-export type ThemeType = 'default' | 'dark'
-export type LangType = 'en' | 'tr'
 export function useSettings() {
   const language = ref<LangType>('en')
   const pushNotifications = ref(false)

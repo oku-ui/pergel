@@ -35,6 +35,36 @@ export default defineNuxtModule<PergelOptions>({
   async setup(options, nuxt) {
     const _resolver = createResolver(import.meta.url)
 
+    // @productdevbook review
+    // nuxt.hook('i18n:registerModule', (register) => {
+    //   register({
+    //     // langDir path needs to be resolved
+    //     langDir: _resolver.resolve(join('runtime', 'modules', 'ionic', 'default', 'lang')),
+    //     locales: [
+    //       {
+    //         code: 'en',
+    //         file: 'en.json',
+    //         name: 'English',
+    //       },
+    //       {
+    //         code: 'tr',
+    //         file: 'tr.json',
+    //         name: 'Türkçe',
+    //       },
+    //       {
+    //         code: 'fr',
+    //         file: 'fr.json',
+    //         name: 'Français',
+    //       },
+    //       {
+    //         code: 'zh',
+    //         file: 'zh.json',
+    //         name: '中文',
+    //       },
+    //     ],
+    //   })
+    // })
+
     if (!existsSync(join(nuxt.options.rootDir, 'pergel.config.ts'))) {
       if (!options.workspaceMode)
         logger.error('pergel.config.ts not found. If workspace or layer is used please workspaceMode: true nuxt.config.ts pergel options change. And pergel init command run. Please create it in your project root or layer root. Workspace structures need to have only 1. See https://oku-ui.com/pergel/nuxt/installation for more details.')

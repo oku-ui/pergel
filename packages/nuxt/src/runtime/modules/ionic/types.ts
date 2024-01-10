@@ -4,7 +4,7 @@ export interface IonicInterface {
   appName: string
   defaultCss: boolean
   themeCss: boolean
-  capacitorConfig: CapacitorConfig
+  capacitorConfig?: CapacitorConfig
 
 }
 export interface ResolvedIonicInterface {
