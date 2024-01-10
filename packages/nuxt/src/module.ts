@@ -8,6 +8,7 @@ import {
 } from '@nuxt/kit'
 import YAML from 'yaml'
 
+import { resolve } from 'pathe'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
@@ -36,7 +37,6 @@ export default defineNuxtModule<PergelOptions>({
     if (!existsSync(join(nuxt.options.rootDir, 'pergel.config.ts'))) {
       if (!options.workspaceMode)
         logger.error('pergel.config.ts not found. If workspace or layer is used please workspaceMode: true nuxt.config.ts pergel options change. And pergel init command run. Please create it in your project root or layer root. Workspace structures need to have only 1. See https://oku-ui.com/pergel/nuxt/installation for more details.')
-      return
     }
 
     const { status } = await checkOptions(options)
