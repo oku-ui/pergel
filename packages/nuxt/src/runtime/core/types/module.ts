@@ -78,7 +78,7 @@ export interface PergelOptions {
    */
   debug?: true
 
-  workspaceMode?: false
+  workspaceMode?: boolean
 }
 
 export interface ResolvedPergelOptions {
@@ -213,6 +213,8 @@ export interface ResolvedPergelOptions {
   composeTemplates?: {
     [projectName: string]: ComposeSpecification
   }
+
+  workspaceMode: boolean
 }
 
 export interface NuxtPergel extends Nuxt {
