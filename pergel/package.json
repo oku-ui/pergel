@@ -9,5 +9,11 @@
     "test:coverage": "vitest --coverage",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "check": "pnpm typecheck"
+  },
+  "dependencies": {
+    "bumpp": "^9.2.1"
+  },
+  "devDependencies": {
+    "unbuild": "^2.0.0"
   }
 }

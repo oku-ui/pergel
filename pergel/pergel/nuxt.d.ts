@@ -1,1 +1,1 @@
-export * from '@pergel/nuxt'
+export type { default } from '@pergel/nuxt'
