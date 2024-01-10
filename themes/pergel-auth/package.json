@@ -10,16 +10,20 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
-    "@pergel/module-ui": "^0.0.5",
+    "@lucia-auth/adapter-drizzle": "1.0.0-beta.4",
+    "@lucia-auth/adapter-postgresql": "3.0.0-beta.8",
+    "@pergel/module-ui": "workspace:^",
     "dotenv": "^16.3.1",
-    "drizzle-kit": "^0.20.6",
-    "drizzle-orm": "^0.29.1",
+    "drizzle-kit": "^0.20.10",
+    "drizzle-orm": "^0.29.3",
+    "lucia": "3.0.0-beta.13",
+    "oslo": "^0.25.1",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
     "nuxt": "^3.9.0",
-    "pergel": "workspace:*",
-    "pg": "^8.11.0",
+    "pergel": "latest",
+    "pg": "^8.11.3",
     "vue": "^3.4.3",
     "vue-router": "^4.2.5"
   }

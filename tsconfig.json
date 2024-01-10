@@ -43,6 +43,7 @@
   "exclude": [
     "**/dist/**",
     "**/.nuxt/**",
+    "pergel",
     "packages/nuxt/src/runtime/**",
     "packages/nuxt/lib",
     "**/nuxt.d.ts",
