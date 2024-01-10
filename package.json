@@ -14,7 +14,7 @@
   },
   "scripts": {
     "install": "cd pergel && pnpm install",
-    "build": "build:pergel && pnpm nx run-many -t build",
+    "build": "pnpm build:pergel && pnpm nx run-many -t build",
     "build:pergel": "cd pergel && pnpm --filter './**' build",
     "build:skip": "pnpm nx run-many -t build --skip-nx-cache",
     "dev:build": "pnpm --filter './packages/**' dev:build",
