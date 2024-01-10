@@ -36,11 +36,18 @@
   "and": "and",
   "settings": {
     "title": "Settings",
+    "menu": {
+      "account": "Account",
+      "notifications": "Notifications",
+      "appearance": "Appearance",
+      "privacy": "Privacy & Security",
+      "help": "Help and Support",
+      "about": "About"
+    },
     "general": {
       "title": "General Settings",
-      "language": "Language",
-      "notifications": "Notifications",
-      "dark_mode": "Dark Mode"
+      "notifications": "Notifications"
+
     },
     "account": {
       "title": "Account Settings",
@@ -54,6 +61,11 @@
       "customization": "Customization",
       "data_usage": "Data Usage",
       "sync_options": "Sync Options"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "language": "Language",
+      "dark_mode": "Dark Mode"
     }
   }
 }

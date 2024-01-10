@@ -36,11 +36,18 @@
   "and": "ve",
   "settings": {
     "title": "Ayarlar",
+    "menu": {
+      "account": "Hesap",
+      "notifications": "Bildirimler",
+      "appearance": "Görünüm",
+      "privacy": "Gizlilik ve Güvenlik",
+      "help": "Yardım ve Destek",
+      "about": "Hakkında"
+    },
     "general": {
       "title": "Genel Ayarlar",
-      "language": "Dil",
-      "notifications": "Bildirimler",
-      "dark_mode": "Karanlık Mod"
+      "notifications": "Bildirimler"
+
     },
     "account": {
       "title": "Hesap Ayarları",
@@ -51,9 +58,15 @@
     },
     "advanced": {
       "title": "Gelişmiş Ayarlar",
-      "customization": "Özelleştirme",
+      "customization": "Kişiselleştirme",
       "data_usage": "Veri Kullanımı",
       "sync_options": "Senkronizasyon Seçenekleri"
+    },
+    "appearance": {
+      "title": "Görünüm",
+      "language": "Dil",
+      "dark_mode": "Karanlık Mod"
     }
   }
+
 }

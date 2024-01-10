@@ -36,24 +36,37 @@
   "and": "和",
   "settings": {
     "title": "设置",
+    "menu": {
+      "account": "账户",
+      "notifications": "通知",
+      "appearance": "外观",
+      "privacy": "隐私与安全",
+      "help": "帮助与支持",
+      "about": "关于"
+    },
     "general": {
       "title": "常规设置",
-      "language": "语言",
-      "notifications": "通知",
-      "dark_mode": "暗模式"
+      "notifications": "通知"
+
     },
     "account": {
-      "title": "帐户设置",
+      "title": "账户设置",
       "profile": "个人资料",
-      "security": "安全性",
+      "security": "安全",
       "privacy": "隐私",
-      "change_password": "更改密码"
+      "change_password": "修改密码"
     },
     "advanced": {
       "title": "高级设置",
-      "customization": "定制",
+      "customization": "自定义",
       "data_usage": "数据使用",
       "sync_options": "同步选项"
+    },
+    "appearance": {
+      "title": "外观",
+      "language": "语言",
+      "dark_mode": "深色模式"
     }
   }
+
 }

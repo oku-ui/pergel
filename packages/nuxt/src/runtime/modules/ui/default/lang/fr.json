@@ -36,24 +36,36 @@
   "and": "et",
   "settings": {
     "title": "Paramètres",
-    "general": {
-      "title": "Paramètres généraux",
-      "language": "Langue",
+    "menu": {
+      "account": "Compte",
       "notifications": "Notifications",
-      "dark_mode": "Mode sombre"
+      "appearance": "Apparence",
+      "privacy": "Confidentialité et Sécurité",
+      "help": "Aide et Support",
+      "about": "À propos"
+    },
+    "general": {
+      "title": "Paramètres Généraux",
+      "notifications": "Notifications"
     },
     "account": {
-      "title": "Paramètres du compte",
+      "title": "Paramètres du Compte",
       "profile": "Profil",
       "security": "Sécurité",
       "privacy": "Confidentialité",
-      "change_password": "Changer le mot de passe"
+      "change_password": "Changer le Mot de Passe"
     },
     "advanced": {
-      "title": "Paramètres avancés",
+      "title": "Paramètres Avancés",
       "customization": "Personnalisation",
-      "data_usage": "Utilisation des données",
-      "sync_options": "Options de synchronisation"
+      "data_usage": "Utilisation des Données",
+      "sync_options": "Options de Synchronisation"
+    },
+    "appearance": {
+      "title": "Apparence",
+      "language": "Langue",
+      "dark_mode": "Mode Sombre"
     }
   }
+
 }

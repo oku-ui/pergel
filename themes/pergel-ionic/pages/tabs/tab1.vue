@@ -1,66 +1,72 @@
 <script setup lang="ts">
-import type { LangType, LocaleObject } from '#types'
+import type { SettingsItem } from '#types'
 
-const { themeColor, setThemeColor, setLanguage } = useSettings()
-const { locale, locales, t, setLocale } = useI18n()
+const { t } = useI18n()
+const router = useRouter()
+const searchText = ref('')
 
-// const switchLocalePath = useSwitchLocalePath()
+const settings = ref<SettingsItem[]>([
+  { order: 0, name: t('settings.menu.account'), icon: 'i-ph-user', to: '/settings/account', subItems: [
 
-const availableLocales = computed(() => {
-  return (locales.value as LocaleObject[])
-})
+  ] },
+  { order: 1, name: t('settings.menu.notifications'), icon: 'i-ph-bell', to: '/settings/notifications' },
+  { order: 2, name: t('settings.menu.appearance'), icon: 'i-ph-eye', to: '/settings/appearance', subItems: [
+    { order: 0, name: t('settings.appearance.dark_mode'), icon: 'i-ph-moon-light', to: '/settings/appearance' },
+    { order: 1, name: t('settings.appearance.language'), icon: 'i-ph-translate', to: '/settings/account' },
+  ] },
+  { order: 3, name: t('settings.menu.privacy'), icon: 'i-ph-lock-simple', to: '/settings/privacy' },
+  { order: 4, name: t('settings.menu.help'), icon: 'i-ph-question', to: '/settings/help' },
+  { order: 5, name: t('settings.menu.about'), icon: 'i-ph-headphones', to: '/settings/about' },
+])
 
-function toggleDarkMode() {
-  document.body.classList.toggle('dark')
+const settingsResults = ref<SettingsItem[]>(settings.value)
 
-  if (themeColor.value === 'default')
-    setThemeColor('dark')
-  else
-    setThemeColor('default')
-
-  console.log('toggled:theme', themeColor.value)
+function handleSearch(event: any) {
+  const query = event.target.value.toLowerCase()
+  settingsResults.value = settings.value.filter(d => d.name.toLowerCase().includes(query) || (d.subItems?.filter(f => f.name.toLowerCase().includes(query)) || []).length > 0)
 }
-function handleLangChange(ev: any) {
-  console.log('Current value:', JSON.stringify(ev.detail.value))
-
-  // switchLocalePath(JSON.stringify(ev.detail.value))
-  setLocale(JSON.stringify(ev.detail.value))
-  setLanguage(JSON.stringify(ev.detail.value) as LangType)
+function itemClick(setting: SettingsItem) {
+  router.push(setting.to)
 }
 </script>
 
 <template>
   <ion-header :translucent="true">
     <ion-toolbar>
-      <ion-title> {{ t("settings.title") }}</ion-title>
+      <ion-title class="justify-center text-center">
+        {{ t("settings.title") }}
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content :fullscreen="true" color="light">
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title size="large">
+        <ion-title size="large" class="justify-center text-center">
           {{ t("settings.title") }}
         </ion-title>
       </ion-toolbar>
     </ion-header>
-
-    <ion-list :inset="true" lines="full">
-      <ion-item>
-        <!-- <div class="i-ph-moon-light h-10 w-10 text-white"></div> -->
-        <ion-toggle @ion-change="toggleDarkMode">
-          {{ t("settings.general.dark_mode") }}
-        </ion-toggle>
-      </ion-item>
-      <ion-item>
-        <ion-select label="Language" :placeholder="locale" @ion-change="handleLangChange">
-          <ion-select-option v-for="lang in availableLocales" :key="lang.code" :value="lang.code">
-            {{
-              lang.name
-            }}
-          </ion-select-option>
-        </ion-select>
+    <div class="relative mt-2 flex items-center">
+      <ion-searchbar v-model="searchText" :debounce="500" show-cancel-button="focus" cancel-button-text="Cancel" placeholder="Search" class="m-2" @ion-input="handleSearch($event)"></ion-searchbar>
+    </div>
+    <ion-list v-if="searchText.length === 0" :inset="true" lines="inset">
+      <ion-item v-for="setting in settingsResults" :key="setting.order" class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="itemClick(setting)">
+        <div slot="start" aria-hidden="true" :class="setting.icon" class="mr-3"></div>
+        {{ setting.name }}
       </ion-item>
     </ion-list>
+    <ion-item-group v-for="setting in settingsResults" v-else :key="setting.order" :button="true" class="justify-center font-semibold leading-6 text-gray-500 dark:text-white">
+      <ion-item-divider>
+        <ion-label>
+          {{ setting.name }}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item v-for="subItem in setting.subItems" :key="subItem.order" class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="itemClick(setting)">
+        <div slot="start" aria-hidden="true" :class="subItem.icon" class="mr-3"></div>
+        {{ subItem.name }}
+      </ion-item>
+    </ion-item-group>
   </ion-content>
 </template>
