@@ -1,11 +1,32 @@
 {
   "name": "pergel",
   "type": "module",
-  "version": "0.5.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
+  "version": "0.5.3",
+  "packageManager": "pnpm@8.10.0",
+  "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
+  "author": "Mehmet @productdevbook",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/productdevbook",
+  "homepage": "https://github.com/oku-ui/pergel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oku-ui/pergel.git"
+  },
+  "bugs": "https://github.com/oku-ui/pergel/issues",
+  "keywords": [
+    "nuxt",
+    "fullstack",
+    "full-stack",
+    "nuxt3",
+    "nuxt.js",
+    "linux",
+    "toolkit",
+    "cli",
+    "macos",
+    "starter",
+    "nitro",
+    "vue"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -17,7 +38,7 @@
     }
   },
   "module": "./dist/index.mjs",
-  "types": "./types.d.ts",
+  "types": "./dist/index.d.ts",
   "bin": {
     "pergel": "bin/pergel.mjs"
   },

@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.5.0-beta.28",
+  "version": "0.5.3",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -15,11 +15,11 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/types.d.ts",
+        "types": "./dist/module.d.mts",
         "default": "./dist/module.mjs"
       },
       "require": {
-        "types": "./dist/types.d.ts",
+        "types": "./dist/module.d.ts",
         "default": "./dist/module.cjs"
       }
     },
@@ -36,7 +36,7 @@
   },
   "main": "./dist/module.cjs",
   "module": "./dist/module.mjs",
-  "types": "./dist/types.d.ts",
+  "types": "./dist/module.d.ts",
   "files": [
     "dist",
     "lib"

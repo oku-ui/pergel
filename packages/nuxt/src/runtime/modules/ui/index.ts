@@ -22,7 +22,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     name: 'ui',
     version: '0.0.1',
     dependencies: {
-      '@pergel/module-ui': '^0.0.5',
+      '@pergel/module-ui': 'latest',
     },
   },
   defaults: {
@@ -38,6 +38,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       i18n: true,
       pinia: true,
     },
+    ionicMode: false,
   },
   async setup({ nuxt, options, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
@@ -157,23 +158,34 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         }
       })
 
-      const form = await import('@tailwindcss/forms')
+      const form = await import('@tailwindcss/forms').then(m => m.default).catch(() => null)
       const aspect = await import('@tailwindcss/aspect-ratio')
       const typography = await import('@tailwindcss/typography')
       const tailwindcssAnimate = await import('tailwindcss-animate')
+      const plugins = [
+        aspect,
+        typography,
+        tailwindcssAnimate,
+      // import('@tailwindcss/container-queries'),
+      ] as any[]
+
+      if (form && options.ionicMode) {
+        plugins.push(form({
+          strategy: 'class',
+        }))
+      }
+      else if (form) {
+        plugins.push(form({
+          strategy: 'base',
+        }))
+      }
 
       await installModule('@nuxtjs/tailwindcss', {
         exposeConfig: true,
         viewer: false,
         config: {
           darkMode: 'class',
-          plugins: [
-            form,
-            aspect,
-            typography,
-            tailwindcssAnimate,
-          // import('@tailwindcss/container-queries'),
-          ],
+          plugins,
           content: {
             files: [
               `${nuxt.options.rootDir}/composables/**/*.{vue,js,ts}`,

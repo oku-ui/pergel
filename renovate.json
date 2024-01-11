@@ -53,10 +53,10 @@
       ]
     },
     {
-      "groupName": "cli",
-      "commitMessageTopic": "cli",
+      "groupName": "pergel",
+      "commitMessageTopic": "pergel",
       "matchPaths": [
-        "packages/cli/**"
+        "pergel/**"
       ],
       "matchUpdateTypes": [
         "major",
@@ -136,7 +136,7 @@
       ],
       "ignorePaths": [
         "**/examples/**",
-        "**/packages/cli/**",
+        "**/pergel/**",
         "**/packages/nuxt/**",
         "**/packages/graphql/**",
         "**/packages/s3/**",

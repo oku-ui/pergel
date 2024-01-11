@@ -66,11 +66,14 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
         //
       },
       css: {
+        utilities: true,
         //
       },
       config: {
+
         //
       },
+
     } satisfies ModuleOptions)
 
     if (!existsSync(resolve(moduleOptions.moduleDir, 'capacitor.config.ts'))) {

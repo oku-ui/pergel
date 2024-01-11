@@ -62,20 +62,21 @@ export interface UIOptions {
      */
     pinia?: boolean
   }
-
+  ionicMode?: boolean
 }
 
 export interface ResolvedUIOptions {
   packages: {
-    tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
-    tailwindcss?: boolean
-    colorMode?: boolean
-    notivue?: boolean
-    radixVue?: boolean
-    nuxtIcon?: boolean
-    zod?: boolean
-    veeValidate?: boolean
-    i18n?: boolean
-    pinia?: boolean
+    tailwindIcon: CollectionNames[] | 'all' | IconsPluginOptions
+    tailwindcss: boolean
+    colorMode: boolean
+    notivue: boolean
+    radixVue: boolean
+    nuxtIcon: boolean
+    zod: boolean
+    veeValidate: boolean
+    i18n: boolean
+    pinia: boolean
   }
+  ionicMode: boolean
 }

@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, rmdirSync } from 'node:fs'
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
@@ -24,7 +24,11 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
   if (module.meta.configKey === undefined)
     module.meta.configKey = module.meta.name
 
-  async function getOptions(inlineOptions: RootOptions, moduleOptions: ResolvedModuleOptions, nuxt: NuxtPergel = useNuxt()) {
+  async function getOptions(
+    inlineOptions: RootOptions,
+    moduleOptions: ResolvedModuleOptions,
+    nuxt: NuxtPergel = useNuxt(),
+  ) {
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, rootOptions: inlineOptions, moduleOptions }) : module.defaults
 
     const rootOptions = (nuxt._pergel.rootOptions.projects[moduleOptions.projectName] as any)[moduleOptions.moduleName] ?? {}
@@ -37,11 +41,16 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     return Promise.resolve(_options)
   }
 
-  async function normalizedModule(this: any, data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions }) {
-    if (!existsSync(data.moduleOptions.moduleDir))
-      mkdirSync(data.moduleOptions.moduleDir, { recursive: true })
-
+  async function normalizedModule(
+    this: any,
+    data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions },
+  ) {
     const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt)
+
+    if (!existsSync(options.moduleDir) && options.openFolder)
+      mkdirSync(options.moduleDir, { recursive: true })
+    else if (existsSync(options.moduleDir) && options.openFolder === false)
+      rmdirSync(options.moduleDir)
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)

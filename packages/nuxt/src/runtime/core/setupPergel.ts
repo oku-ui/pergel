@@ -67,14 +67,6 @@ export async function setupPergel(
     options.typescript.tsConfig.include.push(resolve(join(nuxt.options.rootDir, 'pergel', '/**/*')))
   })
 
-  // const resolvedOptions = defu(options, {
-  //   projects: {
-  //   },
-  //   esnext: true,
-  //   pergelDir,
-  //   rootDir,
-  // } as PergelOptions)
-
   const resolvedPergelOptions = defu(options, {
     rootOptions: options,
     // Pergel Modules
@@ -113,6 +105,7 @@ export async function setupPergel(
     readmeDir: resolve(resolveReadmePath),
     esnext: true,
     debug: false,
+    workspaceMode: false,
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

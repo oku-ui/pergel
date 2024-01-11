@@ -4,13 +4,7 @@ export default defineNuxtConfig({
   modules: [
     '../../packages/nuxt/src/module',
   ],
-  // ssr: false,
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
+  ssr: false,
   pergel: {
     projects: {
       changeName: {
@@ -26,7 +20,11 @@ export default defineNuxtConfig({
             zod: true,
             radixVue: true,
             tailwindcss: true,
+            nuxtIcon: true,
+            colorMode: true,
+            notivue: true,
           },
+          ionicMode: true,
         },
       },
     },

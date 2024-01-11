@@ -11,7 +11,9 @@ export default definePergelModule({
       '@aws-sdk/client-ses': '^3.470.0',
     },
   },
-  defaults: {},
+  defaults: {
+    openFolder: false,
+  },
   async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 

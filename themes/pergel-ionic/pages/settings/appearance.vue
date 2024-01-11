@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { LangType, LocaleObject } from '#types'
+import type { InputCustomEvent } from '@ionic/vue'
 
-const { themeColor, setThemeColor, setLanguage } = useSettings()
+const { themeColor, setThemeColor } = useSettings()
 const { locale, locales, t, setLocale } = useI18n()
 
 const themeToggled = computed(() => themeColor.value === 'dark')
-// const switchLocalePath = useSwitchLocalePath()
 
 const availableLocales = computed(() => {
-  return (locales.value as LocaleObject[])
+  return (locales.value).filter((i: any) => i.code !== locale.value)
 })
 
 function toggleDarkMode() {
@@ -19,15 +18,10 @@ function toggleDarkMode() {
     setThemeColor('dark')
   else
     setThemeColor('default')
-
-  console.log('toggled:theme', themeColor.value)
 }
-function handleLangChange(ev: any) {
-  console.log('Current value:', JSON.stringify(ev.detail.value))
 
-  // switchLocalePath(JSON.stringify(ev.detail.value))
-  setLocale(JSON.stringify(ev.detail.value))
-  setLanguage(JSON.stringify(ev.detail.value) as LangType)
+function handleLangChange(ev: InputCustomEvent) {
+  setLocale(ev.detail.value as string)
 }
 </script>
 
@@ -62,7 +56,10 @@ function handleLangChange(ev: any) {
         </ion-item>
         <ion-item>
           <div slot="start" aria-hidden="true" class="i-ph-translate mr-3"></div>
-          <ion-select :label="t('settings.appearance.language')" :placeholder="locale" @ion-change="handleLangChange">
+          <ion-select
+            :label="t('settings.appearance.language')" :placeholder="locale"
+            @ion-change="handleLangChange"
+          >
             <ion-select-option v-for="lang in availableLocales" :key="lang.code" :value="lang.code">
               {{
                 lang.name
