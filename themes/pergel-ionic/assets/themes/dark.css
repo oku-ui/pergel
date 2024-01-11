@@ -7,7 +7,7 @@
  * ----------------------------------------------------------------------------
  */
 
- body.dark {
+ html.dark {
   --ion-color-primary: #428cff;
   --ion-color-primary-rgb: 66,140,255;
   --ion-color-primary-contrast: #ffffff;
@@ -77,7 +77,7 @@
  * ----------------------------------------------------------------------------
  */
 
-.ios body.dark {
+html.dark .ios  {
   --ion-background-color: #000000;
   --ion-background-color-rgb: 0,0,0;
 
@@ -116,7 +116,7 @@
  * ----------------------------------------------------------------------------
  */
 
-.md body.dark {
+html.dark .md {
   --ion-background-color: #121212;
   --ion-background-color-rgb: 18,18,18;
 
@@ -152,6 +152,6 @@
   --ion-tab-bar-background: #2e2e2e;
 }
 
-.ios body.dark ion-title.large-title {
+ html.dark .ios ion-title.large-title {
   color: var(--ion-text-color, #ffffff);
 }
