@@ -10,7 +10,7 @@ import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
-import type { ResolvedUIOptions } from '../../modules/ui/types'
+import type { ResolvedUIOptions, UIOptions } from '../../modules/ui/types'
 
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
@@ -26,7 +26,7 @@ export interface Modules {
   graphqlYoga?: true | GraphQLYogaConfig
   drizzle?: true | DrizzleConfig
   lucia?: true | LuciaModuleOptions
-  ui?: true | ResolvedUIOptions
+  ui?: true | UIOptions
   ionic?: true | IonicInterface
 }
 

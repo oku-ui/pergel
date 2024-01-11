@@ -62,7 +62,7 @@ export interface UIOptions {
      */
     pinia?: boolean
   }
-
+  ionicMode?: boolean
 }
 
 export interface ResolvedUIOptions {
@@ -78,4 +78,5 @@ export interface ResolvedUIOptions {
     i18n?: boolean
     pinia?: boolean
   }
+  ionicMode: boolean
 }
