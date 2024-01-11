@@ -10,7 +10,7 @@ import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
-import type { ResolvedUIOptions } from '../../modules/ui/types'
+import type { ResolvedUIOptions, UIOptions } from '../../modules/ui/types'
 
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
@@ -26,7 +26,7 @@ export interface Modules {
   graphqlYoga?: true | GraphQLYogaConfig | ModuleOptions
   drizzle?: true | DrizzleConfig | ModuleOptions
   lucia?: true | LuciaModuleOptions | ModuleOptions
-  ui?: true | ResolvedUIOptions | ModuleOptions
+  ui?: true | UIOptions | ModuleOptions
   ionic?: true | IonicInterface | ModuleOptions
 }
 
@@ -266,7 +266,7 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
 /** The options received.  */
 export type ModuleOptions = {
   openFolder?: boolean
-  [key: string]: unknown
+  [key: string]: any
 }
 
 /** Optional result for nuxt modules */
