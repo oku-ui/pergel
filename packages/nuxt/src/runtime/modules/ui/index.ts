@@ -22,7 +22,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
     name: 'ui',
     version: '0.0.1',
     dependencies: {
-      '@pergel/module-ui': '^latest',
+      '@pergel/module-ui': 'latest',
     },
   },
   defaults: {

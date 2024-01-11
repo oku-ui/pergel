@@ -46,6 +46,12 @@ export interface ResolvedPergelConfig {
      * @default 'pergel/templates'
      */
     template: string
+
+    /**
+     * The name of the project.
+     * @default 'server'
+     */
+    server: string
   }
   filePath: {
 

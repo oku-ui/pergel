@@ -13,7 +13,9 @@
     "node": "^20.10.0 || >=20.10.0"
   },
   "scripts": {
-    "build": "pnpm nx run-many -t build",
+    "install": "cd pergel && pnpm install",
+    "build": "pnpm build:pergel && pnpm nx run-many -t build",
+    "build:pergel": "cd pergel && pnpm build",
     "build:skip": "pnpm nx run-many -t build --skip-nx-cache",
     "dev:build": "pnpm --filter './packages/**' dev:build",
     "dev:prepare": "pnpm --filter './packages/**' dev:prepare",

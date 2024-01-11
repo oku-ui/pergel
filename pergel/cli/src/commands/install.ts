@@ -1,11 +1,11 @@
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import { consola } from 'consola'
 import { parse } from 'yaml'
 import { parseNi, run } from '@antfu/ni'
-import type { PergelYaml } from '../types'
+import type { PergelYaml, ResolvedPergelConfig } from '../types'
 
 export default defineCommand({
   meta: {
@@ -18,14 +18,19 @@ export default defineCommand({
     const args = process.argv.slice(2).filter(arg => arg !== 'install' && arg !== 'pergel')
 
     try {
-      const file = await loadConfig<{
-        src: string
-      }>({
+      const file = await loadConfig({
         cwd: process.cwd(),
         configFile: 'pergel.config.ts',
         defaultConfig: {
-          src: 'pergel',
-        },
+          dir: {
+            pergel: 'pergel',
+            template: 'pergel/templates',
+            server: 'server',
+          },
+          filePath: {
+            nuxtConfig: 'nuxt.config.ts',
+          },
+        } as ResolvedPergelConfig,
         rcFile: false,
         jitiOptions: {
           interopDefault: true,
@@ -38,7 +43,7 @@ export default defineCommand({
         return
       }
 
-      const readmeString = readFileSync(resolve(process.cwd(), file.config.src, 'README.yaml')).toString()
+      const readmeString = readFileSync(resolve(join(file.config.dir?.pergel, 'README.yaml'))).toString()
 
       const json = parse(readmeString) as PergelYaml
 
