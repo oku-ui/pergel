@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { existsSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import {
   addTemplate,
   createResolver,
@@ -12,7 +12,6 @@ import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
 import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/module'
-import { checkOptions } from './runtime/core/utils/checkOptions'
 import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
 import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeYaml } from './runtime/core/utils/generateYaml'
@@ -32,15 +31,6 @@ export default defineNuxtModule<PergelOptions>({
   },
   async setup(options, nuxt) {
     const _resolver = createResolver(import.meta.url)
-
-    if (!existsSync(join(nuxt.options.rootDir, 'pergel.config.ts'))) {
-      if (!options.workspaceMode)
-        logger.error('pergel.config.ts not found. If workspace or layer is used please workspaceMode: true nuxt.config.ts pergel options change. And pergel init command run. Please create it in your project root or layer root. Workspace structures need to have only 1. See https://oku-ui.com/pergel/nuxt/installation for more details.')
-    }
-
-    const { status } = await checkOptions(options)
-    if (!status)
-      return
 
     await setupPergel({
       options,

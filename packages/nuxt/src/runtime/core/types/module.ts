@@ -56,17 +56,6 @@ export interface PergelOptions {
   projects: {
     [project: string]: Modules
   }
-  /**
-   * The root folder of the pergel folder.
-   * @default 'pergel'
-   * @example '/users/productdevbook/nuxt3/pergel'
-   */
-  pergelDir?: string
-
-  /**
-   * @default 'pergel/templates'
-   */
-  templateDir?: string
 
   /**
    * @default true
@@ -182,7 +171,7 @@ export interface ResolvedPergelOptions {
    * @example
    * '/users/productdevbook/nuxt3/pergel/README.yml'
    */
-  readmeDir: string
+  readmeDir?: string
 
   /**
    * @example
@@ -194,13 +183,13 @@ export interface ResolvedPergelOptions {
    * @example
    * 'users/productdevbook/nuxt3/pergel'
    */
-  pergelDir: string
+  pergelDir?: string
 
   /**
    * @example
    * 'users/productdevbook/nuxt3/pergel/templates'
    */
-  templateDir: string
+  templateDir?: string
 
   esnext: boolean
 
@@ -215,6 +204,7 @@ export interface ResolvedPergelOptions {
   }
 
   workspaceMode: boolean
+
 }
 
 export interface NuxtPergel extends Nuxt {
@@ -262,7 +252,7 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
 /** The options received.  */
 export type ModuleOptions = {
   openFolder?: boolean
-  [key: string]: unknown
+  [key: string]: any
 }
 
 /** Optional result for nuxt modules */
