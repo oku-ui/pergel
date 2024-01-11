@@ -9,7 +9,9 @@ export default definePergelModule({
       '@json2csv/node': '^7.0.4',
     },
   },
-  defaults: {},
+  defaults: {
+    openFolder: false,
+  },
   async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 

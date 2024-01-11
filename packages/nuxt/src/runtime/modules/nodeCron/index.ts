@@ -12,7 +12,9 @@ export default definePergelModule({
       '@types/node-cron': '^3.0.11',
     },
   },
-  defaults: {},
+  defaults: {
+    openFolder: false,
+  },
   async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 

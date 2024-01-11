@@ -11,6 +11,9 @@ export default definePergelModule({
       '@pergel/module-s3': '0.0.0',
     },
   },
+  defaults: {
+    openFolder: false,
+  },
   setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 

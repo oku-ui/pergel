@@ -16,15 +16,15 @@ import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-typ
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
 export interface Modules {
-  S3?: true
-  ses?: true
-  nodeCron?: true
-  bullmq?: true
-  json2csv?: true
-  graphqlYoga?: true | GraphQLYogaConfig
-  drizzle?: true | DrizzleConfig
-  lucia?: true | LuciaModuleOptions
-  ui?: true | ResolvedUIOptions
+  S3?: true | ModuleOptions
+  ses?: true | ModuleOptions
+  nodeCron?: true | ModuleOptions
+  bullmq?: true | ModuleOptions
+  json2csv?: true | ModuleOptions
+  graphqlYoga?: true | GraphQLYogaConfig | ModuleOptions
+  drizzle?: true | DrizzleConfig | ModuleOptions
+  lucia?: true | LuciaModuleOptions | ModuleOptions
+  ui?: true | ResolvedUIOptions | ModuleOptions
 }
 
 export interface ResolvedModules {
@@ -236,6 +236,7 @@ export interface ResolvedModuleOptions {
    * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
    */
   moduleDir: string
+  openFolder: boolean
 }
 
 interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
@@ -259,7 +260,10 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
 }
 
 /** The options received.  */
-export type ModuleOptions = Record<string, any>
+export type ModuleOptions = {
+  openFolder?: boolean
+  [key: string]: unknown
+}
 
 /** Optional result for nuxt modules */
 export interface ModuleSetupReturn {

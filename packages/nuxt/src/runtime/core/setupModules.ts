@@ -105,7 +105,9 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
           prepare: true,
         } as any, {
           nuxt,
-          options: {},
+          options: {
+            openFolder: true,
+          },
           rootOptions: module,
           moduleOptions: {
             dir: {
@@ -118,6 +120,7 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
             firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
             projectName,
             moduleDir: resolve(nuxt._pergel.pergelDir, projectName, moduleName),
+            openFolder: true,
           },
         })
 
@@ -254,7 +257,9 @@ export async function setupModules(data: {
 
       const resolvedModule = await moduleSetup.defineModule({
         nuxt: data.nuxt,
-        options: {},
+        options: {
+          openFolder: true,
+        },
         rootOptions: module,
         moduleOptions: {
           dir: {
@@ -267,6 +272,7 @@ export async function setupModules(data: {
           firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
           projectName,
           moduleDir: resolve(data.nuxt._pergel.pergelDir, projectName, moduleName),
+          openFolder: true,
         },
       })
 

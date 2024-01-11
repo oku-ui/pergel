@@ -8,7 +8,6 @@ import {
 } from '@nuxt/kit'
 import YAML from 'yaml'
 
-import { resolve } from 'pathe'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'

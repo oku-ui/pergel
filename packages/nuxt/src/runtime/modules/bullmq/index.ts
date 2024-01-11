@@ -16,7 +16,9 @@ export default definePergelModule({
     },
     dts: true,
   },
-  defaults: {},
+  defaults: {
+
+  },
   async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)
 
