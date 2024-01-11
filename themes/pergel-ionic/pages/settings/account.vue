@@ -35,15 +35,15 @@ function navigateTo(path: string) {
           <div slot="start" aria-hidden="true" class="i-ph-user mr-3"></div>
           {{ t("settings.account.personal_info") }}
         </ion-item>
-        <ion-item class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true">
+        <ion-item class="justify-center rounded-md p-2 text-sm font-semibold leading-6  text-gray-500 dark:text-white" :button="true" :detail="true" @click="navigateTo('/settings/email')">
           <div slot="start" aria-hidden="true" class="i-ph-envelope-simple mr-3"></div>
           {{ t("settings.account.email_address") }}
         </ion-item>
-        <ion-item class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true">
+        <ion-item class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="navigateTo('/settings/password')">
           <div slot="start" aria-hidden="true" class="i-ph-password mr-3"></div>
           {{ t("settings.account.change_password") }}
         </ion-item>
-        <ion-item class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true">
+        <ion-item class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="navigateTo('/settings/verify-email')">
           <div slot="start" aria-hidden="true" class="i-ph-check-circle mr-3"></div>
           {{ t("settings.account.verify_email") }}
         </ion-item>

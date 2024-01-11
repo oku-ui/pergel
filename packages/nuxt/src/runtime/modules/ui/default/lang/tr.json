@@ -31,10 +31,15 @@
     "password_input_subtitle": "Şifreniz en az 8 karakter uzunluğunda olmalıdır.",
     "dont_have_an_account": "Hesabınız henüz etkinleştirilmedi. Sizi bekleme listesine aldık. Hesabınız hazır olduğunda sizi bilgilendireceğiz. Sabrınız için teşekkür ederiz.",
     "login_with_email": "E-posta ile Giriş Yap",
-    "terms_of_service_description": "Devam edersiniz, şu şartları kabul etmiş olursunuz."
+    "terms_of_service_description": "Devam edersiniz, şu şartları kabul etmiş olursunuz.",
+    "email_verification": "Email Verification",
+    "we_send_code": "We have sent a code to your email",
+    "verify_account": "Verify Account",
+    "didnt_receive": "Didn't recieve code?"
   },
   "and": "ve",
   "settings": {
+    "save": "Kaydet",
     "title": "Ayarlar",
     "menu": {
       "account": "Hesap",

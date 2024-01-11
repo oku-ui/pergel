@@ -31,10 +31,15 @@
     "password_input_subtitle": "Your password must be at least 8 characters long.",
     "dont_have_an_account": "Your account is not activated yet. You have been put on the waiting list. We will notify you when your account is ready. Thank you for your patience.",
     "login_with_email": "Log in with Email",
-    "terms_of_service_description": "By clicking continue, you agree to our."
+    "terms_of_service_description": "By clicking continue, you agree to our.",
+    "email_verification": "Email Verification",
+    "we_send_code": "We have sent a code to your email",
+    "verify_account": "Verify Account",
+    "didnt_receive": "Didn't recieve code?"
   },
   "and": "and",
   "settings": {
+    "save": "Save",
     "title": "Settings",
     "menu": {
       "account": "Account",

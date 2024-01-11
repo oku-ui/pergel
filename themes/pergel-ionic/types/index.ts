@@ -19,8 +19,8 @@ export interface User {
   username: string
   firstName: string
   lastName: string
-  bio: string
-  fullName: string
-  email: string
-  avatar: string
+  bio?: string
+  fullName?: string
+  email?: string
+  avatar?: string
 }

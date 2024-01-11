@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '../../packages/nuxt/src/module',
-    '@nuxtjs/tailwindcss',
   ],
   // ssr: false,
   postcss: {
@@ -23,6 +22,10 @@ export default defineNuxtConfig({
         ui: {
           packages: {
             i18n: true,
+            veeValidate: true,
+            zod: true,
+            radixVue: true,
+            tailwindcss: true,
           },
         },
       },
