@@ -3,7 +3,7 @@ import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
-import type { ModuleName, PergelModule, PergelModuleData, ResolvedPergelOptions } from './types'
+import type { ModuleName, PergelModule, ResolvedPergelOptions } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
 
