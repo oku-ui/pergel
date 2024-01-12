@@ -45,12 +45,14 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     this: any,
     data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions },
   ) {
-    const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt)
+    const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt) as ResolvedModuleOptions
 
-    if (!existsSync(options.moduleDir) && options.openFolder)
-      mkdirSync(options.moduleDir, { recursive: true })
-    else if (existsSync(options.moduleDir) && options.openFolder === false)
-      rmdirSync(options.moduleDir)
+    if (data.nuxt._pergel.exitPergelFolder) {
+      if (!existsSync(options.moduleDir) && options.openFolder)
+        mkdirSync(options.moduleDir, { recursive: true })
+      else if (existsSync(options.moduleDir) && options.openFolder === false)
+        rmdirSync(options.moduleDir)
+    }
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
@@ -81,7 +83,7 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     if (!this.prepare) {
       // Resolve module and options
 
-      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options, rootOptions: data.rootOptions, moduleOptions: data.moduleOptions }) ?? {}
+      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options: (options as any), rootOptions: data.rootOptions, moduleOptions: data.moduleOptions }) ?? {}
       const perf = performance.measure(key, mark)
       const setupTime = perf ? Math.round(perf.duration * 100) / 100 : 0
 

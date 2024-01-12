@@ -71,6 +71,7 @@ export interface PergelOptions {
 }
 
 export interface ResolvedPergelOptions {
+  exitPergelFolder: boolean
   /**
    * Pergel user defined options.
    */
@@ -116,24 +117,24 @@ export interface ResolvedPergelOptions {
        * @example
        * 'users/productdevbook/nuxt3/pergel/${projectName}'
        */
-      projectDir: string
+      projectDir?: string
       /**
        * @example
        * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
        */
-      moduleDir: string
+      moduleDir?: string
 
       dir: {
 
         /**
          * @example
-         * 'pergel/${projectName}'
+         * '${projectName}'
          */
         project: string
 
         /**
          * @example
-         * 'pergel/${projectName}/${moduleName}'
+         * '${projectName}/${moduleName}'
          */
         module: string
 
@@ -183,13 +184,13 @@ export interface ResolvedPergelOptions {
    * @example
    * 'users/productdevbook/nuxt3/pergel'
    */
-  pergelDir?: string
+  pergelDir: string
 
   /**
    * @example
    * 'users/productdevbook/nuxt3/pergel/templates'
    */
-  templateDir?: string
+  templateDir: string
 
   esnext: boolean
 
@@ -211,7 +212,7 @@ export interface NuxtPergel extends Nuxt {
   _pergel: ResolvedPergelOptions
 }
 
-export interface ResolvedModuleOptions {
+export interface ResolvedModuleOptions extends ModuleOptions {
   dir: {
     module: string
     project: string
@@ -286,7 +287,7 @@ export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOpti
       options: ResolvedOptions
       rootOptions: RootOptions
       moduleOptions: ResolvedModuleOptions
-    }
+    },
   ) =>
   _ModuleSetupReturn
 }
@@ -300,7 +301,10 @@ export interface PergelModule<RootOptions extends ModuleOptions = ModuleOptions,
   }): _ModuleSetupReturn
   getOptions?: (
     inlineOptions?: ResolvedOptions,
-    data?: { nuxt: NuxtPergel, rootOptions: RootOptions }) => Promise<ResolvedOptions>
+    data?: {
+      nuxt: NuxtPergel
+      rootOptions: RootOptions
+    }) => Promise<ResolvedOptions>
   getMeta?: () => ModuleMeta
 }
 

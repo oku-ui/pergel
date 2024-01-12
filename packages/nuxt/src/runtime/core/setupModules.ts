@@ -3,7 +3,7 @@ import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
-import type { ModuleName, PergelModule } from './types'
+import type { ModuleName, PergelModule, PergelModuleData, ResolvedPergelOptions } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
 
@@ -31,14 +31,14 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
   try {
     for await (const [projectName, modules] of Object.entries(projects)) {
       for await (const [moduleName, moduleValue] of Object.entries(modules)) {
-        nuxt.options.alias[`#pergel/${projectName}/${moduleName}`] = resolve(
+        nuxt.options.alias[`#${projectName}/${moduleName}`] = resolve(
           nuxt.options.rootDir,
           'pergel',
           projectName,
           moduleName,
         )
         nuxt.options.nitro.alias ??= {}
-        nuxt.options.nitro.alias[`#pergel/${projectName}/${moduleName}`] = resolve(
+        nuxt.options.nitro.alias[`#${projectName}/${moduleName}`] = resolve(
           nuxt.options.rootDir,
           'pergel',
           projectName,
@@ -60,14 +60,11 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
         nuxt._pergel.projects[projectName] ??= {} as any
         (nuxt._pergel.projects[projectName] as any)[moduleName] = {
           ...(nuxt._pergel.projects[projectName] as any)[moduleName],
-          projectDir: join(nuxt._pergel.pergelDir, projectName),
-          moduleDir: join(nuxt._pergel.pergelDir, projectName, moduleName),
           dir: {
-            project: join(nuxt._pergel.dir.pergel, projectName),
-            module: join(nuxt._pergel.dir.pergel, projectName, moduleName),
-            root: join(nuxt._pergel.dir.pergel),
+            project: join(projectName),
+            module: join(projectName, moduleName),
           },
-        }
+        } satisfies ResolvedPergelOptions['projects']['']
 
         let pergelModule: PergelModule
 
@@ -76,7 +73,10 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
         try {
           const getIndexExt = () => {
             const datas = readdirSync(resolver.resolve(join('runtime', 'modules', moduleName)))
-            const indexExt = datas.find(file => file.includes('index') && !file.includes('.d.'))
+            const indexExt = datas.find(
+              file => file.includes('index')
+              && !file.includes('.d.'),
+            )
             if (!indexExt)
               throw new Error(`Module ${moduleName} does not have index file`)
 
@@ -111,20 +111,23 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
           rootOptions: module,
           moduleOptions: {
             dir: {
-              module: join(nuxt._pergel.dir.pergel, projectName, moduleName),
-              project: join(nuxt._pergel.dir.pergel, projectName),
-              root: join(nuxt._pergel.dir.pergel),
+              module: join(projectName, moduleName),
+              project: join(projectName),
+              root: nuxt.options.rootDir,
             },
             moduleName: moduleName as ModuleName,
             firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
             firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
             projectName,
-            moduleDir: resolve(nuxt._pergel.pergelDir, projectName, moduleName),
             openFolder: true,
+            moduleDir: join(projectName, moduleName),
           },
         })
 
-        if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
+        if (resolvedModule === false /* setup aborted */
+          || resolvedModule === undefined /* setup failed */
+          || typeof resolvedModule === 'string' /* setup failed */
+        ) {
           consola.error(`Module ${moduleName} failed to setup`)
           continue
         }
@@ -157,13 +160,18 @@ async function waitModule(
   },
 ) {
   const { defineModule, nuxt, moduleName, projectName } = data
+
   const rootOptions = (nuxt._pergel.rootOptions.projects[projectName] as any)[moduleName as any]
+
   const _module = await defineModule
   const getMeta = await _module.getMeta?.()
+
   if (!getMeta)
     throw new Error(`Module ${moduleName} does not have meta`)
 
-  const _waitModule = typeof getMeta?.waitModule === 'function' ? await getMeta.waitModule?.(rootOptions) : getMeta?.waitModule
+  const _waitModule = typeof getMeta?.waitModule === 'function'
+    ? await getMeta.waitModule?.(rootOptions)
+    : getMeta?.waitModule
 
   if (_waitModule)
     return _waitModule
@@ -206,6 +214,7 @@ export async function setupModules(data: {
 }) {
   const projects = data.nuxt._pergel.rootOptions.projects
   const _projects = projects && Object.values(projects).map(project => Object.keys(project)).flat()
+
   if (!projects || !(_projects.length > 0))
     return
 
@@ -228,13 +237,19 @@ export async function setupModules(data: {
       const module = (data.nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
       const moduleSetup = prepareModules[projectName][moduleName]
 
-      const getMeta = typeof moduleSetup.defineModule.getMeta === 'function' ? await moduleSetup.defineModule.getMeta() : await moduleSetup.defineModule.getMeta
+      const getMeta = typeof moduleSetup.defineModule.getMeta === 'function'
+        ? await moduleSetup.defineModule.getMeta()
+        : await moduleSetup.defineModule.getMeta
 
       if (!getMeta)
         throw new Error(`Module ${moduleName} does not have meta`)
 
-      const dependencies = getMeta.dependencies instanceof Function ? getMeta.dependencies(module) : getMeta.dependencies ?? {}
-      const devDependencies = getMeta.devDependencies instanceof Function ? getMeta.devDependencies(module) : getMeta.devDependencies ?? {}
+      const dependencies = getMeta.dependencies instanceof Function
+        ? getMeta.dependencies(module)
+        : getMeta.dependencies ?? {}
+      const devDependencies = getMeta.devDependencies instanceof Function
+        ? getMeta.devDependencies(module)
+        : getMeta.devDependencies ?? {}
 
       if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
         generateProjectReadme({
@@ -263,20 +278,24 @@ export async function setupModules(data: {
         rootOptions: module,
         moduleOptions: {
           dir: {
-            module: join(data.nuxt._pergel.dir.pergel, projectName, moduleName),
-            project: join(data.nuxt._pergel.dir.pergel, projectName),
-            root: join(data.nuxt._pergel.dir.pergel),
+            module: join(projectName, moduleName),
+            project: join(projectName),
+            root: data.nuxt.options.rootDir,
           },
           moduleName: moduleName as ModuleName,
           firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
           firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
           projectName,
-          moduleDir: resolve(data.nuxt._pergel.pergelDir, projectName, moduleName),
+          moduleDir: join(projectName, moduleName),
           openFolder: true,
         },
       })
 
-      if (resolvedModule === false /* setup aborted */ || resolvedModule === undefined /* setup failed */ || typeof resolvedModule === 'string' /* setup failed */) {
+      if (
+        resolvedModule === false /* setup aborted */
+        || resolvedModule === undefined /* setup failed */
+        || typeof resolvedModule === 'string' /* setup failed */
+      ) {
         consola.error(`Module ${
           moduleName
         } failed to setup`)

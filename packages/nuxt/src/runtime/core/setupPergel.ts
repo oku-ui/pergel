@@ -40,10 +40,10 @@ export async function setupPergel(
   if (!file.config)
     throw new Error('Pergel config not found.')
 
-  let isPergelDirSync = false
+  let exitPergelFolder = false
 
   if (existsSync(join(data.nuxt.options.rootDir, file.config.dir.pergel)))
-    isPergelDirSync = true
+    exitPergelFolder = true
 
   const { options, nuxt, resolver, version } = data
 
@@ -97,6 +97,7 @@ export async function setupPergel(
   })
 
   const resolvedPergelOptions = defu(options, {
+    exitPergelFolder,
     rootOptions: options,
     // Pergel Modules
     modules: [
@@ -128,10 +129,10 @@ export async function setupPergel(
       readme: join(pergelDir, 'README.yaml'),
     },
     contents: [],
-    pergelDir: isPergelDirSync ? resolve(resolveDir, pergelDir) : undefined,
-    templateDir: isPergelDirSync ? resolve(resolveDir, templateDir) : undefined,
+    pergelDir: resolve(resolveDir, pergelDir),
+    templateDir: resolve(resolveDir, templateDir),
     rootDir: resolveDir,
-    readmeDir: isPergelDirSync ? resolve(resolveDir, readmePath) : undefined,
+    readmeDir: resolve(resolveDir, readmePath),
     esnext: true,
     debug: false,
     workspaceMode: false,
