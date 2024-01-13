@@ -1,6 +1,7 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync, lstatSync, mkdirSync, writeFileSync } from 'node:fs'
+import { join, resolve } from 'node:path'
 import { createResolver } from '@nuxt/kit'
+import { trainCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
@@ -48,15 +49,18 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
     },
     dts: true,
   },
-  defaults({ rootOptions }) {
-    // const [driver, db] = rootOptions.driver.split(':')
-
+  defaults({ nuxt, rootOptions, moduleOptions }) {
     return {
       driver: rootOptions.driver ?? 'drizzle:postgre',
+      openFolder: true,
+      moduleDir: join(nuxt._pergel.dir.server, `${`${moduleOptions.moduleName}-${moduleOptions.projectName}`}`),
     }
   },
   async setup({ nuxt, moduleOptions, options }) {
     const resolver = createResolver(import.meta.url)
+
+    const moduleDir = resolve(nuxt._pergel.rootDir, options.moduleDir)
+    mkdirSync(moduleDir, { recursive: true })
 
     const [driver, db] = options.driver.split(':')
 
@@ -68,10 +72,10 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       const { driver } = setupDrizzle(db, resolver)
       _setupDrizzle.use = driver
 
-      if (!existsSync(`${moduleOptions.moduleDir}/index.ts`)) {
+      if (!existsSync(`${moduleDir}/index.ts`)) {
         const projectName = `pergel${moduleOptions.firstLetterProjectName}`
         writeFileSync(
-          `${moduleOptions.moduleDir}/index.ts`,
+          `${moduleDir}/index.ts`,
           /* ts */`
 import { session, user } from '#pergel/${moduleOptions.projectName}/drizzle/schema'
 

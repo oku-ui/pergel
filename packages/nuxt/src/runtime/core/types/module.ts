@@ -16,15 +16,15 @@ import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-typ
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
 export interface Modules {
-  S3?: true | ModuleOptions
-  ses?: true | ModuleOptions
-  nodeCron?: true | ModuleOptions
-  bullmq?: true | ModuleOptions
-  json2csv?: true | ModuleOptions
-  graphqlYoga?: true | GraphQLYogaConfig | ModuleOptions
-  drizzle?: true | DrizzleConfig | ModuleOptions
-  lucia?: true | LuciaModuleOptions | ModuleOptions
-  ui?: true | ResolvedUIOptions | ModuleOptions
+  S3?: true | DefaultModuleOptions
+  ses?: true | DefaultModuleOptions
+  nodeCron?: true | DefaultModuleOptions
+  bullmq?: true | DefaultModuleOptions
+  json2csv?: true | DefaultModuleOptions
+  graphqlYoga?: true | (GraphQLYogaConfig & DefaultModuleOptions)
+  drizzle?: true | (DrizzleConfig & DefaultModuleOptions)
+  lucia?: true | (LuciaModuleOptions & DefaultModuleOptions)
+  ui?: true | (ResolvedUIOptions & DefaultModuleOptions)
 }
 
 export interface ResolvedModules {
@@ -159,6 +159,18 @@ export interface ResolvedPergelOptions {
      * 'pergel/README.yml'
      */
     readme: string
+
+    /**
+     * @example
+     * 'server'
+     */
+    server: string
+
+    /**
+     * @example
+     * 'components'
+     */
+    components: string
   }
 
   contents: {
@@ -212,22 +224,15 @@ export interface NuxtPergel extends Nuxt {
   _pergel: ResolvedPergelOptions
 }
 
-export interface ResolvedModuleOptions extends ModuleOptions {
+export interface ResolvedModuleOptions extends Required<ResolvedDefaultModuleOptions> {
   dir: {
     module: string
     project: string
-    root: string
   }
   moduleName: string
   firstLetterModuleName: string
   projectName: string
   firstLetterProjectName: string
-  /**
-   * @example
-   * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
-   */
-  moduleDir: string
-  openFolder: boolean
 }
 
 interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
@@ -247,13 +252,32 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
 
   waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[] | undefined)
 
+  /**
+   * @default
+   * `false`
+   */
+  openFolder?: boolean
+
+  moduleDir?: string
+
   [key: string]: unknown
 }
 
 /** The options received.  */
-export type ModuleOptions = {
+export type ModuleOptions = Record<string, any>
+
+export type DefaultModuleOptions = {
   openFolder?: boolean
-  [key: string]: any
+  moduleDir?: string
+}
+
+export type ResolvedDefaultModuleOptions = {
+  openFolder?: boolean
+  /**
+   * @default
+   * '${moduleName}
+   */
+  moduleDir?: string
 }
 
 /** Optional result for nuxt modules */
@@ -273,18 +297,18 @@ type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
 export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
   meta?: ModuleMeta<RootOptions>
-  defaults?: ResolvedOptions
+  defaults?: ResolvedOptions & ResolvedDefaultModuleOptions
   | ((data: {
     nuxt: NuxtPergel
     rootOptions: RootOptions
     moduleOptions: ResolvedModuleOptions
   })
-  => ResolvedOptions)
+  => ResolvedOptions & ResolvedDefaultModuleOptions)
   setup?: (
     this: void,
     data: {
       nuxt: NuxtPergel
-      options: ResolvedOptions
+      options: ResolvedOptions & Required<ResolvedDefaultModuleOptions>
       rootOptions: RootOptions
       moduleOptions: ResolvedModuleOptions
     },
@@ -295,7 +319,7 @@ export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOpti
 export interface PergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
   (this: void, data: {
     nuxt: NuxtPergel
-    options: ResolvedOptions
+    options: ResolvedOptions & ResolvedDefaultModuleOptions
     rootOptions: RootOptions
     moduleOptions: ResolvedModuleOptions
   }): _ModuleSetupReturn

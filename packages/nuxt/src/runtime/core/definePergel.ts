@@ -32,7 +32,11 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, rootOptions: inlineOptions, moduleOptions }) : module.defaults
 
     const rootOptions = (nuxt._pergel.rootOptions.projects[moduleOptions.projectName] as any)[moduleOptions.moduleName] ?? {}
-    const _options = defu(rootOptions, defaultModule)
+    const _options = defu(rootOptions, {
+      ...defaultModule,
+      moduleDir: `${nuxt._pergel.dir.server}/${moduleOptions.moduleName}-${moduleOptions.projectName}`,
+      openFolder: false,
+    })
 
     // TODO: Type this
     // @ts-ignore

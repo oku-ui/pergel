@@ -113,7 +113,6 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
             dir: {
               module: join(projectName, moduleName),
               project: join(projectName),
-              root: nuxt.options.rootDir,
             },
             moduleName: moduleName as ModuleName,
             firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
@@ -280,7 +279,6 @@ export async function setupModules(data: {
           dir: {
             module: join(projectName, moduleName),
             project: join(projectName),
-            root: data.nuxt.options.rootDir,
           },
           moduleName: moduleName as ModuleName,
           firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),

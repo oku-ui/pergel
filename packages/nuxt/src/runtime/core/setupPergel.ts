@@ -127,6 +127,9 @@ export async function setupPergel(
     dir: {
       pergel: pergelDir ?? 'pergel',
       readme: join(pergelDir, 'README.yaml'),
+      server: file.config.dir.server ?? 'server',
+      // TODO: add cli components
+      components: join(pergelDir, 'components'),
     },
     contents: [],
     pergelDir: resolve(resolveDir, pergelDir),
