@@ -11,8 +11,8 @@ export function addModuleDTS(data: {
   nuxt: Nuxt
   dir: string
 }) {
-  const typePath = join(data.nuxt._pergel.rootDir, data.dir, 'types.ts')
-  const folderPath = join(data.nuxt._pergel.rootDir, data.dir)
+  const typePath = join(data.dir, 'types.ts')
+  const folderPath = join(data.dir)
 
   if (data.template) {
     data.nuxt._pergel.dts[data.projectName] ??= {}

@@ -153,7 +153,7 @@ declare module 'h3' {
       moduleName: options.moduleName,
       projectName: options.projectName,
       interfaceNames: [],
-      dir: options.moduleDir,
+      dir: options.serverDir,
     })
 
     nuxt._pergel.contents.push({
