@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { InputCustomEvent } from '@ionic/vue'
+import type { SelectChangeEventDetail } from '@ionic/vue'
+import type { IonSelectCustomEvent } from '@ionic/core'
+import type { LocaleObject } from '#types'
 
 const { isDark, colors, setThemeColor } = useSettings()
 const { locale, locales, t, setLocale } = useI18n()
 
 const availableLocales = computed(() => {
-  return (locales.value).filter((i: any) => i.code !== locale.value)
+  return (locales.value as LocaleObject[]).filter((i: any) => i.code !== locale.value)
 })
 
-function handleLangChange(ev: InputCustomEvent) {
-  localStorage.setItem('locale', ev.detail.value as string)
-  locale.value = ev.detail.value as string
-  document.documentElement.lang = ev.detail.value as string
-  setLocale(ev.detail.value as string)
-  window.location.reload()
+function handleLangChange(ev: IonSelectCustomEvent<SelectChangeEventDetail<any>>) {
+  const detailValue = ev.detail.value as string
+  localStorage.setItem('locale', detailValue)
+  locale.value = detailValue
+  document.documentElement.lang = detailValue
+  setLocale(detailValue)
+  // window.location.reload()
 }
 </script>
 
@@ -23,9 +26,7 @@ function handleLangChange(ev: InputCustomEvent) {
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <NuxtLink to="/">
-            Setting
-          </NuxtLink>
+          <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title class="justify-center text-center">
           {{ t("settings.appearance.title") }}
