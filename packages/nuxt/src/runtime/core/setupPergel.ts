@@ -1,5 +1,5 @@
 import { join, resolve } from 'node:path'
-import { existsSync } from 'node:fs'
+import { existsSync, mkdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import { type Resolver, addTemplate } from '@nuxt/kit'
 import defu from 'defu'
@@ -42,7 +42,7 @@ export async function setupPergel(
 
   let exitPergelFolder = false
 
-  if (existsSync(join(data.nuxt.options.rootDir, file.config.dir.pergel)))
+  if (existsSync(join(data.nuxt.options.rootDir, 'pergel.config.ts')))
     exitPergelFolder = true
 
   const { options, nuxt, resolver, version } = data
@@ -54,6 +54,8 @@ export async function setupPergel(
 
   // TODO: nuxt.options.rootDi ?? file.config.cwd
   const resolveDir = resolve(nuxt.options.rootDir)
+
+  exitPergelFolder && mkdirSync(join(resolveDir, pergelDir), { recursive: true })
 
   const projectNames = Object.keys(options.projects).sort()
 

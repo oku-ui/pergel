@@ -44,7 +44,7 @@ export function generateReadmeYaml(data: {
     return yamlString
   }
 
-  data.nuxt._pergel.exitPergelFolder ?? writeFileSync(
+  data.nuxt._pergel.exitPergelFolder && writeFileSync(
     `${data.nuxt._pergel.pergelDir}/README.yaml`,
     jsonToYaml(readmeYaml),
   )

@@ -58,7 +58,7 @@ export function addDownloadTemplate(
         templates,
       }, null, 2)}`
 
-      writeFileSync(pergel, content, {
+      nuxt._pergel.exitPergelFolder && writeFileSync(pergel, content, {
         encoding: 'utf-8',
       })
     }
@@ -68,7 +68,7 @@ export function addDownloadTemplate(
       templates,
     }, null, 2)}`
 
-    writeFileSync(pergel, content, {
+    nuxt._pergel.exitPergelFolder && writeFileSync(pergel, content, {
       encoding: 'utf-8',
     })
   }

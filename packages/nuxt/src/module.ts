@@ -112,7 +112,7 @@ export default defineNuxtModule<PergelOptions>({
         )
 
         const file = join(nuxt.options.rootDir, 'pergel', `${projectName}.docker-compose.yml`)
-        writeFileSync(file, specYaml, {
+        nuxt._pergel.exitPergelFolder && writeFileSync(file, specYaml, {
           encoding: 'utf8',
         })
       }
@@ -152,7 +152,7 @@ export default defineNuxtModule<PergelOptions>({
 
     const file = join(nuxt.options.rootDir, 'pergel', '.env.template')
 
-    nuxt._pergel.exitPergelFolder ?? writeFileSync(file, envTemplate, {
+    nuxt._pergel.exitPergelFolder && writeFileSync(file, envTemplate, {
       encoding: 'utf8',
     })
   },
