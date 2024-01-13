@@ -1,7 +1,7 @@
 import { join, resolve } from 'node:path'
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, writeFileSync } from 'node:fs'
 import { relative } from 'pathe'
-import type { NuxtPergel, ResolvedModuleOptions } from '../../../core/types'
+import type { NuxtPergel } from '../../../core/types'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
@@ -10,9 +10,8 @@ import { useGenerateCodegen } from './generateCodegen'
 export function generateGraphQLTemplate(data: {
   nuxt: NuxtPergel
   options: ResolvedGraphQLYogaConfig
-  moduleOptions: ResolvedModuleOptions
 }) {
-  const { codegen, documents, schema } = data.options
+  const { codegen, dir } = data.options
 
   function globsServerClient(path: string) {
     const absolutePath = resolve(data.nuxt.options.rootDir, path)
@@ -20,8 +19,8 @@ export function generateGraphQLTemplate(data: {
 
     const { projectName, moduleName } = relativePath.match(/pergel\/(?<projectName>[^\/]+)\/(?<moduleName>[^\/]+)/)?.groups ?? {}
 
-    const serverFolder = matchGlobs(absolutePath, [join('**', schema, '**', `*${codegen.server.extension}`)])
-    const clientFolder = matchGlobs(absolutePath, [join('**', documents, '**', `*${codegen.client.extension}`)])
+    const serverFolder = matchGlobs(absolutePath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
+    const clientFolder = matchGlobs(absolutePath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
 
     return {
       serverFolder,
@@ -54,17 +53,11 @@ type Book {
 }
     `
 
-  if (!existsSync(schema))
-    mkdirSync(schema, { recursive: true })
+  if (!existsSync(data.options.schemaDir))
+    writeFileSync(join(data.options.schemaDir, 'book.graphql'), schemaTemplate)
 
-  if (!existsSync(documents))
-    mkdirSync(documents, { recursive: true })
-
-  if (readdirSync(schema).length === 0)
-    writeFileSync(join(schema, 'book.graphql'), schemaTemplate)
-
-  if (readdirSync(documents).length === 0)
-    writeFileSync(join(documents, 'book.graphql'), documentsTemplate)
+  if (!existsSync(data.options.documentDir))
+    writeFileSync(join(data.options.documentDir, 'book.graphql'), documentsTemplate)
 
   addModuleDTS({
     template: /* ts */`
@@ -78,23 +71,23 @@ export interface GraphqlYogaContext extends YogaInitialContext {
   event: H3Event
 }
       `,
-    moduleName: data.moduleOptions.moduleName,
-    projectName: data.moduleOptions.projectName,
+    moduleName: data.options.moduleName,
+    projectName: data.options.projectName,
     nuxt: data.nuxt,
     interfaceNames: ['GraphqlYogaContext'],
-    moduleOptions: data.moduleOptions,
+    dir: data.options.serverDir,
   })
 
   useGenerateCodegen({
     nuxt: data.nuxt,
     type: 'all',
-    moduleDir: data.moduleOptions.dir.module,
-    projectName: data.moduleOptions.projectName,
-    schemaDir: schema,
-    documentDir: documents,
+    moduleDir: data.options.dir.document,
+    projectName: data.options.projectName,
+    schemaDir: dir.schema,
+    documentDir: dir.document,
     moduleDTS: {
       name: 'GraphqlYogaContext',
-      path: `pergel/${data.moduleOptions.projectName}/types`,
+      path: `pergel/${data.options.projectName}/types`,
     },
   })
 
@@ -108,11 +101,11 @@ export interface GraphqlYogaContext extends YogaInitialContext {
         type: 'server',
         moduleDir: join('pergel', projectName, moduleName),
         projectName,
-        schemaDir: schema,
-        documentDir: documents,
+        schemaDir: dir.schema,
+        documentDir: dir.document,
         moduleDTS: {
           name: 'GraphqlYogaContext',
-          path: `pergel/${data.moduleOptions.projectName}/types`,
+          path: `pergel/${data.options.projectName}/types`,
         },
       })
     }
@@ -123,11 +116,11 @@ export interface GraphqlYogaContext extends YogaInitialContext {
           type: 'all',
           moduleDir: join('pergel', projectName, moduleName),
           projectName,
-          schemaDir: schema,
-          documentDir: documents,
+          schemaDir: dir.schema,
+          documentDir: dir.document,
           moduleDTS: {
             name: 'GraphqlYogaContext',
-            path: `pergel/${data.moduleOptions.projectName}/types`,
+            path: `pergel/${data.options.projectName}/types`,
           },
         })
       }

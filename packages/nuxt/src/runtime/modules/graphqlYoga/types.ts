@@ -2,6 +2,7 @@ import type { YogaServerInstance, YogaServerOptions } from 'graphql-yoga'
 import type { H3Error, H3Event } from 'h3'
 
 import type { EmbeddableSandboxOptions } from '@apollo/sandbox/src/EmbeddedSandbox'
+import type { ResolvedModuleOptions } from '../../core/types'
 
 export interface GraphqlYogaHandleOptions {
   context: {
@@ -41,13 +42,13 @@ export interface GraphQLYogaConfig {
    * GraphQL schemas
    * @default 'pergel/${projectName}/graphql'
    */
-  schema?: string
+  schemaDir?: string
 
   /**
    * GraphQL resolvers
    * @default 'graphql'
    */
-  documents?: string
+  documentDir?: string
 
   yogaConfig?: {
     /**
@@ -166,15 +167,22 @@ export interface GraphQLYogaConfig {
   }
 }
 
-export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig {
+export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedModuleOptions {
   endpoint: string
   mergeSchemas: boolean
-  schema: string
-  documents: string
+  schemaDir: string
+  documentDir: string
+
   yogaConfig: {
     health: string
     ready: string
   }
+
+  dir: {
+    schema: string
+    document: string
+  }
+
   plugins: {
     playground: {
       endpoint: string
