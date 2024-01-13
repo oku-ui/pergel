@@ -4,6 +4,7 @@ import type { InputCustomEvent } from '@ionic/vue'
 
 const { isDark, colors, setThemeColor } = useSettings()
 const { locale, locales, t, setLocale } = useI18n()
+
 const availableLocales = computed(() => {
   return (locales.value).filter((i: any) => i.code !== locale.value)
 })
