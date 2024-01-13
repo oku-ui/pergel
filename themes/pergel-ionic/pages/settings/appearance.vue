@@ -10,7 +10,11 @@ const availableLocales = computed(() => {
 })
 
 function handleLangChange(ev: InputCustomEvent) {
+  localStorage.setItem('locale', ev.detail.value as string)
+  locale.value = ev.detail.value as string
+  document.documentElement.lang = ev.detail.value as string
   setLocale(ev.detail.value as string)
+  window.location.reload()
 }
 </script>
 
@@ -19,7 +23,9 @@ function handleLangChange(ev: InputCustomEvent) {
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
+          <NuxtLink to="/">
+            Setting
+          </NuxtLink>
         </ion-buttons>
         <ion-title class="justify-center text-center">
           {{ t("settings.appearance.title") }}
@@ -27,15 +33,7 @@ function handleLangChange(ev: InputCustomEvent) {
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true" color="light">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large" class="justify-center text-center">
-            {{ t("settings.appearance.title") }}
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
-
+    <ion-content :fullscreen="true">
       <ion-list :inset="true" lines="inset">
         <ion-item>
           <div slot="start" aria-hidden="true" class="mr-3">
@@ -43,7 +41,7 @@ function handleLangChange(ev: InputCustomEvent) {
           </div>
           <ion-select
             :label="t('settings.appearance.dark_mode')"
-            :placeholder="locale"
+            :placeholder="isDark"
             @ion-change="setThemeColor"
           >
             <ion-select-option

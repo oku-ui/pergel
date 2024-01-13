@@ -54,7 +54,7 @@ function save() {
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true" color="light">
+    <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large" class="justify-center text-center">

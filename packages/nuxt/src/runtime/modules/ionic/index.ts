@@ -64,6 +64,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     await installModule('@nuxtjs/ionic', {
       integrations: {
         //
+        icons: false,
       },
       css: {
         utilities: true,
