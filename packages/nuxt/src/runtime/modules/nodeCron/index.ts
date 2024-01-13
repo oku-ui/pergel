@@ -14,14 +14,14 @@ export default definePergelModule({
   },
   defaults: {
   },
-  async setup({ nuxt, moduleOptions }) {
+  async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
     addServerImportsDir(resolver.resolve('./composables'))
 
     nuxt._pergel.contents.push({
-      moduleName: moduleOptions.moduleName,
-      projectName: moduleOptions.projectName,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       content: /* ts */`
           function nodeCron() {
             return {
