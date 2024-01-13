@@ -39,7 +39,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       pinia: true,
     },
   },
-  async setup({ nuxt, options, moduleOptions }) {
+  async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
     if (options.packages.veeValidate) {
@@ -370,8 +370,8 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
       name: 'default-auth-1',
       write: true,
       readme: {
-        moduleName: moduleOptions.moduleName,
-        projectName: moduleOptions.projectName,
+        moduleName: options.moduleName,
+        projectName: options.projectName,
       },
     })
   },

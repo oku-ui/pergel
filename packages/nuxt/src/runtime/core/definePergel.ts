@@ -11,7 +11,7 @@ import type {
   ResolvedModuleOptions,
 } from './types'
 
-export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ResolvedModuleOptions = ResolvedModuleOptions>(
+export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions>(
   definition: ModuleDefinition<RootOptions, ResolvedOptions> | PergelModule<RootOptions, ResolvedOptions>,
 ): PergelModule<RootOptions, ResolvedOptions> {
   if (typeof definition === 'function')

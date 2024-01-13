@@ -106,14 +106,11 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
         } as any, {
           nuxt,
           options: {
-            openFolder: true,
             _dir: {
               module: join(projectName, moduleName),
               server: join(nuxt._pergel.dir.server, `${moduleName}-${projectName}`),
             },
             moduleName: moduleName as ModuleName,
-            firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
-            firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
             projectName,
             rootModuleDir: join(nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
             serverDir: join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
@@ -270,14 +267,11 @@ export async function setupModules(data: {
       const resolvedModule = await moduleSetup.defineModule({
         nuxt: data.nuxt,
         options: {
-          openFolder: true,
           _dir: {
             module: join(projectName, moduleName),
             server: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
           },
           moduleName: moduleName as ModuleName,
-          firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
-          firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
           projectName,
           rootModuleDir: join(data.nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
           serverDir: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),

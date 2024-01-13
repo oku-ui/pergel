@@ -73,7 +73,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
         driver: driver ?? 'pg',
       } as any,
       studio: true,
-      openFolder: true,
     }
   },
   async setup({ nuxt, options }) {

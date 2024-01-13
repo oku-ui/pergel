@@ -52,7 +52,6 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
     return {
       ...options,
       driver: rootOptions.driver ?? 'drizzle:postgre',
-      openFolder: true,
       moduleDir: join(nuxt._pergel.dir.server, `${`${options.moduleName}-${options.projectName}`}`),
     }
   },

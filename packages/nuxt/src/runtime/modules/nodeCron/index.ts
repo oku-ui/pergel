@@ -13,7 +13,6 @@ export default definePergelModule({
     },
   },
   defaults: {
-    openFolder: false,
   },
   async setup({ nuxt, moduleOptions }) {
     const resolver = createResolver(import.meta.url)

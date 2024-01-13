@@ -237,14 +237,6 @@ export interface ResolvedModuleOptions {
    * test -> Test
    */
 
-  firstLetterModuleName: string
-  /**
-   * @default
-   * test -> Test
-   */
-
-  firstLetterProjectName: string
-
   /**
    * @default
    *  /home/username/nuxt3/pergel/${moduleName}-${projectName}
