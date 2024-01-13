@@ -20,17 +20,22 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
     dts: true,
   },
   defaults({ rootOptions, options, nuxt }) {
-    const documentDir = resolve(rootOptions.documentDir
-      ? nuxt._pergel.rootDir
-      : nuxt._pergel.serverDir, rootOptions.documentDir ?? 'documents')
+    const documentDir = rootOptions.documentDir ? join(nuxt._pergel.rootDir, rootOptions.documentDir) : join(options.serverDir, 'documents')
 
-    const schemaDir = resolve(rootOptions.schemaDir
-      ? nuxt._pergel.rootDir
-      : nuxt._pergel.serverDir, rootOptions.schemaDir ?? 'schema')
+    const schemaDir = rootOptions.schemaDir ? join(nuxt._pergel.rootDir, rootOptions.schemaDir) : join(options.serverDir, 'graphql')
 
-    createFolderModule({
+    const clientConfigFile = rootOptions.codegen?.client?.configFilePath ? resolve(nuxt._pergel.rootDir, rootOptions.codegen?.client?.configFilePath) : resolve(options.serverDir, 'codegen/client.ts')
+
+    const serverConfigFile = rootOptions.codegen?.server?.configFilePath ? resolve(nuxt._pergel.rootDir, rootOptions.codegen?.server?.configFilePath) : resolve(options.serverDir, 'codegen/server.ts')
+
+    rootOptions.documentDir ?? createFolderModule({
       nuxt,
-      serverDir: options.serverDir,
+      serverDir: documentDir,
+    })
+
+    rootOptions.schemaDir ?? createFolderModule({
+      nuxt,
+      serverDir: schemaDir,
     })
 
     return {
@@ -41,12 +46,12 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         client: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(options.moduleDir, rootOptions.codegen?.client?.configFilePath ?? 'codegen/client.ts'),
+          configFilePath: clientConfigFile,
         },
         server: {
           extension: '.graphql',
           onlyDevelopment: true,
-          configFilePath: resolve(options.moduleDir, rootOptions.codegen?.server?.configFilePath ?? 'codegen/server.ts'),
+          configFilePath: serverConfigFile,
         },
       },
       endpoint: '/api/graphql',

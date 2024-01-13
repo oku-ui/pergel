@@ -53,10 +53,10 @@ type Book {
 }
     `
 
-  if (!existsSync(data.options.schemaDir))
+  if (!existsSync(join(data.options.schemaDir, 'book.graphql')))
     writeFileSync(join(data.options.schemaDir, 'book.graphql'), schemaTemplate)
 
-  if (!existsSync(data.options.documentDir))
+  if (!existsSync(join(data.options.documentDir, 'book.graphql')))
     writeFileSync(join(data.options.documentDir, 'book.graphql'), documentsTemplate)
 
   addModuleDTS({
@@ -81,10 +81,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
   useGenerateCodegen({
     nuxt: data.nuxt,
     type: 'all',
-    moduleDir: data.options.dir.document,
-    projectName: data.options.projectName,
-    schemaDir: dir.schema,
-    documentDir: dir.document,
+    options: data.options,
     moduleDTS: {
       name: 'GraphqlYogaContext',
       path: `pergel/${data.options.projectName}/types`,
@@ -92,17 +89,14 @@ export interface GraphqlYogaContext extends YogaInitialContext {
   })
 
   data.nuxt.hook('builder:watch', async (event, path) => {
-    const { serverFolder, clientFolder, moduleName, projectName } = globsServerClient(path)
+    const { serverFolder, clientFolder } = globsServerClient(path)
     // return
     if (serverFolder) {
       // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
       await useGenerateCodegen({
         nuxt: data.nuxt,
         type: 'server',
-        moduleDir: join('pergel', projectName, moduleName),
-        projectName,
-        schemaDir: dir.schema,
-        documentDir: dir.document,
+        options: data.options,
         moduleDTS: {
           name: 'GraphqlYogaContext',
           path: `pergel/${data.options.projectName}/types`,
@@ -114,10 +108,7 @@ export interface GraphqlYogaContext extends YogaInitialContext {
         await useGenerateCodegen({
           nuxt: data.nuxt,
           type: 'all',
-          moduleDir: join('pergel', projectName, moduleName),
-          projectName,
-          schemaDir: dir.schema,
-          documentDir: dir.document,
+          options: data.options,
           moduleDTS: {
             name: 'GraphqlYogaContext',
             path: `pergel/${data.options.projectName}/types`,

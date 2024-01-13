@@ -1,5 +1,4 @@
-import { existsSync, mkdirSync, rmdirSync } from 'node:fs'
-import { dirname } from 'node:path'
+import { mkdirSync } from 'node:fs'
 import type { NuxtPergel } from '../types'
 
 export function createFolderModule(data: {
@@ -7,15 +6,9 @@ export function createFolderModule(data: {
   serverDir?: string
   rootDir?: string
 }) {
-  if (data.nuxt._pergel.exitPergelFolder && data.serverDir) {
-    const serverFolder = dirname(data.serverDir)
-    if (!existsSync(serverFolder))
-      mkdirSync(serverFolder, { recursive: true })
-  }
+  if (data.nuxt._pergel.exitPergelFolder && data.serverDir)
+    mkdirSync(data.serverDir, { recursive: true })
 
-  if (data.nuxt._pergel.exitPergelFolder && data.rootDir) {
-    const rootFolder = dirname(data.rootDir)
-    if (!existsSync(rootFolder))
-      mkdirSync(rootFolder, { recursive: true })
-  }
+  if (data.nuxt._pergel.exitPergelFolder && data.rootDir)
+    mkdirSync(data.rootDir, { recursive: true })
 }

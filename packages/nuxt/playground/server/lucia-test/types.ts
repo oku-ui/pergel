@@ -1,4 +1,4 @@
-import type { Session, User } from 'test/drizzle/schema'
+import type { Session, User } from '#pergel/test/drizzle/schema'
 import type { auth } from '#pergel/test/lucia'
 
 declare module 'lucia' {

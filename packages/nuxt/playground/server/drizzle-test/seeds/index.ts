@@ -12,7 +12,7 @@ const dbUrl = process.env.NUXT_TEST_DRIZZLE_PG_URL
 const dbDrop = process.env.NUXT_TEST_DRIZZLE_PG_DROP
 const dbSeed = process.env.NUXT_TEST_DRIZZLE_PG_SEED
 
-const migrationDir = resolve('pergel/test/drizzle/migrations')
+const migrationDir = resolve('/Users/productdevbook/works/pergel/packages/nuxt/playground/server/drizzle-test/migrations')
 
 async function runMigrationsAndSeed() {
   if (!dbUrl)
