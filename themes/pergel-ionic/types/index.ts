@@ -4,7 +4,7 @@ export interface LocaleObject extends Record<string, any> {
   name?: string
 }
 
-export type ThemeType = 'default' | 'dark'
+export type ThemeType = 'system' | 'light' | 'dark'
 export type LangType = 'en' | 'tr' | 'fr' | 'zh'
 
 export interface SettingsItem {

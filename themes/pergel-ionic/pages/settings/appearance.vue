@@ -2,23 +2,12 @@
 import { computed } from 'vue'
 import type { InputCustomEvent } from '@ionic/vue'
 
-const { themeColor, setThemeColor } = useSettings()
+const { isDark, colors, setThemeColor } = useSettings()
 const { locale, locales, t, setLocale } = useI18n()
-
-const themeToggled = computed(() => themeColor.value === 'dark')
 
 const availableLocales = computed(() => {
   return (locales.value).filter((i: any) => i.code !== locale.value)
 })
-
-function toggleDarkMode() {
-  document.body.classList.toggle('dark')
-
-  if (themeColor.value === 'default')
-    setThemeColor('dark')
-  else
-    setThemeColor('default')
-}
 
 function handleLangChange(ev: InputCustomEvent) {
   setLocale(ev.detail.value as string)
@@ -49,10 +38,22 @@ function handleLangChange(ev: InputCustomEvent) {
 
       <ion-list :inset="true" lines="inset">
         <ion-item>
-          <div slot="start" aria-hidden="true" :class="themeColor === 'default' ? 'i-ph-moon-fill' : 'i-ph-sun-dim-fill'" class=" mr-3"></div>
-          <ion-toggle :checked="themeToggled" @ion-change="toggleDarkMode">
-            {{ t("settings.appearance.dark_mode") }}
-          </ion-toggle>
+          <div slot="start" aria-hidden="true" class="mr-3">
+            <AtomIcon :name="isDark ? 'i-ph-moon' : 'i-ph-sun'" class="h-4 w-4" />
+          </div>
+          <ion-select
+            :label="t('settings.appearance.dark_mode')"
+            :placeholder="locale"
+            @ion-change="setThemeColor"
+          >
+            <ion-select-option
+              v-for="color in colors"
+              :key="color"
+              :value="color"
+            >
+              {{ color }}
+            </ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item>
           <div slot="start" aria-hidden="true" class="i-ph-translate mr-3"></div>
