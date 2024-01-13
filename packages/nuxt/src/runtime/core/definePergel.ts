@@ -1,4 +1,5 @@
 import { existsSync, mkdirSync, rmdirSync } from 'node:fs'
+import { join } from 'node:path'
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
@@ -12,7 +13,7 @@ import type {
   ResolvedModuleOptions,
 } from './types'
 
-export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions>(
+export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ResolvedModuleOptions = ResolvedModuleOptions>(
   definition: ModuleDefinition<RootOptions, ResolvedOptions> | PergelModule<RootOptions, ResolvedOptions>,
 ): PergelModule<RootOptions, ResolvedOptions> {
   if (typeof definition === 'function')
@@ -25,17 +26,29 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     module.meta.configKey = module.meta.name
 
   async function getOptions(
-    inlineOptions: RootOptions,
-    moduleOptions: ResolvedModuleOptions,
+    rootOptions: RootOptions,
+    resolvedOptions: ResolvedOptions & ResolvedModuleOptions,
     nuxt: NuxtPergel = useNuxt(),
   ) {
-    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, rootOptions: inlineOptions, moduleOptions }) : module.defaults
+    const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, options: resolvedOptions, rootOptions }) : module.defaults
 
-    const rootOptions = (nuxt._pergel.rootOptions.projects[moduleOptions.projectName] as any)[moduleOptions.moduleName] ?? {}
-    const _options = defu(rootOptions, {
-      ...defaultModule,
-      moduleDir: `${nuxt._pergel.dir.server}/${moduleOptions.moduleName}-${moduleOptions.projectName}`,
+    const projectName = resolvedOptions.projectName
+    const moduleName = resolvedOptions.moduleName
+
+    const _rootOptions = (nuxt._pergel.rootOptions.projects[projectName] as any)[moduleName] ?? {}
+
+    const _options = defu(_rootOptions, {
+      moduleDir: `${moduleName}-${projectName}`,
       openFolder: false,
+      dir: {
+        module: join(projectName, moduleName),
+        project: join(projectName),
+      },
+      moduleName,
+      firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
+      firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
+      projectName,
+      ...defaultModule,
     })
 
     // TODO: Type this
@@ -47,15 +60,15 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
 
   async function normalizedModule(
     this: any,
-    data: { nuxt: NuxtPergel, rootOptions: RootOptions, moduleOptions: ResolvedModuleOptions },
+    data: { nuxt: NuxtPergel, rootOptions: RootOptions, options: ResolvedOptions & ResolvedModuleOptions },
   ) {
-    const options = await getOptions(data.rootOptions, data.moduleOptions, data.nuxt) as ResolvedModuleOptions
+    const options = await getOptions(data.rootOptions, data.options, data.nuxt) as ResolvedModuleOptions
 
     if (data.nuxt._pergel.exitPergelFolder) {
       if (!existsSync(options.moduleDir) && options.openFolder)
         mkdirSync(options.moduleDir, { recursive: true })
       else if (existsSync(options.moduleDir) && options.openFolder === false)
-        rmdirSync(options.moduleDir)
+        rmdirSync(options.moduleDir, { recursive: true })
     }
 
     const key = `pergel:${module.meta.configKey}`
@@ -87,7 +100,7 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     if (!this.prepare) {
       // Resolve module and options
 
-      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options: (options as any), rootOptions: data.rootOptions, moduleOptions: data.moduleOptions }) ?? {}
+      const res = await module.setup?.call(null as any, { nuxt: data.nuxt, options: (options as any), rootOptions: data.rootOptions }) ?? {}
       const perf = performance.measure(key, mark)
       const setupTime = perf ? Math.round(perf.duration * 100) / 100 : 0
 

@@ -107,9 +107,6 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
           nuxt,
           options: {
             openFolder: true,
-          },
-          rootOptions: module,
-          moduleOptions: {
             dir: {
               module: join(projectName, moduleName),
               project: join(projectName),
@@ -118,9 +115,9 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
             firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
             firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
             projectName,
-            openFolder: true,
-            moduleDir: join(projectName, moduleName),
+            moduleDir: join(`${moduleName}-${projectName}`),
           },
+          rootOptions: module,
         })
 
         if (resolvedModule === false /* setup aborted */
@@ -273,9 +270,6 @@ export async function setupModules(data: {
         nuxt: data.nuxt,
         options: {
           openFolder: true,
-        },
-        rootOptions: module,
-        moduleOptions: {
           dir: {
             module: join(projectName, moduleName),
             project: join(projectName),
@@ -284,9 +278,9 @@ export async function setupModules(data: {
           firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
           firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
           projectName,
-          moduleDir: join(projectName, moduleName),
-          openFolder: true,
+          moduleDir: join(`${moduleName}-${projectName}`),
         },
+        rootOptions: module,
       })
 
       if (

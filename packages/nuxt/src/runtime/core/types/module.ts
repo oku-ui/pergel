@@ -16,15 +16,15 @@ import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-typ
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
 export interface Modules {
-  S3?: true | DefaultModuleOptions
-  ses?: true | DefaultModuleOptions
-  nodeCron?: true | DefaultModuleOptions
-  bullmq?: true | DefaultModuleOptions
-  json2csv?: true | DefaultModuleOptions
-  graphqlYoga?: true | (GraphQLYogaConfig & DefaultModuleOptions)
-  drizzle?: true | (DrizzleConfig & DefaultModuleOptions)
-  lucia?: true | (LuciaModuleOptions & DefaultModuleOptions)
-  ui?: true | (ResolvedUIOptions & DefaultModuleOptions)
+  S3?: true | ModuleOptions
+  ses?: true | ModuleOptions
+  nodeCron?: true | ModuleOptions
+  bullmq?: true | ModuleOptions
+  json2csv?: true | ModuleOptions
+  graphqlYoga?: true | (GraphQLYogaConfig & ModuleOptions)
+  drizzle?: true | (DrizzleConfig & ModuleOptions)
+  lucia?: true | (LuciaModuleOptions & ModuleOptions)
+  ui?: true | (ResolvedUIOptions & ModuleOptions)
 }
 
 export interface ResolvedModules {
@@ -224,18 +224,18 @@ export interface NuxtPergel extends Nuxt {
   _pergel: ResolvedPergelOptions
 }
 
-export interface ResolvedModuleOptions extends Required<ResolvedDefaultModuleOptions> {
-  dir: {
-    module: string
-    project: string
-  }
+export interface ResolvedModuleOptions {
   moduleName: string
-  firstLetterModuleName: string
   projectName: string
+  firstLetterModuleName: string
   firstLetterProjectName: string
+  openFolder: boolean
+  moduleDir: string
+
+  [key: string]: unknown
 }
 
-interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
+interface ModuleMeta<T extends ResolvedModuleOptions = ResolvedModuleOptions> {
   /** Module name. */
   name?: string
   /** Module version. */
@@ -246,11 +246,11 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
    */
   configKey?: string
 
-  devDependencies?: Record<string, string> | ((options: RootOptions) => Record<string, string>)
-  dependencies?: Record<string, string> | ((options: RootOptions) => Record<string, string>)
+  devDependencies?: Record<string, string> | ((options: T) => Record<string, string>)
+  dependencies?: Record<string, string> | ((options: T) => Record<string, string>)
   dts?: boolean
 
-  waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[] | undefined)
+  waitModule?: ModuleName[] | ((options: T) => ModuleName[] | undefined)
 
   /**
    * @default
@@ -264,20 +264,11 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
 }
 
 /** The options received.  */
-export type ModuleOptions = Record<string, any>
-
-export type DefaultModuleOptions = {
+export type ModuleOptions = {
   openFolder?: boolean
   moduleDir?: string
-}
 
-export type ResolvedDefaultModuleOptions = {
-  openFolder?: boolean
-  /**
-   * @default
-   * '${moduleName}
-   */
-  moduleDir?: string
+  [key: string]: unknown
 }
 
 /** Optional result for nuxt modules */
@@ -296,21 +287,20 @@ export type Awaitable<T> = T | Promise<T>
 type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
 export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
-  meta?: ModuleMeta<RootOptions>
-  defaults?: ResolvedOptions & ResolvedDefaultModuleOptions
+  meta?: ModuleMeta<ResolvedModuleOptions>
+  defaults?: ResolvedOptions
   | ((data: {
     nuxt: NuxtPergel
+    options: ResolvedOptions & ResolvedModuleOptions
     rootOptions: RootOptions
-    moduleOptions: ResolvedModuleOptions
   })
-  => ResolvedOptions & ResolvedDefaultModuleOptions)
+  => ResolvedOptions & ResolvedModuleOptions)
   setup?: (
     this: void,
     data: {
       nuxt: NuxtPergel
-      options: ResolvedOptions & Required<ResolvedDefaultModuleOptions>
+      options: ResolvedOptions & ResolvedModuleOptions
       rootOptions: RootOptions
-      moduleOptions: ResolvedModuleOptions
     },
   ) =>
   _ModuleSetupReturn
@@ -319,16 +309,15 @@ export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOpti
 export interface PergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
   (this: void, data: {
     nuxt: NuxtPergel
-    options: ResolvedOptions & ResolvedDefaultModuleOptions
+    options: ResolvedOptions & ResolvedModuleOptions
     rootOptions: RootOptions
-    moduleOptions: ResolvedModuleOptions
   }): _ModuleSetupReturn
   getOptions?: (
     inlineOptions?: ResolvedOptions,
     data?: {
       nuxt: NuxtPergel
-      rootOptions: RootOptions
-    }) => Promise<ResolvedOptions>
+      options: ResolvedOptions & ResolvedModuleOptions
+    }) => Promise<ResolvedOptions & ResolvedModuleOptions>
   getMeta?: () => ModuleMeta
 }
 
