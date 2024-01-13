@@ -1,5 +1,3 @@
-import { existsSync, mkdirSync, rmdirSync } from 'node:fs'
-import { join } from 'node:path'
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'

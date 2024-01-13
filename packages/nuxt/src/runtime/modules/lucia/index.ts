@@ -1,7 +1,6 @@
-import { existsSync, lstatSync, mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { createResolver } from '@nuxt/kit'
-import { trainCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'

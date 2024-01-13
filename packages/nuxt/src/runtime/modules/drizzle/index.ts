@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { addImportsDir, addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
 import { camelCase, pascalCase } from 'scule'
-import { basename, dirname } from 'pathe'
+import { basename } from 'pathe'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { globsBuilderWatch } from '../../core/utils/globs'
@@ -46,8 +46,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
   },
   defaults({ rootOptions, options, nuxt }) {
     const [driverName, driver] = rootOptions.driver?.split(':') ?? ['postgresjs', 'pg']
-
-    console.log(options)
 
     const migrationsPath = join(options.serverDir, rootOptions.migrationsPath ?? 'migrations')
     const schemaPath = join(options.serverDir, rootOptions.schemaPath ?? 'schema')

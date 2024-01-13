@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { Nuxt } from '@nuxt/schema'
-import type { ResolvedModuleOptions } from '../types'
 
 export function addModuleDTS(data: {
   template?: string
