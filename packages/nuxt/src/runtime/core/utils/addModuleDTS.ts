@@ -3,13 +3,13 @@ import { join } from 'node:path'
 import type { Nuxt } from '@nuxt/schema'
 
 export function addModuleDTS(data: {
-  template?: string
   projectName: string
   moduleName: string
-  pergelFolderTemplate?: string
   interfaceNames: string[]
   nuxt: Nuxt
   dir: string
+  pergelFolderTemplate?: string
+  template?: string
 }) {
   const typePath = join(data.dir, 'types.ts')
   const folderPath = join(data.dir)

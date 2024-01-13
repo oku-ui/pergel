@@ -239,6 +239,12 @@ export interface ResolvedModuleOptions {
 
   /**
    * @default
+   * testHello -> pergelTestHello
+   */
+  projectNamePascalCase: string
+
+  /**
+   * @default
    *  /home/username/nuxt3/pergel/${moduleName}-${projectName}
    */
   rootModuleDir: string

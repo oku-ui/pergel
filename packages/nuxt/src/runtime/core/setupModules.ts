@@ -3,9 +3,11 @@ import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
+import { camelCase } from 'scule'
 import type { ModuleName, PergelModule, ResolvedPergelOptions } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
+import { firstLetterUppercase } from './utils'
 
 type PrepareModules = {
   [project: string]: {
@@ -31,20 +33,6 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
   try {
     for await (const [projectName, modules] of Object.entries(projects)) {
       for await (const [moduleName, moduleValue] of Object.entries(modules)) {
-        nuxt.options.alias[`#${projectName}/${moduleName}`] = resolve(
-          nuxt.options.rootDir,
-          'pergel',
-          projectName,
-          moduleName,
-        )
-        nuxt.options.nitro.alias ??= {}
-        nuxt.options.nitro.alias[`#${projectName}/${moduleName}`] = resolve(
-          nuxt.options.rootDir,
-          'pergel',
-          projectName,
-          moduleName,
-        )
-
         if (typeof moduleValue === 'boolean' && moduleValue === false)
           continue
 
@@ -114,6 +102,7 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
             projectName,
             rootModuleDir: join(nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
             serverDir: join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
+            projectNamePascalCase: camelCase(`pergel${firstLetterUppercase(projectName)}`, { normalize: true }),
           },
           rootOptions: module,
         })
@@ -275,6 +264,7 @@ export async function setupModules(data: {
           projectName,
           rootModuleDir: join(data.nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
           serverDir: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
+          projectNamePascalCase: camelCase(`pergel${firstLetterUppercase(projectName)}`),
         },
         rootOptions: module,
       })

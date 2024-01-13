@@ -31,11 +31,15 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
     rootOptions.documentDir ?? createFolderModule({
       nuxt,
       serverDir: documentDir,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
     })
 
     rootOptions.schemaDir ?? createFolderModule({
       nuxt,
       serverDir: schemaDir,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
     })
 
     return {

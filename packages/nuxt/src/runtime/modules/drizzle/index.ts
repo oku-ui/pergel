@@ -54,6 +54,8 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     createFolderModule({
       nuxt,
       serverDir: options.serverDir,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
     })
 
     return {

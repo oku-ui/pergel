@@ -21,7 +21,10 @@ export default definePergelModule({
     createFolderModule({
       nuxt,
       serverDir: options._dir.server,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
     })
+
     return {
       ...options,
     }
