@@ -152,7 +152,7 @@ export default defineNuxtModule<PergelOptions>({
 
     const file = join(nuxt.options.rootDir, 'pergel', '.env.template')
 
-    writeFileSync(file, envTemplate, {
+    nuxt._pergel.exitPergelFolder ?? writeFileSync(file, envTemplate, {
       encoding: 'utf8',
     })
   },
