@@ -50,6 +50,7 @@ export async function setupPergel(
   const pergelDir = file.config.dir.pergel ?? 'pergel'
   const templateDir = file.config.dir.pergel ?? join('pergel', 'templates')
   const readmePath = join(pergelDir, 'README.yaml')
+  const serverDir = file.config.dir.server ?? 'server'
 
   // TODO: nuxt.options.rootDi ?? file.config.cwd
   const resolveDir = resolve(nuxt.options.rootDir)
@@ -128,8 +129,6 @@ export async function setupPergel(
       pergel: pergelDir ?? 'pergel',
       readme: join(pergelDir, 'README.yaml'),
       server: file.config.dir.server ?? 'server',
-      // TODO: add cli components
-      components: join(pergelDir, 'components'),
     },
     contents: [],
     pergelDir: resolve(resolveDir, pergelDir),
@@ -139,6 +138,7 @@ export async function setupPergel(
     esnext: true,
     debug: false,
     workspaceMode: false,
+    serverDir: resolve(resolveDir, serverDir),
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

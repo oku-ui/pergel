@@ -165,12 +165,6 @@ export interface ResolvedPergelOptions {
      * 'server'
      */
     server: string
-
-    /**
-     * @example
-     * 'components'
-     */
-    components: string
   }
 
   contents: {
@@ -218,6 +212,7 @@ export interface ResolvedPergelOptions {
 
   workspaceMode: boolean
 
+  serverDir: string
 }
 
 export interface NuxtPergel extends Nuxt {
@@ -225,14 +220,61 @@ export interface NuxtPergel extends Nuxt {
 }
 
 export interface ResolvedModuleOptions {
+  /**
+   * @default
+   * 'test'
+   */
   moduleName: string
-  projectName: string
-  firstLetterModuleName: string
-  firstLetterProjectName: string
-  openFolder: boolean
-  moduleDir: string
 
-  [key: string]: unknown
+  /**
+   * @default
+   * 'test'
+   */
+
+  projectName: string
+  /**
+   * @default
+   * test -> Test
+   */
+
+  firstLetterModuleName: string
+  /**
+   * @default
+   * test -> Test
+   */
+
+  firstLetterProjectName: string
+
+  /**
+   * @default
+   *  /home/username/nuxt3/pergel/${moduleName}-${projectName}
+   */
+  rootModuleDir: string
+
+  /**
+   * @default
+   * /home/username/nuxt3/pergel/server/${moduleName}-${projectName}
+   */
+  serverDir: string
+
+  /**
+   * ModuleDir
+   */
+  _dir: {
+    /**
+     * @default
+     * '${moduleName}-${projectName}'
+     */
+    module: string
+
+    /**
+     * @default
+     * 'server/${moduleName}-${projectName}'
+     */
+    server: string
+  }
+
+  [key: string]: any
 }
 
 interface ModuleMeta<T extends ResolvedModuleOptions = ResolvedModuleOptions> {
@@ -251,25 +293,13 @@ interface ModuleMeta<T extends ResolvedModuleOptions = ResolvedModuleOptions> {
   dts?: boolean
 
   waitModule?: ModuleName[] | ((options: T) => ModuleName[] | undefined)
+  rootModuleDir?: string
 
-  /**
-   * @default
-   * `false`
-   */
-  openFolder?: boolean
-
-  moduleDir?: string
-
-  [key: string]: unknown
+  [key: string]: any
 }
 
 /** The options received.  */
-export type ModuleOptions = {
-  openFolder?: boolean
-  moduleDir?: string
-
-  [key: string]: unknown
-}
+export type ModuleOptions = Record<string, any>
 
 /** Optional result for nuxt modules */
 export interface ModuleSetupReturn {

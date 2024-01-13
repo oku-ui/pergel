@@ -38,22 +38,13 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     const _rootOptions = (nuxt._pergel.rootOptions.projects[projectName] as any)[moduleName] ?? {}
 
     const _options = defu(_rootOptions, {
-      moduleDir: `${moduleName}-${projectName}`,
-      openFolder: false,
-      dir: {
-        module: join(projectName, moduleName),
-        project: join(projectName),
-      },
-      moduleName,
-      firstLetterModuleName: moduleName[0].toUpperCase() + moduleName.slice(1),
-      firstLetterProjectName: projectName[0].toUpperCase() + projectName.slice(1),
-      projectName,
+      ...resolvedOptions,
       ...defaultModule,
     })
 
     // TODO: Type this
     // @ts-ignore
-    nuxt._pergel.projects[moduleOptions.projectName][moduleOptions.moduleName] = _options
+    nuxt._pergel.projects[projectName][moduleName] = _options
 
     return Promise.resolve(_options)
   }
@@ -63,13 +54,6 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
     data: { nuxt: NuxtPergel, rootOptions: RootOptions, options: ResolvedOptions & ResolvedModuleOptions },
   ) {
     const options = await getOptions(data.rootOptions, data.options, data.nuxt) as ResolvedModuleOptions
-
-    if (data.nuxt._pergel.exitPergelFolder) {
-      if (!existsSync(options.moduleDir) && options.openFolder)
-        mkdirSync(options.moduleDir, { recursive: true })
-      else if (existsSync(options.moduleDir) && options.openFolder === false)
-        rmdirSync(options.moduleDir, { recursive: true })
-    }
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)

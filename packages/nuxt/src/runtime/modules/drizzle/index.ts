@@ -7,6 +7,7 @@ import { basename, dirname } from 'pathe'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { globsBuilderWatch } from '../../core/utils/globs'
+import { createFolderModule } from '../../core/utils/useOpenFolder'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from './types'
 import { setupPostgres } from './drivers/postgres'
 import { copyMigrationFolder } from './core'
@@ -45,12 +46,17 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
   },
   defaults({ rootOptions, options, nuxt }) {
     const [driverName, driver] = rootOptions.driver?.split(':') ?? ['postgresjs', 'pg']
-    const server = nuxt._pergel.dir.server
-    const rootDir = nuxt._pergel.rootDir
 
-    const migrationsPath = join(rootDir, server, options.moduleDir, rootOptions.migrationsPath ?? 'migrations')
-    const schemaPath = join(rootDir, server, options.moduleDir, rootOptions.schemaPath ?? 'schema')
-    const seedPaths = join(rootDir, server, options.moduleDir, rootOptions.seedPaths ?? 'seeds')
+    console.log(options)
+
+    const migrationsPath = join(options.serverDir, rootOptions.migrationsPath ?? 'migrations')
+    const schemaPath = join(options.serverDir, rootOptions.schemaPath ?? 'schema')
+    const seedPaths = join(options.serverDir, rootOptions.seedPaths ?? 'seeds')
+
+    createFolderModule({
+      nuxt,
+      serverDir: options.serverDir,
+    })
 
     return {
       ...options,
@@ -70,7 +76,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       } as any,
       studio: true,
       openFolder: true,
-      moduleDir: join(rootDir, server, options.moduleDir),
     }
   },
   async setup({ nuxt, options }) {

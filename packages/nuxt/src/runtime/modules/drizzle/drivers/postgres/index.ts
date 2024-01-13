@@ -52,18 +52,15 @@ export default {
 }
 `
 
-  if (!existsSync(options.moduleDir))
-    mkdirSync(options.moduleDir, { recursive: true, mode: 0o777 })
-
-  if (!existsSync(resolve(options.moduleDir, 'drizzle.config.js'))) {
-    writeFileSync(resolve(options.moduleDir, 'drizzle.config.js'), drizzleConfig, {
+  if (!existsSync(resolve(options.serverDir, 'drizzle.config.js'))) {
+    writeFileSync(resolve(options.serverDir, 'drizzle.config.js'), drizzleConfig, {
       encoding: 'utf8',
     })
   }
 
   // Seed generation
   if (!existsSync(resolve(options.seedPaths)))
-    mkdirSync(resolve(options.moduleDir, 'seeds'), { recursive: true, mode: 0o777 })
+    mkdirSync(resolve(options.serverDir, 'seeds'), { recursive: true, mode: 0o777 })
 
   if (!existsSync(resolve(options.seedPaths, 'index.ts'))) {
     const readFile = await import('./seed').then(m => m.default).catch(() => null)
@@ -74,7 +71,7 @@ export default {
           dbDrop: env.drop,
           dbSeed: env.seed,
         },
-        migrationDir: join(options.moduleDir, options.dir.migrations),
+        migrationDir: join(options.serverDir, options.dir.migrations),
       })
       writeFileSync(resolve(options.seedPaths, 'index.ts'), file, {
         mode: 0o777,
@@ -120,13 +117,13 @@ export default {
     data: ({ addCommentBlock }) => ({
       ...addCommentBlock('Script Commands'),
       scripts: {
-        migrate: `drizzle-kit generate:${driver} --config=${options.moduleDir}/drizzle.config.js`,
-        generate: `drizzle-kit generate:${driver} --config=${options.moduleDir}/drizzle.config.js`,
-        push: `drizzle-kit push:${driver} --config=${options.moduleDir}/drizzle.config.js`,
-        drop: `drizzle-kit drop --config=${options.moduleDir}/drizzle.config.js`,
-        up: `drizzle-kit up:${driver} --config=${options.moduleDir}/drizzle.config.js`,
-        studio: `drizzle-kit studio --port 3105 --config=${options.moduleDir}/drizzle.config.js`,
-        seed: `tsx ${options.moduleDir}/seeds/index.ts`,
+        migrate: `drizzle-kit generate:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        generate: `drizzle-kit generate:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        push: `drizzle-kit push:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        drop: `drizzle-kit drop --config=${options._dir.server}/drizzle.config.js`,
+        up: `drizzle-kit up:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        studio: `drizzle-kit studio --port 3105 --config=${options._dir.server}/drizzle.config.js`,
+        seed: `tsx ${options._dir.server}/seeds/index.ts`,
       },
       cli: {
         migrate: `pergel module -s=migrate -p=${projectName} -m=${moduleName}`,
