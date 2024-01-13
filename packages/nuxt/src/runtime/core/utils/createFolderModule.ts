@@ -1,5 +1,5 @@
 import { mkdirSync } from 'node:fs'
-import { basename, parse, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import type { NuxtPergel } from '../types'
 
 export function createFolderModule(data: {

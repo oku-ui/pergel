@@ -1,4 +1,3 @@
-import { resolve } from 'node:path'
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'

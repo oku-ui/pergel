@@ -1,4 +1,4 @@
-import { join, resolve } from 'node:path'
+import { join } from 'node:path'
 import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
