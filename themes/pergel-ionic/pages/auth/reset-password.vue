@@ -27,9 +27,9 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
 <template>
   <IonPage>
     <IonContent :fullscreen="true">
-      <BgPattern />
+      <TwPattern />
 
-      <div class="bg-background/75 border-codGray-200  dark:border-codGray-800 sticky top-0 z-50 -mb-px mt-5 overflow-auto border-b p-10 backdrop-blur-sm backdrop-filter md:backdrop-blur-none lg:mb-0 lg:border-0">
+      <div class="bg-background/75 border-codGray-200  dark:border-codGray-800 sticky top-0 z-50 -mb-px mt-28 overflow-auto border-b p-10 backdrop-blur-sm backdrop-filter md:backdrop-blur-none lg:mb-0 lg:border-0">
         <AuthForm
           :title="code ? t('auth.reset_password') : t('auth.forgot_password')"
           :description="{

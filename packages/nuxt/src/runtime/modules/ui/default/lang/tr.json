@@ -82,6 +82,16 @@
       "lastName": "Soyad",
       "bio": "Biyografi"
     }
+  },
+  "tabs": {
+    "home": "Anasayfa",
+    "settings": "Ayarlar"
+  },
+  "profile": {
+    "invite": "Davet Et",
+    "invite_link": "Davet Linki",
+    "invite_people": "İnsanları davet et",
+    "edit_profile": "Profili Düzenle"
   }
 
 }

@@ -82,5 +82,15 @@
       "lastName": "Last Name",
       "bio": "Biography"
     }
+  },
+  "tabs": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "profile": {
+    "invite": "Invite",
+    "invite_link": "Invite Link",
+    "invite_people": "Invite people",
+    "edit_profile": "Edit Profile"
   }
 }

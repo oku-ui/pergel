@@ -13,7 +13,8 @@ defineProps({
 <template>
   <div>
     <div :class="size === 'lg' ? 'h-52' : 'h-20'" class=" w-full">
-      <img src="/assets/patterns/bgPattern.svg" class="h-full w-full rounded-t-lg">
+      <!-- <img src="/assets/patterns/bgPattern.svg" class="h-full w-full rounded-t-lg"> -->
+      <TwPattern></TwPattern>
     </div>
     <div class="-mt-20 flex flex-col items-center">
       <img src="/assets/images/profile.jpg" class="w-24 rounded-full border-4 border-white">
