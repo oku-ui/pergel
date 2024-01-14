@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const route = useRoute()
-
+const router = useIonRouter()
 const isActivated = route.query.activated === 'true'
 function submit(values: any, loading: (value: boolean) => void) {
   loading(true)
   setTimeout(() => {
     loading(false)
     push.success('Signin success')
+    router.push('/tabs/tab1')
   }, 1000)
 }
 
