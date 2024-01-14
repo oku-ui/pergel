@@ -33,8 +33,8 @@
   },
   "dependencies": {
     "@pergel/graphql": "workspace:0.0.0",
-    "drizzle-kit": "^0.20.9",
-    "drizzle-orm": "^0.29.2",
+    "drizzle-kit": "^0.20.12",
+    "drizzle-orm": "^0.29.3",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
@@ -50,7 +50,12 @@
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.3.3",
     "vite": "5.0.11",
-    "vitest": "^1.1.1"
+    "vitest": "^1.2.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "rollup": "^4.2.0"
+    }
   },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt"

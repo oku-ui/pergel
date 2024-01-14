@@ -18,12 +18,17 @@ export const external = [
   'postgres',
   '@egoist/tailwindcss-icons',
   'drizzle',
-  // #Auth
   'oslo',
   'lucia',
   '@lucia-auth/adapter-drizzle',
   '@lucia-auth/adapter-postgresql',
-  // @ts-expect-error
+  'fsevents',
+  'node:path',
+  'node:fs',
+  'node:http',
+  'node:child_process',
+  'node:stream',
+  'node:url',
   ...Object.keys(pkg.peerDependencies || {}),
 ]
 export default defineBuildConfig([
