@@ -3,19 +3,19 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title class="justify-center text-center">
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonButtons slot="start">
+          <IonBackButton></IonBackButton>
+        </IonButtons>
+        <IonTitle class="justify-center text-center">
           {{ t('auth.terms_of_service') }}
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-content :fullscreen="true">
+    <IonContent :fullscreen="true">
       <AuthContent
         :title="t('auth.terms_of_service')"
         :description="{
@@ -72,8 +72,8 @@ const { t } = useI18n()
           </div>
         </div>
       </AuthContent>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
 <style scoped>

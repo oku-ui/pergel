@@ -3,28 +3,28 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title class="justify-center text-center">
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonButtons slot="start">
+          <IonBackButton></IonBackButton>
+        </IonButtons>
+        <IonTitle class="justify-center text-center">
           {{ t("settings.account.title") }}
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-content :fullscreen="true" color="light">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large" class="justify-center text-center">
+    <IonContent :fullscreen="true" color="light">
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large" class="justify-center text-center">
             {{ t("settings.account.title") }}
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-card class="mt-40">
-        <ion-card-content class="relative mx-auto w-full rounded-2xl bg-white px-6 pb-9 shadow-xl">
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonCard class="mt-40">
+        <IonCard-content class="relative mx-auto w-full rounded-2xl bg-white px-6 pb-9 shadow-xl">
           <div class="flex flex-col items-center justify-center space-y-2 text-center">
             <div class="text-3xl font-semibold">
               <p> {{ t("auth.email_verification") }}</p>
@@ -54,9 +54,9 @@ const { t } = useI18n()
 
                 <div class="flex flex-col items-center space-y-5">
                   <div>
-                    <ion-button>
+                    <IonButton>
                       {{ t("auth.verify_account") }}
-                    </ion-button>
+                    </IonButton>
                   </div>
 
                   <div class="flex flex-row items-center justify-center space-x-1 text-center text-sm font-medium text-gray-500">
@@ -66,8 +66,8 @@ const { t } = useI18n()
               </div>
             </form>
           </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-content>
-  </ion-page>
+        </IonCard-content>
+      </IonCard>
+    </IonContent>
+  </IonPage>
 </template>

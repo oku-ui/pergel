@@ -22,52 +22,52 @@ function handleLangChange(ev: IonSelectCustomEvent<SelectChangeEventDetail<any>>
 </script>
 
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title class="justify-center text-center">
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonButtons slot="start">
+          <IonBackButton></IonBackButton>
+        </IonButtons>
+        <IonTitle class="justify-center text-center">
           {{ t("settings.appearance.title") }}
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-content :fullscreen="true">
-      <ion-list :inset="true" lines="inset">
-        <ion-item>
+    <IonContent :fullscreen="true">
+      <IonList :inset="true" lines="inset">
+        <IonItem>
           <div slot="start" aria-hidden="true" class="mr-3">
             <AtomIcon :name="isDark ? 'i-ph-moon' : 'i-ph-sun'" class="h-4 w-4" />
           </div>
-          <ion-select
+          <IonSelect
             :label="t('settings.appearance.dark_mode')"
             :placeholder="isDark"
             @ion-change="setThemeColor"
           >
-            <ion-select-option
+            <IonSelect-option
               v-for="color in colors"
               :key="color"
               :value="color"
             >
               {{ color }}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
+            </IonSelect-option>
+          </IonSelect>
+        </IonItem>
+        <IonItem>
           <div slot="start" aria-hidden="true" class="i-ph-translate mr-3"></div>
-          <ion-select
+          <IonSelect
             :label="t('settings.appearance.language')" :placeholder="locale"
             @ion-change="handleLangChange"
           >
-            <ion-select-option v-for="lang in availableLocales" :key="lang.code" :value="lang.code">
+            <IonSelect-option v-for="lang in availableLocales" :key="lang.code" :value="lang.code">
               {{
                 lang.name
               }}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-page>
+            </IonSelect-option>
+          </IonSelect>
+        </IonItem>
+      </IonList>
+    </IonContent>
+  </IonPage>
 </template>

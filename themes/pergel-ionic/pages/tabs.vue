@@ -2,18 +2,18 @@
 </script>
 
 <template>
-  <ion-page>
-    <ion-content>
-      <ion-tabs>
-        <ion-router-outlet />
+  <IonPage>
+    <IonContent>
+      <IonTabs>
+        <IonRouterOutlet />
 
-        <ion-tab-bar slot="bottom">
-          <ion-tab-button tab="tab1" href="/tabs/tab1">
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="tab1" href="/tabs/tab1">
             <div class="i-ph-house-bold"></div>
-            <ion-label>Tab 1</ion-label>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    </ion-content>
-  </ion-page>
+            <IonLabel>Tab 1</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonContent>
+  </IonPage>
 </template>

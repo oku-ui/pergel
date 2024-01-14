@@ -10,8 +10,8 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <ion-page>
-    <ion-content :fullscreen="true">
+  <IonPage>
+    <IonContent :fullscreen="true">
       <BgPattern />
       <div class="bg-background/75 border-codGray-200  dark:border-codGray-800 sticky top-0 z-50 -mb-px mt-5 overflow-auto border-b p-10 backdrop-blur-sm backdrop-filter md:backdrop-blur-none lg:mb-0 lg:border-0">
         <AuthForm
@@ -33,6 +33,6 @@ const { t } = useI18n()
           <AuthFormSignup @submit="submit" />
         </AuthForm>
       </div>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>

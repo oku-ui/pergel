@@ -104,9 +104,9 @@ html.dark .ios  {
   --ion-color-step-900: #e6e6e6;
   --ion-color-step-950: #f2f2f2;
 
-  --ion-toolbar-background: #0d0d0d;
+  --IonToolbar-background: #0d0d0d;
 
-  --ion-item-background: #000000;
+  --IonItem-background: #000000;
 
   --ion-border-color: #1a1a1a;
 }
@@ -145,13 +145,13 @@ html.dark .md {
   --ion-color-step-900: #e7e7e7;
   --ion-color-step-950: #f3f3f3;
 
-  --ion-item-background: #292929;
+  --IonItem-background: #292929;
 
-  --ion-toolbar-background: #272727;
+  --IonToolbar-background: #272727;
 
   --ion-tab-bar-background: #2e2e2e;
 }
 
- html.dark .ios ion-title.large-title {
+ html.dark .ios IonTitle.large-title {
   color: var(--ion-text-color, #ffffff);
 }

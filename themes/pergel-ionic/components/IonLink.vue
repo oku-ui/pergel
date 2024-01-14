@@ -13,7 +13,7 @@ function to() {
 </script>
 
 <template>
-  <ion-router-link @click="to">
+  <IonRouterLink @click="to">
     <slot />
-  </ion-router-link>
+  </IonRouterLink>
 </template>

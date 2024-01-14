@@ -33,26 +33,26 @@ const onSubmit = form.handleSubmit((values) => {
 </script>
 
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title class="justify-center text-center">
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonButtons slot="start">
+          <IonBackButton></IonBackButton>
+        </IonButtons>
+        <IonTitle class="justify-center text-center">
           {{ t("settings.account.title") }}
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-content :fullscreen="true" color="light">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large" class="justify-center text-center">
+    <IonContent :fullscreen="true" color="light">
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large" class="justify-center text-center">
             {{ t("settings.account.title") }}
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <the-header :full-name="user?.fullName" :avatar="user?.avatar" size="lg"></the-header>
 
       <form class="items-center p-10" @submit.prevent="onSubmit">
@@ -95,6 +95,6 @@ const onSubmit = form.handleSubmit((values) => {
           {{ t('settings.save') }}
         </AtomButton>
       </form>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>

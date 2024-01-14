@@ -1,5 +1,5 @@
 <template>
-  <ion-app>
-    <ion-router-outlet />
-  </ion-app>
+  <IonApp>
+    <IonRouterOutlet />
+  </IonApp>
 </template>

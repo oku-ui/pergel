@@ -46,45 +46,45 @@ function itemClick(setting: SettingsItem) {
 </script>
 
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title class="justify-center text-center">
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonTitle class="justify-center text-center">
           {{ t("settings.title") }}
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-content :fullscreen="true" color="light">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large" class="justify-center text-center">
+    <IonContent :fullscreen="true" color="light">
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large" class="justify-center text-center">
             {{ t("settings.title") }}
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <the-header size="xs" :full-name="user?.fullName" :avatar="user?.avatar"></the-header>
       <div class="relative mt-2 flex items-center">
-        <ion-searchbar v-model="searchText" :debounce="500" show-cancel-button="focus" cancel-button-text="Cancel" placeholder="Search" class="m-2" @ion-input="handleSearch($event)"></ion-searchbar>
+        <IonSearchbar v-model="searchText" :debounce="500" show-cancel-button="focus" cancel-button-text="Cancel" placeholder="Search" class="m-2" @ion-input="handleSearch($event)"></IonSearchbar>
       </div>
-      <ion-list v-if="searchText.length === 0" :inset="true" lines="inset">
-        <ion-item v-for="setting in settingsResults" :key="setting.order" class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="itemClick(setting)">
+      <IonList v-if="searchText.length === 0" :inset="true" lines="inset">
+        <IonItem v-for="setting in settingsResults" :key="setting.order" class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="itemClick(setting)">
           <div slot="start" aria-hidden="true" :class="setting.icon" class="mr-3"></div>
           {{ setting.name }}
-        </ion-item>
-      </ion-list>
-      <ion-item-group v-for="setting in settingsResults" v-else :key="setting.order" :button="true" class="justify-center font-semibold leading-6 text-gray-500 dark:text-white">
-        <ion-item-divider>
-          <ion-label>
+        </IonItem>
+      </IonList>
+      <IonItem-group v-for="setting in settingsResults" v-else :key="setting.order" :button="true" class="justify-center font-semibold leading-6 text-gray-500 dark:text-white">
+        <IonItem-divider>
+          <IonLabel>
             {{ setting.name }}
-          </ion-label>
-        </ion-item-divider>
+          </IonLabel>
+        </IonItem-divider>
 
-        <ion-item v-for="subItem in setting.subItems" :key="subItem.order" class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="itemClick(setting)">
+        <IonItem v-for="subItem in setting.subItems" :key="subItem.order" class="justify-center rounded-md p-2 text-sm font-semibold leading-6 text-gray-500 dark:text-white" :button="true" :detail="true" @click="itemClick(setting)">
           <div slot="start" aria-hidden="true" :class="subItem.icon" class="mr-3"></div>
           {{ subItem.name }}
-        </ion-item>
-      </ion-item-group>
-    </ion-content>
-  </ion-page>
+        </IonItem>
+      </IonItem-group>
+    </IonContent>
+  </IonPage>
 </template>
