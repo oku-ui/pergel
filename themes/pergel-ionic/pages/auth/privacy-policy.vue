@@ -3,24 +3,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <NuxtLayout name="auth">
-    <template #header>
-      <AuthHeader
-        :title="t('auth.login')"
-        link="/auth/login"
-      />
-    </template>
-    <template #left>
-      <AuthLeft
-        :logo="{
-          src: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-white.svg',
-          alt: 'Your Company',
-          link: '/',
-        }"
-        quote="This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before."
-        footer="Sofia Davis"
-      />
-    </template>
+  <ion-page name="auth">
     <template #content>
       <AuthContent
         :title="t('auth.privacy_policy')"
@@ -95,7 +78,7 @@ const { t } = useI18n()
         </div>
       </AuthContent>
     </template>
-  </NuxtLayout>
+  </ion-page>
 </template>
 
 <style scoped>

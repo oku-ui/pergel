@@ -46,27 +46,27 @@ const { t } = useI18n()
         </h1>
         <p class="text-muted-foreground text-sm">
           {{ description.label }}
-          <NuxtLink v-if="description.to" :to="description.to" class="hover:text-primary underline underline-offset-4">
+          <IonLink v-if="description.to" :to="description.to" class="hover:text-primary underline underline-offset-4">
             {{ description.text }}
-          </NuxtLink>
+          </IonLink>
         </p>
       </div>
       <slot />
       <p v-if="!hiddenTerms" class="text-muted-foreground px-8 text-center text-sm">
         {{ t('auth.terms_of_service_description') }}
-        <NuxtLink
+        <IonLink
           :to="terms.href"
           class="hover:text-primary underline underline-offset-4"
         >
           {{ terms.label }}
-        </NuxtLink>
+        </IonLink>
         {{ t('and') }}
-        <NuxtLink
+        <IonLink
           :to="privacy.href"
           class="hover:text-primary underline underline-offset-4"
         >
           {{ privacy.label }}
-        </NuxtLink>
+        </IonLink>
         .
       </p>
     </div>

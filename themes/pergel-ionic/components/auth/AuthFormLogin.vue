@@ -38,7 +38,7 @@ const onSubmit = form.handleSubmit((values) => {
                 {{ t('auth.username') }}
               </FormLabel>
               <FormControl>
-                <ion-input
+                <AtomInput
                   v-bind="componentField"
                 />
               </FormControl>
@@ -53,7 +53,7 @@ const onSubmit = form.handleSubmit((values) => {
               </FormLabel>
 
               <FormControl>
-                <ion-input
+                <AtomInput
                   type="password"
                   autocomplete="current-password"
                   required
@@ -64,9 +64,9 @@ const onSubmit = form.handleSubmit((values) => {
               <FormMessage />
               <FormDescription class="pb-4 text-right">
                 {{ t('auth.forgot_password_question') }}
-                <NuxtLink to="/auth/reset-password" class="hover:text-primary underline underline-offset-4">
+                <IonLink to="/auth/reset-password" class="hover:text-primary underline underline-offset-4">
                   {{ t('auth.forgot_password') }}
-                </NuxtLink>
+                </IonLink>
               </FormDescription>
             </FormItem>
           </FormField>

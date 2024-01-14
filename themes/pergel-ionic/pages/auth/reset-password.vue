@@ -25,24 +25,7 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
 </script>
 
 <template>
-  <NuxtLayout name="auth">
-    <template #header>
-      <AuthHeader
-        :title="t('auth.login')"
-        link="/auth/login"
-      />
-    </template>
-    <template #left>
-      <AuthLeft
-        :logo="{
-          src: 'https://raw.githubusercontent.com/oku-ui/static/main/logo/logo-white.svg',
-          link: '/',
-          alt: 'Your Company',
-        }"
-        quote="This library has saved me countless hours of work and helped me deliver stunning designs to my clients faster than ever before."
-        footer="Sofia Davis"
-      />
-    </template>
+  <ion-page name="auth">
     <template #content>
       <AuthForm
         :title="code ? t('auth.reset_password') : t('auth.forgot_password')"
@@ -68,5 +51,5 @@ function resetPassword(values: any, loading: (value: boolean) => void) {
         />
       </AuthForm>
     </template>
-  </NuxtLayout>
+  </ion-page>
 </template>

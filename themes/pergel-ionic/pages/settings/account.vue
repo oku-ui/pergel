@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const { user } = useMe()
-const router = useRouter()
+const router = useIonRouter()
 function navigateTo(path: string) {
   router.push(path)
 }

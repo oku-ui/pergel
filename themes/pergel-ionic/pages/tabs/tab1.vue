@@ -1,15 +1,11 @@
 <script setup lang="ts">
-definePageMeta({
-  alias: ['/', '/tabs'],
-})
-
 import { faker } from '@faker-js/faker'
 import type { SettingsItem } from '#types'
 
 const { t } = useI18n()
 const { user, setUser } = useMe()
 
-const router = useRouter()
+const router = useIonRouter()
 const searchText = ref('')
 
 onMounted(() => {

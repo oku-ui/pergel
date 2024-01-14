@@ -120,7 +120,7 @@ const onSubmit = form.handleSubmit((values) => {
           <p class="mb-4 text-sm">
             {{ t('auth.reset_password_success') }}
           </p>
-          <NuxtLink
+          <IonLink
             :to="login.to"
             :class="cn(
               buttonVariants({ variant: 'outline' }),
@@ -128,7 +128,7 @@ const onSubmit = form.handleSubmit((values) => {
             )"
           >
             {{ login.label }}
-          </NuxtLink>
+          </IonLink>
         </div>
       </div>
     </div>
