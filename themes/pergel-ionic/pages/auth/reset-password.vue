@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useIonRouter()
+const route = useRoute()
 const { t } = useI18n()
 const code = route.query.code as string | undefined
 
