@@ -1,44 +1,34 @@
 <script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-import { minLength, required } from '@vuelidate/validators'
-
-import type { User } from '#types'
-
 const { t } = useI18n()
 const { user } = useMe()
 
-const loading = ref(false)
+const isLoading = ref(false)
 /* -------------------------------------------------------------------------- */
 /*                         Form with validation rules                         */
 /* -------------------------------------------------------------------------- */
-const form = ref<User>(user.value || {
-  username: '',
-  firstName: '',
-  lastName: '',
-  bio: '',
+
+const formSchema = toTypedSchema(zod.object({
+  username: zod.string().min(5),
+  firstName: zod.string(),
+  lastName: zod.string(),
+  bio: zod.string().nullable(),
+}))
+const form = useForm({
+  validationSchema: formSchema,
 })
-
-const showSave = computed(() => form.value.firstName.length > 0 && form.value.lastName.length > 0)
-
-const rules = {
-  username: { required, minLength: minLength(5) },
-  firstName: { required },
-  lastName: { required },
-}
-const v$ = useVuelidate(rules, form)
 /* -------------------------------------------------------------------------- */
 /*                                    ----                                    */
 /* -------------------------------------------------------------------------- */
-function save() {
-  loading.value = true
+const onSubmit = form.handleSubmit((values) => {
+  isLoading.value = true
   /** save operations */
 
-  console.info('form data: ', form.value)
+  console.info('form data: ', values)
 
   setTimeout(() => {
-    loading.value = false
+    isLoading.value = false
   }, 600)
-}
+})
 </script>
 
 <template>
@@ -64,38 +54,63 @@ function save() {
       </ion-header>
       <the-header :full-name="user?.fullName" :avatar="user?.avatar" size="lg"></the-header>
 
-      <form class="items-center p-10" @submit.prevent="save">
-        <div class="m-1">
-          <ion-input v-model="v$.username.$model" :label="t('auth.username')" label-placement="floating"></ion-input>
-          <div v-for="error of v$.username.$errors" :key="error.$uid" class="mt-5">
-            <div :class="{ 'text-red-700': v$.username.$errors.length }" class="text-xs font-thin italic">
-              {{ error.$message }}
-            </div>
-          </div>
-        </div>
-        <div class="m-1">
-          <ion-input v-model="v$.firstName.$model" :label="t('settings.personal.firstName')" label-placement="floating"></ion-input>
-          <div v-for="error of v$.firstName.$errors" :key="error.$uid" :class="{ 'text-red-700': v$.firstName.$errors.length }" class="text-xs font-thin italic">
-            <div class="error-msg">
-              {{ error.$message }}
-            </div>
-          </div>
-        </div>
-        <div class="m-1">
-          <ion-input v-model="v$.lastName.$model" :label="t('settings.personal.lastName')" label-placement="floating"></ion-input>
-          <div v-for="error of v$.lastName.$errors" :key="error.$uid" class="input-errors">
-            <div :class="{ 'text-red-700': v$.lastName.$errors.length }" class="text-xs font-thin italic">
-              {{ error.$message }}
-            </div>
-          </div>
-        </div>
-
-        <ion-textarea v-model="form.bio" class="m-1" :label="t('settings.personal.bio')" label-placement="floating"></ion-textarea>
-        <ion-button type="submit" :disabled="loading || !showSave || v$.$invalid" expand="full" shape="round">
-          <span v-if="!loading">{{ t("settings.save") }}</span>
-          <div v-if="!loading" slot="end" class="i-ph-check ml-5"></div>
-          <ion-spinner v-else></ion-spinner>
-        </ion-button>
+      <form class="items-center p-10" @submit.prevent="onSubmit">
+        <FormField v-slot="{ componentField }" name="username">
+          <FormItem>
+            <FormLabel>
+              {{ t('auth.username') }}
+            </FormLabel>
+            <FormControl>
+              <AtomInput
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="firstName">
+          <FormItem>
+            <FormLabel>
+              {{ t('settings.personal.firstName') }}
+            </FormLabel>
+            <FormControl>
+              <AtomInput
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="lastName">
+          <FormItem>
+            <FormLabel>
+              {{ t('settings.personal.lastName') }}
+            </FormLabel>
+            <FormControl>
+              <AtomInput
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="bio">
+          <FormItem>
+            <FormLabel>
+              {{ t('settings.personal.bio') }}
+            </FormLabel>
+            <FormControl>
+              <AtomInput
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <AtomButton class="w-full" :disabled="isLoading">
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          {{ t('settings.save') }}
+        </AtomButton>
       </form>
     </ion-content>
   </ion-page>

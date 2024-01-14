@@ -1,11 +1,8 @@
 <script setup lang="ts">
-// import { useVuelidate } from '@vuelidate/core'
-// import { email, minLength, minValue, required } from '@vuelidate/validators'
-
 const { t } = useI18n()
 const { user } = useMe()
 
-const loading = ref(false)
+const isLoading = ref(false)
 /* -------------------------------------------------------------------------- */
 /*                         Form with validation rules                         */
 /* -------------------------------------------------------------------------- */
@@ -16,27 +13,17 @@ const form = useForm({
   validationSchema: formSchema,
 })
 
-// const form = ref<{ email: string }>({
-//   email: user.value?.email || '',
-// })
-
-// const showSave = computed(() => form.value.email.length > 0)
-
-// const rules = {
-//   email: { required, email },
-// }
-// const v$ = useVuelidate(rules, form)
 /* -------------------------------------------------------------------------- */
 /*                                    ----                                    */
 /* -------------------------------------------------------------------------- */
 const onSubmit = form.handleSubmit((values) => {
-  loading.value = true
+  isLoading.value = true
   /** save operations */
 
   console.info('form data: ', values)
 
   setTimeout(() => {
-    loading.value = false
+    isLoading.value = false
   }, 600)
 })
 </script>
@@ -66,17 +53,21 @@ const onSubmit = form.handleSubmit((values) => {
       <form class="items-center p-10" @submit.prevent="onSubmit">
         <FormField v-slot="{ componentField }" name="email">
           <FormItem>
+            <FormLabel>
+              {{ t('auth.email') }}
+            </FormLabel>
             <FormControl>
-              <ion-input v-bind="componentField" :label="t('auth.email')" label-placement="floating"></ion-input>
+              <AtomInput
+                v-bind="componentField"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
         </FormField>
-        <ion-button type="submit" :disabled="loading || !form.meta.value.valid" expand="full" shape="round">
-          <span v-if="!loading">{{ t("settings.save") }}</span>
-          <div v-if="!loading" slot="end" class="i-ph-check ml-5"></div>
-          <ion-spinner v-else></ion-spinner>
-        </ion-button>
+        <AtomButton class="w-full" :disabled="isLoading">
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          {{ t('settings.save') }}
+        </AtomButton>
       </form>
       <!-- <form class="items-center p-10" @submit.prevent="save">
         <div class="m-1">

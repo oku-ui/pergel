@@ -1,40 +1,35 @@
 <script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-import { minLength, required, sameAs } from '@vuelidate/validators'
-
 const { t } = useI18n()
 const { user } = useMe()
 
-const loading = ref(false)
+const isLoading = ref(false)
 /* -------------------------------------------------------------------------- */
 /*                         Form with validation rules                         */
 /* -------------------------------------------------------------------------- */
-const form = ref<{ password: string, confirmPassword: string }>({
-  password: '',
-  confirmPassword: '',
-})
 
-const rules = {
-  password: { required, minLength: minLength(6) },
-  confirmPassword: {
-    required,
-    sameAsRef: sameAs(computed(() => form.value.password)), // can be a reference to a field or computed property
-  },
-}
-const v$ = useVuelidate(rules, form)
+const formSchema = toTypedSchema(zod.object({
+  newPassword: zod.string().min(8).max(50),
+  confirmPassword: zod.string().min(8).max(50),
+}).refine(data => data.newPassword === data.confirmPassword, {
+  message: 'Passwords do not match',
+  path: ['confirmPassword'],
+}))
+const form = useForm({
+  validationSchema: formSchema,
+})
 /* -------------------------------------------------------------------------- */
 /*                                    ----                                    */
 /* -------------------------------------------------------------------------- */
-function save() {
-  loading.value = true
+const onSubmit = form.handleSubmit((values) => {
+  isLoading.value = true
   /** save operations */
 
-  console.info('form data: ', form.value)
+  console.info('form data: ', values)
 
   setTimeout(() => {
-    loading.value = false
+    isLoading.value = false
   }, 600)
-}
+})
 </script>
 
 <template>
@@ -60,28 +55,45 @@ function save() {
       </ion-header>
       <the-header :full-name="user?.fullName" :avatar="user?.avatar" size="lg"></the-header>
 
-      <form class="items-center p-10" @submit.prevent="save">
-        <div class="m-1">
-          <ion-input v-model="v$.password.$model" :label="t('auth.password')" label-placement="floating"></ion-input>
-          <div v-for="error of v$.password.$errors" :key="error.$uid" class="mt-5">
-            <div :class="{ 'text-red-700': v$.password.$errors.length }" class="text-xs font-thin italic">
-              {{ error.$message }}
-            </div>
-          </div>
-        </div>
-        <div class="m-1">
-          <ion-input v-model="v$.confirmPassword.$model" :label="t('auth.confirm_password')" label-placement="floating"></ion-input>
-          <div v-for="error of v$.confirmPassword.$errors" :key="error.$uid" class="mt-5">
-            <div :class="{ 'text-red-700': v$.confirmPassword.$errors.length }" class="text-xs font-thin italic">
-              {{ error.$message }}
-            </div>
-          </div>
-        </div>
-        <ion-button type="submit" :disabled="loading || v$.$invalid" expand="full" shape="round">
-          <span v-if="!loading">{{ t("settings.save") }}</span>
-          <div v-if="!loading" slot="end" class="i-ph-check ml-5"></div>
-          <ion-spinner v-else></ion-spinner>
-        </ion-button>
+      <form class="items-center p-10" @submit.prevent="onSubmit">
+        <FormField v-slot="{ componentField }" name="newPassword">
+          <FormItem>
+            <FormLabel>
+              {{ t('auth.password') }}
+            </FormLabel>
+            <FormControl>
+              <AtomInput
+                type="password"
+                autocomplete="current-password"
+                required
+                :disabled="isLoading"
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="confirmPassword">
+          <FormItem>
+            <FormLabel>
+              {{ t('auth.confirm_password') }}
+            </FormLabel>
+            <FormControl>
+              <AtomInput
+                type="password"
+                autocomplete="current-password"
+                required
+                :disabled="isLoading"
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <AtomButton class="w-full" :disabled="isLoading">
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          {{ t('settings.save') }}
+        </AtomButton>
       </form>
     </ion-content>
   </ion-page>
