@@ -36,7 +36,6 @@ const { t } = useI18n()
             label: t('auth.privacy_policy'),
           }"
           :hidden-terms="isActivated"
-          class="text-gray-700"
         >
           <AuthFormLogin
             v-if="!isActivated"
