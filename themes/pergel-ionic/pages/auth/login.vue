@@ -1,7 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  path: '/',
-})
 const route = useRoute()
 
 const isActivated = route.query.activated === 'true'
@@ -18,34 +15,9 @@ const { t } = useI18n()
 
 <template>
   <ion-page>
-    <div class="relative z-0">
-      <div
-        class="absolute -left-40 h-0 w-0
-  border-x-[200px] border-t-[230px]
-  border-x-transparent border-t-yellow-500"
-      >
-      </div>
-      <div
-        class="absolute -left-10 ml-10 h-0 w-0
-  border-x-[200px] border-t-[200px]
-  border-x-transparent border-t-yellow-500"
-      >
-      </div>
-      <div
-        class="absolute -right-10 ml-10 h-0 w-0
-  border-x-[200px] border-t-[250px]
-  border-x-transparent border-t-yellow-500"
-      >
-      </div>
-      <div
-        class="absolute -right-40 h-0 w-0
-  border-x-[200px] border-t-[200px]
-  border-x-transparent border-t-yellow-500"
-      >
-      </div>
-    </div>
+    <BgPattern />
 
-    <div class="bg-background/75 border-codGray-200  dark:border-codGray-800 sticky top-0 z-50 -mb-px mt-5 border-b p-10 backdrop-blur-sm backdrop-filter md:backdrop-blur-none lg:mb-0 lg:border-0">
+    <div class="bg-background/75 border-codGray-200  dark:border-codGray-800 sticky top-0 z-50 -mb-px mt-5 overflow-auto border-b p-10 backdrop-blur-sm backdrop-filter md:backdrop-blur-none lg:mb-0 lg:border-0">
       <AuthForm
         :title="t('auth.login')"
         :description="{
