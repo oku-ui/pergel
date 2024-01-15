@@ -3,243 +3,67 @@
  * https://github.com/nuxt/nuxt/blob/main/packages/schema/src/types/module.ts
  */
 
-import type { ImportsOptions, Nuxt } from '@nuxt/schema'
-import type { Resolver } from '@nuxt/kit'
-
-import type { UnimportPluginOptions } from 'unimport/unplugin'
-import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
-import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
-import type { LuciaModuleOptions } from '../../modules/lucia/types'
-import type { ResolvedUIOptions } from '../../modules/ui/types'
-import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
+import type { NuxtPergel, PergelModuleNames } from './nuxtModule'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
-export interface Modules {
-  S3?: true | ModuleOptions
-  ses?: true | ModuleOptions
-  nodeCron?: true | ModuleOptions
-  bullmq?: true | ModuleOptions
-  json2csv?: true | ModuleOptions
-  graphqlYoga?: true | GraphQLYogaConfig | ModuleOptions
-  drizzle?: true | DrizzleConfig | ModuleOptions
-  lucia?: true | LuciaModuleOptions | ModuleOptions
-  ui?: true | ResolvedUIOptions | ModuleOptions
-}
-
-export interface ResolvedModules {
-  S3?: true
-  ses?: true
-  nodeCron?: true
-  bullmq?: true
-  json2csv?: true
-  graphqlYoga?: ResolvedGraphQLYogaConfig
-  drizzle?: ResolvedDrizzleConfig
-  ui?: true | ResolvedUIOptions
-}
-
-export type ModuleName = keyof Modules
-
-export interface PergelOptions {
+export interface ResolvedPergelModuleOptions {
   /**
-   * @default {}
-   * @example
-   * {
-   *  project1: {
-   *    S3: true,
-   *  },
-   *  project2: {
-   *    S3: true,
-   *  },
-   * }
+   * @default
+   * 'test'
    */
-  projects: {
-    [project: string]: Modules
-  }
-  /**
-   * The root folder of the pergel folder.
-   * @default 'pergel'
-   * @example '/users/productdevbook/nuxt3/pergel'
-   */
-  pergelDir?: string
-
-  /**
-   * @default 'pergel/templates'
-   */
-  templateDir?: string
-
-  /**
-   * @default true
-   */
-  esnext?: boolean
-
-  /**
-   * @default false
-   */
-  debug?: true
-
-  workspaceMode?: boolean
-}
-
-export interface ResolvedPergelOptions {
-  /**
-   * Pergel user defined options.
-   */
-  rootOptions: PergelOptions
-
-  /**
-   * [S3, nodecron, graphql, drizzle]
-   */
-  modules: string[]
-
-  /**
-   * @example
-   * ['project1', 'project2']
-   */
-  projectNames: string[]
-
-  nitroImports: Partial<UnimportPluginOptions>
-
-  nuxtImports: Partial<ImportsOptions>
-
-  readmeYaml: Record<string, any>
-
-  resolver: Resolver
-
-  devServerHandler: {
-    id: string
-    fn: () => void
-  }[]
-
-  dts: {
-    [projectName: string]: {
-      [moduleName: string]: {
-        interfaceNames: string[]
-        template: string[]
-        declareModules?: string
-      }
-    }
-  }
-
-  projects: {
-    [project: string]: ResolvedModules & {
-      /**
-       * @example
-       * 'users/productdevbook/nuxt3/pergel/${projectName}'
-       */
-      projectDir: string
-      /**
-       * @example
-       * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
-       */
-      moduleDir: string
-
-      dir: {
-
-        /**
-         * @example
-         * 'pergel/${projectName}'
-         */
-        project: string
-
-        /**
-         * @example
-         * 'pergel/${projectName}/${moduleName}'
-         */
-        module: string
-
-        /**
-         * @example
-         * 'pergel'
-         */
-        root: string
-      }
-    }
-  }
-
-  dir: {
-    /**
-     * @example
-     * 'pergel'
-     */
-    pergel: string
-
-    /**
-     * @example
-     * 'pergel/README.yml'
-     */
-    readme: string
-  }
-
-  contents: {
-    projectName: string
-    moduleName: string
-    content: string | Promise<string>
-    resolve: string | Promise<string>
-  }[]
-
-  /**
-   * @example
-   * '/users/productdevbook/nuxt3/pergel/README.yml'
-   */
-  readmeDir: string
-
-  /**
-   * @example
-   * 'users/productdevbook/nuxt3'
-   */
-  rootDir: string
-
-  /**
-   * @example
-   * 'users/productdevbook/nuxt3/pergel'
-   */
-  pergelDir: string
-
-  /**
-   * @example
-   * 'users/productdevbook/nuxt3/pergel/templates'
-   */
-  templateDir: string
-
-  esnext: boolean
-
-  debug: boolean
-
-  templates?: {
-    [name: string]: DefineDownloadOptions
-  }
-
-  composeTemplates?: {
-    [projectName: string]: ComposeSpecification
-  }
-
-  workspaceMode: boolean
-}
-
-export interface NuxtPergel extends Nuxt {
-  _pergel: ResolvedPergelOptions
-}
-
-export interface ResolvedModuleOptions {
-  dir: {
-    module: string
-    project: string
-    root: string
-  }
   moduleName: string
-  firstLetterModuleName: string
-  projectName: string
-  firstLetterProjectName: string
+
   /**
-   * @example
-   * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+   * @default
+   * 'test'
    */
-  moduleDir: string
-  openFolder: boolean
+
+  projectName: string
+  /**
+   * @default
+   * test -> Test
+   */
+
+  /**
+   * @default
+   * testHello -> pergelTestHello
+   */
+  projectNamePascalCase: string
+
+  /**
+   * @default
+   *  /home/username/nuxt3/pergel/${moduleName}-${projectName}
+   */
+  rootModuleDir: string
+
+  /**
+   * @default
+   * /home/username/nuxt3/pergel/server/${moduleName}-${projectName}
+   */
+  serverDir: string
+
+  /**
+   * ModuleDir
+   */
+  _dir: {
+    /**
+     * @default
+     * '${moduleName}-${projectName}'
+     */
+    module: string
+
+    /**
+     * @default
+     * 'server/${moduleName}-${projectName}'
+     */
+    server: string
+  }
+
+  [key: string]: any
 }
 
-interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
+interface ModuleMeta<T extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
   /** Module name. */
   name?: string
   /** Module version. */
@@ -250,20 +74,18 @@ interface ModuleMeta<RootOptions extends ModuleOptions = ModuleOptions> {
    */
   configKey?: string
 
-  devDependencies?: Record<string, string> | ((options: RootOptions) => Record<string, string>)
-  dependencies?: Record<string, string> | ((options: RootOptions) => Record<string, string>)
+  devDependencies?: Record<string, string> | ((options: T) => Record<string, string>)
+  dependencies?: Record<string, string> | ((options: T) => Record<string, string>)
   dts?: boolean
 
-  waitModule?: ModuleName[] | ((options: RootOptions) => ModuleName[] | undefined)
+  waitModule?: PergelModuleNames[] | ((options: T) => PergelModuleNames[] | undefined)
+  rootModuleDir?: string
 
-  [key: string]: unknown
+  [key: string]: any
 }
 
 /** The options received.  */
-export type ModuleOptions = {
-  openFolder?: boolean
-  [key: string]: unknown
-}
+export type PergelModuleOptions = Record<string, any>
 
 /** Optional result for nuxt modules */
 export interface ModuleSetupReturn {
@@ -280,37 +102,38 @@ export interface ModuleSetupReturn {
 export type Awaitable<T> = T | Promise<T>
 type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
-export interface ModuleDefinition<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
-  meta?: ModuleMeta<RootOptions>
-  defaults?: ResolvedOptions
+export interface ModuleDefinition<T extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
+  meta?: ModuleMeta<ResolvedPergelModuleOptions>
+  defaults?: T
   | ((data: {
     nuxt: NuxtPergel
-    rootOptions: RootOptions
-    moduleOptions: ResolvedModuleOptions
+    options: ResolvedOptions & ResolvedPergelModuleOptions
+    rootOptions: T
   })
-  => ResolvedOptions)
+  => ResolvedOptions & ResolvedPergelModuleOptions)
   setup?: (
     this: void,
     data: {
       nuxt: NuxtPergel
-      options: ResolvedOptions
-      rootOptions: RootOptions
-      moduleOptions: ResolvedModuleOptions
-    }
+      options: ResolvedOptions & ResolvedPergelModuleOptions
+      rootOptions: T
+    },
   ) =>
   _ModuleSetupReturn
 }
 
-export interface PergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions> {
+export interface PergelModule<RootOptions extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
   (this: void, data: {
     nuxt: NuxtPergel
-    options: ResolvedOptions
+    options: ResolvedOptions & ResolvedPergelModuleOptions
     rootOptions: RootOptions
-    moduleOptions: ResolvedModuleOptions
   }): _ModuleSetupReturn
   getOptions?: (
     inlineOptions?: ResolvedOptions,
-    data?: { nuxt: NuxtPergel, rootOptions: RootOptions }) => Promise<ResolvedOptions>
+    data?: {
+      nuxt: NuxtPergel
+      options: ResolvedOptions & ResolvedPergelModuleOptions
+    }) => Promise<ResolvedOptions & ResolvedPergelModuleOptions>
   getMeta?: () => ModuleMeta
 }
 
@@ -335,74 +158,3 @@ export interface GenerateReadmeYamlOpts {
 
 export type PartinalKey<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 export type MaybePromise<T> = T | Promise<T>
-
-export interface DefineDownloadOptions {
-  version?: string
-  branch?: string
-  /**
-   * Folder name
-   * @default
-   * `.tempPergel`
-   */
-  tempOutput?: string
-  file?: {
-    /**
-     * Directory of file
-     * @example
-     * `packages/nuxt`
-     */
-    dir: string
-    /**
-     * File name
-     * @example
-     * [{
-     * fileName: 'pergel.config.ts',
-     * outputFileName: 'pergel.config.ts',
-     * forceClean: false
-     * }]
-     */
-    path: {
-      /**
-       * File name
-       * @example
-       * `pergel.config.ts`
-       */
-      fileName: string
-      /**
-       * Output file name
-       * @example
-       * `pergel.config.ts`
-       */
-      outputFileName: string
-
-      /**
-       * Force download
-       * @default
-       * `true`
-       */
-      forceClean?: boolean
-    }[]
-  }
-  folder?: {
-    /**
-     * Directory of file
-     * @example
-     * `templates/default`
-     */
-    dir: string
-
-    /**
-     * Output file name
-     * @example
-     * `templates/default`
-     */
-    output: string
-
-    /**
-     * Force download
-     * @default
-     * `true`
-     */
-    forceClean: boolean
-  }[]
-}

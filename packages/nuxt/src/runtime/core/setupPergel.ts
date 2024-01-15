@@ -1,9 +1,11 @@
 import { join, resolve } from 'node:path'
+import { existsSync, mkdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import { type Resolver, addTemplate } from '@nuxt/kit'
 import defu from 'defu'
-import type { PergelOptions, ResolvedPergelOptions } from './types'
-import { rootFolderSync } from './utils/rootFolderSync'
+import { loadConfig } from 'c12'
+import type { ResolvedPergelConfig } from '@pergel/cli/types'
+import type { PergelOptions, ResolvedPergelOptions } from './types/nuxtModule'
 
 export async function setupPergel(
   data:
@@ -14,27 +16,59 @@ export async function setupPergel(
     version: string
   },
 ) {
+  const file = await loadConfig({
+    cwd: data.nuxt.options.rootDir,
+    configFile: 'pergel.config.ts',
+    defaultConfig: {
+      // TODO: add cwd
+      dir: {
+        pergel: 'pergel',
+        template: 'pergel/templates',
+        server: 'server',
+      },
+      filePath: {
+        nuxtConfig: 'nuxt.config.ts',
+      },
+    } as ResolvedPergelConfig,
+    rcFile: false,
+    jitiOptions: {
+      interopDefault: true,
+      esmResolve: true,
+    },
+  })
+
+  if (!file.config)
+    throw new Error('Pergel config not found.')
+
+  let exitPergelFolder = false
+
+  if (existsSync(join(data.nuxt.options.rootDir, 'pergel.config.ts')))
+    exitPergelFolder = true
+
   const { options, nuxt, resolver, version } = data
 
-  const pergelDir = join(options.pergelDir ?? 'pergel')
-  const templateDir = join(options.templateDir ?? 'pergel', 'templates')
-  const readmePath = join('README.yaml')
+  const pergelDir = file.config.dir.pergel ?? 'pergel'
+  const templateDir = file.config.dir.pergel ?? join('pergel', 'templates')
+  const readmePath = join(pergelDir, 'README.yaml')
+  const serverDir = file.config.dir.server ?? 'server'
 
+  // TODO: nuxt.options.rootDi ?? file.config.cwd
   const resolveDir = resolve(nuxt.options.rootDir)
-  const resolvePergelDir = resolve(join(nuxt.options.rootDir, pergelDir))
-  const resolveTemplateDir = resolve(join(nuxt.options.rootDir, templateDir))
-  const resolveReadmePath = resolve(join(nuxt.options.rootDir, pergelDir, readmePath))
 
-  const { projectNames } = rootFolderSync(resolvePergelDir, resolveTemplateDir, options)
+  exitPergelFolder && mkdirSync(join(resolveDir, pergelDir), { recursive: true })
+
+  const projectNames = Object.keys(options.projects).sort()
 
   const pergelType = addTemplate({
     filename: 'pergel/types.ts',
     write: true,
     getContents: () => {
       return /* TypeScript */ `
-          export type ProjectName = ${projectNames.map((projectName) => {
-        return `'${projectName}'`
-      }).join(' | ')}
+        export type ProjectName =  ${projectNames.length === 0
+? `'test'`
+: projectNames.map((projectName) => {
+          return `'${projectName}'`
+        }).join(' | ')}
           export type Module = ${nuxt._pergel.modules.map((module) => { return `'${module}'` }).join(' | ')}
 
           export type PergelGlobalContextOmitModule = Omit<PergelGlobalContext, 'moduleName'>
@@ -68,6 +102,7 @@ export async function setupPergel(
   })
 
   const resolvedPergelOptions = defu(options, {
+    exitPergelFolder,
     rootOptions: options,
     // Pergel Modules
     modules: [
@@ -97,15 +132,17 @@ export async function setupPergel(
     dir: {
       pergel: pergelDir ?? 'pergel',
       readme: join(pergelDir, 'README.yaml'),
+      server: file.config.dir.server ?? 'server',
     },
     contents: [],
-    pergelDir: resolve(resolveDir, pergelDir ?? 'pergel'),
-    templateDir: resolveTemplateDir,
+    pergelDir: resolve(resolveDir, pergelDir),
+    templateDir: resolve(resolveDir, templateDir),
     rootDir: resolveDir,
-    readmeDir: resolve(resolveReadmePath),
+    readmeDir: resolve(resolveDir, readmePath),
     esnext: true,
     debug: false,
     workspaceMode: false,
+    serverDir: resolve(resolveDir, serverDir),
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

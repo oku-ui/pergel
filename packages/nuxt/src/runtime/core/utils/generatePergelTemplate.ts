@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { camelCase } from 'scule'
 import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
-import type { NuxtPergel } from '../types'
+import type { NuxtPergel } from '../types/nuxtModule'
 import { useNitroImports, useNuxtImports } from './useImports'
 import { firstLetterUppercase, reformatSourceCode } from '.'
 

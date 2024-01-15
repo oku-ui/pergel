@@ -1,6 +1,7 @@
 import type { Options } from 'postgres'
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
-export interface DrizzleConfig {
+export interface DrizzleConfig extends PergelModuleOptions {
 
   /**
    * Postres.js database
@@ -11,21 +12,22 @@ export interface DrizzleConfig {
 
   /**
    * Database schemas
-   * @default 'pergel/{projectName}/{moduleName}/schema'
+   * @default '{moduleName}-{projectName}/schema'
    */
   schemaPath?: string
 
   /**
    * Database migrations
-   * @default 'pergel/{projectName}/{moduleName}/migrations'
+   * @default '{moduleName}-{projectName}/migrations'
    */
   migrationsPath?: string
 
   /**
    * Database seeds
-   * @default 'pergel/{projectName}/{moduleName}/seeds'
+   * @default '{moduleName}-{projectName}/seeds'
    */
   seedPaths?: string
+
   /**
    * Merge schemas
    * @default true
@@ -51,7 +53,7 @@ export interface DrizzleConfig {
   }
 }
 
-export interface ResolvedDrizzleConfig {
+export interface ResolvedDrizzleConfig extends ResolvedPergelModuleOptions {
 
   driver: 'postgresjs:pg'
 
@@ -70,13 +72,13 @@ export interface ResolvedDrizzleConfig {
 
   /**
    * Database schemas
-   * @default 'home/user/project1/pergel/{projectName}/{moduleName}/schema'
+   * @default '{moduleName}-{projectName}/schema'
    */
   schemaPath: string
 
   /**
    * Database migrations
-   * @default 'home/user/project1/pergel/{projectName}/{moduleName}/migrations'
+   * @default '{moduleName}-{projectName}/migrations'
    */
   migrationsPath: string
 
@@ -84,7 +86,13 @@ export interface ResolvedDrizzleConfig {
    * Merge schemas
    * @default true
    */
-  mergeSchemas?: boolean
+  mergeSchemas: boolean
+
+  /**
+   * Database seeds
+   * @default '{moduleName}-{projectName}/seeds'
+   */
+  seedPaths: string
 
   dir: {
     /**
@@ -97,13 +105,13 @@ export interface ResolvedDrizzleConfig {
      * @default 'migrations'
      */
     migrations: string
-  }
 
-  /**
-   * Database seeds
-   * @default 'pergel/{projectName}/{moduleName}/seeds'
-   */
-  seedPaths: string
+    /**
+     * Database seeds
+     * @default 'seeds'
+     */
+    seeds: string
+  }
 
   autoImportPrefix?: {
     filters: string

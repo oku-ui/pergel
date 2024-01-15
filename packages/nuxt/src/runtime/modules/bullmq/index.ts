@@ -3,6 +3,7 @@ import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { createDockerService } from '../../core/utils/createDockerService'
+import { createFolderModule } from '../../core/utils/createFolderModule'
 import type { BullMQModuleRuntimeConfig } from './types'
 
 export default definePergelModule({
@@ -16,13 +17,22 @@ export default definePergelModule({
     },
     dts: true,
   },
-  defaults: {
+  defaults({ nuxt, options }) {
+    createFolderModule({
+      nuxt,
+      serverDir: options._dir.server,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
+    })
 
+    return {
+      ...options,
+    }
   },
-  async setup({ nuxt, moduleOptions }) {
+  async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
-    generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, moduleOptions, {
+    generateModuleRuntimeConfig<BullMQModuleRuntimeConfig>(nuxt, options, {
       options: {
         host: 'localhost',
         port: 6379,
@@ -42,15 +52,15 @@ export interface BullmqContext {
 }
       `,
       nuxt,
-      moduleName: moduleOptions.moduleName,
-      projectName: moduleOptions.projectName,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       interfaceNames: ['BullmqContext'],
-      moduleOptions,
+      dir: options.serverDir,
     })
 
     nuxt._pergel.contents.push({
-      moduleName: moduleOptions.moduleName,
-      projectName: moduleOptions.projectName,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       content: /* ts */`
           function bullmq() {
             return {
@@ -64,7 +74,7 @@ export interface BullmqContext {
         `,
     })
 
-    createDockerService(nuxt, moduleOptions.projectName, {
+    createDockerService(nuxt, options.projectName, {
       services: {
         redis: {
           image: 'redis:alpine',

@@ -11,11 +11,11 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
       throw new Error('Missing config.projectName')
 
     const nitro = useRuntimeConfig()
-    const dd = (nitro.public[this?.projectName] as any).graphqlYoga
-    if (!dd)
+    const yogaConfig = (nitro.public[this?.projectName] as any).graphqlYoga
+    if (!yogaConfig)
       throw new Error('Missing config.graphqlYoga')
 
-    const options = dd as ResolvedGraphQLYogaConfig
+    const options = yogaConfig as ResolvedGraphQLYogaConfig
 
     // console.log('import.meta.dev', import.meta.dev)
     // console.log('process.dev', process.dev)

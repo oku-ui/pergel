@@ -1,5 +1,5 @@
-import type { Session, User } from 'test/drizzle/schema'
-import type { auth } from '#pergel/test/lucia'
+import type { Session, User } from '#changeName/drizzle/schema'
+import type { auth } from '#changeName/lucia'
 
 declare module 'lucia' {
   interface Register {

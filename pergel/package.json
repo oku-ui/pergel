@@ -4,7 +4,7 @@
   "license": "ISC",
   "keywords": [],
   "scripts": {
-    "build": "pnpm --filter @pergel/cli run build && pnpm --filter pergel run build",
+    "build": "pnpm --filter @pergel/cli build && pnpm --filter pergel build",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",

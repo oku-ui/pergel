@@ -14,10 +14,10 @@ export default definePergelModule({
   defaults: {
     openFolder: false,
   },
-  setup({ nuxt, moduleOptions }) {
+  setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
-    generateModuleRuntimeConfig<S3ModuleRuntimeConfig>(nuxt, moduleOptions, {
+    generateModuleRuntimeConfig<S3ModuleRuntimeConfig>(nuxt, options, {
       region: 'auto',
       endpoint: '',
       accessKeyId: '',
@@ -41,8 +41,8 @@ export default definePergelModule({
     }
 
     nuxt._pergel.contents.push({
-      moduleName: moduleOptions.moduleName,
-      projectName: moduleOptions.projectName,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       content: /* TypeScript */ `
           function S3() {
             return {

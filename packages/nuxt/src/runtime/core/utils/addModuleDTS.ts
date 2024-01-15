@@ -1,16 +1,19 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import type { Nuxt } from '@nuxt/schema'
-import type { ResolvedModuleOptions } from '../types'
 
 export function addModuleDTS(data: {
-  template?: string
   projectName: string
   moduleName: string
-  pergelFolderTemplate?: string
   interfaceNames: string[]
   nuxt: Nuxt
-  moduleOptions: ResolvedModuleOptions
+  dir: string
+  pergelFolderTemplate?: string
+  template?: string
 }) {
+  const typePath = join(data.dir, 'types.ts')
+  const folderPath = join(data.dir)
+
   if (data.template) {
     data.nuxt._pergel.dts[data.projectName] ??= {}
     data.nuxt._pergel.dts[data.projectName][data.moduleName] ??= {
@@ -20,8 +23,7 @@ export function addModuleDTS(data: {
     data.nuxt._pergel.dts[data.projectName][data.moduleName].interfaceNames.push(...data.interfaceNames)
     data.nuxt._pergel.dts[data.projectName][data.moduleName].template.push(data.template)
 
-    if (!existsSync(data.moduleOptions.moduleDir))
-      mkdirSync(data.moduleOptions.moduleDir, { recursive: true })
+    mkdirSync(folderPath, { recursive: true })
 
     const body = /* ts */`
 declare module 'pergel/${data.projectName}/types' {
@@ -29,24 +31,24 @@ declare module 'pergel/${data.projectName}/types' {
 }
       `.trim()
 
-    if (!existsSync(`${data.moduleOptions.moduleDir}/types.ts`)) {
+    if (!existsSync(typePath)) {
       writeFileSync(
-        `${data.moduleOptions.moduleDir}/types.ts`,
+        typePath,
         body,
       )
     }
   }
 
   if (data.pergelFolderTemplate) {
-    if (!existsSync(`${data.moduleOptions.moduleDir}/types.ts`)) {
+    if (!existsSync(typePath)) {
       writeFileSync(
-        `${data.moduleOptions.moduleDir}/types.ts`,
+        typePath,
         data.pergelFolderTemplate,
       )
     }
   }
 
   return {
-    path: `${data.moduleOptions.moduleDir}/types.ts`,
+    path: typePath,
   }
 }

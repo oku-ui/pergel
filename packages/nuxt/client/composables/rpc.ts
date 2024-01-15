@@ -2,7 +2,7 @@ import { onDevtoolsClientConnected } from '@nuxt/devtools-kit/iframe-client'
 import type { BirpcReturn } from 'birpc'
 import { ref } from 'vue'
 import type { NuxtDevtoolsClient } from '@nuxt/devtools-kit/dist/types'
-import type { ClientFunctions, ServerFunctions } from '../../src/runtime/core/types'
+import type { ClientFunctions, ServerFunctions } from '../../src/runtime/core/types/devtools'
 import { DEVTOOLS_RPC_NAMESPACE } from '../../src/constants'
 
 export const devtools = ref<NuxtDevtoolsClient>()

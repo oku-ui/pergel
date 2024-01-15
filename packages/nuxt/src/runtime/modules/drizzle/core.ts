@@ -2,7 +2,7 @@ import { cpSync, existsSync, lstatSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { useLogger } from '@nuxt/kit'
 import { consola } from 'consola'
-import type { NuxtPergel } from '../../core/types'
+import type { NuxtPergel } from '../../core/types/nuxtModule'
 
 export async function copyMigrationFolder(
   nuxt: NuxtPergel,

@@ -10,13 +10,13 @@ changeName:
   drizzle:
     # Script Commands
     scripts:
-      migrate: drizzle-kit generate:pg --config=pergel/changeName/drizzle/drizzle.config.js
-      generate: drizzle-kit generate:pg --config=pergel/changeName/drizzle/drizzle.config.js
-      push: drizzle-kit push:pg --config=pergel/changeName/drizzle/drizzle.config.js
-      drop: drizzle-kit drop --config=pergel/changeName/drizzle/drizzle.config.js
-      up: drizzle-kit up:pg --config=pergel/changeName/drizzle/drizzle.config.js
-      studio: drizzle-kit studio --port 3105 --config=pergel/changeName/drizzle/drizzle.config.js
-      seed: tsx pergel/changeName/drizzle/seeds/index.ts
+      migrate: drizzle-kit generate:pg --config=server/drizzle-changeName/drizzle.config.js
+      generate: drizzle-kit generate:pg --config=server/drizzle-changeName/drizzle.config.js
+      push: drizzle-kit push:pg --config=server/drizzle-changeName/drizzle.config.js
+      drop: drizzle-kit drop --config=server/drizzle-changeName/drizzle.config.js
+      up: drizzle-kit up:pg --config=server/drizzle-changeName/drizzle.config.js
+      studio: drizzle-kit studio --port 3105 --config=server/drizzle-changeName/drizzle.config.js
+      seed: tsx server/drizzle-changeName/seeds/index.ts
     cli:
       migrate: pergel module -s=migrate -p=changeName -m=drizzle
       push: pergel module -s=push -p=changeName -m=drizzle

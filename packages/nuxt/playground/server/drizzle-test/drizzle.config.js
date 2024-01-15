@@ -2,8 +2,8 @@
 
 /** @type { import("drizzle-kit").Config } */
 export default {
-  schema: 'pergel/test/drizzle/schema/index.ts',
-  out: 'pergel/test/drizzle/migrations',
+  schema: 'undefined/schema/index.ts',
+  out: 'undefined/migrations',
   driver: 'pg',
   dbCredentials: process.env.NUXT_TEST_DRIZZLE_PG_URL
     ? {

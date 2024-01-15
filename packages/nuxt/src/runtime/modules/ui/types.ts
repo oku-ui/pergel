@@ -1,6 +1,8 @@
 import type { CollectionNames, IconsPluginOptions } from '@egoist/tailwindcss-icons'
 
-export interface UIOptions {
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
+
+export interface UIOptions extends PergelModuleOptions {
   brand?: 'pergel'
   packages?: {
     /**
@@ -65,7 +67,7 @@ export interface UIOptions {
 
 }
 
-export interface ResolvedUIOptions {
+export interface ResolvedUIOptions extends ResolvedPergelModuleOptions {
   packages: {
     tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
     tailwindcss?: boolean

@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import defu from 'defu'
-import type { NuxtPergel } from '../types'
+import type { NuxtPergel } from '../types/nuxtModule'
 
 export function generateReadmeYaml(data: {
   nuxt: NuxtPergel
@@ -44,7 +44,10 @@ export function generateReadmeYaml(data: {
     return yamlString
   }
 
-  writeFileSync(data.nuxt._pergel.readmeDir, jsonToYaml(readmeYaml))
+  data.nuxt._pergel.exitPergelFolder && writeFileSync(
+    `${data.nuxt._pergel.pergelDir}/README.yaml`,
+    jsonToYaml(readmeYaml),
+  )
 }
 
 export function generateProjectReadme(input:
