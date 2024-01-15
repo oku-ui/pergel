@@ -239,9 +239,17 @@ export async function setupModules(data: {
         generateProjectReadme({
           data: ({ addCommentBlock }) => ({
             ...addCommentBlock('If pergel cli is installed, you can run `pergel install` automatically to install'),
+            // packageJson: {
+            //   dependencies: `"${Object.entries(dependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
+            //   devDependencies: `"${Object.entries(devDependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
+            // },
             packageJson: {
-              dependencies: `"${Object.entries(dependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
-              devDependencies: `"${Object.entries(devDependencies).map(([name, version]) => `${name}@${version}`).join(', ')}"`,
+              dependencies: {
+                ...dependencies,
+              },
+              devDependencies: {
+                ...devDependencies,
+              },
             },
           }),
           moduleName,

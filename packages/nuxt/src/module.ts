@@ -13,7 +13,7 @@ import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
 import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
 import { setupPergel } from './runtime/core/setupPergel'
-import { generateReadmeYaml } from './runtime/core/utils/generateYaml'
+import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
 
@@ -67,7 +67,7 @@ export default defineNuxtModule<PergelOptions>({
     saveNitroImports()
     saveNuxtImports()
 
-    generateReadmeYaml({
+    generateReadmeJson({
       nuxt,
     })
 

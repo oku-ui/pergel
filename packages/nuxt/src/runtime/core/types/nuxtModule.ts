@@ -88,6 +88,8 @@ export interface ResolvedPergelOptions {
 
   readmeYaml: Record<string, any>
 
+  readmeJson: Record<string, any>
+
   resolver: Resolver
 
   devServerHandler: {

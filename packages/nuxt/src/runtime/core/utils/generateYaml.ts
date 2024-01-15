@@ -2,6 +2,10 @@ import { writeFileSync } from 'node:fs'
 import defu from 'defu'
 import type { NuxtPergel } from '../types/nuxtModule'
 
+/**
+ *
+ * @deprecated Use `generateReadmeJson` instead.
+ */
 export function generateReadmeYaml(data: {
   nuxt: NuxtPergel
 }) {
@@ -69,9 +73,9 @@ export function generateProjectReadme(input:
     [`comment-block-${uuid()}`]: commentBlock,
   })
 
-  input.nuxt._pergel.readmeYaml[input.projectName] = defu(input.nuxt._pergel.readmeYaml[input.projectName], {
+  input.nuxt._pergel.readmeJson ??= {}
+  input.nuxt._pergel.readmeJson[input.projectName] = defu(input.nuxt._pergel.readmeJson[input.projectName], {
     [input.moduleName]: {
-      // [`comment-block-${uuid()}`]: `${moduleName} Variables`,
       ...input.data(
         {
           addCommentBlock,
@@ -80,4 +84,18 @@ export function generateProjectReadme(input:
       ),
     },
   })
+}
+
+export function generateReadmeJson(data: {
+  nuxt: NuxtPergel
+}) {
+  const readmeJson = JSON.stringify(data.nuxt._pergel.readmeJson, null, 2)
+
+  data.nuxt._pergel.exitPergelFolder && writeFileSync(
+    `${data.nuxt._pergel.pergelDir}/README.json`,
+    readmeJson,
+    {
+      encoding: 'utf8',
+    },
+  )
 }
