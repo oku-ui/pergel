@@ -1,11 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineCommand } from 'citty'
-import { loadConfig } from 'c12'
 import { consola } from 'consola'
-import { parse } from 'yaml'
 import { parseNa, run } from '@antfu/ni'
-import type { PergelYaml, ResolvedPergelConfig } from '../types'
+import { definePergelLoadConfig } from '../core'
 
 export default defineCommand({
   meta: {
@@ -32,29 +30,16 @@ export default defineCommand({
   },
   async run({ args }) {
     try {
-      const file = await loadConfig<Required<ResolvedPergelConfig>>({
-        cwd: process.cwd(),
-        configFile: 'pergel.config.ts',
-        defaultConfig: {
-          dir: {
-            pergel: 'pergel',
-            template: 'pergel/templates',
-          },
-          filePath: {
-            nuxtConfig: 'nuxt.config.ts',
-          },
-        },
-      })
+      const file = await definePergelLoadConfig()
 
       if (!file.config) {
         consola.error('No config file found')
         return
       }
 
-      const readmeString = readFileSync(resolve(file.config.dir.pergel, 'README.yaml')).toString()
-      const json = parse(readmeString) as PergelYaml
+      const readmeString = readFileSync(resolve(file.config.dir.pergel, 'README.json')).toString()
 
-      const project = json[args.project]?.[args.module]
+      const project = JSON.parse(readmeString)[args.project ?? '']?.[args.module ?? '']
 
       const script = project?.scripts ?? {}
 

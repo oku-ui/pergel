@@ -1,4 +1,4 @@
-import { definePergel } from '@pergel/cli'
+import { definePergel } from '../src'
 
 export default definePergel({
 

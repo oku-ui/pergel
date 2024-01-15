@@ -1,7 +1,8 @@
 import { runMain as _runMain, defineCommand } from 'citty'
 import packageJson from '../package.json'
 
-export { definePergel } from './core'
+export { definePergel, definePergelLoadConfig } from './core'
+
 const main = defineCommand({
   meta: {
     name: 'Pergel',

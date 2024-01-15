@@ -1,58 +1,35 @@
 import { readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { defineCommand } from 'citty'
-import { loadConfig } from 'c12'
 import { consola } from 'consola'
-import { parse } from 'yaml'
 import { parseNi, run } from '@antfu/ni'
-import type { PergelYaml, ResolvedPergelConfig } from '../types'
+import type { PergelReadme } from '../types'
+import { definePergelLoadConfig } from '../core'
 
 export default defineCommand({
   meta: {
     name: 'Pergel Install',
-    description: 'Install dependencies from README.yaml',
-    version: '0.0.1',
+    description: 'Install dependencies from README.json',
+    version: '0.1.0',
   },
   async run() {
-    // remove 'install' and 'pergel' from args
     const args = process.argv.slice(2).filter(arg => arg !== 'install' && arg !== 'pergel')
 
     try {
-      const file = await loadConfig({
-        cwd: process.cwd(),
-        configFile: 'pergel.config.ts',
-        defaultConfig: {
-          dir: {
-            pergel: 'pergel',
-            template: 'pergel/templates',
-            server: 'server',
-          },
-          filePath: {
-            nuxtConfig: 'nuxt.config.ts',
-          },
-        } as ResolvedPergelConfig,
-        rcFile: false,
-        jitiOptions: {
-          interopDefault: true,
-          esmResolve: true,
-        },
-      })
+      const file = await definePergelLoadConfig()
 
       if (!file.config) {
         consola.error('No config file found')
         return
       }
 
-      const readmeString = readFileSync(resolve(join(file.config.dir?.pergel, 'README.yaml'))).toString()
-
-      const json = parse(readmeString) as PergelYaml
-
-      const selectProject = json
+      const readmeString = readFileSync(resolve(join(file.config.dir?.pergel, 'README.json')), 'utf-8')
+      const jsonData: PergelReadme = JSON.parse(readmeString)
 
       const dependencies: Set<string> = new Set()
       const devDependencies: Set<string> = new Set()
 
-      for (const [_moduleName, moduleData] of Object.entries(selectProject)) {
+      for (const [_moduleName, moduleData] of Object.entries(jsonData)) {
         if (!moduleData)
           continue
 
@@ -63,16 +40,16 @@ export default defineCommand({
           }
           if (projectData.packageJson) {
             if (projectData.packageJson.dependencies) {
-              const deps = projectData.packageJson.dependencies.split(',').map(item => item.trim())
-              deps.forEach((item) => {
+              const debs = Object.keys(projectData.packageJson.dependencies)
+              debs.forEach((item) => {
                 if (item)
                   dependencies.add(item)
               })
             }
 
             if (projectData.packageJson.devDependencies) {
-              const deps = projectData.packageJson.devDependencies.split(',').map(item => item.trim())
-              deps.forEach((item) => {
+              const debs = Object.keys(projectData.packageJson.devDependencies)
+              debs.forEach((item) => {
                 if (item)
                   devDependencies.add(item)
               })

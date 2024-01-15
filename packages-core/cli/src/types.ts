@@ -63,7 +63,7 @@ export interface ResolvedPergelConfig {
   }
 }
 
-export interface PergelYaml {
+export interface PergelReadme {
   [moduleName: string]: {
     [projectName: string]: {
       packageJson?: {

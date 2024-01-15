@@ -5,7 +5,8 @@ import { defu } from 'defu'
 import { consola } from 'consola'
 import { filename } from 'pathe/utils'
 import { extname } from 'pathe'
-import type { DefineDownloadOptions, PergelConfig } from './types'
+import { loadConfig } from 'c12'
+import type { DefineDownloadOptions, PergelConfig, ResolvedPergelConfig } from './types'
 import { scanAnyFiles } from './scan'
 
 const logger = consola.create({
@@ -154,4 +155,24 @@ export function defineDownload(options: DefineDownloadOptions) {
     })
   }
   return setup
+}
+
+export async function definePergelLoadConfig(input: {
+  cwd?: string
+}) {
+  const file = await loadConfig({
+    cwd: input.cwd ?? process.cwd(),
+    configFile: 'pergel.config.ts',
+    defaultConfig: {
+      dir: {
+        pergel: 'pergel',
+        template: 'pergel/templates',
+        server: 'server',
+      },
+      filePath: {
+        nuxtConfig: 'nuxt.config.ts',
+      },
+    } as ResolvedPergelConfig,
+  })
+  return file
 }

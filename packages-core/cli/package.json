@@ -75,8 +75,7 @@
     "globby": "^14.0.0",
     "pathe": "^1.1.1",
     "picocolors": "^1.0.0",
-    "shelljs": "^0.8.5",
-    "yaml": "^2.3.4"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
