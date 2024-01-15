@@ -119,8 +119,8 @@ export default defineNuxtModule<PergelOptions>({
     }
 
     // Auto generate pergel/.env.template
-    const envs = Object.keys(nuxt._pergel.readmeYaml).map((projectName) => {
-      const project = nuxt._pergel.readmeYaml[projectName]
+    const envs = Object.keys(nuxt._pergel.readmeJson).map((projectName) => {
+      const project = nuxt._pergel.readmeJson[projectName]
       const modules = Object.keys(project).map((moduleName) => {
         const module = project[moduleName]
         const env = module.env
