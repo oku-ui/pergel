@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
