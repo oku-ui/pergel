@@ -32,15 +32,6 @@ export const external = [
   'node:child_process',
   'node:stream',
   'node:url',
-  'typescript',
-  'fsevents',
-  'node:url',
-  'node:buffer',
-  'node:path',
-  'node:child_process',
-  'node:process',
-  'node:path',
-  'node:os',
 ]
 export default defineBuildConfig([
   // Auto preset
@@ -50,6 +41,11 @@ export default defineBuildConfig([
     ],
     rollup: {
       inlineDependencies: true,
+      output: {
+        preserveModules: true,
+        inlineDynamicImports: false,
+        // manualChunks: {},
+      },
     },
     outDir: './dist',
     failOnWarn: false,
