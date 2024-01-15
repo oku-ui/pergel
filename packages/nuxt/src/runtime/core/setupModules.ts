@@ -4,10 +4,11 @@ import type { Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
 import { camelCase } from 'scule'
-import type { ModuleName, PergelModule, ResolvedPergelOptions } from './types'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
 import { firstLetterUppercase } from './utils'
+import type { PergelModule } from './types/module'
+import type { PergelModuleNames, ResolvedPergelOptions } from './types/nuxtModule'
 
 type PrepareModules = {
   [project: string]: {
@@ -98,7 +99,7 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
               module: join(projectName, moduleName),
               server: join(nuxt._pergel.dir.server, `${moduleName}-${projectName}`),
             },
-            moduleName: moduleName as ModuleName,
+            moduleName: moduleName as PergelModuleNames,
             projectName,
             rootModuleDir: join(nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
             serverDir: join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
@@ -260,7 +261,7 @@ export async function setupModules(data: {
             module: join(projectName, moduleName),
             server: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
           },
-          moduleName: moduleName as ModuleName,
+          moduleName: moduleName as PergelModuleNames,
           projectName,
           rootModuleDir: join(data.nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
           serverDir: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),

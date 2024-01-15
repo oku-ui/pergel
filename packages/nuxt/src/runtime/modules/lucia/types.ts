@@ -1,9 +1,9 @@
 import type { Lucia } from 'lucia'
-import type { ModuleOptions, ResolvedModuleOptions } from '../../core/types'
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
 export type LuciaOptions = ConstructorParameters<typeof Lucia>['1']
 
-export interface LuciaModuleOptions extends ModuleOptions {
+export interface LuciaModuleOptions extends PergelModuleOptions {
   // TODO: more driver support
   /**
    * @default 'drizzle:postgre'
@@ -12,6 +12,6 @@ export interface LuciaModuleOptions extends ModuleOptions {
   driver: 'drizzle:postgre'
 }
 
-export interface ResolvedLuciaModuleOptions extends ResolvedModuleOptions {
+export interface ResolvedLuciaModuleOptions extends ResolvedPergelModuleOptions {
   driver: 'drizzle:postgre'
 }

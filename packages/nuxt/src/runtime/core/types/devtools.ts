@@ -1,13 +1,14 @@
 import type { WebSocketServer } from 'vite'
-import type { ModuleName, Modules, NuxtPergel, PergelOptions, ResolvedPergelOptions } from './module'
+import type { PergelModule } from './module'
+import type { NuxtPergel, PergelModuleNames, PergelNuxtModules, PergelOptions, ResolvedPergelOptions } from './nuxtModule'
 
 export interface ServerFunctions {
   getOptions(): ResolvedPergelOptions
   getProjects(): ResolvedPergelOptions['projects']
   getTotalModules(): ResolvedPergelOptions['modules']
-  getProject(name: string): Modules
+  getProject(name: string): PergelModule
   getProjectModules(name: string): string[]
-  getModuleOptions({ projectName, moduleName }: { projectName: string, moduleName: ModuleName }): Modules
+  getModuleOptions({ projectName, moduleName }: { projectName: string, moduleName: PergelModuleNames }): PergelNuxtModules
   reset(): void
 }
 

@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs'
 import defu from 'defu'
-import type { NuxtPergel } from '../types'
+import type { NuxtPergel } from '../types/nuxtModule'
 
 export function generateReadmeYaml(data: {
   nuxt: NuxtPergel

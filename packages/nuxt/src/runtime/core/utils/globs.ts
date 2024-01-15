@@ -1,6 +1,6 @@
 import { join, relative, resolve } from 'node:path'
 import { matchGlobs } from '../../modules/graphqlYoga/utils'
-import type { ModuleName, NuxtPergel } from '../types'
+import type { NuxtPergel, PergelModuleName } from '../types'
 
 export function globsBuilderWatch(
   nuxt: NuxtPergel,
@@ -19,6 +19,6 @@ export function globsBuilderWatch(
   return {
     match,
     projectName,
-    moduleName: moduleName as ModuleName,
+    moduleName: moduleName as PergelModuleName,
   }
 }

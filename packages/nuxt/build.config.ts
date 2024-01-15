@@ -52,5 +52,6 @@ export default defineBuildConfig([
       inlineDependencies: true,
     },
     outDir: './dist',
+    failOnWarn: false,
   },
 ])

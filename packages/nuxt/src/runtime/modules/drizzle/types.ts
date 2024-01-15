@@ -1,7 +1,7 @@
 import type { Options } from 'postgres'
-import type { ModuleOptions, ResolvedModuleOptions } from '../../core/types'
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
-export interface DrizzleConfig extends ModuleOptions {
+export interface DrizzleConfig extends PergelModuleOptions {
 
   /**
    * Postres.js database
@@ -53,7 +53,7 @@ export interface DrizzleConfig extends ModuleOptions {
   }
 }
 
-export interface ResolvedDrizzleConfig extends ResolvedModuleOptions {
+export interface ResolvedDrizzleConfig extends ResolvedPergelModuleOptions {
 
   driver: 'postgresjs:pg'
 

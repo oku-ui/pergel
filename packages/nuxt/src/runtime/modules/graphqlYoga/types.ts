@@ -2,7 +2,7 @@ import type { YogaServerInstance, YogaServerOptions } from 'graphql-yoga'
 import type { H3Error, H3Event } from 'h3'
 
 import type { EmbeddableSandboxOptions } from '@apollo/sandbox/src/EmbeddedSandbox'
-import type { ResolvedModuleOptions } from '../../core/types'
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
 export interface GraphqlYogaHandleOptions {
   context: {
@@ -22,7 +22,7 @@ export interface GraphqlYogaContextOptions<Context extends Record<string, any> =
   }
 }
 
-export interface GraphQLYogaConfig {
+export interface GraphQLYogaConfig extends PergelModuleOptions {
   /**
    * GraphQL endpoint
    * @default '/api/graphql'
@@ -167,7 +167,7 @@ export interface GraphQLYogaConfig {
   }
 }
 
-export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedModuleOptions {
+export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedPergelModuleOptions {
   endpoint: string
   mergeSchemas: boolean
   schemaDir: string

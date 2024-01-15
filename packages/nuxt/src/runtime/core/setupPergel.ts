@@ -5,7 +5,7 @@ import { type Resolver, addTemplate } from '@nuxt/kit'
 import defu from 'defu'
 import { loadConfig } from 'c12'
 import type { ResolvedPergelConfig } from '@pergel/cli/types'
-import type { PergelOptions, ResolvedPergelOptions } from './types'
+import type { PergelOptions, ResolvedPergelOptions } from './types/nuxtModule'
 
 export async function setupPergel(
   data:
