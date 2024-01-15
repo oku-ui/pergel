@@ -157,11 +157,11 @@ export function defineDownload(options: DefineDownloadOptions) {
   return setup
 }
 
-export async function definePergelLoadConfig(input: {
+export async function definePergelLoadConfig(input?: {
   cwd?: string
 }) {
   const file = await loadConfig({
-    cwd: input.cwd ?? process.cwd(),
+    cwd: input?.cwd ?? process.cwd(),
     configFile: 'pergel.config.ts',
     defaultConfig: {
       dir: {

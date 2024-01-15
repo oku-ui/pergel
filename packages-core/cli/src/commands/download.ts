@@ -1,10 +1,8 @@
 import { join, resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
 import { defineCommand } from 'citty'
-import { loadConfig } from 'c12'
 import consola from 'consola'
-import type { ResolvedPergelConfig } from '../types'
-import { defineDownload } from '../core'
+import { defineDownload, definePergelLoadConfig } from '../core'
 
 const logger = consola.create({
   defaults: {
@@ -37,19 +35,7 @@ export default defineCommand({
     const jsonFile = args.jsonFile as string
     const projectName = args.projectName as string
 
-    const file = await loadConfig<ResolvedPergelConfig>({
-      cwd: process.cwd(),
-      configFile: 'pergel.config.ts',
-      defaultConfig: {
-        dir: {
-          pergel: 'pergel',
-          template: 'pergel/templates',
-        },
-        filePath: {
-          nuxtConfig: 'nuxt.config.ts',
-        },
-      },
-    })
+    const file = await definePergelLoadConfig()
 
     if (!file.config) {
       logger.error('No config file found')
@@ -72,18 +58,16 @@ export default defineCommand({
       return
     }
 
-    if (!jsonData.templates[template]) {
+    if (!jsonData) {
       logger.error(`No template found for ${template}`)
       return
     }
-
-    const _template = jsonData.templates[template]
-    if (_template) {
+    if (jsonData) {
       logger.info(`Downloading template: ${template} ...`)
       const data = defineDownload({
-        file: _template.file,
-        folder: _template.folder,
-        branch: _template.branch,
+        file: jsonData.file,
+        folder: jsonData.folder,
+        branch: jsonData.branch,
         tempOutput: '.tempPergel',
         projectName,
       })
