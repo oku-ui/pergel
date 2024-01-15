@@ -4,7 +4,7 @@ import { startSubprocess } from '@nuxt/devtools-kit'
 import type { ResolvedDrizzleConfig } from '../../types'
 
 import { createDrizzleConfig } from '../../defaults/postgresjs'
-import type { NuxtPergel } from '../../../../core/types'
+import type { NuxtPergel } from '../../../../core/types/nuxtModule'
 import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 import { createDockerService } from '../../../../core/utils/createDockerService'

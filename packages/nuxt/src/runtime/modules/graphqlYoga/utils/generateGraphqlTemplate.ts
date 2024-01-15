@@ -1,10 +1,10 @@
 import { join, resolve } from 'node:path'
 import { existsSync, writeFileSync } from 'node:fs'
 import { relative } from 'pathe'
-import type { NuxtPergel } from '../../../core/types'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
+import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {

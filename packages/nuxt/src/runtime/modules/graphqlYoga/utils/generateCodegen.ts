@@ -2,8 +2,9 @@ import { join, resolve } from 'node:path'
 import { addTemplate, updateTemplates } from '@nuxt/kit'
 import consola from 'consola'
 import { buildTime } from '../utils'
-import type { NuxtPergel, ResolvedGraphQLYogaConfig } from '../../../core/types'
 import { useNuxtImports } from '../../../core/utils/useImports'
+import type { ResolvedGraphQLYogaConfig } from '../types'
+import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import { useCodegen } from './codegen'
 
 export async function loadGraphQLFiles(

@@ -59,15 +59,16 @@ export async function setupPergel(
 
   const projectNames = Object.keys(options.projects).sort()
 
-  if (exitPergelFolder && projectNames) {
-    const pergelType = addTemplate({
-      filename: 'pergel/types.ts',
-      write: true,
-      getContents: () => {
-        return /* TypeScript */ `
-          export type ProjectName = ${projectNames.map((projectName) => {
-        return `'${projectName}'`
-      }).join(' | ')}
+  const pergelType = addTemplate({
+    filename: 'pergel/types.ts',
+    write: true,
+    getContents: () => {
+      return /* TypeScript */ `
+        export type ProjectName =  ${projectNames.length === 0
+? `'test'`
+: projectNames.map((projectName) => {
+          return `'${projectName}'`
+        }).join(' | ')}
           export type Module = ${nuxt._pergel.modules.map((module) => { return `'${module}'` }).join(' | ')}
 
           export type PergelGlobalContextOmitModule = Omit<PergelGlobalContext, 'moduleName'>
@@ -77,22 +78,21 @@ export async function setupPergel(
             moduleName: Module
           }
         `.trim().replace(/ {10}/g, '')
-      },
+    },
+  })
+
+  nuxt.options.alias['#pergel/types'] = pergelType.dst
+  nuxt.options.nitro.alias ??= {}
+  nuxt.options.nitro.alias['#pergel/types'] = pergelType.dst
+
+  nuxt.hooks.hook('prepare:types', ({ references, tsConfig }) => {
+    references.push({
+      path: pergelType.dst,
     })
 
-    nuxt.options.alias['#pergel/types'] = pergelType.dst
-    nuxt.options.nitro.alias ??= {}
-    nuxt.options.nitro.alias['#pergel/types'] = pergelType.dst
-
-    nuxt.hooks.hook('prepare:types', ({ references, tsConfig }) => {
-      references.push({
-        path: pergelType.dst,
-      })
-
-      tsConfig.include ??= []
-      tsConfig.include.push('./pergel/**/*')
-    })
-  }
+    tsConfig.include ??= []
+    tsConfig.include.push('./pergel/**/*')
+  })
 
   nuxt.hooks.hook('nitro:init', ({ options }) => {
     options.typescript.tsConfig ??= {}

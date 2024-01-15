@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import defu from 'defu'
-import type { DefineDownloadOptions, NuxtPergel } from '../types'
+import type { DefineDownloadOptions, NuxtPergel } from '../types/nuxtModule'
 import { generateProjectReadme } from './generateYaml'
 
 export function writeDownloadTemplate(nuxt: NuxtPergel) {

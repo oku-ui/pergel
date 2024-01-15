@@ -2,16 +2,10 @@ import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import consola from 'consola'
-import type {
-  ModuleDefinition,
-  ModuleOptions,
-  ModuleSetupReturn,
-  NuxtPergel,
-  PergelModule,
-  ResolvedModuleOptions,
-} from './types'
+import type { ModuleDefinition, ModuleSetupReturn, PergelModule, PergelModuleOptions, ResolvedPergelModuleOptions } from './types/module'
+import type { NuxtPergel } from './types/nuxtModule'
 
-export function definePergelModule<RootOptions extends ModuleOptions = ModuleOptions, ResolvedOptions extends ModuleOptions = ModuleOptions>(
+export function definePergelModule<RootOptions extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions>(
   definition: ModuleDefinition<RootOptions, ResolvedOptions> | PergelModule<RootOptions, ResolvedOptions>,
 ): PergelModule<RootOptions, ResolvedOptions> {
   if (typeof definition === 'function')
@@ -25,7 +19,7 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
 
   async function getOptions(
     rootOptions: RootOptions,
-    resolvedOptions: ResolvedOptions & ResolvedModuleOptions,
+    resolvedOptions: ResolvedOptions & ResolvedPergelModuleOptions,
     nuxt: NuxtPergel = useNuxt(),
   ) {
     const defaultModule = module.defaults instanceof Function ? module.defaults({ nuxt, options: resolvedOptions, rootOptions }) : module.defaults
@@ -49,9 +43,9 @@ export function definePergelModule<RootOptions extends ModuleOptions = ModuleOpt
 
   async function normalizedModule(
     this: any,
-    data: { nuxt: NuxtPergel, rootOptions: RootOptions, options: ResolvedOptions & ResolvedModuleOptions },
+    data: { nuxt: NuxtPergel, rootOptions: RootOptions, options: ResolvedOptions & ResolvedPergelModuleOptions },
   ) {
-    const options = await getOptions(data.rootOptions, data.options, data.nuxt) as ResolvedModuleOptions
+    const options = await getOptions(data.rootOptions, data.options, data.nuxt) as ResolvedPergelModuleOptions
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
