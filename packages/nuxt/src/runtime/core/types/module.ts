@@ -104,7 +104,7 @@ type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
 export interface ModuleDefinition<T extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
   meta?: ModuleMeta<ResolvedPergelModuleOptions>
-  defaults?: ResolvedOptions
+  defaults?: T
   | ((data: {
     nuxt: NuxtPergel
     options: ResolvedOptions & ResolvedPergelModuleOptions

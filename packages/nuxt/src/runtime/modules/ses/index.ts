@@ -15,7 +15,6 @@ export default definePergelModule({
   },
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
-
     generateModuleRuntimeConfig<SesModuleRuntimeConfig>(nuxt, options, {
       region: '',
       accessKeyId: '',
