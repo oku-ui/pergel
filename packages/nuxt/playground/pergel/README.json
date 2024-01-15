@@ -5,11 +5,10 @@
   },
   "test": {
     "ui": {
-      "comment-block-dgmsl9": "UI Download Template",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "themes": {
-        "authDefault": "pergel download -t=default-auth-1 -j=templates -p=test"
+        "authDefault": "pergel download -t=templates -j=official-auth-1 -p=test"
       },
-      "comment-block-8hji38": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "@pergel/module-ui": "latest"
@@ -18,7 +17,7 @@
       }
     },
     "lucia": {
-      "comment-block-hpaj9e": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "lucia": "^3.0.0-beta.13",
@@ -30,7 +29,7 @@
       }
     },
     "drizzle": {
-      "comment-block-u65fzg": "Script Commands",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "scripts": {
         "migrate": "drizzle-kit generate:pg --config=server/drizzle-test/drizzle.config.js",
         "generate": "drizzle-kit generate:pg --config=server/drizzle-test/drizzle.config.js",
@@ -60,7 +59,6 @@
         "NUXT_TEST_DRIZZLE_PG_DROP": false,
         "NUXT_TEST_DRIZZLE_PG_SEED": false
       },
-      "comment-block-tfm1cn": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "drizzle-kit": "^0.20.6",
@@ -75,7 +73,7 @@
       }
     },
     "graphqlYoga": {
-      "comment-block-xidk4": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "@pergel/graphql": "latest"
@@ -84,7 +82,7 @@
       }
     },
     "json2csv": {
-      "comment-block-x4iml9": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "@json2csv/node": "^7.0.4"
@@ -101,7 +99,7 @@
         "NUXT_TEST_BULLMQ_OPTIONS_USERNAME": "default",
         "NUXT_TEST_BULLMQ_URL": "redis://default:redis@localhost:6379/0"
       },
-      "comment-block-e0f35v": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "bullmq": "^4.14.3",
@@ -117,7 +115,7 @@
         "NUXT_TEST_SES_ACCESS_KEY_ID": "",
         "NUXT_TEST_SES_SECRET_ACCESS_KEY": ""
       },
-      "comment-block-uxkfua": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "@aws-sdk/client-ses": "^3.470.0"
@@ -126,7 +124,7 @@
       }
     },
     "nodeCron": {
-      "comment-block-nbo7a": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "node-cron": "^3.0.3"
@@ -144,7 +142,7 @@
         "NUXT_TEST_S3_SECRET_ACCESS_KEY": "",
         "NUXT_TEST_S3_BUCKET": ""
       },
-      "comment-block-tdyo58": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "@pergel/module-s3": "0.0.0"
@@ -162,7 +160,7 @@
         "NUXT_TEST2S3_SECRET_ACCESS_KEY": "",
         "NUXT_TEST2S3_BUCKET": ""
       },
-      "comment-block-vach1i": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
           "@pergel/module-s3": "0.0.0"

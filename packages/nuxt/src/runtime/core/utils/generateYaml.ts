@@ -67,10 +67,8 @@ export function generateProjectReadme(input:
   ) => Record<string, any>
 },
 ) {
-  const uuid = () => Math.random().toString(36).substring(7)
-
   const addCommentBlock = (commentBlock: string) => ({
-    [`comment-block-${uuid()}`]: commentBlock,
+    [`comment-block`]: commentBlock,
   })
 
   input.nuxt._pergel.readmeJson ??= {}

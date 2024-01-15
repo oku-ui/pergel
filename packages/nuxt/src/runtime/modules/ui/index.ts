@@ -367,7 +367,7 @@ export default definePergelModule<UIOptions, ResolvedUIOptions>({
         },
       },
       version: '0.0.1',
-      name: 'default-auth-1',
+      name: 'official-auth-1',
       write: true,
       readme: {
         moduleName: options.moduleName,

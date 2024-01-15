@@ -48,14 +48,15 @@ export async function setupPergel(
   const { options, nuxt, resolver, version } = data
 
   const pergelDir = file.config.dir.pergel ?? 'pergel'
-  const templateDir = file.config.dir.pergel ?? join('pergel', 'templates')
-  const readmePath = join(pergelDir, 'README.yaml')
+  const templateDir = file.config.dir.template ?? join('pergel', 'templates')
+  const readmePath = join(pergelDir, 'README.json')
   const serverDir = file.config.dir.server ?? 'server'
 
   // TODO: nuxt.options.rootDi ?? file.config.cwd
   const resolveDir = resolve(nuxt.options.rootDir)
 
   exitPergelFolder && mkdirSync(join(resolveDir, pergelDir), { recursive: true })
+  exitPergelFolder && mkdirSync(join(resolveDir, templateDir), { recursive: true })
 
   const projectNames = Object.keys(options.projects).sort()
 
@@ -137,7 +138,7 @@ export async function setupPergel(
     projects: {},
     dir: {
       pergel: pergelDir ?? 'pergel',
-      readme: join(pergelDir, 'README.yaml'),
+      readme: join(pergelDir, 'README.json'),
       server: file.config.dir.server ?? 'server',
     },
     contents: [],
