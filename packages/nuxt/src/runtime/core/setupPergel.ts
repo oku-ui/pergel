@@ -30,11 +30,6 @@ export async function setupPergel(
         nuxtConfig: 'nuxt.config.ts',
       },
     } as ResolvedPergelConfig,
-    rcFile: false,
-    jitiOptions: {
-      interopDefault: true,
-      esmResolve: true,
-    },
   })
 
   if (!file.config)

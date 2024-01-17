@@ -265,6 +265,9 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.9.0
         version: 3.9.0(h3@1.10.0)(rollup@3.29.4)(vite@5.0.11)(vitest@1.2.0)(vue-router@4.2.5)(vue@3.4.14)
+      '@pergel/cli':
+        specifier: ^0.6.1
+        version: 0.6.1
       '@pergel/graphql':
         specifier: workspace:^
         version: link:../graphql
@@ -5772,8 +5775,8 @@ packages:
       webcrypto-core: 1.7.7
     dev: false
 
-  /@pergel/cli@0.6.0:
-    resolution: {integrity: sha512-/mryPjtW9HuMYBAVv4i7wqpMMNz/pbJm4m/sUE7PrzpfwzPqghHTmCSuj3MRVO+wLKl6dwthB61KvJFWtFWefw==}
+  /@pergel/cli@0.6.1:
+    resolution: {integrity: sha512-uJLChkRgo+SaF2DpfA0Ml7ul38B+MZfl2zhMH8e4jwLZqUVl41KxNviKaaWRqxSsbkkuvmXonwomk+Tbz6sBpw==}
     engines: {node: '>=20'}
     hasBin: true
     dependencies:
@@ -5970,7 +5973,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       magic-string: 0.30.5
     dev: true
 
@@ -7504,7 +7507,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       '@vue/compiler-sfc': 3.4.14
       ast-kit: 0.11.3
       local-pkg: 0.5.0
@@ -8181,7 +8184,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -8213,7 +8216,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -13624,7 +13627,7 @@ packages:
     resolution: {integrity: sha512-KjSF+Ghs72kUkOOGFEZ+M/smBLwPeaAlghkmHra2mCez5SjSbC4OqKOiycFD2lhP8/j0kdRW79RgfSy9V07r2g==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.6.0
+      '@pergel/cli': 0.6.1
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 
@@ -15659,7 +15662,7 @@ packages:
   /unimport@3.7.1:
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       acorn: 8.11.3
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
@@ -15845,7 +15848,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       '@vue-macros/common': 1.10.0(vue@3.4.13)
       ast-walker-scope: 0.5.0
       chokidar: 3.5.3
@@ -16210,7 +16213,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.7
       '@nuxt/kit': 3.9.1
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       debug: 4.3.4
       error-stack-parser-es: 0.1.1
       fs-extra: 11.2.0
