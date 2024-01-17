@@ -41,6 +41,22 @@
   },
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./*"
+      ],
+      "types": [
+        "./dist/types.d.ts"
+      ],
+      "core": [
+        "./dist/core.d.ts"
+      ],
+      "cli": [
+        "./bin/pergel.mjs"
+      ]
+    }
+  },
   "bin": {
     "pergel": "bin/pergel.mjs"
   },
