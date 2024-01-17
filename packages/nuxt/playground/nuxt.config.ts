@@ -60,7 +60,6 @@ export default defineNuxtConfig({
         },
         lucia: true,
         drizzle: true,
-        ui: true,
       },
       test2: {
         S3: true,

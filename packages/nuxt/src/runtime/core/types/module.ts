@@ -7,6 +7,11 @@ import type { NuxtPergel, PergelModuleNames } from './nuxtModule'
 
 export type { ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 
+export interface UserModuleOptions {
+  serverDir?: string
+  rootModuleDir?: string
+}
+
 export interface ResolvedPergelModuleOptions {
   /**
    * @default

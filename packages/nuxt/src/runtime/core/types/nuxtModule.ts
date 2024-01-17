@@ -1,24 +1,24 @@
 import type { ImportsOptions, Nuxt } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import type { UnimportPluginOptions } from 'unimport/unplugin'
-import type { ModuleOptions } from '@nuxt/devtools'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { ResolvedUIOptions } from '../../modules/ui/types'
 
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
+import type { UserModuleOptions } from './module'
 
 export interface PergelNuxtModules {
-  S3?: true | ModuleOptions
-  ses?: true | ModuleOptions
-  nodeCron?: true | ModuleOptions
-  bullmq?: true | ModuleOptions
-  json2csv?: true | ModuleOptions
-  graphqlYoga?: true | (GraphQLYogaConfig & ModuleOptions)
-  drizzle?: true | (DrizzleConfig & ModuleOptions)
-  lucia?: true | (LuciaModuleOptions & ModuleOptions)
-  ui?: true | (ResolvedUIOptions & ModuleOptions)
+  S3?: true | UserModuleOptions
+  ses?: true | UserModuleOptions
+  nodeCron?: true | UserModuleOptions
+  bullmq?: true | UserModuleOptions
+  json2csv?: true | UserModuleOptions
+  graphqlYoga?: true | (GraphQLYogaConfig & UserModuleOptions)
+  drizzle?: true | (DrizzleConfig & UserModuleOptions)
+  lucia?: true | (LuciaModuleOptions & UserModuleOptions)
+  ui?: true | (ResolvedUIOptions & UserModuleOptions)
 }
 
 export interface ResolvedPergelNuxtModuleConfig {
