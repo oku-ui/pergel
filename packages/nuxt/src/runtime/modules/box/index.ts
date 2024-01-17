@@ -9,20 +9,20 @@ import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
 import { definePergelModule } from '../../core/definePergel'
 import { useNuxtImports } from '../../core/utils/useImports'
 import { addDownloadTemplate } from '../../core/utils/createDownloadTemplate'
-import type { ResolvedUIOptions, UIOptions } from './types'
+import type { BoxOptions, ResolvedBoxOptions } from './types'
 
 const logger = consola.create({
   defaults: {
-    tag: 'pergel:ui',
+    tag: 'pergel:box',
   },
 })
 
-export default definePergelModule<UIOptions, ResolvedUIOptions>({
+export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
   meta: {
-    name: 'ui',
+    name: 'box',
     version: '0.0.1',
     dependencies: {
-      '@pergel/module-ui': 'latest',
+      '@pergel/module-box': 'latest',
     },
   },
   defaults: {

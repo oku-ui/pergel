@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   pergel: {
     projects: {
       changeName: {
-        ui: true,
+        box: true,
         drizzle: true,
         lucia: true,
       },

@@ -30,11 +30,6 @@ export async function setupPergel(
         nuxtConfig: 'nuxt.config.ts',
       },
     } as ResolvedPergelConfig,
-    rcFile: false,
-    jitiOptions: {
-      interopDefault: true,
-      esmResolve: true,
-    },
   })
 
   if (!file.config)
@@ -105,7 +100,7 @@ export async function setupPergel(
   const resolvedPergelOptions = defu(options, {
     exitPergelFolder,
     rootOptions: options,
-    // Pergel Modules
+    // @MODULE
     modules: [
       'S3',
       'ses',
@@ -115,7 +110,7 @@ export async function setupPergel(
       'graphqlYoga',
       'drizzle',
       'lucia',
-      'ui',
+      'box',
     ],
     projectNames,
     nitroImports: {},

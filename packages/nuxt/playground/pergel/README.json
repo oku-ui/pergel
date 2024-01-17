@@ -11,7 +11,7 @@
       },
       "packageJson": {
         "dependencies": {
-          "@pergel/module-ui": "latest"
+          "@pergel/module-box": "latest"
         },
         "devDependencies": {}
       }

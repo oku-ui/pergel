@@ -4,11 +4,12 @@ import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
-import type { ResolvedUIOptions } from '../../modules/ui/types'
+import type { BoxOptions, ResolvedBoxOptions } from '../../modules/box/types'
 
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
 import type { UserModuleOptions } from './module'
 
+// @MODULE
 export interface PergelNuxtModules {
   S3?: true | UserModuleOptions
   ses?: true | UserModuleOptions
@@ -18,9 +19,10 @@ export interface PergelNuxtModules {
   graphqlYoga?: true | (GraphQLYogaConfig & UserModuleOptions)
   drizzle?: true | (DrizzleConfig & UserModuleOptions)
   lucia?: true | (LuciaModuleOptions & UserModuleOptions)
-  ui?: true | (ResolvedUIOptions & UserModuleOptions)
+  box?: true | (BoxOptions & UserModuleOptions)
 }
 
+// @MODULE
 export interface ResolvedPergelNuxtModuleConfig {
   S3?: true
   ses?: true
@@ -29,7 +31,7 @@ export interface ResolvedPergelNuxtModuleConfig {
   json2csv?: true
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
-  ui?: true | ResolvedUIOptions
+  box?: true | ResolvedBoxOptions
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules

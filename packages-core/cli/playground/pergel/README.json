@@ -12,7 +12,7 @@
       "comment-block-8hji38": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
         "dependencies": {
-          "@pergel/module-ui": "latest"
+          "@pergel/module-box": "latest"
         },
         "devDependencies": {}
       }
