@@ -34,8 +34,8 @@ export async function setupPostgres(
 
 /** @type { import("drizzle-kit").Config } */
 export default {
-  schema: '${options.moduleDir}/schema/index.ts',
-  out: '${options.moduleDir}/migrations',
+  schema: '${options._dir.server}/schema/index.ts',
+  out: '${options._dir.server}/migrations',
   ${driver === 'pg' ? `driver: '${driver}',` : ''}
   dbCredentials: process.env.${env.url}
     ? {
@@ -93,7 +93,7 @@ export default {
   if (nuxt.options.dev) {
     const subprocess = startSubprocess({
       command: 'drizzle-kit',
-      args: ['studio', '--port', '3105', `--config=${options.moduleDir}/drizzle.config.js`],
+      args: ['studio', '--port', '3105', `--config=${options._dir.server}/drizzle.config.js`],
       cwd: nuxt.options.rootDir,
       env: {
         ...process.env,
