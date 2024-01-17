@@ -27,16 +27,17 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
   },
   defaults: {
     packages: {
-      colorMode: true,
-      notivue: true,
-      nuxtIcon: true,
-      radixVue: true,
+      colorMode: false,
+      notivue: false,
+      nuxtIcon: false,
+      radixVue: false,
       tailwindIcon: ['ph', 'carbon'],
-      tailwindcss: true,
-      veeValidate: true,
-      zod: true,
-      i18n: true,
-      pinia: true,
+      tailwindcss: false,
+      veeValidate: false,
+      zod: false,
+      i18n: false,
+      pinia: false,
+      vueUse: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -304,6 +305,9 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
     if (options.packages.pinia)
       await installModule('@pinia/nuxt')
+
+    if (options.packages.vueUse)
+      await installModule('@vueuse/nuxt')
 
     addDownloadTemplate({
       nuxt,

@@ -63,6 +63,12 @@ export interface BoxOptions extends PergelModuleOptions {
      * @see https://pinia.vuejs.org
      */
     pinia?: boolean
+
+    /**
+     * @default true
+     * @see https://vueuse.org
+     */
+    vueUse?: boolean
   }
 
 }
@@ -79,5 +85,6 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     veeValidate?: boolean
     i18n?: boolean
     pinia?: boolean
+    vueUse?: boolean
   }
 }
