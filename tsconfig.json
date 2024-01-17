@@ -60,6 +60,7 @@
     "**/client/**",
     "packages/nuxt/nuxt.config.ts",
     "examples/**",
-    "themes/**"
+    "themes/**",
+    "packages/nuxt/src/runtime/modules/box/plugins"
   ]
 }
