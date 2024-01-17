@@ -59,8 +59,8 @@
     "types:docker-compose": "esno scripts/compose-spec.ts"
   },
   "dependencies": {
-    "@nuxt/devtools": "^1.0.6",
-    "@nuxt/devtools-kit": "^1.0.6",
+    "@nuxt/devtools": "^1.0.8",
+    "@nuxt/devtools-kit": "^1.0.8",
     "@nuxt/kit": "^3.9.1",
     "@vueuse/core": "^10.7.1",
     "defu": "^6.1.4",
@@ -78,7 +78,7 @@
     "@json2csv/node": "^7.0.4",
     "@lucia-auth/adapter-drizzle": "1.0.0-beta.4",
     "@lucia-auth/adapter-postgresql": "3.0.0-beta.8",
-    "@nuxt/devtools-ui-kit": "^1.0.6",
+    "@nuxt/devtools-ui-kit": "^1.0.8",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.9.1",
     "@nuxt/test-utils": "^3.9.0",

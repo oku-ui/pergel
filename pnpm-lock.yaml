@@ -121,10 +121,10 @@ importers:
   packages/nuxt:
     dependencies:
       '@nuxt/devtools':
-        specifier: ^1.0.6
+        specifier: ^1.0.8
         version: 1.0.8(nuxt@3.9.1)(rollup@3.29.4)(vite@5.0.11)
       '@nuxt/devtools-kit':
-        specifier: ^1.0.6
+        specifier: ^1.0.8
         version: 1.0.8(nuxt@3.9.1)(rollup@3.29.4)(vite@5.0.11)
       '@nuxt/kit':
         specifier: ^3.9.1
@@ -173,7 +173,7 @@ importers:
         specifier: 3.0.0-beta.8
         version: 3.0.0-beta.8(lucia@3.0.0-beta.13)(pg@8.11.3)(postgres@3.4.3)
       '@nuxt/devtools-ui-kit':
-        specifier: ^1.0.6
+        specifier: ^1.0.8
         version: 1.0.8(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.14)(nuxt@3.9.1)(postcss@8.4.33)(rollup@3.29.4)(vite@5.0.11)(vue@3.4.14)(webpack@5.89.0)
       '@nuxt/module-builder':
         specifier: ^0.5.5
@@ -5923,7 +5923,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       magic-string: 0.30.5
     dev: true
 
@@ -7391,7 +7391,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       '@vue/compiler-sfc': 3.4.13
       ast-kit: 0.11.3
       local-pkg: 0.5.0
@@ -8068,7 +8068,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -8100,7 +8100,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -15537,7 +15537,7 @@ packages:
   /unimport@3.7.1:
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       acorn: 8.11.3
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
@@ -15723,7 +15723,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.23.6
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       '@vue-macros/common': 1.10.0(vue@3.4.13)
       ast-walker-scope: 0.5.0
       chokidar: 3.5.3
@@ -16088,7 +16088,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.7
       '@nuxt/kit': 3.9.1
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.9.5)
       debug: 4.3.4
       error-stack-parser-es: 0.1.1
       fs-extra: 11.2.0
@@ -16112,7 +16112,7 @@ packages:
       '@babel/plugin-syntax-import-meta': 7.10.4(@babel/core@7.23.7)
       '@babel/plugin-transform-typescript': 7.23.6(@babel/core@7.23.7)
       '@vue/babel-plugin-jsx': 1.1.6(@babel/core@7.23.7)
-      '@vue/compiler-dom': 3.4.13
+      '@vue/compiler-dom': 3.4.14
       kolorist: 1.8.0
       magic-string: 0.30.5
       vite: 5.0.11(@types/node@20.11.0)
