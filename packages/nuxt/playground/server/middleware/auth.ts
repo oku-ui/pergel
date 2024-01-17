@@ -1,4 +1,4 @@
-import { auth } from '#pergel/test/lucia'
+import { auth } from '#test/lucia'
 
 export default pergelTest().lucia().definePergelNitroMiddleware({
   lucia: auth,

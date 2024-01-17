@@ -3,5 +3,5 @@ import { defineNuxtPlugin } from '#imports'
 
 export default defineNuxtPlugin((app) => {
   // Register the directive
-  app.vueApp.directive('v-confetti', vConfetti)
+  app.vueApp.directive('confetti', vConfetti)
 })

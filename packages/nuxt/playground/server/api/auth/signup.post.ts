@@ -1,5 +1,5 @@
 // import { PostgresError } from 'postgres'
-import { auth } from '#pergel/test/lucia'
+import { auth } from '#test/lucia'
 
 export default eventHandler(async (event) => {
   const db = await pergelTest().drizzle().postgresjs().connect({})
