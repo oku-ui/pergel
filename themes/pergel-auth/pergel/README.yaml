@@ -45,5 +45,5 @@ changeName:
       authDefault: pergel download -t=default-auth-1 -j=templates -p=changeName
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: "@pergel/module-ui@latest"
+      dependencies: "@pergel/module-box@latest"
       devDependencies: ""
