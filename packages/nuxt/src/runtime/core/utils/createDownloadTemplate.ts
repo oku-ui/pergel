@@ -40,7 +40,7 @@ export function addDownloadTemplate(
           ...value,
         }, null, 2)}`
 
-        writeFileSync(resolve(nuxt._pergel.templateDir, `${key}.json`), content, {
+        nuxt._pergel.exitPergelFolder && writeFileSync(resolve(nuxt._pergel.templateDir, `${key}.json`), content, {
           encoding: 'utf-8',
         })
         if (input.readme && input.readme.projectName) {
