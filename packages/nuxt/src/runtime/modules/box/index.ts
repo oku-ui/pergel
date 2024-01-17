@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addImports, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addImports, addPlugin, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
@@ -38,6 +38,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       i18n: false,
       pinia: false,
       vueUse: false,
+      neoconfetti: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -308,6 +309,9 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
     if (options.packages.vueUse)
       await installModule('@vueuse/nuxt')
+
+    if (options.packages.neoconfetti)
+      addPlugin(resolver.resolve('plugins/neoconfetti.ts'))
 
     addDownloadTemplate({
       nuxt,

@@ -60,6 +60,11 @@ export default defineNuxtConfig({
         },
         lucia: true,
         drizzle: true,
+        box: {
+          packages: {
+            neoconfetti: true,
+          },
+        },
       },
       test2: {
         S3: true,

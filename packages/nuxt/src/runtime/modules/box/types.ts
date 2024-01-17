@@ -69,6 +69,12 @@ export interface BoxOptions extends PergelModuleOptions {
      * @see https://vueuse.org
      */
     vueUse?: boolean
+
+    /**
+     * @default true
+     * @see https://github.com/PuruVJ/neoconfetti/tree/main/packages/vue
+     */
+    neoconfetti: boolean
   }
 
 }
@@ -86,5 +92,6 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     i18n?: boolean
     pinia?: boolean
     vueUse?: boolean
+    neoconfetti: boolean
   }
 }

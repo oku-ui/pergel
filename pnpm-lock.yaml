@@ -78,6 +78,9 @@ importers:
       '@iconify-json/ph':
         specifier: ^1.1.9
         version: 1.1.10
+      '@neoconfetti/vue':
+        specifier: ^2.2.1
+        version: 2.2.1
       '@nuxtjs/color-mode':
         specifier: ^3.3.2
         version: 3.3.2(rollup@4.9.5)
@@ -3615,6 +3618,10 @@ packages:
     requiresBuild: true
     optional: true
 
+  /@neoconfetti/vue@2.2.1:
+    resolution: {integrity: sha512-GXe5XoHlMK8VIxmxKuAgF9QQwRoDLmtiwVhONA9rzF+zOLGfOVLxo4OEDZqU9F0gJkB7U23BLlGJ3ouOb+kguw==}
+    dev: false
+
   /@netlify/functions@2.4.1:
     resolution: {integrity: sha512-sRFYBaz6dJP1MdUtk/5QNmshhg5UDmB+DUssmH6v9WUG85MrwyExEfGfJA5eClXATjXm0coTvO5nLAlyCpK7QQ==}
     engines: {node: '>=14.0.0'}
@@ -4862,7 +4869,7 @@ packages:
   /@nuxtjs/color-mode@3.3.2(rollup@3.29.4):
     resolution: {integrity: sha512-BLpBfrYZngV2QWFQ4HNEFwAXa3Pno43Ge+2XHcZJTTa1Z4KzRLvOwku8yiyV3ovIaaXKGwduBdv3Z5Ocdp0/+g==}
     dependencies:
-      '@nuxt/kit': 3.9.3(rollup@3.29.4)
+      '@nuxt/kit': 3.9.1(rollup@3.29.4)
       lodash.template: 4.5.0
       pathe: 1.1.2
     transitivePeerDependencies:
