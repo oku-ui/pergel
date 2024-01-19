@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addImportsSources, addPlugin, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addPlugin, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
@@ -7,7 +7,7 @@ import type { ModuleOptions } from '@nuxtjs/i18n'
 import consola from 'consola'
 import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
 import { definePergelModule } from '../../core/definePergel'
-import { useNuxtImports } from '../../core/utils/useImports'
+import { useNitroImports, useNuxtImports } from '../../core/utils/useImports'
 import { addDownloadTemplate } from '../../core/utils/createDownloadTemplate'
 import type { BoxOptions, ResolvedBoxOptions } from './types'
 
@@ -89,9 +89,13 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         })
       })
 
-      addImportsSources({
-        imports: ['toFieldValidator', 'toFormValidator', 'toTypedSchema'] as Array<keyof typeof import('@vee-validate/zod')>,
-        from: '@vee-validate/zod',
+      useNuxtImports(nuxt, {
+        presets: [
+          {
+            imports: ['toFieldValidator', 'toFormValidator', 'toTypedSchema'] as Array<keyof typeof import('@vee-validate/zod')>,
+            from: '@vee-validate/zod',
+          },
+        ],
       })
     }
 
@@ -118,6 +122,20 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         return
 
       useNuxtImports(nuxt, {
+        presets: [
+          {
+            imports: [
+              {
+                name: 'z',
+                as: 'zod',
+              },
+            ],
+            from: 'zod',
+          },
+        ],
+      })
+
+      useNitroImports(nuxt, {
         presets: [
           {
             imports: [
