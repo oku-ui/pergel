@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addImports, addPlugin, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addImports, addImportsSources, addPlugin, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
@@ -89,9 +89,8 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         })
       })
 
-      addImports({
-        name: 'toTypedSchema',
-        as: 'toTypedSchema',
+      addImportsSources({
+        imports: ['toFieldValidator', 'toFormValidator', 'toTypedSchema'] as Array<keyof typeof import('@vee-validate/zod')>,
         from: '@vee-validate/zod',
       })
     }
