@@ -175,17 +175,15 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       },
     `
 
+    // Watch for changes
     nuxt.hook('builder:watch', async (event, path) => {
-      // TODO: add support module name
       const { match, projectName, moduleName } = globsBuilderWatch(
         nuxt,
         path,
-        'drizzle',
-        '.ts',
       )
 
       if (projectName) {
-        const activeProject = nuxt._pergel.rootOptions.projects[projectName][moduleName] as DrizzleConfig
+        const activeProject = (nuxt._pergel.rootOptions.projects as any)[projectName][moduleName] as DrizzleConfig
 
         if (!activeProject)
           return

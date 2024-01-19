@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import {
   addTemplate,
@@ -155,6 +155,20 @@ export default defineNuxtModule<PergelOptions>({
     nuxt._pergel.exitPergelFolder && writeFileSync(file, envTemplate, {
       encoding: 'utf8',
     })
+
+    nuxt._pergel.watchDirs = nuxt._pergel.projects
+      ? Object.keys(nuxt._pergel.projects).map((projectName) => {
+        const project = nuxt._pergel.projects[projectName] as any
+
+        return Object.keys(project).map(moduleName => ({
+          projectName,
+          moduleName,
+          serverDir: relative(nuxt.options.rootDir, project[moduleName].serverDir),
+          rootModuleDir: relative(nuxt.options.rootDir, project[moduleName].rootModuleDir),
+        }))
+      },
+      ).flat()
+      : []
   },
 })
 

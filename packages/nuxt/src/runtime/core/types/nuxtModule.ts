@@ -211,6 +211,13 @@ export interface ResolvedPergelOptions {
   workspaceMode: boolean
 
   serverDir: string
+
+  watchDirs: {
+    serverDir: string
+    rootModuleDir: string
+    projectName: string
+    moduleName: string
+  }[]
 }
 
 export interface NuxtPergel extends Nuxt {

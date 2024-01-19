@@ -151,6 +151,12 @@ export default {
             target: '/var/lib/postgresql/data',
           },
         ],
+        ports: [
+          {
+            target: 5432,
+            published: 5432,
+          },
+        ],
         environment: {
           POSTGRES_USER: 'postgres',
           POSTGRES_PASSWORD: 'postgres',
