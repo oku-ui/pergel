@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addImports, addImportsSources, addPlugin, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addImportsSources, addPlugin, createResolver, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
