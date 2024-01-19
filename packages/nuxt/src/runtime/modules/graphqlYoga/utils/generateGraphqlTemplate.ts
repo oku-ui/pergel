@@ -1,10 +1,10 @@
-import { join, resolve } from 'node:path'
+import { join } from 'node:path'
 import { existsSync, writeFileSync } from 'node:fs'
-import { relative } from 'pathe'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
+import { globsBuilderWatch } from '../../../core/utils/globs'
 import { useGenerateCodegen } from './generateCodegen'
 
 export function generateGraphQLTemplate(data: {
@@ -12,23 +12,6 @@ export function generateGraphQLTemplate(data: {
   options: ResolvedGraphQLYogaConfig
 }) {
   const { codegen, dir } = data.options
-
-  function globsServerClient(path: string) {
-    const absolutePath = resolve(data.nuxt.options.rootDir, path)
-    const relativePath = relative(data.nuxt.options.rootDir, path)
-
-    const { projectName, moduleName } = relativePath.match(/pergel\/(?<projectName>[^\/]+)\/(?<moduleName>[^\/]+)/)?.groups ?? {}
-
-    const serverFolder = matchGlobs(absolutePath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
-    const clientFolder = matchGlobs(absolutePath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
-
-    return {
-      serverFolder,
-      clientFolder,
-      projectName,
-      moduleName,
-    }
-  }
 
   const schemaTemplate = `type Query {
   book(id: ID!): Book!
@@ -89,7 +72,14 @@ export interface GraphqlYogaContext extends YogaInitialContext {
   })
 
   data.nuxt.hook('builder:watch', async (event, path) => {
-    const { serverFolder, clientFolder } = globsServerClient(path)
+    const test = globsBuilderWatch(data.nuxt, path, '.graphql')
+    if (!test)
+      return
+
+    // TODO: globsBuilderWatch add dynamic function
+    const serverFolder = matchGlobs(test.match.filepath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
+    const clientFolder = matchGlobs(test.match.filepath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
+
     // return
     if (serverFolder) {
       // If change server, and update schema.graphql and after update client auto. Maybe change this in future.

@@ -7,6 +7,7 @@ export function matchGlobs(filepath: string, globs: string[]) {
       return {
         glob,
         status: true,
+        filepath,
       }
     }
   }
