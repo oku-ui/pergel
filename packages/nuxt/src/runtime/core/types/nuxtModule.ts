@@ -63,7 +63,15 @@ export interface PergelOptions {
    */
   debug?: true
 
-  workspaceMode?: boolean
+  /**
+   * @default 'server/pergel'
+   */
+  pergelServerDir?: string
+
+  /**
+   * @default 'pergel'
+   */
+  pergelDir?: string
 }
 
 export interface ResolvedPergelOptions {
@@ -207,8 +215,6 @@ export interface ResolvedPergelOptions {
   composeTemplates?: {
     [projectName: string]: ComposeSpecification
   }
-
-  workspaceMode: boolean
 
   serverDir: string
 

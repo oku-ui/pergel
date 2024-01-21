@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  extends: [
+    './layer',
+  ],
   modules: [
     /**
      * My module
@@ -60,20 +63,6 @@ export default defineNuxtConfig({
         },
         lucia: true,
         drizzle: true,
-        box: {
-          packages: {
-            neoconfetti: true,
-            colorMode: true,
-            i18n: true,
-            tailwindcss: true,
-            vueUse: true,
-            veeValidate: true,
-            notivue: true,
-            nuxtIcon: true,
-            pinia: true,
-            zod: true,
-          },
-        },
       },
       test2: {
         S3: true,

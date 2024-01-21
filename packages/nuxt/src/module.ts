@@ -8,6 +8,9 @@ import {
 } from '@nuxt/kit'
 import YAML from 'yaml'
 
+import defu from 'defu'
+import type { NuxtConfigLayer } from '@nuxt/schema'
+import { resolve } from 'pathe'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
@@ -27,13 +30,40 @@ export default defineNuxtModule<PergelOptions>({
     projects: {
 
     },
-    workspaceMode: false,
   },
   async setup(options, nuxt) {
+    let pergelOptions = {} as PergelOptions
+    // const project = nuxt.options._layers[0]
+    const layers = nuxt.options._layers
+
+    function getLayerPergel(configLayer: NuxtConfigLayer) {
+      const layerInlineOptions = (configLayer.config.modules || []).find(
+        (mod): mod is [string, PergelOptions] | undefined =>
+          Array.isArray(mod)
+          && typeof mod[0] === 'string'
+          && [DEVTOOLS_MODULE_NAME, `${DEVTOOLS_MODULE_NAME}-edge`].includes(mod[0]),
+      )?.[1]
+
+      if (configLayer.config.pergel)
+        return defu(configLayer.config.pergel, layerInlineOptions)
+
+      return layerInlineOptions
+    }
+
+    for (const layer of layers) {
+      const layerPergel = getLayerPergel(layer)
+      if (layerPergel == null)
+        continue
+
+      // const configLocation = project.config.rootDir === layer.config.rootDir ? 'project layer' : 'extended layer'
+
+      pergelOptions = defu(options, layerPergel) as PergelOptions
+    }
+
     const _resolver = createResolver(import.meta.url)
 
     await setupPergel({
-      options,
+      options: pergelOptions,
       nuxt,
       resolver: _resolver,
       version,

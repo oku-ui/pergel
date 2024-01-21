@@ -143,7 +143,6 @@ export async function setupPergel(
     readmeDir: resolve(resolveDir, readmePath),
     esnext: true,
     debug: false,
-    workspaceMode: false,
     serverDir: resolve(resolveDir, serverDir),
     watchDirs: [],
   } satisfies ResolvedPergelOptions)
