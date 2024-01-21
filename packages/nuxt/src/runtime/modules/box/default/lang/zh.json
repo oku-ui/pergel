@@ -33,5 +33,27 @@
     "login_with_email": "使用电子邮件登录",
     "terms_of_service_description": "点击继续，即表示您同意我们的。"
   },
-  "and": "和"
+  "and": "和",
+  "settings": {
+    "title": "设置",
+    "general": {
+      "title": "常规设置",
+      "language": "语言",
+      "notifications": "通知",
+      "dark_mode": "暗模式"
+    },
+    "account": {
+      "title": "帐户设置",
+      "profile": "个人资料",
+      "security": "安全性",
+      "privacy": "隐私",
+      "change_password": "更改密码"
+    },
+    "advanced": {
+      "title": "高级设置",
+      "customization": "定制",
+      "data_usage": "数据使用",
+      "sync_options": "同步选项"
+    }
+  }
 }

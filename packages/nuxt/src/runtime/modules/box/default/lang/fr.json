@@ -33,5 +33,48 @@
     "login_with_email": "Se connecter avec un e-mail",
     "terms_of_service_description": "En cliquant sur continuer, vous acceptez nos."
   },
-  "and": "et"
+  "and": "et",
+  "settings": {
+    "title": "Paramètres",
+    "menu": {
+      "account": "Compte",
+      "notifications": "Notifications",
+      "appearance": "Apparence",
+      "privacy": "Confidentialité et Sécurité",
+      "help": "Aide et Support",
+      "about": "À propos"
+    },
+    "general": {
+      "title": "Paramètres Généraux",
+      "notifications": "Notifications"
+    },
+    "account": {
+      "title": "Paramètres du compte",
+      "profile": "Profil",
+      "security": "Sécurité",
+      "privacy": "Confidentialité",
+      "change_password": "Changer le mot de passe",
+      "email_address": "Adresse e-mail",
+      "verify_email": "Vérifier l'e-mail",
+      "where_youre_signed": "Où vous êtes connecté",
+      "see_your_active_sessions": "Consultez vos sessions actives et déconnectez-vous si vous le souhaitez",
+      "personal_info": "Informations personnelles"
+    },
+    "advanced": {
+      "title": "Paramètres Avancés",
+      "customization": "Personnalisation",
+      "data_usage": "Utilisation des Données",
+      "sync_options": "Options de Synchronisation"
+    },
+    "appearance": {
+      "title": "Apparence",
+      "language": "Langue",
+      "dark_mode": "Mode Sombre"
+    },
+    "personal": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "bio": "Biographie"
+    }
+  }
 }

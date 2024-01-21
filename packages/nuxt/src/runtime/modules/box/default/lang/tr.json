@@ -31,7 +31,65 @@
     "password_input_subtitle": "Şifreniz en az 8 karakter uzunluğunda olmalıdır.",
     "dont_have_an_account": "Hesabınız henüz etkinleştirilmedi. Sizi bekleme listesine aldık. Hesabınız hazır olduğunda sizi bilgilendireceğiz. Sabrınız için teşekkür ederiz.",
     "login_with_email": "E-posta ile Giriş Yap",
-    "terms_of_service_description": "Devam edersiniz, şu şartları kabul etmiş olursunuz."
+    "terms_of_service_description": "Devam edersiniz, şu şartları kabul etmiş olursunuz.",
+    "email_verification": "Email Verification",
+    "we_send_code": "We have sent a code to your email",
+    "verify_account": "Verify Account",
+    "didnt_receive": "Didn't recieve code?"
   },
-  "and": "ve"
+  "and": "ve",
+  "settings": {
+    "save": "Kaydet",
+    "title": "Ayarlar",
+    "menu": {
+      "account": "Hesap",
+      "notifications": "Bildirimler",
+      "appearance": "Görünüm",
+      "privacy": "Gizlilik ve Güvenlik",
+      "help": "Yardım ve Destek",
+      "about": "Hakkında"
+    },
+    "general": {
+      "title": "Genel Ayarlar",
+      "notifications": "Bildirimler"
+    },
+    "account": {
+      "title": "Hesap Ayarları",
+      "profile": "Profil",
+      "security": "Güvenlik",
+      "privacy": "Gizlilik",
+      "change_password": "Şifre Değiştirme",
+      "email_address": "E-posta adresi",
+      "verify_email": "E-posta Doğrulama",
+      "where_youre_signed": "Giriş yaptığınız yerler",
+      "see_your_active_sessions": "Etkin oturumlarınızı görüntüleyin ve isterseniz oturum kapatın",
+      "personal_info": "Kişisel Bilgiler"
+    },
+    "advanced": {
+      "title": "Gelişmiş Ayarlar",
+      "customization": "Kişiselleştirme",
+      "data_usage": "Veri Kullanımı",
+      "sync_options": "Senkronizasyon Seçenekleri"
+    },
+    "appearance": {
+      "title": "Görünüm",
+      "language": "Dil",
+      "dark_mode": "Karanlık Mod"
+    },
+    "personal": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "bio": "Biyografi"
+    }
+  },
+  "tabs": {
+    "home": "Anasayfa",
+    "settings": "Ayarlar"
+  },
+  "profile": {
+    "invite": "Davet Et",
+    "invite_link": "Davet Linki",
+    "invite_people": "İnsanları davet et",
+    "edit_profile": "Profili Düzenle"
+  }
 }
