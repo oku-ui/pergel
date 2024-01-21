@@ -32,7 +32,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     defaultCss: false,
     themeCss: false,
   },
-  async setup({ nuxt, moduleOptions, options }) {
+  async setup({ nuxt, options }) {
     console.log('ionic test', options.appName)
     const capacitorConfig = `
     import { CapacitorConfig } from '@capacitor/cli';
@@ -45,7 +45,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     //   ${JSON.stringify(options.nuxtConfig)}
     // })`
     // env için
-    generateModuleRuntimeConfig(nuxt, moduleOptions, {
+    generateModuleRuntimeConfig(nuxt, options, {
     })
 
     // TODO: add docs
@@ -77,8 +77,8 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
 
     } satisfies ModuleOptions)
 
-    if (!existsSync(resolve(moduleOptions.moduleDir, 'capacitor.config.ts'))) {
-      writeFileSync(resolve(moduleOptions.moduleDir, 'capacitor.config.ts'), capacitorConfig, {
+    if (!existsSync(resolve(nuxt.options.rootDir, 'capacitor.config.ts'))) {
+      writeFileSync(resolve(nuxt.options.rootDir, 'capacitor.config.ts'), capacitorConfig, {
         mode: 0o777,
         encoding: 'utf8',
       })
@@ -88,7 +88,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     // ionic capacitor add ios
     // ionic capacitor add android
 
-    const { projectName, moduleName } = moduleOptions
+    const { projectName, moduleName } = options
 
     generateProjectReadme({
       data: ({ addCommentBlock }) => ({

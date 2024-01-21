@@ -1,6 +1,6 @@
 import defu from 'defu'
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
-import type { NuxtPergel } from '../types'
+import type { NuxtPergel } from '../types/nuxtModule'
 
 export function createDockerService(nuxt: NuxtPergel, projectName: string, options: ComposeSpecification) {
   nuxt._pergel.composeTemplates ??= {}

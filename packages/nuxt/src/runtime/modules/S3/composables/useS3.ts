@@ -18,9 +18,9 @@ import type {
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import consola from 'consola'
-import type { PartinalKey } from '../../../core/types'
 import type { S3ModuleRuntimeConfig } from '../types'
 import { clientFunctionTemplate } from '../../../core/useClient'
+import type { PartinalKey } from '../../../core/types/module'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 const { clientInit } = clientFunctionTemplate<S3Client, S3ModuleRuntimeConfig>('S3')

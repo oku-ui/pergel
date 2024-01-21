@@ -13,7 +13,7 @@ export default defineNuxtConfig({
           themeCss: true,
           defaultCss: false,
         },
-        ui: {
+        box: {
           packages: {
             i18n: true,
             veeValidate: true,

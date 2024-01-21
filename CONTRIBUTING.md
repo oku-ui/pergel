@@ -27,12 +27,12 @@ Note: If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to i
 1. Fork the [oku-ui](https://github.com/oku-ui/pergel) repository
 2. Install the project dependencies.
    `pnpm install`
-3. If you are going to deal with packages in `./pergel`, you should install pnpm there too. It is different from root. 
-   `cd ./pergel && pnpm install`
+3. If you are going to deal with packages in `./packages-core`, you should install pnpm there too. It is different from root. 
+   `cd ./packages-core && pnpm install`
 
 ### Packages
 
-- [pergel](./pergel) - CLI and Pergel core packages
+- [pergel](./packages-core) - CLI and Pergel core packages
 - [nuxt module](./packages/nuxt)
 
 ## Pull Request

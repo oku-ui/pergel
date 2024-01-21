@@ -4,6 +4,7 @@ import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
+import { createFolderModule } from '../../core/utils/createFolderModule'
 import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
 
@@ -48,14 +49,20 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
     },
     dts: true,
   },
-  defaults({ rootOptions }) {
-    // const [driver, db] = rootOptions.driver.split(':')
+  defaults({ nuxt, rootOptions, options }) {
+    createFolderModule({
+      nuxt,
+      serverDir: options.serverDir,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
+    })
 
     return {
+      ...options,
       driver: rootOptions.driver ?? 'drizzle:postgre',
     }
   },
-  async setup({ nuxt, moduleOptions, options }) {
+  async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
     const [driver, db] = options.driver.split(':')
@@ -68,16 +75,15 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       const { driver } = setupDrizzle(db, resolver)
       _setupDrizzle.use = driver
 
-      if (!existsSync(`${moduleOptions.moduleDir}/index.ts`)) {
-        const projectName = `pergel${moduleOptions.firstLetterProjectName}`
+      if (!existsSync(`${options.serverDir}/index.ts`)) {
         writeFileSync(
-          `${moduleOptions.moduleDir}/index.ts`,
+          `${options.serverDir}/index.ts`,
           /* ts */`
-import { session, user } from '#pergel/${moduleOptions.projectName}/drizzle/schema'
+import { session, user } from '#${options.projectName}/drizzle/schema'
 
-const connect = await ${projectName}().drizzle().postgresjs().connect({})
+const connect = await ${options.projectNamePascalCase}().drizzle().postgresjs().connect({})
 
-export const auth = ${projectName}().lucia().use({
+export const auth = ${options.projectNamePascalCase}().lucia().use({
   db: connect,
   options: { },
   session,
@@ -94,9 +100,9 @@ export const auth = ${projectName}().lucia().use({
       writeFileSync(
         join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
         /* ts */`
-import { auth } from '#pergel/${moduleOptions.projectName}/lucia'
+import { auth } from '#${options.projectName}/lucia'
 
-export default pergel${moduleOptions.firstLetterProjectName}().lucia().definePergelNitroMiddleware({
+export default ${options.projectNamePascalCase}().lucia().definePergelNitroMiddleware({
   lucia: auth,
 })
         `,
@@ -124,8 +130,8 @@ export default pergel${moduleOptions.firstLetterProjectName}().lucia().definePer
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
-import type { Session, User } from '#pergel/${moduleOptions.projectName}/drizzle/schema'
-import type { auth } from '#pergel/${moduleOptions.projectName}/lucia'
+import type { Session, User } from '#${options.projectName}/drizzle/schema'
+import type { auth } from '#${options.projectName}/lucia'
 
 declare module 'lucia' {
   interface Register {
@@ -145,15 +151,15 @@ declare module 'h3' {
 }
       `,
       nuxt,
-      moduleName: moduleOptions.moduleName,
-      projectName: moduleOptions.projectName,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       interfaceNames: [],
-      moduleOptions,
+      dir: options.serverDir,
     })
 
     nuxt._pergel.contents.push({
-      moduleName: moduleOptions.moduleName,
-      projectName: moduleOptions.projectName,
+      moduleName: options.moduleName,
+      projectName: options.projectName,
       content: /* ts */`
           function lucia() {
             return {

@@ -1,23 +1,8 @@
-import { resolve } from 'node:path'
+import { basename, resolve } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import defu from 'defu'
-import type { DefineDownloadOptions, NuxtPergel } from '../types'
+import type { DefineDownloadOptions, NuxtPergel } from '../types/nuxtModule'
 import { generateProjectReadme } from './generateYaml'
-
-export function writeDownloadTemplate(nuxt: NuxtPergel) {
-  const templates = nuxt._pergel.templates
-
-  const pergel = resolve(nuxt._pergel.templateDir, 'templates.json')
-
-  const content = /* JS */ `${JSON.stringify({
-    version: '0.1.0',
-    templates,
-  }, null, 2)}`
-
-  writeFileSync(pergel, content, {
-    encoding: 'utf-8',
-  })
-}
 
 export function addDownloadTemplate(
   input: {
@@ -46,44 +31,32 @@ export function addDownloadTemplate(
     nuxt._pergel.templates[name].folder ??= []
     nuxt._pergel.templates[name].folder?.push(...data.folder ?? [])
   }
-  const fileName = 'templates'
   if (write) {
     const templates = nuxt._pergel.templates ?? {}
 
-    const pergel = resolve(nuxt._pergel.templateDir, `${fileName}.json`)
-
     if (Object.keys(templates).length > 0) {
-      const content = /* JS */ `${JSON.stringify({
-        version: '0.1.0',
-        templates,
-      }, null, 2)}`
+      for (const [key, value] of Object.entries(templates)) {
+        const content = /* JS */ `${JSON.stringify({
+          ...value,
+        }, null, 2)}`
 
-      writeFileSync(pergel, content, {
-        encoding: 'utf-8',
-      })
+        nuxt._pergel.exitPergelFolder && writeFileSync(resolve(nuxt._pergel.templateDir, `${key}.json`), content, {
+          encoding: 'utf-8',
+        })
+        if (input.readme && input.readme.projectName) {
+          generateProjectReadme({
+            data: ({ addCommentBlock }) => ({
+              ...addCommentBlock('UI Download Template'),
+              themes: {
+                authDefault: `pergel download -t=${basename(nuxt._pergel.templateDir)} -j=${key} -p=${input.readme!.projectName}`,
+              },
+            }),
+            nuxt,
+            moduleName: input.readme.moduleName,
+            projectName: input.readme.projectName,
+          })
+        }
+      }
     }
-
-    const content = /* JS */ `${JSON.stringify({
-      version: '0.1.0',
-      templates,
-    }, null, 2)}`
-
-    writeFileSync(pergel, content, {
-      encoding: 'utf-8',
-    })
-  }
-
-  if (input.readme && input.readme.projectName) {
-    generateProjectReadme({
-      data: ({ addCommentBlock }) => ({
-        ...addCommentBlock('UI Download Template'),
-        themes: {
-          authDefault: `pergel download -t=${name} -j=${fileName} -p=${input.readme!.projectName}`,
-        },
-      }),
-      nuxt,
-      moduleName: input.readme.moduleName,
-      projectName: input.readme.projectName,
-    })
   }
 }

@@ -1,6 +1,7 @@
 import { defineBuildConfig } from 'unbuild'
 
-import pkg from './package.json'
+// import pkg from './package.json'
+//   ...Object.keys(pkg.peerDependencies || {}),
 
 export const external = [
   'consola',
@@ -8,6 +9,8 @@ export const external = [
   '@apollo/sandbox',
   'graphql-yoga',
   '#pergel',
+  '#imports',
+  '#pergel/types',
   'h3',
   'pathe',
   'scule',
@@ -18,13 +21,17 @@ export const external = [
   'postgres',
   '@egoist/tailwindcss-icons',
   'drizzle',
-  // #Auth
   'oslo',
   'lucia',
   '@lucia-auth/adapter-drizzle',
   '@lucia-auth/adapter-postgresql',
-  // @ts-expect-error
-  ...Object.keys(pkg.peerDependencies || {}),
+  'fsevents',
+  'node:path',
+  'node:fs',
+  'node:http',
+  'node:child_process',
+  'node:stream',
+  'node:url',
 ]
 export default defineBuildConfig([
   // Auto preset
@@ -32,6 +39,14 @@ export default defineBuildConfig([
     externals: [
       ...external,
     ],
+    rollup: {
+      inlineDependencies: true,
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
+    },
     outDir: './dist',
+    failOnWarn: false,
   },
 ])

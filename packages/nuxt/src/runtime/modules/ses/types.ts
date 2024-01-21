@@ -1,6 +1,9 @@
-export interface SesModuleOptions {}
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
-export interface SesModuleRuntimeConfig {
+export interface SesModuleOptions extends PergelModuleOptions {
+}
+
+export interface SesModuleRuntimeConfig extends ResolvedPergelModuleOptions {
   region: string
   accessKeyId: string
   secretAccessKey: string

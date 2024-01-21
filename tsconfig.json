@@ -24,6 +24,12 @@
       ],
       "#vue-router": [
         "./node_modules/vue-router"
+      ],
+      "#imports": [
+        "./packages/nuxt/.nuxt/imports.d.ts"
+      ],
+      "#pergel/types": [
+        "./packages/nuxt/.nuxt/pergel/types.ts"
       ]
     },
     "resolveJsonModule": true,
@@ -44,7 +50,6 @@
     "**/dist/**",
     "**/.nuxt/**",
     "pergel",
-    "packages/nuxt/src/runtime/**",
     "packages/nuxt/lib",
     "**/nuxt.d.ts",
     "**/examples/**",
@@ -55,6 +60,7 @@
     "**/client/**",
     "packages/nuxt/nuxt.config.ts",
     "examples/**",
-    "themes/**"
+    "themes/**",
+    "packages/nuxt/src/runtime/modules/box/plugins"
   ]
 }

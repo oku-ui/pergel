@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  extends: [
+    './layer',
+  ],
   modules: [
     /**
      * My module
@@ -60,10 +63,6 @@ export default defineNuxtConfig({
         },
         lucia: true,
         drizzle: true,
-        ui: true,
-        ionic: {
-          appName: 'playgroundIonic',
-        },
       },
       test2: {
         S3: true,

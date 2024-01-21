@@ -1,5 +1,5 @@
-import { join } from 'node:path'
-import { existsSync, writeFileSync } from 'node:fs'
+import { join, relative } from 'node:path'
+import { writeFileSync } from 'node:fs'
 import {
   addTemplate,
   createResolver,
@@ -8,15 +8,16 @@ import {
 } from '@nuxt/kit'
 import YAML from 'yaml'
 
+import defu from 'defu'
+import type { NuxtConfigLayer } from '@nuxt/schema'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
-import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/module'
-import { checkOptions } from './runtime/core/utils/checkOptions'
 import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
 import { setupPergel } from './runtime/core/setupPergel'
-import { generateReadmeYaml } from './runtime/core/utils/generateYaml'
+import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
+import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
 
 export default defineNuxtModule<PergelOptions>({
   meta: {
@@ -28,52 +29,40 @@ export default defineNuxtModule<PergelOptions>({
     projects: {
 
     },
-    workspaceMode: false,
   },
   async setup(options, nuxt) {
-    const _resolver = createResolver(import.meta.url)
+    let pergelOptions = {} as PergelOptions
+    // const project = nuxt.options._layers[0]
+    const layers = nuxt.options._layers
 
-    // @productdevbook review
-    // nuxt.hook('i18n:registerModule', (register) => {
-    //   register({
-    //     // langDir path needs to be resolved
-    //     langDir: _resolver.resolve(join('runtime', 'modules', 'ionic', 'default', 'lang')),
-    //     locales: [
-    //       {
-    //         code: 'en',
-    //         file: 'en.json',
-    //         name: 'English',
-    //       },
-    //       {
-    //         code: 'tr',
-    //         file: 'tr.json',
-    //         name: 'Türkçe',
-    //       },
-    //       {
-    //         code: 'fr',
-    //         file: 'fr.json',
-    //         name: 'Français',
-    //       },
-    //       {
-    //         code: 'zh',
-    //         file: 'zh.json',
-    //         name: '中文',
-    //       },
-    //     ],
-    //   })
-    // })
+    function getLayerPergel(configLayer: NuxtConfigLayer) {
+      const layerInlineOptions = (configLayer.config.modules || []).find(
+        (mod): mod is [string, PergelOptions] | undefined =>
+          Array.isArray(mod)
+          && typeof mod[0] === 'string'
+          && [DEVTOOLS_MODULE_NAME, `${DEVTOOLS_MODULE_NAME}-edge`].includes(mod[0]),
+      )?.[1]
 
-    if (!existsSync(join(nuxt.options.rootDir, 'pergel.config.ts'))) {
-      if (!options.workspaceMode)
-        logger.error('pergel.config.ts not found. If workspace or layer is used please workspaceMode: true nuxt.config.ts pergel options change. And pergel init command run. Please create it in your project root or layer root. Workspace structures need to have only 1. See https://oku-ui.com/pergel/nuxt/installation for more details.')
+      // @ts-ignore
+      if (configLayer.config.pergel)
+        return defu(configLayer.config.pergel, layerInlineOptions)
+
+      return layerInlineOptions
     }
 
-    const { status } = await checkOptions(options)
-    if (!status)
-      return
+    for (const layer of layers) {
+      const layerPergel = getLayerPergel(layer)
+      if (layerPergel == null)
+        continue
 
+      // const configLocation = project.config.rootDir === layer.config.rootDir ? 'project layer' : 'extended layer'
+
+      pergelOptions = defu(options, layerPergel) as PergelOptions
+    }
+
+    const _resolver = createResolver(import.meta.url)
     await setupPergel({
-      options,
+      options: pergelOptions,
       nuxt,
       resolver: _resolver,
       version,
@@ -107,7 +96,7 @@ export default defineNuxtModule<PergelOptions>({
     saveNitroImports()
     saveNuxtImports()
 
-    generateReadmeYaml({
+    generateReadmeJson({
       nuxt,
     })
 
@@ -152,15 +141,15 @@ export default defineNuxtModule<PergelOptions>({
         )
 
         const file = join(nuxt.options.rootDir, 'pergel', `${projectName}.docker-compose.yml`)
-        writeFileSync(file, specYaml, {
+        nuxt._pergel.exitPergelFolder && writeFileSync(file, specYaml, {
           encoding: 'utf8',
         })
       }
     }
 
     // Auto generate pergel/.env.template
-    const envs = Object.keys(nuxt._pergel.readmeYaml).map((projectName) => {
-      const project = nuxt._pergel.readmeYaml[projectName]
+    const envs = Object.keys(nuxt._pergel.readmeJson).map((projectName) => {
+      const project = nuxt._pergel.readmeJson[projectName]
       const modules = Object.keys(project).map((moduleName) => {
         const module = project[moduleName]
         const env = module.env
@@ -192,9 +181,23 @@ export default defineNuxtModule<PergelOptions>({
 
     const file = join(nuxt.options.rootDir, 'pergel', '.env.template')
 
-    writeFileSync(file, envTemplate, {
+    nuxt._pergel.exitPergelFolder && writeFileSync(file, envTemplate, {
       encoding: 'utf8',
     })
+
+    nuxt._pergel.watchDirs = nuxt._pergel.projects
+      ? Object.keys(nuxt._pergel.projects).map((projectName) => {
+        const project = nuxt._pergel.projects[projectName] as any
+
+        return Object.keys(project).map(moduleName => ({
+          projectName,
+          moduleName,
+          serverDir: relative(nuxt.options.rootDir, project[moduleName].serverDir),
+          rootModuleDir: relative(nuxt.options.rootDir, project[moduleName].rootModuleDir),
+        }))
+      },
+      ).flat()
+      : []
   },
 })
 

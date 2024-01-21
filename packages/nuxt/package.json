@@ -1,7 +1,7 @@
 {
   "name": "@pergel/nuxt",
   "type": "module",
-  "version": "0.5.3",
+  "version": "0.7.9",
   "description": "Nuxt Full Stack modules. Start your next nuxt project fast and strong.",
   "author": "Mehmet @productdevbook",
   "license": "MIT",
@@ -59,8 +59,8 @@
     "types:docker-compose": "esno scripts/compose-spec.ts"
   },
   "dependencies": {
-    "@nuxt/devtools": "^1.0.6",
-    "@nuxt/devtools-kit": "^1.0.6",
+    "@nuxt/devtools": "^1.0.8",
+    "@nuxt/devtools-kit": "^1.0.8",
     "@nuxt/kit": "^3.9.1",
     "@vueuse/core": "^10.7.1",
     "defu": "^6.1.4",
@@ -68,7 +68,6 @@
     "minimatch": "^9.0.3",
     "pathe": "^1.1.1",
     "sirv": "^2.0.4",
-    "typescript": "^5.3.3",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
@@ -76,18 +75,17 @@
     "@faker-js/faker": "^8.3.1",
     "@iconify-json/carbon": "^1.1.27",
     "@iconify-json/ph": "^1.1.9",
-    "@ionic/core": "^7.6.3",
     "@json2csv/node": "^7.0.4",
     "@lucia-auth/adapter-drizzle": "1.0.0-beta.4",
     "@lucia-auth/adapter-postgresql": "3.0.0-beta.8",
-    "@nuxt/devtools-ui-kit": "^1.0.6",
+    "@nuxt/devtools-ui-kit": "^1.0.8",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.9.1",
     "@nuxt/test-utils": "^3.9.0",
-    "@nuxtjs/ionic": "^0.13.0",
+    "@pergel/cli": "^0.6.1",
     "@pergel/graphql": "workspace:^",
+    "@pergel/module-box": "workspace:^",
     "@pergel/module-s3": "workspace:^",
-    "@pergel/module-ui": "workspace:^",
     "@types/node": "^20.10.7",
     "@types/node-cron": "^3.0.11",
     "bullmq": "^5.1.1",
@@ -98,6 +96,7 @@
     "nuxt": "^3.9.1",
     "oslo": "^0.27.0",
     "p-timeout": "^6.1.2",
+    "typescript": "^5.3.3",
     "vitest": "^1.1.3"
   },
   "publishConfig": {

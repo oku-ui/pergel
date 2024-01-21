@@ -3,8 +3,13 @@ import { join } from 'pathe'
 
 export function matchGlobs(filepath: string, globs: string[]) {
   for (const glob of globs) {
-    if (minimatch(join(filepath), glob))
-      return true
+    if (minimatch(join(filepath), glob)) {
+      return {
+        glob,
+        status: true,
+        filepath,
+      }
+    }
   }
   return false
 }

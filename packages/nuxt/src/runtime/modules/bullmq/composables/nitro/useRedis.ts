@@ -17,8 +17,11 @@ export async function useRedis(
     if (!runtime.url && (!runtime.options || !runtime.options.host || runtime.options.port === 0))
       throw new Error('No BullMQ found in environment variables.')
 
-    if (runtime.url)
-      return new Redis(runtime.url)
+    if (runtime.url) {
+      return new Redis(runtime.url, {
+        maxRetriesPerRequest: null,
+      })
+    }
 
     if (!runtime.options)
       throw new Error('No BullMQ found in environment variables.')

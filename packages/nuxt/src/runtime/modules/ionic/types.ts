@@ -1,13 +1,14 @@
 // import type { AnimationBuilder, Mode, PlatformConfig, SpinnerTypes, TabButtonLayout } from '@ionic/core'
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
-export interface IonicInterface {
+export interface IonicInterface extends PergelModuleOptions {
   appName: string
   defaultCss: boolean
   themeCss: boolean
   capacitorConfig?: CapacitorConfig
 
 }
-export interface ResolvedIonicInterface {
+export interface ResolvedIonicInterface extends ResolvedPergelModuleOptions {
   appName: string
   defaultCss: boolean
   themeCss: boolean
