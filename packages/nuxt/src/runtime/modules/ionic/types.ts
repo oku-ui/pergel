@@ -5,6 +5,7 @@ export interface IonicInterface extends PergelModuleOptions {
   appName: string
   defaultCss: boolean
   themeCss: boolean
+  purchase: boolean
   capacitorConfig?: CapacitorConfig
 
 }
@@ -12,6 +13,7 @@ export interface ResolvedIonicInterface extends ResolvedPergelModuleOptions {
   appName: string
   defaultCss: boolean
   themeCss: boolean
+  purchase: boolean
   capacitorConfig: CapacitorConfig
 }
 

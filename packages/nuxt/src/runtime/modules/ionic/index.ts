@@ -1,6 +1,6 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import { installModule } from '@nuxt/kit'
+import { addImportsDir, createResolver, installModule } from '@nuxt/kit'
 import type { ModuleOptions } from '@nuxtjs/ionic'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
@@ -20,6 +20,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       '@ionic/cli': '^7.2.0',
       '@ionic/core': '^7.6.3',
       '@capacitor/cli': '^5.6.0',
+      '@revenuecat/purchases-capacitor': '^7.4.0',
     },
   },
   defaults: {
@@ -31,6 +32,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     },
     defaultCss: false,
     themeCss: false,
+    purchase: false,
   },
   async setup({ nuxt, options }) {
     console.log('ionic test', options.appName)
@@ -56,6 +58,9 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/themes/dark.css'))
       nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/themes/default.css'))
     }
+    const resolver = createResolver(import.meta.url)
+    if (options.purchase)
+      addImportsDir(resolver.resolve('./composables'))
 
     nuxt.options.vite.optimizeDeps = nuxt.options.vite.optimizeDeps || {}
     nuxt.options.vite.optimizeDeps.include = nuxt.options.vite.optimizeDeps.include || []
