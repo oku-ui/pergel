@@ -43,9 +43,10 @@ export default defineNuxtModule<PergelOptions>({
           && [DEVTOOLS_MODULE_NAME, `${DEVTOOLS_MODULE_NAME}-edge`].includes(mod[0]),
       )?.[1]
 
-      // @ts-ignore
-      if (configLayer.config.pergel)
-        return defu(configLayer.config.pergel, layerInlineOptions)
+      // @ts-ignore (TODO: fix this)
+      const pergel = typeof (configLayer.config.pergel) === 'object' ? configLayer.config.pergel! : undefined
+      if (pergel)
+        return defu(pergel ?? {}, layerInlineOptions)
 
       return layerInlineOptions
     }

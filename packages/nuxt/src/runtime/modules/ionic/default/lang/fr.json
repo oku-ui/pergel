@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "signup": "S'inscrire",
+    "terms_of_service": "Conditions d'utilisation",
+    "terms_of_service_subtitle": "En vous inscrivant, vous acceptez nos",
+    "privacy_policy": "Politique de confidentialité",
+    "already_have_an_account": "Vous avez déjà un compte?",
+    "signup_description": "Inscrivez-vous pour commencer.",
+    "login": "Se connecter",
+    "back_to_login": "Retour à la connexion",
+    "forgot_password": "Mot de passe oublié?",
+    "forgot_password_question": "Vous avez oublié votre mot de passe?",
+    "forgot_password_subtitle": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "send_reset_link": "Envoyer le lien de réinitialisation",
+    "password": "Mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "email": "E-mail",
+    "name": "Nom",
+    "username": "Nom d'utilisateur",
+    "or_continue_with": "ou continuer avec",
+    "back": "Retour",
+    "code": "Code",
+    "reset_password": "Réinitialiser le mot de passe",
+    "reset_password_subtitle": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "reset_password_email_sent_description": "Nous vous avons envoyé un e-mail avec un lien pour réinitialiser votre mot de passe. Veuillez vérifier votre boîte de réception. Si vous ne voyez pas l'e-mail, vérifiez d'autres endroits où il pourrait être, comme vos dossiers indésirables, spam, sociaux ou autres.",
+    "new_password": "Nouveau mot de passe",
+    "confirm_new_password": "Confirmer le nouveau mot de passe",
+    "reset_password_success": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+    "signup_with_email": "S'inscrire avec un e-mail",
+    "username_input_subtitle": "Votre nom d'utilisateur sera visible par les autres utilisateurs. Vous pouvez le changer plus tard.",
+    "password_input_subtitle": "Votre mot de passe doit comporter au moins 8 caractères.",
+    "dont_have_an_account": "Votre compte n'est pas encore activé. Vous avez été mis sur la liste d'attente. Nous vous informerons lorsque votre compte sera prêt. Merci pour votre patience.",
+    "login_with_email": "Se connecter avec un e-mail",
+    "terms_of_service_description": "En cliquant sur continuer, vous acceptez nos."
+  },
+  "and": "et",
+  "settings": {
+    "title": "Paramètres",
+    "general": {
+      "title": "Paramètres généraux",
+      "language": "Langue",
+      "notifications": "Notifications",
+      "dark_mode": "Mode sombre"
+    },
+    "account": {
+      "title": "Paramètres du compte",
+      "profile": "Profil",
+      "security": "Sécurité",
+      "privacy": "Confidentialité",
+      "change_password": "Changer le mot de passe"
+    },
+    "advanced": {
+      "title": "Paramètres avancés",
+      "customization": "Personnalisation",
+      "data_usage": "Utilisation des données",
+      "sync_options": "Options de synchronisation"
+    }
+  }
+}

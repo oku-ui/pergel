@@ -21,6 +21,9 @@ export default antfu(
       'packages/nuxt/playground/pergel',
       'packages/nuxt/pergel',
       '**/README.yaml',
+      '**/README.json',
+      '**/templates/*.json',
+      '**/templates.json',
     ],
   },
   {

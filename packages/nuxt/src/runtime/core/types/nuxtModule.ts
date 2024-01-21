@@ -7,6 +7,7 @@ import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { BoxOptions, ResolvedBoxOptions } from '../../modules/box/types'
 
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
+import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
 import type { UserModuleOptions } from './module'
 
 // @MODULE
@@ -20,6 +21,7 @@ export interface PergelNuxtModules {
   drizzle?: true | (DrizzleConfig & UserModuleOptions)
   lucia?: true | (LuciaModuleOptions & UserModuleOptions)
   box?: true | (BoxOptions & UserModuleOptions)
+  ionic?: true | IonicInterface
 }
 
 // @MODULE
@@ -32,6 +34,7 @@ export interface ResolvedPergelNuxtModuleConfig {
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
   box?: true | ResolvedBoxOptions
+  ionic?: true | ResolvedIonicInterface
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules

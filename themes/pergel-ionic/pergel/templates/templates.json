@@ -1,0 +1,64 @@
+{
+  "version": "0.1.0",
+  "templates": {
+    "default-auth-1": {
+      "version": "0.0.1",
+      "branch": "main",
+      "file": {
+        "dir": "themes/pergel-auth",
+        "path": [
+          {
+            "fileName": "app.vue",
+            "outputFileName": "app.vue",
+            "forceClean": true
+          },
+          {
+            "fileName": "pages/index.vue",
+            "outputFileName": "pages/index.vue"
+          },
+          {
+            "fileName": "assets/pergel.css",
+            "outputFileName": "assets/pergel.css"
+          }
+        ]
+      },
+      "folder": [
+        {
+          "dir": "themes/pergel-auth/pages/auth",
+          "output": "pages/auth",
+          "forceClean": true
+        },
+        {
+          "dir": "themes/pergel-auth/components",
+          "output": "components",
+          "forceClean": true
+        },
+        {
+          "dir": "themes/pergel-auth/layouts",
+          "output": "layouts",
+          "forceClean": true
+        },
+        {
+          "dir": "themes/pergel-auth/middleware",
+          "output": "middleware",
+          "forceClean": true
+        },
+        {
+          "dir": "themes/pergel-auth/composables",
+          "output": "composables",
+          "forceClean": true
+        },
+        {
+          "dir": "themes/pergel-auth/server/api/auth",
+          "output": "server/api/auth",
+          "forceClean": true
+        },
+        {
+          "dir": "themes/pergel-auth/server/middleware",
+          "output": "server/middleware",
+          "forceClean": true
+        }
+      ]
+    }
+  }
+}
