@@ -12,6 +12,7 @@ export default defineNuxtConfig({
           appName: 'MyApp',
           themeCss: true,
           defaultCss: false,
+          purchase: true,
         },
         box: {
           packages: {

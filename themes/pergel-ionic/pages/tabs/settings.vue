@@ -32,6 +32,7 @@ const settings = ref<SettingsItem[]>([
   { order: 3, name: t('settings.menu.privacy'), icon: 'i-ph-lock-simple', to: '/settings/privacy' },
   { order: 4, name: t('settings.menu.help'), icon: 'i-ph-question', to: '/settings/help' },
   { order: 5, name: t('settings.menu.about'), icon: 'i-ph-headphones', to: '/settings/about' },
+  { order: 5, name: t('settings.menu.purchase'), icon: 'i-ph-headphones', to: '/settings/purchase' },
 ])
 
 const settingsResults = ref<SettingsItem[]>(settings.value)
