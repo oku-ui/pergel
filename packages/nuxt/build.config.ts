@@ -43,8 +43,6 @@ export default defineBuildConfig([
       inlineDependencies: true,
       output: {
         preserveModules: true,
-        inlineDynamicImports: false,
-        // manualChunks: {},
       },
     },
     outDir: './dist',

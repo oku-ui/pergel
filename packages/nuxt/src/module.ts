@@ -10,7 +10,6 @@ import YAML from 'yaml'
 
 import defu from 'defu'
 import type { NuxtConfigLayer } from '@nuxt/schema'
-import { resolve } from 'pathe'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
@@ -61,7 +60,6 @@ export default defineNuxtModule<PergelOptions>({
     }
 
     const _resolver = createResolver(import.meta.url)
-
     await setupPergel({
       options: pergelOptions,
       nuxt,

@@ -1,7 +1,6 @@
 import defu from 'defu'
 import { useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
-import consola from 'consola'
 import type { ModuleDefinition, ModuleSetupReturn, PergelModule, PergelModuleOptions, ResolvedPergelModuleOptions } from './types/module'
 import type { NuxtPergel } from './types/nuxtModule'
 
@@ -68,10 +67,10 @@ export function definePergelModule<RootOptions extends PergelModuleOptions = Per
       }
     }
 
-    if (packageExists.dependencies > 0)
-      consola.warn(`${packageExists.dependencies} dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
-    if (packageExists.devDependencies > 0)
-      consola.warn(`${packageExists.devDependencies} devDependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
+    // if (packageExists.dependencies > 0)
+    //   consola.warn(`${packageExists.dependencies} dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
+    // if (packageExists.devDependencies > 0)
+    //   consola.warn(`${packageExists.devDependencies} devDependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
 
     if (!this.prepare) {
       // Resolve module and options
