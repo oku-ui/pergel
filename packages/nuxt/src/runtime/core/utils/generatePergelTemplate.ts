@@ -4,7 +4,7 @@ import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
 import type { NuxtPergel } from '../types/nuxtModule'
 import { useNitroImports, useNuxtImports } from './useImports'
-import { firstLetterUppercase, reformatSourceCode } from '.'
+import { firstLetterUppercase, reformatSourceCode } from './utils'
 
 export function generatePergelTemplate(
   data: {

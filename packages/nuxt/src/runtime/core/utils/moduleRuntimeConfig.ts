@@ -3,7 +3,7 @@ import defu from 'defu'
 import { addTemplate } from '@nuxt/kit'
 import type { NuxtPergel } from '../types/nuxtModule'
 import type { ResolvedPergelModuleOptions } from '../types/module'
-import { generateProjectName, runtimeConfigToEnv } from '.'
+import { generateProjectName, runtimeConfigToEnv } from './utils'
 
 export function generateModuleRuntimeConfig<T>(
   nuxt: NuxtPergel,

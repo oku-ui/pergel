@@ -44,6 +44,7 @@ export default defineBuildConfig([
       output: {
         preserveModules: true,
         strict: true,
+        preserveModulesRoot: 'src',
       },
     },
   },
