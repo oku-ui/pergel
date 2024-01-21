@@ -43,10 +43,8 @@ export default defineBuildConfig([
       inlineDependencies: true,
       output: {
         preserveModules: true,
-        preserveModulesRoot: 'src',
+        strict: true,
       },
     },
-    outDir: './dist',
-    failOnWarn: false,
   },
 ])

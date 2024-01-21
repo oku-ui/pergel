@@ -52,6 +52,11 @@
     "vite": "5.0.11",
     "vitest": "^1.1.1"
   },
+  "pnpm": {
+    "overrides": {
+      "rollup": "^4.2.0"
+    }
+  },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt"
   },
