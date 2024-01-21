@@ -43,6 +43,7 @@ export default defineNuxtModule<PergelOptions>({
           && [DEVTOOLS_MODULE_NAME, `${DEVTOOLS_MODULE_NAME}-edge`].includes(mod[0]),
       )?.[1]
 
+      // @ts-ignore
       if (configLayer.config.pergel)
         return defu(configLayer.config.pergel, layerInlineOptions)
 
