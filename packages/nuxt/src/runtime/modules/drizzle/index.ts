@@ -75,6 +75,10 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
         driver: driver ?? 'pg',
       } as any,
       studio: true,
+      watch: {
+        push: true,
+        seed: true,
+      },
     }
   },
   async setup({ nuxt, options }) {
@@ -194,15 +198,25 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
           return
 
         if (match) {
-          if (activeProject.dev?.cli !== false) {
+          if (activeProject.watch?.push) {
             execSync(
-              activeProject.dev?.cli ?? `pergel module -s=push -p=${projectName} -m=${moduleName}`,
+              `pergel module -s=push -p=${projectName} -m=${moduleName}`,
               {
                 stdio: 'inherit',
                 cwd: nuxt.options.rootDir,
               },
             )
             _logger.info(`Pushed ${projectName} schema`)
+          }
+          if (activeProject.watch?.seed) {
+            execSync(
+              `pergel module -s=seed -p=${projectName} -m=${moduleName}`,
+              {
+                stdio: 'inherit',
+                cwd: nuxt.options.rootDir,
+              },
+            )
+            _logger.info(`Seeded ${projectName} schema`)
           }
         }
       }

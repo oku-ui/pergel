@@ -3,6 +3,7 @@ export default function (data: {
     dbUrl: string
     dbDrop: string
     dbSeed: string
+    dbMigrate: string
   }
   migrationDir: string
 }) {
@@ -17,8 +18,9 @@ import { seed1 } from './seed1'
 config()
 
 const dbUrl = process.env.${data.env.dbUrl}
-const dbDrop = process.env.${data.env.dbDrop}
-const dbSeed = process.env.${data.env.dbSeed}
+const dbDrop = process.env.${data.env.dbDrop} === 'true'
+const dbSeed = process.env.${data.env.dbSeed} === 'true'
+const dbMigrate = process.env.${data.env.dbMigrate} === 'true'
 
 const migrationDir = resolve('${data.migrationDir}')
 
@@ -46,9 +48,12 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 \`)
   }
+
+  if (dbMigrate) {
   console.warn('Migrating database...')
   await migrate(db, { migrationsFolder: migrationDir })
   console.warn('Migrating database... done')
+  }
 
   if (dbSeed) {
     console.warn('Seeding database...')

@@ -27,6 +27,7 @@ export async function setupPostgres(
     ssl: false, // Use SSL
     drop: false, // Drop database before migration
     seed: false, // Seed database after migration
+    migrate: false, // Migrate database
   }, false, 'pg')
 
   // Config generation
@@ -70,6 +71,7 @@ export default {
           dbUrl: env.url,
           dbDrop: env.drop,
           dbSeed: env.seed,
+          dbMigrate: env.migrate,
         },
         migrationDir: join(options.serverDir, options.dir.migrations),
       })
