@@ -12,7 +12,7 @@ for await (const folder of folders) {
   const _folder = resolve(`./${folder}`)
   const packageJson = JSON.parse(readFileSync(`${_folder}/package.json`, 'utf8'))
   // change version
-  packageJson.dependencies['@pergel/nuxt'] = version
+  packageJson.dependencies.pergel = version
   // write package json
   writeFileSync(`./${folder}/package.json`, JSON.stringify(packageJson, null, 2), 'utf8')
 }

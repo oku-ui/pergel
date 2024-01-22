@@ -1,6 +1,6 @@
 import { createSchema } from 'graphql-yoga'
-import type { Resolvers } from 'pergel/rocket/graphqlYoga/server'
-import { schema } from 'pergel/rocket/graphqlYoga/schema'
+import type { Resolvers } from '#rocket/graphqlYoga/server'
+import { schema } from '#rocket/graphqlYoga/schema'
 
 const resolvers: Resolvers = {
   Query: {

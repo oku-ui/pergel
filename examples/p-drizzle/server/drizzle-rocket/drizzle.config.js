@@ -2,8 +2,8 @@
 
 /** @type { import("drizzle-kit").Config } */
 export default {
-  schema: 'pergel/rocket/drizzle/schema/index.ts',
-  out: 'pergel/rocket/drizzle/migrations',
+  schema: 'server/drizzle-rocket/schema/index.ts',
+  out: 'server/drizzle-rocket/migrations',
   driver: 'pg',
   dbCredentials: process.env.NUXT_ROCKET_DRIZZLE_PG_URL
     ? {

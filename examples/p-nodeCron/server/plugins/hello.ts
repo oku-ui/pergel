@@ -1,4 +1,4 @@
-export default pergelRocket().nodeCron().nitro().plugins().init({
+export default pergelRocket().nodeCron().nitroPlugin({
   setup: async (_cron) => {
     // cron.every.seconds(3, () => {
     //   console.warn('running a task every 3 seconds')

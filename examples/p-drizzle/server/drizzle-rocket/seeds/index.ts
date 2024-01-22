@@ -11,8 +11,9 @@ config()
 const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_PG_URL
 const dbDrop = process.env.NUXT_ROCKET_DRIZZLE_PG_DROP === 'true'
 const dbSeed = process.env.NUXT_ROCKET_DRIZZLE_PG_SEED === 'true'
+const dbMigrate = process.env.NUXT_ROCKET_DRIZZLE_PG_MIGRATE === 'true'
 
-const migrationDir = resolve('pergel/rocket/drizzle/migrations')
+const migrationDir = resolve('/Users/productdevbook/works/pergel/examples/p-drizzle/server/drizzle-rocket/migrations')
 
 async function runMigrationsAndSeed() {
   if (!dbUrl)
@@ -38,9 +39,12 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 `)
   }
-  console.warn('Migrating database...')
-  await migrate(db, { migrationsFolder: migrationDir })
-  console.warn('Migrating database... done')
+
+  if (dbMigrate) {
+    console.warn('Migrating database...')
+    await migrate(db, { migrationsFolder: migrationDir })
+    console.warn('Migrating database... done')
+  }
 
   if (dbSeed) {
     console.warn('Seeding database...')

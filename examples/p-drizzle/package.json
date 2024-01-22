@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
-    "@pergel/nuxt": "0.4.4",
     "dotenv": "^16.3.1",
     "drizzle-kit": "^0.20.7",
     "drizzle-orm": "^0.29.1",
+    "pergel": "^0.5.10",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
