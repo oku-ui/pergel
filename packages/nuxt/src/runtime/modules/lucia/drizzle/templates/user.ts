@@ -10,7 +10,7 @@ export const user = pgTable('user', {
   email: text('email'),
   provider: text('provider'),
   providerId: text('provider_id'),
-  role: roleEnum('role').notNull().default('user'),
+  authRole: roleEnum('authRole').notNull().default('user'),
   createdAt: date('createdAt').notNull(),
   updatedAt: date('updatedAt').notNull(),
 })
