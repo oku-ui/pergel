@@ -9,8 +9,8 @@ import { seed1 } from './seed1'
 config()
 
 const dbUrl = process.env.NUXT_CHANGE_NAME_DRIZZLE_PG_URL
-const dbDrop = process.env.NUXT_CHANGE_NAME_DRIZZLE_PG_DROP
-const dbSeed = process.env.NUXT_CHANGE_NAME_DRIZZLE_PG_SEED
+const dbDrop = process.env.NUXT_CHANGE_NAME_DRIZZLE_PG_DROP === 'true'
+const dbSeed = process.env.NUXT_CHANGE_NAME_DRIZZLE_PG_SEED === 'true'
 
 const migrationDir = resolve('pergel/changeName/drizzle/migrations')
 
