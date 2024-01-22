@@ -1,6 +1,4 @@
-import { join } from 'node:path'
 import defu from 'defu'
-import { addTemplate } from '@nuxt/kit'
 import type { NuxtPergel } from '../types/nuxtModule'
 import type { ResolvedPergelModuleOptions } from '../types/module'
 import { generateProjectName } from './generateProjectName'
@@ -18,7 +16,6 @@ export function generateModuleRuntimeConfig<T>(
 
   const runtimeConfig = nuxt.options.runtimeConfig
 
-  const combinedName = join(projectName, moduleName)
   const name = generateProjectName(projectName, moduleName, customName)
 
   if (publicRuntime) {
@@ -28,15 +25,8 @@ export function generateModuleRuntimeConfig<T>(
       },
     }) as T
 
-    const { envs, keyEnvValue } = runtimeConfigToEnv(runtimeConfig.public[projectName as any] as any, [projectName], false)
+    const { keyEnvValue } = runtimeConfigToEnv(runtimeConfig.public[projectName as any] as any, [projectName], false)
 
-    addTemplate({
-      filename: join('pergel', combinedName, 'runtimeConfig.ts'),
-      write: true,
-      getContents: () => {
-        return `export default ${JSON.stringify(envs as any, null, 2)}`
-      },
-    })
     return {
       runtimeConfig: (runtimeConfig.public[projectName] as any)[moduleName] as T,
       env: keyEnvValue,
