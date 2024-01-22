@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useAppConfig } from '#imports'
+import { useAppConfig } from 'nuxt/app'
 
 const props = defineProps<{
   name: string

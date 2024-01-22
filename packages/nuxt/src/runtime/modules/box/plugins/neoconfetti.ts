@@ -1,5 +1,5 @@
 import { vConfetti } from '@neoconfetti/vue'
-import { defineNuxtPlugin } from '#imports'
+import { defineNuxtPlugin } from 'nuxt/app'
 
 export default defineNuxtPlugin((app) => {
   // Register the directive

@@ -1,7 +1,7 @@
 import type { H3Event } from 'h3'
+import { useRuntimeConfig } from 'nuxt/app'
 import { generateProjectName } from './generateProjectName'
 import type { PergelGlobalContext } from '#pergel/types'
-import { useRuntimeConfig } from '#imports'
 
 export function usePergelRuntime<T>(data: PergelGlobalContext, event?: H3Event, customName?: string) {
   // WATCH: https://github.com/nuxt/nuxt/issues/24095
