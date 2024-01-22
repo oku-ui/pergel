@@ -51,7 +51,7 @@ const navigationLinks = computed(() => {
               @change="link => $router.push(link.to)"
             >
               <template #label>
-                <Icon :name="select.icon" class="mr-1.5 h-4 w-4 text-gray-400 dark:text-gray-500" />
+                <Icon :name="select.icon" class="mr-1.5 size-4 text-gray-400 dark:text-gray-500" />
                 <span class="font-medium">{{ select.label }}</span>
               </template>
             </USelectMenu>

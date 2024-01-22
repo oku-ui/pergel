@@ -15,7 +15,7 @@ const title = computed(() => props.title.slice(0, 60))
 </script>
 
 <template>
-  <div class="flex h-full w-full flex-col justify-center bg-[#212121]">
+  <div class="flex size-full flex-col justify-center bg-[#212121]">
     <svg class="absolute right-0 top-0" width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g style="mix-blend-mode:overlay" opacity="0.7" filter="url(#filter0_f_448_25)">
         <circle cx="901.5" cy="45.5" r="199.5" fill="#FFA7A7" />

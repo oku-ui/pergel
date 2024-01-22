@@ -115,7 +115,7 @@ function updateIframeBox() {
     v-if="loading"
     class="absolute inset-0 flex items-center justify-center"
   >
-    <div class="i-ph-spinner h-10 w-10 animate-spin" />
+    <div class="i-ph-spinner size-10 animate-spin" />
     Loading...
   </div>
   <div v-else ref="anchor" h-full w-full />

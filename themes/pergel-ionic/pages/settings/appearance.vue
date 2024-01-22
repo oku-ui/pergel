@@ -38,7 +38,7 @@ function handleLangChange(ev: IonSelectCustomEvent<SelectChangeEventDetail<any>>
       <IonList :inset="true" lines="inset">
         <IonItem>
           <div slot="start" aria-hidden="true" class="mr-3">
-            <AtomIcon :name="isDark ? 'i-ph-moon' : 'i-ph-sun'" class="h-4 w-4" />
+            <AtomIcon :name="isDark ? 'i-ph-moon' : 'i-ph-sun'" class="size-4" />
           </div>
           <IonSelect
             :label="t('settings.appearance.dark_mode')"

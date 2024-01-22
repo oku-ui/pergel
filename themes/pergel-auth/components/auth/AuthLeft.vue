@@ -31,7 +31,7 @@ withDefaults(defineProps<AuthLeftProps>(), {
         :to="logo.link"
       >
         <img
-          class="mr-2 h-24 w-24"
+          class="mr-2 size-24"
           :src="logo.src"
           :alt="logo.alt"
         >

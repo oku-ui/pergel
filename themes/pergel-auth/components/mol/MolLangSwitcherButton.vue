@@ -13,7 +13,7 @@ const availableLocales = computed(() => {
         $attrs.class ?? '',
       )"
     >
-      <AtomIcon dynamic name="i-ph-globe-bold" class="h-4 w-4" />
+      <AtomIcon dynamic name="i-ph-globe-bold" class="size-4" />
       {{ locale.value }}
     </UiDropdownMenuTrigger>
     <UiDropdownMenuContent>

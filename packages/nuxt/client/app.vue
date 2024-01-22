@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="fixed inset-0 h-screen w-screen font-sans">
+  <div class="size-screen fixed inset-0 font-sans">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

@@ -21,10 +21,10 @@ const selectedTab = ref('add')
 </script>
 
 <template>
-  <div class="flex h-full w-full flex-col">
+  <div class="flex size-full flex-col">
     <OkuTabs
       v-model="selectedTab"
-      class="flex h-full w-full flex-col"
+      class="flex size-full flex-col"
       default-value="add"
       @change="() => {
         console.warn(selectedTab, 'selectedTab')
@@ -44,7 +44,7 @@ const selectedTab = ref('add')
             {{ tab }}
 
             <button
-              class="i-ph-x ml-1 h-3 w-3 dark:text-white"
+              class="i-ph-x ml-1 size-3 dark:text-white"
               @click="() => {
                 tabs.splice(tabs.indexOf(tab), 1)
                 selectedTab = tabs[tabs.length - 1]
@@ -57,12 +57,12 @@ const selectedTab = ref('add')
            "
           value="add"
         >
-          <div class="i-ph-plus h-3 w-3 dark:text-white" />
+          <div class="i-ph-plus size-3 dark:text-white" />
         </OkuTabsTrigger>
       </OkuTabsList>
       <OkuTabsContent
         v-if="projects"
-        class="flex h-full w-full grow flex-col rounded-b-md p-5 outline-none dark:bg-gray-950"
+        class="flex size-full grow flex-col rounded-b-md p-5 outline-none dark:bg-gray-950"
         value="add"
       >
         <template
@@ -99,7 +99,7 @@ const selectedTab = ref('add')
         v-for="tab in tabs"
         :key="tab"
         :value="tab"
-        class="flex h-full w-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
+        class="flex size-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
       >
         <ModulesAssetS3
           v-if="tab.includes('.S3')"

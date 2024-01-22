@@ -72,7 +72,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormField>
         </div>
         <AtomButton :disabled="isLoading">
-          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
           {{ t('auth.login_with_email') }}
         </AtomButton>
       </div>
@@ -93,8 +93,8 @@ const onSubmit = form.handleSubmit((values) => {
       :disabled="isLoading"
       @click="emit('githubButton')"
     >
-      <AtomIcon dynamic name="i-simple-icons-github" class="mr-2 h-4 w-4" />
-      <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+      <AtomIcon dynamic name="i-simple-icons-github" class="mr-2 size-4" />
+      <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
       GitHub
     </AtomButton>
   </div>

@@ -54,9 +54,9 @@ const onSubmit = form.handleSubmit((values) => {
           </FormField>
         </div>
         <AtomButton :disabled="isLoading">
-          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
           {{ t('auth.send_reset_link') }}
-          <AtomIcon dynamic name="i-ph-arrow-right-bold" class="ml-2 h-4 w-4" />
+          <AtomIcon dynamic name="i-ph-arrow-right-bold" class="ml-2 size-4" />
         </AtomButton>
       </div>
     </form>
@@ -76,7 +76,7 @@ const onSubmit = form.handleSubmit((values) => {
       class="mt-4"
       @click="$router.back()"
     >
-      <AtomIcon dynamic name="i-ph-arrow-left-bold" class="mr-2 h-4 w-4" />
+      <AtomIcon dynamic name="i-ph-arrow-left-bold" class="mr-2 size-4" />
       Back
       {{ t('auth.back') }}
     </AtomButton>

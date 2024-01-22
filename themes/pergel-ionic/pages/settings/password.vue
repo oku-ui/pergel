@@ -91,7 +91,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormItem>
         </FormField>
         <AtomButton class="w-full" :disabled="isLoading">
-          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
           {{ t('settings.save') }}
         </AtomButton>
       </form>

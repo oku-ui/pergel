@@ -20,10 +20,10 @@ const emits = defineEmits<DropdownMenuRadioItemEmits>()
       props.class,
     )"
   >
-    <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span class="absolute left-2 flex size-3.5 items-center justify-center">
 
       <DropdownMenuItemIndicator>
-        <AtomIcon dynamic name="ph-circle-fill" class="h-4 w-4" />
+        <AtomIcon dynamic name="ph-circle-fill" class="size-4" />
       </DropdownMenuItemIndicator>
     </span>
     <slot />

@@ -38,17 +38,17 @@ const { t } = useI18n()
             <form action="" method="post">
               <div class="flex flex-col space-y-16">
                 <div class="mx-auto flex w-full max-w-xs flex-row items-center justify-between">
-                  <div class="h-16 w-16 ">
-                    <input id="" class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
+                  <div class="size-16 ">
+                    <input id="" class="flex size-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
                   </div>
-                  <div class="h-16 w-16 ">
-                    <input id="" class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
+                  <div class="size-16 ">
+                    <input id="" class="flex size-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
                   </div>
-                  <div class="h-16 w-16 ">
-                    <input id="" class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
+                  <div class="size-16 ">
+                    <input id="" class="flex size-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
                   </div>
-                  <div class="h-16 w-16 ">
-                    <input id="" class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
+                  <div class="size-16 ">
+                    <input id="" class="flex size-full flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-center text-lg outline-none ring-blue-700 focus:bg-gray-50 focus:ring-1" type="text" name="">
                   </div>
                 </div>
 

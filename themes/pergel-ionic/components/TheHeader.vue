@@ -23,7 +23,7 @@ defineProps({
           {{ fullName }}
         </p>
         <span class="rounded-full bg-blue-500 p-1" title="Verified">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5 text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-2.5 text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
           </svg>
         </span>

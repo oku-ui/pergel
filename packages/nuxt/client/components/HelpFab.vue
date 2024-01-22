@@ -16,10 +16,9 @@ const { showHelpButtons } = useDevToolsUIOptions()
       title="Help"
       class="backdrop-blur-8 absolute bottom-5
       right-5 z-[110px]
-      flex h-10 w-10
-      items-center justify-center rounded-full border
-      bg-gray-500 opacity-50 shadow
-      "
+      flex size-10 items-center
+      justify-center rounded-full border bg-gray-500
+      opacity-50 shadow"
       @click="open = !open"
     >
       <div i-ri:question-mark />

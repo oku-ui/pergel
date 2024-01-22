@@ -18,6 +18,6 @@ const props = defineProps<DropdownMenuSubTriggerProps & { class?: string }>()
     ]"
   >
     <slot />
-    <AtomIcon dynamic name="i-ph-arrow-right" class="h-4 w-4" />
+    <AtomIcon dynamic name="i-ph-arrow-right" class="size-4" />
   </DropdownMenuSubTrigger>
 </template>

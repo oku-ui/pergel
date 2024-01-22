@@ -29,8 +29,8 @@ function toggledDark() {
     <IonContent :fullscreen="true">
       <TwPattern></TwPattern>
       <div class="relative flex h-screen justify-center p-20">
-        <IonAvatar class="border-1 absolute flex h-32 w-32 items-center justify-center border">
-          <img class="h-28 w-28" src="assets/images/profile.jpg" />
+        <IonAvatar class="border-1 absolute flex size-32 items-center justify-center border">
+          <img class="size-28" src="assets/images/profile.jpg" />
         </IonAvatar>
         <IonLabel class="absolute mt-36 text-2xl font-semibold">
           {{ user?.fullName }}

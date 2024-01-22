@@ -109,7 +109,7 @@ const onSubmit = form.handleSubmit((values) => {
           </FormField>
         </div>
         <AtomButton :disabled="isLoading">
-          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 h-4 w-4 animate-spin" />
+          <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
           {{ t('auth.reset_password') }}
         </AtomButton>
       </div>

@@ -28,7 +28,7 @@ const { t } = useI18n()
           </IonButton>
         </IonListHeader>
         <IonItem :button="true" class="mt-5 border-l-2 border-red-400 p-5">
-          <div slot="start" aria-hidden="true" class="i-ph-bell-ringing-fill h-5 w-5"></div>
+          <div slot="start" aria-hidden="true" class="i-ph-bell-ringing-fill size-5"></div>
           <IonLabel>
             Password reset
           </IonLabel>
@@ -37,7 +37,7 @@ const { t } = useI18n()
           </IonNote>
         </IonItem>
         <IonItem v-for="index in 10" :key="index" :button="true" class="mt-5 border-l-2 border-lime-400 p-5">
-          <div slot="start" aria-hidden="true" class="i-ph-bell-ringing h-5 w-5"></div>
+          <div slot="start" aria-hidden="true" class="i-ph-bell-ringing size-5"></div>
           <IonLabel>
             {{ faker.lorem.words() }}
           </IonLabel>

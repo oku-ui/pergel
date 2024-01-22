@@ -59,10 +59,10 @@ function clickPlugin(plugin: string, external?: boolean) {
 </script>
 
 <template>
-  <div class="flex h-full w-full flex-col">
+  <div class="flex size-full flex-col">
     <OkuTabs
       v-model="selectedTab"
-      class="flex h-full w-full flex-col overflow-scroll"
+      class="flex size-full flex-col overflow-scroll"
       default-value="add"
       @change="() => {
         console.warn(selectedTab, 'selectedTab')
@@ -81,7 +81,7 @@ function clickPlugin(plugin: string, external?: boolean) {
           >
             {{ tab.name }}
             <button
-              class="i-ph-x h-3 w-3 dark:text-white"
+              class="i-ph-x size-3 dark:text-white"
               @click="() => {
                 delete tabs[tab.name]
                 selectedTab = 'add'
@@ -95,12 +95,12 @@ function clickPlugin(plugin: string, external?: boolean) {
            "
           value="add"
         >
-          <div class="i-ph-plus h-3 w-3 dark:text-white" />
+          <div class="i-ph-plus size-3 dark:text-white" />
         </OkuTabsTrigger>
       </OkuTabsList>
       <OkuTabsContent
         v-if="moduleOptions"
-        class="flex h-full w-full grow flex-col rounded-b-md p-5 outline-none dark:bg-gray-950"
+        class="flex size-full grow flex-col rounded-b-md p-5 outline-none dark:bg-gray-950"
         value="add"
       >
         <template
@@ -138,11 +138,11 @@ function clickPlugin(plugin: string, external?: boolean) {
         v-for="tab in Object.values(tabs)"
         :key="tab.name"
         :value="tab.name"
-        class="flex h-full w-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
+        class="flex size-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
       >
         <IframeView
           v-if="tab.view.src"
-          class="flex h-full w-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
+          class="flex size-full grow flex-col rounded-b-md outline-none dark:bg-gray-950"
           :tab="{
             name: `${tab.name}graphqlYoga`,
             view: {
