@@ -25,6 +25,7 @@ export default antfu(
       '**/templates/*.json',
       '**/templates.json',
       'packages-core/pergel/nuxt.js',
+      '**/pergel/**',
     ],
   },
   {

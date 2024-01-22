@@ -355,7 +355,9 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         ...typeof options.packages.googleFonts === 'object'
           ? options.packages.googleFonts as unknown as GoogleFonts
           : {
-              families: ['Inter'],
+              families: {
+                Inter: true,
+              },
             },
       } as Partial<GoogleFonts>)
     }
