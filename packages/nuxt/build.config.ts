@@ -9,7 +9,6 @@ export const external = [
   '@apollo/sandbox',
   'graphql-yoga',
   '#pergel',
-  '#imports',
   '#pergel/types',
   'h3',
   'pathe',
