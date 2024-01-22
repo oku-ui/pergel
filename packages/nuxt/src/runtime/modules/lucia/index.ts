@@ -15,7 +15,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
     dependencies(options) {
       const [driver, db] = options.driver.split(':')
       const defaultData = {
-        lucia: '^3.0.0-beta.13',
+        lucia: '^3.0.0-beta.14',
         oslo: '^0.25.1',
       }
 
@@ -25,8 +25,8 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
             case 'postgre': {
               return {
                 ...defaultData,
-                '@lucia-auth/adapter-drizzle': '^1.0.0-beta.4',
-                '@lucia-auth/adapter-postgresql': '^3.0.0-beta.8',
+                '@lucia-auth/adapter-drizzle': '^1.0.0-beta.6',
+                '@lucia-auth/adapter-postgresql': '^3.0.0-beta.9',
               }
             }
             default: {

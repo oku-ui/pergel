@@ -5,7 +5,7 @@ changeName:
   lucia:
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: "lucia@^3.0.0-beta.13, oslo@^0.25.1, @lucia-auth/adapter-drizzle@^1.0.0-beta.4, @lucia-auth/adapter-postgresql@^3.0.0-beta.8"
+      dependencies: "lucia@^3.0.0-beta.14, oslo@^0.25.1, @lucia-auth/adapter-drizzle@^1.0.0-beta.6, @lucia-auth/adapter-postgresql@^3.0.0-beta.9"
       devDependencies: ""
   drizzle:
     # Script Commands

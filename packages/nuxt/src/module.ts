@@ -31,6 +31,10 @@ export default defineNuxtModule<PergelOptions>({
     },
   },
   async setup(options, nuxt) {
+    nuxt.options.build.transpile.push(
+      '@pergel/nuxt',
+    )
+
     let pergelOptions = {} as PergelOptions
     // const project = nuxt.options._layers[0]
     const layers = nuxt.options._layers

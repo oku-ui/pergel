@@ -2958,7 +2958,7 @@ packages:
   /@lucia-auth/adapter-drizzle@1.0.0-beta.0(lucia@2.7.6):
     resolution: {integrity: sha512-L4e8zJATX1PbIvvSNQ/VwxrVebEZKtzUkPdFBFSpbVUuc7aa6yqMyHm2lI4cHCWT76pwlZgQmAiE9O2AyqlX/A==}
     peerDependencies:
-      lucia: 3.0.0-beta.8
+      lucia: 3.0.0-beta.9
     dependencies:
       lucia: 2.7.6
     dev: false
