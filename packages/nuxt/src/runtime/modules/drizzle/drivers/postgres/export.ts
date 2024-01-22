@@ -13,6 +13,7 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx
   options?: PostgresJSOptions
   event?: H3Event
   pergel?: PergelGlobalContextOmitModule
+  config?: Parameters<typeof drizzle>[1]
 }) {
   const _pergel = ctx.pergel ?? this
 
@@ -21,13 +22,13 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx
 
   const { client } = await clientInit(_pergel, (runtime) => {
     if (runtime.url)
-      return drizzle(postgres(runtime.url, {}))
+      return drizzle(postgres(runtime.url, {}), ctx.config)
 
     else if (process.env.POSTGRES_URL)
-      return drizzle(postgres(process.env.POSTGRES_URL, ctx.options?.options))
+      return drizzle(postgres(process.env.POSTGRES_URL, ctx.options?.options), ctx.config)
 
     else if (ctx.options?.options)
-      return drizzle(postgres(ctx.options.options))
+      return drizzle(postgres(ctx.options.options), ctx.config)
 
     else
       throw new Error('PostgresJS is not defined')
