@@ -10,7 +10,7 @@ export default defineCommand({
   meta: {
     name: 'Pergel Install',
     description: 'Install dependencies from README.json',
-    version: '0.1.0',
+    version: '0.2.0',
   },
   async run() {
     const args = process.argv.slice(2).filter(arg => arg !== 'install' && arg !== 'pergel')
@@ -41,18 +41,22 @@ export default defineCommand({
           if (projectData.packageJson) {
             if (projectData.packageJson.dependencies) {
               const debs = Object.keys(projectData.packageJson.dependencies)
-              debs.forEach((item) => {
-                if (item)
-                  dependencies.add(item)
-              })
+              if (debs.length) {
+                for (const item of debs) {
+                  if (item)
+                    dependencies.add(`${item}@${projectData.packageJson.dependencies[item as keyof typeof projectData.packageJson.dependencies]}`)
+                }
+              }
             }
 
             if (projectData.packageJson.devDependencies) {
               const debs = Object.keys(projectData.packageJson.devDependencies)
-              debs.forEach((item) => {
-                if (item)
-                  devDependencies.add(item)
-              })
+              if (debs.length) {
+                for (const item of debs) {
+                  if (item)
+                    devDependencies.add(`${item}@${projectData.packageJson.devDependencies[item as keyof typeof projectData.packageJson.devDependencies]}`)
+                }
+              }
             }
           }
         }
