@@ -9,7 +9,12 @@ export default defineNuxtConfig({
     projects: {
       changeName: {
         ionic: {
+          appId: 'ionic.example.com',
           appName: 'MyApp',
+          webDir: 'dist',
+          server: {
+            url: 'localhost:3000',
+          },
           themeCss: true,
           defaultCss: false,
           purchase: true,

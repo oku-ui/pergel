@@ -6,8 +6,12 @@ export default antfu(
   {
     ignores: [
       'node_modules/',
+      'ios/',
+      'android/',
       'dist/',
       '**/node_modules/**',
+      '**/android/**',
+      '**/ios/**',
       '**/dist/**',
       '**/.nuxt',
       '**/.output',

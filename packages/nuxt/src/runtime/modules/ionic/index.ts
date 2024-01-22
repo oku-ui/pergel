@@ -19,7 +19,10 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       '@nuxtjs/ionic': '^0.13.0',
       '@ionic/cli': '^7.2.0',
       '@ionic/core': '^7.6.3',
+      '@capacitor/core': '^5.6.0',
       '@capacitor/cli': '^5.6.0',
+      '@capacitor/android': '^5.6.0',
+      '@capacitor/ios': '^5.6.0',
       '@revenuecat/purchases-capacitor': '^7.4.0',
     },
   },
@@ -28,7 +31,10 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     capacitorConfig: {
       appId: 'com.company.appname',
       appName: 'My Capacitor App',
-      webDir: 'www',
+      webDir: 'dist',
+      server: {
+        url: 'localhost:3000',
+      },
     },
     defaultCss: false,
     themeCss: false,
@@ -37,11 +43,18 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
   async setup({ nuxt, options }) {
     console.log('ionic test', options.appName)
     const capacitorConfig = `
-    import { CapacitorConfig } from '@capacitor/cli';
+    import type { CapacitorConfig } from '@capacitor/cli'
 
-      const config: CapacitorConfig = ${JSON.stringify(options.capacitorConfig)}
-
-      export default config;`
+    const config: CapacitorConfig = {
+      appId: '${options.appId}',
+      appName: '${options.appName}',
+      webDir: '${options.webDir}',
+      server: {
+        url: '${options.server.url}',
+      },
+    }
+    
+    export default config`
     // const nuxtConfig = `
     // export default defineNuxtConfig({
     //   ${JSON.stringify(options.nuxtConfig)}

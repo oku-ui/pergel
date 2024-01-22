@@ -10,5 +10,9 @@
         "./types/index.ts"
       ]
     }
-  }
+  },
+  "exclude": [
+    "**/android/**",
+    "**/ios/**"
+  ]
 }

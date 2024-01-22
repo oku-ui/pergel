@@ -47,6 +47,8 @@
     "skipLibCheck": true
   },
   "exclude": [
+    "**/android/**",
+    "**/ios/**",
     "**/dist/**",
     "**/.nuxt/**",
     "pergel",

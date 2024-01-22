@@ -38,4 +38,7 @@ export interface CapacitorConfig {
     // Capacitor eklentileri için konfigürasyon değerleri eklenebilir
   }
   webDir?: string
+  server?: {
+    url?: string
+  }
 }
