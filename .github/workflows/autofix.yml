@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
 
       - name: Fix lint issues
         run: npm run lint:fix
