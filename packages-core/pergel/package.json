@@ -30,13 +30,16 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./nuxt": {
       "types": "./nuxt.d.ts",
-      "import": "./nuxt.mjs"
+      "import": "./nuxt.mjs",
+      "require": "./nuxt.js"
     }
   },
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "bin": {

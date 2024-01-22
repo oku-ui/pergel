@@ -1,5 +1,5 @@
 import type { H3Event } from 'h3'
-import { generateProjectName } from './utils'
+import { generateProjectName } from './generateProjectName'
 import type { PergelGlobalContext } from '#pergel/types'
 import { useRuntimeConfig } from '#imports'
 
