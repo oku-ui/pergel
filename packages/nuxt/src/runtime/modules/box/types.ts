@@ -3,7 +3,6 @@ import type { CollectionNames, IconsPluginOptions } from '@egoist/tailwindcss-ic
 import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
 export interface BoxOptions extends PergelModuleOptions {
-  brand?: 'pergel'
   packages?: {
     /**
      * @default ['ph', 'carbon']
@@ -12,86 +11,92 @@ export interface BoxOptions extends PergelModuleOptions {
     tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
 
     /**
-     * @default true
+     * @default false
      * @see https://tailwindcss.nuxtjs.org
      */
     tailwindcss?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://github.com/nuxt-modules/color-mode
      */
     colorMode?: boolean
     /**
-     * @default true
+     * @default false
      * @see https://notivuedocs.netlify.app/push-usage/methods.html
      */
     notivue?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://github.com/radix-vue/radix-vue
      */
     radixVue?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://github.com/nuxt-modules/icon
      */
     nuxtIcon?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://github.com/colinhacks/zod
      */
     zod?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://vee-validate.logaretm.com/v4
      */
     veeValidate?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://i18n.nuxtjs.org
      */
     i18n?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://pinia.vuejs.org
      */
     pinia?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://vueuse.org
      */
     vueUse?: boolean
 
     /**
-     * @default true
+     * @default false
      * @see https://github.com/PuruVJ/neoconfetti/tree/main/packages/vue
      */
-    neoconfetti: boolean
-  }
+    neoconfetti?: boolean
 
+    /**
+     * @default false
+     * @see https://google-fonts.nuxtjs.org/
+     */
+    googleFonts?: boolean | { families: string[] }
+  }
 }
 
 export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
   packages: {
-    tailwindIcon?: CollectionNames[] | 'all' | IconsPluginOptions
-    tailwindcss?: boolean
-    colorMode?: boolean
-    notivue?: boolean
-    radixVue?: boolean
-    nuxtIcon?: boolean
-    zod?: boolean
-    veeValidate?: boolean
-    i18n?: boolean
-    pinia?: boolean
-    vueUse?: boolean
+    tailwindIcon: CollectionNames[] | 'all' | IconsPluginOptions
+    tailwindcss: boolean
+    colorMode: boolean
+    notivue: boolean
+    radixVue: boolean
+    nuxtIcon: boolean
+    zod: boolean
+    veeValidate: boolean
+    i18n: boolean
+    pinia: boolean
+    vueUse: boolean
     neoconfetti: boolean
+    googleFonts: boolean | { families: string[] }
   }
 }

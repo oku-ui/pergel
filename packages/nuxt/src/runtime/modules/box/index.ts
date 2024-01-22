@@ -6,6 +6,7 @@ import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
 import consola from 'consola'
 import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
+import type { ModuleOptions as GoogleFonts } from '@nuxtjs/google-fonts'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports, useNuxtImports } from '../../core/utils/useImports'
 import { addDownloadTemplate } from '../../core/utils/createDownloadTemplate'
@@ -39,6 +40,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       pinia: false,
       vueUse: false,
       neoconfetti: false,
+      googleFonts: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -132,6 +134,15 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
             ],
             from: 'zod',
           },
+          {
+            from: 'zod',
+            imports: [{
+              from: 'zod',
+              as: 'Zod',
+              name: 'z',
+              type: true,
+            }],
+          },
         ],
       })
 
@@ -145,6 +156,15 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
               },
             ],
             from: 'zod',
+          },
+          {
+            from: 'zod',
+            imports: [{
+              from: 'zod',
+              as: 'Zod',
+              name: 'z',
+              type: true,
+            }],
           },
         ],
       })
@@ -329,6 +349,16 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
     if (options.packages.neoconfetti)
       addPlugin(resolver.resolve('plugins/neoconfetti.ts'))
+
+    if (options.packages.googleFonts) {
+      await installModule('@nuxtjs/google-fonts', {
+        ...typeof options.packages.googleFonts === 'object'
+          ? options.packages.googleFonts as unknown as GoogleFonts
+          : {
+              families: ['Inter'],
+            },
+      } as Partial<GoogleFonts>)
+    }
 
     addDownloadTemplate({
       nuxt,
