@@ -79,7 +79,7 @@ export interface BoxOptions extends PergelModuleOptions {
      * @default false
      * @see https://google-fonts.nuxtjs.org/
      */
-    googleFonts?: boolean | { families: string[] }
+    googleFonts?: boolean | 'custom'
   }
 }
 
@@ -97,6 +97,6 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     pinia: boolean
     vueUse: boolean
     neoconfetti: boolean
-    googleFonts: boolean | { families: string[] }
+    googleFonts: boolean | 'custom'
   }
 }

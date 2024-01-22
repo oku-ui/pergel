@@ -352,8 +352,8 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
     if (options.packages.googleFonts) {
       await installModule('@nuxtjs/google-fonts', {
-        ...typeof options.packages.googleFonts === 'object'
-          ? options.packages.googleFonts as unknown as GoogleFonts
+        ...options.packages.googleFonts === 'custom'
+          ? {}
           : {
               families: {
                 Inter: true,
