@@ -1,8 +1,8 @@
 import { eventHandler } from 'h3'
 import { defineNitroPlugin } from 'nitropack/dist/runtime/plugin'
-import { useRuntimeConfig } from 'nuxt/app'
 import type { GraphQLYogaOptions, ResolvedGraphQLYogaConfig } from '../../types'
 import { nitroGraphqlYogaPlugin } from './nitroGraphqlYogaPlugin'
+import { useRuntimeConfig } from '#imports'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(this: PergelGlobalContextOmitModule, data: GraphQLYogaOptions<Context>) {
