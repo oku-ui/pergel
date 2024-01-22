@@ -22,5 +22,5 @@ lib
 dist
 .nx
 .eslintcache
-packages/*/pergel
-themes/*/pergel
+packages/**/pergel/**
+themes/**/pergel/**
