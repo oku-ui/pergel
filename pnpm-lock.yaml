@@ -145,6 +145,9 @@ importers:
       radix-vue:
         specifier: ^1.3.2
         version: 1.3.2(vue@3.4.15)
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
       tailwind-merge:
         specifier: ^2.2.0
         version: 2.2.0
@@ -5752,6 +5755,23 @@ packages:
 
   /@pergel/cli@0.6.1:
     resolution: {integrity: sha512-uJLChkRgo+SaF2DpfA0Ml7ul38B+MZfl2zhMH8e4jwLZqUVl41KxNviKaaWRqxSsbkkuvmXonwomk+Tbz6sBpw==}
+    engines: {node: '>=20'}
+    hasBin: true
+    dependencies:
+      '@antfu/ni': 0.21.12
+      '@clack/prompts': 0.7.0
+      c12: 1.6.1
+      citty: 0.1.5
+      consola: 3.2.3
+      giget: 1.2.1
+      globby: 14.0.0
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      shelljs: 0.8.5
+    dev: true
+
+  /@pergel/cli@0.6.2:
+    resolution: {integrity: sha512-aYvkhdarAhteUP4T7kkdCW7K8UNY4NjOl46AdqBtV3gdDQlehO3eHuw2BlZb1/ywtdhKl3d9EOvxvPblkLaKQQ==}
     engines: {node: '>=20'}
     hasBin: true
     dependencies:
@@ -13558,7 +13578,7 @@ packages:
     resolution: {integrity: sha512-uaIIr1RXBg9sIvPHRcm4n/mAFBQftZAJ3S8va/tNWBq3CSqViMbxy3VWjVF6ifB/aynHI+FmI2BuV+0+xuP6eQ==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.6.1
+      '@pergel/cli': 0.6.2
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 
@@ -14856,6 +14876,11 @@ packages:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
     dev: true
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
+    dev: false
 
   /smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}

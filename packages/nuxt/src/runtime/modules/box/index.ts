@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { addComponent, addPlugin, createResolver, installModule } from '@nuxt/kit'
+import { addComponent, addImportsDir, addPlugin, addServerImportsDir, createResolver, extendViteConfig, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
@@ -7,6 +7,7 @@ import type { ModuleOptions } from '@nuxtjs/i18n'
 import consola from 'consola'
 import type { ModuleOptions as TailwindCSSOptions } from '@nuxtjs/tailwindcss'
 import type { ModuleOptions as GoogleFonts } from '@nuxtjs/google-fonts'
+import defu from 'defu'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports, useNuxtImports } from '../../core/utils/useImports'
 import { addDownloadTemplate } from '../../core/utils/createDownloadTemplate'
@@ -41,6 +42,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       vueUse: false,
       neoconfetti: false,
       googleFonts: false,
+      slugify: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -360,6 +362,27 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
               },
             },
       } as Partial<GoogleFonts>)
+    }
+
+    if (options.packages.slugify) {
+      // Public runtimeConfig
+      nuxt.options.runtimeConfig.public.slugify = defu(
+        nuxt.options.runtimeConfig.public.slugify,
+        {
+          extend: options.extend,
+          defaults: options.defaults,
+        },
+      )
+
+      // Add Vite configurations
+      extendViteConfig((config) => {
+        config.optimizeDeps = config.optimizeDeps || {}
+        config.optimizeDeps.include = config.optimizeDeps.include || []
+        config.optimizeDeps.include.push('slugify')
+      })
+
+      addServerImportsDir(resolver.resolve('./composables/slugify'))
+      addImportsDir(resolver.resolve('./composables/slugify'))
     }
 
     addDownloadTemplate({

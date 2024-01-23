@@ -1,4 +1,5 @@
 import type { CollectionNames, IconsPluginOptions } from '@egoist/tailwindcss-icons'
+import type slugify from 'slugify'
 
 import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
 
@@ -80,6 +81,17 @@ export interface BoxOptions extends PergelModuleOptions {
      * @see https://google-fonts.nuxtjs.org/
      */
     googleFonts?: boolean | 'custom'
+
+    /**
+     * default: false
+     * @see https://github.com/simov/slugify
+     */
+    slugify?: boolean | {
+      extend?: {
+        [key: string]: any
+      }
+      defaults?: Parameters<typeof slugify>[1]
+    }
   }
 }
 
@@ -98,5 +110,11 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     vueUse: boolean
     neoconfetti: boolean
     googleFonts: boolean | 'custom'
+    slugify: boolean | {
+      extend?: {
+        [key: string]: any
+      }
+      defaults?: Parameters<typeof slugify>[1]
+    }
   }
 }

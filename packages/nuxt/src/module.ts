@@ -10,6 +10,7 @@ import YAML from 'yaml'
 
 import defu from 'defu'
 import type { NuxtConfigLayer } from '@nuxt/schema'
+import type slugify from 'slugify'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
@@ -18,6 +19,19 @@ import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
+
+export interface ModulePublicRuntimeConfig {
+  slugify: {
+    extends: {
+      [key: string]: any
+    }
+    default: Parameters<typeof slugify>[1]
+  }
+}
+
+declare module '@nuxt/schema' {
+  interface PublicRuntimeConfig extends ModulePublicRuntimeConfig { }
+}
 
 export default defineNuxtModule<PergelOptions>({
   meta: {
