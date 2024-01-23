@@ -1,7 +1,7 @@
 {
   "name": "@pergel/module-box",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "packageManager": "pnpm@8.10.0",
   "description": "Pergel Module for Box Management",
   "author": {
