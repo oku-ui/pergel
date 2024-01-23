@@ -92,6 +92,10 @@ export interface BoxOptions extends PergelModuleOptions {
       }
       defaults?: Parameters<typeof slugify>[1]
     }
+
+    nanoid?: boolean
+
+    uuid?: boolean
   }
 }
 
@@ -116,5 +120,7 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
       }
       defaults?: Parameters<typeof slugify>[1]
     }
+    nanoid: boolean
+    uuid: boolean
   }
 }

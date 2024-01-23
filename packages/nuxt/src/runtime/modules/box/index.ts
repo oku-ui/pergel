@@ -43,6 +43,8 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       neoconfetti: false,
       googleFonts: false,
       slugify: false,
+      nanoid: false,
+      uuid: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -383,6 +385,36 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
       addServerImportsDir(resolver.resolve('./composables/slugify'))
       addImportsDir(resolver.resolve('./composables/slugify'))
+    }
+
+    if (options.packages.nanoid) {
+      useNuxtImports(nuxt, {
+        presets: [
+          {
+            // imports: ['customAlphabet', 'customRandom', 'nanoid', 'random', 'urlAlphabet'] as Array<keyof typeof import('nanoid')>,
+            imports: [{
+              as: 'nanoid',
+              name: '*',
+            }],
+            from: 'nanoid',
+          },
+        ],
+      })
+    }
+
+    if (options.packages.uuid) {
+      useNuxtImports(nuxt, {
+        presets: [
+          {
+            // imports: ['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>,
+            imports: [{
+              as: 'uuid',
+              name: '*',
+            }],
+            from: 'uuid',
+          },
+        ],
+      })
     }
 
     addDownloadTemplate({
