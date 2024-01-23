@@ -1,7 +1,8 @@
 import { defineBuildConfig } from 'unbuild'
 
-// import pkg from './package.json'
-//   ...Object.keys(pkg.peerDependencies || {}),
+import pkgBox from '../box/package.json'
+
+const externalBox = Object.keys(pkgBox.dependencies)
 
 export const external = [
   'consola',
@@ -31,6 +32,9 @@ export const external = [
   'node:child_process',
   'node:stream',
   'node:url',
+  'slugify',
+  '@pergel/module-box',
+  ...externalBox,
 ]
 export default defineBuildConfig([
   // Auto preset
