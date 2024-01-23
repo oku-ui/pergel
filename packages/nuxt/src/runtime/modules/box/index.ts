@@ -400,10 +400,36 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
           },
         ],
       })
+
+      useNitroImports(nuxt, {
+        presets: [
+          {
+            // imports: ['customAlphabet', 'customRandom', 'nanoid', 'random', 'urlAlphabet'] as Array<keyof typeof import('nanoid')>,
+            imports: [{
+              as: 'nanoid',
+              name: '*',
+            }],
+            from: 'nanoid',
+          },
+        ],
+      })
     }
 
     if (options.packages.uuid) {
       useNuxtImports(nuxt, {
+        presets: [
+          {
+            // imports: ['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>,
+            imports: [{
+              as: 'uuid',
+              name: '*',
+            }],
+            from: 'uuid',
+          },
+        ],
+      })
+
+      useNitroImports(nuxt, {
         presets: [
           {
             // imports: ['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>,
