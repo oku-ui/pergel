@@ -1,9 +1,9 @@
 {
   "name": "@pergel/module-box",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packageManager": "pnpm@8.10.0",
-  "description": "Pergel Module for UI Management",
+  "description": "Pergel Module for Box Management",
   "author": {
     "name": "Mehmet @productdevbook",
     "email": "hi@productdevbook.com",
@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm bumpp --commit='version(module-ui): release %s' --no-tag && pnpm publish"
+    "release": "pnpm bumpp --commit='version(module-box): release %s' --no-tag && pnpm publish"
   },
   "dependencies": {
     "@egoist/tailwindcss-icons": "^1.7.2",
