@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { addComponent, addImportsDir, addPlugin, addServerImportsDir, createResolver, extendViteConfig, installModule } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
+import { camelCase } from 'scule'
 
 import type { IconsPluginOptions } from '@egoist/tailwindcss-icons'
 import type { ModuleOptions } from '@nuxtjs/i18n'
@@ -391,11 +392,10 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       useNuxtImports(nuxt, {
         presets: [
           {
-            // imports: ['customAlphabet', 'customRandom', 'nanoid', 'random', 'urlAlphabet'] as Array<keyof typeof import('nanoid')>,
-            imports: [{
-              as: 'nanoid',
-              name: '*',
-            }],
+            imports: (['customAlphabet', 'customRandom', 'nanoid', 'random', 'urlAlphabet'] as Array<keyof typeof import('nanoid')>).map(name => ({
+              as: name === 'nanoid' ? 'nanoid' : `${camelCase(`nanoid-${name}`)}`,
+              name,
+            })),
             from: 'nanoid',
           },
         ],
@@ -404,11 +404,10 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       useNitroImports(nuxt, {
         presets: [
           {
-            // imports: ['customAlphabet', 'customRandom', 'nanoid', 'random', 'urlAlphabet'] as Array<keyof typeof import('nanoid')>,
-            imports: [{
-              as: 'nanoid',
-              name: '*',
-            }],
+            imports: (['customAlphabet', 'customRandom', 'nanoid', 'random', 'urlAlphabet'] as Array<keyof typeof import('nanoid')>).map(name => ({
+              as: `${camelCase(`nanoid-${name}`)}`,
+              name,
+            })),
             from: 'nanoid',
           },
         ],
@@ -419,11 +418,10 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       useNuxtImports(nuxt, {
         presets: [
           {
-            // imports: ['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>,
-            imports: [{
-              as: 'uuid',
-              name: '*',
-            }],
+            imports: (['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>).map(name => ({
+              as: `${camelCase(`uuid-${name}`)}`,
+              name,
+            })),
             from: 'uuid',
           },
         ],
@@ -432,11 +430,10 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       useNitroImports(nuxt, {
         presets: [
           {
-            // imports: ['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>,
-            imports: [{
-              as: 'uuid',
-              name: '*',
-            }],
+            imports: (['v1', 'v3', 'v4', 'v5', 'NIL', 'parse', 'stringify', 'validate', 'version'] as Array<keyof typeof import('uuid')>).map(name => ({
+              as: `${camelCase(`uuid-${name}`)}`,
+              name,
+            })),
             from: 'uuid',
           },
         ],

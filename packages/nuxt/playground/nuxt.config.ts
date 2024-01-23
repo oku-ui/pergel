@@ -63,6 +63,12 @@ export default defineNuxtConfig({
         },
         lucia: true,
         drizzle: true,
+        box: {
+          packages: {
+            uuid: true,
+            nanoid: true,
+          },
+        },
       },
       test2: {
         S3: true,
