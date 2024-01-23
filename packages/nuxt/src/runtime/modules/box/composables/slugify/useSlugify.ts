@@ -1,4 +1,5 @@
 import slugifyFunc from 'slugify'
+import { useRuntimeConfig } from '#imports'
 
 export function useSlugify() {
   const { slugify } = useRuntimeConfig().public
