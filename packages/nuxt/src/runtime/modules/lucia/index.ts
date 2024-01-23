@@ -81,9 +81,9 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
           /* ts */`
 import { session, user } from '#${options.projectName}/drizzle/schema'
 
-const connect = await ${options.projectNamePascalCase}().drizzle().postgresjs().connect({})
+const connect = await ${options.projectNameCamelCaseWithPergel}().drizzle().postgresjs().connect({})
 
-export const auth = ${options.projectNamePascalCase}().lucia().use({
+export const auth = ${options.projectNameCamelCaseWithPergel}().lucia().use({
   db: connect,
   options: { },
   session,
@@ -102,7 +102,7 @@ export const auth = ${options.projectNamePascalCase}().lucia().use({
         /* ts */`
 import { auth } from '#${options.projectName}/lucia'
 
-export default ${options.projectNamePascalCase}().lucia().definePergelNitroMiddleware({
+export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
   lucia: auth,
 })
         `,
@@ -123,6 +123,15 @@ export default ${options.projectNamePascalCase}().lucia().definePergelNitroMiddl
           from: resolver.resolve('server/middleware'),
           imports: [
             'definePergelNitroMiddleware',
+          ],
+        },
+        {
+          from: `${options.serverDir}`,
+          imports: [
+            {
+              as: `${options.projectNameCamelCase}Auth`,
+              name: 'auth',
+            },
           ],
         },
       ],

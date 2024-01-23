@@ -32,9 +32,15 @@ export interface ResolvedPergelModuleOptions {
 
   /**
    * @default
+   * TestHello -> testHello
+   */
+  projectNameCamelCase: string
+
+  /**
+   * @default
    * testHello -> pergelTestHello
    */
-  projectNamePascalCase: string
+  projectNameCamelCaseWithPergel: string
 
   /**
    * @default
