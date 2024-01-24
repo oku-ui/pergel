@@ -17,82 +17,111 @@ import type {
   _Object,
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import consola from 'consola'
 import type { S3ModuleRuntimeConfig } from '../types'
-import { clientFunctionTemplate } from '../../../core/useClient'
+import { globalContext } from '../../../composables/useClient'
 import type { PartinalKey } from '../../../core/types/module'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
-const { clientInit } = clientFunctionTemplate<S3Client, S3ModuleRuntimeConfig>('S3')
-
-export const pergelS3Client = clientInit
-
-export async function useS3(
+export async function usePergelS3(
   this: PergelGlobalContextOmitModule,
   pergel?: PergelGlobalContextOmitModule,
   event?: H3Event,
 ) {
-  const _pergel = pergel || this
+  const context = pergel || this
 
-  if (!_pergel || !_pergel.projectName)
+  if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { client, runtime } = await pergelS3Client(_pergel, runtime => new S3Client({
-    region: runtime.region,
-    endpoint: runtime.endpoint,
-    credentials: {
-      accessKeyId: runtime.accessKeyId,
-      secretAccessKey: runtime.secretAccessKey,
-    },
-  }), event)
+  const { selectData, runtime } = await globalContext({
+    moduleName: 'S3',
+    projectName: context.projectName,
+  }, ({ s3 }) => {
+    if (!s3)
+      throw new Error('S3 is not defined')
 
-  if (!client)
-    consola.error('S3 is not defined')
+    return {
+      s3: {
+        client: new S3Client({
+          region: s3.region,
+          endpoint: s3.endpoint,
+          credentials: {
+            accessKeyId: s3.accessKeyId,
+            secretAccessKey: s3.secretAccessKey,
+          },
+        }),
+      },
+    }
+  }, event)
 
-  async function signedUrl(object: PartinalKey<GetObjectCommandInput, 'Bucket'>, options?: Parameters<typeof getSignedUrl>[2]) {
+  if (!selectData?.s3?.client || !runtime.s3)
+    throw new Error('S3 is not defined')
+
+  const s3Composables = S3Composables.call({
+    client: selectData.s3.client,
+    runtime: runtime.s3,
+  })
+
+  return {
+    ...s3Composables,
+    client: selectData.s3.client,
+  }
+}
+
+function S3Composables(this: {
+  client: S3Client
+  runtime: S3ModuleRuntimeConfig
+}) {
+  const signedUrl = async (
+    object: PartinalKey<GetObjectCommandInput, 'Bucket'>,
+    options?: Parameters<typeof getSignedUrl>[2],
+  ) => {
     const getFile = new GetObjectCommand({
       ...object,
-      Bucket: runtime.bucket || object.Bucket,
+      Bucket: this.runtime.bucket || object.Bucket,
     })
 
-    return await getSignedUrl(client!, getFile, {
+    return await getSignedUrl(this.client, getFile, {
       expiresIn: 60 * 60 * 1,
       ...options,
     })
   }
 
-  async function uploadObject(input: PartinalKey<PutObjectCommandInput, 'Bucket'>) {
+  const uploadObject = async (
+    input: PartinalKey<PutObjectCommandInput, 'Bucket'>,
+  ) => {
     const command = new PutObjectCommand({
       ...input,
-      Bucket: runtime.bucket || input.Bucket,
+      Bucket: this.runtime.bucket || input.Bucket,
     })
 
-    return await client!.send(command)
+    return await this.client.send(command)
   }
 
-  async function removeObject(input: PartinalKey<DeleteObjectCommandInput, 'Bucket'>) {
+  const removeObject = async (
+    input: PartinalKey<DeleteObjectCommandInput, 'Bucket'>,
+  ) => {
     const command = new DeleteObjectCommand({
       ...input,
-      Bucket: runtime.bucket || input.Bucket,
+      Bucket: this.runtime.bucket || input.Bucket,
     })
-    return await client!.send(command)
+    return await this.client.send(command)
   }
 
-  async function removeObjects(data: {
+  const removeObjects = async (data: {
     listObjects: PartinalKey<ListObjectsCommandInput, 'Bucket'>
     input: DeleteObjectsCommandInput
-  }) {
+  }) => {
     const deleteParams: DeleteObjectsCommandInput = {
-      Bucket: runtime.bucket || data.listObjects.Bucket,
+      Bucket: this.runtime.bucket || data.listObjects.Bucket,
       Delete: { Objects: [] },
     }
 
     const objectData = new ListObjectsCommand({
       ...data.listObjects,
-      Bucket: runtime.bucket || data.listObjects.Bucket,
+      Bucket: this.runtime.bucket || data.listObjects.Bucket,
     })
 
-    const objects = await client!.send(objectData)
+    const objects = await this.client.send(objectData)
 
     if (objects.Contents?.length) {
       for await (const { Key } of objects.Contents) {
@@ -101,29 +130,32 @@ export async function useS3(
         })
       }
 
-      return await client!.send(new DeleteObjectsCommand(deleteParams))
+      return await this.client.send(new DeleteObjectsCommand(deleteParams))
     }
   }
 
-  async function getObject(input: PartinalKey<GetObjectCommandInput, 'Bucket'>) {
+  const getObject = async (
+    input: PartinalKey<GetObjectCommandInput, 'Bucket'>,
+  ) => {
     const command = new GetObjectCommand({
       ...input,
-      Bucket: runtime.bucket || input.Bucket,
+      Bucket: this.runtime.bucket || input.Bucket,
     })
-    return await client!.send(command)
+    return await this.client.send(command)
   }
 
-  async function listAllObjects(bucket?: string) {
-    const Bucket = bucket || runtime.bucket
+  const listAllObjects = async (
+    bucket?: string,
+  ) => {
+    const Bucket = bucket || this.runtime.bucket
     const allObjects: _Object[] = []
-    for await (const obj of paginateListObjectsV2({ client }, { Bucket }))
+    for await (const obj of paginateListObjectsV2({ client: this.client }, { Bucket }))
       allObjects.push(...(obj.Contents ?? []))
 
     return allObjects
   }
 
   return {
-    client,
     signedUrl,
     uploadObject,
     removeObject,

@@ -247,6 +247,10 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
             return {
               ${returnDriver}
               schema: tables${pascalCase(options.projectName)},
+              client: getGlobalContextItem.bind({
+                ...ctx,
+                moduleName: '${options.moduleName}',
+              }),
             }
           }
         `,

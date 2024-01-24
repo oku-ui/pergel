@@ -9,12 +9,12 @@ export interface BullMQModuleRuntimeConfig {
   }
 }
 
-export interface RedisRuntimeConfig {
-  url?: string
-  options?: {
-    host: string
-    port: number
-    db: 0
-    password: string
-  }
-}
+// export interface RedisRuntimeConfig {
+//   url?: string
+//   options?: {
+//     host: string
+//     port: number
+//     db: 0
+//     password: string
+//   }
+// }

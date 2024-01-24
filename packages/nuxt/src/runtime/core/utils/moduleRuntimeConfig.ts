@@ -9,14 +9,13 @@ export function generateModuleRuntimeConfig<T>(
   moduleOptions: ResolvedPergelModuleOptions,
   config: Record<string, any>,
   publicRuntime?: boolean,
-  customName?: string,
 ) {
   const projectName = moduleOptions.projectName
   const moduleName = moduleOptions.moduleName
 
   const runtimeConfig = nuxt.options.runtimeConfig
 
-  const name = generateProjectName(projectName, moduleName, customName)
+  const name = generateProjectName(projectName, moduleName)
 
   if (publicRuntime) {
     runtimeConfig.public[projectName] = defu(runtimeConfig.public[projectName] as any, {

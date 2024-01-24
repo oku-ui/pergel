@@ -4,7 +4,8 @@ import type { NitroApp } from 'nitropack'
 
 import type { Job } from 'bullmq'
 import { Queue, Worker } from 'bullmq'
-import { redisConnections, useRedis } from './useRedis'
+import { getGlobalContextItem } from '../../../../composables/useClient'
+import { useBullMQRedisClient } from './useRedis'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export type Scheduler<T extends object> = ReturnType<typeof useScheduler<T>>
@@ -27,7 +28,10 @@ export function useScheduler<T extends object>(
   if (!_pergel)
     throw new Error('Pergel not found')
 
-  let redisConnection = redisConnections.get(_pergel.projectName)?.client || null
+  let redisConnection = getGlobalContextItem.call({
+    ..._pergel,
+    moduleName: 'bullmq',
+  })?.bullmq?.client || null
 
   function onErrorDefault(source: string) {
     return (error: Error) => {
@@ -105,20 +109,22 @@ export function useScheduler<T extends object>(
     ...args: Parameters<typeof initQueueAndWorkers>
   ) {
     const { config, jobMethod, onError, onFailed, onCompleted } = args[0]
-    const client = await useRedis({
-      retryStrategy(times: any) {
-        return Math.min(times * 500, 2000)
-      },
-      reconnectOnError(error: any) {
-        onError ? onError('redis:reconnectOnError', error) : onErrorDefault('redis:reconnectOnError')(error)
-        if (error.message)
-          return false
+    const client = await useBullMQRedisClient.call(_pergel, {
+      options: {
+        retryStrategy(times: any) {
+          return Math.min(times * 500, 2000)
+        },
+        reconnectOnError(error: any) {
+          onError ? onError('redis:reconnectOnError', error) : onErrorDefault('redis:reconnectOnError')(error)
+          if (error.message)
+            return false
 
-        return 1
+          return 1
+        },
+        maxRetriesPerRequest: null,
+        enableReadyCheck: false,
       },
-      maxRetriesPerRequest: null,
-      enableReadyCheck: false,
-    }, _pergel)
+    })
 
     if (client && !redisConnection)
       redisConnection = client

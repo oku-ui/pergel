@@ -1,8 +1,7 @@
 import { CreateTemplateCommand, type CreateTemplateCommandInput, SESClient, SendEmailCommand, type SendEmailCommandInput } from '@aws-sdk/client-ses'
 import type { H3Event } from 'h3'
-import type { SesModuleRuntimeConfig } from '../types'
 import { templates } from '../templates'
-import { clientFunctionTemplate } from '../../../../runtime/core/useClient'
+import { globalContext } from '../../../composables/useClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export interface Credentials {
@@ -10,37 +9,48 @@ export interface Credentials {
   secretAccessKey: string
 }
 
-const { clientInit } = clientFunctionTemplate<SESClient, SesModuleRuntimeConfig>('ses')
-
 export async function usePergelSES(
   this: PergelGlobalContextOmitModule,
   event?: H3Event,
-  data?: PergelGlobalContextOmitModule,
+  params?: PergelGlobalContextOmitModule,
 ) {
-  const _pergel = data ?? this
+  const _pergel = params ?? this
 
   if (!_pergel || !_pergel.projectName)
     throw new Error('Pergel is not defined')
 
-  const { client } = await clientInit(_pergel, (runtime) => {
-    return new SESClient({
-      region: runtime.region,
-      credentials: {
-        accessKeyId: runtime.accessKeyId,
-        secretAccessKey: runtime.secretAccessKey,
+  const { selectData } = await globalContext({
+    moduleName: 'ses',
+    projectName: _pergel.projectName,
+  }, ({ ses }) => {
+    if (!ses?.region)
+      throw new Error('SES is not defined')
+
+    return {
+      ses: {
+        client: new SESClient({
+          region: ses.region,
+          credentials: {
+            accessKeyId: ses.accessKeyId,
+            secretAccessKey: ses.secretAccessKey,
+          },
+        }),
       },
-    })
+    }
   }, event)
+
+  if (!selectData?.ses?.client)
+    throw new Error('SES is not defined')
 
   async function sendEmail(params: SendEmailCommandInput) {
     const command = new SendEmailCommand(params)
-    const data = await client.send(command)
+    const data = await selectData?.s3?.client?.send(command)
     return data
   }
 
   async function createTemplate(params: CreateTemplateCommandInput) {
     const command = new CreateTemplateCommand(params)
-    const data = await client.send(command)
+    const data = await selectData?.s3?.client?.send(command)
     return data
   }
 
@@ -48,6 +58,6 @@ export async function usePergelSES(
     sendEmail,
     createTemplate,
     templates,
-    client,
+    client: selectData.ses.client,
   }
 }
