@@ -30,22 +30,24 @@ interface MapType {
 
 interface RuntimeConfigType {
   s3?: S3ModuleRuntimeConfig
-  postgressJS?: PostgresJSModuleRuntimeConfig
+  drizzle?: PostgresJSModuleRuntimeConfig
   bullmq?: BullMQModuleRuntimeConfig
   ses?: SesModuleRuntimeConfig
 }
 
+type RuntimeConfigTypeKeys = keyof RuntimeConfigType
+
 const pergelGlobalContext = new Map<string, MapType>()
 
-export async function globalContext(
+export async function globalContext<T extends RuntimeConfigTypeKeys>(
   data: PergelGlobalContext,
-  clientObject: (runtime: RuntimeConfigType) => MapType,
+  clientObject: (runtime: RuntimeConfigType[T]) => MapType,
   event?: H3Event,
   additionalMapValues?: object,
 ) {
   const mergedProjectName = camelCase(`${data.moduleName}-${data.projectName}`)
-  const moduleData = pergelGlobalContext.get(mergedProjectName) as MapType | undefined
-  const { selectProject } = usePergelRuntime<RuntimeConfigType>({
+  let moduleData = pergelGlobalContext.get(mergedProjectName) as MapType
+  const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
     moduleName: data.moduleName,
     projectName: data.projectName,
   }, event)
@@ -57,8 +59,15 @@ export async function globalContext(
     }
   }
 
+  const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
+  if (!returnData)
+    throw new Error(`${data.moduleName} is not defined`)
+
+  moduleData ??= {} as MapType
+  moduleData = returnData as MapType
+
   pergelGlobalContext.set(mergedProjectName, {
-    ...clientObject(selectProject),
+    ...returnData as MapType,
     ...additionalMapValues,
   })
 

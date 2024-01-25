@@ -12,27 +12,29 @@ export interface Credentials {
 export async function usePergelSES(
   this: PergelGlobalContextOmitModule,
   event?: H3Event,
-  params?: PergelGlobalContextOmitModule,
+  params?: {
+    context?: PergelGlobalContextOmitModule
+  },
 ) {
-  const _pergel = params ?? this
+  const context = params?.context ?? this
 
-  if (!_pergel || !_pergel.projectName)
+  if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData } = await globalContext({
+  const { selectData } = await globalContext<'ses'>({
     moduleName: 'ses',
-    projectName: _pergel.projectName,
-  }, ({ ses }) => {
-    if (!ses?.region)
+    projectName: context.projectName,
+  }, (runtime) => {
+    if (!runtime?.region)
       throw new Error('SES is not defined')
 
     return {
       ses: {
         client: new SESClient({
-          region: ses.region,
+          region: runtime.region,
           credentials: {
-            accessKeyId: ses.accessKeyId,
-            secretAccessKey: ses.secretAccessKey,
+            accessKeyId: runtime.accessKeyId,
+            secretAccessKey: runtime.secretAccessKey,
           },
         }),
       },

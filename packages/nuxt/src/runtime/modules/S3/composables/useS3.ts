@@ -32,33 +32,33 @@ export async function usePergelS3(
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData, runtime } = await globalContext({
+  const { selectData, runtime } = await globalContext<'s3'>({
     moduleName: 'S3',
     projectName: context.projectName,
-  }, ({ s3 }) => {
-    if (!s3)
+  }, (runtime) => {
+    if (!runtime)
       throw new Error('S3 is not defined')
 
     return {
       s3: {
         client: new S3Client({
-          region: s3.region,
-          endpoint: s3.endpoint,
+          region: runtime.region,
+          endpoint: runtime.endpoint,
           credentials: {
-            accessKeyId: s3.accessKeyId,
-            secretAccessKey: s3.secretAccessKey,
+            accessKeyId: runtime.accessKeyId,
+            secretAccessKey: runtime.secretAccessKey,
           },
         }),
       },
     }
   }, event)
 
-  if (!selectData?.s3?.client || !runtime.s3)
+  if (!selectData?.s3?.client || !runtime)
     throw new Error('S3 is not defined')
 
   const s3Composables = S3Composables.call({
     client: selectData.s3.client,
-    runtime: runtime.s3,
+    runtime,
   })
 
   return {
