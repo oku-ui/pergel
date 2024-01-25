@@ -2,7 +2,7 @@ import { Redis } from 'ioredis'
 import type { RedisOptions } from 'ioredis'
 import type { H3Event } from 'h3'
 
-import { globalContext } from '../../../../composables/useClient'
+import { globalContext } from '#imports'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function useBullMQRedisClient(

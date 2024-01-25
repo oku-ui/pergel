@@ -5,7 +5,7 @@ import consola from 'consola'
 import { sql } from 'drizzle-orm'
 import type { NitroApp } from 'nitropack'
 import type { PostgresJSOptions } from '../../types'
-import { globalContext } from '../../../../composables/useClient'
+import { globalContext } from '#imports'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function connectPostgresJS(this: PergelGlobalContextOmitModule, params: {

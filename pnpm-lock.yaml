@@ -241,6 +241,9 @@ importers:
       defu:
         specifier: ^6.1.4
         version: 6.1.4
+      globby:
+        specifier: ^14.0.0
+        version: 14.0.0
       local-pkg:
         specifier: ^0.5.0
         version: 0.5.0

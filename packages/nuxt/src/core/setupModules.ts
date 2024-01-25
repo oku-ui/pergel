@@ -1,7 +1,5 @@
 import { join } from 'node:path'
-import { readdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
-import type { Resolver } from '@nuxt/kit'
 import consola from 'consola'
 import { camelCase } from 'scule'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
@@ -26,7 +24,7 @@ class CircularDependencyError extends Error {
   }
 }
 
-async function initModules(nuxt: Nuxt, resolver: Resolver) {
+async function initModules(nuxt: Nuxt) {
   const projects = nuxt._pergel.rootOptions.projects
 
   const prepareModules: PrepareModules = {}
@@ -60,22 +58,14 @@ async function initModules(nuxt: Nuxt, resolver: Resolver) {
         const module = (nuxt._pergel.projects[projectName as any] as any)[moduleName as any]
 
         try {
-          const getIndexExt = () => {
-            const datas = readdirSync(resolver.resolve(join('runtime', 'modules', moduleName)))
-            const indexExt = datas.find(
-              file => file.includes('index')
-              && !file.includes('.d.'),
-            )
-            if (!indexExt)
-              throw new Error(`Module ${moduleName} does not have index file`)
+          const modulePath = nuxt._pergel.resolveModules.find(
+            module => module.name === moduleName,
+          )
 
-            return indexExt
-          }
-          const indexPath = getIndexExt()
+          if (!modulePath)
+            throw new Error(`Module ${moduleName} does not exist`)
 
-          pergelModule = await import(
-            resolver.resolve(join('runtime', 'modules', moduleName, indexPath))
-          ).then(m => m.default).catch((res) => {
+          pergelModule = await import(modulePath.path).then(m => m.default).catch((res) => {
             consola.error(`Module ${moduleName} failed to import`)
             consola.error(res)
           })
@@ -194,7 +184,6 @@ function smartSortModules(projectName: string, modules: PrepareModules): string[
 }
 
 export async function setupModules(data: {
-  resolver: Resolver
   nuxt: Nuxt
 }) {
   const projects = data.nuxt._pergel.rootOptions.projects
@@ -203,7 +192,7 @@ export async function setupModules(data: {
   if (!projects || !(_projects.length > 0))
     return
 
-  const prepareModules = await initModules(data.nuxt, data.resolver)
+  const prepareModules = await initModules(data.nuxt)
 
   for await (const [projectName, _modules] of Object.entries(projects)) {
     const sortedModules = smartSortModules(projectName, prepareModules)

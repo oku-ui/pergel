@@ -1,4 +1,4 @@
-import type { DevtoolsServerContext, ServerFunctions } from './runtime/core/types/devtools'
+import type { DevtoolsServerContext, ServerFunctions } from './core/types/devtools'
 
 export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
   const options = ctx.nuxt._pergel

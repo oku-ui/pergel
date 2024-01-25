@@ -4,9 +4,10 @@ import type { NitroApp } from 'nitropack'
 
 import type { Job } from 'bullmq'
 import { Queue, Worker } from 'bullmq'
-import { getGlobalContextItem } from '../../../../composables/useClient'
+
 import { useBullMQRedisClient } from './useRedis'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
+import { getGlobalContextItem } from '#imports'
 
 export type Scheduler<T extends object> = ReturnType<typeof useScheduler<T>>
 

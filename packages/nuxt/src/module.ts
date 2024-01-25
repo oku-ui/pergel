@@ -1,6 +1,7 @@
 import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import {
+  addImportsDir,
   addServerImportsDir,
   addTemplate,
   createResolver,
@@ -8,6 +9,7 @@ import {
   logger,
 } from '@nuxt/kit'
 import YAML from 'yaml'
+import { globbySync } from 'globby'
 
 import defu from 'defu'
 import type { NuxtConfigLayer } from '@nuxt/schema'
@@ -15,11 +17,12 @@ import type slugify from 'slugify'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
-import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
-import { setupPergel } from './runtime/core/setupPergel'
-import { generateReadmeJson } from './runtime/core/utils/generateYaml'
-import { setupModules } from './runtime/core/setupModules'
-import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
+import { useNitroImports, useNuxtImports } from './core/utils/useImports'
+
+import { setupPergel } from './core/setupPergel'
+import { generateReadmeJson } from './core/utils/generateYaml'
+import { setupModules } from './core/setupModules'
+import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './core/types/nuxtModule'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -81,12 +84,38 @@ export default defineNuxtModule<PergelOptions>({
     }
 
     const _resolver = createResolver(import.meta.url)
+
     await setupPergel({
       options: pergelOptions,
       nuxt,
       resolver: _resolver,
       version,
     })
+
+    async function moduleSetup() {
+      const modules = globbySync('./modules/**/index.@(ts|mjs)', {
+        cwd: _resolver.resolve('./'),
+        onlyFiles: true,
+        deep: 2,
+      })
+
+      const modulesResolve: {
+        name: PergelModuleNames
+        path: string
+      }[] = []
+
+      for await (const module of modules) {
+        const moduleName = module.replace('./modules/', '').replace('/index.ts', '').replace('/index.mjs', '')
+        modulesResolve.push({
+          name: moduleName as PergelModuleNames,
+          path: _resolver.resolve(module),
+        })
+      }
+
+      nuxt._pergel.resolveModules = modulesResolve
+    }
+
+    await moduleSetup()
 
     const { saveNitroImports } = useNitroImports(nuxt)
     const { saveNuxtImports } = useNuxtImports(nuxt)
@@ -107,13 +136,12 @@ export default defineNuxtModule<PergelOptions>({
     const isDevToolsEnabled = typeof nuxt.options.devtools === 'boolean'
       ? nuxt.options.devtools
       : nuxt.options.devtools.enabled
+    addServerImportsDir(_resolver.resolve('./runtime/composables'))
+    addImportsDir(_resolver.resolve('./runtime/composables'))
 
     await setupModules({
       nuxt,
-      resolver: _resolver,
     })
-
-    addServerImportsDir(_resolver.resolve('./runtime/composables'))
 
     saveNitroImports()
     saveNuxtImports()
@@ -132,7 +160,7 @@ export default defineNuxtModule<PergelOptions>({
         write: true,
         getContents: () => /* ts */`
         ${contents}
-        
+
         ${declareModules}
         `.trim(),
       })

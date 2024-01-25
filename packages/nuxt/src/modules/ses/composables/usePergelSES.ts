@@ -1,8 +1,8 @@
 import { CreateTemplateCommand, type CreateTemplateCommandInput, SESClient, SendEmailCommand, type SendEmailCommandInput } from '@aws-sdk/client-ses'
 import type { H3Event } from 'h3'
 import { templates } from '../templates'
-import { globalContext } from '../../../composables/useClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
+import { globalContext } from '#imports'
 
 export interface Credentials {
   accessKeyId: string
