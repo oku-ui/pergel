@@ -1,6 +1,7 @@
 import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import {
+  addServerImportsDir,
   addTemplate,
   createResolver,
   defineNuxtModule,
@@ -111,6 +112,8 @@ export default defineNuxtModule<PergelOptions>({
       nuxt,
       resolver: _resolver,
     })
+
+    addServerImportsDir(_resolver.resolve('./runtime/composables'))
 
     saveNitroImports()
     saveNuxtImports()

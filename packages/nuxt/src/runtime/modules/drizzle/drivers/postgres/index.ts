@@ -28,7 +28,7 @@ export async function setupPostgres(
     drop: false, // Drop database before migration
     seed: false, // Seed database after migration
     migrate: false, // Migrate database
-  }, false, 'pg')
+  }, false)
 
   // Config generation
   const drizzleConfig = /* ts */`// Pergel Drizzle ${projectName} Config - oku-ui.com/pergel

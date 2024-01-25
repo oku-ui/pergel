@@ -29,6 +29,10 @@ export default definePergelModule({
         function ses() {
           return {
             use: usePergelSES.bind(ctx),
+            client: getGlobalContextItem.bind({
+              ...ctx,
+              moduleName: '${options.moduleName}',
+            }),
           }
         }
           `,

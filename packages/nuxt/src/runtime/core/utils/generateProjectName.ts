@@ -1,5 +1,5 @@
-import { firstLetterUppercase } from './utils'
+import { camelCase } from 'scule'
 
-export function generateProjectName(projectName: string, moduleName: string, customName?: string) {
-  return customName ? `${projectName + firstLetterUppercase(moduleName) + firstLetterUppercase(customName)}` : `${projectName + firstLetterUppercase(moduleName)}`
+export function generateProjectName(projectName: string, moduleName: string) {
+  return camelCase(`${projectName}-${moduleName}`)
 }

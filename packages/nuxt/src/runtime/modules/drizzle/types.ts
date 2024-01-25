@@ -150,3 +150,8 @@ export interface PostgresJSOptions {
   // TODO: refactor any type
   options?: Options<any>
 }
+
+export interface PostgresJSModuleRuntimeConfig {
+  url?: string
+  options?: Options<any>
+}

@@ -1,48 +1,64 @@
-import { type PostgresJsDatabase, drizzle } from 'drizzle-orm/postgres-js'
+import { drizzle } from 'drizzle-orm/postgres-js'
 import type { H3Event } from 'h3'
 import postgres from 'postgres'
 import consola from 'consola'
 import { sql } from 'drizzle-orm'
+import type { NitroApp } from 'nitropack'
 import type { PostgresJSOptions } from '../../types'
-import { clientFunctionTemplate } from '../../../../core/useClient'
+import { globalContext } from '../../../../composables/useClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
-const { clientInit } = clientFunctionTemplate<PostgresJsDatabase, PostgresJSOptions>('drizzle')
-
-export async function connectPostgresJS(this: PergelGlobalContextOmitModule, ctx: {
+export async function connectPostgresJS(this: PergelGlobalContextOmitModule, params: {
   pgOptions?: PostgresJSOptions
   event?: H3Event
-  pergel?: PergelGlobalContextOmitModule
+  context?: PergelGlobalContextOmitModule
   drizzleConfig?: Parameters<typeof drizzle>[1]
+  nitro?: NitroApp
 }) {
-  const _pergel = ctx.pergel ?? this
+  const context = params.context ?? this
 
-  if (!_pergel || !_pergel.projectName)
+  if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { client } = await clientInit(_pergel, (runtime) => {
-    if (runtime.url)
-      return drizzle(postgres(runtime.url, ctx.pgOptions?.options), ctx.drizzleConfig)
+  const { selectData } = await globalContext<'drizzle'>({
+    moduleName: 'drizzle',
+    projectName: context.projectName,
+  }, (runtime) => {
+    let pg: postgres.Sql | undefined
+
+    if (runtime?.url)
+      pg = postgres(runtime?.url, params.pgOptions?.options)
 
     else if (process.env.POSTGRES_URL)
-      return drizzle(postgres(process.env.POSTGRES_URL, ctx.pgOptions?.options), ctx.drizzleConfig)
+      pg = postgres(process.env.POSTGRES_URL, params.pgOptions?.options)
 
-    else if (ctx.pgOptions?.options)
-      return drizzle(postgres(ctx.pgOptions.options), ctx.drizzleConfig)
+    else if (params.pgOptions?.options)
+      pg = postgres(params.pgOptions.options)
 
-    else
+    if (!pg)
       throw new Error('PostgresJS is not defined')
-  }, ctx.event, undefined, 'pg')
 
-  if (!client)
+    return {
+      drizzle: {
+        postgressJSClient: drizzle(pg, params.drizzleConfig),
+      },
+    }
+  }, params.event)
+
+  if (!selectData?.drizzle?.postgressJSClient)
     throw new Error('PostgresJS is not defined')
 
-  client.execute(sql`SELECT 1;`).catch((e) => {
-    if (e.code === 'ECONNREFUSED')
-      consola.error('PostgresJS is not running, please start postgres and try again')
-    else
-      consola.error(e)
-  })
+  selectData.drizzle.postgressJSClient
+    .execute(sql`SELECT 1;`)
+    .then(() => {
+      consola.success('PostgresJS is connected')
+    })
+    .catch((e) => {
+      if (e.code === 'ECONNREFUSED')
+        consola.error('PostgresJS is not running, please start postgres and try again')
+      else
+        consola.error(e)
+    })
 
-  return client
+  return selectData.drizzle.postgressJSClient
 }
