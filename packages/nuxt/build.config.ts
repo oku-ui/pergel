@@ -45,23 +45,22 @@ export const external = [
   ...externalBox,
 ]
 export default defineBuildConfig([
-  // Auto preset
   {
-    clean: true,
     entries: [
-      { input: 'src/modules/', outDir: `dist/modules`, ext: 'mjs' },
-      { input: 'src/core/', outDir: `dist/core`, ext: 'mjs' },
+      { input: './src/modules/', outDir: `dist/modules`, ext: 'mjs' },
+      { input: './src/core/', outDir: `dist/core`, ext: 'mjs' },
     ],
     externals: [
       ...external,
     ],
-    // rollup: {
-    //   inlineDependencies: true,
-    //   output: {
-    //     preserveModules: true,
-    //     strict: true,
-    //     preserveModulesRoot: 'src',
-    //   },
-    // },
+    rollup: {
+      esbuild: {
+        target: 'esnext',
+      },
+      emitCJS: true,
+      cjsBridge: true,
+      inlineDependencies: false,
+    },
+    failOnWarn: false,
   },
 ])

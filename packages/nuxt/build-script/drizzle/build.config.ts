@@ -6,14 +6,14 @@ export default defineBuildConfig([
   {
     entries: [
       {
-        input: '../../src/runtime/modules/drizzle/templates',
+        input: '../../src/modules/drizzle/templates',
         builder: 'mkdist',
         format: 'cjs',
         ext: 'cjs',
         outDir: '../../lib/drizzle/schema',
       },
       {
-        input: '../../src/runtime/modules/drizzle/templates',
+        input: '../../src/modules/drizzle/templates',
         builder: 'mkdist',
         format: 'esm',
         outDir: '../../lib/drizzle/schema',
