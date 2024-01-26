@@ -6,7 +6,7 @@ import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle
 import type { LuciaModuleOptions } from '../../modules/lucia/types'
 import type { BoxOptions, ResolvedBoxOptions } from '../../modules/box/types'
 
-import type { ComposeSpecification } from '../../moduleTypes/compose-spec-type'
+import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
 import type { UserModuleOptions } from './module'
 

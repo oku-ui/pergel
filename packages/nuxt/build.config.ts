@@ -1,6 +1,12 @@
+import path, { join } from 'node:path'
+import { readFileSync } from 'node:fs'
 import { defineBuildConfig } from 'unbuild'
 
 import pkgBox from '../box/package.json'
+
+const version = JSON.parse(
+  readFileSync(join(__dirname, 'package.json'), 'utf-8'),
+).version
 
 const externalBox = Object.keys(pkgBox.dependencies)
 
@@ -46,20 +52,21 @@ export const external = [
 ]
 export default defineBuildConfig([
   {
-    entries: [
-      { input: './src/modules/', outDir: `dist/modules`, ext: 'mjs' },
-      { input: './src/core/', outDir: `dist/core`, ext: 'mjs' },
-    ],
     externals: [
       ...external,
     ],
     rollup: {
-      esbuild: {
-        target: 'esnext',
+      alias: {
+        entries: [
+          { find: '@/', replacement: path.resolve(__dirname, 'src/') },
+        ],
       },
-      emitCJS: true,
-      cjsBridge: true,
-      inlineDependencies: false,
+    },
+    alias: {
+      '@/': path.resolve(__dirname, 'src/'),
+    },
+    replace: {
+      __VERSION__: JSON.stringify(version),
     },
     failOnWarn: false,
   },

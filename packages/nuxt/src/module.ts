@@ -17,12 +17,12 @@ import type slugify from 'slugify'
 import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
-import { useNitroImports, useNuxtImports } from './core/utils/useImports'
+import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
 
-import { setupPergel } from './core/setupPergel'
-import { generateReadmeJson } from './core/utils/generateYaml'
-import { setupModules } from './core/setupModules'
-import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './core/types/nuxtModule'
+import { setupPergel } from './runtime/core/setupPergel'
+import { generateReadmeJson } from './runtime/core/utils/generateYaml'
+import { setupModules } from './runtime/core/setupModules'
+import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {

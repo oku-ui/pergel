@@ -7,7 +7,7 @@ import {
 import type {
   ClientFunctions,
   ServerFunctions,
-} from './core/types/devtools'
+} from './runtime/core/types/devtools'
 
 import { setupRPC } from './rpc'
 import {
@@ -19,7 +19,7 @@ import {
   DEVTOOLS_UI_PORT,
 } from './constants'
 import { useViteWebSocket } from './useViteWebSocket'
-import type { NuxtPergel, PergelOptions } from './core/types/nuxtModule'
+import type { NuxtPergel, PergelOptions } from './runtime/core/types/nuxtModule'
 
 export function setupDevToolsUI(
   options: PergelOptions,
