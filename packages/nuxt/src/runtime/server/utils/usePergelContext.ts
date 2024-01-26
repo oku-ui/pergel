@@ -1,5 +1,4 @@
 import type { H3Event } from 'h3'
-import { camelCase } from 'scule'
 
 import type { S3ModuleRuntimeConfig } from '../../modules/S3/types'
 import type { PostgresJSModuleRuntimeConfig } from '../../modules/drizzle/types'
@@ -24,10 +23,10 @@ export async function usePergelContext<T extends RuntimeConfigTypeKeys>(
   event: H3Event | false,
   additionalMapValues?: object,
 ) {
-  const mergedProjectName = camelCase(`${data.moduleName}-${data.projectName}`)
+  // const mergedProjectName = camelCase(`${data.moduleName}-${data.projectName}`)
 
   if (event) {
-    let moduleData = event.context.pergelContext[mergedProjectName] as PergelH3ContextItem
+    let moduleData = event.context.pergelContext[data.projectName] as PergelH3ContextItem
     const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
       moduleName: data.moduleName,
       projectName: data.projectName,
@@ -47,7 +46,7 @@ export async function usePergelContext<T extends RuntimeConfigTypeKeys>(
     moduleData ??= {} as PergelH3ContextItem
     moduleData = returnData as PergelH3ContextItem
 
-    event.context.pergelContext[mergedProjectName] = {
+    event.context.pergelContext[data.projectName] = {
       ...returnData as PergelH3ContextItem,
       ...additionalMapValues,
     }
