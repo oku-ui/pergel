@@ -5,7 +5,6 @@ import {
   addPlugin,
   addServerHandler,
   addServerImportsDir,
-  addServerPlugin,
   addTemplate,
   createResolver,
   defineNuxtModule,

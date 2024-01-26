@@ -77,6 +77,7 @@ export async function globalContext<T extends RuntimeConfigTypeKeys>(
     }
   }
   else {
+    // @ts-ignore
     const context = useGlobalContext()
     const moduleData = context[mergedProjectName] as MapType
     const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
