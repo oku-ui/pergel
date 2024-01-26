@@ -69,12 +69,12 @@ export async function nitroGraphqlYogaPlugin<Context extends Record<string, any>
       },
     }
 
-    await onBeforeOptions?.(beforeHandle)
+    await onBeforeOptions?.(beforeHandle, event)
 
     // Create Yoga instance
     const yogaInstance = createYoga(graphQLOptions)
 
-    await onAfterOptions?.(yogaInstance)
+    await onAfterOptions?.(yogaInstance, event)
     let context: Partial<Context> = {}
 
     const beforeHandleContext: GraphqlYogaContextOptions<Context> = {
@@ -93,7 +93,7 @@ export async function nitroGraphqlYogaPlugin<Context extends Record<string, any>
       },
     }
 
-    await onBeforeContext?.(beforeHandleContext)
+    await onBeforeContext?.(beforeHandleContext, event)
 
     yogaStore.set(pathname, {
       instance: yogaInstance,

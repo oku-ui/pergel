@@ -213,9 +213,9 @@ export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedPe
 export interface GraphQLYogaOptions<Context extends Record<string, any> = object> {
   onSuccess?: (event: H3Event, result: { user: any, tokens: any }) => Promise<void> | void
   onError?: (event: H3Event, error: H3Error) => Promise<void> | void
-  onBeforeOptions?: (options: GraphqlYogaHandleOptions) => Promise<void> | void
-  onAfterOptions?: (serverInstance: YogaServerInstance<any, any>) => Promise<void> | void
-  onBeforeContext?: (options: GraphqlYogaContextOptions<Context>) => Promise<void> | void
+  onBeforeOptions?: (options: GraphqlYogaHandleOptions, event: H3Event) => Promise<void> | void
+  onAfterOptions?: (serverInstance: YogaServerInstance<any, any>, event: H3Event) => Promise<void> | void
+  onBeforeContext?: (options: GraphqlYogaContextOptions<Context>, event: H3Event) => Promise<void> | void
 }
 
 export interface ApolloSandBoxOptions extends Omit<EmbeddableSandboxOptions, 'target' | 'initialEndpoint'> {
