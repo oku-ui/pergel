@@ -24,10 +24,12 @@ import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function usePergelS3(
   this: PergelGlobalContextOmitModule,
-  pergel?: PergelGlobalContextOmitModule,
-  event?: H3Event,
+  params: {
+    pergel?: PergelGlobalContextOmitModule
+    event: H3Event | false
+  },
 ) {
-  const context = pergel || this
+  const context = params.pergel || this
 
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
@@ -51,7 +53,7 @@ export async function usePergelS3(
         }),
       },
     }
-  }, event)
+  }, params.event)
 
   if (!selectData?.s3?.client || !runtime)
     throw new Error('S3 is not defined')

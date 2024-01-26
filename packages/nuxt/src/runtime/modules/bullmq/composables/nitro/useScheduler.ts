@@ -22,9 +22,11 @@ export function useScheduler<T extends object>(
   this: PergelGlobalContextOmitModule & {
     nitro?: NitroApp
   },
-  pergel?: PergelGlobalContextOmitModule,
+  params: {
+    pergel?: PergelGlobalContextOmitModule
+  },
 ) {
-  const _pergel: PergelGlobalContextOmitModule = pergel || this
+  const _pergel: PergelGlobalContextOmitModule = params.pergel || this
 
   if (!_pergel)
     throw new Error('Pergel not found')
@@ -125,6 +127,7 @@ export function useScheduler<T extends object>(
         maxRetriesPerRequest: null,
         enableReadyCheck: false,
       },
+      event: false,
     })
 
     if (client && !redisConnection)

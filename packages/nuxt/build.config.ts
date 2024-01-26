@@ -1,4 +1,4 @@
-import path, { join } from 'node:path'
+import { join } from 'node:path'
 import { readFileSync } from 'node:fs'
 import { defineBuildConfig } from 'unbuild'
 
@@ -55,16 +55,6 @@ export default defineBuildConfig([
     externals: [
       ...external,
     ],
-    rollup: {
-      alias: {
-        entries: [
-          { find: '@/', replacement: path.resolve(__dirname, 'src/') },
-        ],
-      },
-    },
-    alias: {
-      '@/': path.resolve(__dirname, 'src/'),
-    },
     replace: {
       __VERSION__: JSON.stringify(version),
     },

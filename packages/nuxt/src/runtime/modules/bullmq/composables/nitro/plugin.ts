@@ -18,8 +18,12 @@ export function definePergelNitroBullMQPlugin<T extends object>(
   return defineNitroPlugin(async (nitro) => {
     data.setup({
       useScheduler: () => useScheduler.call({
-        ...data.pergel || this,
         nitro,
+        ...data.pergel || this,
+      }, {
+        pergel: {
+          ...data.pergel || this,
+        },
       }) as Scheduler<T>,
 
     }, nitro)

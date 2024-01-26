@@ -3,17 +3,15 @@ import type { H3Event } from 'h3'
 import postgres from 'postgres'
 import consola from 'consola'
 import { sql } from 'drizzle-orm'
-import type { NitroApp } from 'nitropack'
 import type { PostgresJSOptions } from '../../types'
 import { globalContext } from '#imports'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function connectPostgresJS(this: PergelGlobalContextOmitModule, params: {
   pgOptions?: PostgresJSOptions
-  event?: H3Event
+  event: H3Event | false
   context?: PergelGlobalContextOmitModule
   drizzleConfig?: Parameters<typeof drizzle>[1]
-  nitro?: NitroApp
 }) {
   const context = params.context ?? this
 

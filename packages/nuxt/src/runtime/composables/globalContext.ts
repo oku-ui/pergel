@@ -12,6 +12,7 @@ import { usePergelRuntime } from '../core/utils/usePergelRuntime'
 import type { BullMQModuleRuntimeConfig } from '../modules/bullmq/types'
 import type { SesModuleRuntimeConfig } from '../modules/ses/types'
 import type { PergelGlobalContext } from '#pergel/types'
+import { useGlobalContext } from '#imports'
 
 interface MapType {
   s3?: {
@@ -37,50 +38,81 @@ interface RuntimeConfigType {
 
 type RuntimeConfigTypeKeys = keyof RuntimeConfigType
 
-const pergelGlobalContext = new Map<string, MapType>()
-
 export async function globalContext<T extends RuntimeConfigTypeKeys>(
   data: PergelGlobalContext,
   clientObject: (runtime: RuntimeConfigType[T]) => MapType,
-  event?: H3Event,
+  event: H3Event | false,
   additionalMapValues?: object,
 ) {
   const mergedProjectName = camelCase(`${data.moduleName}-${data.projectName}`)
-  let moduleData = pergelGlobalContext.get(mergedProjectName) as MapType
-  const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
-    moduleName: data.moduleName,
-    projectName: data.projectName,
-  }, event)
 
-  if (moduleData) {
+  if (event) {
+    let moduleData = event.context.globalModuleContext[mergedProjectName] as MapType
+    const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
+      moduleName: data.moduleName,
+      projectName: data.projectName,
+    }, event)
+
+    if (moduleData) {
+      return {
+        selectData: moduleData,
+        runtime: selectProject,
+      }
+    }
+
+    const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
+    if (!returnData)
+      throw new Error(`${data.moduleName} is not defined`)
+
+    moduleData ??= {} as MapType
+    moduleData = returnData as MapType
+
+    event.context.globalModuleContext[mergedProjectName] = {
+      ...returnData as MapType,
+      ...additionalMapValues,
+    }
+
     return {
       selectData: moduleData,
       runtime: selectProject,
     }
   }
+  else {
+    const context = useGlobalContext()
+    const moduleData = context[mergedProjectName] as MapType
+    const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
+      moduleName: data.moduleName,
+      projectName: data.projectName,
+    })
 
-  const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
-  if (!returnData)
-    throw new Error(`${data.moduleName} is not defined`)
+    if (moduleData) {
+      return {
+        selectData: moduleData,
+        runtime: selectProject,
+      }
+    }
 
-  moduleData ??= {} as MapType
-  moduleData = returnData as MapType
+    const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
+    if (!returnData)
+      throw new Error(`${data.moduleName} is not defined`)
 
-  pergelGlobalContext.set(mergedProjectName, {
-    ...returnData as MapType,
-    ...additionalMapValues,
-  })
+    context[mergedProjectName] = {
+      ...returnData as MapType,
+      ...additionalMapValues,
+    }
 
-  return {
-    selectData: moduleData,
-    runtime: selectProject,
+    return {
+      selectData: returnData as MapType,
+      runtime: selectProject,
+    }
   }
 }
 
 export function getGlobalContextItem(this: {
   projectName: string
   moduleName: string
+  event?: H3Event
 }) {
   const mergedProjectName = camelCase(`${this.moduleName}-${this.projectName}`)
-  return pergelGlobalContext.get(mergedProjectName)
+  return this.event?.context.globalModuleContext[mergedProjectName]
 }

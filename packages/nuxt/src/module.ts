@@ -2,6 +2,7 @@ import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import {
   addImportsDir,
+  addServerHandler,
   addServerImportsDir,
   addTemplate,
   createResolver,
@@ -35,6 +36,14 @@ export interface ModulePublicRuntimeConfig {
 
 declare module '@nuxt/schema' {
   interface PublicRuntimeConfig extends ModulePublicRuntimeConfig { }
+}
+
+declare module 'h3' {
+  interface H3EventContext {
+    globalModuleContext: {
+      [key: string]: any
+    }
+  }
 }
 
 export default defineNuxtModule<PergelOptions>({
@@ -136,7 +145,11 @@ export default defineNuxtModule<PergelOptions>({
     const isDevToolsEnabled = typeof nuxt.options.devtools === 'boolean'
       ? nuxt.options.devtools
       : nuxt.options.devtools.enabled
-    addServerImportsDir(_resolver.resolve('./runtime/composables'))
+
+    addServerImportsDir(_resolver.resolve('./runtime/composables'), {
+      prepend: true,
+    })
+
     addImportsDir(_resolver.resolve('./runtime/composables'))
 
     await setupModules({
@@ -148,6 +161,11 @@ export default defineNuxtModule<PergelOptions>({
 
     generateReadmeJson({
       nuxt,
+    })
+
+    addServerHandler({
+      handler: _resolver.resolve('./runtime/serverContext'),
+      middleware: true,
     })
 
     nuxt._pergel.devServerHandler.forEach(({ fn }) => fn())

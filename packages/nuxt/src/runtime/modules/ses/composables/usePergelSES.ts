@@ -11,8 +11,8 @@ export interface Credentials {
 
 export async function usePergelSES(
   this: PergelGlobalContextOmitModule,
-  event?: H3Event,
-  params?: {
+  params: {
+    event: H3Event | false
     context?: PergelGlobalContextOmitModule
   },
 ) {
@@ -39,7 +39,7 @@ export async function usePergelSES(
         }),
       },
     }
-  }, event)
+  }, params.event)
 
   if (!selectData?.ses?.client)
     throw new Error('SES is not defined')

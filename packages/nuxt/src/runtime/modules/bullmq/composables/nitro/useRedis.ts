@@ -10,7 +10,7 @@ export async function useBullMQRedisClient(
   params: {
     options: RedisOptions
     context?: PergelGlobalContextOmitModule
-    event?: H3Event
+    event: H3Event | false
   },
 ) {
   const context = params.context ?? this
