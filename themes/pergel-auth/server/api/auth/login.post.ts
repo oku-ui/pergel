@@ -2,7 +2,9 @@ import { Argon2id } from 'oslo/password'
 import { auth } from '#changeName/lucia'
 
 export default eventHandler(async (event) => {
-  const db = await pergelChangeName().drizzle().postgresjs().connect({})
+  const db = await pergelChangeName().drizzle().postgresjs().connect({
+    event,
+  })
   const body = await readBody(event)
   const username = body.username
   if (

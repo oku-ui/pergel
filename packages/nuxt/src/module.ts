@@ -1,6 +1,9 @@
 import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import {
+  addImportsDir,
+  addPlugin,
+  addServerHandler,
   addServerImportsDir,
   addTemplate,
   createResolver,
@@ -8,6 +11,7 @@ import {
   logger,
 } from '@nuxt/kit'
 import YAML from 'yaml'
+import { globbySync } from 'globby'
 
 import defu from 'defu'
 import type { NuxtConfigLayer } from '@nuxt/schema'
@@ -16,10 +20,12 @@ import { version } from '../package.json'
 import { setupDevToolsUI } from './devtools'
 import { DEVTOOLS_MODULE_KEY, DEVTOOLS_MODULE_NAME } from './constants'
 import { useNitroImports, useNuxtImports } from './runtime/core/utils/useImports'
+
 import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
-import type { PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
+import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
+import type { PergelH3ContextItem } from './runtime/modules'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -32,6 +38,14 @@ export interface ModulePublicRuntimeConfig {
 
 declare module '@nuxt/schema' {
   interface PublicRuntimeConfig extends ModulePublicRuntimeConfig { }
+}
+
+declare module 'h3' {
+  interface H3EventContext {
+    pergelContext: {
+      [key: string]: PergelH3ContextItem
+    }
+  }
 }
 
 export default defineNuxtModule<PergelOptions>({
@@ -81,12 +95,66 @@ export default defineNuxtModule<PergelOptions>({
     }
 
     const _resolver = createResolver(import.meta.url)
+
+    addServerImportsDir(_resolver.resolve('./runtime/composables'))
+
+    // Nitro auto imports
+    nuxt.hook('nitro:config', (config) => {
+      if (config.imports) {
+        config.imports.imports = config.imports.imports || []
+
+        config.imports.imports.push({
+          name: 'usePergelContext',
+          from: _resolver.resolve('./runtime/server/utils/usePergelContext'),
+        })
+
+        config.imports.imports.push({
+          name: 'getPergelContext',
+          from: _resolver.resolve('./runtime/server/utils/getPergelContext'),
+        })
+
+        config.alias = config.alias || {}
+
+        config.alias['#pergel/usePergelContext'] = _resolver.resolve(
+          './runtime/server/utils/usePergelContext',
+        )
+      }
+    })
+
+    addImportsDir(_resolver.resolve('./runtime/composables'))
+    addPlugin(_resolver.resolve('./runtime/plugin'))
+
     await setupPergel({
       options: pergelOptions,
       nuxt,
       resolver: _resolver,
       version,
     })
+
+    async function moduleSetup() {
+      const modules = globbySync('./runtime/modules/**/index.@(ts|mjs)', {
+        cwd: _resolver.resolve('./'),
+        onlyFiles: true,
+        deep: 2,
+      })
+
+      const modulesResolve: {
+        name: PergelModuleNames
+        path: string
+      }[] = []
+
+      for await (const module of modules) {
+        const moduleName = module.replace('./runtime/modules/', '').replace('/index.ts', '').replace('/index.mjs', '')
+        modulesResolve.push({
+          name: moduleName as PergelModuleNames,
+          path: _resolver.resolve(module),
+        })
+      }
+
+      nuxt._pergel.resolveModules = modulesResolve
+    }
+
+    await moduleSetup()
 
     const { saveNitroImports } = useNitroImports(nuxt)
     const { saveNuxtImports } = useNuxtImports(nuxt)
@@ -110,16 +178,18 @@ export default defineNuxtModule<PergelOptions>({
 
     await setupModules({
       nuxt,
-      resolver: _resolver,
     })
-
-    addServerImportsDir(_resolver.resolve('./runtime/composables'))
 
     saveNitroImports()
     saveNuxtImports()
 
     generateReadmeJson({
       nuxt,
+    })
+
+    addServerHandler({
+      handler: _resolver.resolve('./runtime/serverContext'),
+      middleware: true,
     })
 
     nuxt._pergel.devServerHandler.forEach(({ fn }) => fn())
@@ -132,7 +202,7 @@ export default defineNuxtModule<PergelOptions>({
         write: true,
         getContents: () => /* ts */`
         ${contents}
-        
+
         ${declareModules}
         `.trim(),
       })

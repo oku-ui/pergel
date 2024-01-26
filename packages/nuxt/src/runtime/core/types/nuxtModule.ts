@@ -24,7 +24,6 @@ export interface PergelNuxtModules {
   ionic?: true | IonicInterface
 }
 
-// @MODULE
 export interface ResolvedPergelNuxtModuleConfig {
   S3?: true
   ses?: true
@@ -226,6 +225,11 @@ export interface ResolvedPergelOptions {
     rootModuleDir: string
     projectName: string
     moduleName: string
+  }[]
+
+  resolveModules: {
+    name: PergelModuleNames
+    path: string
   }[]
 }
 

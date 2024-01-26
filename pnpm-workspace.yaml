@@ -1,6 +1,6 @@
 packages:
   - playground
-  - 'packages/**'
+  - 'packages/**/*'
   - 'test/fixtures/*'
   - .histoire
   - 'themes/**'

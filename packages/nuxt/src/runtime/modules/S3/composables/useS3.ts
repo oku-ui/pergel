@@ -18,21 +18,23 @@ import type {
 } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import type { S3ModuleRuntimeConfig } from '../types'
-import { globalContext } from '../../../composables/useClient'
 import type { PartinalKey } from '../../../core/types/module'
+import { usePergelContext } from '../../../server/utils/usePergelContext'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function usePergelS3(
   this: PergelGlobalContextOmitModule,
-  pergel?: PergelGlobalContextOmitModule,
-  event?: H3Event,
+  params: {
+    pergel?: PergelGlobalContextOmitModule
+    event: H3Event | false
+  },
 ) {
-  const context = pergel || this
+  const context = params.pergel || this
 
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData, runtime } = await globalContext<'s3'>({
+  const { selectData, runtime } = await usePergelContext<'s3'>({
     moduleName: 'S3',
     projectName: context.projectName,
   }, (runtime) => {
@@ -51,7 +53,7 @@ export async function usePergelS3(
         }),
       },
     }
-  }, event)
+  }, params.event)
 
   if (!selectData?.s3?.client || !runtime)
     throw new Error('S3 is not defined')

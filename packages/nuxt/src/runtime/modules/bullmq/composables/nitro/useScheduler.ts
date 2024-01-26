@@ -4,8 +4,10 @@ import type { NitroApp } from 'nitropack'
 
 import type { Job } from 'bullmq'
 import { Queue, Worker } from 'bullmq'
-import { getGlobalContextItem } from '../../../../composables/useClient'
-import { useBullMQRedisClient } from './useRedis'
+import type { H3Event } from 'h3'
+
+import { getPergelContext } from '../../../../server/utils/getPergelContext'
+import { useBullMQRedisClient } from './useBullMQRedisClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export type Scheduler<T extends object> = ReturnType<typeof useScheduler<T>>
@@ -21,17 +23,27 @@ export function useScheduler<T extends object>(
   this: PergelGlobalContextOmitModule & {
     nitro?: NitroApp
   },
-  pergel?: PergelGlobalContextOmitModule,
+  params: {
+    pergel?: PergelGlobalContextOmitModule
+    /**
+     * If server/plugin in used, event false
+     */
+    event: H3Event | false
+  },
 ) {
-  const _pergel: PergelGlobalContextOmitModule = pergel || this
+  const _pergel: PergelGlobalContextOmitModule = params.pergel || this
 
   if (!_pergel)
     throw new Error('Pergel not found')
 
-  let redisConnection = getGlobalContextItem.call({
-    ..._pergel,
-    moduleName: 'bullmq',
-  })?.bullmq?.client || null
+  let redisConnection = params.event
+    ? getPergelContext.call({
+      moduleName: 'bullmq',
+      projectName: _pergel.projectName,
+    }, {
+      event: params.event,
+    })?.bullmq?.client || null
+    : null
 
   function onErrorDefault(source: string) {
     return (error: Error) => {
@@ -124,6 +136,7 @@ export function useScheduler<T extends object>(
         maxRetriesPerRequest: null,
         enableReadyCheck: false,
       },
+      event: false,
     })
 
     if (client && !redisConnection)

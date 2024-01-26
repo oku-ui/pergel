@@ -1,8 +1,14 @@
+import { join } from 'node:path'
+import { readFileSync } from 'node:fs'
 import { defineBuildConfig } from 'unbuild'
 
 import pkgBox from '../box/package.json'
+import graphql from '../graphql/package.json'
+import s3 from '../s3/package.json'
 
-const externalBox = Object.keys(pkgBox.dependencies)
+const version = JSON.parse(
+  readFileSync(join(__dirname, 'package.json'), 'utf-8'),
+).version
 
 export const external = [
   'consola',
@@ -25,30 +31,39 @@ export const external = [
   'lucia',
   '@lucia-auth/adapter-drizzle',
   '@lucia-auth/adapter-postgresql',
+  'chokidar',
+  '@nuxt/kit',
+  '@nuxt/schema',
+  'globby',
   'fsevents',
   'node:path',
   'node:fs',
+  '@pergel/cli/types',
+  'defu',
+  'pathe',
   'node:http',
   'node:child_process',
   'node:stream',
   'node:url',
   'slugify',
+  'c12',
+  'ioredis',
+  '#pergel-useGlobalContext',
+  '#pergel-usePergelState',
   '@pergel/module-box',
-  ...externalBox,
+  '@aws-sdk/client-ses',
+  ...Object.keys(pkgBox.dependencies),
+  ...Object.keys(graphql.dependencies),
+  ...Object.keys(s3.dependencies),
 ]
 export default defineBuildConfig([
-  // Auto preset
   {
     externals: [
       ...external,
     ],
-    rollup: {
-      inlineDependencies: true,
-      output: {
-        preserveModules: true,
-        strict: true,
-        preserveModulesRoot: 'src',
-      },
+    replace: {
+      __VERSION__: JSON.stringify(version),
     },
+    failOnWarn: false,
   },
 ])

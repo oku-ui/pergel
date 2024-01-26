@@ -46,7 +46,7 @@ export default definePergelModule({
       content: /* TypeScript */ `
           function S3() {
             return {
-              client: getGlobalContextItem.bind({
+              client: getPergelContext.bind({
                 ...ctx,
                 moduleName: '${options.moduleName}',
               }),

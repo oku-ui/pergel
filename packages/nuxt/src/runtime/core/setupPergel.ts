@@ -145,6 +145,7 @@ export async function setupPergel(
     debug: false,
     serverDir: resolve(resolveDir, serverDir),
     watchDirs: [],
+    resolveModules: [],
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }
