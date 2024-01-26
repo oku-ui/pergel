@@ -3,12 +3,12 @@ import { readFileSync } from 'node:fs'
 import { defineBuildConfig } from 'unbuild'
 
 import pkgBox from '../box/package.json'
+import graphql from '../graphql/package.json'
+import s3 from '../s3/package.json'
 
 const version = JSON.parse(
   readFileSync(join(__dirname, 'package.json'), 'utf-8'),
 ).version
-
-const externalBox = Object.keys(pkgBox.dependencies)
 
 export const external = [
   'consola',
@@ -47,10 +47,13 @@ export const external = [
   'node:url',
   'slugify',
   'c12',
+  'ioredis',
   '#pergel-useGlobalContext',
   '#pergel-usePergelState',
   '@pergel/module-box',
-  ...externalBox,
+  ...Object.keys(pkgBox.dependencies),
+  ...Object.keys(graphql.dependencies),
+  ...Object.keys(s3.dependencies),
 ]
 export default defineBuildConfig([
   {
