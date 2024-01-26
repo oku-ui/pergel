@@ -93,7 +93,7 @@ export default defineNuxtModule<PergelOptions>({
     })
 
     async function moduleSetup() {
-      const modules = globbySync('./modules/**/index.@(ts|mjs)', {
+      const modules = globbySync('./runtime/modules/**/index.@(ts|mjs)', {
         cwd: _resolver.resolve('./'),
         onlyFiles: true,
         deep: 2,
@@ -105,7 +105,7 @@ export default defineNuxtModule<PergelOptions>({
       }[] = []
 
       for await (const module of modules) {
-        const moduleName = module.replace('./modules/', '').replace('/index.ts', '').replace('/index.mjs', '')
+        const moduleName = module.replace('./runtime/modules/', '').replace('/index.ts', '').replace('/index.mjs', '')
         modulesResolve.push({
           name: moduleName as PergelModuleNames,
           path: _resolver.resolve(module),
