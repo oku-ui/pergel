@@ -36,7 +36,7 @@ export function generatePergelTemplate(
   }
 
   for (const [projectName, value] of Object.entries(functionsContents)) {
-    const funcName = camelCase(`pergel${firstLetterUppercase(projectName)}`)
+    const funcName = camelCase(`pergel-${projectName}`)
 
     /**
      * Export pergel function

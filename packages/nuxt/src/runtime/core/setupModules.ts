@@ -93,8 +93,8 @@ async function initModules(nuxt: Nuxt) {
             projectName,
             rootModuleDir: join(nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
             serverDir: join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
-            projectNameCamelCase: camelCase(`${firstLetterUppercase(projectName)}`, { normalize: true }),
-            projectNameCamelCaseWithPergel: camelCase(`pergel${firstLetterUppercase(projectName)}`, { normalize: true }),
+            projectNameCamelCase: camelCase(projectName, { normalize: true }),
+            projectNameCamelCaseWithPergel: camelCase(`pergel-${projectName}`, { normalize: true }),
           },
           rootOptions: module,
         })
@@ -263,8 +263,8 @@ export async function setupModules(data: {
           projectName,
           rootModuleDir: join(data.nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
           serverDir: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
-          projectNameCamelCase: camelCase(`${firstLetterUppercase(projectName)}`),
-          projectNameCamelCaseWithPergel: camelCase(`pergel${firstLetterUppercase(projectName)}`),
+          projectNameCamelCase: camelCase(projectName, { normalize: true }),
+          projectNameCamelCaseWithPergel: camelCase(`pergel-${projectName}`, { normalize: true }),
         },
         rootOptions: module,
       })
