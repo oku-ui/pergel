@@ -1,6 +1,8 @@
 export default defineEventHandler(async (event) => {
   try {
-    const { sendEmail, templates } = await pergelRocket().ses().use(event)
+    const { sendEmail, templates } = await pergelRocket().ses().use({
+      event,
+    })
 
     const _emailParams = {
       Destination: {
