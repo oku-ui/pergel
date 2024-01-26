@@ -2,7 +2,7 @@ import { Redis } from 'ioredis'
 import type { RedisOptions } from 'ioredis'
 import type { H3Event } from 'h3'
 
-import { usePergelState } from '#pergel-usePergelState'
+import { usePergelContext } from '../../../../server/utils/usePergelContext'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function useBullMQRedisClient(
@@ -18,7 +18,7 @@ export async function useBullMQRedisClient(
   if (!context || !context.projectName)
     throw new Error('Pergel BullMQ is not defined')
 
-  const { selectData } = await usePergelState<'bullmq'>({
+  const { selectData } = await usePergelContext<'bullmq'>({
     projectName: context.projectName,
     moduleName: 'bullmq',
   }, (runtime) => {

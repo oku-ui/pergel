@@ -41,7 +41,7 @@ declare module '@nuxt/schema' {
 
 declare module 'h3' {
   interface H3EventContext {
-    globalModuleContext: {
+    pergelContext: {
       [key: string]: any
     }
   }
@@ -103,19 +103,19 @@ export default defineNuxtModule<PergelOptions>({
         config.imports.imports = config.imports.imports || []
 
         config.imports.imports.push({
-          name: 'usePergelState',
-          from: _resolver.resolve('./runtime/server/utils/usePergelState'),
+          name: 'usePergelContext',
+          from: _resolver.resolve('./runtime/server/utils/usePergelContext'),
         })
 
         config.imports.imports.push({
-          name: 'getGlobalContextItem',
-          from: _resolver.resolve('./runtime/server/utils/getGlobalContextItem'),
+          name: 'getPergelContext',
+          from: _resolver.resolve('./runtime/server/utils/getPergelContext'),
         })
 
         config.alias = config.alias || {}
 
-        config.alias['#pergel-usePergelState'] = _resolver.resolve(
-          './runtime/server/utils/usePergelState',
+        config.alias['#pergel/usePergelContext'] = _resolver.resolve(
+          './runtime/server/utils/usePergelContext',
         )
       }
     })

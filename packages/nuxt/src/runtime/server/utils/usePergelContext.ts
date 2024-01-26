@@ -13,7 +13,7 @@ import type { BullMQModuleRuntimeConfig } from '../../modules/bullmq/types'
 import type { SesModuleRuntimeConfig } from '../../modules/ses/types'
 import type { PergelGlobalContext } from '#pergel/types'
 
-interface MapType {
+interface PergelH3ContextItem {
   s3?: {
     client?: S3Client
   }
@@ -37,16 +37,16 @@ interface RuntimeConfigType {
 
 type RuntimeConfigTypeKeys = keyof RuntimeConfigType
 
-export async function usePergelState<T extends RuntimeConfigTypeKeys>(
+export async function usePergelContext<T extends RuntimeConfigTypeKeys>(
   data: PergelGlobalContext,
-  clientObject: (runtime: RuntimeConfigType[T]) => MapType,
+  clientObject: (runtime: RuntimeConfigType[T]) => PergelH3ContextItem,
   event: H3Event | false,
   additionalMapValues?: object,
 ) {
   const mergedProjectName = camelCase(`${data.moduleName}-${data.projectName}`)
 
   if (event) {
-    let moduleData = event.context.globalModuleContext[mergedProjectName] as MapType
+    let moduleData = event.context.pergelContext[mergedProjectName] as PergelH3ContextItem
     const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
       moduleName: data.moduleName,
       projectName: data.projectName,
@@ -59,15 +59,15 @@ export async function usePergelState<T extends RuntimeConfigTypeKeys>(
       }
     }
 
-    const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
+    const returnData = clientObject(selectProject as RuntimeConfigType[T]) as PergelH3ContextItem[T]
     if (!returnData)
       throw new Error(`${data.moduleName} is not defined`)
 
-    moduleData ??= {} as MapType
-    moduleData = returnData as MapType
+    moduleData ??= {} as PergelH3ContextItem
+    moduleData = returnData as PergelH3ContextItem
 
-    event.context.globalModuleContext[mergedProjectName] = {
-      ...returnData as MapType,
+    event.context.pergelContext[mergedProjectName] = {
+      ...returnData as PergelH3ContextItem,
       ...additionalMapValues,
     }
 
@@ -82,12 +82,12 @@ export async function usePergelState<T extends RuntimeConfigTypeKeys>(
       projectName: data.projectName,
     })
 
-    const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
+    const returnData = clientObject(selectProject as RuntimeConfigType[T]) as PergelH3ContextItem[T]
     if (!returnData)
       throw new Error(`${data.moduleName} is not defined`)
 
     return {
-      selectData: returnData as MapType,
+      selectData: returnData as PergelH3ContextItem,
       runtime: selectProject,
     }
   }

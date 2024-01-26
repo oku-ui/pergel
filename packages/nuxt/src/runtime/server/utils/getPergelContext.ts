@@ -1,7 +1,7 @@
 import { camelCase } from 'scule'
 import type { H3Event } from 'h3'
 
-export function getGlobalContextItem(this: {
+export function getPergelContext(this: {
   projectName: string
   moduleName: string
 }, event: H3Event) {

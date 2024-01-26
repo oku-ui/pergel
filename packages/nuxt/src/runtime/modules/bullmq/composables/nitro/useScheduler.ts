@@ -7,7 +7,7 @@ import { Queue, Worker } from 'bullmq'
 
 import { useBullMQRedisClient } from './useRedis'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
-import { getGlobalContextItem } from '#imports'
+import { getPergelContext } from '#imports'
 
 export type Scheduler<T extends object> = ReturnType<typeof useScheduler<T>>
 
@@ -31,7 +31,7 @@ export function useScheduler<T extends object>(
   if (!_pergel)
     throw new Error('Pergel not found')
 
-  let redisConnection = getGlobalContextItem.call({
+  let redisConnection = getPergelContext.call({
     ..._pergel,
     moduleName: 'bullmq',
   })?.bullmq?.client || null

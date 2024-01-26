@@ -1,8 +1,8 @@
 import { CreateTemplateCommand, type CreateTemplateCommandInput, SESClient, SendEmailCommand, type SendEmailCommandInput } from '@aws-sdk/client-ses'
 import type { H3Event } from 'h3'
 import { templates } from '../templates'
+import { usePergelContext } from '../../../server/utils/usePergelContext'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
-import { usePergelState } from '#pergel-usePergelState'
 
 export interface Credentials {
   accessKeyId: string
@@ -21,7 +21,7 @@ export async function usePergelSES(
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData } = await usePergelState<'ses'>({
+  const { selectData } = await usePergelContext<'ses'>({
     moduleName: 'ses',
     projectName: context.projectName,
   }, (runtime) => {

@@ -19,7 +19,7 @@ import type {
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import type { S3ModuleRuntimeConfig } from '../types'
 import type { PartinalKey } from '../../../core/types/module'
-import { usePergelState } from '#pergel-usePergelState'
+import { usePergelContext } from '../../../server/utils/usePergelContext'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function usePergelS3(
@@ -34,7 +34,7 @@ export async function usePergelS3(
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData, runtime } = await usePergelState<'s3'>({
+  const { selectData, runtime } = await usePergelContext<'s3'>({
     moduleName: 'S3',
     projectName: context.projectName,
   }, (runtime) => {
