@@ -25,6 +25,7 @@ import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
+import type { PergelH3ContextItem } from './runtime/modules'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -42,7 +43,7 @@ declare module '@nuxt/schema' {
 declare module 'h3' {
   interface H3EventContext {
     pergelContext: {
-      [key: string]: any
+      [key: string]: PergelH3ContextItem
     }
   }
 }

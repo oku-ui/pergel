@@ -24,6 +24,7 @@ export function definePergelNitroBullMQPlugin<T extends object>(
         pergel: {
           ...data.pergel || this,
         },
+        event: false,
       }) as Scheduler<T>,
 
     }, nitro)

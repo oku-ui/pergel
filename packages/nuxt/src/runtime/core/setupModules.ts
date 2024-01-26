@@ -4,7 +4,6 @@ import consola from 'consola'
 import { camelCase } from 'scule'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
-import { firstLetterUppercase } from './utils/utils'
 import type { PergelModule } from './types/module'
 import type { PergelModuleNames, ResolvedPergelOptions } from './types/nuxtModule'
 
