@@ -13,7 +13,7 @@
     "bullmq": "^4.15.3",
     "ioredis": "^5.3.2",
     "p-timeout": "^6.1.2",
-    "pergel": "^0.5.10"
+    "pergel": "^0.6.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
