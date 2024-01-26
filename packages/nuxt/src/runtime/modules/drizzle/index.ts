@@ -175,6 +175,10 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
      ${camelCase(options._driver.name ?? 'postgresjs')}() {
         return {
           connect: connectPostgresJS.bind(ctx),
+          client: getGlobalContextItem.bind({
+            ...ctx,
+            moduleName: '${options.moduleName}',
+          }),
         }
       },
     `
@@ -247,10 +251,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
             return {
               ${returnDriver}
               schema: tables${pascalCase(options.projectName)},
-              client: getGlobalContextItem.bind({
-                ...ctx,
-                moduleName: '${options.moduleName}',
-              }),
             }
           }
         `,

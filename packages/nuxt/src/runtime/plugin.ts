@@ -1,5 +1,9 @@
 import { defineNuxtPlugin } from '#imports'
 
-export default defineNuxtPlugin(() => {
-  // console.warn('Plugin injected by my-module!')
+export default defineNuxtPlugin({
+  order: -40,
+  enforce: 'pre',
+  setup() {
+
+  },
 })

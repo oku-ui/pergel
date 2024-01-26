@@ -12,7 +12,6 @@ import { usePergelRuntime } from '../core/utils/usePergelRuntime'
 import type { BullMQModuleRuntimeConfig } from '../modules/bullmq/types'
 import type { SesModuleRuntimeConfig } from '../modules/ses/types'
 import type { PergelGlobalContext } from '#pergel/types'
-import { useGlobalContext } from '#imports'
 
 interface MapType {
   s3?: {

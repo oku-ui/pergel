@@ -2,8 +2,10 @@ import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
 import {
   addImportsDir,
+  addPlugin,
   addServerHandler,
   addServerImportsDir,
+  addServerPlugin,
   addTemplate,
   createResolver,
   defineNuxtModule,
@@ -94,6 +96,27 @@ export default defineNuxtModule<PergelOptions>({
 
     const _resolver = createResolver(import.meta.url)
 
+    addServerImportsDir(_resolver.resolve('./runtime/composables'))
+
+    // Nitro auto imports
+    nuxt.hook('nitro:config', (_nitroConfig) => {
+      if (_nitroConfig.imports) {
+        _nitroConfig.imports.imports = _nitroConfig.imports.imports || []
+        _nitroConfig.imports.imports.push({
+          name: 'useGlobalContext',
+          from: _resolver.resolve('./runtime/server/utils/useGlobalContext'),
+        })
+
+        _nitroConfig.alias = _nitroConfig.alias || {}
+        _nitroConfig.alias['#pergel-globalcontext'] = _resolver.resolve(
+          './runtime/server/utils/useGlobalContext',
+        )
+      }
+    })
+
+    addImportsDir(_resolver.resolve('./runtime/composables'))
+    addPlugin(_resolver.resolve('./runtime/plugin'))
+
     await setupPergel({
       options: pergelOptions,
       nuxt,
@@ -145,12 +168,6 @@ export default defineNuxtModule<PergelOptions>({
     const isDevToolsEnabled = typeof nuxt.options.devtools === 'boolean'
       ? nuxt.options.devtools
       : nuxt.options.devtools.enabled
-
-    addServerImportsDir(_resolver.resolve('./runtime/composables'), {
-      prepend: true,
-    })
-
-    addImportsDir(_resolver.resolve('./runtime/composables'))
 
     await setupModules({
       nuxt,
