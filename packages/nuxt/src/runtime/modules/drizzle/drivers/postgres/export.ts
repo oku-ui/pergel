@@ -4,7 +4,8 @@ import postgres from 'postgres'
 import consola from 'consola'
 import { sql } from 'drizzle-orm'
 import type { PostgresJSOptions } from '../../types'
-import { globalContext } from '#imports'
+import { usePergelState } from '#pergel-usePergelState'
+
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
 export async function connectPostgresJS(this: PergelGlobalContextOmitModule, params: {
@@ -18,7 +19,7 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, par
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData } = await globalContext<'drizzle'>({
+  const { selectData } = await usePergelState<'drizzle'>({
     moduleName: 'drizzle',
     projectName: context.projectName,
   }, (runtime) => {

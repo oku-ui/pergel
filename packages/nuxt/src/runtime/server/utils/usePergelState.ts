@@ -6,11 +6,11 @@ import type {
 import type { Redis } from 'ioredis'
 import type { SESClient } from '@aws-sdk/client-ses'
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
-import type { S3ModuleRuntimeConfig } from '../modules/S3/types'
-import type { PostgresJSModuleRuntimeConfig } from '../modules/drizzle/types'
-import { usePergelRuntime } from '../core/utils/usePergelRuntime'
-import type { BullMQModuleRuntimeConfig } from '../modules/bullmq/types'
-import type { SesModuleRuntimeConfig } from '../modules/ses/types'
+import type { S3ModuleRuntimeConfig } from '../../modules/S3/types'
+import type { PostgresJSModuleRuntimeConfig } from '../../modules/drizzle/types'
+import { usePergelRuntime } from '../../core/utils/usePergelRuntime'
+import type { BullMQModuleRuntimeConfig } from '../../modules/bullmq/types'
+import type { SesModuleRuntimeConfig } from '../../modules/ses/types'
 import type { PergelGlobalContext } from '#pergel/types'
 import { useGlobalContext } from '#pergel-globalcontext'
 
@@ -38,7 +38,7 @@ interface RuntimeConfigType {
 
 type RuntimeConfigTypeKeys = keyof RuntimeConfigType
 
-export async function globalContext<T extends RuntimeConfigTypeKeys>(
+export async function usePergelState<T extends RuntimeConfigTypeKeys>(
   data: PergelGlobalContext,
   clientObject: (runtime: RuntimeConfigType[T]) => MapType,
   event: H3Event | false,
