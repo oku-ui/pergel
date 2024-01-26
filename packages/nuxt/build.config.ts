@@ -48,6 +48,7 @@ export const external = [
   'slugify',
   'c12',
   '#pergel-useGlobalContext',
+  '#pergel-usePergelState',
   '@pergel/module-box',
   ...externalBox,
 ]
