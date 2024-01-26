@@ -4,7 +4,7 @@ import postgres from 'postgres'
 import consola from 'consola'
 import { sql } from 'drizzle-orm'
 import type { PostgresJSOptions } from '../../types'
-import { usePergelState } from '#pergel-usePergelState'
+import { usePergelState } from '../../../../server/utils/usePergelState'
 
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 

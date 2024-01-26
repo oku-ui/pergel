@@ -4,8 +4,7 @@ import type { H3Event } from 'h3'
 export function getGlobalContextItem(this: {
   projectName: string
   moduleName: string
-  event?: H3Event
-}) {
+}, event: H3Event) {
   const mergedProjectName = camelCase(`${this.moduleName}-${this.projectName}`)
-  return this.event?.context.globalModuleContext[mergedProjectName]
+  return event.context.globalModuleContext[mergedProjectName]
 }

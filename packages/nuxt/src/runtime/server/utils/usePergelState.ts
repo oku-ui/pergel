@@ -12,7 +12,6 @@ import { usePergelRuntime } from '../../core/utils/usePergelRuntime'
 import type { BullMQModuleRuntimeConfig } from '../../modules/bullmq/types'
 import type { SesModuleRuntimeConfig } from '../../modules/ses/types'
 import type { PergelGlobalContext } from '#pergel/types'
-import { useGlobalContext } from '#pergel-useGlobalContext'
 
 interface MapType {
   s3?: {
@@ -78,29 +77,14 @@ export async function usePergelState<T extends RuntimeConfigTypeKeys>(
     }
   }
   else {
-    // @ts-ignore
-    const context = useGlobalContext()
-    const moduleData = context[mergedProjectName] as MapType
     const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
       moduleName: data.moduleName,
       projectName: data.projectName,
     })
 
-    if (moduleData) {
-      return {
-        selectData: moduleData,
-        runtime: selectProject,
-      }
-    }
-
     const returnData = clientObject(selectProject as RuntimeConfigType[T]) as MapType[T]
     if (!returnData)
       throw new Error(`${data.moduleName} is not defined`)
-
-    context[mergedProjectName] = {
-      ...returnData as MapType,
-      ...additionalMapValues,
-    }
 
     return {
       selectData: returnData as MapType,

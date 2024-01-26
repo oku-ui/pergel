@@ -101,10 +101,6 @@ export default defineNuxtModule<PergelOptions>({
     nuxt.hook('nitro:config', (config) => {
       if (config.imports) {
         config.imports.imports = config.imports.imports || []
-        config.imports.imports.push({
-          name: 'useGlobalContext',
-          from: _resolver.resolve('./runtime/server/utils/useGlobalContext'),
-        })
 
         config.imports.imports.push({
           name: 'usePergelState',
@@ -117,9 +113,6 @@ export default defineNuxtModule<PergelOptions>({
         })
 
         config.alias = config.alias || {}
-        config.alias['#pergel-useGlobalContext'] = _resolver.resolve(
-          './runtime/server/utils/useGlobalContext',
-        )
 
         config.alias['#pergel-usePergelState'] = _resolver.resolve(
           './runtime/server/utils/usePergelState',
