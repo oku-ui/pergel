@@ -108,12 +108,3 @@ export async function usePergelState<T extends RuntimeConfigTypeKeys>(
     }
   }
 }
-
-export function getGlobalContextItem(this: {
-  projectName: string
-  moduleName: string
-  event?: H3Event
-}) {
-  const mergedProjectName = camelCase(`${this.moduleName}-${this.projectName}`)
-  return this.event?.context.globalModuleContext[mergedProjectName]
-}

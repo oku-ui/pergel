@@ -98,25 +98,30 @@ export default defineNuxtModule<PergelOptions>({
     addServerImportsDir(_resolver.resolve('./runtime/composables'))
 
     // Nitro auto imports
-    nuxt.hook('nitro:config', (_nitroConfig) => {
-      if (_nitroConfig.imports) {
-        _nitroConfig.imports.imports = _nitroConfig.imports.imports || []
-        _nitroConfig.imports.imports.push({
+    nuxt.hook('nitro:config', (config) => {
+      if (config.imports) {
+        config.imports.imports = config.imports.imports || []
+        config.imports.imports.push({
           name: 'useGlobalContext',
           from: _resolver.resolve('./runtime/server/utils/useGlobalContext'),
         })
 
-        _nitroConfig.imports.imports.push({
+        config.imports.imports.push({
           name: 'usePergelState',
           from: _resolver.resolve('./runtime/server/utils/usePergelState'),
         })
 
-        _nitroConfig.alias = _nitroConfig.alias || {}
-        _nitroConfig.alias['#pergel-useGlobalContext'] = _resolver.resolve(
+        config.imports.imports.push({
+          name: 'getGlobalContextItem',
+          from: _resolver.resolve('./runtime/server/utils/getGlobalContextItem'),
+        })
+
+        config.alias = config.alias || {}
+        config.alias['#pergel-useGlobalContext'] = _resolver.resolve(
           './runtime/server/utils/useGlobalContext',
         )
 
-        _nitroConfig.alias['#pergel-usePergelState'] = _resolver.resolve(
+        config.alias['#pergel-usePergelState'] = _resolver.resolve(
           './runtime/server/utils/usePergelState',
         )
       }
