@@ -51,6 +51,7 @@ export const external = [
   '#pergel-useGlobalContext',
   '#pergel-usePergelState',
   '@pergel/module-box',
+  '@aws-sdk/client-ses',
   ...Object.keys(pkgBox.dependencies),
   ...Object.keys(graphql.dependencies),
   ...Object.keys(s3.dependencies),
