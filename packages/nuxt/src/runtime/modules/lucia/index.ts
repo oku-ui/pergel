@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { createResolver } from '@nuxt/kit'
+import { camelCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
@@ -81,9 +82,16 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
           /* ts */`
 import { session, user } from '#${options.projectName}/drizzle/schema'
 
-const connect = await ${options.projectNameCamelCaseWithPergel}().drizzle().postgresjs().connect({})
+const connect = await ${options.projectNameCamelCaseWithPergel}()
+.drizzle()
+.postgresjs()
+.connect({
+  event: false
+})
 
-export const auth = ${options.projectNameCamelCaseWithPergel}().lucia().use({
+export const ${camelCase(`${options.projectName}-Auth`)} = ${options.projectNameCamelCaseWithPergel}()
+.lucia()
+.use({
   db: connect,
   options: { },
   session,
@@ -103,7 +111,7 @@ export const auth = ${options.projectNameCamelCaseWithPergel}().lucia().use({
 import { auth } from '#${options.projectName}/lucia'
 
 export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
-  lucia: auth,
+  lucia: ${camelCase(`${options.projectName}-Auth`)},
 })
         `,
       )
@@ -129,8 +137,7 @@ export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelN
           from: `${options.serverDir}`,
           imports: [
             {
-              as: `${options.projectNameCamelCase}Auth`,
-              name: 'auth',
+              name: camelCase(`${options.projectName}-Auth`),
             },
           ],
         },
