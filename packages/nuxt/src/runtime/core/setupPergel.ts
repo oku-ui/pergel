@@ -59,20 +59,30 @@ export async function setupPergel(
     filename: 'pergel/types.ts',
     write: true,
     getContents: () => {
-      return /* TypeScript */ `
-        export type ProjectName =  ${projectNames.length === 0
+      return /* TypeScript */ `import type { PergelH3ContextItem, PergelContextKeys } from '@pergel/nuxt/dist/runtime/modules'
+export type { PergelContextKeys }
+
+export type ProjectName =  ${projectNames.length === 0
 ? `'test'`
 : projectNames.map((projectName) => {
           return `'${projectName}'`
         }).join(' | ')}
-          export type Module = ${nuxt._pergel.modules.map((module) => { return `'${module}'` }).join(' | ')}
+export type Module = ${nuxt._pergel.modules.map((module) => { return `'${module}'` }).join(' | ')}
 
-          export type PergelGlobalContextOmitModule = Omit<PergelGlobalContext, 'moduleName'>
+export type PergelGlobalContextOmitModule = Omit<PergelGlobalContext, 'moduleName'>
 
-          export interface PergelGlobalContext {
-            projectName: ProjectName
-            moduleName: Module
-          }
+export interface PergelGlobalContext {
+  projectName: ProjectName
+  moduleName: Module
+}
+
+declare module 'h3' {
+  interface H3EventContext {
+    pergelContext: {
+      [projectName in ProjectName]: PergelH3ContextItem
+    }
+  }
+}
         `.trim().replace(/ {10}/g, '')
     },
   })

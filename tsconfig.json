@@ -30,6 +30,9 @@
       ],
       "#pergel/types": [
         "./packages/nuxt/.nuxt/pergel/types.ts"
+      ],
+      "@pergel/nuxt/*": [
+        "./packages/nuxt/*"
       ]
     },
     "resolveJsonModule": true,

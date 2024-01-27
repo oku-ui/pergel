@@ -19,3 +19,5 @@ export interface PergelH3ContextItem {
     client?: SESClient
   }
 }
+
+export type PergelContextKeys = keyof PergelH3ContextItem

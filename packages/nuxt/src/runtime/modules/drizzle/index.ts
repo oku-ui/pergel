@@ -175,7 +175,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
      ${camelCase(options._driver.name ?? 'postgresjs')}() {
         return {
           connect: connectPostgresJS.bind(ctx),
-          client: getPergelContext.bind({
+          client: getPergelContextModule.bind({
             ...ctx,
             moduleName: '${options.moduleName}',
           }),

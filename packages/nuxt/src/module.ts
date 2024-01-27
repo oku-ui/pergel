@@ -25,7 +25,6 @@ import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
-import type { PergelH3ContextItem } from './runtime/modules'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -38,14 +37,6 @@ export interface ModulePublicRuntimeConfig {
 
 declare module '@nuxt/schema' {
   interface PublicRuntimeConfig extends ModulePublicRuntimeConfig { }
-}
-
-declare module 'h3' {
-  interface H3EventContext {
-    pergelContext: {
-      [key: string]: PergelH3ContextItem
-    }
-  }
 }
 
 export default defineNuxtModule<PergelOptions>({
@@ -109,8 +100,13 @@ export default defineNuxtModule<PergelOptions>({
         })
 
         config.imports.imports.push({
-          name: 'getPergelContext',
-          from: _resolver.resolve('./runtime/server/utils/getPergelContext'),
+          name: 'getPergelContextProject',
+          from: _resolver.resolve('./runtime/server/utils/getPergelContextProject'),
+        })
+
+        config.imports.imports.push({
+          name: 'getPergelContextModule',
+          from: _resolver.resolve('./runtime/server/utils/getPergelContextModule'),
         })
 
         config.alias = config.alias || {}

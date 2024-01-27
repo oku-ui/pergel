@@ -3,5 +3,5 @@ import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async (event: H3Event) => {
   if (!event.context.pergelContext)
-    event.context.pergelContext = {}
+    event.context.pergelContext = {} as any
 })

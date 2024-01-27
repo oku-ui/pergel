@@ -6,7 +6,7 @@ import type { Job } from 'bullmq'
 import { Queue, Worker } from 'bullmq'
 import type { H3Event } from 'h3'
 
-import { getPergelContext } from '../../../../server/utils/getPergelContext'
+import { getPergelContextProject } from '../../../../server/utils/getPergelContextProject'
 import { useBullMQRedisClient } from './useBullMQRedisClient'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
@@ -37,7 +37,7 @@ export function useScheduler<T extends object>(
     throw new Error('Pergel not found')
 
   let redisConnection = params.event
-    ? getPergelContext.call({
+    ? getPergelContextProject.call({
       moduleName: 'bullmq',
       projectName: _pergel.projectName,
     }, {
