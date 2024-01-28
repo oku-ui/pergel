@@ -54,6 +54,9 @@ export interface ResolvedPergelModuleOptions {
    */
   serverDir: string
 
+  /** @default "/<rootDir>/.nuxt/pergel/${projectName}/${moduleName}" */
+  buildDir: string
+
   /**
    * ModuleDir
    */
@@ -69,6 +72,9 @@ export interface ResolvedPergelModuleOptions {
      * 'server/${moduleName}-${projectName}'
      */
     server: string
+
+    /** @default '.nuxt/pergel/${projectName}/${moduleName}' */
+    build: string
   }
 
   [key: string]: any

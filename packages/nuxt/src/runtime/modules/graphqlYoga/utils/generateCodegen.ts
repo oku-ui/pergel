@@ -120,6 +120,15 @@ export async function useGenerateCodegen({
         const type = await server.typescriptResolvers(schema, {
           useTypeImports: true,
           contextType: `${moduleDTS.path}#${moduleDTS.name}`,
+          ...typeof options.codegen.server.config === 'function'
+            ? options.codegen.server.config({
+              dir: {
+                module: options.serverDir,
+                server: nuxt.options.serverDir,
+                nuxtModule: options.buildDir,
+              },
+            })
+            : {},
         })
         return type
       }
@@ -166,6 +175,15 @@ export async function useGenerateCodegen({
         if (loadDocument) {
           const data = await client.generateTypedDocumentNode(schema, loadDocument, {
             useTypeImports: true,
+            ...typeof options.codegen.client.config === 'function'
+              ? options.codegen.client.config({
+                dir: {
+                  module: options.serverDir,
+                  server: nuxt.options.serverDir,
+                  nuxtModule: options.buildDir,
+                },
+              })
+              : {},
           })
           return data
         }

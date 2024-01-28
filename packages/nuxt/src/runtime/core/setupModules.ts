@@ -87,6 +87,7 @@ async function initModules(nuxt: Nuxt) {
             _dir: {
               module: join(projectName, moduleName),
               server: join(nuxt._pergel.dir.server, `${moduleName}-${projectName}`),
+              build: join('.nuxt', 'pergel', projectName, moduleName),
             },
             moduleName: moduleName as PergelModuleNames,
             projectName,
@@ -94,6 +95,7 @@ async function initModules(nuxt: Nuxt) {
             serverDir: join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
             projectNameCamelCase: camelCase(projectName, { normalize: true }),
             projectNameCamelCaseWithPergel: camelCase(`pergel-${projectName}`, { normalize: true }),
+            buildDir: join(nuxt.options.buildDir, 'pergel', projectName, moduleName),
           },
           rootOptions: module,
         })
@@ -257,6 +259,7 @@ export async function setupModules(data: {
           _dir: {
             module: join(projectName, moduleName),
             server: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
+            build: join('.nuxt', 'pergel', projectName, moduleName),
           },
           moduleName: moduleName as PergelModuleNames,
           projectName,
@@ -264,6 +267,7 @@ export async function setupModules(data: {
           serverDir: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
           projectNameCamelCase: camelCase(projectName, { normalize: true }),
           projectNameCamelCaseWithPergel: camelCase(`pergel-${projectName}`, { normalize: true }),
+          buildDir: join(data.nuxt.options.buildDir, 'pergel', projectName, moduleName),
         },
         rootOptions: module,
       })

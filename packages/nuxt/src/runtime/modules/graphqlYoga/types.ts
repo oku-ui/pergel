@@ -3,6 +3,7 @@ import type { H3Error, H3Event } from 'h3'
 
 import type { EmbeddableSandboxOptions } from '@apollo/sandbox/src/EmbeddedSandbox'
 import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
+import type { CodegenClientConfig, CodegenServerConfig } from './utils/codegen'
 
 export interface GraphqlYogaHandleOptions {
   context: {
@@ -139,6 +140,28 @@ export interface GraphQLYogaConfig extends PergelModuleOptions {
        * @default '.graphql'
        */
       extension?: '.graphql' | '.gql'
+
+      /**
+       * Codegen config
+       * @default undefined
+       */
+      config?: (args: {
+        dir: {
+          /**
+           * server/graphqlYoga-{projectName}
+           */
+          module: string
+
+          /**
+           * server
+           */
+          server: string
+          /**
+           * .nuxt/pergel/${projectName}/graphqlYoga
+           */
+          nuxtModule: string
+        }
+      }) => CodegenServerConfig
     }
 
     /**
@@ -163,6 +186,28 @@ export interface GraphQLYogaConfig extends PergelModuleOptions {
        * @default '.graphql'
        */
       extension?: '.graphql' | '.gql'
+
+      /**
+       * Codegen config
+       * @default undefined
+       */
+      config?: (args: {
+        dir: {
+          /**
+           * server/graphqlYoga-{projectName}
+           */
+          module: string
+
+          /**
+           * server
+           */
+          server: string
+          /**
+           * .nuxt/pergel/${projectName}/graphqlYoga
+           */
+          nuxtModule: string
+        }
+      }) => CodegenClientConfig
     }
   }
 }
@@ -201,11 +246,45 @@ export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedPe
       configFilePath: string
       onlyDevelopment: boolean
       extension: '.graphql' | '.gql'
+      config?: (args: {
+        dir: {
+          /**
+           * server/graphqlYoga-{projectName}
+           */
+          module: string
+
+          /**
+           * server
+           */
+          server: string
+          /**
+           * .nuxt/pergel/${projectName}/graphqlYoga
+           */
+          nuxtModule: string
+        }
+      }) => CodegenServerConfig
     }
     client: {
       configFilePath: string
       onlyDevelopment: boolean
       extension: '.graphql' | '.gql'
+      config?: (args: {
+        dir: {
+          /**
+           * server/graphqlYoga-{projectName}
+           */
+          module: string
+
+          /**
+           * server
+           */
+          server: string
+          /**
+           * .nuxt/pergel/${projectName}/graphqlYoga
+           */
+          nuxtModule: string
+        }
+      }) => CodegenClientConfig
     }
   }
 }

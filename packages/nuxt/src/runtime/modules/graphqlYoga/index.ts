@@ -51,11 +51,13 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           extension: '.graphql',
           onlyDevelopment: true,
           configFilePath: clientConfigFile,
+          config: undefined,
         },
         server: {
           extension: '.graphql',
           onlyDevelopment: true,
           configFilePath: serverConfigFile,
+          config: undefined,
         },
       },
       endpoint: '/api/graphql',

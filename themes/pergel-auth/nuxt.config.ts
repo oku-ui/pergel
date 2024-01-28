@@ -7,7 +7,19 @@ export default defineNuxtConfig({
   pergel: {
     projects: {
       changeName: {
-        box: true,
+        box: {
+          packages: {
+            colorMode: true,
+            i18n: true,
+            zod: true,
+            veeValidate: true,
+            vueUse: true,
+            notivue: true,
+            tailwindcss: true,
+            nuxtIcon: true,
+            radixVue: true,
+          },
+        },
         drizzle: true,
         lucia: true,
       },
