@@ -93,9 +93,23 @@ export interface BoxOptions extends PergelModuleOptions {
       defaults?: Parameters<typeof slugify>[1]
     }
 
+    /**
+     * @default false
+     * @see https://github.com/ai/nanoid
+     */
     nanoid?: boolean
 
+    /**
+     * @default false
+     * @see https://github.com/uuidjs/uuid
+     */
     uuid?: boolean
+
+    /**
+     * @default false
+     * @see https://github.com/productdevbook/unsearch
+     */
+    unsearch?: boolean
   }
 }
 
@@ -122,5 +136,6 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     }
     nanoid: boolean
     uuid: boolean
+    unsearch: boolean
   }
 }

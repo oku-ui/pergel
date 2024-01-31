@@ -32,7 +32,7 @@
     "prepare": "npx simple-git-hooks"
   },
   "dependencies": {
-    "@pergel/graphql": "workspace:0.0.0",
+    "@pergel/graphql": "workspace:*",
     "drizzle-kit": "^0.20.9",
     "drizzle-orm": "^0.29.2",
     "postgres": "^3.4.3"

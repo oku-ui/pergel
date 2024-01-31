@@ -23,7 +23,7 @@ const logger = consola.create({
 export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
   meta: {
     name: 'box',
-    version: '0.0.1',
+    version: '0.1.0',
     dependencies: {
       '@pergel/module-box': 'latest',
     },
@@ -46,6 +46,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       slugify: false,
       nanoid: false,
       uuid: false,
+      unsearch: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -435,6 +436,17 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
               name,
             })),
             from: 'uuid',
+          },
+        ],
+      })
+    }
+
+    if (options.packages.unsearch) {
+      useNitroImports(nuxt, {
+        presets: [
+          {
+            imports: ['unSearch'] as Array<keyof typeof import('unsearch')>,
+            from: 'unsearch',
           },
         ],
       })
