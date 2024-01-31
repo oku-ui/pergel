@@ -8,9 +8,10 @@ import { seed1 } from './seed1'
 
 config()
 
-const dbUrl = process.env.NUXT_TEST_DRIZZLE_PG_URL
-const dbDrop = process.env.NUXT_TEST_DRIZZLE_PG_DROP === 'true'
-const dbSeed = process.env.NUXT_TEST_DRIZZLE_PG_SEED === 'true'
+const dbUrl = process.env.NUXT_TEST_DRIZZLE_URL
+const dbDrop = process.env.NUXT_TEST_DRIZZLE_DROP === 'true'
+const dbSeed = process.env.NUXT_TEST_DRIZZLE_SEED === 'true'
+const dbMigrate = process.env.NUXT_PZG_DRIZZLE_MIGRATE === 'true'
 
 const migrationDir = resolve('/Users/productdevbook/works/pergel/packages/nuxt/playground/server/drizzle-test/migrations')
 
@@ -38,9 +39,12 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 `)
   }
-  console.warn('Migrating database...')
-  await migrate(db, { migrationsFolder: migrationDir })
-  console.warn('Migrating database... done')
+
+  if (dbMigrate) {
+    console.warn('Migrating database...')
+    await migrate(db, { migrationsFolder: migrationDir })
+    console.warn('Migrating database... done')
+  }
 
   if (dbSeed) {
     console.warn('Seeding database...')

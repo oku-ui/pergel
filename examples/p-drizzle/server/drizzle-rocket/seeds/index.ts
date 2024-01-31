@@ -8,10 +8,10 @@ import { seed1 } from './seed1'
 
 config()
 
-const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_PG_URL
-const dbDrop = process.env.NUXT_ROCKET_DRIZZLE_PG_DROP === 'true'
-const dbSeed = process.env.NUXT_ROCKET_DRIZZLE_PG_SEED === 'true'
-const dbMigrate = process.env.NUXT_ROCKET_DRIZZLE_PG_MIGRATE === 'true'
+const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_URL
+const dbDrop = process.env.NUXT_ROCKET_DRIZZLE_DROP === 'true'
+const dbSeed = process.env.NUXT_ROCKET_DRIZZLE_SEED === 'true'
+const dbMigrate = process.env.NUXT_ROCKET_DRIZZLE_MIGRATE === 'true'
 
 const migrationDir = resolve('/Users/productdevbook/works/pergel/examples/p-drizzle/server/drizzle-rocket/migrations')
 
