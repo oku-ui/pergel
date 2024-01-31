@@ -98,6 +98,18 @@
       ]
     },
     {
+      "groupName": "packages-core",
+      "commitMessageTopic": "packages-core",
+      "matchPaths": [
+        "packages/core/**"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
+      ]
+    },
+    {
       "groupName": "ui",
       "commitMessageTopic": "ui",
       "matchPaths": [
