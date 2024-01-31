@@ -2,7 +2,6 @@ export default function (data: {
   env: {
     dbUrl: string
   }
-  migrationDir: string
 }) {
   return `import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
@@ -13,8 +12,6 @@ import { seed2 } from './seed2'
 config()
 
 const dbUrl = process.env.${data.env.dbUrl}
-
-const migrationDir = resolve('${data.migrationDir}')
 
 async function rundevSeed() {
   if (!dbUrl)

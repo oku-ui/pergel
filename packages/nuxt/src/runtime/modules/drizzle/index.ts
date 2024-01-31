@@ -78,6 +78,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       watch: {
         push: true,
         seed: true,
+        drop: true,
       },
     }
   },

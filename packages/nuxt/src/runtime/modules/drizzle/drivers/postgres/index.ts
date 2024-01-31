@@ -88,7 +88,6 @@ export default {
         env: {
           dbUrl: env.url,
         },
-        migrationDir: join(options.serverDir, options.dir.migrations),
       })
       writeFileSync(resolve(options.seedPaths, 'devDrop.ts'), file, {
         encoding: 'utf8',
@@ -103,7 +102,6 @@ export default {
         env: {
           dbUrl: env.url,
         },
-        migrationDir: join(options.serverDir, options.dir.migrations),
       })
       writeFileSync(resolve(options.seedPaths, 'devSeed.ts'), file, {
         encoding: 'utf8',

@@ -2,11 +2,11 @@ export default function (data: {
   env: {
     dbUrl: string
   }
-  migrationDir: string
 }) {
   return `import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import { config } from 'dotenv'
+import { sql } from 'drizzle-orm'
 
 config()
 
@@ -25,6 +25,8 @@ async function rundevDrop() {
   })
   const db = drizzle(queryClient)
 
+  console.warn('Dropping database...')
+
   await db.execute(sql/* SQL */ \`
 DROP SCHEMA IF EXISTS drizzle CASCADE;
 DROP SCHEMA IF EXISTS public CASCADE;
@@ -33,6 +35,8 @@ CREATE SCHEMA drizzle;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA "public";
 \`)
+
+  console.warn('Dropping database... done')
 
   await queryClient.end()
 }
