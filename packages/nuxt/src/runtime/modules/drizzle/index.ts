@@ -202,16 +202,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
           return
 
         if (match) {
-          if (activeProject.watch?.push) {
-            execSync(
-              `pergel module -s=push -p=${projectName} -m=${moduleName}`,
-              {
-                stdio: 'inherit',
-                cwd: nuxt.options.rootDir,
-              },
-            )
-            _logger.info(`Pushed ${projectName} schema`)
-          }
           if (activeProject.watch?.seed) {
             execSync(
               `pergel module -s=seed -p=${projectName} -m=${moduleName}`,
@@ -221,6 +211,16 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
               },
             )
             _logger.info(`Seeded ${projectName} schema`)
+          }
+          else if (activeProject.watch?.push) {
+            execSync(
+              `pergel module -s=push -p=${projectName} -m=${moduleName}`,
+              {
+                stdio: 'inherit',
+                cwd: nuxt.options.rootDir,
+              },
+            )
+            _logger.info(`Pushed ${projectName} schema`)
           }
         }
       }
