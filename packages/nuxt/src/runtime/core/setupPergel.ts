@@ -59,7 +59,7 @@ export async function setupPergel(
     filename: 'pergel/types.ts',
     write: true,
     getContents: () => {
-      return /* TypeScript */ `import type { PergelH3ContextItem, PergelContextKeys } from '@pergel/nuxt/dist/runtime/modules'
+      return /* TypeScript */ `import type { PergelH3ContextItem, PergelContextKeys } from '@pergel/nuxt/runtime/modules'
 export type { PergelContextKeys }
 
 export type ProjectName =  ${projectNames.length === 0

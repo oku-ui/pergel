@@ -32,7 +32,11 @@
         "types": "./lib/drizzle/*.d.ts",
         "default": "./lib/drizzle/*.cjs"
       }
-    }
+    },
+    "./runtime/modules": {
+      "types": "./dist/runtime/modules/index.d.ts"
+    },
+    "./*": "./*"
   },
   "main": "./dist/module.cjs",
   "module": "./dist/module.mjs",
