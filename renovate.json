@@ -32,9 +32,6 @@
         "major",
         "minor",
         "patch"
-      ],
-      "matchDatasources": [
-        "npm"
       ]
     },
     {
@@ -47,24 +44,18 @@
         "major",
         "minor",
         "patch"
-      ],
-      "matchDatasources": [
-        "npm"
       ]
     },
     {
-      "groupName": "pergel",
-      "commitMessageTopic": "pergel",
+      "groupName": "themes",
+      "commitMessageTopic": "themes",
       "matchPaths": [
-        "pergel/**"
+        "themes/**"
       ],
       "matchUpdateTypes": [
         "major",
         "minor",
         "patch"
-      ],
-      "matchDatasources": [
-        "npm"
       ]
     },
     {
@@ -77,9 +68,6 @@
         "major",
         "minor",
         "patch"
-      ],
-      "matchDatasources": [
-        "npm"
       ]
     },
     {
@@ -92,9 +80,6 @@
         "major",
         "minor",
         "patch"
-      ],
-      "matchDatasources": [
-        "npm"
       ]
     },
     {
@@ -119,9 +104,6 @@
         "major",
         "minor",
         "patch"
-      ],
-      "matchDatasources": [
-        "npm"
       ]
     },
     {
@@ -134,9 +116,18 @@
         "major",
         "minor",
         "patch"
+      ]
+    },
+    {
+      "groupName": "box",
+      "commitMessageTopic": "box",
+      "matchPaths": [
+        "packages/box/**"
       ],
-      "matchDatasources": [
-        "npm"
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch"
       ]
     },
     {
@@ -148,12 +139,14 @@
       ],
       "ignorePaths": [
         "**/examples/**",
-        "**/pergel/**",
+        "**/themes/**",
         "**/packages/nuxt/**",
         "**/packages/graphql/**",
         "**/packages/s3/**",
         "**/.docs/**",
-        "**/packages/ui/**"
+        "**/packages/ui/**",
+        "**/packages/box/**",
+        "**/packages/core/**"
       ],
       "matchDatasources": [
         "npm",
