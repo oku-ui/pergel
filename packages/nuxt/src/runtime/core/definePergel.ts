@@ -1,5 +1,6 @@
+import { resolve } from 'node:path'
 import defu from 'defu'
-import { useNuxt } from '@nuxt/kit'
+import { addServerImportsDir, useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import type { ModuleDefinition, ModuleSetupReturn, PergelModule, PergelModuleOptions, ResolvedPergelModuleOptions } from './types/module'
 import type { NuxtPergel } from './types/nuxtModule'
@@ -48,6 +49,19 @@ export function definePergelModule<RootOptions extends PergelModuleOptions = Per
 
     const key = `pergel:${module.meta.configKey}`
     const mark = performance.mark(key)
+
+    const path = resolve(
+      data.nuxt.options.rootDir,
+      options.serverDir,
+    )
+
+    data.nuxt.options.nitro.alias ??= {}
+    data.nuxt.options.nitro.alias[`#${options.projectName}/server/${options.moduleName}`] = resolve(
+      data.nuxt.options.rootDir,
+      options.serverDir,
+    )
+
+    addServerImportsDir(path)
 
     const packageExists = {
       dependencies: 0,
