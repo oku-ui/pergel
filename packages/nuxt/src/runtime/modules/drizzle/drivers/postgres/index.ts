@@ -63,7 +63,7 @@ export default {
   if (!existsSync(resolve(options.seedPaths)))
     mkdirSync(resolve(options.serverDir, 'seeds'), { recursive: true, mode: 0o777 })
 
-  if (!existsSync(resolve(options.seedPaths, 'index.ts'))) {
+  if (!existsSync(resolve(options.seedPaths, 'devMigration.ts'))) {
     const readFile = await import('./seed').then(m => m.default).catch(() => null)
     if (readFile) {
       const file = readFile({
@@ -75,8 +75,37 @@ export default {
         },
         migrationDir: join(options.serverDir, options.dir.migrations),
       })
-      writeFileSync(resolve(options.seedPaths, 'index.ts'), file, {
-        mode: 0o777,
+      writeFileSync(resolve(options.seedPaths, 'devMigration.ts'), file, {
+        encoding: 'utf8',
+      })
+    }
+  }
+
+  if (!existsSync(resolve(options.seedPaths, 'devDrop.ts'))) {
+    const readFile = await import('./seed/devDrop').then(m => m.default).catch(() => null)
+    if (readFile) {
+      const file = readFile({
+        env: {
+          dbUrl: env.url,
+        },
+        migrationDir: join(options.serverDir, options.dir.migrations),
+      })
+      writeFileSync(resolve(options.seedPaths, 'devDrop.ts'), file, {
+        encoding: 'utf8',
+      })
+    }
+  }
+
+  if (!existsSync(resolve(options.seedPaths, 'devSeed.ts'))) {
+    const readFile = await import('./seed/devSeed').then(m => m.default).catch(() => null)
+    if (readFile) {
+      const file = readFile({
+        env: {
+          dbUrl: env.url,
+        },
+        migrationDir: join(options.serverDir, options.dir.migrations),
+      })
+      writeFileSync(resolve(options.seedPaths, 'devSeed.ts'), file, {
         encoding: 'utf8',
       })
     }
@@ -119,22 +148,26 @@ export default {
     data: ({ addCommentBlock }) => ({
       ...addCommentBlock('Script Commands'),
       scripts: {
-        migrate: `drizzle-kit generate:${driver} --config=${options._dir.server}/drizzle.config.js`,
-        generate: `drizzle-kit generate:${driver} --config=${options._dir.server}/drizzle.config.js`,
-        push: `drizzle-kit push:${driver} --config=${options._dir.server}/drizzle.config.js`,
-        drop: `drizzle-kit drop --config=${options._dir.server}/drizzle.config.js`,
-        up: `drizzle-kit up:${driver} --config=${options._dir.server}/drizzle.config.js`,
-        studio: `drizzle-kit studio --port 3105 --config=${options._dir.server}/drizzle.config.js`,
-        seed: `tsx ${options._dir.server}/seeds/index.ts`,
+        'migrate': `drizzle-kit generate:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        'generate': `drizzle-kit generate:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        'push': `drizzle-kit push:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        'drop': `drizzle-kit drop --config=${options._dir.server}/drizzle.config.js`,
+        'up': `drizzle-kit up:${driver} --config=${options._dir.server}/drizzle.config.js`,
+        'studio': `drizzle-kit studio --port 3105 --config=${options._dir.server}/drizzle.config.js`,
+        'dev:migration': `tsx ${options._dir.server}/seeds/devMigration.ts`,
+        'dev:drop': `tsx ${options._dir.server}/seeds/devDrop.ts`,
+        'dev:seed': `tsx ${options._dir.server}/seeds/devSeed.ts`,
       },
       cli: {
-        migrate: `pergel module -s=migrate -p=${projectName} -m=${moduleName}`,
-        push: `pergel module -s=push -p=${projectName} -m=${moduleName}`,
-        drop: `pergel module -s=drop -p=${projectName} -m=${moduleName}`,
-        up: `pergel module -s=up -p=${projectName} -m=${moduleName}`,
-        generate: `pergel module -s=generate -p=${projectName} -m=${moduleName}`,
-        studio: `pergel module -s=studio -p=${projectName} -m=${moduleName}`,
-        seed: `pergel module -s=seed -p=${projectName} -m=${moduleName}`,
+        'migrate': `pergel module -s=migrate -p=${projectName} -m=${moduleName}`,
+        'push': `pergel module -s=push -p=${projectName} -m=${moduleName}`,
+        'drop': `pergel module -s=drop -p=${projectName} -m=${moduleName}`,
+        'up': `pergel module -s=up -p=${projectName} -m=${moduleName}`,
+        'generate': `pergel module -s=generate -p=${projectName} -m=${moduleName}`,
+        'studio': `pergel module -s=studio -p=${projectName} -m=${moduleName}`,
+        'dev:migration': `pergel module -s=dev:migration -p=${projectName} -m=${moduleName}`,
+        'dev:drop': `pergel module -s=dev:drop -p=${projectName} -m=${moduleName}`,
+        'dev:seed': `pergel module -s=dev:seed -p=${projectName} -m=${moduleName}`,
       },
     }),
     nuxt,

@@ -47,15 +47,21 @@ export interface DrizzleConfig extends PergelModuleOptions {
   watch?: {
     /**
      * Database push changes
-     * @default 'pergel module -s=push -p={projectName} -m={moduleName}'
+     * @default true 'pergel module -s=push -p={projectName} -m={moduleName}'
      */
-    push?: string | false
+    push?: false
 
     /**
      * Database seeds
-     * @default 'pergel module -s=seed -p={projectName} -m={moduleName}'
+     * @default true 'pergel module -s=dev:seed -p={projectName} -m={moduleName}'
      */
-    seed?: string | false
+    seed?: false
+
+    /**
+     * Database Drop
+     * @default true 'pergel module -s=dev:drop -p={projectName} -m={moduleName}'
+     */
+    drop?: false
   }
 }
 
@@ -128,15 +134,21 @@ export interface ResolvedDrizzleConfig extends ResolvedPergelModuleOptions {
   watch: {
     /**
      * Database push changes
-     * @default 'pergel module -s=push -p={projectName} -m={moduleName}'
+     * @default true 'pergel module -s=push -p={projectName} -m={moduleName}'
      */
-    push: string | false
+    push: false
 
     /**
      * Database seeds
-     * @default 'pergel module -s=seed -p={projectName} -m={moduleName}'
+     * @default true 'pergel module -s=seed -p={projectName} -m={moduleName}'
      */
-    seed: string | false
+    seed: false
+
+    /**
+     * Database Drop
+     * @default true 'pergel module -s=drop -p={projectName} -m={moduleName}'
+     */
+    drop: false
   }
 }
 
