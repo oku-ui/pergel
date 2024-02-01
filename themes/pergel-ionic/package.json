@@ -13,7 +13,8 @@
     "cap-open-android": "npx cap open android",
     "cap-open-ios": "npx cap open ios",
     "cap-serve": "npx cap serve",
-    "cap-sync-android": "npx cap sync android"
+    "cap-sync-android": "npx cap sync android",
+    "cap-copy": "npx cap copy"
   },
   "dependencies": {
     "@capacitor/android": "^5.6.0",

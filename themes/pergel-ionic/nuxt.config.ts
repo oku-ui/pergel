@@ -5,6 +5,9 @@ export default defineNuxtConfig({
     '../../packages/nuxt/src/module',
   ],
   ssr: false,
+  app: {
+    baseURL: '/',
+  },
   pergel: {
     projects: {
       changeName: {
@@ -13,7 +16,7 @@ export default defineNuxtConfig({
           appName: 'MyApp',
           webDir: 'dist',
           server: {
-            url: 'localhost:3000',
+            androidScheme: 'https',
           },
           themeCss: true,
           defaultCss: false,

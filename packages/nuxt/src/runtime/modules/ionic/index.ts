@@ -51,6 +51,7 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       webDir: '${options.webDir}',
       server: {
         url: '${options.server.url}',
+        androidScheme: '${options.server.androidScheme}',
       },
     }
     

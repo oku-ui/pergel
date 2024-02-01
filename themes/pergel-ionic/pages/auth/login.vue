@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  alias: ['/'],
+})
 const route = useRoute()
 const router = useIonRouter()
 const isActivated = route.query.activated === 'true'
