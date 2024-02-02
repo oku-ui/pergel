@@ -245,7 +245,7 @@ export * as ${options.generatorFunctionName('Tables')} from './schema'
           function drizzle() {
             return {
               ${returnDriver}
-              tables: camelCase('${options.projectName}-Tables'),
+              tables: ${camelCase(`${options.projectName}-Tables`)},
             }
           }
         `,
