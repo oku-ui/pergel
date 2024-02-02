@@ -1,0 +1,7 @@
+query book {
+  book(id: 1) {
+    id
+    title
+  }
+}
+    

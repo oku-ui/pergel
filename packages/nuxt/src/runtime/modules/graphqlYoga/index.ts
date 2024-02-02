@@ -165,6 +165,28 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         }
       }
     }
+    else {
+      if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+        const files = globbySync(resolver.resolve(join('templates', 'empty', 'root'), '**/*'), {
+          onlyFiles: true,
+        })
+
+        for (const file of files) {
+          const readFile = await import(file).then(m => m.default).catch(() => null)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              nuxt,
+            })
+            const fileName = basename(file)
+
+            writeFileSync(resolve(options.serverDir, fileName), fileData, {
+              encoding: 'utf8',
+            })
+          }
+        }
+      }
+    }
 
     nuxt._pergel.contents.push({
       moduleName: options.moduleName,

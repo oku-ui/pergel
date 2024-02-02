@@ -1,0 +1,10 @@
+input SearchInput {
+    tableName: String!
+    text: String!
+}
+
+union SearchResult = User | Book
+
+extend type Query {
+    search(input: SearchInput!): [SearchResult]
+}

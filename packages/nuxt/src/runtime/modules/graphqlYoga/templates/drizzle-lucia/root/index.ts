@@ -5,6 +5,7 @@ export default function (data: {
 }) {
   const functionName = camelCase(`${data.projectName}-GraphQLCreateSchema`)
   const resolverFunctionName = camelCase(`${data.projectName}-GraphQLResolvers`)
+  const authFunctionName = camelCase(`${data.projectName}-Auth`)
   return /* TS */ `import { DateTimeResolver, DateTimeTypeDefinition } from 'graphql-scalars'
 
 import { createSchema } from 'graphql-yoga'
@@ -25,13 +26,13 @@ export const ${resolverFunctionName}: Resolvers = {
     },
   },
   Mutation: {
-    createUser: async (_root, _args, { store, event }, _info) => {
+    createUser: async (_root, _args, { storage, event }, _info) => {
       const { email, name, password } = _args.input
 
       const hashedPassword = await new Argon2id()
         .hash(password)
 
-      const user = await store.auth.create({
+      const user = await storage.auth.create({
         email,
         hashedPassword,
         username: name,
@@ -40,9 +41,9 @@ export const ${resolverFunctionName}: Resolvers = {
       if (!user)
         throw new GraphQLError('User not found')
 
-      const session = await pzgAuth.createSession(user.id, {})
+      const session = await ${authFunctionName}.createSession(user.id, {})
 
-      appendHeader(event, 'Set-Cookie', pzgAuth.createSessionCookie(session.id).serialize())
+      appendHeader(event, 'Set-Cookie', ${authFunctionName}.createSessionCookie(session.id).serialize())
 
       return {
         token: session.id,
@@ -57,18 +58,18 @@ export const ${resolverFunctionName}: Resolvers = {
     },
   },
   Query: {
-    users: async (_root, _args, { store }, _info) => {
-      const users = await store.auth.users()
+    users: async (_root, _args, { storage }, _info) => {
+      const users = await storage.auth.users()
       return users
     },
-    search: async (_root, _args, { store }, _info) => {
+    search: async (_root, _args, { storage }, _info) => {
       const { text, tableName } = _args.input
-      const storeData = await store.search.global({
+      const storageData = await storage.search.global({
         text,
         tableName,
       })
 
-      return storeData
+      return storageData
     },
   },
 }

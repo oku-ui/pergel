@@ -22,7 +22,7 @@ declare module 'pergel/${data.projectName}/types' {
     req: IncomingMessage
     event: H3Event
     ${drizzleDriver === 'postgresjs:pg' ? 'db: PostgresJsDatabase' : ''.trim()}
-    store: ${drizzleStorageName}
+    storage: ${drizzleStorageName}
   }
 }
 `
