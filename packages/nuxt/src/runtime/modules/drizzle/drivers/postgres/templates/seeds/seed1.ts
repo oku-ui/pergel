@@ -1,14 +1,19 @@
-export default function () {
+import { camelCase } from 'scule'
+
+export default function (data: {
+  projectName: string
+}) {
+  const tableName = camelCase(`${data.projectName}-Tables`)
   return /* TS */ `import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
 import { faker } from '@faker-js/faker'
-import * as tablesTest from '../schema/index'
+import * as ${tableName} from '../schema/index'
 
 export async function seed1(db: PostgresJsDatabase) {
   console.warn('Seeding database...')
 
   await db.transaction(async (trx) => {
-    await trx.insert(tablesTest.user).values(
+    await trx.insert(${tableName}.user).values(
       [
         {
           email: faker.internet.email(),

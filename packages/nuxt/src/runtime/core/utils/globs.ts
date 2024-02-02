@@ -6,13 +6,14 @@ export function globsBuilderWatch(
   nuxt: NuxtPergel,
   path: string,
   ext: string = '.ts',
+  custom?: string,
 ) {
   const absolutePath = resolve(nuxt.options.rootDir, path)
   const dirs = nuxt._pergel.watchDirs
   const match = matchGlobs(
     absolutePath,
     [...dirs.map(({ serverDir }) => {
-      return join('**', serverDir, '**', `*${ext}`)
+      return join('**', join(serverDir, custom ?? ''), '**', `*${ext}`)
     }), ...dirs.map(({ rootModuleDir }) => {
       return join('**', rootModuleDir, '**', `*${ext}`)
     })],

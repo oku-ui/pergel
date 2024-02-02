@@ -18,6 +18,8 @@ export default defineNuxtConfig({
             tailwindcss: true,
             nuxtIcon: true,
             radixVue: true,
+            uuid: true,
+            unsearch: true,
           },
         },
         drizzle: true,

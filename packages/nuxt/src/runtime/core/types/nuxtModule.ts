@@ -3,7 +3,7 @@ import type { Resolver } from '@nuxt/kit'
 import type { UnimportPluginOptions } from 'unimport/unplugin'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from '../../modules/graphqlYoga/types'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from '../../modules/drizzle/types'
-import type { LuciaModuleOptions } from '../../modules/lucia/types'
+import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from '../../modules/lucia/types'
 import type { BoxOptions, ResolvedBoxOptions } from '../../modules/box/types'
 
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
@@ -33,6 +33,7 @@ export interface ResolvedPergelNuxtModuleConfig {
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
   box?: true | ResolvedBoxOptions
+  lucia?: true | ResolvedLuciaModuleOptions
   ionic?: true | ResolvedIonicInterface
 }
 

@@ -23,16 +23,6 @@
         "default": "./dist/module.cjs"
       }
     },
-    "./drizzle/*": {
-      "import": {
-        "types": "./lib/drizzle/*.d.ts",
-        "default": "./lib/drizzle/*.mjs"
-      },
-      "require": {
-        "types": "./lib/drizzle/*.d.ts",
-        "default": "./lib/drizzle/*.cjs"
-      }
-    },
     "./runtime/modules": {
       "types": "./dist/runtime/modules/index.d.ts"
     },
@@ -50,8 +40,8 @@
     "prepack": "pnpm nuxt-module-build build && pnpm run client:build",
     "dev": "pnpm nuxi dev playground",
     "dev:build": "pnpm nuxi build playground",
-    "build": "pnpm build:script && pnpm nuxt-module-build build",
-    "dev:prepare": "pnpm build:script && nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
+    "build": "pnpm nuxt-module-build build",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "client:build": "nuxi generate client",

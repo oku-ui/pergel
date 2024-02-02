@@ -1,8 +1,8 @@
-import { existsSync, mkdirSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { existsSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { execSync } from 'node:child_process'
 import { addImportsDir, addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
-import { camelCase, pascalCase } from 'scule'
+import { camelCase } from 'scule'
 import { basename } from 'pathe'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
@@ -21,10 +21,10 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     dependencies(options) {
       options.driver ??= 'postgresjs:pg'
       const data = {
-        'drizzle-kit': '^0.20.6',
-        'drizzle-orm': '^0.29.1',
-        '@faker-js/faker': '^8.3.1',
-        'dotenv': '^16.3.1',
+        'drizzle-kit': '^0.20.13',
+        'drizzle-orm': '^0.29.3',
+        '@faker-js/faker': '^8.4.0',
+        'dotenv': '^16.4.1',
       } as Record<string, string>
 
       if (options.driver === 'postgresjs:pg')
@@ -39,7 +39,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       } as Record<string, string>
 
       if (options.driver === 'postgresjs:pg')
-        data.pg = '^8.11.0'
+        data.pg = '^8.11.3'
 
       return data
     },
@@ -85,52 +85,21 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
-    if (nuxt._pergel.exitPergelFolder) {
-      if (!existsSync(options.schemaPath))
-        mkdirSync(options.schemaPath, { recursive: true })
-
-      if (!existsSync(options.migrationsPath))
-        mkdirSync(options.migrationsPath, { recursive: true })
-
-      if (!existsSync(options.seedPaths))
-        mkdirSync(options.seedPaths, { recursive: true })
-    }
-
     // Driver setup
     switch (options._driver.name) {
       case 'postgresjs':
         await setupPostgres(nuxt, options)
+        addImportsDir(resolver.resolve('./drivers/postgres'))
+        addServerImportsDir(resolver.resolve('./drivers/postgres'))
+
         break
     }
-
-    nuxt.options.alias[`${options.projectName}/drizzle/schema`] = resolve(
-      nuxt.options.rootDir,
-      options.schemaPath,
-    )
-
-    nuxt.options.nitro.alias ??= {}
-    nuxt.options.nitro.alias[`${options.projectName}/drizzle/schema`] = resolve(
-      nuxt.options.rootDir,
-      options.schemaPath,
-    )
-
-    addImportsDir(resolver.resolve('./drivers/postgres'))
-    addServerImportsDir(resolver.resolve('./drivers/postgres'))
 
     useNitroImports(nuxt, {
       presets: [
         {
-          from: `${options.schemaPath}`,
-          imports: [
-            {
-              as: `tables${pascalCase(options.projectName)}`,
-              name: '*',
-            },
-          ],
-        },
-        {
           from: 'drizzle-orm',
-          imports: [
+          imports: ([
             'eq',
             'ne',
             'gt',
@@ -155,7 +124,9 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
             'arrayContained',
             'arrayOverlaps',
             'sql',
-          ].map(name => ({
+            'asc',
+            'desc',
+          ] satisfies Array<keyof typeof import('drizzle-orm')>).map(name => ({
             name,
             as: options.autoImportPrefix?.filters
               ? `${options.autoImportPrefix?.filters}${name}`
@@ -171,6 +142,16 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     })
 
     copyMigrationFolder(nuxt)
+
+    if (!existsSync(`${options.serverDir}/index.ts`)) {
+      writeFileSync(
+        `${options.serverDir}/index.ts`,
+        /* ts */`
+        export { ${options.generatorFunctionName('DrizzleStorage')} } from './storage'
+export * as ${options.generatorFunctionName('Tables')} from './schema'
+        `,
+      )
+    }
 
     const returnDriver = /* ts */`
      ${camelCase(options._driver.name ?? 'postgresjs')}() {
@@ -190,6 +171,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
         nuxt,
         path,
         '.ts',
+        'schema',
       )
       if (!match)
         return
@@ -211,7 +193,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
                 cwd: nuxt.options.rootDir,
               },
             )
-            _logger.info(`Pushed ${projectName} schema`)
+            _logger.info(`Drop ${projectName} schema`)
           }
 
           if (activeProject.watch?.push) {
@@ -263,7 +245,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
           function drizzle() {
             return {
               ${returnDriver}
-              schema: tables${pascalCase(options.projectName)},
+              tables: camelCase('${options.projectName}-Tables'),
             }
           }
         `,

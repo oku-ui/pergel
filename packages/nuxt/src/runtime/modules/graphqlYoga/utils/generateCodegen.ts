@@ -2,7 +2,7 @@ import { join, resolve } from 'node:path'
 import { addTemplate, updateTemplates } from '@nuxt/kit'
 import consola from 'consola'
 import { buildTime } from '../utils'
-import { useNuxtImports } from '../../../core/utils/useImports'
+import { useNitroImports, useNuxtImports } from '../../../core/utils/useImports'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import { useCodegen } from './codegen'
@@ -53,8 +53,8 @@ export async function useGenerateCodegen({
     path: string
   }
 }) {
-  const { moduleName, projectName, documentDir, schemaDir } = options
-  const combinedName = join(projectName, moduleName)
+  const { moduleName, documentDir, schemaDir, projectNameCamelCase, generatorFunctionName } = options
+  const combinedName = join(projectNameCamelCase, moduleName)
 
   const dotNuxtPaths = {
     clientTypes: join(combinedName, 'client.ts'),
@@ -116,7 +116,6 @@ export async function useGenerateCodegen({
       const { finish } = buildTime()
 
       try {
-        consola.info(`Generating types server for ${projectName} in ${finish().duration}ms`)
         const type = await server.typescriptResolvers(schema, {
           useTypeImports: true,
           contextType: `${moduleDTS.path}#${moduleDTS.name}`,
@@ -130,6 +129,7 @@ export async function useGenerateCodegen({
             })
             : {},
         })
+        consola.info(`Generating types server for ${projectNameCamelCase} in ${finish().duration}ms`)
         return type
       }
       catch (error) {
@@ -149,9 +149,9 @@ export async function useGenerateCodegen({
     async getContents() {
       const { finish } = buildTime()
       try {
-        consola.info(`Generating types server for ${projectName} in ${finish().duration}ms`)
         const type = await server.urqlIntrospection(schema, {
         })
+        consola.info(`Generating types server for ${projectNameCamelCase} in ${finish().duration}ms`)
         return type
       }
       catch (error) {
@@ -187,7 +187,7 @@ export async function useGenerateCodegen({
           })
           return data
         }
-        consola.info(`Generating types client for ${projectName} in ${finish().duration}ms`)
+        consola.info(`Generating types client for ${projectNameCamelCase} in ${finish().duration}ms`)
         return ''
       }
       catch (error) {
@@ -200,20 +200,19 @@ export async function useGenerateCodegen({
   nuxt.options.alias[`#${combinedName}/client`] = clientTypes.dst
   nuxt.options.nitro.alias[`#${combinedName}/client`] = clientTypes.dst
 
-  // Add imports to nitro
-  nuxt.options.nitro.imports = {
+  useNitroImports(nuxt, {
     presets: [
       {
         from: clientTypes.dst,
         imports: [
           {
-            as: `${projectName}GraphQLClient`,
+            as: `${generatorFunctionName('GraphQLClient')}`,
             name: '*',
           },
         ],
       },
     ],
-  }
+  })
 
   useNuxtImports(nuxt, {
     presets: [
@@ -221,7 +220,7 @@ export async function useGenerateCodegen({
         from: clientTypes.dst,
         imports: [
           {
-            as: `${projectName}GraphQLClient`,
+            as: `${generatorFunctionName('GraphQLClient')}`,
             name: '*',
           },
         ],

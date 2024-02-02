@@ -1,9 +1,9 @@
-import type { Session, User } from '#test/drizzle/schema'
-import type { auth } from '#test/lucia'
+import type { Session, User } from '#test/server/drizzle/schema'
+import type { testAuth } from '#test/server/lucia'
 
 declare module 'lucia' {
   interface Register {
-    Lucia: typeof auth
+    Lucia: typeof testAuth
   }
   interface DatabaseUserAttributes extends Omit<User, 'id'> {}
 
