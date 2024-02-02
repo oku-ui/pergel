@@ -38,6 +38,14 @@ export interface ResolvedPergelModuleOptions {
 
   /**
    * @default
+   * projectname: test
+   * functionName: auth
+   * = testAuth
+   */
+  generatorFunctionName: (name: string) => string
+
+  /**
+   * @default
    * testHello -> pergelTestHello
    */
   projectNameCamelCaseWithPergel: string

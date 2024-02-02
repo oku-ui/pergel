@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { createResolver } from '@nuxt/kit'
-import { camelCase } from 'scule'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
@@ -12,12 +11,12 @@ import { setupDrizzle } from './drizzle'
 export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions>({
   meta: {
     name: 'lucia',
-    version: '0.0.1',
+    version: '0.2.0',
     dependencies(options) {
       const [driver, db] = options.driver.split(':')
       const defaultData = {
-        lucia: '^3.0.0-beta.14',
-        oslo: '^0.25.1',
+        lucia: '^3.0.1',
+        oslo: '^1.0.3',
       }
 
       switch (driver) {
@@ -26,8 +25,8 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
             case 'postgre': {
               return {
                 ...defaultData,
-                '@lucia-auth/adapter-drizzle': '^1.0.0-beta.6',
-                '@lucia-auth/adapter-postgresql': '^3.0.0-beta.9',
+                '@lucia-auth/adapter-drizzle': '^1.0.0',
+                '@lucia-auth/adapter-postgresql': '^3.0.0',
               }
             }
             default: {
@@ -80,7 +79,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
         writeFileSync(
           `${options.serverDir}/index.ts`,
           /* ts */`
-import { session, user } from '#${options.projectName}/drizzle/schema'
+import { session, user } from '#${options.projectName}/server/drizzle/schema'
 
 const connect = await ${options.projectNameCamelCaseWithPergel}()
 .drizzle()
@@ -89,7 +88,7 @@ const connect = await ${options.projectNameCamelCaseWithPergel}()
   event: false
 })
 
-export const ${camelCase(`${options.projectName}-Auth`)} = ${options.projectNameCamelCaseWithPergel}()
+export const ${options.generatorFunctionName('Auth')} = ${options.projectNameCamelCaseWithPergel}()
 .lucia()
 .use({
   db: connect,
@@ -107,11 +106,8 @@ export const ${camelCase(`${options.projectName}-Auth`)} = ${options.projectName
 
       writeFileSync(
         join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
-        /* ts */`
-import { auth } from '#${options.projectName}/lucia'
-
-export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
-  lucia: ${camelCase(`${options.projectName}-Auth`)},
+        /* ts */`export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
+  lucia: ${options.generatorFunctionName('Auth')},
 })
         `,
       )
@@ -125,7 +121,7 @@ export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelN
             'Argon2id',
             'Bcrypt',
             'Scrypt',
-          ],
+          ] as Array<keyof typeof import('oslo/password')>,
         },
         {
           from: resolver.resolve('server/middleware'),
@@ -133,25 +129,17 @@ export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelN
             'definePergelNitroMiddleware',
           ],
         },
-        {
-          from: `${options.serverDir}`,
-          imports: [
-            {
-              name: camelCase(`${options.projectName}-Auth`),
-            },
-          ],
-        },
       ],
     })
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
-import type { Session, User } from '#${options.projectName}/drizzle/schema'
-import type { auth } from '#${options.projectName}/lucia'
+import type { Session, User } from '#${options.projectName}/server/drizzle/schema'
+import type { ${options.generatorFunctionName('Auth')} } from '#${options.projectName}/server/lucia'
 
 declare module 'lucia' {
   interface Register {
-    Lucia: typeof auth
+    Lucia: typeof ${options.generatorFunctionName('Auth')}
   }
   interface DatabaseUserAttributes extends Omit<User, 'id'> {}
 

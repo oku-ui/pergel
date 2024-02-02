@@ -1,6 +1,9 @@
 import { basename, join, resolve } from 'node:path'
+import { existsSync, writeFileSync } from 'node:fs'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { pascalCase } from 'scule'
+
+import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
@@ -13,7 +16,7 @@ import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>({
   meta: {
     name: 'graphqlYoga',
-    version: '0.0.1',
+    version: '0.3.0',
     dependencies: {
       '@pergel/graphql': 'latest',
     },
@@ -125,6 +128,13 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             },
           ],
         },
+        {
+          from: 'dataloader',
+          imports: [{
+            name: 'default',
+            as: 'DataLoader',
+          }],
+        },
       ],
     })
 
@@ -132,6 +142,29 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       nuxt,
       options,
     })
+
+    if (nuxt._pergel.projects[options.projectName]?.drizzle && nuxt._pergel.projects[options.projectName]?.lucia) {
+      if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+        const files = globbySync(resolver.resolve(join('templates', 'drizzle-lucia', 'root'), '**/*'), {
+          onlyFiles: true,
+        })
+
+        for (const file of files) {
+          const readFile = await import(file).then(m => m.default).catch(() => null)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              nuxt,
+            })
+            const fileName = basename(file)
+
+            writeFileSync(resolve(options.serverDir, fileName), fileData, {
+              encoding: 'utf8',
+            })
+          }
+        }
+      }
+    }
 
     nuxt._pergel.contents.push({
       moduleName: options.moduleName,

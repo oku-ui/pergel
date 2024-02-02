@@ -2,7 +2,6 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import { config } from 'dotenv'
 import { seed1 } from './seed1'
-import { seed2 } from './seed2'
 
 config()
 
@@ -23,7 +22,7 @@ async function rundevSeed() {
 
   console.warn('Seeding database...')
   await seed1(db)
-  await seed2(db)
+
   console.warn('Seeding database... done')
 
   await queryClient.end()

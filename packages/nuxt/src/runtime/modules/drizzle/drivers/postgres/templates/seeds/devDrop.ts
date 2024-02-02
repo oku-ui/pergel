@@ -3,7 +3,7 @@ export default function (data: {
     dbUrl: string
   }
 }) {
-  return `import { drizzle } from 'drizzle-orm/postgres-js'
+  return /* TS */ `import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import { config } from 'dotenv'
 import { sql } from 'drizzle-orm'

@@ -1,9 +1,10 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { basename, join, resolve } from 'node:path'
 import { startSubprocess } from '@nuxt/devtools-kit'
+import { createResolver } from '@nuxt/kit'
+import { globbySync } from 'globby'
 import type { ResolvedDrizzleConfig } from '../../types'
 
-import { createDrizzleConfig } from '../../defaults/postgresjs'
 import type { NuxtPergel } from '../../../../core/types/nuxtModule'
 import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
@@ -13,6 +14,7 @@ export async function setupPostgres(
   nuxt: NuxtPergel,
   options: ResolvedDrizzleConfig,
 ) {
+  const resolver = createResolver(import.meta.url)
   const projectName = options.projectName
   const moduleName = options.moduleName
   const { driver } = options._driver
@@ -59,65 +61,63 @@ export default {
     })
   }
 
-  // Seed generation
-  if (!existsSync(resolve(options.seedPaths)))
-    mkdirSync(resolve(options.serverDir, 'seeds'), { recursive: true, mode: 0o777 })
+  if (!existsSync(resolve(options.serverDir, 'schema'))) {
+    mkdirSync(resolve(options.serverDir, 'schema'), { recursive: true })
+    cpSync(resolver.resolve(join('templates', 'schema')), resolve(options.serverDir, 'schema'), {
+      recursive: true,
+    })
+  }
 
-  if (!existsSync(resolve(options.seedPaths, 'devMigration.ts'))) {
-    const readFile = await import('./seed').then(m => m.default).catch(() => null)
-    if (readFile) {
-      const file = readFile({
-        env: {
-          dbUrl: env.url,
-          dbDrop: env.drop,
-          dbSeed: env.seed,
-          dbMigrate: env.migrate,
-        },
-        migrationDir: join(options.serverDir, options.dir.migrations),
-      })
-      writeFileSync(resolve(options.seedPaths, 'devMigration.ts'), file, {
-        encoding: 'utf8',
-      })
+  if (!existsSync(resolve(options.serverDir, 'seeds'))) {
+    mkdirSync(resolve(options.serverDir, 'seeds'), { recursive: true })
+
+    const files = globbySync(resolver.resolve(join('templates', 'seeds'), '**/*'), {
+      onlyFiles: true,
+    })
+
+    for (const file of files) {
+      const readFile = await import(file).then(m => m.default).catch(() => null)
+      if (readFile) {
+        const fileData = readFile({
+          env: {
+            dbUrl: env.url,
+            dbDrop: env.drop,
+            dbSeed: env.seed,
+            dbMigrate: env.migrate,
+          },
+          migrationDir: join(options.serverDir, options.dir.migrations),
+          projectName,
+        })
+        const fileName = basename(file)
+
+        writeFileSync(resolve(options.serverDir, 'seeds', fileName), fileData, {
+          encoding: 'utf8',
+        })
+      }
     }
   }
 
-  if (!existsSync(resolve(options.seedPaths, 'devDrop.ts'))) {
-    const readFile = await import('./seed/devDrop').then(m => m.default).catch(() => null)
-    if (readFile) {
-      const file = readFile({
-        env: {
-          dbUrl: env.url,
-        },
-      })
-      writeFileSync(resolve(options.seedPaths, 'devDrop.ts'), file, {
-        encoding: 'utf8',
-      })
+  if (!existsSync(resolve(options.serverDir, 'storage'))) {
+    mkdirSync(resolve(options.serverDir, 'storage'), { recursive: true })
+
+    const files = globbySync(resolver.resolve(join('templates', 'storage'), '**/*'), {
+      onlyFiles: true,
+    })
+
+    for (const file of files) {
+      const readFile = await import(file).then(m => m.default).catch(() => null)
+      if (readFile) {
+        const fileData = readFile({
+          projectName,
+        })
+        const fileName = basename(file)
+
+        writeFileSync(resolve(options.serverDir, 'storage', fileName), fileData, {
+          encoding: 'utf8',
+        })
+      }
     }
   }
-
-  if (!existsSync(resolve(options.seedPaths, 'devSeed.ts'))) {
-    const readFile = await import('./seed/devSeed').then(m => m.default).catch(() => null)
-    if (readFile) {
-      const file = readFile({
-        env: {
-          dbUrl: env.url,
-        },
-      })
-      writeFileSync(resolve(options.seedPaths, 'devSeed.ts'), file, {
-        encoding: 'utf8',
-      })
-    }
-  }
-
-  if (!existsSync(resolve(options.seedPaths, 'seeds', 'seed1.ts'))) {
-    const readFile = await import('./seed/s-seed1').then(m => m.default).catch(() => null)
-    if (readFile) {
-      const file = readFile()
-      writeFileSync(resolve(options.seedPaths, 'seed1.ts'), file)
-    }
-  }
-
-  createDrizzleConfig({ schemaPath: options.schemaPath })
 
   if (nuxt.options.dev) {
     const subprocess = startSubprocess({
