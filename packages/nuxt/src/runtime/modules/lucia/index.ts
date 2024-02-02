@@ -67,6 +67,10 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
 
     const [driver, db] = options.driver.split(':')
 
+    nuxt.options.vite.optimizeDeps ??= {}
+    nuxt.options.vite.optimizeDeps.exclude ??= []
+    nuxt.options.vite.optimizeDeps.exclude.push('oslo')
+
     const _setupDrizzle = {
       use: '',
     }
