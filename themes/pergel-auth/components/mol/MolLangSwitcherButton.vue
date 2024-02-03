@@ -14,7 +14,11 @@ const availableLocales = computed(() => {
       )"
     >
       <AtomIcon dynamic name="i-ph-globe-bold" class="size-4" />
-      {{ locale.value }}
+      <span
+        class="ml-2"
+      >
+        {{ locale }}
+      </span>
     </UiDropdownMenuTrigger>
     <UiDropdownMenuContent>
       <UiDropdownMenuLabel>

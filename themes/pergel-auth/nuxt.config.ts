@@ -5,8 +5,9 @@ export default defineNuxtConfig({
     '../../packages/nuxt/src/module',
   ],
   css: [
-    '~/assets/pergel.css',
+    '~/assets/css/pergel.css',
   ],
+  ssr: false,
   pergel: {
     projects: {
       changeName: {

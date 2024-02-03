@@ -1,3 +1,5 @@
+scalar DateTime
+
 type Query {
   book(id: ID!): Book!
   books: [Book!]!
@@ -5,10 +7,8 @@ type Query {
 
 type Book {
   id: ID!
-  name: String!
-  email: String!
-  password: String!
+  title: String!
   createdAt: String!
   updatedAt: String
 }
-    
+

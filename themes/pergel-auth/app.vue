@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   darkTheme,
   lightTheme,
@@ -30,7 +30,8 @@ const isDark = computed({
   </div>
 </template>
 
-<style>
+<style lang="postcss">
+@import url("~/assets/css/pergel.css");
 #__nuxt {
   @apply w-full h-full;
 }

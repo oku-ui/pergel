@@ -1,5 +1,4 @@
 import { join } from 'node:path'
-import { existsSync, writeFileSync } from 'node:fs'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
@@ -12,35 +11,6 @@ export function generateGraphQLTemplate(data: {
   options: ResolvedGraphQLYogaConfig
 }) {
   const { codegen, dir } = data.options
-
-  const schemaTemplate = `type Query {
-  book(id: ID!): Book!
-  books: [Book!]!
-}
-
-type Book {
-  id: ID!
-  name: String!
-  email: String!
-  password: String!
-  createdAt: String!
-  updatedAt: String
-}
-    `
-
-  const documentsTemplate = `query book {
-  book(id: 1) {
-    id
-    name
-  }
-}
-    `
-
-  if (!existsSync(join(data.options.schemaDir, 'book.graphql')))
-    writeFileSync(join(data.options.schemaDir, 'book.graphql'), schemaTemplate)
-
-  if (!existsSync(join(data.options.documentDir, 'book.graphql')))
-    writeFileSync(join(data.options.documentDir, 'book.graphql'), documentsTemplate)
 
   addModuleDTS({
     template: /* ts */`

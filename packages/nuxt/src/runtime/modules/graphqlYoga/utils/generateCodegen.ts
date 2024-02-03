@@ -67,7 +67,7 @@ export async function useGenerateCodegen({
   const { client, server } = useCodegen()
 
   const { printSchema, schema, loadDocument } = await loadGraphQLFiles({
-    rootDir: nuxt._pergel.rootDir,
+    rootDir: nuxt._pergel.serverDir,
     documentDir,
     schemaDir,
   })

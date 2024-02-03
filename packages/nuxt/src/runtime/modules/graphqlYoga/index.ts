@@ -1,5 +1,5 @@
 import { basename, join, resolve } from 'node:path'
-import { existsSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { pascalCase } from 'scule'
 
@@ -7,7 +7,6 @@ import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
-import { createFolderModule } from '../../core/utils/createFolderModule'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
 import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
@@ -25,25 +24,11 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
   defaults({ rootOptions, options, nuxt }) {
     const documentDir = rootOptions.documentDir ? join(nuxt._pergel.rootDir, rootOptions.documentDir) : join(options.serverDir, 'documents')
 
-    const schemaDir = rootOptions.schemaDir ? join(nuxt._pergel.rootDir, rootOptions.schemaDir) : join(options.serverDir, 'graphql')
+    const schemaDir = rootOptions.schemaDir ? join(nuxt._pergel.rootDir, rootOptions.schemaDir) : join(options.serverDir, 'schemas')
 
     const clientConfigFile = rootOptions.codegen?.client?.configFilePath ? resolve(nuxt._pergel.rootDir, rootOptions.codegen?.client?.configFilePath) : resolve(options.serverDir, 'codegen/client.ts')
 
     const serverConfigFile = rootOptions.codegen?.server?.configFilePath ? resolve(nuxt._pergel.rootDir, rootOptions.codegen?.server?.configFilePath) : resolve(options.serverDir, 'codegen/server.ts')
-
-    rootOptions.documentDir ?? createFolderModule({
-      nuxt,
-      serverDir: documentDir,
-      moduleName: options.moduleName,
-      projectName: options.projectName,
-    })
-
-    rootOptions.schemaDir ?? createFolderModule({
-      nuxt,
-      serverDir: schemaDir,
-      moduleName: options.moduleName,
-      projectName: options.projectName,
-    })
 
     return {
       ...options,
@@ -138,11 +123,6 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       ],
     })
 
-    generateGraphQLTemplate({
-      nuxt,
-      options,
-    })
-
     if (nuxt._pergel.projects[options.projectName]?.drizzle && nuxt._pergel.projects[options.projectName]?.lucia) {
       if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
         const files = globbySync(resolver.resolve(join('templates', 'drizzle-lucia', 'root'), '**/*'), {
@@ -163,6 +143,26 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             })
           }
         }
+      }
+
+      if (!existsSync(resolve(options.serverDir, 'documents'))) {
+        mkdirSync(resolve(options.serverDir, 'documents'), {
+          recursive: true,
+        })
+
+        cpSync(resolver.resolve(join('templates', 'drizzle-lucia', 'documents')), resolve(options.serverDir, 'documents'), {
+          recursive: true,
+        })
+      }
+
+      if (!existsSync(resolve(options.serverDir, 'schemas'))) {
+        mkdirSync(resolve(options.serverDir, 'schemas'), {
+          recursive: true,
+        })
+
+        cpSync(resolver.resolve(join('templates', 'drizzle-lucia', 'schemas')), resolve(options.serverDir, 'schemas'), {
+          recursive: true,
+        })
       }
     }
     else {
@@ -185,6 +185,26 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             })
           }
         }
+
+        if (!existsSync(resolve(options.serverDir, 'documents'))) {
+          mkdirSync(resolve(options.serverDir, 'documents'), {
+            recursive: true,
+          })
+
+          cpSync(resolver.resolve(join('templates', 'root', 'documents')), resolve(options.serverDir, 'documents'), {
+            recursive: true,
+          })
+        }
+
+        if (!existsSync(resolve(options.serverDir, 'schemas'))) {
+          mkdirSync(resolve(options.serverDir, 'schemas'), {
+            recursive: true,
+          })
+
+          cpSync(resolver.resolve(join('templates', 'root', 'schemas')), resolve(options.serverDir, 'schemas'), {
+            recursive: true,
+          })
+        }
       }
     }
 
@@ -205,6 +225,11 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       resolve: /* ts */`
             graphqlYoga: graphqlYoga,
         `,
+    })
+
+    generateGraphQLTemplate({
+      nuxt,
+      options,
     })
   },
 })
