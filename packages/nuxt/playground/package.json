@@ -8,22 +8,22 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.490.0",
-    "@faker-js/faker": "^8.3.1",
-    "@json2csv/node": "^7.0.4",
-    "@lucia-auth/adapter-drizzle": "1.0.0-beta.6",
-    "@lucia-auth/adapter-postgresql": "3.0.0-beta.9",
+    "@aws-sdk/client-ses": "^3.504.0",
+    "@faker-js/faker": "^8.4.0",
+    "@json2csv/node": "^7.0.5",
+    "@lucia-auth/adapter-drizzle": "1.0.0",
+    "@lucia-auth/adapter-postgresql": "3.0.0",
     "@pergel/graphql": "workspace:*",
     "@pergel/module-box": "workspace:^",
     "@pergel/module-s3": "workspace:*",
-    "bullmq": "^5.1.1",
-    "dotenv": "^16.3.1",
-    "drizzle-kit": "^0.20.12",
+    "bullmq": "^5.1.8",
+    "dotenv": "^16.4.1",
+    "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
     "ioredis": "^5.3.2",
-    "lucia": "3.0.0-beta.14",
+    "lucia": "3.0.1",
     "node-cron": "^3.0.3",
-    "oslo": "^0.26.2",
+    "oslo": "^0.28.2",
     "p-timeout": "^6.1.2",
     "postgres": "^3.4.3"
   },
@@ -31,7 +31,7 @@
     "@pergel/nuxt": "link:..",
     "@types/node-cron": "^3.0.11",
     "nuxt": "latest",
-    "pergel": "^0.5.3",
+    "pergel": "^0.6.0",
     "pg": "^8.11.3"
   }
 }
