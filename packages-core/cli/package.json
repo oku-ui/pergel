@@ -89,7 +89,7 @@
     "consola": "^3.2.3",
     "giget": "^1.2.1",
     "globby": "^14.0.0",
-    "pathe": "^1.1.1",
+    "pathe": "^1.1.2",
     "picocolors": "^1.0.0",
     "shelljs": "^0.8.5"
   },
