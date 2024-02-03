@@ -444,10 +444,10 @@ importers:
   packages/s3:
     dependencies:
       '@aws-sdk/client-s3':
-        specifier: ^3.484.0
+        specifier: ^3.504.0
         version: 3.504.0
       '@aws-sdk/s3-request-presigner':
-        specifier: ^3.484.0
+        specifier: ^3.504.0
         version: 3.504.0
 
   themes/pergel-auth:
