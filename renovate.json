@@ -32,7 +32,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "examples",
@@ -44,7 +45,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "themes",
@@ -56,7 +58,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "nuxt",
@@ -68,7 +71,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "graphql",
@@ -80,7 +84,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "packages-core",
@@ -92,7 +97,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "ui",
@@ -104,7 +110,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "s3",
@@ -116,7 +123,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "box",
@@ -128,7 +136,8 @@
         "major",
         "minor",
         "patch"
-      ]
+      ],
+      "separateMajorMinor": false
     },
     {
       "groupName": "root",
