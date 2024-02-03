@@ -80,8 +80,8 @@ importers:
         specifier: ^7.0.4
         version: 7.0.4
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.0-beta.0
-        version: 1.0.0-beta.0(lucia@2.7.7)
+        specifier: 1.0.0
+        version: 1.0.0(lucia@2.7.7)
       '@lucia-auth/adapter-postgresql':
         specifier: ^2.0.2
         version: 2.0.2(lucia@2.7.7)(pg@8.11.3)(postgres@3.4.3)
@@ -2955,10 +2955,10 @@ packages:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
     dev: false
 
-  /@lucia-auth/adapter-drizzle@1.0.0-beta.0(lucia@2.7.7):
-    resolution: {integrity: sha512-L4e8zJATX1PbIvvSNQ/VwxrVebEZKtzUkPdFBFSpbVUuc7aa6yqMyHm2lI4cHCWT76pwlZgQmAiE9O2AyqlX/A==}
+  /@lucia-auth/adapter-drizzle@1.0.0(lucia@2.7.7):
+    resolution: {integrity: sha512-3NJbAgEcgFn1bJ+s/XVBdatnQZCtSjKJ880H25SVB9X+V2jhYfsSu/mcW3PSis5bLial188Pd4oNTTHonh+6vg==}
     peerDependencies:
-      lucia: 3.0.0-beta.8
+      lucia: 3.x
     dependencies:
       lucia: 2.7.7
     dev: false
