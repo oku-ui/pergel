@@ -95,8 +95,8 @@ importers:
         specifier: ^0.0.0
         version: 0.0.0
       bullmq:
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.1.8
+        version: 5.1.8
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -2958,7 +2958,7 @@ packages:
   /@lucia-auth/adapter-drizzle@1.0.0-beta.0(lucia@2.7.6):
     resolution: {integrity: sha512-L4e8zJATX1PbIvvSNQ/VwxrVebEZKtzUkPdFBFSpbVUuc7aa6yqMyHm2lI4cHCWT76pwlZgQmAiE9O2AyqlX/A==}
     peerDependencies:
-      lucia: 3.0.0-beta.9
+      lucia: 3.0.0-beta.8
     dependencies:
       lucia: 2.7.6
     dev: false
@@ -6779,8 +6779,8 @@ packages:
       semver: 7.5.4
     dev: false
 
-  /bullmq@5.1.1:
-    resolution: {integrity: sha512-j3zbNEQWsyHjpqGWiem2XBfmxAjYcArbwsmGlkM1E9MAVcrqB5hQUsXmyy9gEBAdL+PVotMICr7xTquR4Y2sKQ==}
+  /bullmq@5.1.8:
+    resolution: {integrity: sha512-jZQOzjr35qGIYRjRoO56zf0Lm9aMQVlkzgBLeaoXuK86K+KvXyXoO+ErlAlaAKNQW5IGr9P1/oZzR1NvIy9tuA==}
     dependencies:
       cron-parser: 4.9.0
       glob: 8.1.0
