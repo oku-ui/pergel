@@ -1,16 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:base",
+    ":preserveSemverRanges",
+    ":semanticCommitTypeAll(chore)"
   ],
-  "rebaseWhen": "conflicted",
   "schedule": [
     "every 8 months on the first day of the month"
   ],
   "baseBranches": [
     "main"
   ],
+  "separateMajorMinor": false,
   "rangeStrategy": "bump",
+  "assignAutomerge": true,
+  "semanticCommits": "enabled",
   "ignoreDeps": [
     "node",
     "pnpm"
