@@ -369,20 +369,20 @@ importers:
   packages/nuxt/playground:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.490.0
+        specifier: ^3.504.0
         version: 3.504.0
       '@faker-js/faker':
-        specifier: ^8.3.1
+        specifier: ^8.4.0
         version: 8.4.0
       '@json2csv/node':
-        specifier: ^7.0.4
+        specifier: ^7.0.5
         version: 7.0.5
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.0-beta.6
-        version: 1.0.0-beta.6(lucia@3.0.0-beta.14)
+        specifier: 1.0.0
+        version: 1.0.0(lucia@3.0.1)
       '@lucia-auth/adapter-postgresql':
-        specifier: 3.0.0-beta.9
-        version: 3.0.0-beta.9(lucia@3.0.0-beta.14)(pg@8.11.3)(postgres@3.4.3)
+        specifier: 3.0.0
+        version: 3.0.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
       '@pergel/graphql':
         specifier: workspace:*
         version: link:../../graphql
@@ -393,13 +393,13 @@ importers:
         specifier: workspace:*
         version: link:../../s3
       bullmq:
-        specifier: ^5.1.1
+        specifier: ^5.1.8
         version: 5.1.8
       dotenv:
-        specifier: ^16.3.1
+        specifier: ^16.4.1
         version: 16.4.1
       drizzle-kit:
-        specifier: ^0.20.12
+        specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
         specifier: ^0.29.3
@@ -408,14 +408,14 @@ importers:
         specifier: ^5.3.2
         version: 5.3.2
       lucia:
-        specifier: 3.0.0-beta.14
-        version: 3.0.0-beta.14
+        specifier: 3.0.1
+        version: 3.0.1
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
       oslo:
-        specifier: ^0.26.2
-        version: 0.26.2
+        specifier: ^0.28.2
+        version: 0.28.2
       p-timeout:
         specifier: ^6.1.2
         version: 6.1.2
@@ -433,8 +433,8 @@ importers:
         specifier: latest
         version: 3.10.0(@types/node@20.11.16)(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.12)
       pergel:
-        specifier: ^0.5.3
-        version: 0.5.10
+        specifier: ^0.6.0
+        version: 0.6.0
       pg:
         specifier: ^8.11.3
         version: 8.11.3
@@ -4100,14 +4100,6 @@ packages:
     dependencies:
       lucia: 3.0.1
 
-  /@lucia-auth/adapter-drizzle@1.0.0-beta.6(lucia@3.0.0-beta.14):
-    resolution: {integrity: sha512-wYh99PeFcgsJ2/OyeDblkCrj6lw7gkeENZrhFacD8t9KZwkBhobDRe3q4hf38+MTOn+W9csE87La/OK4qTCsPA==}
-    peerDependencies:
-      lucia: 3.0.0-beta.14
-    dependencies:
-      lucia: 3.0.0-beta.14
-    dev: false
-
   /@lucia-auth/adapter-postgresql@3.0.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3):
     resolution: {integrity: sha512-DyKLrVe2kFajJ9DIISP11mFz4Y72XnW1g4SrvRATrD+qPr+l7iwt5emWbqQJ6p3zbfY0VraPNICSp23mgAg0jw==}
     peerDependencies:
@@ -4123,23 +4115,6 @@ packages:
       lucia: 3.0.1
       pg: 8.11.3
       postgres: 3.4.3
-
-  /@lucia-auth/adapter-postgresql@3.0.0-beta.9(lucia@3.0.0-beta.14)(pg@8.11.3)(postgres@3.4.3):
-    resolution: {integrity: sha512-ifLGxtg+E3wxpZB7jLxBzkhwWcL1FZrpOHBtmeKCDKi3UfIiqHucOVXvChYYS+fQQfGEEnmzRPx5cF56uCVKUQ==}
-    peerDependencies:
-      lucia: 3.0.0-beta.14
-      pg: ^8.8.0
-      postgres: ^3.3.0
-    peerDependenciesMeta:
-      pg:
-        optional: true
-      postgres:
-        optional: true
-    dependencies:
-      lucia: 3.0.0-beta.14
-      pg: 8.11.3
-      postgres: 3.4.3
-    dev: false
 
   /@mapbox/node-pre-gyp@1.0.11:
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
@@ -8840,7 +8815,7 @@ packages:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /camelcase-css@2.0.1:
@@ -8876,7 +8851,7 @@ packages:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
       upper-case-first: 2.0.2
     dev: false
 
@@ -8941,7 +8916,7 @@ packages:
       path-case: 3.0.4
       sentence-case: 3.0.4
       snake-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /changelogen@0.5.5:
@@ -9306,7 +9281,7 @@ packages:
     resolution: {integrity: sha512-I2hSBi7Vvs7BEuJDr5dDHfzb/Ruj3FyvFyh7KLilAjNQw3Be+xgqUBA2W6scVEcL0hL1dwPRtIqEPVUCKkSsyQ==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
       upper-case: 2.0.2
     dev: false
 
@@ -9805,7 +9780,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /dot-prop@8.0.2:
@@ -11488,7 +11463,7 @@ packages:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}
     dependencies:
       capital-case: 1.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /heap@0.2.7:
@@ -11899,7 +11874,7 @@ packages:
   /is-lower-case@2.0.2:
     resolution: {integrity: sha512-bVcMJy4X5Og6VZfdOZstSexlEy20Sr0k/p/b2IlQJlfdKAQuMpiv5w2Ccxb8sKdRUNAG1PnHVHjFSdRDVS6NlQ==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /is-module@1.0.0:
@@ -11976,7 +11951,7 @@ packages:
   /is-upper-case@2.0.2:
     resolution: {integrity: sha512-44pxmxAvnnAOwBg4tHPnkfvgjPwbc5QIsSstNU+YcJ1ovxVzCWpSGosPJOZh/a1tdl81fbgnLc9LLv+x2ywbPQ==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /is-what@4.1.16:
@@ -12646,13 +12621,13 @@ packages:
   /lower-case-first@2.0.2:
     resolution: {integrity: sha512-EVm/rR94FJTZi3zefZ82fLWab+GX14LJN4HrWBcuo6Evmsl9hEfnqxgcHCKb9q+mNf6EVdsjx/qucYFIIB84pg==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /lru-cache@10.2.0:
@@ -12679,12 +12654,6 @@ packages:
     resolution: {integrity: sha512-BpdYkt9EvGl8OfWHDQPISVpcl5xZthb+XPsbELj5AQXxIC8IriDZIQYjBJPEm5rS420sjZ0TLEzRcq5KdBhYrQ==}
     dependencies:
       es5-ext: 0.10.62
-
-  /lucia@3.0.0-beta.14:
-    resolution: {integrity: sha512-MXJILHb4xyvf3qjO7w7mDnvVOub2LGWLSjgP1TBGPLDkBF62uXNfvPNH7QRvOwvuSLtQK+w7JoPjnjiFiIj9rg==}
-    dependencies:
-      oslo: 0.27.1
-    dev: false
 
   /lucia@3.0.1:
     resolution: {integrity: sha512-srwUkTCGgr6N4mFpaKZVZy5kwiRZdsrbIDv9Wrjar+xyw1MjojYQQ7oRbegjRWOZ3yI8xOOclK3sz/rga2J7/w==}
@@ -13262,7 +13231,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /node-abi@3.54.0:
@@ -13949,15 +13918,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /oslo@0.26.2:
-    resolution: {integrity: sha512-SY5AhyEc/Lvpq9ZeP/MuGXzI+TV6WRAIgSKtfyc0+/BSOhZr8vVTt/mfhOTATk41VsDeYcDutMKgLmFGOL4UMw==}
-    dependencies:
-      '@node-rs/argon2': 1.7.2
-      '@node-rs/bcrypt': 1.9.2
-    dev: false
-
-  /oslo@0.27.1:
-    resolution: {integrity: sha512-AYU0LpwZ50wIMD3dr4NX0tQzjwxaejSSV9reiY9jbQfgODt49al3f3tMcijyddyvPknUPArz845vpswWyJTWvA==}
+  /oslo@0.28.2:
+    resolution: {integrity: sha512-fzoGI6elzMDP9kHHJXPPKDOYuvKhJ/76SCPC7Mteq8drDJ63LdeSn+TC8wB2oDHv9Q4Pn0ld7w8A09bjGEra5Q==}
     dependencies:
       '@node-rs/argon2': 1.7.2
       '@node-rs/bcrypt': 1.9.2
@@ -14080,7 +14042,7 @@ packages:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /parent-module@1.0.1:
@@ -14155,14 +14117,14 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /path-case@3.0.4:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /path-exists@4.0.0:
@@ -14228,14 +14190,6 @@ packages:
 
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
-
-  /pergel@0.5.10:
-    resolution: {integrity: sha512-1L8Npm0A0Ye1O+MVEIl8uPldQWAuRcxm8cNtpXHrz8aQaTJ9V0glgCO2/IobbYV0nmh8DSsttVN2MF4ZkVbIsg==}
-    hasBin: true
-    dependencies:
-      '@pergel/cli': 0.6.2
-      '@pergel/nuxt': link:packages/nuxt
-    dev: true
 
   /pergel@0.6.0:
     resolution: {integrity: sha512-CxtQHOpK5M5BvwEGjmuA5i1xP/DDx6l3Nmwozxl9isi6J1dF+rJIiLabdsG6v3j908D5RG6fdFNgqjwQO/HLDg==}
@@ -15331,7 +15285,7 @@ packages:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
       upper-case-first: 2.0.2
     dev: false
 
@@ -15561,7 +15515,7 @@ packages:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /socks-proxy-agent@8.0.2:
@@ -15641,7 +15595,7 @@ packages:
   /sponge-case@1.0.1:
     resolution: {integrity: sha512-dblb9Et4DAtiZ5YSUZHLl4XhH4uK80GhAZrVXdN4O2P4gQ40Wa5UIOPUHlA/nFd2PLblBZWUioLMMAVrgpoYcA==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /sprintf-js@1.0.3:
@@ -15937,7 +15891,7 @@ packages:
   /swap-case@2.0.2:
     resolution: {integrity: sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /symbol-observable@1.2.0:
@@ -16149,7 +16103,7 @@ packages:
   /title-case@3.0.3:
     resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /titleize@3.0.0:
@@ -16679,13 +16633,13 @@ packages:
   /upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /upper-case@2.0.2:
     resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
     dependencies:
-      tslib: 2.5.3
+      tslib: 2.6.2
     dev: false
 
   /uqr@0.1.2:
