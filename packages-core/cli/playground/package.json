@@ -23,7 +23,7 @@
     "drizzle-kit": "^0.20.12",
     "drizzle-orm": "^0.29.3",
     "ioredis": "^5.3.2",
-    "lucia": "^2.7.6",
+    "lucia": "^2.7.7",
     "node-cron": "^3.0.3",
     "oslo": "^0.27.1",
     "p-timeout": "^6.1.2",
