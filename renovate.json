@@ -3,7 +3,8 @@
   "extends": [
     "config:base",
     ":preserveSemverRanges",
-    ":semanticCommitTypeAll(chore)"
+    ":semanticCommitTypeAll(chore)",
+    ":widenPeerDependencies"
   ],
   "schedule": [
     "every 8 months on the first day of the month"
@@ -13,167 +14,9 @@
   ],
   "separateMajorMinor": false,
   "rangeStrategy": "bump",
-  "assignAutomerge": true,
   "semanticCommits": "enabled",
   "ignoreDeps": [
     "node",
     "pnpm"
-  ],
-  "packageRules": [
-    {
-      "enabled": false,
-      "matchDepTypes": [
-        "peerDependencies"
-      ]
-    },
-    {
-      "groupName": ".docs",
-      "commitMessageTopic": ".docs",
-      "matchPaths": [
-        ".docs/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "examples",
-      "commitMessageTopic": "examples",
-      "matchPaths": [
-        "examples/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "themes",
-      "commitMessageTopic": "themes",
-      "matchPaths": [
-        "themes/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "nuxt",
-      "commitMessageTopic": "nuxt",
-      "matchPaths": [
-        "packages/nuxt/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "graphql",
-      "commitMessageTopic": "graphql",
-      "matchPaths": [
-        "packages/graphql/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "packages-core",
-      "commitMessageTopic": "packages-core",
-      "matchPaths": [
-        "packages/core/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "ui",
-      "commitMessageTopic": "ui",
-      "matchPaths": [
-        "packages/ui/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "s3",
-      "commitMessageTopic": "s3",
-      "matchPaths": [
-        "packages/s3/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "box",
-      "commitMessageTopic": "box",
-      "matchPaths": [
-        "packages/box/**"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "root",
-      "matchUpdateTypes": [
-        "patch",
-        "minor",
-        "major"
-      ],
-      "ignorePaths": [
-        "**/examples/**",
-        "**/themes/**",
-        "**/packages/nuxt/**",
-        "**/packages/graphql/**",
-        "**/packages/s3/**",
-        "**/.docs/**",
-        "**/packages/ui/**",
-        "**/packages/box/**",
-        "**/packages/core/**"
-      ],
-      "matchDatasources": [
-        "npm",
-        "github-actions"
-      ],
-      "labels": [
-        "dependencies"
-      ],
-      "addLabels": [
-        "dependencies"
-      ],
-      "matchFiles": [
-        "package.json"
-      ]
-    }
   ]
 }
