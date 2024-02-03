@@ -20,7 +20,7 @@
     "@pergel/module-s3": "^0.0.0",
     "bullmq": "^5.1.8",
     "dotenv": "^16.3.1",
-    "drizzle-kit": "^0.20.12",
+    "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
     "ioredis": "^5.3.2",
     "lucia": "^2.7.6",
