@@ -1,8 +1,9 @@
 // import { PostgresError } from 'postgres'
-import { auth } from '#test/lucia'
 
 export default eventHandler(async (event) => {
-  const db = await pergelTest().drizzle().postgresjs().connect({})
+  const db = await pergelTest().drizzle().postgresjs().connect({
+    event,
+  })
 
   const body = await readBody(event)
   const username = body.username
@@ -28,7 +29,7 @@ export default eventHandler(async (event) => {
   const hashedPassword = await new Argon2id().hash(password)
 
   try {
-    const [_user] = await db.insert(tablesTest.user).values({
+    const [_user] = await db.insert(testTables.user).values({
       username,
       email: body.email,
       password: hashedPassword,
@@ -36,8 +37,8 @@ export default eventHandler(async (event) => {
       updatedAt: new Date(),
     }).returning()
 
-    const session = await auth.createSession(_user.id, {})
-    appendHeader(event, 'Set-Cookie', auth.createSessionCookie(session.id).serialize())
+    const session = await testAuth.createSession(_user.id, {})
+    appendHeader(event, 'Set-Cookie', testAuth.createSessionCookie(session.id).serialize())
   }
   catch (e) {
     // /postgres/src/index.js' does not provide an export named 'PostgresError'

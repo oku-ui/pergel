@@ -1,6 +1,3 @@
-import { Argon2id } from 'oslo/password'
-import { auth } from '#test/lucia'
-
 export default eventHandler(async (event) => {
   const db = await pergelTest().drizzle().postgresjs().connect({})
   const body = await readBody(event)
@@ -25,7 +22,7 @@ export default eventHandler(async (event) => {
   }
 
   const [existingUser] = await db.select()
-    .from(tablesTest.user).where(eq(tablesTest.user.username, username)).execute()
+    .from(testTables.user).where(eq(testTables.user.username, username)).execute()
 
   if (!existingUser) {
     throw createError({
@@ -42,6 +39,6 @@ export default eventHandler(async (event) => {
     })
   }
 
-  const session = await auth.createSession(existingUser.id, {})
-  appendHeader(event, 'Set-Cookie', auth.createSessionCookie(session.id).serialize())
+  const session = await testAuth.createSession(existingUser.id, {})
+  appendHeader(event, 'Set-Cookie', testAuth.createSessionCookie(session.id).serialize())
 })

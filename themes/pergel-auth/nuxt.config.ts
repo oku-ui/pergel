@@ -20,7 +20,7 @@ export default defineNuxtConfig({
             notivue: true,
             tailwindcss: true,
             nuxtIcon: true,
-            radixVue: true,
+            radixMode: true,
             uuid: true,
             unsearch: true,
           },
