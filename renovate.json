@@ -48,6 +48,10 @@
       ],
       "matchUpdateTypes": [
         "patch"
+      ],
+      "automerge": true,
+      "schedule": [
+        "every 1 month"
       ]
     },
     {
