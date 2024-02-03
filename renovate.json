@@ -2,8 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
-    ":preserveSemverRanges",
-    ":semanticCommitTypeAll(chore)",
     ":widenPeerDependencies"
   ],
   "schedule": [
@@ -12,174 +10,49 @@
   "baseBranches": [
     "main"
   ],
-  "separateMajorMinor": false,
-  "rangeStrategy": "bump",
-  "semanticCommits": "enabled",
   "ignoreDeps": [
     "node",
     "pnpm"
   ],
   "packageRules": [
     {
-      "enabled": false,
-      "matchDepTypes": [
-        "peerDependencies"
+      "groupName": "all digest updates",
+      "groupSlug": "all-digest",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "digest"
       ]
     },
     {
-      "groupName": ".docs",
-      "groupSlug": ".docs",
-      "matchPaths": [
-        ".docs/**"
+      "groupName": "all minor updates",
+      "groupSlug": "all-minor",
+      "matchPackagePatterns": [
+        "*"
       ],
       "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
+        "minor"
       ]
     },
     {
-      "groupName": "examples",
-      "groupSlug": "examples",
-      "matchPaths": [
-        "examples/**"
+      "groupName": "all patch updates",
+      "groupSlug": "all-patch",
+      "matchPackagePatterns": [
+        "*"
       ],
       "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
+        "patch"
       ]
     },
     {
-      "groupName": "themes",
-      "groupSlug": "themes",
-      "matchPaths": [
-        "themes/**"
+      "groupName": "all major updates",
+      "groupSlug": "all-major",
+      "matchPackagePatterns": [
+        "*"
       ],
       "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
         "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "nuxt",
-      "groupSlug": "nuxt",
-      "matchPaths": [
-        "packages/nuxt/**"
-      ],
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "graphql",
-      "groupSlug": "graphql",
-      "matchPaths": [
-        "packages/graphql/**"
-      ],
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "packages-core",
-      "groupSlug": "packages-core",
-      "matchPaths": [
-        "packages/core/**"
-      ],
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "ui",
-      "groupSlug": "ui",
-      "matchPaths": [
-        "packages/ui/**"
-      ],
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "s3",
-      "groupSlug": "s3",
-      "matchPaths": [
-        "packages/s3/**"
-      ],
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "box",
-      "groupSlug": "box",
-      "matchPaths": [
-        "packages/box/**"
-      ],
-      "matchUpdateTypes": [
-        "digest",
-        "patch",
-        "minor",
-        "major"
-      ],
-      "separateMajorMinor": false
-    },
-    {
-      "groupName": "root",
-      "matchUpdateTypes": [
-        "patch",
-        "minor",
-        "major"
-      ],
-      "ignorePaths": [
-        "**/examples/**",
-        "**/themes/**",
-        "**/packages/nuxt/**",
-        "**/packages/graphql/**",
-        "**/packages/s3/**",
-        "**/.docs/**",
-        "**/packages/ui/**",
-        "**/packages/box/**",
-        "**/packages/core/**"
-      ],
-      "matchDatasources": [
-        "npm",
-        "github-actions"
-      ],
-      "labels": [
-        "dependencies"
-      ],
-      "addLabels": [
-        "dependencies"
-      ],
-      "matchFiles": [
-        "package.json"
       ]
     }
   ]
