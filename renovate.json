@@ -4,9 +4,6 @@
     "config:base",
     ":widenPeerDependencies"
   ],
-  "schedule": [
-    "every 8 months on the first day of the month"
-  ],
   "baseBranches": [
     "main"
   ],
@@ -21,8 +18,12 @@
       "matchPackagePatterns": [
         "*"
       ],
+      "automerge": true,
       "matchUpdateTypes": [
         "digest"
+      ],
+      "schedule": [
+        "every 1 month"
       ]
     },
     {
@@ -33,6 +34,10 @@
       ],
       "matchUpdateTypes": [
         "minor"
+      ],
+      "automerge": true,
+      "schedule": [
+        "every 1 month"
       ]
     },
     {
