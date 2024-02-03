@@ -230,7 +230,7 @@ importers:
         specifier: ^1.22.4
         version: 1.22.4(graphql@16.8.1)
       graphql-yoga:
-        specifier: ^5.1.0
+        specifier: ^5.1.1
         version: 5.1.1(graphql@16.8.1)
       ts-relay-cursor-paging:
         specifier: ^2.0.4
