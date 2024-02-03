@@ -15,7 +15,12 @@ export interface BoxOptions extends PergelModuleOptions {
      * @default false
      * @see https://tailwindcss.nuxtjs.org
      */
-    tailwindcss?: boolean
+    tailwindcss?: boolean | {
+      form?: boolean
+      aspectRatio?: boolean
+      typography?: boolean
+      tailwindcssAnimate?: boolean
+    }
 
     /**
      * @default false
@@ -32,7 +37,7 @@ export interface BoxOptions extends PergelModuleOptions {
      * @default false
      * @see https://github.com/radix-vue/radix-vue
      */
-    radixVue?: boolean
+    radixMode?: boolean
 
     /**
      * @default false
@@ -116,10 +121,15 @@ export interface BoxOptions extends PergelModuleOptions {
 export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
   packages: {
     tailwindIcon: CollectionNames[] | 'all' | IconsPluginOptions
-    tailwindcss: boolean
+    tailwindcss: boolean | {
+      form: boolean
+      aspectRatio: boolean
+      typography: boolean
+      tailwindcssAnimate: boolean
+    }
     colorMode: boolean
     notivue: boolean
-    radixVue: boolean
+    radixMode: boolean
     nuxtIcon: boolean
     zod: boolean
     veeValidate: boolean

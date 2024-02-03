@@ -2,11 +2,11 @@ import { auth } from './auth'
 import type { API } from './types'
 import { search } from './search'
 
-export function changeNameStorage({ db }: API) {
+export function changeNameDrizzleStorage({ db }: API) {
   return {
     auth: auth({ db }),
     search: search({ db }),
   }
 }
 
-export type ChangeNameStorage = ReturnType<typeof changeNameStorage>
+export type ChangeNameDrizzleStorage = ReturnType<typeof changeNameDrizzleStorage>

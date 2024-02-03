@@ -33,9 +33,14 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       colorMode: false,
       notivue: false,
       nuxtIcon: false,
-      radixVue: false,
+      radixMode: false,
       tailwindIcon: ['ph', 'carbon'],
-      tailwindcss: false,
+      tailwindcss: {
+        form: true,
+        aspectRatio: true,
+        typography: true,
+        tailwindcssAnimate: true,
+      },
       veeValidate: false,
       zod: false,
       i18n: false,
@@ -182,7 +187,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       nuxt.options.css.push('notivue/animations.css')
     }
 
-    if (options.packages.radixVue)
+    if (options.packages.radixMode)
       await installModule('radix-vue/nuxt')
 
     if (options.packages.nuxtIcon)
@@ -202,23 +207,25 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         }
       })
 
-      const form = await import('@tailwindcss/forms')
-      const aspect = await import('@tailwindcss/aspect-ratio')
-      const typography = await import('@tailwindcss/typography')
-      const tailwindcssAnimate = await import('tailwindcss-animate')
+      const plugins = []
+      if (typeof options.packages.tailwindcss === 'object') {
+        if (options.packages.tailwindcss.form)
+          plugins.push(await import('@tailwindcss/forms'))
+        if (options.packages.tailwindcss.aspectRatio)
+          plugins.push(await import('@tailwindcss/aspect-ratio'))
+        if (options.packages.tailwindcss.typography)
+          plugins.push(await import('@tailwindcss/typography'))
+        if (options.packages.tailwindcss.tailwindcssAnimate)
+          plugins.push(await import('tailwindcss-animate'))
+      }
+      // import('@tailwindcss/container-queries'),
 
       await installModule('@nuxtjs/tailwindcss', {
         exposeConfig: true,
         viewer: false,
         config: {
           darkMode: 'class',
-          plugins: [
-            form,
-            aspect,
-            typography,
-            tailwindcssAnimate,
-          // import('@tailwindcss/container-queries'),
-          ],
+          plugins,
           content: {
             files: [
               `${nuxt.options.rootDir}/composables/**/*.{vue,js,ts}`,
@@ -228,85 +235,90 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
               `${nuxt.options.rootDir}/assets/**/*.css`,
             ],
           },
-          theme: {
-            container: {
-              center: true,
-              padding: '2rem',
-              screens: {
-                '2xl': '1400px',
-              },
-            },
-            extend: {
-              colors: {
-                border: 'hsl(var(--border))',
-                input: 'hsl(var(--input))',
-                ring: 'hsl(var(--ring))',
-                background: 'hsl(var(--background))',
-                foreground: 'hsl(var(--foreground))',
-                primary: {
-                  DEFAULT: 'hsl(var(--primary))',
-                  foreground: 'hsl(var(--primary-foreground))',
-                },
-                secondary: {
-                  DEFAULT: 'hsl(var(--secondary))',
-                  foreground: 'hsl(var(--secondary-foreground))',
-                },
-                destructive: {
-                  DEFAULT: 'hsl(var(--destructive))',
-                  foreground: 'hsl(var(--destructive-foreground))',
-                },
-                muted: {
-                  DEFAULT: 'hsl(var(--muted))',
-                  foreground: 'hsl(var(--muted-foreground))',
-                },
-                accent: {
-                  DEFAULT: 'hsl(var(--accent))',
-                  foreground: 'hsl(var(--accent-foreground))',
-                },
-                popover: {
-                  DEFAULT: 'hsl(var(--popover))',
-                  foreground: 'hsl(var(--popover-foreground))',
-                },
-                card: {
-                  DEFAULT: 'hsl(var(--card))',
-                  foreground: 'hsl(var(--card-foreground))',
-                },
-              },
-              borderRadius: {
-                lg: 'var(--radius)',
-                md: 'calc(var(--radius) - 2px)',
-                sm: 'calc(var(--radius) - 4px)',
-              },
-              boxShadow: {
-                switch:
+          ...options.packages.radixMode
+            ? {
+
+                theme: {
+                  container: {
+                    center: true,
+                    padding: '2rem',
+                    screens: {
+                      '2xl': '1400px',
+                    },
+                  },
+                  extend: {
+                    colors: {
+                      border: 'hsl(var(--border))',
+                      input: 'hsl(var(--input))',
+                      ring: 'hsl(var(--ring))',
+                      background: 'hsl(var(--background))',
+                      foreground: 'hsl(var(--foreground))',
+                      primary: {
+                        DEFAULT: 'hsl(var(--primary))',
+                        foreground: 'hsl(var(--primary-foreground))',
+                      },
+                      secondary: {
+                        DEFAULT: 'hsl(var(--secondary))',
+                        foreground: 'hsl(var(--secondary-foreground))',
+                      },
+                      destructive: {
+                        DEFAULT: 'hsl(var(--destructive))',
+                        foreground: 'hsl(var(--destructive-foreground))',
+                      },
+                      muted: {
+                        DEFAULT: 'hsl(var(--muted))',
+                        foreground: 'hsl(var(--muted-foreground))',
+                      },
+                      accent: {
+                        DEFAULT: 'hsl(var(--accent))',
+                        foreground: 'hsl(var(--accent-foreground))',
+                      },
+                      popover: {
+                        DEFAULT: 'hsl(var(--popover))',
+                        foreground: 'hsl(var(--popover-foreground))',
+                      },
+                      card: {
+                        DEFAULT: 'hsl(var(--card))',
+                        foreground: 'hsl(var(--card-foreground))',
+                      },
+                    },
+                    borderRadius: {
+                      lg: 'var(--radius)',
+                      md: 'calc(var(--radius) - 2px)',
+                      sm: 'calc(var(--radius) - 4px)',
+                    },
+                    boxShadow: {
+                      switch:
                 'rgba(0, 0, 0, 0.3) 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 1px 2px',
-              },
-              keyframes: {
-                'accordion-down': {
-                  from: { height: 0 },
-                  to: { height: 'var(--radix-accordion-content-height)' },
+                    },
+                    keyframes: {
+                      'accordion-down': {
+                        from: { height: 0 },
+                        to: { height: 'var(--radix-accordion-content-height)' },
+                      },
+                      'accordion-up': {
+                        from: { height: 'var(--radix-accordion-content-height)' },
+                        to: { height: 0 },
+                      },
+                      'collapsible-down': {
+                        from: { height: 0 },
+                        to: { height: 'var(--radix-collapsible-content-height)' },
+                      },
+                      'collapsible-up': {
+                        from: { height: 'var(--radix-collapsible-content-height)' },
+                        to: { height: 0 },
+                      },
+                    },
+                    animation: {
+                      'accordion-down': 'accordion-down 0.2s ease-in-out',
+                      'accordion-up': 'accordion-up 0.2s ease-in-out',
+                      'collapsible-down': 'collapsible-down 0.2s ease-in-out',
+                      'collapsible-up': 'collapsible-up 0.2s ease-in-out',
+                    },
+                  },
                 },
-                'accordion-up': {
-                  from: { height: 'var(--radix-accordion-content-height)' },
-                  to: { height: 0 },
-                },
-                'collapsible-down': {
-                  from: { height: 0 },
-                  to: { height: 'var(--radix-collapsible-content-height)' },
-                },
-                'collapsible-up': {
-                  from: { height: 'var(--radix-collapsible-content-height)' },
-                  to: { height: 0 },
-                },
-              },
-              animation: {
-                'accordion-down': 'accordion-down 0.2s ease-in-out',
-                'accordion-up': 'accordion-up 0.2s ease-in-out',
-                'collapsible-down': 'collapsible-down 0.2s ease-in-out',
-                'collapsible-up': 'collapsible-up 0.2s ease-in-out',
-              },
-            },
-          },
+              }
+            : {},
         },
       } as Partial<TailwindCSSOptions>)
     }

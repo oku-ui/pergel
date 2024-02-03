@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   modules: [
     '../../packages/nuxt/src/module',
   ],
+  css: [
+    '~/assets/pergel.css',
+  ],
   pergel: {
     projects: {
       changeName: {
@@ -22,6 +25,7 @@ export default defineNuxtConfig({
             unsearch: true,
           },
         },
+        graphqlYoga: true,
         drizzle: true,
         lucia: true,
       },

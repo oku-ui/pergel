@@ -1,6 +1,3 @@
-import { Argon2id } from 'oslo/password'
-import { auth } from '#changeName/lucia'
-
 export default eventHandler(async (event) => {
   const db = await pergelChangeName().drizzle().postgresjs().connect({
     event,
@@ -27,7 +24,7 @@ export default eventHandler(async (event) => {
   }
 
   const [existingUser] = await db.select()
-    .from(tablesChangeName.user).where(eq(tablesChangeName.user.username, username)).execute()
+    .from(changeNameTables.user).where(eq(changeNameTables.user.username, username)).execute()
 
   if (!existingUser) {
     throw createError({
@@ -44,6 +41,6 @@ export default eventHandler(async (event) => {
     })
   }
 
-  const session = await auth.createSession(existingUser.id, {})
-  appendHeader(event, 'Set-Cookie', auth.createSessionCookie(session.id).serialize())
+  const session = await changeNameAuth.createSession(existingUser.id, {})
+  appendHeader(event, 'Set-Cookie', changeNameAuth.createSessionCookie(session.id).serialize())
 })

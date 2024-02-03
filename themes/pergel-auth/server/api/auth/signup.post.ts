@@ -1,5 +1,3 @@
-import { auth } from '#changeName/lucia'
-
 export default eventHandler(async (event) => {
   const db = await pergelChangeName().drizzle().postgresjs().connect({
     event,
@@ -29,7 +27,7 @@ export default eventHandler(async (event) => {
   const hashedPassword = await new Argon2id().hash(password)
 
   try {
-    const [_user] = await db.insert(tablesChangeName.user).values({
+    const [_user] = await db.insert(changeNameTables.user).values({
       username,
       email: body.email,
       password: hashedPassword,
@@ -37,8 +35,8 @@ export default eventHandler(async (event) => {
       updatedAt: new Date(),
     }).returning()
 
-    const session = await auth.createSession(_user.id, {})
-    appendHeader(event, 'Set-Cookie', auth.createSessionCookie(session.id).serialize())
+    const session = await changeNameAuth.createSession(_user.id, {})
+    appendHeader(event, 'Set-Cookie', changeNameAuth.createSessionCookie(session.id).serialize())
   }
   catch (e) {
     throw createError({

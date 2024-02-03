@@ -12,19 +12,20 @@
     "@faker-js/faker": "^8.4.0",
     "@lucia-auth/adapter-drizzle": "^1.0.0",
     "@lucia-auth/adapter-postgresql": "^3.0.0",
+    "@pergel/graphql": "workspace:^",
     "@pergel/module-box": "workspace:^",
     "dotenv": "^16.4.1",
-    "drizzle-kit": "^0.20.13",
+    "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
     "lucia": "3.0.1",
-    "oslo": "^1.0.3",
+    "oslo": "^1.0.4",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "nuxt": "^3.9.0",
-    "pergel": "latest",
+    "nuxt": "^3.10.0",
+    "pergel": "^0.6.0",
     "pg": "^8.11.3",
-    "vue": "^3.4.3",
+    "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   }
 }
