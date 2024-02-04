@@ -1,5 +1,6 @@
 import type { Client, ClientOptions, SSRData, SSRExchange, SSRExchangeParams } from '@urql/core'
 import { cacheExchange, createClient, fetchExchange, ssrExchange } from '@urql/core'
+import { yogaExchange } from '@graphql-yoga/urql-exchange'
 import { usePergelRuntime } from '../../../core/utils/usePergelRuntime'
 import type { UrqlModuleRuntimeConfig } from '../types'
 import { defineNuxtPlugin, ref, useState } from '#imports'
@@ -26,8 +27,8 @@ export function pergelUrqlPlugin(
       ...params,
       exchanges:
         import.meta.server
-          ? [ssr, fetchExchange]
-          : [cacheExchange, ssr, fetchExchange],
+          ? [ssr, fetchExchange, yogaExchange()]
+          : [cacheExchange, ssr, fetchExchange, yogaExchange()],
     } as UrqlClientOptions
   }
   const context = params?.context ?? this

@@ -5,3 +5,10 @@ query book {
   }
 }
     
+
+query users {
+  users {
+    id
+    name
+  }
+}

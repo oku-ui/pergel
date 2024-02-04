@@ -1,7 +1,7 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { execSync } from 'node:child_process'
-import { addImportsDir, addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
+import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
 import { camelCase } from 'scule'
 import { basename } from 'pathe'
 import { definePergelModule } from '../../core/definePergel'
@@ -89,7 +89,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     switch (options._driver.name) {
       case 'postgresjs':
         await setupPostgres(nuxt, options)
-        addImportsDir(resolver.resolve('./drivers/postgres'))
+        // addImportsDir(resolver.resolve('./drivers/postgres'))
         addServerImportsDir(resolver.resolve('./drivers/postgres'))
 
         break

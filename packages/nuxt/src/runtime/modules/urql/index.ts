@@ -13,8 +13,10 @@ export default definePergelModule<UrqlModuleOptions>({
       const deps = nuxt._pergel.pergelPackageJson
       return {
         '@urql/vue': deps['@urql/vue'],
-        '@urql/core': deps['@urql/core'],
+        '@urql/core': deps['@urql/cozre'],
         '@urql/exchange-execute': deps['@urql/exchange-execute'],
+        'graphql': deps.graphql,
+        '@graphql-yoga/urql-exchange': deps['@graphql-yoga/urql-exchange'],
       }
     },
   },
