@@ -44,7 +44,7 @@ export function generateModuleRuntimeConfig<T>(
       },
     }) as T
 
-    const { envs, keyEnvValue } = runtimeConfigToEnv(
+    const { keyEnvValue } = runtimeConfigToEnv(
       (runtimeConfig.public as any)[projectName][moduleName] as any,
       [projectName, moduleName],
     )
@@ -56,7 +56,6 @@ export function generateModuleRuntimeConfig<T>(
         env: {
           ...Object.entries(config).map(([key, __value]) => {
             const _key = `NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`
-            const _value = envs[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`]
             return {
               [_key]: defaultConfig[key] ?? '',
             }
