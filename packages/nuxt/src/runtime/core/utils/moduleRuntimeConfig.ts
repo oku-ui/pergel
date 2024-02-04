@@ -8,9 +8,16 @@ import { runtimeConfigToEnv } from './runtimeConfigToEnv'
 export function generateModuleRuntimeConfig<T>(
   nuxt: NuxtPergel,
   moduleOptions: ResolvedPergelModuleOptions,
-  config: Record<string, any>,
+  config: Record<string, any> | {
+    [key: string]: any
+    default?: Record<string, any>
+  },
   publicRuntime?: boolean,
+  generateEnv?: boolean,
 ) {
+  const defaultConfig = Object.assign({}, config.default)
+  delete config.default
+
   const projectName = moduleOptions.projectName
   const moduleName = moduleOptions.moduleName
 
@@ -33,19 +40,35 @@ export function generateModuleRuntimeConfig<T>(
             ...acc,
             ...cur,
           }
-        }),
+        }, {}),
       },
     }) as T
 
-    const { keyEnvValue, envs } = runtimeConfigToEnv(runtimeConfig.public[projectName as any] as any, [projectName])
+    const { envs, keyEnvValue } = runtimeConfigToEnv(
+      (runtimeConfig.public as any)[projectName][moduleName] as any,
+      [projectName, moduleName],
+    )
 
-    nuxt._pergel.readmeJson[projectName] ??= {}
-    nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
-    nuxt._pergel.readmeJson[projectName][moduleName] = defu(nuxt._pergel.readmeJson[projectName][moduleName], {
-      env: {
-        ...envs,
-      },
-    })
+    if (generateEnv === true) {
+      nuxt._pergel.readmeJson[projectName] ??= {}
+      nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
+      nuxt._pergel.readmeJson[projectName][moduleName] = defu(nuxt._pergel.readmeJson[projectName][moduleName], {
+        env: {
+          ...Object.entries(config).map(([key, __value]) => {
+            const _key = `NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`
+            const _value = envs[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`]
+            return {
+              [_key]: defaultConfig[key] ?? '',
+            }
+          }).reduce((acc, cur) => {
+            return {
+              ...acc,
+              ...cur,
+            }
+          }, {}),
+        },
+      })
+    }
 
     return {
       runtimeConfig: (runtimeConfig.public[projectName] as any)[moduleName] as T,

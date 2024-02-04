@@ -27,7 +27,10 @@ export default definePergelModule<UrqlModuleOptions>({
 
     generateModuleRuntimeConfig<UrqlModuleRuntimeConfig>(nuxt, options, {
       endpoint: undefined,
-    }, true)
+      default: {
+        endpoint: 'http://localhost:3000/api/graphql',
+      },
+    }, true, true)
 
     addImportsDir(resolver.resolve(join('plugins')))
 

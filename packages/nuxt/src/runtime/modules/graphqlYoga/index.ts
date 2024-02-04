@@ -80,7 +80,14 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
 
     generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {
       ...options,
-    }, true)
+    }, true, false)
+
+    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {
+      origin: undefined,
+      default: {
+        origin: 'http://localhost:3000,http://localhost:3001',
+      },
+    }, true, true)
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 
