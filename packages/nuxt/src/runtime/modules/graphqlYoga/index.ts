@@ -76,6 +76,8 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
+    mkdirSync(options.serverDir, { recursive: true })
+
     generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {
       ...options,
     }, true)
@@ -153,6 +155,31 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         cpSync(resolver.resolve(join('templates', 'drizzle-lucia', 'documents')), resolve(options.serverDir, 'documents'), {
           recursive: true,
         })
+      }
+
+      if (!existsSync(resolve(nuxt.options.serverDir, 'plugins', 'graphqlv1.ts'))) {
+        mkdirSync(resolve(nuxt.options.serverDir, 'plugins'), {
+          recursive: true,
+        })
+
+        const files = globbySync(resolver.resolve(join('templates', 'drizzle-lucia', 'plugins'), '**/*'), {
+          onlyFiles: true,
+        })
+
+        for (const file of files) {
+          const readFile = await import(file).then(m => m.default).catch(() => null)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              nuxt,
+            })
+            const fileName = basename(file)
+
+            writeFileSync(resolve(nuxt.options.serverDir, 'plugins', fileName), fileData, {
+              encoding: 'utf8',
+            })
+          }
+        }
       }
 
       if (!existsSync(resolve(options.serverDir, 'schemas'))) {

@@ -11,6 +11,6 @@ declare module 'pergel/test/types' {
     req: IncomingMessage
     event: H3Event
     db: PostgresJsDatabase
-    store: TestDrizzleStorage
+    storage: TestDrizzleStorage
   }
 }

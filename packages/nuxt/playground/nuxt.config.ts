@@ -69,6 +69,7 @@ export default defineNuxtConfig({
             nanoid: true,
           },
         },
+        urql: true,
       },
       test2: {
         S3: true,

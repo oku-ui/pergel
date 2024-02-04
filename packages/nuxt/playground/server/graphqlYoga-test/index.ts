@@ -18,13 +18,13 @@ export const testGraphQLResolvers: Resolvers = {
     },
   },
   Mutation: {
-    createUser: async (_root, _args, { store, event }, _info) => {
+    createUser: async (_root, _args, { storage, event }, _info) => {
       const { email, name, password } = _args.input
 
       const hashedPassword = await new Argon2id()
         .hash(password)
 
-      const user = await store.auth.create({
+      const user = await storage.auth.create({
         email,
         hashedPassword,
         username: name,
@@ -33,9 +33,9 @@ export const testGraphQLResolvers: Resolvers = {
       if (!user)
         throw new GraphQLError('User not found')
 
-      const session = await pzgAuth.createSession(user.id, {})
+      const session = await testAuth.createSession(user.id, {})
 
-      appendHeader(event, 'Set-Cookie', pzgAuth.createSessionCookie(session.id).serialize())
+      appendHeader(event, 'Set-Cookie', testAuth.createSessionCookie(session.id).serialize())
 
       return {
         token: session.id,
@@ -50,18 +50,18 @@ export const testGraphQLResolvers: Resolvers = {
     },
   },
   Query: {
-    users: async (_root, _args, { store }, _info) => {
-      const users = await store.auth.users()
+    users: async (_root, _args, { storage }, _info) => {
+      const users = await storage.auth.users()
       return users
     },
-    search: async (_root, _args, { store }, _info) => {
+    search: async (_root, _args, { storage }, _info) => {
       const { text, tableName } = _args.input
-      const storeData = await store.search.global({
+      const storageData = await storage.search.global({
         text,
         tableName,
       })
 
-      return storeData
+      return storageData
     },
   },
 }

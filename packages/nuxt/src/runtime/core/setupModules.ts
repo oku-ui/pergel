@@ -221,10 +221,10 @@ export async function setupModules(data: {
         throw new Error(`Module ${moduleName} does not have meta`)
 
       const dependencies = getMeta.dependencies instanceof Function
-        ? getMeta.dependencies(module)
+        ? getMeta.dependencies(module, data.nuxt)
         : getMeta.dependencies ?? {}
       const devDependencies = getMeta.devDependencies instanceof Function
-        ? getMeta.devDependencies(module)
+        ? getMeta.devDependencies(module, data.nuxt)
         : getMeta.devDependencies ?? {}
 
       if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {

@@ -1,5 +1,6 @@
 import { join, relative } from 'node:path'
 import { writeFileSync } from 'node:fs'
+
 import {
   addImportsDir,
   addPlugin,

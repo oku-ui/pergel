@@ -323,6 +323,15 @@ importers:
       '@types/node-cron':
         specifier: ^3.0.11
         version: 3.0.11
+      '@urql/core':
+        specifier: ^4.2.3
+        version: 4.2.3(graphql@16.8.1)
+      '@urql/exchange-execute':
+        specifier: ^2.2.2
+        version: 2.2.2(graphql@16.8.1)
+      '@urql/vue':
+        specifier: ^1.1.2
+        version: 1.1.2(graphql@16.8.1)(vue@3.4.15)
       bullmq:
         specifier: ^5.1.8
         version: 5.1.8
@@ -467,6 +476,15 @@ importers:
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../../packages/box
+      '@urql/core':
+        specifier: ^4.2.3
+        version: 4.2.3(graphql@16.8.1)
+      '@urql/exchange-execute':
+        specifier: ^2.2.2
+        version: 2.2.2(graphql@16.8.1)
+      '@urql/vue':
+        specifier: ^1.1.2
+        version: 1.1.2(graphql@16.8.1)(vue@3.4.15)
       dotenv:
         specifier: ^16.4.1
         version: 16.4.1
@@ -534,6 +552,16 @@ importers:
         version: 4.2.5(vue@3.4.15)
 
 packages:
+
+  /@0no-co/graphql.web@1.0.4(graphql@16.8.1):
+    resolution: {integrity: sha512-W3ezhHGfO0MS1PtGloaTpg0PbaT8aZSmmaerL7idtU5F7oCI+uu25k+MsMS31BVFlp4aMkHSrNRxiD72IlK8TA==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    peerDependenciesMeta:
+      graphql:
+        optional: true
+    dependencies:
+      graphql: 16.8.1
 
   /@aashutoshrathi/word-wrap@1.2.6:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
@@ -7700,6 +7728,23 @@ packages:
       - rollup
     dev: true
 
+  /@urql/core@4.2.3(graphql@16.8.1):
+    resolution: {integrity: sha512-DJ9q9+lcs5JL8DcU2J3NqsgeXYJva+1+Qt8HU94kzTPqVOIRRA7ouvy4ksUfPY+B5G2PQ+vLh+JJGyZCNXv0cg==}
+    dependencies:
+      '@0no-co/graphql.web': 1.0.4(graphql@16.8.1)
+      wonka: 6.3.4
+    transitivePeerDependencies:
+      - graphql
+
+  /@urql/exchange-execute@2.2.2(graphql@16.8.1):
+    resolution: {integrity: sha512-1KGl06CRiQhi9mxfNWRzSPlX5wQI0zkU/7xG2BrM1zbaI3LdFJtIIXxSh1ML18OrR61STtTxO7aodirQ2NVswQ==}
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@urql/core': 4.2.3(graphql@16.8.1)
+      graphql: 16.8.1
+      wonka: 6.3.4
+
   /@urql/introspection@0.3.3(graphql@16.8.1):
     resolution: {integrity: sha512-tekSLLqWnusfV6V7xaEnLJQSdXOD/lWy7f8JYQwrX+88Md+voGSCSx5WJXI7KLBN3Tat2OV08tAr8UROykls4Q==}
     peerDependencies:
@@ -7707,6 +7752,17 @@ packages:
     dependencies:
       graphql: 16.8.1
     dev: false
+
+  /@urql/vue@1.1.2(graphql@16.8.1)(vue@3.4.15):
+    resolution: {integrity: sha512-ixfV0PTXcOl4KrZK24X+9B4rX9KSxqq1xhHZ0SOkAxgxMkomjJhtUl+9PuRL+LEzGWVr91OCEo68VPQ8uc5rBA==}
+    peerDependencies:
+      vue: ^2.7.0 || ^3.0.0
+    dependencies:
+      '@urql/core': 4.2.3(graphql@16.8.1)
+      vue: 3.4.15(typescript@5.3.3)
+      wonka: 6.3.4
+    transitivePeerDependencies:
+      - graphql
 
   /@vee-validate/zod@4.12.5(vue@3.4.15):
     resolution: {integrity: sha512-hUjvXaa4HHvlZeosucViIDOUikQmyKaXXuL6P8LR1ETOUrBV6ntTsafJGvRYtwhXosoLYuolUD6Km737okK4Gg==}
@@ -7917,7 +7973,7 @@ packages:
   /@vue/server-renderer@3.4.15(vue@3.4.15):
     resolution: {integrity: sha512-3HYzaidu9cHjrT+qGUuDhFYvF/j643bHC6uUN9BgM11DVy+pM6ATsG6uPBLnkwOgs7BpJABReLmpL3ZPAsUaqw==}
     peerDependencies:
-      vue: ^3.4.3
+      vue: 3.4.15
     dependencies:
       '@vue/compiler-ssr': 3.4.15
       '@vue/shared': 3.4.15
@@ -11373,7 +11429,6 @@ packages:
   /graphql@16.8.1:
     resolution: {integrity: sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
-    dev: false
 
   /gzip-size@6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
@@ -17201,6 +17256,9 @@ packages:
     dependencies:
       execa: 4.1.0
     dev: false
+
+  /wonka@6.3.4:
+    resolution: {integrity: sha512-CjpbqNtBGNAeyNS/9W6q3kSkKE52+FjIj7AkFlLr11s/VWGUu6a2CdYSdGxocIhIVjaW/zchesBQUKPVU69Cqg==}
 
   /wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}

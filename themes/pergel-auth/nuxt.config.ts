@@ -16,7 +16,6 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/pergel.css',
   ],
-  ssr: false,
   pergel: {
     projects: {
       changeName: {
@@ -63,6 +62,7 @@ export default defineNuxtConfig({
           },
         },
         drizzle: true,
+        urql: true,
       },
     },
   },

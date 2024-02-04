@@ -5,6 +5,7 @@ import { type Resolver, addTemplate } from '@nuxt/kit'
 import defu from 'defu'
 import { loadConfig } from 'c12'
 import type { ResolvedPergelConfig } from '@pergel/cli/types'
+import packageJson from '../../../package.json'
 import type { PergelOptions, ResolvedPergelOptions } from './types/nuxtModule'
 
 export async function setupPergel(
@@ -111,7 +112,7 @@ declare module 'h3' {
   const resolvedPergelOptions = defu(options, {
     exitPergelFolder,
     rootOptions: options,
-    // @MODULE
+    // @MODULE nuxt._pergel.modules
     modules: [
       'S3',
       'ses',
@@ -122,6 +123,7 @@ declare module 'h3' {
       'drizzle',
       'lucia',
       'box',
+      'urql',
     ],
     projectNames,
     nitroImports: {},
@@ -157,6 +159,10 @@ declare module 'h3' {
     serverDir: resolve(resolveDir, serverDir),
     watchDirs: [],
     resolveModules: [],
+    pergelPackageJson: {
+      ...packageJson.dependencies,
+      ...packageJson.devDependencies,
+    },
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

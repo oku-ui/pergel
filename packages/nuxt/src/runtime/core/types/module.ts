@@ -99,8 +99,8 @@ interface ModuleMeta<T extends ResolvedPergelModuleOptions = ResolvedPergelModul
    */
   configKey?: string
 
-  devDependencies?: Record<string, string> | ((options: T) => Record<string, string>)
-  dependencies?: Record<string, string> | ((options: T) => Record<string, string>)
+  devDependencies?: Record<string, string> | ((options: T, nuxt: NuxtPergel) => Record<string, string>)
+  dependencies?: Record<string, string> | ((options: T, nuxt: NuxtPergel) => Record<string, string>)
   dts?: boolean
 
   waitModule?: PergelModuleNames[] | ((options: T) => PergelModuleNames[] | undefined)

@@ -1,4 +1,5 @@
 import defu from 'defu'
+import { snakeCase } from 'scule'
 import type { NuxtPergel } from '../types/nuxtModule'
 import type { ResolvedPergelModuleOptions } from '../types/module'
 import { generateProjectName } from './generateProjectName'
@@ -18,13 +19,33 @@ export function generateModuleRuntimeConfig<T>(
   const name = generateProjectName(projectName, moduleName)
 
   if (publicRuntime) {
+    runtimeConfig.public[projectName] ??= {}
     runtimeConfig.public[projectName] = defu(runtimeConfig.public[projectName] as any, {
       [moduleName]: {
-        ...config,
+        ...Object.entries(config).map(([key, value]) => {
+          return {
+            [key]: value === undefined
+              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`]
+              : value,
+          }
+        }).reduce((acc, cur) => {
+          return {
+            ...acc,
+            ...cur,
+          }
+        }),
       },
     }) as T
 
-    const { keyEnvValue } = runtimeConfigToEnv(runtimeConfig.public[projectName as any] as any, [projectName], false)
+    const { keyEnvValue, envs } = runtimeConfigToEnv(runtimeConfig.public[projectName as any] as any, [projectName])
+
+    nuxt._pergel.readmeJson[projectName] ??= {}
+    nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
+    nuxt._pergel.readmeJson[projectName][moduleName] = defu(nuxt._pergel.readmeJson[projectName][moduleName], {
+      env: {
+        ...envs,
+      },
+    })
 
     return {
       runtimeConfig: (runtimeConfig.public[projectName] as any)[moduleName] as T,
