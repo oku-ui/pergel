@@ -3,9 +3,9 @@ import type { FormSchema } from '~/components/auth/AuthFormSignup.vue'
 import { TesttestddDocument, XxxxxxDocument } from '#changeName/graphqlYoga/client'
 
 console.log(TesttestddDocument)
-const { data, executeMutation } = useMutation(XxxxxxDocument)
+const { executeMutation } = useMutation(XxxxxxDocument)
 
-async function submit(values: FormSchema, loading: (value: boolean) => void) {
+async function submit(values: FormSchema) {
   // loading(true)
   // setTimeout(() => {
   //   loading(false)
