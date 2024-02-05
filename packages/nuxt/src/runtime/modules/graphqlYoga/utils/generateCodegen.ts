@@ -129,7 +129,7 @@ export async function useGenerateCodegen({
             })
             : {},
         })
-        consola.info(`Generating types server for ${projectNameCamelCase} in ${finish().duration}ms`)
+        consola.info(`Type server for ${projectNameCamelCase} in ${finish().duration}ms`)
         return type
       }
       catch (error) {
@@ -139,6 +139,7 @@ export async function useGenerateCodegen({
     },
   })
 
+  nuxt.options.watch.push(serverTypes.dst)
   nuxt.options.alias[`#${combinedName}/server`] = serverTypes.dst
   nuxt.options.nitro.alias[`#${combinedName}/server`] = serverTypes.dst
 
@@ -151,7 +152,7 @@ export async function useGenerateCodegen({
       try {
         const type = await server.urqlIntrospection(schema, {
         })
-        consola.info(`Generating types server for ${projectNameCamelCase} in ${finish().duration}ms`)
+        consola.info(`Type server for ${projectNameCamelCase} in ${finish().duration}ms`)
         return type
       }
       catch (error) {
@@ -161,6 +162,7 @@ export async function useGenerateCodegen({
     },
   })
 
+  nuxt.options.watch.push(urqlInptospection.dst)
   nuxt.options.alias[`#${combinedName}/urqlIntrospection`] = urqlInptospection.dst
   nuxt.options.nitro.alias[`#${combinedName}/urqlIntrospection`] = urqlInptospection.dst
 
@@ -185,9 +187,9 @@ export async function useGenerateCodegen({
               })
               : {},
           })
+          consola.info(`Type client for ${projectNameCamelCase} in ${finish().duration}ms`)
           return data
         }
-        consola.info(`Generating types client for ${projectNameCamelCase} in ${finish().duration}ms`)
         return ''
       }
       catch (error) {
@@ -197,6 +199,17 @@ export async function useGenerateCodegen({
     },
   })
 
+  // watch client config
+  if (nuxt.options.dev) {
+    // @ts-ignore
+    nuxt.options.watch = nuxt.options.watch || []
+    // @ts-ignore
+    nuxt.options.watch.push(clientTypes.dst)
+  }
+
+  nuxt.options.nitro.externals = nuxt.options.nitro.externals || {}
+  nuxt.options.nitro.externals.inline = nuxt.options.nitro.externals.inline || []
+  nuxt.options.nitro.externals.inline.push(clientTypes.dst)
   nuxt.options.alias[`#${combinedName}/client`] = clientTypes.dst
   nuxt.options.nitro.alias[`#${combinedName}/client`] = clientTypes.dst
 

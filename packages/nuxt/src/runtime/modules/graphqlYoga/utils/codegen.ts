@@ -165,7 +165,6 @@ async function writeSchema(schema: GraphQLSchema, path: string) {
 
   writeFileSync(path, schemaString, {
     encoding: 'utf-8',
-    mode: 0o666,
   })
   return schemaString
 }

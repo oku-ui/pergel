@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { addImportsDir, createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
-import { useNitroImports } from '../../core/utils/useImports'
+import { useNuxtImports } from '../../core/utils/useImports'
 import type { UrqlModuleOptions, UrqlModuleRuntimeConfig } from './types'
 
 export default definePergelModule<UrqlModuleOptions>({
@@ -34,7 +34,7 @@ export default definePergelModule<UrqlModuleOptions>({
 
     addImportsDir(resolver.resolve(join('plugins')))
 
-    useNitroImports(nuxt, {
+    useNuxtImports(nuxt, {
       presets: [
         {
           imports: [

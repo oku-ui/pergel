@@ -4,11 +4,3 @@ query book {
     title
   }
 }
-    
-
-query users {
-  users {
-    id
-    name
-  }
-}

@@ -8,24 +8,24 @@
     "prepare": "DEV=true nuxi prepare"
   },
   "dependencies": {
-    "@iconify-json/fa-brands": "latest",
-    "@iconify-json/game-icons": "latest",
-    "@iconify-json/heroicons": "latest",
-    "@iconify-json/ic": "latest",
-    "@iconify-json/logos": "latest",
-    "@iconify-json/ph": "latest",
-    "@iconify-json/simple-icons": "latest",
-    "@iconify-json/solar": "latest",
-    "@iconify-json/twemoji": "latest",
-    "@nuxt/content": "^2.10.0",
-    "@nuxt/ui": "^2.11.1",
-    "@nuxt/ui-pro": "^0.7.0",
-    "playwright": "^1.40.1"
+    "@iconify-json/fa-brands": "^1.1.8",
+    "@iconify-json/game-icons": "^1.1.7",
+    "@iconify-json/heroicons": "^1.1.19",
+    "@iconify-json/ic": "^1.1.17",
+    "@iconify-json/logos": "^1.1.42",
+    "@iconify-json/ph": "^1.1.11",
+    "@iconify-json/simple-icons": "^1.1.90",
+    "@iconify-json/solar": "^1.1.9",
+    "@iconify-json/twemoji": "^1.1.15",
+    "@nuxt/content": "^2.11.0",
+    "@nuxt/ui": "^2.13.0",
+    "@nuxt/ui-pro": "^0.7.5",
+    "playwright": "^1.41.2"
   },
   "devDependencies": {
-    "@egoist/tailwindcss-icons": "^1.7.1",
-    "@nuxt/devtools": "^1.0.6",
-    "nuxt": "^3.9.0",
+    "@egoist/tailwindcss-icons": "^1.7.4",
+    "@nuxt/devtools": "^1.0.8",
+    "nuxt": "^3.10.0",
     "nuxt-og-image": "3.0.0-rc.38",
     "typescript": "^5.3.3"
   }

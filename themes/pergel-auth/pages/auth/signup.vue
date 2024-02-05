@@ -1,10 +1,30 @@
 <script setup lang="ts">
-function submit(values: any, loading: (value: boolean) => void) {
-  loading(true)
-  setTimeout(() => {
-    loading(false)
-    push.success('Signin success')
-  }, 1000)
+import type { FormSchema } from '~/components/auth/AuthFormSignup.vue'
+import { TesttestddDocument, XxxxxxDocument } from '#changeName/graphqlYoga/client'
+
+console.log(TesttestddDocument)
+const { data, executeMutation } = useMutation(XxxxxxDocument)
+
+async function submit(values: FormSchema, loading: (value: boolean) => void) {
+  // loading(true)
+  // setTimeout(() => {
+  //   loading(false)
+  //   push.success('Signin success')
+  // }, 1000)
+
+  if (values) {
+    await executeMutation({
+      input: {
+        email: values.email,
+        name: values.username,
+        password: values.password,
+      },
+    }).catch((error) => {
+      console.error(error)
+    }).then((response) => {
+      console.log(response)
+    })
+  }
 }
 const { t } = useI18n()
 </script>

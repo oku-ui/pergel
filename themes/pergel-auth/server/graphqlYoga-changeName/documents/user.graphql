@@ -1,0 +1,45 @@
+query users {
+  users {
+    id
+    name
+  }
+}
+
+
+mutation createUser($input: UserInput!) {
+  createUser(input: $input){
+    user{
+        id
+        name
+        email
+        createdAt
+    }
+    token
+  }
+}
+
+mutation xxxxxx($input: UserInput!) {
+  createUser(input: $input){
+    user{
+        id
+        name
+        email
+        createdAt
+    }
+    token
+  }
+}
+
+
+mutation testtestdd($input: UserInput!) {
+  createUser(input: $input){
+    user{
+        id
+        name
+        email
+        createdAt
+    }
+    token
+  }
+}
+

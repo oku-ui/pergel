@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useQuery } from '@urql/vue'
-
 const { data, fetching } = useQuery({
   query: changeNameGraphQLClient.UsersDocument,
 })

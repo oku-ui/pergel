@@ -1,10 +1,5 @@
-<script setup lang="ts">
-const emit = defineEmits<Emit>()
-const { t } = useI18n()
-
-const isLoading = ref(false)
-
-const formSchema = toTypedSchema(zod.object({
+<script lang="ts">
+const zodSchema = zod.object({
   username: zod.string().min(2).max(50),
   email: zod.string().email(),
   password: zod.string().min(8).max(50),
@@ -12,16 +7,24 @@ const formSchema = toTypedSchema(zod.object({
 }).refine(data => data.password === data.passwordConfirm, {
   message: 'Passwords do not match',
   path: ['passwordConfirm'],
-}),
+})
+const formSchema = toTypedSchema(zodSchema)
 
-)
+export type FormSchema = Zod.infer<typeof zodSchema>
+</script>
+
+<script setup lang="ts">
+const emit = defineEmits<Emit>()
+const { t } = useI18n()
+
+const isLoading = ref(false)
 
 const form = useForm({
   validationSchema: formSchema,
 })
 
 type Emit = {
-  submit: [values: zod.infer<typeof formSchema>, loading: (value: boolean) => void]
+  submit: [values: FormSchema, loading: (value: boolean) => void]
   githubButton: []
 }
 
