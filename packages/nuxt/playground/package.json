@@ -11,7 +11,7 @@
     "@aws-sdk/client-ses": "^3.504.0",
     "@faker-js/faker": "^8.4.0",
     "@json2csv/node": "^7.0.5",
-    "@lucia-auth/adapter-drizzle": "1.0.0",
+    "@lucia-auth/adapter-drizzle": "1.0.1",
     "@lucia-auth/adapter-postgresql": "3.0.0",
     "@pergel/graphql": "workspace:*",
     "@pergel/module-box": "workspace:^",
