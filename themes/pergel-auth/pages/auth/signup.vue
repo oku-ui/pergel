@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { FormSchema } from '~/components/auth/AuthFormSignup.vue'
-import { TesttestddDocument, XxxxxxDocument } from '#changeName/graphqlYoga/client'
 
-console.log(TesttestddDocument)
-const { executeMutation } = useMutation(XxxxxxDocument)
+const { executeMutation } = useMutation(changeNameGraphQLClient.CreateUserDocument)
 
 async function submit(values: FormSchema) {
   // loading(true)
