@@ -236,6 +236,13 @@ export interface ResolvedPergelOptions {
   }[]
 
   pergelPackageJson: Record<string, any>
+
+  functionTemplates?: {
+    filename: string
+    getContents: () => string | Promise<string>
+    dir: string
+    writeDir: string
+  }[]
 }
 
 export interface NuxtPergel extends Nuxt {
