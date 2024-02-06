@@ -1,10 +1,11 @@
 import { join, resolve } from 'node:path'
-import { addTemplate, updateTemplates } from '@nuxt/kit'
+import { addTemplate } from '@nuxt/kit'
 import consola from 'consola'
 import { buildTime } from '../utils'
 import { useNitroImports, useNuxtImports } from '../../../core/utils/useImports'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
+import { addTemplatePergel, updateTemplatePergel } from '../../../core/utils/addTemplatePergel'
 import { useCodegen } from './codegen'
 
 export async function loadGraphQLFiles(
@@ -39,81 +40,86 @@ export async function loadGraphQLFiles(
   }
 }
 
-export async function useGenerateCodegen({
+export function useGenerateCodegen({
   nuxt,
-  type,
-  moduleDTS,
   options,
+  moduleDTS,
+
 }: {
   nuxt: NuxtPergel
   options: ResolvedGraphQLYogaConfig
-  type: 'server' | 'client' | 'all'
   moduleDTS: {
     name: string
     path: string
   }
 }) {
   const { moduleName, documentDir, schemaDir, projectNameCamelCase, generatorFunctionName } = options
-  const combinedName = join(projectNameCamelCase, moduleName)
+  const clientCombinedName = join(projectNameCamelCase, moduleName)
+  const serverCombinedName = `${`${moduleName}-${projectNameCamelCase}`}`
 
   const dotNuxtPaths = {
-    clientTypes: join(combinedName, 'client.ts'),
-    serverFile: join(combinedName, 'server.ts'),
-    schemaFile: join(combinedName, 'schema.mjs'),
-    schemaFileTS: join(combinedName, 'schema.ts'),
-    urqlIntrospectionFile: join(combinedName, 'urqlIntrospection.ts'),
+    clientTypes: join(clientCombinedName, 'client.ts'),
+    serverFile: join(serverCombinedName, 'generated', 'server.ts'),
+    schemaFile: join(serverCombinedName, 'generated', 'schema.mjs'),
+    schemaFileTS: join(serverCombinedName, 'generated', 'schema.ts'),
+    urqlIntrospectionFile: join(clientCombinedName, 'urqlIntrospection.ts'),
   }
 
-  const { client, server } = useCodegen()
-
-  const { printSchema, schema, loadDocument } = await loadGraphQLFiles({
-    rootDir: nuxt._pergel.serverDir,
-    documentDir,
-    schemaDir,
-  })
-
-  if (!schema) {
-    consola.warn('Schema not found')
-    return
-  }
-
-  nuxt.options.nitro.alias ??= {}
-  nuxt.options.alias ??= {}
-
-  // GraphQL Schema
-  const printSchemaFile = addTemplate({
-    filename: join('pergel', dotNuxtPaths.schemaFile),
+  // // GraphQL Schema
+  const printSchemaFile = addTemplatePergel({
+    filename: dotNuxtPaths.schemaFile,
     write: true,
+    where: 'server',
     async getContents() {
+      const { printSchema } = await loadGraphQLFiles({
+        rootDir: nuxt._pergel.serverDir,
+        documentDir,
+        schemaDir,
+      })
       return `export const schema = \`${printSchema}\``
     },
   })
 
-  nuxt.options.alias[`#${combinedName}/schema`] = printSchemaFile.dst
-  nuxt.options.nitro.alias[`#${combinedName}/schema`] = printSchemaFile.dst
+  nuxt.options.alias[`#${clientCombinedName}/schema`] = printSchemaFile.dir
+  nuxt.options.nitro.alias ??= {}
+  nuxt.options.nitro.alias[`#${clientCombinedName}/schema`] = printSchemaFile.dir
 
-  // Create types in build dir
+  //   // Create types in build dir
   const { dst: typeDecSchema } = addTemplate({
     filename: join('pergel', dotNuxtPaths.schemaFileTS),
     write: true,
     getContents() {
-      return `declare module '#${combinedName}/schema' {
-  const schema: string
-}`
+      return `declare module '#${clientCombinedName}/schema' {
+    const schema: string
+  }`
     },
   })
 
-  // Add types to `nuxt.d.ts`
+  // // Add types to `nuxt.d.ts`
   nuxt.hook('prepare:types', ({ references }) => {
     references.push({ path: typeDecSchema })
   })
 
   // GraphQL Server
-  const serverTypes = addTemplate({
-    filename: join('pergel', dotNuxtPaths.serverFile),
+  const serverTypes = addTemplatePergel({
+    filename: dotNuxtPaths.serverFile,
     write: true,
+    where: 'server',
     async getContents() {
       const { finish } = buildTime()
+
+      const { schema } = await loadGraphQLFiles({
+        rootDir: nuxt._pergel.serverDir,
+        documentDir,
+        schemaDir,
+      })
+
+      const { server } = useCodegen()
+
+      if (!schema) {
+        consola.warn('Schema not found')
+        return ''
+      }
 
       try {
         const type = await server.typescriptResolvers(schema, {
@@ -139,20 +145,33 @@ export async function useGenerateCodegen({
     },
   })
 
-  nuxt.options.watch.push(serverTypes.dst)
-  nuxt.options.alias[`#${combinedName}/server`] = serverTypes.dst
-  nuxt.options.nitro.alias[`#${combinedName}/server`] = serverTypes.dst
+  nuxt.options.alias[`#${clientCombinedName}/server`] = serverTypes.dir
+  nuxt.options.nitro.alias ??= {}
+  nuxt.options.nitro.alias[`#${clientCombinedName}/server`] = serverTypes.dir
 
   // GraphQL Urql Introspection
-  const urqlInptospection = addTemplate({
-    filename: join('pergel', dotNuxtPaths.urqlIntrospectionFile),
+  const urqlIntrospection = addTemplatePergel({
+    filename: dotNuxtPaths.urqlIntrospectionFile,
     write: true,
+    where: 'client',
     async getContents() {
       const { finish } = buildTime()
+      const { schema } = await loadGraphQLFiles({
+        rootDir: nuxt._pergel.serverDir,
+        documentDir,
+        schemaDir,
+      })
+      const { server } = useCodegen()
+
+      if (!schema) {
+        consola.warn('Schema not found')
+        return ''
+      }
+
       try {
         const type = await server.urqlIntrospection(schema, {
         })
-        consola.info(`Type server for ${projectNameCamelCase} in ${finish().duration}ms`)
+        consola.info(`Type urqlIntrospection for ${projectNameCamelCase} in ${finish().duration}ms`)
         return type
       }
       catch (error) {
@@ -162,16 +181,28 @@ export async function useGenerateCodegen({
     },
   })
 
-  nuxt.options.watch.push(urqlInptospection.dst)
-  nuxt.options.alias[`#${combinedName}/urqlIntrospection`] = urqlInptospection.dst
-  nuxt.options.nitro.alias[`#${combinedName}/urqlIntrospection`] = urqlInptospection.dst
+  nuxt.options.alias[`#${clientCombinedName}/urqlIntrospection`] = urqlIntrospection.dir
+  nuxt.options.nitro.alias ??= {}
+  nuxt.options.nitro.alias[`#${clientCombinedName}/urqlIntrospection`] = urqlIntrospection.dir
 
   // GraphQL Client
-  const clientTypes = addTemplate({
-    filename: join('pergel', dotNuxtPaths.clientTypes),
+  const clientTypes = addTemplatePergel({
+    filename: dotNuxtPaths.clientTypes,
     write: true,
     async getContents() {
       const { finish } = buildTime()
+
+      const { schema, loadDocument } = await loadGraphQLFiles({
+        rootDir: nuxt._pergel.serverDir,
+        documentDir,
+        schemaDir,
+      })
+      const { client } = useCodegen()
+
+      if (!schema) {
+        consola.warn('Schema not found')
+        return ''
+      }
 
       try {
         if (loadDocument) {
@@ -197,26 +228,17 @@ export async function useGenerateCodegen({
         return ''
       }
     },
+    where: 'client',
   })
 
-  // watch client config
-  if (nuxt.options.dev) {
-    // @ts-ignore
-    nuxt.options.watch = nuxt.options.watch || []
-    // @ts-ignore
-    nuxt.options.watch.push(clientTypes.dst)
-  }
-
-  nuxt.options.nitro.externals = nuxt.options.nitro.externals || {}
-  nuxt.options.nitro.externals.inline = nuxt.options.nitro.externals.inline || []
-  nuxt.options.nitro.externals.inline.push(clientTypes.dst)
-  nuxt.options.alias[`#${combinedName}/client`] = clientTypes.dst
-  nuxt.options.nitro.alias[`#${combinedName}/client`] = clientTypes.dst
+  nuxt.options.alias[`#${clientCombinedName}/client`] = clientTypes.dir
+  nuxt.options.nitro.alias ??= {}
+  nuxt.options.nitro.alias[`#${clientCombinedName}/client`] = clientTypes.dir
 
   useNitroImports(nuxt, {
     presets: [
       {
-        from: clientTypes.dst,
+        from: clientTypes.dir,
         imports: [
           {
             as: `${generatorFunctionName('GraphQLClient')}`,
@@ -230,7 +252,7 @@ export async function useGenerateCodegen({
   useNuxtImports(nuxt, {
     presets: [
       {
-        from: clientTypes.dst,
+        from: clientTypes.dir,
         imports: [
           {
             as: `${generatorFunctionName('GraphQLClient')}`,
@@ -241,42 +263,40 @@ export async function useGenerateCodegen({
     ],
   })
 
-  if (type === 'server') {
-    await updateTemplates({
-      filter: (template) => {
-        return template.filename === serverTypes.filename
-      },
-    })
+  function updatesFunction(input: {
+    type: 'server' | 'client' | 'all'
+  }) {
+    if (input.type === 'client') {
+      updateTemplatePergel({
+        filter: (template) => {
+          return template === clientTypes.filename
+        },
+      })
+
+      updateTemplatePergel({
+        filter: (template) => {
+          return template === urqlIntrospection.filename
+        },
+      })
+    }
+    if (input.type === 'server') {
+      return updateTemplatePergel({
+        filter: (template) => {
+          return template === serverTypes.filename
+        },
+      })
+    }
+
+    if (input.type === 'all') {
+      updateTemplatePergel({
+        filter: (template) => {
+          return template === printSchemaFile.filename
+        },
+      })
+    }
   }
 
-  if (type === 'client') {
-    await updateTemplates({
-      filter: (template) => {
-        return template.filename === clientTypes.filename
-      },
-    })
-  }
-
-  if (type === 'all') {
-    await updateTemplates({
-      filter: (template) => {
-        return template.filename === clientTypes.filename
-      },
-    })
-    await updateTemplates({
-      filter: (template) => {
-        return template.filename === dotNuxtPaths.schemaFile
-      },
-    })
-    await updateTemplates({
-      filter: (template) => {
-        return template.filename === dotNuxtPaths.serverFile
-      },
-    })
-    await updateTemplates({
-      filter: (template) => {
-        return template.filename === dotNuxtPaths.urqlIntrospectionFile
-      },
-    })
+  return {
+    updatesFunction,
   }
 }

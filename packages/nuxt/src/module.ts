@@ -26,6 +26,7 @@ import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
+import { writeFilePergel } from './runtime/core/utils/addTemplatePergel'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -287,6 +288,16 @@ export default defineNuxtModule<PergelOptions>({
       },
       ).flat()
       : []
+
+    // functiontemplate
+    if (nuxt._pergel.functionTemplates && nuxt._pergel.functionTemplates.length > 0) {
+      for await (const template of nuxt._pergel.functionTemplates) {
+        const { writeDir, getContents } = template
+
+        const contents = await getContents()
+        writeFilePergel(writeDir, contents)
+      }
+    }
   },
 })
 

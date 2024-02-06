@@ -18,28 +18,4 @@ mutation createUser($input: UserInput!) {
   }
 }
 
-mutation xxxxxx($input: UserInput!) {
-  createUser(input: $input){
-    user{
-        id
-        name
-        email
-        createdAt
-    }
-    token
-  }
-}
-
-
-mutation testtestdd($input: UserInput!) {
-  createUser(input: $input){
-    user{
-        id
-        name
-        email
-        createdAt
-    }
-    token
-  }
-}
 

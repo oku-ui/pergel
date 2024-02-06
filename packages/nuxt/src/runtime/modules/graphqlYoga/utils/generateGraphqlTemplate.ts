@@ -31,9 +31,8 @@ export interface GraphqlYogaContext extends YogaInitialContext {
     dir: data.options.serverDir,
   })
 
-  useGenerateCodegen({
+  const { updatesFunction } = useGenerateCodegen({
     nuxt: data.nuxt,
-    type: 'all',
     options: data.options,
     moduleDTS: {
       name: 'GraphqlYogaContext',
@@ -42,44 +41,30 @@ export interface GraphqlYogaContext extends YogaInitialContext {
   })
 
   if (data.nuxt.options.dev) {
-    data.nuxt.hook('nitro:build:before', (nitro) => {
-      data.nuxt.hook('builder:watch', async (event, path) => {
-        const test = globsBuilderWatch(data.nuxt, path, '.graphql')
-        if (!test)
-          return
+    data.nuxt.hook('builder:watch', async (event, path) => {
+      const test = globsBuilderWatch(data.nuxt, path, '.graphql')
+      if (!test)
+        return
 
-        // TODO: globsBuilderWatch add dynamic function
-        const serverFolder = matchGlobs(test.match.filepath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
-        const clientFolder = matchGlobs(test.match.filepath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
+      // TODO: globsBuilderWatch add dynamic function
+      const serverFolder = matchGlobs(test.match.filepath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
+      const clientFolder = matchGlobs(test.match.filepath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
 
-        // return
-        if (serverFolder) {
-          // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
-          await useGenerateCodegen({
-            nuxt: data.nuxt,
-            type: 'server',
-            options: data.options,
-            moduleDTS: {
-              name: 'GraphqlYogaContext',
-              path: `pergel/${data.options.projectName}/types`,
-            },
-          })
-        }
-        else {
-          if (clientFolder || serverFolder) {
-            await useGenerateCodegen({
-              nuxt: data.nuxt,
-              type: 'all',
-              options: data.options,
-              moduleDTS: {
-                name: 'GraphqlYogaContext',
-                path: `pergel/${data.options.projectName}/types`,
-              },
-            })
-          }
-        }
+      // return
+      if (serverFolder) {
+        // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
+        await updatesFunction({
+          type: 'server',
+        })
+      }
+      if (clientFolder) {
+        await updatesFunction({
+          type: 'client',
+        })
+      }
 
-        await nitro.hooks.callHook('dev:reload')
+      await updatesFunction({
+        type: 'all',
       })
     })
   }
