@@ -466,8 +466,8 @@ importers:
         specifier: latest
         version: 3.10.0(@types/node@20.11.16)(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.12)
       pergel:
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.7.0
+        version: 0.7.0
       pg:
         specifier: ^8.11.3
         version: 8.11.3
@@ -538,8 +538,8 @@ importers:
         specifier: ^3.10.0
         version: 3.10.0(@types/node@20.11.16)(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.12)
       pergel:
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.7.0
+        version: 0.7.0
       pg:
         specifier: ^8.11.3
         version: 8.11.3
@@ -14573,6 +14573,14 @@ packages:
 
   /pergel@0.6.0:
     resolution: {integrity: sha512-CxtQHOpK5M5BvwEGjmuA5i1xP/DDx6l3Nmwozxl9isi6J1dF+rJIiLabdsG6v3j908D5RG6fdFNgqjwQO/HLDg==}
+    hasBin: true
+    dependencies:
+      '@pergel/cli': 0.6.2
+      '@pergel/nuxt': link:packages/nuxt
+    dev: true
+
+  /pergel@0.7.0:
+    resolution: {integrity: sha512-xfen8b26qGlmRR8xClgFeboshjODM7i0C2OVXQTqq56xHGLSxxzTAs9tfj3iB5c5AXfdnfhMsdO0Nhezz3qz8A==}
     hasBin: true
     dependencies:
       '@pergel/cli': 0.6.2

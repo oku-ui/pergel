@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "nuxt": "^3.10.0",
-    "pergel": "^0.6.0",
+    "pergel": "^0.7.0",
     "pg": "^8.11.3",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
