@@ -4,12 +4,18 @@ import { definePergelModule } from '../../core/definePergel'
 export default definePergelModule({
   meta: {
     name: 'nodeCron',
-    version: '0.0.1',
-    dependencies: {
-      'node-cron': '^3.0.3',
+    version: '0.1.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        nodeCron: deps['node-cron'],
+      }
     },
-    devDependencies: {
-      '@types/node-cron': '^3.0.11',
+    devDependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@types/node-cron': deps['@types/node-cron'],
+      }
     },
   },
   defaults: {

@@ -6,9 +6,9 @@ import type { S3ModuleRuntimeConfig } from './types'
 export default definePergelModule({
   meta: {
     name: 'S3',
-    version: '0.0.1',
+    version: '0.1.0',
     dependencies: {
-      '@pergel/module-s3': '0.0.0',
+      '@pergel/module-s3': 'latest',
     },
   },
   defaults: {

@@ -6,9 +6,12 @@ import type { SesModuleRuntimeConfig } from './types'
 export default definePergelModule({
   meta: {
     name: 'ses',
-    version: '0.0.1',
-    dependencies: {
-      '@aws-sdk/client-ses': '^3.470.0',
+    version: '0.1.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@aws-sdk/client-ses': deps['@aws-sdk/client-ses'],
+      }
     },
   },
   defaults: {

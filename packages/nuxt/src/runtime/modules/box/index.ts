@@ -23,7 +23,7 @@ const logger = consola.create({
 export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
   meta: {
     name: 'box',
-    version: '0.1.0',
+    version: '0.2.0',
     dependencies: {
       '@pergel/module-box': 'latest',
     },

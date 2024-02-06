@@ -9,11 +9,14 @@ import type { BullMQModuleRuntimeConfig } from './types'
 export default definePergelModule({
   meta: {
     name: 'bullmq',
-    version: '0.0.1',
-    dependencies: {
-      'bullmq': '^4.14.3',
-      'ioredis': '^5.3.2',
-      'p-timeout': '^6.1.2',
+    version: '0.1.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        'bullmq': deps.bullmq,
+        'ioredis': deps.ioredis,
+        'p-timeout': deps['p-timeout'],
+      }
     },
     dts: true,
   },

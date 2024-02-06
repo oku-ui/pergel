@@ -17,29 +17,32 @@ const _logger = useLogger('pergel:drizzle')
 export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
   meta: {
     name: 'drizzle',
-    version: '0.0.1',
-    dependencies(options) {
+    version: '0.1.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+
       options.driver ??= 'postgresjs:pg'
       const data = {
-        'drizzle-kit': '^0.20.13',
-        'drizzle-orm': '^0.29.3',
-        '@faker-js/faker': '^8.4.0',
-        'dotenv': '^16.4.1',
+        'drizzle-kit': deps['drizzle-kit'],
+        'drizzle-orm': deps['drizzle-orm'],
+        '@faker-js/faker': deps['@faker-js/faker'],
+        'dotenv': deps.dotenv,
       } as Record<string, string>
 
       if (options.driver === 'postgresjs:pg')
-        data.postgres = '^3.4.3'
+        data.postgres = deps.postgres
 
       return data
     },
-    devDependencies(options) {
+    devDependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
       options.driver ??= 'postgresjs:pg'
 
       const data = {
       } as Record<string, string>
 
       if (options.driver === 'postgresjs:pg')
-        data.pg = '^8.11.3'
+        data.pg = deps.pg
 
       return data
     },

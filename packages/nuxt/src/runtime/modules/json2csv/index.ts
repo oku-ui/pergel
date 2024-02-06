@@ -4,9 +4,12 @@ import { definePergelModule } from '../../core/definePergel'
 export default definePergelModule({
   meta: {
     name: 'json2csv',
-    version: '0.0.1',
-    dependencies: {
-      '@json2csv/node': '^7.0.4',
+    version: '0.1.10',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@json2csv/node': deps['@json2csv/node'],
+      }
     },
   },
   defaults: {

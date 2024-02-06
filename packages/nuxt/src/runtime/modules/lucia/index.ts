@@ -11,12 +11,13 @@ import { setupDrizzle } from './drizzle'
 export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions>({
   meta: {
     name: 'lucia',
-    version: '0.2.0',
-    dependencies(options) {
+    version: '0.3.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
       const [driver, db] = options.driver.split(':')
       const defaultData = {
-        lucia: '^3.0.1',
-        oslo: '^1.0.3',
+        lucia: deps.lucia,
+        oslo: deps.oslo,
       }
 
       switch (driver) {
@@ -25,8 +26,8 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
             case 'postgre': {
               return {
                 ...defaultData,
-                '@lucia-auth/adapter-drizzle': '^1.0.0',
-                '@lucia-auth/adapter-postgresql': '^3.0.0',
+                '@lucia-auth/adapter-drizzle': deps['@lucia-auth/adapter-drizzle'],
+                '@lucia-auth/adapter-postgresql': deps['@lucia-auth/adapter-postgresql'],
               }
             }
             default: {
@@ -39,6 +40,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
         }
       }
     },
+
     waitModule(options) {
       const [driver, _db] = options.driver.split(':')
 
