@@ -1,4 +1,10 @@
-export const schema = `scalar DateTime
+// THIS FILE IS GENERATED, DO NOT EDIT!
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+/* pergel - oku-ui.com/pergel */
+      export const schema = `scalar DateTime
 
 type Query {
   book(id: ID!): Book!

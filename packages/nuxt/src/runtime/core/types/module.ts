@@ -52,6 +52,8 @@ export interface ResolvedPergelModuleOptions {
    */
   folderName: string
 
+  generatorFolderName: (moduleName: PergelModuleNames, projectName: string) => string
+
   /**
    * @default
    * projectname: TEst

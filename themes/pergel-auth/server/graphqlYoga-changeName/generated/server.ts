@@ -1,4 +1,10 @@
-import type { RoleStatus } from '/Users/productdevbook/works/pergel/themes/pergel-auth/server/drizzle-pzg/schema/user';
+// THIS FILE IS GENERATED, DO NOT EDIT!
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+/* pergel - oku-ui.com/pergel */
+import type { RoleStatus } from '~/server/drizzle-changeName/schema';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphqlYogaContext } from 'pergel/changeName/types';
 export type Maybe<T> = T | null;

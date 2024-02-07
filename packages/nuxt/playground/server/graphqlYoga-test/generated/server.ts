@@ -1,3 +1,9 @@
+// THIS FILE IS GENERATED, DO NOT EDIT!
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+/* pergel - oku-ui.com/pergel */
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphqlYogaContext } from 'pergel/test/types';
 export type Maybe<T> = T | null;
@@ -15,7 +21,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  DateTime: { input: any; output: any; }
+  DateTime: { input: Date | string; output: Date | string; }
 };
 
 export type Query = {
@@ -56,11 +62,10 @@ export type SearchInput = {
 
 export type SearchResult = User | Book;
 
-export enum RoleStatus {
-  User = 'user',
-  Admin = 'admin',
-  Superadmin = 'superadmin'
-}
+export type RoleStatus =
+  | 'user'
+  | 'admin'
+  | 'superadmin';
 
 export type User = {
   __typename?: 'User';

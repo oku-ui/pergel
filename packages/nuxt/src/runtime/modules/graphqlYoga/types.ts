@@ -143,7 +143,18 @@ export interface GraphQLYogaConfig extends PergelModuleOptions {
 
       /**
        * Codegen config
-       * @default undefined
+       * @default
+          scalars: {
+            DateTime: DateTimeResolver.extensions.codegenScalarType as any,
+            UUID: UUIDResolver.extensions.codegenScalarType as any,
+            JSON: JSONResolver.extensions.codegenScalarType as any,
+            JSONObject: JSONResolver.extensions.codegenScalarType as any,
+            NonEmptyString: NonEmptyStringResolver.extensions.codegenScalarType as any,
+            Currency: CurrencyResolver.extensions.codegenScalarType as any,
+          },
+          enumsAsTypes: true,
+          useTypeImports: true,
+          strictScalars: true,
        */
       config?: (args: {
         dir: {
@@ -160,6 +171,11 @@ export interface GraphQLYogaConfig extends PergelModuleOptions {
            * .nuxt/pergel/${projectName}/graphqlYoga
            */
           nuxtModule: string
+
+          /**
+           * #projectName/server/drizzle/schema
+           */
+          drizzleShemas: (key: string) => string
         }
       }) => CodegenServerConfig
     }
@@ -261,6 +277,11 @@ export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedPe
            * .nuxt/pergel/${projectName}/graphqlYoga
            */
           nuxtModule: string
+
+          /**
+           * #projectName/server/drizzle/schema
+           */
+          drizzleShemas: (key: string) => string
         }
       }) => CodegenServerConfig
     }

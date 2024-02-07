@@ -2,7 +2,7 @@ import { writeFileSync } from 'node:fs'
 import type { LoadSchemaOptions, LoadTypedefsOptions, UnnormalizedTypeDefPointer } from '@graphql-tools/load'
 import { loadDocumentsSync, loadSchemaSync } from '@graphql-tools/load'
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
-import type { Types } from '@graphql-codegen/plugin-helpers'
+import type { PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
 import type { GraphQLSchema } from 'graphql'
 import { codegen } from '@graphql-codegen/core'
 import { parse, printSchema } from 'graphql'
@@ -15,7 +15,30 @@ import type { Source } from '@graphql-tools/utils'
 import * as typescriptPlugin from '@graphql-codegen/typescript'
 import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers'
 import * as urqlIntrospectionPlugin from '@graphql-codegen/urql-introspection'
+
 import consola from 'consola'
+import defu from 'defu'
+import {
+  CurrencyResolver,
+  DateTimeResolver,
+  JSONResolver,
+  NonEmptyStringResolver,
+  UUIDResolver,
+} from 'graphql-scalars'
+
+const pluginContent: PluginFunction<any> = (_schema, _documents, _config, _info) => {
+  return {
+    prepend: [
+      '// THIS FILE IS GENERATED, DO NOT EDIT!',
+      '/* eslint-disable eslint-comments/no-unlimited-disable */',
+      '/* tslint:disable */',
+      '/* eslint-disable */',
+      '/* prettier-ignore */',
+      '/* pergel - oku-ui.com/pergel */',
+    ],
+    content: '',
+  }
+}
 
 export type CodegenClientConfig = TypeScriptPluginConfig & TypeScriptDocumentsPluginConfig & TypeScriptTypedDocumentNodesConfig
 
@@ -77,20 +100,37 @@ async function loadDocumentsFiles(pointerOrPointers: UnnormalizedTypeDefPointer 
 
 async function typescriptResolvers(
   schema: GraphQLSchema,
-  config: CodegenServerConfig = { },
+  config: CodegenServerConfig,
 ) {
+  const mergeConfig = defu(config, {
+    scalars: {
+      DateTime: DateTimeResolver.extensions.codegenScalarType as any,
+      UUID: UUIDResolver.extensions.codegenScalarType as any,
+      JSON: JSONResolver.extensions.codegenScalarType as any,
+      JSONObject: JSONResolver.extensions.codegenScalarType as any,
+      NonEmptyString: NonEmptyStringResolver.extensions.codegenScalarType as any,
+      Currency: CurrencyResolver.extensions.codegenScalarType as any,
+    },
+    enumsAsTypes: true,
+    useTypeImports: true,
+    strictScalars: true,
+  } as CodegenServerConfig)
   // See https://www.graphql-code-generator.com/docs/getting-started/programmatic-usage for more details
   const res = await codegen({
     filename: '',
     schema: parse(printSchema(schema)),
     // TODO: Add support for fragments
     documents: [],
-    config,
+    config: mergeConfig,
     plugins: [
+      { pluginContent: {} },
       { typescript: {} },
       { typescriptResolvers: {} },
     ],
     pluginMap: {
+      pluginContent: {
+        plugin: pluginContent,
+      },
       typescript: typescriptPlugin,
       typescriptResolvers: typescriptResolversPlugin,
     },
@@ -104,17 +144,25 @@ async function typescriptResolvers(
 
 async function urqlIntrospection(
   schema: GraphQLSchema,
-  config: CodegenClientConfig = {},
+  config: CodegenClientConfig,
 ) {
+  const mergeConfig = defu(config, {
+    useTypeImports: true,
+  } as CodegenClientConfig)
+
   const res = await codegen({
     filename: 'a.ts',
     schema: parse(printSchema(schema)),
     documents: [],
-    config,
+    config: mergeConfig,
     plugins: [
+      { pluginContent: {} },
       { urqlIntrospection: {} },
     ],
     pluginMap: {
+      pluginContent: {
+        plugin: pluginContent,
+      },
       urqlIntrospection: urqlIntrospectionPlugin,
     },
   }).catch((e) => {
@@ -128,8 +176,13 @@ async function urqlIntrospection(
 async function generateTypedDocumentNode(
   schema: GraphQLSchema,
   documents: Types.DocumentFile[],
-  config: CodegenClientConfig = {},
+  config: CodegenClientConfig,
 ) {
+  const mergeConfig = defu(config, {
+    enumsAsTypes: true,
+    useTypeImports: true,
+  } as CodegenClientConfig)
+
   // See https://www.graphql-code-generator.com/docs/getting-started/programmatic-usage for more details
   const res = await codegen({
     // Filename is not used. This is because the typescript plugin returns a string instead of writing to a file.
@@ -137,13 +190,17 @@ async function generateTypedDocumentNode(
     schema: parse(printSchema(schema)),
     // TODO: Add support for fragments
     documents,
-    config,
+    config: mergeConfig,
     plugins: [
+      { pluginContent: {} },
       { typescript: {} },
       { typescriptOperations: {} },
       { typedDocumentNode: {} },
     ],
     pluginMap: {
+      pluginContent: {
+        plugin: pluginContent,
+      },
       typescript: typescriptPlugin,
       typescriptOperations: {
         plugin: typescriptOperationsPlugin,
