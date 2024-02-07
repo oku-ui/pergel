@@ -53,21 +53,11 @@ export function useGenerateCodegen({
     path: string
   }
 }) {
-  const { moduleName, documentDir, schemaDir, projectNameCamelCase, generatorFunctionName } = options
-  const clientCombinedName = join(projectNameCamelCase, moduleName)
-  const serverCombinedName = `${`${moduleName}-${projectNameCamelCase}`}`
+  const { documentDir, schemaDir, projectNameCamelCase, generatorFunctionName, folderName, importPath } = options
 
-  const dotNuxtPaths = {
-    clientTypes: join(clientCombinedName, 'client.ts'),
-    serverFile: join(serverCombinedName, 'generated', 'server.ts'),
-    schemaFile: join(serverCombinedName, 'generated', 'schema.mjs'),
-    schemaFileTS: join(serverCombinedName, 'generated', 'schema.ts'),
-    urqlIntrospectionFile: join(clientCombinedName, 'urqlIntrospection.ts'),
-  }
-
-  // // GraphQL Schema
+  // GraphQL Schema
   const printSchemaFile = addTemplatePergel({
-    filename: dotNuxtPaths.schemaFile,
+    filename: join(folderName, 'generated', 'schema.mjs'),
     write: true,
     where: 'server',
     async getContents() {
@@ -80,29 +70,29 @@ export function useGenerateCodegen({
     },
   })
 
-  nuxt.options.alias[`#${clientCombinedName}/schema`] = printSchemaFile.dir
+  nuxt.options.alias[`#${importPath}/schema`] = printSchemaFile.dir
   nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${clientCombinedName}/schema`] = printSchemaFile.dir
+  nuxt.options.nitro.alias[`#${importPath}/schema`] = printSchemaFile.dir
 
-  //   // Create types in build dir
+  // Create types in build dir
   const { dst: typeDecSchema } = addTemplate({
-    filename: join('pergel', dotNuxtPaths.schemaFileTS),
+    filename: join('pergel', folderName, 'schema.d.ts'),
     write: true,
     getContents() {
-      return `declare module '#${clientCombinedName}/schema' {
+      return `declare module '#${importPath}/schema' {
     const schema: string
   }`
     },
   })
 
-  // // Add types to `nuxt.d.ts`
+  // Add types to `nuxt.d.ts`
   nuxt.hook('prepare:types', ({ references }) => {
     references.push({ path: typeDecSchema })
   })
 
   // GraphQL Server
   const serverTypes = addTemplatePergel({
-    filename: dotNuxtPaths.serverFile,
+    filename: join(folderName, 'generated', 'server.ts'), // 'generated/server.ts
     write: true,
     where: 'server',
     async getContents() {
@@ -145,13 +135,13 @@ export function useGenerateCodegen({
     },
   })
 
-  nuxt.options.alias[`#${clientCombinedName}/server`] = serverTypes.dir
+  nuxt.options.alias[`#${importPath}/server`] = serverTypes.dir
   nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${clientCombinedName}/server`] = serverTypes.dir
+  nuxt.options.nitro.alias[`#${importPath}/server`] = serverTypes.dir
 
   // GraphQL Urql Introspection
   const urqlIntrospection = addTemplatePergel({
-    filename: dotNuxtPaths.urqlIntrospectionFile,
+    filename: join(folderName, 'generated', 'urqlIntrospection.ts'), // 'generated/urqlIntrospection.ts
     write: true,
     where: 'client',
     async getContents() {
@@ -181,13 +171,13 @@ export function useGenerateCodegen({
     },
   })
 
-  nuxt.options.alias[`#${clientCombinedName}/urqlIntrospection`] = urqlIntrospection.dir
+  nuxt.options.alias[`#${importPath}/urqlIntrospection`] = urqlIntrospection.dir
   nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${clientCombinedName}/urqlIntrospection`] = urqlIntrospection.dir
+  nuxt.options.nitro.alias[`#${importPath}/urqlIntrospection`] = urqlIntrospection.dir
 
   // GraphQL Client
   const clientTypes = addTemplatePergel({
-    filename: dotNuxtPaths.clientTypes,
+    filename: join(folderName, 'generated', 'client.ts'), // 'generated/client.ts
     write: true,
     async getContents() {
       const { finish } = buildTime()
@@ -231,9 +221,9 @@ export function useGenerateCodegen({
     where: 'client',
   })
 
-  nuxt.options.alias[`#${clientCombinedName}/client`] = clientTypes.dir
+  nuxt.options.alias[`#${importPath}/client`] = clientTypes.dir
   nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${clientCombinedName}/client`] = clientTypes.dir
+  nuxt.options.nitro.alias[`#${importPath}/client`] = clientTypes.dir
 
   useNitroImports(nuxt, {
     presets: [

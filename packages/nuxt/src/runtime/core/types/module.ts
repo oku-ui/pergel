@@ -46,6 +46,22 @@ export interface ResolvedPergelModuleOptions {
 
   /**
    * @default
+   * projectname: test
+   * moduleName: drizzle
+   * = drizzle-test
+   */
+  folderName: string
+
+  /**
+   * @default
+   * projectname: TEst
+   * moduleName: drizzle
+   * = test/drizzle
+   */
+  importPath: string
+
+  /**
+   * @default
    * testHello -> pergelTestHello
    */
   projectNameCamelCaseWithPergel: string
