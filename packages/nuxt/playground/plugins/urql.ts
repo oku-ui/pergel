@@ -1,1 +1,1 @@
-export default pergelUrqlPlugin()
+export default pergelTest().urql().nuxtPlugin()

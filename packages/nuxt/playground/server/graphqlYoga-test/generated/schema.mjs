@@ -4,7 +4,7 @@
 /* eslint-disable */
 /* prettier-ignore */
 /* pergel - oku-ui.com/pergel */
-      export const schema = `scalar DateTime
+export const schema = `scalar DateTime
 
 type Query {
   book(id: ID!): Book!
