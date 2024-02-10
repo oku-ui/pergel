@@ -1,15 +1,26 @@
-import { access, mkdir, writeFile } from 'node:fs/promises'
+import { accessSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 
-export async function writeFilePergel(filePath: string, data: any) {
-  const _dirname = dirname(filePath)
-
+async function isExists(path: string) {
   try {
-    await access(_dirname)
+    accessSync(path)
+    return true
   }
   catch {
-    await mkdir(_dirname, { recursive: true })
+    return false
   }
+};
 
-  await writeFile(filePath, data, 'utf8')
+export async function writeFilePergel(filePath: string, data: any) {
+  try {
+    const _dirname = dirname(filePath)
+    const exist = await isExists(_dirname)
+    if (!exist)
+      mkdirSync(_dirname, { recursive: true })
+
+    writeFileSync(filePath, data, 'utf8')
+  }
+  catch (err: any) {
+    throw new Error(err)
+  }
 }
