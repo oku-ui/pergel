@@ -8,7 +8,7 @@ import type { BoxOptions, ResolvedBoxOptions } from '../../modules/box/types'
 
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
-import type { UserModuleOptions } from './module'
+import type { ResolvedPergelModuleOptions, UserModuleOptions } from './module'
 
 // @MODULE
 export interface PergelNuxtModules {
@@ -25,18 +25,18 @@ export interface PergelNuxtModules {
   urql?: true
 }
 
-export interface ResolvedPergelNuxtModuleConfig {
-  S3?: true
-  ses?: true
-  nodeCron?: true
-  bullmq?: true
-  json2csv?: true
+export interface ResolvedPergelNuxtModuleConfig<T> {
+  S3?: true | T
+  ses?: true | T
+  nodeCron?: true | T
+  bullmq?: true | T
+  json2csv?: true | T
   graphqlYoga?: ResolvedGraphQLYogaConfig
   drizzle?: ResolvedDrizzleConfig
   box?: true | ResolvedBoxOptions
   lucia?: true | ResolvedLuciaModuleOptions
   ionic?: true | ResolvedIonicInterface
-  urql?: true
+  urql?: true | T
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules
@@ -123,39 +123,40 @@ export interface ResolvedPergelOptions {
   }
 
   projects: {
-    [project: string]: ResolvedPergelNuxtModuleConfig & {
-      /**
-       * @example
-       * 'users/productdevbook/nuxt3/pergel/${projectName}'
-       */
-      projectDir?: string
-      /**
-       * @example
-       * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
-       */
-      moduleDir?: string
+    [project: string]: ResolvedPergelNuxtModuleConfig<ResolvedPergelModuleOptions>
+    //   & {
+    //     /**
+    //      * @example
+    //      * 'users/productdevbook/nuxt3/pergel/${projectName}'
+    //      */
+    //     projectDir?: string
+    //     /**
+    //      * @example
+    //      * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
+    //      */
+    //     moduleDir?: string
 
-      dir: {
+    //     dir: {
 
-        /**
-         * @example
-         * '${projectName}'
-         */
-        project: string
+    //       /**
+    //        * @example
+    //        * '${projectName}'
+    //        */
+    //       project: string
 
-        /**
-         * @example
-         * '${projectName}/${moduleName}'
-         */
-        module: string
+    //       /**
+    //        * @example
+    //        * '${projectName}/${moduleName}'
+    //        */
+    //       module: string
 
-        /**
-         * @example
-         * 'pergel'
-         */
-        root: string
-      }
-    }
+  //       /**
+  //        * @example
+  //        * 'pergel'
+  //        */
+  //       root: string
+  //     }
+  //   }
   }
 
   dir: {

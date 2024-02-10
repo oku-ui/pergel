@@ -104,6 +104,12 @@ export interface ResolvedPergelModuleOptions {
   }
 
   [key: string]: any
+
+  /**
+   * @default
+   * false
+   */
+  devtoolsStatus?: boolean
 }
 
 interface ModuleMeta<T extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {

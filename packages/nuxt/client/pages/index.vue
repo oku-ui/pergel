@@ -1,41 +1,79 @@
 <script lang="ts" setup>
-import {
-  OkuTabs,
-  OkuTabsContent,
-  OkuTabsList,
-  OkuTabsTrigger,
-} from '@oku-ui/tabs'
-
 import { rpc } from '../composables/rpc'
+import { Button } from '~/components/ui/button'
 
 const projects = ref()
 const totalModules = ref()
 
 onMounted(async () => {
-  projects.value = await rpc.value?.getProjects()
+  projects.value = await rpc.value?.getProjects() ?? {
+    test1: {
+      S3: {
+        active: true,
+      },
+      graphqlYoga: {
+        active: false,
+      },
+      drizzle: {
+        active: false,
+      },
+    },
+    test2: {
+      S3: {
+        active: false,
+      },
+    },
+  }
   totalModules.value = await rpc.value?.getTotalModules()
 })
 
-const tabs = ref<string[]>([])
-const selectedTab = ref('add')
+const selectProject = ref()
+
+const getProjects = computed(() => {
+  return selectProject.value ? projects.value[selectProject.value] : undefined
+})
 </script>
 
 <template>
+  <div>
+    <div
+      class="flex max-h-[50px] min-h-[50px] items-center border-b pl-2 pr-4"
+    >
+      <Button
+        variant="outline"
+      >
+        Add
+      </Button>
+    </div>
+    <div class="py-6">
+      <HomeProjectsBox
+        v-model="selectProject"
+        :projects="projects ? Object.keys(projects) : undefined"
+        @update:model-value="console.log"
+      >
+        <HomeProjectLists
+          v-if="getProjects"
+          :project="getProjects"
+        >
+        </HomeProjectLists>
+      </HomeProjectsBox>
+    </div>
+  </div>
+</template>
+
+<!-- <template>
   <div class="flex size-full flex-col">
-    <OkuTabs
+    <TabsRoot
       v-model="selectedTab"
       class="flex size-full flex-col"
       default-value="add"
-      @change="() => {
-        console.warn(selectedTab, 'selectedTab')
-      }"
     >
-      <OkuTabsList
+      <TabsList
         class="flex"
         aria-label="Manage your account"
       >
         <template v-if="tabs && tabs.length">
-          <OkuTabsTrigger
+          <TabsTrigger
             v-for="tab in tabs"
             :key="tab"
             class="flex h-[30px] max-w-fit flex-1 cursor-default select-none items-center justify-center px-3 text-[10px] leading-none text-gray-900 outline-none first:rounded-tl-md last:rounded-tr-md hover:text-gray-500 data-[state=active]:text-gray-900 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-gray-500 dark:bg-gray-950 dark:text-gray-200 dark:hover:text-gray-400 dark:data-[state=active]:text-gray-400"
@@ -50,17 +88,17 @@ const selectedTab = ref('add')
                 selectedTab = tabs[tabs.length - 1]
               }"
             />
-          </OkuTabsTrigger>
+          </TabsTrigger>
         </template>
-        <OkuTabsTrigger
+        <TabsTrigger
           class="flex h-[30px] max-w-fit flex-1 cursor-default select-none items-center justify-center px-3 text-[10px] leading-none text-gray-900 outline-none first:rounded-tl-md last:rounded-tr-md hover:text-blue-500 data-[state=active]:text-blue-900 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-blue-500 dark:bg-gray-950 dark:text-gray-200 dark:hover:text-blue-400 dark:data-[state=active]:text-blue-400
            "
           value="add"
         >
           <div class="i-ph-plus size-3 dark:text-white" />
-        </OkuTabsTrigger>
-      </OkuTabsList>
-      <OkuTabsContent
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent
         v-if="projects"
         class="flex size-full grow flex-col rounded-b-md p-5 outline-none dark:bg-gray-950"
         value="add"
@@ -93,9 +131,9 @@ const selectedTab = ref('add')
             </div>
           </NSectionBlock>
         </template>
-      </OkuTabsContent>
+      </TabsContent>
 
-      <OkuTabsContent
+      <TabsContent
         v-for="tab in tabs"
         :key="tab"
         :value="tab"
@@ -115,7 +153,7 @@ const selectedTab = ref('add')
           :project-name="tab.split('.')[0]"
         >
         </ModulesDrizzle>
-      </OkuTabsContent>
-    </OkuTabs>
+      </TabsContent>
+    </TabsRoot>
   </div>
-</template>
+</template> -->

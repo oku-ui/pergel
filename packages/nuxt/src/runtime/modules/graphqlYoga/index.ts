@@ -71,6 +71,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         document: basename(documentDir),
         schema: basename(schemaDir),
       },
+      devtoolsStatus: true,
     }
   },
   async setup({ nuxt, options }) {
