@@ -83,6 +83,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
         seed: true,
         drop: true,
       },
+      devtoolsStatus: true,
     }
   },
   async setup({ nuxt, options }) {

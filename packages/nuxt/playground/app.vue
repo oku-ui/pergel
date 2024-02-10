@@ -29,7 +29,7 @@ const isDark = computed({
   </Notivue>
 
   <div class="h-full">
-    <div v-confetti="{ particleCount: 200, force: 0.3 }" />
+    <!-- <div v-confetti="{ particleCount: 200, force: 0.3 }" /> -->
 
     <NuxtLayout>
       <NuxtPage />
