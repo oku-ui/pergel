@@ -4,6 +4,14 @@ import { Button } from '~/components/ui/button'
 
 const projects = ref()
 const totalModules = ref()
+const tabState = ref<{
+  activeTab: string
+  tabs: string[]
+}>({
+  activeTab: 'add',
+  tabs: [],
+})
+const tabs = useLocalStorage('pergel-tabs', tabState)
 
 onMounted(async () => {
   projects.value = await rpc.value?.getProjects() ?? {
@@ -32,6 +40,45 @@ const selectProject = ref()
 const getProjects = computed(() => {
   return selectProject.value ? projects.value[selectProject.value] : undefined
 })
+
+function selectModule(module: string) {
+  const item = tabs.value
+  if (!item) {
+    tabState.value = {
+      activeTab: 'add',
+      tabs: [],
+    }
+  }
+
+  if (item && !item.tabs.includes(module))
+    tabState.value.tabs = [...item.tabs, module]
+
+  tabState.value.activeTab = module
+}
+
+function clickRemoveTab(tab: string) {
+  const tabs = tabState.value.tabs
+
+  const tabIndex = tabs.indexOf(tab)
+
+  if (tabIndex === -1)
+    return
+
+  tabState.value.tabs.splice(tabIndex, 1)
+
+  if (tabState.value.tabs.length === 0) {
+    tabState.value.activeTab = 'add'
+    tabState.value.tabs = []
+    return
+  }
+
+  const currentTabIndex = tabs.indexOf(tabState.value.activeTab)
+
+  if (currentTabIndex === -1 || currentTabIndex === tabIndex) {
+    const previousTabIndex = Math.max(0, tabIndex - 1)
+    tabState.value.activeTab = tabs[previousTabIndex]
+  }
+}
 </script>
 
 <template>
@@ -39,13 +86,46 @@ const getProjects = computed(() => {
     <div
       class="flex max-h-[50px] min-h-[50px] items-center border-b pl-2 pr-4"
     >
-      <Button
-        variant="outline"
+      <div
+        class="flex"
       >
-        Add
-      </Button>
+        <div
+          v-for="tab in tabs.tabs"
+          :key="tab"
+          class="relative flex w-fit items-center"
+        >
+          <Button
+            :variant="tabState.activeTab === tab ? 'secondary' : 'outline'"
+            @click="() => {
+              tabState.activeTab = tab
+            }"
+          >
+            {{ tab }}
+          </Button>
+          <Button
+            class="-ml-4 mr-2 flex size-7 items-center justify-center rounded-full border-2 border-white bg-red-400 p-0"
+            variant="ghost"
+            @click="clickRemoveTab(tab)"
+          >
+            x
+          </Button>
+        </div>
+
+        <Button
+          :variant="tabState.activeTab === 'add' ? 'default' : 'outline'"
+
+          @click="() => {
+            tabState.activeTab = 'add'
+          }"
+        >
+          Add
+        </Button>
+      </div>
     </div>
-    <div class="py-6">
+    <div
+      v-if="tabState.activeTab === 'add'"
+      class="py-6"
+    >
       <HomeProjectsBox
         v-model="selectProject"
         :projects="projects ? Object.keys(projects) : undefined"
@@ -54,9 +134,17 @@ const getProjects = computed(() => {
         <HomeProjectLists
           v-if="getProjects"
           :project="getProjects"
+          @select="selectModule"
         >
         </HomeProjectLists>
       </HomeProjectsBox>
+    </div>
+
+    <div
+      v-else
+      class="flex flex-col"
+    >
+      {{ tabState.activeTab }}
     </div>
   </div>
 </template>

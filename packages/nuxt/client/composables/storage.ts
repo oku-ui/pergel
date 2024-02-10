@@ -1,8 +1,10 @@
 import { toRefs } from '@vueuse/core'
+import { watch } from 'vue'
 
 interface NuxtDevToolsOptions {
   showSidebar: boolean
   showHelpButtons: boolean
+  tabs: string[]
 }
 
 export const isFirstVisit = useLocalStorage('nuxt-devtools-first-visit', true)
@@ -17,7 +19,14 @@ export const splitScreenAvailable = computed(() => windowSize.width.value > 1080
 const uiOptionsRefs = toRefs({
   showHelpButtons: true,
   showSidebar: true,
+  tabs: [],
 } as NuxtDevToolsOptions)
+
+watch(uiOptionsRefs.tabs, async (options) => {
+  localStorage.setItem('pergel-devtools-settings', JSON.stringify(options))
+}, {
+  deep: true,
+})
 
 // watch(uiOptions, async (options) => {
 //   rpc.updateOptions('ui', options)
@@ -27,6 +36,9 @@ const uiOptionsRefs = toRefs({
 if (localStorage.getItem('pergel-devtools-settings')) {
   Object.assign({}, JSON.parse(localStorage.getItem('pergel-devtools-settings')!))
   localStorage.removeItem('pergel-devtools-settings')
+}
+else {
+  localStorage.setItem('pergel-devtools-settings', JSON.stringify(uiOptionsRefs))
 }
 
 export function useDevToolsUIOptions() {
