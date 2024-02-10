@@ -54,7 +54,7 @@ export async function setupPergel(
   exitPergelFolder && mkdirSync(join(resolveDir, pergelDir), { recursive: true })
   exitPergelFolder && mkdirSync(join(resolveDir, templateDir), { recursive: true })
 
-  const projectNames = Object.keys(options.projects).sort()
+  const projectNames = Object.keys(options.projects ?? {}).sort()
 
   const pergelType = addTemplate({
     filename: 'pergel/types.ts',
