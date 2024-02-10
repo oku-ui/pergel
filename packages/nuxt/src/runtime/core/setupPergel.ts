@@ -163,6 +163,7 @@ declare module 'h3' {
       ...packageJson.dependencies,
       ...packageJson.devDependencies,
     },
+    pergelModuleRoot: resolver.resolve('./'),
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }

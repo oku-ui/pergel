@@ -1,5 +1,5 @@
 import { camelCase } from 'scule'
-import type { NuxtPergel } from '../../../../../core/types/nuxtModule'
+import type { NuxtPergel } from '../../../../runtime/core/types/nuxtModule'
 
 export default function (data: {
   nuxt: NuxtPergel

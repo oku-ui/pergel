@@ -1,7 +1,6 @@
 import { cpSync, existsSync, mkdirSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
 import { startSubprocess } from '@nuxt/devtools-kit'
-import { createResolver } from '@nuxt/kit'
 import { globbySync } from 'globby'
 import type { ResolvedDrizzleConfig } from '../../types'
 
@@ -15,7 +14,6 @@ export async function setupPostgres(
   nuxt: NuxtPergel,
   options: ResolvedDrizzleConfig,
 ) {
-  const resolver = createResolver(import.meta.url)
   const projectName = options.projectName
   const moduleName = options.moduleName
   const { driver } = options._driver
@@ -61,7 +59,7 @@ export default {
 
   if (!existsSync(resolve(options.serverDir, 'schema'))) {
     mkdirSync(resolve(options.serverDir, 'schema'), { recursive: true })
-    cpSync(resolver.resolve(join('templates', 'schema')), resolve(options.serverDir, 'schema'), {
+    cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', 'drizzle', 'postgress', 'schema')), resolve(options.serverDir, 'schema'), {
       recursive: true,
     })
   }
@@ -69,7 +67,7 @@ export default {
   if (!existsSync(resolve(options.serverDir, 'seeds'))) {
     mkdirSync(resolve(options.serverDir, 'seeds'), { recursive: true })
 
-    const files = globbySync(resolver.resolve(join('templates', 'seeds'), '**/*'), {
+    const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', 'drizzle', 'postgress', 'seeds', '**/*')), {
       onlyFiles: true,
     })
 
@@ -96,7 +94,7 @@ export default {
   if (!existsSync(resolve(options.serverDir, 'storage'))) {
     mkdirSync(resolve(options.serverDir, 'storage'), { recursive: true })
 
-    const files = globbySync(resolver.resolve(join('templates', 'storage'), '**/*'), {
+    const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', 'drizzle', 'postgress', 'storage', '**/*')), {
       onlyFiles: true,
     })
 

@@ -244,6 +244,8 @@ export interface ResolvedPergelOptions {
     dir: string
     writeDir: string
   }[]
+
+  pergelModuleRoot: string
 }
 
 export interface NuxtPergel extends Nuxt {

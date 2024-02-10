@@ -136,7 +136,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
 
     if (nuxt._pergel.projects[options.projectName]?.drizzle && nuxt._pergel.projects[options.projectName]?.lucia) {
       if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
-        const files = globbySync(resolver.resolve(join('templates', 'drizzle-lucia', 'root'), '**/*'), {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'root', '**/*')), {
           onlyFiles: true,
         })
 
@@ -159,7 +159,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           recursive: true,
         })
 
-        cpSync(resolver.resolve(join('templates', 'drizzle-lucia', 'documents')), resolve(options.serverDir, 'documents'), {
+        cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'documents')), resolve(options.serverDir, 'documents'), {
           recursive: true,
         })
       }
@@ -169,7 +169,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           recursive: true,
         })
 
-        const files = globbySync(resolver.resolve(join('templates', 'drizzle-lucia', 'plugins'), '**/*'), {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'plugins', '**/*')), {
           onlyFiles: true,
         })
 
@@ -192,14 +192,14 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           recursive: true,
         })
 
-        cpSync(resolver.resolve(join('templates', 'drizzle-lucia', 'schemas')), resolve(options.serverDir, 'schemas'), {
+        cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'schemas')), resolve(options.serverDir, 'schemas'), {
           recursive: true,
         })
       }
     }
     else {
       if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
-        const files = globbySync(resolver.resolve(join('templates', 'empty', 'root'), '**/*'), {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'empty', 'root', '**/*')), {
           onlyFiles: true,
         })
 
@@ -221,7 +221,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             recursive: true,
           })
 
-          cpSync(resolver.resolve(join('templates', 'root', 'documents')), resolve(options.serverDir, 'documents'), {
+          cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'root', 'documents')), resolve(options.serverDir, 'documents'), {
             recursive: true,
           })
         }
@@ -231,7 +231,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             recursive: true,
           })
 
-          cpSync(resolver.resolve(join('templates', 'root', 'schemas')), resolve(options.serverDir, 'schemas'), {
+          cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'root', 'schemas')), resolve(options.serverDir, 'schemas'), {
             recursive: true,
           })
         }
