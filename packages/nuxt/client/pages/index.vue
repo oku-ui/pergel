@@ -42,6 +42,7 @@ const getProjects = computed(() => {
 })
 
 function selectModule(module: string) {
+  const mergeProjectName = `${selectProject.value}.${module}`
   const item = tabs.value
   if (!item) {
     tabState.value = {
@@ -50,10 +51,10 @@ function selectModule(module: string) {
     }
   }
 
-  if (item && !item.tabs.includes(module))
-    tabState.value.tabs = [...item.tabs, module]
+  if (item && !item.tabs.includes(mergeProjectName))
+    tabState.value.tabs = [...item.tabs, mergeProjectName]
 
-  tabState.value.activeTab = module
+  tabState.value.activeTab = mergeProjectName
 }
 
 function clickRemoveTab(tab: string) {
@@ -82,70 +83,85 @@ function clickRemoveTab(tab: string) {
 </script>
 
 <template>
-  <div>
+  <div
+    class="flex max-h-[50px] min-h-[50px] items-center border-b pl-2 pr-4"
+  >
     <div
-      class="flex max-h-[50px] min-h-[50px] items-center border-b pl-2 pr-4"
+      class="flex"
     >
       <div
-        class="flex"
+        v-for="tab in tabs.tabs"
+        :key="tab"
+        class="relative flex w-fit items-center"
       >
-        <div
-          v-for="tab in tabs.tabs"
-          :key="tab"
-          class="relative flex w-fit items-center"
-        >
-          <Button
-            :variant="tabState.activeTab === tab ? 'secondary' : 'outline'"
-            @click="() => {
-              tabState.activeTab = tab
-            }"
-          >
-            {{ tab }}
-          </Button>
-          <Button
-            class="-ml-4 mr-2 flex size-7 items-center justify-center rounded-full border-2 border-white bg-red-400 p-0"
-            variant="ghost"
-            @click="clickRemoveTab(tab)"
-          >
-            x
-          </Button>
-        </div>
-
         <Button
-          :variant="tabState.activeTab === 'add' ? 'default' : 'outline'"
-
+          :variant="tabState.activeTab === tab ? 'secondary' : 'outline'"
           @click="() => {
-            tabState.activeTab = 'add'
+            tabState.activeTab = tab
           }"
         >
-          Add
+          {{ tab }}
+        </Button>
+        <Button
+          class="-ml-4 mr-2 flex size-7 items-center justify-center rounded-full border-2 border-white bg-red-400 p-0"
+          variant="ghost"
+          @click="clickRemoveTab(tab)"
+        >
+          x
         </Button>
       </div>
-    </div>
-    <div
-      v-if="tabState.activeTab === 'add'"
-      class="py-6"
-    >
-      <HomeProjectsBox
-        v-model="selectProject"
-        :projects="projects ? Object.keys(projects) : undefined"
-        @update:model-value="console.log"
-      >
-        <HomeProjectLists
-          v-if="getProjects"
-          :project="getProjects"
-          @select="selectModule"
-        >
-        </HomeProjectLists>
-      </HomeProjectsBox>
-    </div>
 
-    <div
-      v-else
-      class="flex flex-col"
-    >
-      {{ tabState.activeTab }}
+      <Button
+        :variant="tabState.activeTab === 'add' ? 'default' : 'outline'"
+
+        @click="() => {
+          tabState.activeTab = 'add'
+        }"
+      >
+        Add
+      </Button>
     </div>
+  </div>
+  <div
+    v-if="tabState.activeTab === 'add'"
+    class="py-6"
+  >
+    <HomeProjectsBox
+      v-model="selectProject"
+      :projects="projects ? Object.keys(projects) : undefined"
+      @update:model-value="console.log"
+    >
+      <HomeProjectLists
+        v-if="getProjects"
+        :project="getProjects"
+        @select="selectModule"
+      >
+      </HomeProjectLists>
+    </HomeProjectsBox>
+  </div>
+
+  <div
+    v-else
+    class="flex size-full flex-col"
+  >
+    <!-- <ModulesGraphqlYoga
+        v-if=" tabState.activeTab.includes('.graphqlYoga')"
+        :project-name=" tabState.activeTab.split('.')[0]"
+      >
+      </ModulesGraphqlYoga> -->
+
+    <TabGenerator
+      v-if="tabState.activeTab.includes('.graphqlYoga')"
+      v-slot="{ selectModule }"
+      :project-name="tabState.activeTab.split('.')[0]"
+      :module-name="tabState.activeTab.split('.')[1]"
+    >
+      <ModulesGraphqlYoga
+        :project-name="tabState.activeTab.split('.')[0]"
+        @selected-module="selectModule"
+      >
+      </ModulesGraphqlYoga>
+    </TabGenerator>
   </div>
 </template>
 
