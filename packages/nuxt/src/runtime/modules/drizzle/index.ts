@@ -1,4 +1,4 @@
-import { existsSync, writeFileSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { execSync } from 'node:child_process'
 import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
@@ -8,6 +8,7 @@ import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { globsBuilderWatch } from '../../core/utils/globs'
 import { createFolderModule } from '../../core/utils/createFolderModule'
+import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from './types'
 import { setupPostgres } from './drivers/postgres'
 import { copyMigrationFolder } from './core'
@@ -148,7 +149,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     copyMigrationFolder(nuxt)
 
     if (!existsSync(`${options.serverDir}/index.ts`)) {
-      writeFileSync(
+      writeFilePergel(
         `${options.serverDir}/index.ts`,
         /* ts */`
         export { ${options.generatorFunctionName('DrizzleStorage')} } from './storage'

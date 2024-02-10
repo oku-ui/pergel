@@ -1,5 +1,4 @@
 import { join, relative } from 'node:path'
-import { writeFileSync } from 'node:fs'
 
 import {
   addImportsDir,
@@ -26,7 +25,7 @@ import { setupPergel } from './runtime/core/setupPergel'
 import { generateReadmeJson } from './runtime/core/utils/generateYaml'
 import { setupModules } from './runtime/core/setupModules'
 import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './runtime/core/types/nuxtModule'
-import { writeFilePergel } from './runtime/core/utils/addTemplatePergel'
+import { writeFilePergel } from './runtime/core/utils/writeFilePergel'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -231,9 +230,7 @@ export default defineNuxtModule<PergelOptions>({
         )
 
         const file = join(nuxt.options.rootDir, 'pergel', `${projectName}.docker-compose.yml`)
-        nuxt._pergel.exitPergelFolder && writeFileSync(file, specYaml, {
-          encoding: 'utf8',
-        })
+        nuxt._pergel.exitPergelFolder && writeFilePergel(file, specYaml)
       }
     }
 
@@ -271,9 +268,7 @@ export default defineNuxtModule<PergelOptions>({
 
     const file = join(nuxt.options.rootDir, 'pergel', '.env.template')
 
-    nuxt._pergel.exitPergelFolder && writeFileSync(file, envTemplate, {
-      encoding: 'utf8',
-    })
+    nuxt._pergel.exitPergelFolder && writeFilePergel(file, envTemplate)
 
     nuxt._pergel.watchDirs = nuxt._pergel.projects
       ? Object.keys(nuxt._pergel.projects).map((projectName) => {

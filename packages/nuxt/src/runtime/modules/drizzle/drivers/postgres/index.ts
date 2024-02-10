@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
 import { startSubprocess } from '@nuxt/devtools-kit'
 import { createResolver } from '@nuxt/kit'
@@ -9,6 +9,7 @@ import type { NuxtPergel } from '../../../../core/types/nuxtModule'
 import { generateModuleRuntimeConfig } from '../../../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../../../core/utils/generateYaml'
 import { createDockerService } from '../../../../core/utils/createDockerService'
+import { writeFilePergel } from '../../../../core/utils/writeFilePergel'
 
 export async function setupPostgres(
   nuxt: NuxtPergel,
@@ -55,11 +56,8 @@ export default {
 }
 `
 
-  if (!existsSync(resolve(options.serverDir, 'drizzle.config.js'))) {
-    writeFileSync(resolve(options.serverDir, 'drizzle.config.js'), drizzleConfig, {
-      encoding: 'utf8',
-    })
-  }
+  if (!existsSync(resolve(options.serverDir, 'drizzle.config.js')))
+    writeFilePergel(resolve(options.serverDir, 'drizzle.config.js'), drizzleConfig)
 
   if (!existsSync(resolve(options.serverDir, 'schema'))) {
     mkdirSync(resolve(options.serverDir, 'schema'), { recursive: true })
@@ -90,9 +88,7 @@ export default {
         })
         const fileName = basename(file)
 
-        writeFileSync(resolve(options.serverDir, 'seeds', fileName), fileData, {
-          encoding: 'utf8',
-        })
+        writeFilePergel(resolve(options.serverDir, 'seeds', fileName), fileData)
       }
     }
   }
@@ -112,9 +108,7 @@ export default {
         })
         const fileName = basename(file)
 
-        writeFileSync(resolve(options.serverDir, 'storage', fileName), fileData, {
-          encoding: 'utf8',
-        })
+        writeFilePergel(resolve(options.serverDir, 'storage', fileName), fileData)
       }
     }
   }

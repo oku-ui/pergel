@@ -1,4 +1,3 @@
-import { writeFileSync } from 'node:fs'
 import type { LoadSchemaOptions, LoadTypedefsOptions, UnnormalizedTypeDefPointer } from '@graphql-tools/load'
 import { loadDocumentsSync, loadSchemaSync } from '@graphql-tools/load'
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
@@ -25,6 +24,7 @@ import {
   NonEmptyStringResolver,
   UUIDResolver,
 } from 'graphql-scalars'
+import { writeFilePergel } from '../../../../runtime/core/utils/writeFilePergel'
 
 const pluginContent: PluginFunction<any> = (_schema, _documents, _config, _info) => {
   return {
@@ -220,9 +220,7 @@ async function generateTypedDocumentNode(
 async function writeSchema(schema: GraphQLSchema, path: string) {
   const schemaString = printSchema(schema)
 
-  writeFileSync(path, schemaString, {
-    encoding: 'utf-8',
-  })
+  writeFilePergel(path, schemaString)
   return schemaString
 }
 

@@ -1,8 +1,8 @@
 import { basename, resolve } from 'node:path'
-import { writeFileSync } from 'node:fs'
 import defu from 'defu'
 import type { DefineDownloadOptions, NuxtPergel } from '../types/nuxtModule'
 import { generateProjectReadme } from './generateYaml'
+import { writeFilePergel } from './writeFilePergel'
 
 export function addDownloadTemplate(
   input: {
@@ -40,9 +40,7 @@ export function addDownloadTemplate(
           ...value,
         }, null, 2)}`
 
-        nuxt._pergel.exitPergelFolder && writeFileSync(resolve(nuxt._pergel.templateDir, `${key}.json`), content, {
-          encoding: 'utf-8',
-        })
+        nuxt._pergel.exitPergelFolder && writeFilePergel(resolve(nuxt._pergel.templateDir, `${key}.json`), content)
         if (input.readme && input.readme.projectName) {
           generateProjectReadme({
             data: ({ addCommentBlock }) => ({

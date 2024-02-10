@@ -1,5 +1,5 @@
 import { basename, join, resolve } from 'node:path'
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync } from 'node:fs'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { pascalCase } from 'scule'
 
@@ -7,6 +7,7 @@ import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
 import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
@@ -148,9 +149,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             })
             const fileName = basename(file)
 
-            writeFileSync(resolve(options.serverDir, fileName), fileData, {
-              encoding: 'utf8',
-            })
+            writeFilePergel(resolve(options.serverDir, fileName), fileData)
           }
         }
       }
@@ -183,9 +182,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             })
             const fileName = basename(file)
 
-            writeFileSync(resolve(nuxt.options.serverDir, 'plugins', fileName), fileData, {
-              encoding: 'utf8',
-            })
+            writeFilePergel(resolve(nuxt.options.serverDir, 'plugins', fileName), fileData)
           }
         }
       }
@@ -215,9 +212,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             })
             const fileName = basename(file)
 
-            writeFileSync(resolve(options.serverDir, fileName), fileData, {
-              encoding: 'utf8',
-            })
+            writeFilePergel(resolve(options.serverDir, fileName), fileData)
           }
         }
 

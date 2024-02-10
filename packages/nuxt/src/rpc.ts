@@ -1,4 +1,3 @@
-import { writeFileSync } from 'node:fs'
 import type { DevtoolsServerContext, ServerFunctions } from './runtime/core/types/devtools'
 
 export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
@@ -10,7 +9,6 @@ export function setupRPC(ctx: DevtoolsServerContext): ServerFunctions {
       return options
     },
     getProjects() {
-      writeFileSync('projects.json', JSON.stringify(projects, null, 2))
       return projects
     },
     getTotalModules() {

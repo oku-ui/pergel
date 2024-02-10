@@ -1,6 +1,7 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import type { Nuxt } from '@nuxt/schema'
+import { writeFilePergel } from './writeFilePergel'
 
 export function addModuleDTS(data: {
   projectName: string
@@ -32,7 +33,7 @@ declare module 'pergel/${data.projectName}/types' {
       `.trim()
 
     if (!existsSync(typePath)) {
-      writeFileSync(
+      writeFilePergel(
         typePath,
         body,
       )
@@ -41,7 +42,7 @@ declare module 'pergel/${data.projectName}/types' {
 
   if (data.pergelFolderTemplate) {
     if (!existsSync(typePath)) {
-      writeFileSync(
+      writeFilePergel(
         typePath,
         data.pergelFolderTemplate,
       )

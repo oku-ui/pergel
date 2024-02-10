@@ -1,10 +1,11 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
 import { createFolderModule } from '../../core/utils/createFolderModule'
+import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
 
@@ -82,7 +83,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       _setupDrizzle.use = driver
 
       if (!existsSync(`${options.serverDir}/index.ts`)) {
-        writeFileSync(
+        writeFilePergel(
           `${options.serverDir}/index.ts`,
           /* ts */`
 import { session, user } from '#${options.projectName}/server/drizzle/schema'
@@ -110,7 +111,7 @@ export const ${options.generatorFunctionName('Auth')} = ${options.projectNameCam
     if (!existsSync(join(nuxt.options.serverDir, 'middleware', 'auth.ts'))) {
       mkdirSync(join(nuxt.options.serverDir, 'middleware'), { recursive: true })
 
-      writeFileSync(
+      writeFilePergel(
         join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
         /* ts */`export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
   lucia: ${options.generatorFunctionName('Auth')},

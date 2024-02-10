@@ -1,7 +1,6 @@
-import { accessSync, mkdirSync, writeFileSync } from 'node:fs'
-import path from 'node:path'
 import { join, relative } from 'pathe'
 import { useNuxt } from '@nuxt/kit'
+import { writeFilePergel } from './writeFilePergel'
 
 export function addTemplatePergel(input: {
   filename: string
@@ -68,28 +67,4 @@ export async function updateTemplatePergel(input: {
   }
 
   return templateToUpdate // Return the updated template if needed
-}
-
-async function isExists(path: string) {
-  try {
-    accessSync(path)
-    return true
-  }
-  catch {
-    return false
-  }
-};
-
-export async function writeFilePergel(filePath: string, data: any) {
-  try {
-    const dirname = path.dirname(filePath)
-    const exist = await isExists(dirname)
-    if (!exist)
-      mkdirSync(dirname, { recursive: true })
-
-    writeFileSync(filePath, data, 'utf8')
-  }
-  catch (err: any) {
-    throw new Error(err)
-  }
 }
