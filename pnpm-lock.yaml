@@ -312,8 +312,8 @@ importers:
         specifier: ^3.11.0
         version: 3.11.0(h3@1.10.1)(rollup@4.9.6)(vite@5.0.12)(vitest@1.2.2)(vue-router@4.2.5)(vue@3.4.15)
       '@pergel/cli':
-        specifier: ^0.6.2
-        version: 0.6.2
+        specifier: ^0.7.0
+        version: 0.7.0
       '@pergel/graphql':
         specifier: workspace:^
         version: link:../graphql
@@ -1676,6 +1676,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -6603,8 +6604,8 @@ packages:
       webcrypto-core: 1.7.8
     dev: false
 
-  /@pergel/cli@0.6.2:
-    resolution: {integrity: sha512-aYvkhdarAhteUP4T7kkdCW7K8UNY4NjOl46AdqBtV3gdDQlehO3eHuw2BlZb1/ywtdhKl3d9EOvxvPblkLaKQQ==}
+  /@pergel/cli@0.7.0:
+    resolution: {integrity: sha512-QdYX8Ci7bkufGWS1DJcglvj4BS+aqIEvUHtLmR7aKrSckOkdU8d7qgS53DXc6dN/l0AeZpqyZYELLbHM71B71w==}
     engines: {node: '>=20'}
     hasBin: true
     dependencies:
@@ -8702,6 +8703,7 @@ packages:
   /ansi-styles@3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       color-convert: 1.9.3
 
@@ -9259,6 +9261,7 @@ packages:
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       ansi-styles: 3.2.1
       escape-string-regexp: 1.0.5
@@ -9552,6 +9555,7 @@ packages:
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
+    requiresBuild: true
     dependencies:
       color-name: 1.1.3
 
@@ -9563,6 +9567,7 @@ packages:
 
   /color-name@1.1.3:
     resolution: {integrity: sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==}
+    requiresBuild: true
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
@@ -11782,6 +11787,7 @@ packages:
   /has-flag@3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
     engines: {node: '>=4'}
+    requiresBuild: true
 
   /has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -14658,7 +14664,7 @@ packages:
     resolution: {integrity: sha512-CxtQHOpK5M5BvwEGjmuA5i1xP/DDx6l3Nmwozxl9isi6J1dF+rJIiLabdsG6v3j908D5RG6fdFNgqjwQO/HLDg==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.6.2
+      '@pergel/cli': 0.7.0
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 
@@ -14666,7 +14672,7 @@ packages:
     resolution: {integrity: sha512-xfen8b26qGlmRR8xClgFeboshjODM7i0C2OVXQTqq56xHGLSxxzTAs9tfj3iB5c5AXfdnfhMsdO0Nhezz3qz8A==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.6.2
+      '@pergel/cli': 0.7.0
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 
@@ -16300,6 +16306,7 @@ packages:
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       has-flag: 3.0.0
 
