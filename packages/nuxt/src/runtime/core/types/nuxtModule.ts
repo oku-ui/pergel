@@ -246,6 +246,12 @@ export interface ResolvedPergelOptions {
   }[]
 
   pergelModuleRoot: string
+
+  /**
+   * @default The Pergel in node_modules points to the dist path.
+   *
+   */
+  jitiDyanmicImport: (path: string) => Promise<any>
 }
 
 export interface NuxtPergel extends Nuxt {

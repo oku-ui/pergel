@@ -72,7 +72,7 @@ export default {
     })
 
     for (const file of files) {
-      const readFile = await import(file).then(m => m.default).catch(() => null)
+      const readFile = await nuxt._pergel.jitiDyanmicImport(file)
       if (readFile) {
         const fileData = readFile({
           env: {
@@ -99,7 +99,7 @@ export default {
     })
 
     for (const file of files) {
-      const readFile = await import(file).then(m => m.default).catch(() => null)
+      const readFile = await nuxt._pergel.jitiDyanmicImport(file)
       if (readFile) {
         const fileData = readFile({
           projectName,

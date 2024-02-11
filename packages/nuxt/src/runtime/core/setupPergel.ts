@@ -5,8 +5,18 @@ import { type Resolver, addTemplate } from '@nuxt/kit'
 import defu from 'defu'
 import { loadConfig } from 'c12'
 import type { ResolvedPergelConfig } from '@pergel/cli/types'
+import jiti from 'jiti'
 import packageJson from '../../../package.json'
 import type { PergelOptions, ResolvedPergelOptions } from './types/nuxtModule'
+
+async function readConfigFile(path: string) {
+  return await jiti(import.meta.url, {
+    interopDefault: true,
+    requireCache: false,
+    esmResolve: true,
+    cache: false,
+  })(path)
+}
 
 export async function setupPergel(
   data:
@@ -164,6 +174,7 @@ declare module 'h3' {
       ...packageJson.devDependencies,
     },
     pergelModuleRoot: resolver.resolve('./'),
+    jitiDyanmicImport: (path: string) => readConfigFile(path),
   } satisfies ResolvedPergelOptions)
   nuxt._pergel = resolvedPergelOptions as any
 }
