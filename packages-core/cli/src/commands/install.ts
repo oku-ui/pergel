@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { defineCommand } from 'citty'
 import { consola } from 'consola'
-import { parseNi, run } from '@antfu/ni'
+import { parseNi, parseNr, run } from '@antfu/ni'
 import type { PergelReadme } from '../types'
 import { definePergelLoadConfig } from '../core'
 
@@ -79,10 +79,10 @@ export default defineCommand({
         type: 'confirm',
       })
       if (confirm) {
-        await run(parseNi, ['pergel', 'init']).then(async () => {
+        await run(parseNr, ['pergel', 'init']).then(async () => {
           consola.success('Config folder created')
 
-          await run(parseNi, ['nuxt', 'prepare']).then(() => {
+          await run(parseNr, ['nuxt', 'prepare']).then(() => {
             consola.success('Nuxt prepared')
           })
         }).catch(() => {
