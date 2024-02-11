@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { defineCommand } from 'citty'
 import { consola } from 'consola'
-import { parseNa, parseNi, parseNr, run } from '@antfu/ni'
+import { parseNa, parseNi, run } from '@antfu/ni'
 import type { PergelReadme } from '../types'
 import { definePergelLoadConfig } from '../core'
 
@@ -82,7 +82,7 @@ export default defineCommand({
         await run(parseNa, ['pergel', 'init'], { programmatic: true }).then(async () => {
           consola.success('Config folder created')
 
-          await run(parseNr, ['nuxt', 'prepare']).then(() => {
+          await run(parseNa, ['nuxt', 'prepare'], { programmatic: true }).then(() => {
             consola.success('Nuxt prepared')
           })
         }).catch(() => {
