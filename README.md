@@ -12,8 +12,7 @@ Pergel is a tailor-made solution for Nuxt and Nitro, providing swift project kic
 
 | Package | Version | Downloads |
 |---------|---------|-----------|
-| [CLI](https://www.npmjs.com/package/pergel) | [![npm](https://img.shields.io/npm/v/pergel?style=flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/pergel) | [![npm](https://img.shields.io/npm/dm/pergel?flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/pergel) |
-| [Nuxt Module](https://www.npmjs.com/package/@pergel/nuxt) | [![npm](https://img.shields.io/npm/v/@pergel/nuxt?style=flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/@pergel/nuxt) | [![npm](https://img.shields.io/npm/dm/@pergel/nuxt?flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/@pergel/nuxt) |
+| [Pergel](https://www.npmjs.com/package/pergel) | [![npm](https://img.shields.io/npm/v/pergel?style=flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/pergel) | [![npm](https://img.shields.io/npm/dm/pergel?flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/pergel) |
 
 ![Pergel Cover](./.github/assets/pergel-cover.jpg)
 
