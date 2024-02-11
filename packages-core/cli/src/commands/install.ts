@@ -74,7 +74,21 @@ export default defineCommand({
       }
     }
     catch (error) {
-      consola.log(error)
+      consola.info('Please run `pergel init` to create a config folder. After that, you can run `pergel install` to install dependencies.')
+      const confirm = await consola.prompt('Would you like to run `pergel init` now?', {
+        type: 'confirm',
+      })
+      if (confirm) {
+        await run(parseNi, ['pergel', 'init']).then(async () => {
+          consola.success('Config folder created')
+
+          await run(parseNi, ['nuxt', 'prepare']).then(() => {
+            consola.success('Nuxt prepared')
+          })
+        }).catch(() => {
+          consola.error('Failed to create config folder')
+        })
+      }
     }
   },
 })
