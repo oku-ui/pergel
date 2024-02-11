@@ -22,6 +22,7 @@ const main = defineCommand({
     install: () => import('./commands/install').then(m => m.default),
     module: () => import('./commands/module').then(m => m.default),
     download: () => import('./commands/download').then(m => m.default),
+    select: () => import('./commands/select').then(m => m.default),
   },
   run({ args }) {
     if (args.version)

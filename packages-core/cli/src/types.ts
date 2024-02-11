@@ -64,8 +64,8 @@ export interface ResolvedPergelConfig {
 }
 
 export interface PergelReadme {
-  [moduleName: string]: {
-    [projectName: string]: {
+  [projectName: string]: {
+    [moduleName: string]: {
       packageJson?: {
         dependencies?: string
         devDependencies?: string
@@ -75,6 +75,9 @@ export interface PergelReadme {
       }
       env?: {
         [envName: string]: string
+      }
+      cli?: {
+        [cliName: string]: string
       }
     }
   }
