@@ -46,13 +46,13 @@ export async function usePergelSES(
 
   async function sendEmail(params: SendEmailCommandInput) {
     const command = new SendEmailCommand(params)
-    const data = await selectData?.s3?.client?.send(command)
+    const data = await selectData?.ses?.client?.send(command)
     return data
   }
 
   async function createTemplate(params: CreateTemplateCommandInput) {
     const command = new CreateTemplateCommand(params)
-    const data = await selectData?.s3?.client?.send(command)
+    const data = await selectData?.ses?.client?.send(command)
     return data
   }
 

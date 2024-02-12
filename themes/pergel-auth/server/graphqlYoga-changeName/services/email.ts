@@ -2,7 +2,7 @@ import consola from 'consola'
 import type { API } from './types'
 
 const logger = consola.withDefaults({
-  tag: 'auth',
+  tag: 'email',
 })
 
 async function verificationEmail(this: API, params: {
@@ -18,10 +18,13 @@ async function verificationEmail(this: API, params: {
     toAddresses: [params.email],
     code: generatedCode,
     projectName: 'Pergel',
-    source: 'noreply@productdevbook.com',
+    source: 'noreply@huntersofbook.com',
     clickButtonUrl: `https://oku-ui.com/verify-email?code=${generatedCode}`,
-    helpEmailAddress: 'help@oku-ui.com',
+    helpEmailAddress: 'help@huntersofbook.com',
   }))
+
+  if (result?.$metadata.httpStatusCode !== 200)
+    logger.error('Failed to send verification email', result)
 
   return result
 }
