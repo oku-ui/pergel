@@ -138,8 +138,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.323.0
-        version: 0.323.0(vue@3.3.13)
+        specifier: ^0.325.0
+        version: 0.325.0(vue@3.3.13)
       nanoid:
         specifier: ^5.0.5
         version: 5.0.5
@@ -6469,6 +6469,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     bundledDependencies:
       - napi-wasm
 
@@ -13004,14 +13005,6 @@ packages:
     dependencies:
       oslo: 1.0.1
 
-  /lucide-vue-next@0.323.0(vue@3.3.13):
-    resolution: {integrity: sha512-Hf++C/pHAZ7RUOw0J7ZBrxHr9KWlwecwK72HxvOgD9uYsqLCbPNSOaaol1ypMCpnTXIvjUIK7t/NVcd2J1u/wA==}
-    peerDependencies:
-      vue: 3.3.13
-    dependencies:
-      vue: 3.3.13(typescript@5.3.3)
-    dev: false
-
   /lucide-vue-next@0.325.0(vue@3.3.13):
     resolution: {integrity: sha512-8hSzHtueF8b2rmohvvUW34R6XlVoQTeZAzN5+6lWKBR1lNwYAQrp/8SPDKyyjI7bQ8EzE1+dl4WcWjtc/X+ZGg==}
     peerDependencies:
@@ -13445,6 +13438,9 @@ packages:
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     dev: false
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
 
   /native-run@2.0.1:
     resolution: {integrity: sha512-XfG1FBZLM50J10xH9361whJRC9SHZ0Bub4iNRhhI61C8Jv0e1ud19muex6sNKB51ibQNUJNuYn25MuYET/rE6w==}
