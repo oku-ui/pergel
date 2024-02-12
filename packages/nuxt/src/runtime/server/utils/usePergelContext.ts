@@ -23,8 +23,6 @@ export async function usePergelContext<T extends RuntimeConfigTypeKeys>(
   event: H3Event | false,
   additionalMapValues?: object,
 ) {
-  // const mergedProjectName = camelCase(`${data.moduleName}-${data.projectName}`)
-
   if (event) {
     let moduleData = event.context.pergelContext[data.projectName] as PergelH3ContextItem
     const { selectProject } = usePergelRuntime<RuntimeConfigType[T]>({
@@ -32,7 +30,7 @@ export async function usePergelContext<T extends RuntimeConfigTypeKeys>(
       projectName: data.projectName,
     }, event)
 
-    if (moduleData) {
+    if (moduleData && (moduleData as any)[data.moduleName]) {
       return {
         selectData: moduleData,
         runtime: selectProject,

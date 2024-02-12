@@ -120,7 +120,7 @@ export interface BoxOptions extends PergelModuleOptions {
      * @default false
      * @see https://www.shadcn-vue.com
      */
-    shadcnNuxt: boolean
+    shadcnNuxt?: boolean
   }
 }
 
