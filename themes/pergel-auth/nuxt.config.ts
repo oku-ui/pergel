@@ -24,8 +24,11 @@ export default defineNuxtConfig({
             radixMode: true,
             uuid: true,
             unsearch: true,
+            shadcnNuxt: true,
+            nanoid: true,
           },
         },
+        ses: true,
         lucia: {
           driver: 'drizzle:postgre',
         },

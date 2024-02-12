@@ -9,7 +9,8 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.4.0",
+    "@aws-sdk/client-ses": "^3.504.0",
+    "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.1.1",
     "@lucia-auth/adapter-drizzle": "^1.0.1",
     "@lucia-auth/adapter-postgresql": "^3.1.0",
@@ -18,19 +19,19 @@
     "@urql/core": "^4.2.3",
     "@urql/exchange-execute": "^2.2.2",
     "@urql/vue": "^1.1.2",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.2",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
     "graphql": "^16.8.1",
     "lucia": "3.0.1",
-    "oslo": "^1.0.4",
+    "oslo": "^1.1.0",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "nuxt": "^3.10.0",
+    "nuxt": "^3.10.1",
     "pergel": "^0.7.0",
     "pg": "^8.11.3",
-    "vue": "^3.4.15",
+    "vue": "^3.4.18",
     "vue-router": "^4.2.5"
   }
 }

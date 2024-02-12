@@ -52,6 +52,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       nanoid: false,
       uuid: false,
       unsearch: false,
+      shadcnNuxt: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -187,7 +188,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       nuxt.options.css.push('notivue/animations.css')
     }
 
-    if (options.packages.radixMode)
+    if (options.packages.radixMode && !options.packages.shadcnNuxt)
       await installModule('radix-vue/nuxt')
 
     if (options.packages.nuxtIcon)
@@ -463,6 +464,9 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         ],
       })
     }
+
+    if (options.packages.shadcnNuxt)
+      await installModule('shadcn-nuxt')
 
     addDownloadTemplate({
       nuxt,

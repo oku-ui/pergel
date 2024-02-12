@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import { OkuSlot } from '@oku-ui/slot'
+import { Slot } from 'radix-vue'
+import { useFormField } from './useFormField'
 
 const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 </script>
 
 <template>
-  <OkuSlot
+  <Slot
     :id="formItemId"
     :aria-describedby="!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`"
     :aria-invalid="!!error"
   >
     <slot />
-  </OkuSlot>
+  </Slot>
 </template>

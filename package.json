@@ -54,7 +54,8 @@
   },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt",
-    "unbuild": "3.0.0-rc.1"
+    "unbuild": "3.0.0-rc.1",
+    "vue": "3.3.13"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

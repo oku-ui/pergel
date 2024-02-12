@@ -115,6 +115,12 @@ export interface BoxOptions extends PergelModuleOptions {
      * @see https://github.com/productdevbook/unsearch
      */
     unsearch?: boolean
+
+    /**
+     * @default false
+     * @see https://www.shadcn-vue.com
+     */
+    shadcnNuxt: boolean
   }
 }
 
@@ -147,5 +153,6 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     nanoid: boolean
     uuid: boolean
     unsearch: boolean
+    shadcnNuxt: boolean
   }
 }

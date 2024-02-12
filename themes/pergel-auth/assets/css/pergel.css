@@ -1,10 +1,9 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-:root {
+    :root {
         --background: 0 0% 100%;
         --foreground: 240 10% 3.9%;
 
@@ -67,67 +66,14 @@
 
         --ring: 240 4.9% 83.9%;
     }
+}
 
-
+@layer base {
     * {
         @apply border-border;
     }
 
-    html {
-        -webkit-text-size-adjust: 100%;
-        font-variation-settings: normal;
-    }
-
     body {
-        @apply bg-background text-foreground min-h-screen antialiased font-sans;
-        font-feature-settings: "rlig" 1, "calt" 1;
+        @apply bg-background text-foreground;
     }
-
-    /* Mobile tap highlight */
-    /* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
-    html {
-        -webkit-tap-highlight-color: rgba(128, 128, 128, 0.5);
-    }
-
-    /* === Scrollbars === */
-
-    ::-webkit-scrollbar {
-        @apply w-2;
-        @apply h-2;
-    }
-
-    ::-webkit-scrollbar-track {
-        @apply !bg-muted;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        @apply rounded-sm !bg-muted-foreground/30;
-    }
-
-    /* Firefox */
-    /* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
-    html {
-        scrollbar-color: hsl(215.4 16.3% 46.9% / 0.3);
-    }
-
-    html.dark {
-        scrollbar-color: hsl(215.4 16.3% 56.9% / 0.3);
-    }
-
-    .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .antialised {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
 }
-
-

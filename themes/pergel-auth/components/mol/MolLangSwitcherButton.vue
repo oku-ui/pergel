@@ -7,8 +7,8 @@ const availableLocales = computed(() => {
 </script>
 
 <template>
-  <UiDropdownMenu>
-    <UiDropdownMenuTrigger
+  <DropdownMenu>
+    <DropdownMenuTrigger
       :class="cn(
         $attrs.class ?? '',
       )"
@@ -19,18 +19,18 @@ const availableLocales = computed(() => {
       >
         {{ locale }}
       </span>
-    </UiDropdownMenuTrigger>
-    <UiDropdownMenuContent>
-      <UiDropdownMenuLabel>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuLabel>
         Languages
-      </UiDropdownMenuLabel>
-      <UiDropdownMenuSeparator />
-      <UiDropdownMenuItem
+      </DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem
         v-for="locale in availableLocales" :key="locale.code"
         @click.prevent.stop="setLocale(locale.code)"
       >
         {{ locale.name }}
-      </UiDropdownMenuItem>
-    </UiDropdownMenuContent>
-  </UiDropdownMenu>
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
 </template>
