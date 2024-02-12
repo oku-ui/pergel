@@ -9,13 +9,15 @@
   ],
   "ignoreDeps": [
     "node",
-    "pnpm"
+    "pnpm",
+    "resolutions",
+    "overrides"
   ],
   "packageRules": [
     {
       "groupName": "all digest updates",
       "groupSlug": "all-digest",
-      "matchPackagePatterns": [
+      " ": [
         "*"
       ],
       "automerge": true,
