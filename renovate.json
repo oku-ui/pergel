@@ -9,9 +9,7 @@
   ],
   "ignoreDeps": [
     "node",
-    "pnpm",
-    "resolutions",
-    "overrides"
+    "pnpm"
   ],
   "packageRules": [
     {
@@ -20,24 +18,18 @@
       "matchPackagePatterns": [
         "*"
       ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "resolutions",
+        "overrides",
+        "packageManager"
+      ],
       "automerge": true,
       "matchUpdateTypes": [
         "digest"
       ],
-      "schedule": [
-        "every 1 month"
-      ]
-    },
-    {
-      "groupName": "all minor updates",
-      "groupSlug": "all-minor",
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "matchUpdateTypes": [
-        "minor"
-      ],
-      "automerge": true,
       "schedule": [
         "every 1 month"
       ]
@@ -51,6 +43,34 @@
       "matchUpdateTypes": [
         "patch"
       ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "packageManager",
+        "resolutions",
+        "overrides"
+      ],
+      "automerge": true,
+      "schedule": [
+        "every 1 month"
+      ]
+    },
+    {
+      "groupName": "all minor updates",
+      "groupSlug": "all-minor",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "packageManager"
+      ],
       "automerge": true,
       "schedule": [
         "every 1 month"
@@ -61,6 +81,12 @@
       "groupSlug": "all-major",
       "matchPackagePatterns": [
         "*"
+      ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "packageManager"
       ],
       "matchUpdateTypes": [
         "major"
