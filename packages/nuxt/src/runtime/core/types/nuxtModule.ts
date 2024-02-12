@@ -23,6 +23,7 @@ export interface PergelNuxtModules {
   box?: true | (BoxOptions & UserModuleOptions)
   ionic?: true | IonicInterface
   urql?: true
+  vitest?: true
 }
 
 export interface ResolvedPergelNuxtModuleConfig<T> {
@@ -37,6 +38,7 @@ export interface ResolvedPergelNuxtModuleConfig<T> {
   lucia?: true | ResolvedLuciaModuleOptions
   ionic?: true | ResolvedIonicInterface
   urql?: true | T
+  vitest?: true | T
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules

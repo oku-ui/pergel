@@ -134,6 +134,7 @@ declare module 'h3' {
       'lucia',
       'box',
       'urql',
+      'vitest',
     ],
     projectNames,
     nitroImports: {},

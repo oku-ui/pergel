@@ -47,6 +47,7 @@ export default defineNuxtConfig({
         },
         drizzle: true,
         urql: true,
+        vitest: true,
       },
     },
   },

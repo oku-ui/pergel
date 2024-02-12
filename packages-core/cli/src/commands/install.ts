@@ -65,11 +65,15 @@ export default defineCommand({
       if (dependencies.size) {
         await run(parseNi, [...dependencies.values(), ...args]).then(() => {
           consola.success('Dependencies installed', dependencies.values())
+        }).catch((res) => {
+          consola.error(res)
         })
       }
       if (devDependencies.size) {
         await run(parseNi, [...devDependencies.values(), '-D', ...args]).then(() => {
           consola.success('Dev dependencies installed', devDependencies.values())
+        }).catch((res) => {
+          consola.error(res)
         })
       }
     }
