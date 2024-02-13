@@ -15,7 +15,7 @@
     "@json2csv/node": "^7.0.4",
     "@lucia-auth/adapter-drizzle": "1.0.1",
     "@lucia-auth/adapter-postgresql": "^3.0.0",
-    "@pergel/module-box": "latest",
+    "@pergel/module-box": "^0.4.0",
     "@pergel/module-graphql": "^0.3.1",
     "@pergel/module-s3": "^0.0.0",
     "bullmq": "^5.1.8",
