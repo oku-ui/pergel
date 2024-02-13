@@ -24,7 +24,7 @@ import {
   NonEmptyStringResolver,
   UUIDResolver,
 } from 'graphql-scalars'
-import { writeFilePergel } from '../../../../runtime/core/utils/writeFilePergel'
+import { writeFilePergel } from '../../../core/utils/writeFilePergel'
 
 const pluginContent: PluginFunction<any> = (_schema, _documents, _config, _info) => {
   return {
