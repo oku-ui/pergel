@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pergel/module-s3": "0.0.0",
-    "pergel": "0.7.1"
+    "pergel": "0.7.2"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
