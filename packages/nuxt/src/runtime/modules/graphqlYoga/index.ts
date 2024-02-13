@@ -17,9 +17,12 @@ import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
 export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>({
   meta: {
     name: 'graphqlYoga',
-    version: '0.3.0',
-    dependencies: {
-      '@pergel/graphql': 'latest',
+    version: '0.4.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@pergel/graphql': deps['@pergel/graphql'],
+      }
     },
     dts: true,
   },

@@ -6,9 +6,12 @@ import type { S3ModuleRuntimeConfig } from './types'
 export default definePergelModule({
   meta: {
     name: 'S3',
-    version: '0.1.0',
-    dependencies: {
-      '@pergel/module-s3': 'latest',
+    version: '0.2.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@pergel/module-s3': deps['@pergel/module-s3'],
+      }
     },
   },
   defaults: {

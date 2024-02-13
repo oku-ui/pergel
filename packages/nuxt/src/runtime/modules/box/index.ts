@@ -23,9 +23,12 @@ const logger = consola.create({
 export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
   meta: {
     name: 'box',
-    version: '0.2.0',
-    dependencies: {
-      '@pergel/module-box': 'latest',
+    version: '0.3.0',
+    dependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@pergel/module-box': deps['@pergel/module-box'],
+      }
     },
   },
   defaults: {

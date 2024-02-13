@@ -7,6 +7,10 @@ import { loadConfig } from 'c12'
 import type { ResolvedPergelConfig } from '@pergel/cli/types'
 import jiti from 'jiti'
 import packageJson from '../../../package.json'
+import boxPackageJson from '../../../../box/package.json'
+import s3PackageJson from '../../../../s3/package.json'
+import graphqlPackageJson from '../../../../graphql/package.json'
+
 import type { PergelOptions, ResolvedPergelOptions } from './types/nuxtModule'
 
 async function readConfigFile(path: string) {
@@ -173,6 +177,9 @@ declare module 'h3' {
     pergelPackageJson: {
       ...packageJson.dependencies,
       ...packageJson.devDependencies,
+      '@pergel/graphql': graphqlPackageJson.version,
+      '@pergel/box': boxPackageJson.version,
+      '@pergel/s3': s3PackageJson.version,
     },
     pergelModuleRoot: resolver.resolve('./'),
     jitiDyanmicImport: (path: string) => readConfigFile(path),
