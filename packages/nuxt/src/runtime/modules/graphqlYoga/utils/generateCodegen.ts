@@ -1,4 +1,5 @@
 import { join, resolve } from 'node:path'
+import { existsSync } from 'node:fs'
 import { addTemplate } from '@nuxt/kit'
 import consola from 'consola'
 import { buildTime } from '../utils'
@@ -54,6 +55,12 @@ export function useGenerateCodegen({
     path: string
   }
 }) {
+  if (!existsSync(join(options.folderName, 'generated', 'schema.mjs'))) {
+    return {
+      updatesFunction: () => { },
+    }
+  }
+
   // GraphQL Schema
   const printSchemaFile = addTemplatePergel({
     filename: join(options.folderName, 'generated', 'schema.mjs'),
