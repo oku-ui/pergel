@@ -5,6 +5,7 @@ import { pascalCase } from 'scule'
 
 import { globbySync } from 'globby'
 import { isPackageExists } from 'local-pkg'
+import consola from 'consola'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
@@ -257,11 +258,14 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         `,
     })
 
-    if (isPackageExists('@pergel/graphql') || existsSync(join(options.folderName, 'index.ts'))) {
-      const generateGraphQLTemplate = await import('./utils/generateGraphqlTemplate').then(m => m.generateGraphQLTemplate).catch(() => undefined)
+    if (isPackageExists('@pergel/graphql') || existsSync(join(options.serverDir, 'index.ts'))) {
+      const data = await import('./utils/generateGraphqlTemplate').catch(() => {
+        consola.error('Please `pergel install` run')
+        return undefined
+      })
 
-      if (generateGraphQLTemplate) {
-        generateGraphQLTemplate({
+      if (data) {
+        data.generateGraphQLTemplate({
           nuxt,
           options,
         })
