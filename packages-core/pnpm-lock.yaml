@@ -85,12 +85,12 @@ importers:
       '@lucia-auth/adapter-postgresql':
         specifier: ^3.0.0
         version: 3.0.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
-      '@pergel/graphql':
-        specifier: ^0.1.0
-        version: 0.1.0(graphql@16.8.1)(typescript@5.3.3)
       '@pergel/module-box':
         specifier: latest
         version: 0.1.1(nuxt@3.9.1)(rollup@4.9.4)(tailwindcss@3.4.1)(typescript@5.3.3)(vite@5.0.11)(vue@3.4.7)
+      '@pergel/module-graphql':
+        specifier: ^0.3.1
+        version: 0.3.1(graphql@16.8.1)(typescript@5.3.3)
       '@pergel/module-s3':
         specifier: ^0.0.0
         version: 0.0.0
@@ -5124,43 +5124,6 @@ packages:
       webcrypto-core: 1.7.7
     dev: false
 
-  /@pergel/graphql@0.1.0(graphql@16.8.1)(typescript@5.3.3):
-    resolution: {integrity: sha512-tHa9QLC/8655XlSbULlNmfsLb934bpverBJ7Xq3RpaYhO9NvQ05gEgXprP0YJJprsV+I0hzT+shfTxXFt5fyLg==}
-    peerDependencies:
-      graphql: '>=16.8.0'
-    dependencies:
-      '@apollo/sandbox': 2.5.1(graphql@16.8.1)
-      '@graphql-codegen/cli': 5.0.0(graphql@16.8.1)(typescript@5.3.3)
-      '@graphql-codegen/core': 4.0.0(graphql@16.8.1)
-      '@graphql-codegen/plugin-helpers': 5.0.1(graphql@16.8.1)
-      '@graphql-codegen/schema-ast': 4.0.0(graphql@16.8.1)
-      '@graphql-codegen/typed-document-node': 5.0.1(graphql@16.8.1)
-      '@graphql-codegen/typescript': 4.0.1(graphql@16.8.1)
-      '@graphql-codegen/typescript-operations': 4.0.1(graphql@16.8.1)
-      '@graphql-codegen/typescript-resolvers': 4.0.1(graphql@16.8.1)
-      '@graphql-codegen/urql-introspection': 3.0.0(graphql@16.8.1)
-      '@graphql-tools/graphql-file-loader': 8.0.0(graphql@16.8.1)
-      '@graphql-tools/load': 8.0.1(graphql@16.8.1)
-      '@graphql-tools/schema': 10.0.2(graphql@16.8.1)
-      '@graphql-tools/utils': 10.0.13(graphql@16.8.1)
-      graphql: 16.8.1
-      graphql-relay: 0.10.0(graphql@16.8.1)
-      graphql-yoga: 5.1.1(graphql@16.8.1)
-      ts-relay-cursor-paging: 2.0.4(graphql@16.8.1)
-    transitivePeerDependencies:
-      - '@parcel/watcher'
-      - '@types/node'
-      - bufferutil
-      - cosmiconfig-toml-loader
-      - encoding
-      - enquirer
-      - react
-      - react-dom
-      - supports-color
-      - typescript
-      - utf-8-validate
-    dev: false
-
   /@pergel/module-box@0.1.1(nuxt@3.9.1)(rollup@4.9.4)(tailwindcss@3.4.1)(typescript@5.3.3)(vite@5.0.11)(vue@3.4.7):
     resolution: {integrity: sha512-MlSF5Ac53uW4nBBP5OXBpFSrjGUpWcTNJ7k5FKJdsNlzfUf4TgRAye0GosyMKubORhWaC+QjNizRZZPsE2iiNQ==}
     dependencies:
@@ -5206,6 +5169,45 @@ packages:
       - vue
       - vue-i18n-bridge
       - vue-router
+    dev: false
+
+  /@pergel/module-graphql@0.3.1(graphql@16.8.1)(typescript@5.3.3):
+    resolution: {integrity: sha512-HFBxVqa65SK+QtyTXxIKD52S+o2LbVfifMfUM6uIQiaJxfipUDn/UFS+ESxQ0WlMkdh7xGIoQIWIa3vuFTshmw==}
+    peerDependencies:
+      graphql: '>=16.8.0'
+    dependencies:
+      '@apollo/sandbox': 2.5.1(graphql@16.8.1)
+      '@graphql-codegen/cli': 5.0.0(graphql@16.8.1)(typescript@5.3.3)
+      '@graphql-codegen/core': 4.0.0(graphql@16.8.1)
+      '@graphql-codegen/plugin-helpers': 5.0.1(graphql@16.8.1)
+      '@graphql-codegen/schema-ast': 4.0.0(graphql@16.8.1)
+      '@graphql-codegen/typed-document-node': 5.0.1(graphql@16.8.1)
+      '@graphql-codegen/typescript': 4.0.1(graphql@16.8.1)
+      '@graphql-codegen/typescript-operations': 4.0.1(graphql@16.8.1)
+      '@graphql-codegen/typescript-resolvers': 4.0.1(graphql@16.8.1)
+      '@graphql-codegen/urql-introspection': 3.0.0(graphql@16.8.1)
+      '@graphql-tools/graphql-file-loader': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/load': 8.0.1(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.2(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.13(graphql@16.8.1)
+      dataloader: 2.2.2
+      graphql: 16.8.1
+      graphql-relay: 0.10.0(graphql@16.8.1)
+      graphql-scalars: 1.22.4(graphql@16.8.1)
+      graphql-yoga: 5.1.1(graphql@16.8.1)
+      ts-relay-cursor-paging: 2.0.4(graphql@16.8.1)
+    transitivePeerDependencies:
+      - '@parcel/watcher'
+      - '@types/node'
+      - bufferutil
+      - cosmiconfig-toml-loader
+      - encoding
+      - enquirer
+      - react
+      - react-dom
+      - supports-color
+      - typescript
+      - utf-8-validate
     dev: false
 
   /@pergel/module-s3@0.0.0:
@@ -8893,6 +8895,16 @@ packages:
       graphql: 16.8.1
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /graphql-scalars@1.22.4(graphql@16.8.1):
+    resolution: {integrity: sha512-ILnv7jq5VKHLUyoaTFX7lgYrjCd6vTee9i8/B+D4zJKJT5TguOl0KkpPEbXHjmeor8AZYrVsrYUHdqRBMX1pjA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      graphql: 16.8.1
+      tslib: 2.6.2
     dev: false
 
   /graphql-tag@2.12.6(graphql@16.8.1):

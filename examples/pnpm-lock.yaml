@@ -101,7 +101,7 @@ importers:
 
   p-graphqlYoga:
     dependencies:
-      '@pergel/graphql':
+      '@pergel/module-graphql':
         specifier: 0.2.0
         version: 0.2.0(@types/node@20.10.0)(graphql@16.8.1)
       pergel:
@@ -3978,7 +3978,7 @@ packages:
       shelljs: 0.8.5
     dev: false
 
-  /@pergel/graphql@0.2.0(@types/node@20.10.0)(graphql@16.8.1):
+  /@pergel/module-graphql@0.2.0(@types/node@20.10.0)(graphql@16.8.1):
     resolution: {integrity: sha512-hRx9ny49KYyn10O8jMlOL1ErswIHRriChp33jN1auCNBPf/6hPdr5lOgnMgtI3C5aIdFUAlwev4UCX9ub0pqpg==}
     peerDependencies:
       graphql: '>=16.8.0'

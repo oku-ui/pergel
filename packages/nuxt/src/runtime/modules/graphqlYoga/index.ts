@@ -261,7 +261,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         `,
     })
 
-    if (isPackageExists('@pergel/graphql') || existsSync(join(options.serverDir, 'index.ts'))) {
+    if (isPackageExists('@pergel/module-graphql') || existsSync(join(options.serverDir, 'index.ts'))) {
       const data = await import('./utils/generateGraphqlTemplate').catch(() => {
         consola.error('Please `pergel install` run')
         return undefined
