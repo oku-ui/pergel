@@ -9,7 +9,6 @@ import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
-import { generateGraphQLTemplate } from './utils/generateGraphqlTemplate'
 
 // const _logger = useLogger('pergel:graphql:yoga')
 
@@ -256,10 +255,15 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             graphqlYoga: graphqlYoga,
         `,
     })
+    if (!existsSync(join(options.folderName, 'generated', 'schema.mjs'))) {
+      const generateGraphQLTemplate = await import('./utils/generateGraphqlTemplate').then(m => m.generateGraphQLTemplate).catch(() => undefined)
 
-    generateGraphQLTemplate({
-      nuxt,
-      options,
-    })
+      if (generateGraphQLTemplate) {
+        generateGraphQLTemplate({
+          nuxt,
+          options,
+        })
+      }
+    }
   },
 })

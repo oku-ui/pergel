@@ -1,5 +1,4 @@
 import { join } from 'node:path'
-import { existsSync } from 'node:fs'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import { addModuleDTS } from '../../../core/utils/addModuleDTS'
@@ -32,43 +31,41 @@ export interface GraphqlYogaContext extends YogaInitialContext {
     dir: data.options.serverDir,
   })
 
-  if (!existsSync(join(data.options.folderName, 'generated', 'schema.mjs'))) {
-    const { updatesFunction } = useGenerateCodegen({
-      nuxt: data.nuxt,
-      options: data.options,
-      moduleDTS: {
-        name: 'GraphqlYogaContext',
-        path: `pergel/${data.options.projectName}/types`,
-      },
-    })
+  const { updatesFunction } = useGenerateCodegen({
+    nuxt: data.nuxt,
+    options: data.options,
+    moduleDTS: {
+      name: 'GraphqlYogaContext',
+      path: `pergel/${data.options.projectName}/types`,
+    },
+  })
 
-    if (data.nuxt.options.dev) {
-      data.nuxt.hook('builder:watch', async (event, path) => {
-        const test = globsBuilderWatch(data.nuxt, path, '.graphql')
-        if (!test)
-          return
+  if (data.nuxt.options.dev) {
+    data.nuxt.hook('builder:watch', async (event, path) => {
+      const test = globsBuilderWatch(data.nuxt, path, '.graphql')
+      if (!test)
+        return
 
-        // TODO: globsBuilderWatch add dynamic function
-        const serverFolder = matchGlobs(test.match.filepath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
-        const clientFolder = matchGlobs(test.match.filepath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
+      // TODO: globsBuilderWatch add dynamic function
+      const serverFolder = matchGlobs(test.match.filepath, [join('**', dir.schema, '**', `*${codegen.server.extension}`)])
+      const clientFolder = matchGlobs(test.match.filepath, [join('**', dir.document, '**', `*${codegen.client.extension}`)])
 
-        // return
-        if (serverFolder) {
+      // return
+      if (serverFolder) {
         // If change server, and update schema.graphql and after update client auto. Maybe change this in future.
-          await updatesFunction({
-            type: 'server',
-          })
-        }
-        if (clientFolder) {
-          await updatesFunction({
-            type: 'client',
-          })
-        }
-
         await updatesFunction({
-          type: 'all',
+          type: 'server',
         })
+      }
+      if (clientFolder) {
+        await updatesFunction({
+          type: 'client',
+        })
+      }
+
+      await updatesFunction({
+        type: 'all',
       })
-    }
+    })
   }
 }
