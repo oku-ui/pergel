@@ -221,7 +221,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             recursive: true,
           })
 
-          cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'documents')), resolve(options.serverDir, 'documents'), {
+          cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'empty', 'documents')), resolve(options.serverDir, 'documents'), {
             recursive: true,
           })
         }
@@ -231,7 +231,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             recursive: true,
           })
 
-          cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'schemas')), resolve(options.serverDir, 'schemas'), {
+          cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'empty', 'schemas')), resolve(options.serverDir, 'schemas'), {
             recursive: true,
           })
         }
