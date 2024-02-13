@@ -21,7 +21,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
     dependencies(options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
-        '@pergel/graphql': deps['@pergel/graphql'],
+        '@pergel/module-graphql': deps['@pergel/module-graphql'],
       }
     },
     dts: true,

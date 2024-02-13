@@ -8,7 +8,7 @@ export default definePergelModule({
     dependencies(options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
-        nodeCron: deps['node-cron'],
+        'node-cron': deps['node-cron'],
       }
     },
     devDependencies(options, nuxt) {

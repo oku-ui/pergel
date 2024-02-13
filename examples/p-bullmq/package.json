@@ -10,10 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "bullmq": "^4.15.3",
+    "bullmq": "^5.1.11",
     "ioredis": "^5.3.2",
     "p-timeout": "^6.1.2",
-    "pergel": "^0.6.0"
+    "pergel": "0.7.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
