@@ -24,9 +24,9 @@ export default defineEventHandler(async (event) => {
     // const sendtest = await sendEmail(_emailParams)
 
     const result = await sendEmail(templates().changeEmail({
-      to: 'hi@productdevbook.com',
+      toAddresses: ['hi@productdevbook.com'],
       code: '123456',
-      webUrl: 'https://productdevbook.com',
+      clickButtonUrl: 'https://productdevbook.com',
       source: 'noreply@productdevbook.com',
     }))
 

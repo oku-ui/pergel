@@ -1,0 +1,131 @@
+// THIS FILE IS GENERATED, DO NOT EDIT!
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* tslint:disable */
+/* eslint-disable */
+/* prettier-ignore */
+/* pergel - oku-ui.com/pergel */
+import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
+};
+
+export type Query = {
+  __typename?: 'Query';
+  book: Book;
+  books: Array<Book>;
+  search?: Maybe<Array<Maybe<SearchResult>>>;
+  users: Array<User>;
+};
+
+
+export type QueryBookArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QuerySearchArgs = {
+  input: SearchInput;
+};
+
+
+export type QueryUsersArgs = {
+  search?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Book = {
+  __typename?: 'Book';
+  id: Scalars['ID']['output'];
+  title: Scalars['String']['output'];
+  createdAt: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['String']['output']>;
+};
+
+export type SearchInput = {
+  tableName: Scalars['String']['input'];
+  text: Scalars['String']['input'];
+};
+
+export type SearchResult = User | Book;
+
+export type RoleStatus =
+  | 'user'
+  | 'admin'
+  | 'superadmin';
+
+export type User = {
+  __typename?: 'User';
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  roleStatus: RoleStatus;
+};
+
+export type UserInput = {
+  name: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+export type UserUpdateInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserToken = {
+  __typename?: 'UserToken';
+  user: User;
+  token: Scalars['String']['output'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createUser: UserToken;
+  updateUser: User;
+  deleteUser: User;
+  login: UserToken;
+};
+
+
+export type MutationCreateUserArgs = {
+  input: UserInput;
+};
+
+
+export type MutationUpdateUserArgs = {
+  id: Scalars['ID']['input'];
+  input: UserInput;
+};
+
+
+export type MutationDeleteUserArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationLoginArgs = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+export type BookQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BookQuery = { __typename?: 'Query', book: { __typename?: 'Book', id: string, title: string } };
+
+
+export const BookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"book"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"book"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<BookQuery, BookQueryVariables>;
