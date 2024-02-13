@@ -64,7 +64,7 @@ export async function usePergelS3(
   })
 
   return {
-    ...s3Composables,
+    ...s3Composables as ReturnType<typeof S3Composables>,
     client: selectData.s3.client,
   }
 }

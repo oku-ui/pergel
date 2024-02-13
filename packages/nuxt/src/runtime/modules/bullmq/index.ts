@@ -69,7 +69,7 @@ export interface BullmqContext {
             return {
               nitroPlugin: (definePergelNitroBullMQPlugin<BullmqContext>).bind(ctx),
               useScheduler: (useScheduler<BullmqContext>).bind(ctx),
-              client: getPergelContextModule.bind({
+              client: (getPergelContextModule<'bullmq'>).bind({
                 ...ctx,
                 moduleName: '${options.moduleName}',
               }),
