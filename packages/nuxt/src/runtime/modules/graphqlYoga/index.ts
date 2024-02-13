@@ -4,6 +4,7 @@ import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { pascalCase } from 'scule'
 
 import { globbySync } from 'globby'
+import { isPackageExists } from 'local-pkg'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
@@ -255,7 +256,8 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             graphqlYoga: graphqlYoga,
         `,
     })
-    if (!existsSync(join(options.folderName, 'generated', 'schema.mjs'))) {
+
+    if (isPackageExists('@pergel/graphql') || existsSync(join(options.folderName, 'index.ts'))) {
       const generateGraphQLTemplate = await import('./utils/generateGraphqlTemplate').then(m => m.generateGraphQLTemplate).catch(() => undefined)
 
       if (generateGraphQLTemplate) {
