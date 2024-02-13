@@ -14,7 +14,7 @@
     "dotenv": "^16.4.3",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
-    "pergel": "0.7.2",
+    "pergel": "0.7.3",
     "postgres": "^3.4.3"
   },
   "devDependencies": {

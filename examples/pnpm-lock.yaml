@@ -18,8 +18,8 @@ importers:
         specifier: 0.0.0
         version: 0.0.0
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -46,8 +46,8 @@ importers:
         specifier: ^6.1.2
         version: 6.1.2
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -77,8 +77,8 @@ importers:
         specifier: ^0.29.3
         version: 0.29.3(pg@8.11.3)(postgres@3.4.3)
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
@@ -105,8 +105,8 @@ importers:
         specifier: 0.3.1
         version: 0.3.1(@types/node@20.10.0)(graphql@16.8.1)
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -130,8 +130,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -155,8 +155,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -180,8 +180,8 @@ importers:
         specifier: ^3.511.0
         version: 3.511.0
       pergel:
-        specifier: 0.7.2
-        version: 0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+        specifier: 0.7.3
+        version: 0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     devDependencies:
       '@nuxt/devtools':
         specifier: latest
@@ -4026,8 +4026,8 @@ packages:
       - aws-crt
     dev: false
 
-  /@pergel/nuxt@0.11.11(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
-    resolution: {integrity: sha512-+t9fEP/CT8koNje54lXwU7hNmQpIleGi7TA9oOOYYASJYTMrHePRTjNtE09wWD5ioMCeKoOTQxVHlLfYSNjyqw==}
+  /@pergel/nuxt@0.11.13(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
+    resolution: {integrity: sha512-LA034wJg8GSFGGvH3kbv5bJ1GkxYSqEersKoQQx1SZ31L69HLvcR7d4P/EOzeFwalhTQ4YL7kkw3WnjCl3Rx1A==}
     dependencies:
       '@nuxt/devtools': 1.0.8(nuxt@3.8.2)(vite@5.0.8)
       '@nuxt/devtools-kit': 1.0.8(nuxt@3.8.2)(vite@5.0.8)
@@ -9142,12 +9142,12 @@ packages:
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  /pergel@0.7.2(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
-    resolution: {integrity: sha512-1SZsSHeP1NtR90EDgfYJzONGqsGyT5HQGzK/1yn68QXCuGb26pC6JVR/Nv5kJeUs8Jf3ssovIut/UoAG22CVbg==}
+  /pergel@0.7.3(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11):
+    resolution: {integrity: sha512-YCaVr5iJuCW/Chy7kq2gKSMweRQDe0Ll/L/dRYnMwoP6cPbqNtOghG/b9fHxzKg6IcHKihhVGFlOBWexjt2Zkg==}
     hasBin: true
     dependencies:
       '@pergel/cli': 0.7.1
-      '@pergel/nuxt': 0.11.11(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
+      '@pergel/nuxt': 0.11.13(nuxt@3.8.2)(vite@5.0.8)(vue@3.3.11)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - bluebird
