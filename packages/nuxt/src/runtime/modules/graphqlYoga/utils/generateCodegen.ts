@@ -6,6 +6,7 @@ import { useNitroImports, useNuxtImports } from '../../../core/utils/useImports'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import { addTemplatePergel, updateTemplatePergel } from '../../../core/utils/addTemplatePergel'
+import { generatorFolderName, generatorFunctionName } from '../../../core/utils/generatorNames'
 import { useCodegen } from './codegen'
 
 export async function loadGraphQLFiles(
@@ -126,7 +127,7 @@ export const schema = \`${printSchema}\``
                 server: nuxt.options.serverDir,
                 // drizzleShemas: (key: string) => `${join(`${`${options.projectName}`}`, 'server', 'drizzle', 'schema')}#${key}`,
                 // ~/server/drizzle-changeName/schema
-                drizzleShemas: (key: string) => `${join(`~/${join('server', options.generatorFolderName('drizzle', options.projectName))}`, 'schema')}#${key}`,
+                drizzleShemas: (key: string) => `${join(`~/${join('server', generatorFolderName('drizzle', options.projectName))}`, 'schema')}#${key}`,
                 nuxtModule: options.buildDir,
               },
             })
@@ -238,7 +239,7 @@ export const schema = \`${printSchema}\``
         from: clientTypes.dir,
         imports: [
           {
-            as: `${options.generatorFunctionName('GraphQLClient')}`,
+            as: `${generatorFunctionName(options.projectName, 'GraphQLClient')}`,
             name: '*',
           },
         ],
@@ -252,7 +253,7 @@ export const schema = \`${printSchema}\``
         from: clientTypes.dir,
         imports: [
           {
-            as: `${options.generatorFunctionName('GraphQLClient')}`,
+            as: `${generatorFunctionName(options.projectName, 'GraphQLClient')}`,
             name: '*',
           },
         ],

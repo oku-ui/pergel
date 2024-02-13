@@ -24,7 +24,6 @@ export function generateModuleRuntimeConfig<T>(
   const runtimeConfig = nuxt.options.runtimeConfig
 
   const name = generateProjectName(projectName, moduleName)
-
   if (publicRuntime) {
     runtimeConfig.public[projectName] ??= {}
     runtimeConfig.public[projectName] = defu(runtimeConfig.public[projectName] as any, {

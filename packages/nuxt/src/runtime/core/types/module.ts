@@ -39,20 +39,10 @@ export interface ResolvedPergelModuleOptions {
   /**
    * @default
    * projectname: test
-   * functionName: auth
-   * = testAuth
-   */
-  generatorFunctionName: (name: string) => string
-
-  /**
-   * @default
-   * projectname: test
    * moduleName: drizzle
    * = drizzle-test
    */
   folderName: string
-
-  generatorFolderName: (moduleName: PergelModuleNames, projectName: string) => string
 
   /**
    * @default

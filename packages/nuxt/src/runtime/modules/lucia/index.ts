@@ -6,6 +6,7 @@ import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
 import { createFolderModule } from '../../core/utils/createFolderModule'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
+import { generatorFunctionName } from '../../core/utils/generatorNames'
 import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
 
@@ -95,7 +96,7 @@ const connect = await ${options.projectNameCamelCaseWithPergel}()
   event: false
 })
 
-export const ${options.generatorFunctionName('Auth')} = ${options.projectNameCamelCaseWithPergel}()
+export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.projectNameCamelCaseWithPergel}()
 .lucia()
 .use({
   db: connect,
@@ -114,7 +115,7 @@ export const ${options.generatorFunctionName('Auth')} = ${options.projectNameCam
       writeFilePergel(
         join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
         /* ts */`export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
-  lucia: ${options.generatorFunctionName('Auth')},
+  lucia: ${generatorFunctionName(options.projectName, 'Auth')},
 })
         `,
       )
@@ -142,11 +143,11 @@ export const ${options.generatorFunctionName('Auth')} = ${options.projectNameCam
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
 import type { Session, User } from '#${options.projectName}/server/drizzle/schema'
-import type { ${options.generatorFunctionName('Auth')} } from '#${options.projectName}/server/lucia'
+import type { ${generatorFunctionName(options.projectName, 'Auth')} } from '#${options.projectName}/server/lucia'
 
 declare module 'lucia' {
   interface Register {
-    Lucia: typeof ${options.generatorFunctionName('Auth')}
+    Lucia: typeof ${generatorFunctionName(options.projectName, 'Auth')}
   }
   interface DatabaseUserAttributes extends Omit<User, 'id'> {}
 

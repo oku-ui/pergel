@@ -81,7 +81,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
     mkdirSync(options.serverDir, { recursive: true })
 
     generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {
-      ...options,
+      ...options.yogaConfig,
     }, true, false)
 
     generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {

@@ -9,6 +9,7 @@ import { useNitroImports } from '../../core/utils/useImports'
 import { globsBuilderWatch } from '../../core/utils/globs'
 import { createFolderModule } from '../../core/utils/createFolderModule'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
+import { generatorFunctionName } from '../../core/utils/generatorNames'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from './types'
 import { setupPostgres } from './drivers/postgres'
 import { copyMigrationFolder } from './core'
@@ -152,8 +153,8 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       writeFilePergel(
         `${options.serverDir}/index.ts`,
         /* ts */`
-        export { ${options.generatorFunctionName('DrizzleStorage')} } from './storage'
-export * as ${options.generatorFunctionName('Tables')} from './schema'
+        export { ${generatorFunctionName(options.projectName, 'DrizzleStorage')} } from './storage'
+export * as ${generatorFunctionName(options.projectName, 'Tables')} from './schema'
         `,
       )
     }
