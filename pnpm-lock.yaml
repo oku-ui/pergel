@@ -13,7 +13,7 @@ importers:
 
   .:
     dependencies:
-      '@pergel/graphql':
+      '@pergel/module-graphql':
         specifier: workspace:*
         version: link:packages/graphql
       drizzle-kit:
@@ -321,7 +321,7 @@ importers:
       '@pergel/cli':
         specifier: ^0.7.0
         version: 0.7.0
-      '@pergel/graphql':
+      '@pergel/module-graphql':
         specifier: workspace:^
         version: link:../graphql
       '@pergel/module-box':
@@ -472,7 +472,7 @@ importers:
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.0
         version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
-      '@pergel/graphql':
+      '@pergel/module-graphql':
         specifier: workspace:*
         version: link:../../graphql
       '@pergel/module-box':
@@ -559,7 +559,7 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.11.0
         version: 3.11.0(@vue/test-utils@2.4.4)(h3@1.10.1)(happy-dom@13.3.8)(playwright-core@1.41.2)(vite@5.1.1)(vitest@1.2.2)(vue-router@4.2.5)(vue@3.3.13)
-      '@pergel/graphql':
+      '@pergel/module-graphql':
         specifier: workspace:^
         version: link:../../packages/graphql
       '@pergel/module-box':

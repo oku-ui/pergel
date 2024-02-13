@@ -17,7 +17,7 @@ interface RuntimeConfigType {
 
 type RuntimeConfigTypeKeys = keyof RuntimeConfigType
 
-export async function usePergelContext<T extends RuntimeConfigTypeKeys>(
+export function usePergelContext<T extends RuntimeConfigTypeKeys>(
   data: PergelGlobalContext,
   clientObject: (runtime: RuntimeConfigType[T]) => PergelH3ContextItem,
   event: H3Event | false,

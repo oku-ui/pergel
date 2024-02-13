@@ -163,7 +163,7 @@ export * as ${generatorFunctionName(options.projectName, 'Tables')} from './sche
      ${camelCase(options._driver.name ?? 'postgresjs')}() {
         return {
           connect: connectPostgresJS.bind(ctx),
-          client: getPergelContextModule.bind({
+          context: (getPergelContextModule<'drizzle'>).bind({
             ...ctx,
             moduleName: '${options.moduleName}',
           }),

@@ -177,9 +177,9 @@ declare module 'h3' {
     pergelPackageJson: {
       ...packageJson.dependencies,
       ...packageJson.devDependencies,
-      '@pergel/graphql': graphqlPackageJson.version,
-      '@pergel/box': boxPackageJson.version,
-      '@pergel/s3': s3PackageJson.version,
+      '@pergel/module-graphql': graphqlPackageJson.version,
+      '@pergel/module-box': boxPackageJson.version,
+      '@pergel/module-s3': s3PackageJson.version,
     },
     pergelModuleRoot: resolver.resolve('./'),
     jitiDyanmicImport: (path: string) => readConfigFile(path),

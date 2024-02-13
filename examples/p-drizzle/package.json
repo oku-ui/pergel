@@ -10,11 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.3.1",
-    "dotenv": "^16.3.1",
-    "drizzle-kit": "^0.20.7",
-    "drizzle-orm": "^0.29.1",
-    "pergel": "^0.6.0",
+    "@faker-js/faker": "^8.4.1",
+    "dotenv": "^16.4.3",
+    "drizzle-kit": "^0.20.14",
+    "drizzle-orm": "^0.29.3",
+    "pergel": "0.7.3",
     "postgres": "^3.4.3"
   },
   "devDependencies": {

@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     filename: string
     data: Buffer
   }
-  const { uploadObject } = await pergelRocket().S3().client({ event })
+  const { uploadObject } = pergelRocket().S3().use({ event })
 
   await uploadObject({
     Key: _file.filename,

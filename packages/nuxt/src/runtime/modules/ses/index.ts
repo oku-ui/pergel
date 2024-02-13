@@ -32,7 +32,7 @@ export default definePergelModule({
         function ses() {
           return {
             use: usePergelSES.bind(ctx),
-            client: getPergelContextModule.bind({
+            client: (getPergelContextModule<'ses'>).bind({
               ...ctx,
               moduleName: '${options.moduleName}',
             }),

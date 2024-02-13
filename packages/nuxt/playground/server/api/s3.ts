@@ -1,5 +1,7 @@
-export default defineEventHandler(async () => {
-  const { uploadObject, listAllObjects } = await pergelTest().S3().useS3()
+export default defineEventHandler(async (event) => {
+  const { uploadObject, listAllObjects } = await pergelTest().S3().use({
+    event,
+  })
 
   const name = Math.random().toString(36).substring(7)
 

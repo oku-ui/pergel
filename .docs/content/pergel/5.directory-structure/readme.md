@@ -24,7 +24,7 @@ project1:
   graphql:
     # If pergel cli is installed, you can run `pergel install` automatically to install
     packageJson:
-      dependencies: '@pergel/graphql@0.0.0'
+      dependencies: '@pergel/module-graphql@0.0.0'
       devDependencies: ''
 project2:
   bullmq:

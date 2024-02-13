@@ -9,5 +9,4 @@ declare module 'pergel/rocket/types' {
     req: IncomingMessage
     event: H3Event
   }
-
 }
