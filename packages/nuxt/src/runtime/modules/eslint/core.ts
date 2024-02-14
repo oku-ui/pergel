@@ -1,5 +1,4 @@
 import type { UserConfigItem } from '@antfu/eslint-config'
-import defu from 'defu'
 
 // @ts-ignore
 import tailwindcssPlugin from 'eslint-plugin-tailwindcss'
