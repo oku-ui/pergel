@@ -93,13 +93,14 @@ export interface ResolvedPergelModuleOptions {
     build: string
   }
 
-  [key: string]: any
-
   /**
    * @default
    * false
    */
   devtoolsStatus?: boolean
+
+  [key: string]: any
+
 }
 
 interface ModuleMeta<T extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {

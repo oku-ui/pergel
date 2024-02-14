@@ -1,7 +1,7 @@
 {
   "name": "pergel",
   "type": "module",
-  "version": "0.7.3",
+  "version": "0.8.1",
   "packageManager": "pnpm@8.10.0",
   "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
   "author": "Mehmet @productdevbook",
@@ -34,10 +34,16 @@
       "require": "./dist/index.js"
     },
     "./nuxt": {
-      "types": "./nuxt.d.ts",
-      "import": "./nuxt.mjs",
-      "require": "./nuxt.js"
-    }
+      "types": "./dist/nuxt.d.ts",
+      "import": "./dist/nuxt.mjs",
+      "require": "./dist/nuxt.js"
+    },
+    "./eslint": {
+      "types": "./dist/eslint.d.ts",
+      "import": "./dist/eslint.mjs",
+      "require": "./dist/eslint.js"
+    },
+    "./*": "./*"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
