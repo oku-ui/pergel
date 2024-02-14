@@ -34,10 +34,16 @@
       "require": "./dist/index.js"
     },
     "./nuxt": {
-      "types": "./nuxt.d.ts",
-      "import": "./nuxt.mjs",
-      "require": "./nuxt.js"
-    }
+      "types": "./dist/nuxt.d.ts",
+      "import": "./dist/nuxt.mjs",
+      "require": "./dist/nuxt.js"
+    },
+    "./eslint": {
+      "types": "./dist/eslint.d.ts",
+      "import": "./dist/eslint.mjs",
+      "require": "./dist/eslint.js"
+    },
+    "./*": "./*"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
