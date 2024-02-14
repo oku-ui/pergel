@@ -84,7 +84,7 @@
   "dependencies": {
     "@antfu/ni": "^0.21.12",
     "@clack/prompts": "^0.7.0",
-    "c12": "^1.6.1",
+    "c12": "^1.8.0",
     "citty": "^0.1.5",
     "consola": "^3.2.3",
     "giget": "^1.2.1",
@@ -94,9 +94,9 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.11.17",
     "@types/shelljs": "^0.8.15",
-    "@vitest/coverage-v8": "^1.1.1",
+    "@vitest/coverage-v8": "^1.2.2",
     "esno": "^4.0.0",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
