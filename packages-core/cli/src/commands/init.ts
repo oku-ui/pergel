@@ -1,5 +1,7 @@
-import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { existsSync } from 'node:fs'
 import { defineCommand } from 'citty'
+import { writeFilePergel } from '../utils/writeFilePergel'
 
 const template = `import { definePergel } from 'pergel'
 
@@ -15,6 +17,9 @@ export default defineCommand({
     version: '0.0.1',
   },
   async run() {
-    writeFileSync('pergel.config.ts', template)
+    const file = join('.config', 'pergel.ts')
+
+    if (!existsSync(file))
+      writeFilePergel(file, template)
   },
 })
