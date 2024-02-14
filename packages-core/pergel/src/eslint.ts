@@ -1,3 +1,5 @@
-export { default } from '@pergel/nuxt/dist/runtime/modules/eslint/core'
-export * from '@pergel/nuxt/dist/runtime/modules/eslint/core'
+// @ts-ignore  
+export { default } from '@pergel/nuxt/eslint'
+// @ts-ignore  
+export * from '@pergel/nuxt/eslint'
  
