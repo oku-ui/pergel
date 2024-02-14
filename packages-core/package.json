@@ -12,7 +12,7 @@
     "check": "pnpm typecheck"
   },
   "dependencies": {
-    "bumpp": "^9.2.1"
+    "bumpp": "^9.3.0"
   },
   "devDependencies": {
     "unbuild": "^2.0.0"

@@ -9,7 +9,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.511.0",
+    "@aws-sdk/client-ses": "^3.513.0",
     "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.1.1",
     "@lucia-auth/adapter-drizzle": "^1.0.1",
@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "nuxt": "^3.10.1",
-    "pergel": "^0.7.0",
+    "pergel": "^0.8.1",
     "pg": "^8.11.3",
-    "vue": "^3.4.18",
+    "vue": "^3.4.19",
     "vue-router": "^4.2.5"
   }
 }
