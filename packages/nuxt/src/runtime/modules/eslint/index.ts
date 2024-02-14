@@ -24,7 +24,7 @@ export default definePergelModule<EslintConfig, ResolvedEslintConfig>({
     const { projectName, moduleName } = options
 
     if (!existsSync(join(nuxt.options.rootDir, 'eslint.config.js')))
-      cpSync(join(nuxt._pergel.templateDir, 'eslint.config.js'), join(nuxt.options.rootDir, 'eslint.config.js'))
+      cpSync(join(nuxt._pergel.pergelModuleRoot, 'templates', 'eslint.config.js'), join(nuxt.options.rootDir, 'eslint.config.js'))
 
     nuxt._pergel.readmeJson[projectName] ??= {}
     nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
