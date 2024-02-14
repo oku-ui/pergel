@@ -1,5 +1,5 @@
 import { join, resolve } from 'node:path'
-import { existsSync, mkdirSync } from 'node:fs'
+import { mkdirSync } from 'node:fs'
 import type { Nuxt } from '@nuxt/schema'
 import { type Resolver, addTemplate } from '@nuxt/kit'
 import defu from 'defu'
