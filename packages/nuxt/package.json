@@ -29,6 +29,12 @@
     "./types": {
       "types": "./dist/types.d.ts"
     },
+    "./eslint": {
+      "import": {
+        "types": "./dist/runtime/modules/eslint/core.d.ts",
+        "default": "./dist/runtime/modules/eslint/core.mjs"
+      }
+    },
     "./*": "./*"
   },
   "main": "./dist/module.cjs",
@@ -70,6 +76,7 @@
     "yaml": "^2.3.4"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.6.3",
     "@aws-sdk/client-ses": "^3.504.0",
     "@faker-js/faker": "^8.4.0",
     "@graphql-yoga/urql-exchange": "^3.1.1",
@@ -98,6 +105,8 @@
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-tailwindcss": "^3.14.1",
     "graphql": "^16.8.1",
     "h3": "^1.10.1",
     "happy-dom": "^13.3.8",

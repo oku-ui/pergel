@@ -282,6 +282,9 @@ importers:
         specifier: ^2.3.4
         version: 2.3.4
     devDependencies:
+      '@antfu/eslint-config':
+        specifier: ^2.6.3
+        version: 2.6.4(@vue/compiler-sfc@3.4.18)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.2)
       '@aws-sdk/client-ses':
         specifier: ^3.504.0
         version: 3.511.0
@@ -321,12 +324,12 @@ importers:
       '@pergel/cli':
         specifier: ^0.7.0
         version: 0.7.0
-      '@pergel/module-graphql':
-        specifier: workspace:^
-        version: link:../graphql
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../box
+      '@pergel/module-graphql':
+        specifier: workspace:^
+        version: link:../graphql
       '@pergel/module-s3':
         specifier: workspace:^
         version: link:../s3
@@ -366,6 +369,12 @@ importers:
       esbuild-plugin-file-path-extensions:
         specifier: ^2.0.0
         version: 2.0.0
+      eslint:
+        specifier: ^8.56.0
+        version: 8.56.0
+      eslint-plugin-tailwindcss:
+        specifier: ^3.14.1
+        version: 3.14.2(tailwindcss@3.4.1)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -472,12 +481,12 @@ importers:
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.0
         version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
-      '@pergel/module-graphql':
-        specifier: workspace:*
-        version: link:../../graphql
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../../box
+      '@pergel/module-graphql':
+        specifier: workspace:*
+        version: link:../../graphql
       '@pergel/module-s3':
         specifier: workspace:*
         version: link:../../s3
@@ -559,12 +568,12 @@ importers:
       '@nuxt/test-utils':
         specifier: ^3.11.0
         version: 3.11.0(@vue/test-utils@2.4.4)(h3@1.10.1)(happy-dom@13.3.8)(playwright-core@1.41.2)(vite@5.1.1)(vitest@1.2.2)(vue-router@4.2.5)(vue@3.3.13)
-      '@pergel/module-graphql':
-        specifier: workspace:^
-        version: link:../../packages/graphql
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../../packages/box
+      '@pergel/module-graphql':
+        specifier: workspace:^
+        version: link:../../packages/graphql
       '@urql/core':
         specifier: ^4.2.3
         version: 4.2.3(graphql@16.8.1)
