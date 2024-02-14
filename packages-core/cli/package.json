@@ -85,10 +85,10 @@
     "@antfu/ni": "^0.21.12",
     "@clack/prompts": "^0.7.0",
     "c12": "^1.8.0",
-    "citty": "^0.1.5",
+    "citty": "^0.1.6",
     "consola": "^3.2.3",
     "giget": "^1.2.1",
-    "globby": "^14.0.0",
+    "globby": "^14.0.1",
     "pathe": "^1.1.2",
     "picocolors": "^1.0.0",
     "shelljs": "^0.8.5"
@@ -98,7 +98,7 @@
     "@types/shelljs": "^0.8.15",
     "@vitest/coverage-v8": "^1.2.2",
     "esno": "^4.0.0",
-    "tsup": "^8.0.1",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3"
   },
   "publishConfig": {

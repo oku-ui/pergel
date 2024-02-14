@@ -6,12 +6,12 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-vue-next": "^0.330.0",
-    "radix-vue": "^1.4.0",
+    "radix-vue": "^1.4.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.3",
+    "@nuxtjs/tailwindcss": "^6.11.4",
     "shadcn-nuxt": "^0.9.0"
   }
 }
