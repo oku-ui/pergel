@@ -322,8 +322,8 @@ importers:
         specifier: ^3.11.0
         version: 3.11.0(@vue/test-utils@2.4.4)(h3@1.10.1)(happy-dom@13.3.8)(playwright-core@1.41.2)(rollup@4.10.0)(vite@5.1.1)(vitest@1.2.2)(vue-router@4.2.5)(vue@3.3.13)
       '@pergel/cli':
-        specifier: ^0.7.1
-        version: 0.7.1
+        specifier: ^0.8.0
+        version: 0.8.0
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../box
@@ -6845,15 +6845,15 @@ packages:
       webcrypto-core: 1.7.8
     dev: false
 
-  /@pergel/cli@0.7.1:
-    resolution: {integrity: sha512-5Di4ZGpnpLTycWfJy53RwxjrWwzbyhQNXSgi+ilMjDDt68nbFAYnn48+SZaO8T0FvArfkadvNC8xS9aK4yWLlg==}
+  /@pergel/cli@0.8.0:
+    resolution: {integrity: sha512-gSBUwhxUc+XvdYJH/4c9si04l6y9a0QLPtSVhyxF8wyj9TABYMGLovSHSnr3kCJbSHZ+ESDFRbst9BQ1s1pYOA==}
     engines: {node: '>=20'}
     hasBin: true
     dependencies:
       '@antfu/ni': 0.21.12
       '@clack/prompts': 0.7.0
       c12: 1.8.0
-      citty: 0.1.5
+      citty: 0.1.6
       consola: 3.2.3
       giget: 1.2.1
       globby: 14.0.1
@@ -9700,6 +9700,12 @@ packages:
     resolution: {integrity: sha512-AS7n5NSc0OQVMV9v6wt3ByujNIrne0/cTjiC2MYqhvao57VNfiuVksTSr2p17nVOhEr2KtqiAkGwHcgMC/qUuQ==}
     dependencies:
       consola: 3.2.3
+
+  /citty@0.1.6:
+    resolution: {integrity: sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==}
+    dependencies:
+      consola: 3.2.3
+    dev: true
 
   /class-variance-authority@0.7.0:
     resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
@@ -15146,7 +15152,7 @@ packages:
     resolution: {integrity: sha512-xfen8b26qGlmRR8xClgFeboshjODM7i0C2OVXQTqq56xHGLSxxzTAs9tfj3iB5c5AXfdnfhMsdO0Nhezz3qz8A==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.7.1
+      '@pergel/cli': 0.8.0
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 
@@ -15154,7 +15160,7 @@ packages:
     resolution: {integrity: sha512-cTb7nizyhWKF/JKcOLq6VuFounBrKXzRdUs5kM5N2HMnm4lSgM3IiqUlX1e4TVj6HzYuJrdnpI4tkMO7wzBeaQ==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.7.1
+      '@pergel/cli': 0.8.0
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 

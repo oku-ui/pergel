@@ -89,7 +89,7 @@
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.10.2",
     "@nuxt/test-utils": "^3.11.0",
-    "@pergel/cli": "^0.7.1",
+    "@pergel/cli": "^0.8.0",
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
