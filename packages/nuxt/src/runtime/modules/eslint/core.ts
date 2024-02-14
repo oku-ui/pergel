@@ -3,9 +3,9 @@ import type { UserConfigItem } from '@antfu/eslint-config'
 // @ts-ignore
 import tailwindcssPlugin from 'eslint-plugin-tailwindcss'
 
-export function pergelEslintConfig(input: {
-  tailwindcss: UserConfigItem
-  pergel: UserConfigItem
+export function pergelEslintConfig(input?: {
+  tailwindcss?: UserConfigItem
+  pergel?: UserConfigItem
 }) {
   return [
     {
@@ -25,7 +25,7 @@ export function pergelEslintConfig(input: {
         'import/first': 'off',
         'symbol-description': 'off',
       },
-      ...input.tailwindcss,
+      ...input?.tailwindcss ?? {},
     },
     {
       ignores: [
@@ -51,7 +51,7 @@ export function pergelEslintConfig(input: {
         'packages-core/pergel/nuxt.js',
         '**/pergel/**',
       ],
-      ...input.pergel,
+      ...input?.pergel ?? {},
     },
   ]
 }
