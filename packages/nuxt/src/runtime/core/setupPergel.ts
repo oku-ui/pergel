@@ -33,7 +33,7 @@ export async function setupPergel(
 ) {
   const file = await loadConfig({
     cwd: data.nuxt.options.rootDir,
-    configFile: 'pergel.config.ts',
+    configFile: 'pergel.config',
     defaultConfig: {
       // TODO: add cwd
       dir: {
@@ -52,7 +52,7 @@ export async function setupPergel(
 
   let exitPergelFolder = false
 
-  if (file)
+  if (!file.configFile?.startsWith('pergel.config'))
     exitPergelFolder = true
 
   const { options, nuxt, resolver, version } = data

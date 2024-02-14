@@ -162,7 +162,7 @@ export async function definePergelLoadConfig(input?: {
 }) {
   const file = await loadConfig({
     cwd: input?.cwd ?? process.cwd(),
-    configFile: 'pergel.config.ts',
+    configFile: 'pergel.config',
     defaultConfig: {
       dir: {
         pergel: 'pergel',
