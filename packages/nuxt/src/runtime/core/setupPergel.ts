@@ -52,7 +52,7 @@ export async function setupPergel(
 
   let exitPergelFolder = false
 
-  if (existsSync(join(data.nuxt.options.rootDir, 'pergel.config.ts')))
+  if (file)
     exitPergelFolder = true
 
   const { options, nuxt, resolver, version } = data
