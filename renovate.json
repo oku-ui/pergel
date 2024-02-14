@@ -1,8 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":widenPeerDependencies"
+    "config:base"
   ],
   "baseBranches": [
     "main"
@@ -11,6 +10,7 @@
     "node",
     "pnpm"
   ],
+  "rebaseWhen": "auto",
   "packageRules": [
     {
       "groupName": "all digest updates",
