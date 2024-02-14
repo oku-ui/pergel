@@ -22,18 +22,18 @@
     "release": "pnpm bumpp --commit='version(graphql): release %s' --no-tag && pnpm publish"
   },
   "peerDependencies": {
-    "graphql": ">=16.8.0"
+    "graphql": ">=16.8.1"
   },
   "dependencies": {
     "@apollo/sandbox": "^2.5.1",
-    "@graphql-codegen/cli": "^5.0.0",
-    "@graphql-codegen/core": "^4.0.0",
-    "@graphql-codegen/plugin-helpers": "^5.0.1",
-    "@graphql-codegen/schema-ast": "^4.0.0",
-    "@graphql-codegen/typed-document-node": "^5.0.1",
-    "@graphql-codegen/typescript": "^4.0.1",
-    "@graphql-codegen/typescript-operations": "^4.0.1",
-    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/core": "^4.0.2",
+    "@graphql-codegen/plugin-helpers": "^5.0.3",
+    "@graphql-codegen/schema-ast": "^4.0.2",
+    "@graphql-codegen/typed-document-node": "^5.0.4",
+    "@graphql-codegen/typescript": "^4.0.4",
+    "@graphql-codegen/typescript-operations": "^4.1.2",
+    "@graphql-codegen/typescript-resolvers": "^4.0.4",
     "@graphql-codegen/urql-introspection": "^3.0.0",
     "@graphql-tools/graphql-file-loader": "^8.0.0",
     "@graphql-tools/load": "^8.0.1",
