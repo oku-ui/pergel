@@ -1,7 +1,7 @@
 import { definePergelModule } from '../../core/definePergel'
-import type { EslintYogaConfig, ResolvedEslintYogaConfig } from './types'
+import type { EslintConfig, ResolvedEslintConfig } from './types'
 
-export default definePergelModule<EslintYogaConfig, ResolvedEslintYogaConfig>({
+export default definePergelModule<EslintConfig, ResolvedEslintConfig>({
   meta: {
     name: 'eslint',
     version: '0.0.1',

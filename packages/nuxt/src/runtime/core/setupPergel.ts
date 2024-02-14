@@ -139,6 +139,7 @@ declare module 'h3' {
       'box',
       'urql',
       'vitest',
+      'eslint',
     ],
     projectNames,
     nitroImports: {},
