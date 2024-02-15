@@ -8,7 +8,8 @@ import type { BoxOptions, ResolvedBoxOptions } from '../../modules/box/types'
 
 import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-type'
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
-import type { ResolvedEslintConfig } from '../../modules/eslint/types'
+import type { EslintConfig, ResolvedEslintConfig } from '../../modules/eslint/types'
+import type { RenovateConfig, ResolvedRenovateConfig } from '../../modules/renovate/types'
 import type { ResolvedPergelModuleOptions, UserModuleOptions } from './module'
 
 // @MODULE
@@ -25,7 +26,8 @@ export interface PergelNuxtModules {
   ionic?: true | IonicInterface
   urql?: true
   vitest?: true
-  eslint?: true | ResolvedEslintConfig
+  eslint?: true | EslintConfig
+  renovate?: true | RenovateConfig
 }
 
 export interface ResolvedPergelNuxtModuleConfig<T> {
@@ -42,6 +44,7 @@ export interface ResolvedPergelNuxtModuleConfig<T> {
   urql?: true | T
   vitest?: true | T
   eslint?: true | ResolvedEslintConfig
+  renovate?: true | ResolvedRenovateConfig
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules
