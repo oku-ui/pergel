@@ -27,6 +27,7 @@ import type { PergelModuleNames, PergelOptions, ResolvedPergelOptions } from './
 import { writeFilePergel } from './runtime/core/utils/writeFilePergel'
 import { writeEnvExample } from './utils/writeEnvExample'
 import { writeDockerCompose } from './utils/writeDockerCompose'
+import { writeVSCode } from './utils/writeVSCode'
 
 export interface ModulePublicRuntimeConfig {
   slugify: {
@@ -222,11 +223,20 @@ export default defineNuxtModule<PergelOptions>({
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
 
-    // Auto generate pergel/[projectName].docker-compose.yml
-    writeDockerCompose(nuxt)
+    if (nuxt._pergel.exitPergelFolder) {
+      // Auto generate pergel/[projectName].docker-compose.yml
+      writeDockerCompose(nuxt)
 
-    // Auto generate pergel/.env.example
-    writeEnvExample(nuxt)
+      // Auto generate pergel/.env.example
+      writeEnvExample(nuxt)
+
+      // Auto generate pergel/merged-package.json
+      generateMergedPackageJson({
+        nuxt,
+      })
+
+      writeVSCode(nuxt)
+    }
 
     // functiontemplate
     if (nuxt._pergel.functionTemplates && nuxt._pergel.functionTemplates.length > 0) {
@@ -237,10 +247,6 @@ export default defineNuxtModule<PergelOptions>({
         writeFilePergel(writeDir, contents)
       }
     }
-
-    generateMergedPackageJson({
-      nuxt,
-    })
   },
 })
 
