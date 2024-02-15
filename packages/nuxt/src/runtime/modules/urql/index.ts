@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { addImportsDir, createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
-import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
 import { useNuxtImports } from '../../core/utils/useImports'
 import type { UrqlModuleOptions, UrqlModuleRuntimeConfig } from './types'
 
@@ -25,12 +25,19 @@ export default definePergelModule<UrqlModuleOptions>({
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
 
+    generateModuleRuntimeConfigEnv(nuxt, options, {
+      endpoint: undefined,
+      default: {
+        endpoint: 'http://localhost:3000/api/graphql',
+      },
+    })
+
     generateModuleRuntimeConfig<UrqlModuleRuntimeConfig>(nuxt, options, {
       endpoint: undefined,
       default: {
         endpoint: 'http://localhost:3000/api/graphql',
       },
-    }, true, true)
+    }, true)
 
     addImportsDir(resolver.resolve(join('plugins')))
 
