@@ -8,7 +8,7 @@ export default definePergelModule<EslintConfig, ResolvedEslintConfig>({
   meta: {
     name: 'eslint',
     version: '0.1.0',
-    dependencies(_options, nuxt) {
+    devDependencies(_options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
         'eslint': deps.eslint,
