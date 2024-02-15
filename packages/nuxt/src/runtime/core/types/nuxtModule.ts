@@ -111,7 +111,24 @@ export interface ResolvedPergelOptions {
 
   readmeYaml: Record<string, any>
 
-  readmeJson: Record<string, any>
+  readmeJson: {
+    [projectName: string]: {
+      [moduleName: string]: {
+        'packageJson'?: {
+          dependencies?: Record<string, string>
+          devDependencies?: Record<string, string>
+          [key: string]: any
+        }
+        'scripts'?: Record<string, string>
+        'roots'?: Record<string, any>
+        'vscode'?: Record<string, any>
+        'cli'?: Record<string, any>
+        'env'?: Record<string, any>
+        'comment-block'?: string
+        [key: string]: any
+      }
+    }
+  }
 
   resolver: Resolver
 

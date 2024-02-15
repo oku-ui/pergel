@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { cpSync, existsSync } from 'node:fs'
 import { definePergelModule } from '../../core/definePergel'
+import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { EslintConfig, ResolvedEslintConfig } from './types'
 
 export default definePergelModule<EslintConfig, ResolvedEslintConfig>({
@@ -26,25 +27,30 @@ export default definePergelModule<EslintConfig, ResolvedEslintConfig>({
     if (!existsSync(join(nuxt.options.rootDir, 'eslint.config.js')))
       cpSync(join(nuxt._pergel.pergelModuleRoot, 'templates', 'eslint.config.js'), join(nuxt.options.rootDir, 'eslint.config.js'))
 
-    nuxt._pergel.readmeJson[projectName] ??= {}
-    nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
-    nuxt._pergel.readmeJson.eslint = {
-      scripts: {
-        'lint': 'eslint .',
-        'lint:fix': 'eslint . --fix',
-        'prepare': 'npx simple-git-hooks',
+    generateProjectReadme({
+      nuxt,
+      projectName,
+      moduleName,
+      data() {
+        return {
+          scripts: {
+            'lint': 'eslint .',
+            'lint:fix': 'eslint . --fix',
+            'prepare': 'npx simple-git-hooks',
+          },
+          roots: {
+            'simple-git-hooks': {
+              'pre-commit': 'pnpm lint-staged',
+            },
+            'lint-staged': {
+              '*': 'eslint . --fix',
+            },
+          },
+          vscode: {
+            'eslint.experimental.useFlatConfig': true,
+          },
+        }
       },
-      others: {
-        'simple-git-hooks': {
-          'pre-commit': 'pnpm lint-staged',
-        },
-        'lint-staged': {
-          '*': 'eslint . --fix',
-        },
-      },
-    }
-    nuxt._pergel.readmeJson.vscode = {
-      'eslint.experimental.useFlatConfig': true,
-    }
+    })
   },
 })

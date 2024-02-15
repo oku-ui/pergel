@@ -1,5 +1,5 @@
 import defu from 'defu'
-import type { NuxtPergel } from '../types/nuxtModule'
+import type { NuxtPergel, ResolvedPergelOptions } from '../types/nuxtModule'
 import { writeFilePergel } from './writeFilePergel'
 
 /**
@@ -64,7 +64,7 @@ export function generateProjectReadme(input:
       addCommentBlock: (commentBlock: string) => Record<string, any>
       moduleName: string
     }
-  ) => Record<string, any>
+  ) => ResolvedPergelOptions['readmeJson'][string][string]
 },
 ) {
   const addCommentBlock = (commentBlock: string) => ({
@@ -103,7 +103,8 @@ export function generateMergedPackageJson(data: {
       dependencies?: Record<string, string>
       devDependencies?: Record<string, string>
       scripts?: Record<string, string>
-      others?: Record<string, any>
+      roots?: Record<string, any>
+      [key: string]: any
     }
   } = {}
 
@@ -130,9 +131,9 @@ export function generateMergedPackageJson(data: {
         mergedPackageJson[projectName].scripts = defu(mergedPackageJson[projectName].scripts, module.scripts)
       }
 
-      if (module.others) {
-        mergedPackageJson[projectName].others ??= {}
-        mergedPackageJson[projectName].others = defu(mergedPackageJson[projectName].others, module.others)
+      if (module.roots) {
+        mergedPackageJson[projectName].roots ??= {}
+        mergedPackageJson[projectName].roots = defu(mergedPackageJson[projectName].roots, module.roots)
       }
     }
 
@@ -140,7 +141,7 @@ export function generateMergedPackageJson(data: {
       ...mergedPackageJson[projectName]?.scripts ? { scripts: mergedPackageJson[projectName].scripts } : {},
       ...mergedPackageJson[projectName]?.dependencies ? { dependencies: mergedPackageJson[projectName].dependencies } : {},
       ...mergedPackageJson[projectName]?.devDependencies ? { devDependencies: mergedPackageJson[projectName].devDependencies } : {},
-      ...mergedPackageJson[projectName]?.others ? { ...mergedPackageJson[projectName].others } : {},
+      ...mergedPackageJson[projectName]?.roots ? { ...mergedPackageJson[projectName].roots } : {},
     }
   }
 
