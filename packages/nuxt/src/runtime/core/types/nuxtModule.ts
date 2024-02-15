@@ -109,8 +109,6 @@ export interface ResolvedPergelOptions {
 
   nuxtImports: Partial<ImportsOptions>
 
-  readmeYaml: Record<string, any>
-
   readmeJson: {
     [projectName: string]: {
       [moduleName: string]: {
