@@ -14,8 +14,6 @@ export function generateModuleRuntimeConfig<T>(
   },
   publicRuntime?: boolean,
 ) {
-  delete config.default
-
   const projectName = moduleOptions.projectName
   const moduleName = moduleOptions.moduleName
 
@@ -81,6 +79,7 @@ export function generateModuleRuntimeConfigEnv(
   },
 ) {
   const defaultConfig = Object.assign({}, config.default)
+  delete config.default
 
   const projectName = moduleOptions.projectName
   const moduleName = moduleOptions.moduleName
