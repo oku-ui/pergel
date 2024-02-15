@@ -1,0 +1,97 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "baseBranches": [
+    "main"
+  ],
+  "ignoreDeps": [
+    "node",
+    "pnpm"
+  ],
+  "rebaseWhen": "auto",
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "groupName": "all digest updates",
+      "groupSlug": "all-digest",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "resolutions",
+        "overrides",
+        "packageManager"
+      ],
+      "automerge": true,
+      "matchUpdateTypes": [
+        "digest"
+      ],
+      "schedule": [
+        "every 1 month"
+      ]
+    },
+    {
+      "groupName": "all patch updates",
+      "groupSlug": "all-patch",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "packageManager",
+        "resolutions",
+        "overrides"
+      ],
+      "automerge": true,
+      "schedule": [
+        "every 1 month"
+      ]
+    },
+    {
+      "groupName": "all minor updates",
+      "groupSlug": "all-minor",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "packageManager"
+      ],
+      "automerge": true,
+      "schedule": [
+        "every 1 month"
+      ]
+    },
+    {
+      "groupName": "all major updates",
+      "groupSlug": "all-major",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchDepTypes": [
+        "devDependencies",
+        "dependencies",
+        "peerDependencies",
+        "packageManager"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ]
+    }
+  ]
+}

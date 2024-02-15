@@ -140,6 +140,7 @@ declare module 'h3' {
       'urql',
       'vitest',
       'eslint',
+      'renovate',
     ],
     projectNames,
     nitroImports: {},
