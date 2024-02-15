@@ -9,7 +9,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.514.0",
+    "@aws-sdk/client-ses": "^3.515.0",
     "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.1.1",
     "@lucia-auth/adapter-drizzle": "^1.0.1",
