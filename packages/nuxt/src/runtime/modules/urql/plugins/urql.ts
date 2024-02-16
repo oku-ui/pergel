@@ -69,7 +69,7 @@ export function pergelUrqlPlugin(
     const options = await urqlClient(ssr)
 
     // create urql client
-    const client = createClient({
+    const client: Client = createClient({
       url: (import.meta.server && params?.ssrParams.endpoint) || selectProject.endpoint,
       ...options,
     })

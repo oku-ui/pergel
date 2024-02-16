@@ -23,8 +23,6 @@
         "devDependencies",
         "dependencies",
         "peerDependencies",
-        "resolutions",
-        "overrides",
         "packageManager"
       ],
       "automerge": true,
@@ -48,9 +46,7 @@
         "devDependencies",
         "dependencies",
         "peerDependencies",
-        "packageManager",
-        "resolutions",
-        "overrides"
+        "packageManager"
       ],
       "automerge": true,
       "schedule": [

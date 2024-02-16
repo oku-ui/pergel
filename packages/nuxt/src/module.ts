@@ -179,9 +179,6 @@ export default defineNuxtModule<PergelOptions>({
       nuxt,
     })
 
-    saveNitroImports()
-    saveNuxtImports()
-
     generateReadmeJson({
       nuxt,
     })
@@ -223,6 +220,15 @@ export default defineNuxtModule<PergelOptions>({
       logger.success(`${DEVTOOLS_MODULE_NAME} is ready!`)
     }
 
+    useNuxtImports(nuxt, {
+      presets: [{
+        from: _resolver.resolve('./runtime/core/utils/usePergelRuntime.ts'),
+        imports: ['usePergelRuntime'],
+      }],
+    })
+
+    nuxt.options.alias['#pergel'] = _resolver.resolve('./runtime')
+
     if (nuxt._pergel.exitPergelFolder) {
       // Auto generate pergel/[projectName].docker-compose.yml
       writeDockerCompose(nuxt)
@@ -247,6 +253,9 @@ export default defineNuxtModule<PergelOptions>({
         writeFilePergel(writeDir, contents)
       }
     }
+
+    saveNitroImports()
+    saveNuxtImports()
   },
 })
 

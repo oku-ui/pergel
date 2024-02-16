@@ -1,8 +1,54 @@
-import type { PergelModuleOptions } from '../../core/types/module'
+import type { ClientOptions, SSRExchangeParams } from '@urql/core'
+import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
+
+/**
+ * serializable URQL client options
+ * @see {@link ClientOptions}
+ */
+export type ModuleClientOptions = Pick<ClientOptions, 'preferGetMethod' | 'requestPolicy' | 'maskTypename'>
+
+/**
+ * SSR exchange params
+ * @see {@link SSRExchangeParams}
+ */
+export type ModuleSSRParams = Pick<SSRExchangeParams, 'staleWhileRevalidate' | 'includeExtensions'> & {
+  /**
+   * payload key for SSR data transmission
+   */
+  key: string
+
+  /**
+   * server side graphql endpoint URL, defaults to module endpoint
+   */
+  endpoint?: string
+}
 
 export interface UrqlModuleOptions extends PergelModuleOptions {
+  /**
+   * graphql endpoint URL
+   * @see {@link ClientOptions.url}
+   */
+  endpoint: string
+
+  /**
+   * client options object or path to client setup script
+   */
+  client?: ModuleClientOptions | string
+
+  /**
+   * SSR exchange options
+   */
+  ssr?: ModuleSSRParams
+}
+
+export interface ResolvedUrqlConfig extends ResolvedPergelModuleOptions {
+  endpoint: string
+  client: ModuleClientOptions
+  ssr: ModuleSSRParams
 }
 
 export interface UrqlModuleRuntimeConfig {
   endpoint: string
+  client: ModuleClientOptions
+  ssr: ModuleSSRParams
 }
