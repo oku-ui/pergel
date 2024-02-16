@@ -1,5 +1,4 @@
 import { join, resolve } from 'node:path'
-import { addTemplate } from '@nuxt/kit'
 import consola from 'consola'
 import { buildTime } from '../utils'
 import { useNitroImports, useNuxtImports } from '../../../core/utils/useImports'
