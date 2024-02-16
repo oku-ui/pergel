@@ -14,6 +14,9 @@ export function generateModuleRuntimeConfig<T>(
   },
   publicRuntime?: boolean,
 ) {
+  const defaultConfig = Object.assign({}, config.default)
+  delete config.default
+
   const projectName = moduleOptions.projectName
   const moduleName = moduleOptions.moduleName
 
@@ -27,7 +30,7 @@ export function generateModuleRuntimeConfig<T>(
         ...Object.entries(config).map(([key, value]) => {
           return {
             [key]: value === undefined
-              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`]
+              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`] ?? defaultConfig[key] ?? ''
               : value,
           }
         }).reduce((acc, cur) => {

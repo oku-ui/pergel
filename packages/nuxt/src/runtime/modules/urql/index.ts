@@ -89,7 +89,7 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
     selectProject: ResolvedUrqlConfig
   }
 
-  if (!selectProject || !selectProject.client)
+  if (!selectProject)
     throw new Error('Pergel is not defined')
 
   const options = selectProject.client === 'custom' ? {} : selectProject.client
@@ -129,7 +129,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     selectProject: ResolvedUrqlConfig
   }
 
-  if (!selectProject || !selectProject.client)
+  if (!selectProject)
     throw new Error('Pergel is not defined')
 
   // create ssr exchange
