@@ -1,0 +1,38 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "changeName": {
+    "scripts": {
+      "migrate": "drizzle-kit generate:pg --config=server/drizzle-changeName/drizzle.config.js",
+      "generate": "drizzle-kit generate:pg --config=server/drizzle-changeName/drizzle.config.js",
+      "push": "drizzle-kit push:pg --config=server/drizzle-changeName/drizzle.config.js",
+      "drop": "drizzle-kit drop --config=server/drizzle-changeName/drizzle.config.js",
+      "up": "drizzle-kit up:pg --config=server/drizzle-changeName/drizzle.config.js",
+      "studio": "drizzle-kit studio --port 3105 --config=server/drizzle-changeName/drizzle.config.js",
+      "dev:migration": "tsx server/drizzle-changeName/seeds/devMigration.ts",
+      "dev:drop": "tsx server/drizzle-changeName/seeds/devDrop.ts",
+      "dev:seed": "tsx server/drizzle-changeName/seeds/devSeed.ts",
+      "test": "vitest",
+      "test:watch": "vitest --watch"
+    },
+    "dependencies": {
+      "@pergel/module-box": "0.4.0",
+      "@aws-sdk/client-ses": "^3.514.0",
+      "drizzle-kit": "^0.20.14",
+      "drizzle-orm": "^0.29.3",
+      "@faker-js/faker": "^8.4.1",
+      "dotenv": "^16.4.4",
+      "postgres": "^3.4.3",
+      "lucia": "3.0.1",
+      "oslo": "^1.1.1",
+      "@lucia-auth/adapter-drizzle": "1.0.1",
+      "@lucia-auth/adapter-postgresql": "3.1.0",
+      "@pergel/module-graphql": "0.3.1",
+      "@urql/vue": "^1.1.2",
+      "@urql/exchange-execute": "^2.2.2",
+      "graphql": "^16.8.1",
+      "@graphql-yoga/urql-exchange": "^3.1.1",
+      "@urql/exchange-graphcache": "^6.4.1"
+    }
+  }
+}

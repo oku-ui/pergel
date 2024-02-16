@@ -13,7 +13,6 @@ export function generateModuleRuntimeConfig<T>(
     default?: Record<string, any>
   },
   publicRuntime?: boolean,
-  generateEnv?: boolean,
 ) {
   const defaultConfig = Object.assign({}, config.default)
   delete config.default
@@ -31,7 +30,7 @@ export function generateModuleRuntimeConfig<T>(
         ...Object.entries(config).map(([key, value]) => {
           return {
             [key]: value === undefined
-              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`]
+              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`] ?? defaultConfig[key] ?? ''
               : value,
           }
         }).reduce((acc, cur) => {
@@ -47,26 +46,6 @@ export function generateModuleRuntimeConfig<T>(
       (runtimeConfig.public as any)[projectName][moduleName] as any,
       [projectName, moduleName],
     )
-
-    if (generateEnv === true) {
-      nuxt._pergel.readmeJson[projectName] ??= {}
-      nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
-      nuxt._pergel.readmeJson[projectName][moduleName] = defu(nuxt._pergel.readmeJson[projectName][moduleName], {
-        env: {
-          ...Object.entries(config).map(([key, __value]) => {
-            const _key = `NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`
-            return {
-              [_key]: defaultConfig[key] ?? '',
-            }
-          }).reduce((acc, cur) => {
-            return {
-              ...acc,
-              ...cur,
-            }
-          }, {}),
-        },
-      })
-    }
 
     return {
       runtimeConfig: (runtimeConfig.public[projectName] as any)[moduleName] as T,
@@ -92,4 +71,37 @@ export function generateModuleRuntimeConfig<T>(
       env: keyEnvValue,
     }
   }
+}
+
+export function generateModuleRuntimeConfigEnv(
+  nuxt: NuxtPergel,
+  moduleOptions: ResolvedPergelModuleOptions,
+  config: Record<string, any> | {
+    [key: string]: any
+    default?: Record<string, any>
+  },
+) {
+  const defaultConfig = Object.assign({}, config.default)
+  delete config.default
+
+  const projectName = moduleOptions.projectName
+  const moduleName = moduleOptions.moduleName
+
+  nuxt._pergel.readmeJson[projectName] ??= {}
+  nuxt._pergel.readmeJson[projectName][moduleName] ??= {} as any
+  nuxt._pergel.readmeJson[projectName][moduleName] = defu(nuxt._pergel.readmeJson[projectName][moduleName], {
+    env: {
+      ...Object.entries(config).map(([key, __value]) => {
+        const _key = `NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`
+        return {
+          [_key]: defaultConfig[key] ?? '',
+        }
+      }).reduce((acc, cur) => {
+        return {
+          ...acc,
+          ...cur,
+        }
+      }, {}),
+    },
+  })
 }

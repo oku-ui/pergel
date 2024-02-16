@@ -21,6 +21,7 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
     // console.log('process.dev', process.dev)
 
     // TODO: user maybe wants to disable or enable playground
+
     if (import.meta.dev) {
       const graphqlVoyager = await import('../../plugins/voyager')
         .then(m => m.default)

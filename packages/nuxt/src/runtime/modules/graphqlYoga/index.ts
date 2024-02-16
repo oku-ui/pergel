@@ -8,7 +8,7 @@ import { isPackageExists } from 'local-pkg'
 import consola from 'consola'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
-import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import type { GraphQLYogaConfig, ResolvedGraphQLYogaConfig } from './types'
 
@@ -84,16 +84,21 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
 
     mkdirSync(options.serverDir, { recursive: true })
 
-    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {
-      ...options.yogaConfig,
-    }, true, false)
-
-    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(nuxt, options, {
+    generateModuleRuntimeConfigEnv(nuxt, options, {
       origin: undefined,
       default: {
         origin: 'http://localhost:3000,http://localhost:3001',
       },
-    }, true, true)
+    })
+
+    generateModuleRuntimeConfig<ResolvedGraphQLYogaConfig>(
+      nuxt,
+      options,
+      {
+        ...options,
+      },
+      true,
+    )
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 

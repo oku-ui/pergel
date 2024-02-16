@@ -10,6 +10,7 @@ import type { ComposeSpecification } from '../../../moduleTypes/compose-spec-typ
 import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic/types'
 import type { EslintConfig, ResolvedEslintConfig } from '../../modules/eslint/types'
 import type { RenovateConfig, ResolvedRenovateConfig } from '../../modules/renovate/types'
+import type { ResolvedUrqlConfig, UrqlModuleOptions } from '../../modules/urql/types'
 import type { ResolvedPergelModuleOptions, UserModuleOptions } from './module'
 
 // @MODULE
@@ -24,7 +25,7 @@ export interface PergelNuxtModules {
   lucia?: true | (LuciaModuleOptions & UserModuleOptions)
   box?: true | (BoxOptions & UserModuleOptions)
   ionic?: true | IonicInterface
-  urql?: true
+  urql?: true | UrqlModuleOptions
   vitest?: true
   eslint?: true | EslintConfig
   renovate?: true | RenovateConfig
@@ -41,7 +42,7 @@ export interface ResolvedPergelNuxtModuleConfig<T> {
   box?: true | ResolvedBoxOptions
   lucia?: true | ResolvedLuciaModuleOptions
   ionic?: true | ResolvedIonicInterface
-  urql?: true | T
+  urql?: true | ResolvedUrqlConfig
   vitest?: true | T
   eslint?: true | ResolvedEslintConfig
   renovate?: true | ResolvedRenovateConfig

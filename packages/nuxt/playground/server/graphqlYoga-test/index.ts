@@ -1,8 +1,8 @@
 import { DateTimeResolver, DateTimeTypeDefinition } from 'graphql-scalars'
 
 import { createSchema } from 'graphql-yoga'
-import type { Book, Resolvers, User } from '#test/graphqlYoga/server'
-import { schema } from '#test/graphqlYoga/schema'
+import type { Book, Resolvers, User } from '#test/graphqlYoga/generated/server'
+import { schema } from '#test/graphqlYoga/generated/schema'
 
 export const testGraphQLResolvers: Resolvers = {
   DateTime: DateTimeResolver,
