@@ -1,6 +1,6 @@
 import { createSchema } from 'graphql-yoga'
-import type { Resolvers } from '#test/graphqlYoga/server'
-import { schema } from '#test/graphqlYoga/schema'
+import type { Resolvers } from '#test/graphqlYoga/generated/server'
+import { schema } from '#test/graphqlYoga/generated/schema'
 
 const resolvers: Resolvers = {
   Query: {

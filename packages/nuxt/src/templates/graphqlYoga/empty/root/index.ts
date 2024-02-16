@@ -8,8 +8,8 @@ export default function (data: {
   return /* TS */ `import { DateTimeResolver, DateTimeTypeDefinition } from 'graphql-scalars'
 
 import { createSchema } from 'graphql-yoga'
-import type { Book, Resolvers, User } from '#${data.projectName}/graphqlYoga/server'
-import { schema } from '#${data.projectName}/graphqlYoga/schema'
+import type { Book, Resolvers, User } from '#${data.projectName}/graphqlYoga/generated/server'
+import { schema } from '#${data.projectName}/graphqlYoga/generated/schema'
 
 export const ${resolverFunctionName}: Resolvers = {
   DateTime: DateTimeResolver,

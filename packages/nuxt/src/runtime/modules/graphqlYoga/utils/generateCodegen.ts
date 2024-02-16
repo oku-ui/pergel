@@ -76,23 +76,19 @@ export const schema = \`${printSchema}\``
   })
 
   // Create types in build dir
-  const { dst: typeDecSchema } = addTemplate({
+  addTemplatePergel({
     filename: join('pergel', options.folderName, 'schema.d.ts'),
     write: true,
+    where: 'server',
     getContents() {
-      return `declare module '#${options.importPath}/schema' {
+      return `declare module '#${options.importPath}/generated/schema' {
     const schema: string
   }`
     },
   })
 
-  // Add types to `nuxt.d.ts`
-  nuxt.hook('prepare:types', ({ references }) => {
-    references.push({ path: typeDecSchema })
-  })
-
   // GraphQL Server
-  const serverTypes = addTemplatePergel({
+  const serverFile = addTemplatePergel({
     filename: join(options.folderName, 'generated', 'server.ts'), // 'generated/server.ts
     write: true,
     where: 'server',
@@ -172,7 +168,7 @@ export const schema = \`${printSchema}\``
   })
 
   // GraphQL Client
-  const clientTypes = addTemplatePergel({
+  const clientFile = addTemplatePergel({
     filename: join(options.folderName, 'generated', 'client.ts'), // 'generated/client.ts
     write: true,
     async getContents() {
@@ -220,7 +216,7 @@ export const schema = \`${printSchema}\``
   useNitroImports(nuxt, {
     presets: [
       {
-        from: clientTypes.dir,
+        from: serverFile.dir,
         imports: [
           {
             as: `${generatorFunctionName(options.projectName, 'GraphQLClient')}`,
@@ -234,7 +230,7 @@ export const schema = \`${printSchema}\``
   useNuxtImports(nuxt, {
     presets: [
       {
-        from: clientTypes.dir,
+        from: serverFile.dir,
         imports: [
           {
             as: `${generatorFunctionName(options.projectName, 'GraphQLClient')}`,
@@ -251,7 +247,7 @@ export const schema = \`${printSchema}\``
     if (input.type === 'client') {
       updateTemplatePergel({
         filter: (template) => {
-          return template === clientTypes.filename
+          return template === clientFile.filename
         },
       })
 
@@ -264,7 +260,7 @@ export const schema = \`${printSchema}\``
     if (input.type === 'server') {
       return updateTemplatePergel({
         filter: (template) => {
-          return template === serverTypes.filename
+          return template === serverFile.filename
         },
       })
     }

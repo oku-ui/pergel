@@ -2,7 +2,7 @@ import { DateTimeResolver, DateTimeTypeDefinition } from 'graphql-scalars'
 
 import { createSchema } from 'graphql-yoga'
 import { changeNameGraphQLService } from './services'
-import type { Book, Resolvers, User } from '#changeName/graphqlYoga/server'
+import type { Book, Resolvers, User } from '#changeName/graphqlYoga/generated/server'
 import { schema } from '#changeName/graphqlYoga/schema'
 
 export const changeNameGraphQLResolvers: Resolvers = {
