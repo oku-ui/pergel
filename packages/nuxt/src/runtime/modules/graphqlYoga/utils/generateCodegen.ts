@@ -75,10 +75,6 @@ export const schema = \`${printSchema}\``
     },
   })
 
-  nuxt.options.alias[`#${options.importPath}/schema`] = printSchemaFile.dir
-  nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${options.importPath}/schema`] = printSchemaFile.dir
-
   // Create types in build dir
   const { dst: typeDecSchema } = addTemplate({
     filename: join('pergel', options.folderName, 'schema.d.ts'),
@@ -143,10 +139,6 @@ export const schema = \`${printSchema}\``
     },
   })
 
-  nuxt.options.alias[`#${options.importPath}/server`] = serverTypes.dir
-  nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${options.importPath}/server`] = serverTypes.dir
-
   // GraphQL Urql Introspection
   const urqlIntrospection = addTemplatePergel({
     filename: join(options.folderName, 'generated', 'urqlIntrospection.ts'), // 'generated/urqlIntrospection.ts
@@ -178,10 +170,6 @@ export const schema = \`${printSchema}\``
       }
     },
   })
-
-  nuxt.options.alias[`#${options.importPath}/urqlIntrospection`] = urqlIntrospection.dir
-  nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${options.importPath}/urqlIntrospection`] = urqlIntrospection.dir
 
   // GraphQL Client
   const clientTypes = addTemplatePergel({
@@ -228,10 +216,6 @@ export const schema = \`${printSchema}\``
     },
     where: 'client',
   })
-
-  nuxt.options.alias[`#${options.importPath}/client`] = clientTypes.dir
-  nuxt.options.nitro.alias ??= {}
-  nuxt.options.nitro.alias[`#${options.importPath}/client`] = clientTypes.dir
 
   useNitroImports(nuxt, {
     presets: [

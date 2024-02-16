@@ -1,7 +1,7 @@
 import { fetchExchange } from "@urql/core";
 import { cacheExchange } from "@urql/exchange-graphcache"
-import type {GraphCacheConfig} from '#changeName/graphqlYoga/client'
-import schema from '#changeName/graphqlYoga/urqlIntrospection'
+import type {GraphCacheConfig} from '#changeName/graphqlYoga/generated/client'
+import schema from '#changeName/graphqlYoga/generated/urqlIntrospection'
 import { makeDefaultStorage } from "@urql/exchange-graphcache/default-storage";
 import { useRequestHeaders } from "#app";
 

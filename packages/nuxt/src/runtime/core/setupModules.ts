@@ -78,29 +78,40 @@ async function initModules(nuxt: Nuxt) {
         if (typeof pergelModule !== 'function')
           throw new TypeError(`Nuxt module should be a function: ${pergelModule}`)
 
-        // const resolvedModule = await pergelModule({ nuxt: nuxt })
+        const importPath = join(camelCase(projectName), camelCase(moduleName))
+        const rootModuleDir = join(nuxt._pergel.pergelDir, `${moduleName}-${projectName}`)
+        const serverDir = join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`)
+
         const resolvedModule = await pergelModule.call({
           prepare: true,
         } as any, {
           nuxt,
           options: {
             _dir: {
-              module: join(projectName, moduleName),
+              module: importPath,
               server: join(nuxt._pergel.dir.server, `${moduleName}-${projectName}`),
               build: join('.nuxt', 'pergel', projectName, moduleName),
             },
             moduleName: moduleName as PergelModuleNames,
             projectName,
-            rootModuleDir: join(nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
-            serverDir: join(nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
+            rootModuleDir,
+            serverDir,
             projectNameCamelCase: camelCase(projectName, { normalize: true }),
             projectNameCamelCaseWithPergel: camelCase(`pergel-${projectName}`, { normalize: true }),
             folderName: `${camelCase(moduleName)}-${camelCase(projectName)}`,
-            importPath: join(projectName, moduleName),
+            importPath,
             buildDir: join(nuxt.options.buildDir, 'pergel', projectName, moduleName),
           },
           rootOptions: module,
         })
+
+        nuxt.options.alias[`#${importPath}`] = join(rootModuleDir)
+        nuxt.options.nitro.alias ??= {}
+        nuxt.options.nitro.alias[`#${importPath}`] = join(serverDir)
+
+        nuxt.options.alias[`#${importPath}/*`] = join(rootModuleDir, '*')
+        nuxt.options.nitro.alias ??= {}
+        nuxt.options.nitro.alias[`#${importPath}/*`] = join(serverDir, '*')
 
         if (resolvedModule === false /* setup aborted */
           || resolvedModule === undefined /* setup failed */
@@ -265,7 +276,7 @@ export async function setupModules(data: {
           },
           moduleName: moduleName as PergelModuleNames,
           projectName,
-          rootModuleDir: join(data.nuxt._pergel.rootDir, `${moduleName}-${projectName}`),
+          rootModuleDir: join(data.nuxt._pergel.pergelDir, `${moduleName}-${projectName}`),
           serverDir: join(data.nuxt._pergel.serverDir, `${moduleName}-${projectName}`),
           projectNameCamelCase: camelCase(projectName, { normalize: true }),
           projectNameCamelCaseWithPergel: camelCase(`pergel-${projectName}`, { normalize: true }),

@@ -110,15 +110,13 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
         : urlClient.dst
     nuxt.options.alias['#urql-client'] = clientPath
 
-    nuxt.options.alias[`#${options.projectName}/client/urql`] = clientPath
-
     addPluginTemplate({
       filename: `${options.projectName}.urql.ts`,
       write: true,
       async getContents() {
         return /* ts */`import { ref, defineNuxtPlugin, useState, usePergelRuntime } from "#imports"
 import { type Client, createClient, type SSRData, ssrExchange } from "@urql/core";
-import nuxtURQLClient from '#${options.projectName}/client/urql'
+import nuxtURQLClient from '#urql-client'
 import type { ResolvedUrqlConfig } from '#pergel/modules/urql/types'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
