@@ -14,7 +14,7 @@ import type { Source } from '@graphql-tools/utils'
 import * as typescriptPlugin from '@graphql-codegen/typescript'
 import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers'
 import * as urqlIntrospectionPlugin from '@graphql-codegen/urql-introspection'
-
+import * as urqlGraphqlCachePlugin from '@graphql-codegen/typescript-urql-graphcache'
 import consola from 'consola'
 import defu from 'defu'
 import {
@@ -148,6 +148,7 @@ async function urqlIntrospection(
 ) {
   const mergeConfig = defu(config, {
     useTypeImports: true,
+    includeScalars: true,
   } as CodegenClientConfig)
 
   const res = await codegen({
@@ -196,6 +197,7 @@ async function generateTypedDocumentNode(
       { typescript: {} },
       { typescriptOperations: {} },
       { typedDocumentNode: {} },
+      { urqlGraphqlCache: {} },
     ],
     pluginMap: {
       pluginContent: {
@@ -208,6 +210,7 @@ async function generateTypedDocumentNode(
       typedDocumentNode: {
         plugin: typedDocumentNode,
       },
+      urqlGraphqlCache: urqlGraphqlCachePlugin,
     },
   }).catch((e) => {
     consola.warn('error', e)

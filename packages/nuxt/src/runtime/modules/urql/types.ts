@@ -28,12 +28,12 @@ export interface UrqlModuleOptions extends PergelModuleOptions {
    * graphql endpoint URL
    * @see {@link ClientOptions.url}
    */
-  endpoint: string
+  endpoint?: string
 
   /**
    * client options object or path to client setup script
    */
-  client?: ModuleClientOptions | string
+  client?: ModuleClientOptions | 'custom'
 
   /**
    * SSR exchange options
@@ -43,7 +43,7 @@ export interface UrqlModuleOptions extends PergelModuleOptions {
 
 export interface ResolvedUrqlConfig extends ResolvedPergelModuleOptions {
   endpoint: string
-  client: ModuleClientOptions
+  client: ModuleClientOptions | 'custom'
   ssr: ModuleSSRParams
 }
 

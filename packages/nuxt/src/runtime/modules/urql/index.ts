@@ -19,12 +19,13 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
         '@urql/exchange-execute': deps['@urql/exchange-execute'],
         'graphql': deps.graphql,
         '@graphql-yoga/urql-exchange': deps['@graphql-yoga/urql-exchange'],
+        '@urql/exchange-graphcache': deps['@urql/exchange-graphcache'],
       }
     },
   },
   defaults: {
     endpoint: '',
-    client: 'urql.config',
+    client: undefined,
     ssr: { key: '__URQL_DATA__' },
   },
   async setup({ nuxt, options }) {
@@ -43,7 +44,6 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
       ssr: undefined,
       default: {
         endpoint: 'http://localhost:3000/api/graphql',
-        client: 'urql.config',
         ssr: {
           key: '__URQL_DATA__',
         },
@@ -57,7 +57,7 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
       write: true,
       getContents() {
         return /* ts */`import { type ClientOptions, type SSRExchange, cacheExchange, fetchExchange } from '@urql/core'
-import { useRuntimeConfig } from '#app'
+import type { ResolvedUrqlConfig } from '#pergel/modules/urql/types'
 
 /**
  * client options except endpoint
@@ -82,16 +82,17 @@ export const ${options.projectNameCamelCaseWithPergel}UrqlClient = (f: UrqlClien
  * default client options and exchanges
  */
 export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
-  // const { client } = useRuntimeConfig().public.urql
   const { selectProject } = usePergelRuntime({
     moduleName: 'urql',
     projectName: '${options.projectName}',
-  }, undefined, true)
+  }, undefined, true) as {
+    selectProject: ResolvedUrqlConfig
+  }
 
-  if (!selectProject)
+  if (!selectProject || !selectProject.client)
     throw new Error('Pergel is not defined')
 
-  const options = typeof selectProject.client === 'string' ? {} : selectProject.client
+  const options = selectProject.client === 'custom' ? {} : selectProject.client
   return {
     ...options,
     exchanges: process.server ? [ssr, fetchExchange] : [cacheExchange, ssr, fetchExchange],
@@ -104,7 +105,7 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
 
     // Load the client from the user's project
     const clientPath
-      = typeof options.client === 'string'
+      = options.client === 'custom'
         ? (await findPath(options.client)) ?? urlClient.dst
         : urlClient.dst
     nuxt.options.alias['#urql-client'] = clientPath
@@ -188,6 +189,12 @@ export default defineNuxtPlugin(async (nuxtApp) => {
             'provideClient',
           ] as Array<keyof typeof import('@urql/vue')>,
           from: '@urql/vue',
+        },
+        {
+          from: urlClient.dst,
+          imports: [
+            `${options.projectNameCamelCaseWithPergel}UrqlClient`,
+          ],
         },
       ],
     })

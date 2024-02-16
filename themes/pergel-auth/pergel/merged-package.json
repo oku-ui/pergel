@@ -31,7 +31,8 @@
       "@urql/vue": "^1.1.2",
       "@urql/exchange-execute": "^2.2.2",
       "graphql": "^16.8.1",
-      "@graphql-yoga/urql-exchange": "^3.1.1"
+      "@graphql-yoga/urql-exchange": "^3.1.1",
+      "@urql/exchange-graphcache": "^6.4.1"
     }
   }
 }

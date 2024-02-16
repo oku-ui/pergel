@@ -16,6 +16,10 @@ export default {
     "subscriptionType": null,
     "types": [
       {
+        "kind": "SCALAR",
+        "name": "DateTime"
+      },
+      {
         "kind": "OBJECT",
         "name": "Query",
         "fields": [
@@ -36,7 +40,8 @@ export default {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Any"
+                    "name": "ID",
+                    "ofType": null
                   }
                 }
               }
@@ -104,13 +109,22 @@ export default {
                 "name": "search",
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Any"
+                  "name": "String",
+                  "ofType": null
                 }
               }
             ]
           }
         ],
         "interfaces": []
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String"
       },
       {
         "kind": "OBJECT",
@@ -122,7 +136,8 @@ export default {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Any"
+                "name": "ID",
+                "ofType": null
               }
             },
             "args": []
@@ -133,7 +148,8 @@ export default {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Any"
+                "name": "String",
+                "ofType": null
               }
             },
             "args": []
@@ -144,7 +160,8 @@ export default {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Any"
+                "name": "String",
+                "ofType": null
               }
             },
             "args": []
@@ -153,7 +170,8 @@ export default {
             "name": "updatedAt",
             "type": {
               "kind": "SCALAR",
-              "name": "Any"
+              "name": "String",
+              "ofType": null
             },
             "args": []
           }
@@ -184,7 +202,8 @@ export default {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Any"
+                "name": "ID",
+                "ofType": null
               }
             },
             "args": []
@@ -193,7 +212,8 @@ export default {
             "name": "name",
             "type": {
               "kind": "SCALAR",
-              "name": "Any"
+              "name": "String",
+              "ofType": null
             },
             "args": []
           },
@@ -201,7 +221,8 @@ export default {
             "name": "email",
             "type": {
               "kind": "SCALAR",
-              "name": "Any"
+              "name": "String",
+              "ofType": null
             },
             "args": []
           },
@@ -211,7 +232,8 @@ export default {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Any"
+                "name": "DateTime",
+                "ofType": null
               }
             },
             "args": []
@@ -252,7 +274,8 @@ export default {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Any"
+                "name": "String",
+                "ofType": null
               }
             },
             "args": []
@@ -304,7 +327,8 @@ export default {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Any"
+                    "name": "ID",
+                    "ofType": null
                   }
                 }
               },
@@ -337,7 +361,8 @@ export default {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Any"
+                    "name": "ID",
+                    "ofType": null
                   }
                 }
               }
@@ -360,7 +385,8 @@ export default {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Any"
+                    "name": "String",
+                    "ofType": null
                   }
                 }
               },
@@ -370,7 +396,8 @@ export default {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Any"
+                    "name": "String",
+                    "ofType": null
                   }
                 }
               }
@@ -378,6 +405,10 @@ export default {
           }
         ],
         "interfaces": []
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Boolean"
       },
       {
         "kind": "SCALAR",

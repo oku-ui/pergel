@@ -34,6 +34,7 @@
     "@graphql-codegen/typescript": "^4.0.4",
     "@graphql-codegen/typescript-operations": "^4.1.2",
     "@graphql-codegen/typescript-resolvers": "^4.0.4",
+    "@graphql-codegen/typescript-urql-graphcache": "^3.1.0",
     "@graphql-codegen/urql-introspection": "^3.0.0",
     "@graphql-tools/graphql-file-loader": "^8.0.0",
     "@graphql-tools/load": "^8.0.1",
