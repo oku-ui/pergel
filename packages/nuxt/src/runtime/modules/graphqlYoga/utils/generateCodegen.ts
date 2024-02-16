@@ -229,7 +229,7 @@ export const schema = \`${printSchema}\``
   useNuxtImports(nuxt, {
     presets: [
       {
-        from: serverFile.dir,
+        from: clientFile.dir,
         imports: [
           {
             as: `${generatorFunctionName(options.projectName, 'GraphQLClient')}`,

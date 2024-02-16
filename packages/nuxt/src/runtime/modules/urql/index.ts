@@ -1,10 +1,13 @@
 // Credits: https://github.com/gbicou/nuxt-urql
 
-import { join } from 'node:path'
+import { basename, join, resolve } from 'node:path'
+import { existsSync } from 'node:fs'
 import { addImportsDir, addPluginTemplate, addTemplate, createResolver, findPath } from '@nuxt/kit'
+import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
 import { useNuxtImports } from '../../core/utils/useImports'
+import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import type { ResolvedUrqlConfig, UrqlModuleOptions, UrqlModuleRuntimeConfig } from './types'
 
 export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
@@ -27,6 +30,7 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
     endpoint: '',
     client: undefined,
     ssr: { key: '__URQL_DATA__' },
+    driver: 'graphqlYoga',
   },
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
@@ -174,6 +178,29 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         `
       },
     })
+
+    if (nuxt._pergel.projects[options.projectName]?.drizzle && nuxt._pergel.projects[options.projectName]?.lucia) {
+      if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, '**/*')), {
+          onlyFiles: true,
+        })
+
+        for (const file of files) {
+          const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              projectNameCamelCaseWithPergel: options.projectNameCamelCaseWithPergel,
+              nuxt,
+              driver: options.driver,
+            })
+            const fileName = basename(file)
+
+            writeFilePergel(resolve(options.rootModuleDir, fileName), fileData)
+          }
+        }
+      }
+    }
 
     useNuxtImports(nuxt, {
       presets: [

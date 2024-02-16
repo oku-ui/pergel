@@ -39,12 +39,19 @@ export interface UrqlModuleOptions extends PergelModuleOptions {
    * SSR exchange options
    */
   ssr?: ModuleSSRParams
+
+  /**
+   * module driver
+   * @default 'graphqlYoga'
+   */
+  driver?: 'graphqlYoga'
 }
 
 export interface ResolvedUrqlConfig extends ResolvedPergelModuleOptions {
   endpoint: string
   client: ModuleClientOptions | 'custom'
   ssr: ModuleSSRParams
+  driver: 'graphqlYoga'
 }
 
 export interface UrqlModuleRuntimeConfig {
