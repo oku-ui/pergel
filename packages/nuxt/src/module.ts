@@ -222,7 +222,7 @@ export default defineNuxtModule<PergelOptions>({
 
     useNuxtImports(nuxt, {
       presets: [{
-        from: _resolver.resolve('./runtime/core/utils/usePergelRuntime.ts'),
+        from: _resolver.resolve('./runtime/core/utils/usePergelRuntime'),
         imports: ['usePergelRuntime'],
       }],
     })

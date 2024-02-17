@@ -119,10 +119,9 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
       filename: `${options.projectName}.urql.mjs`,
       write: true,
       async getContents() {
-        return /* ts */`import { ref, defineNuxtPlugin, useState } from "#imports"
+        return /* ts */`import { ref, defineNuxtPlugin, useState, usePergelRuntime } from "#imports"
 import { createClient, ssrExchange } from "@urql/core";
 import nuxtURQLClient from '#urql-client'
-import { usePergelRuntime } from '@pergel/nuxt/dist/runtime/core/utils/usePergelRuntime.mjs'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const { selectProject } = usePergelRuntime({
