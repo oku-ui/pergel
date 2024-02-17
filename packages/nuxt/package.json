@@ -101,6 +101,7 @@
     "@urql/exchange-graphcache": "^6.4.1",
     "@urql/vue": "^1.1.2",
     "@vue/test-utils": "^2.4.4",
+    "arctic": "^1.1.6",
     "bullmq": "^5.2.0",
     "c12": "^1.8.0",
     "dotenv": "^16.4.4",

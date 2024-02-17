@@ -1,4 +1,4 @@
-import { session, user } from '#test/server/drizzle/schema'
+import { session, user } from '#test/drizzle/schema'
 
 const connect = await pergelTest()
   .drizzle()

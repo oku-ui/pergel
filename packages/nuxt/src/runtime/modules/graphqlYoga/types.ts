@@ -173,7 +173,7 @@ export interface GraphQLYogaConfig extends PergelModuleOptions {
           nuxtModule: string
 
           /**
-           * #projectName/server/drizzle/schema
+           * #projectName/drizzle/schema
            */
           drizzleShemas: (key: string) => string
         }
@@ -279,7 +279,7 @@ export interface ResolvedGraphQLYogaConfig extends GraphQLYogaConfig, ResolvedPe
           nuxtModule: string
 
           /**
-           * #projectName/server/drizzle/schema
+           * #projectName/drizzle/schema
            */
           drizzleShemas: (key: string) => string
         }

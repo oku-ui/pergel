@@ -21,6 +21,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
         'lucia': deps.lucia,
         'oslo': deps.oslo,
         '@lucia-auth/oauth': deps['@lucia-auth/oauth'],
+        'arctic': deps.arctic,
       }
 
       switch (driver) {
@@ -88,7 +89,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
         writeFilePergel(
           `${options.serverDir}/index.ts`,
           /* ts */`
-import { session, user } from '#${options.projectName}/server/drizzle/schema'
+import { session, user } from '#${options.projectName}/drizzle/schema'
 
 const connect = await ${options.projectNameCamelCaseWithPergel}()
 .drizzle()

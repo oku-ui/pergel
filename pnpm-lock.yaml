@@ -360,6 +360,9 @@ importers:
       '@vue/test-utils':
         specifier: ^2.4.4
         version: 2.4.4(vue@3.3.13)
+      arctic:
+        specifier: ^1.1.6
+        version: 1.1.6
       bullmq:
         specifier: ^5.2.0
         version: 5.2.0
@@ -9211,6 +9214,13 @@ packages:
       readdir-glob: 1.1.3
       tar-stream: 3.1.7
       zip-stream: 5.0.1
+
+  /arctic@1.1.6:
+    resolution: {integrity: sha512-tE24DLtMn0s7BBqH3D8f8kWSqrg2AFYS3FVAvnj8N9h1Pu/dYmhyAy7WmW1/rrpLY4yP8q3D5s+PqfF3XybI+A==}
+    dependencies:
+      auri: 1.0.2
+      oslo: 1.0.1
+    dev: true
 
   /are-docs-informative@0.0.2:
     resolution: {integrity: sha512-ixiS0nLNNG5jNQzgZJNoUpBKdo9yTYZMGJ+QgT2jmjR7G7+QHRCc4v6LQ3NgE7EBJq+o0ams3waJwkrlBom8Ig==}
