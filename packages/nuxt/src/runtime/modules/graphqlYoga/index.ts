@@ -102,22 +102,11 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
 
     addServerImportsDir(resolver.resolve('./composables/**'))
 
-    addServerImportsDir(join(nuxt.options.buildDir, 'pergel', options.projectName, options.moduleName, 'client'))
-
     useNitroImports(nuxt, {
       presets: [
         {
           from: 'graphql',
           imports: ['GraphQLError'],
-        },
-        {
-          from: join(nuxt.options.buildDir, 'pergel', options.projectName, options.moduleName, 'client'),
-          imports: [
-            {
-              as: `${options.projectName}${pascalCase(options.moduleName)}Document`,
-              name: '*',
-            },
-          ],
         },
         {
           from: 'graphql-relay',
