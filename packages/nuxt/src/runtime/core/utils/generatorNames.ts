@@ -5,5 +5,5 @@ export function generatorFunctionName(projectName: string, text: string) {
 }
 
 export function generatorFolderName(projectName: string, moduleName: string) {
-  return `${camelCase(moduleName)} -${camelCase(projectName)}`
+  return `${camelCase(moduleName)}-${camelCase(projectName)}`
 }

@@ -312,6 +312,9 @@ importers:
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.0
         version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
+      '@lucia-auth/oauth':
+        specifier: ^3.5.3
+        version: 3.5.3(lucia@3.0.1)
       '@nuxt/devtools-ui-kit':
         specifier: ^1.0.8
         version: 1.0.8(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.18)(nuxt@3.10.2)(postcss@8.4.35)(rollup@4.10.0)(vite@5.1.1)(vue@3.3.13)(webpack@5.90.1)
@@ -4432,6 +4435,14 @@ packages:
       lucia: 3.0.1
       pg: 8.11.3
       postgres: 3.4.3
+
+  /@lucia-auth/oauth@3.5.3(lucia@3.0.1):
+    resolution: {integrity: sha512-3blBldenf2zXsSJTZUwzB+NxI+0KJljfMHT0WR7hyLNwi4Ijss7F2cQqk2xW1lGH3lzdmsV93ZsY9Yv8ekBRUw==}
+    peerDependencies:
+      lucia: ^2.0.0
+    dependencies:
+      lucia: 3.0.1
+    dev: true
 
   /@mapbox/node-pre-gyp@1.0.11:
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}

@@ -11,7 +11,7 @@ export default function (data: {
   return /* TS */ `
 declare module 'pergel/${data.projectName}/types' {
 
-  import type { ${drizzleStorageName} } from '#${data.projectName}/server/drizzle/storage'
+  import type { ${drizzleStorageName} } from '#${data.projectName}/drizzle/storage'
   import type { H3Event } from 'h3'
   import type { IncomingMessage, ServerResponse } from 'node:http'
   import type { YogaInitialContext } from 'graphql-yoga'

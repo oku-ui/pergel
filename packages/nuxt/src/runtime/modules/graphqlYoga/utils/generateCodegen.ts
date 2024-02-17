@@ -118,7 +118,7 @@ export const schema = \`${printSchema}\``
                 server: nuxt.options.serverDir,
                 // drizzleShemas: (key: string) => `${join(`${`${options.projectName}`}`, 'server', 'drizzle', 'schema')}#${key}`,
                 // ~/server/drizzle-changeName/schema
-                drizzleShemas: (key: string) => `${join(`~/${join('server', generatorFolderName('drizzle', options.projectName))}`, 'schema')}#${key}`,
+                drizzleShemas: (key: string) => `${join(`~/${join('server', generatorFolderName(options.projectName, 'drizzle'))}`, 'schema')}#${key}`,
                 nuxtModule: options.buildDir,
               },
             })

@@ -85,6 +85,7 @@
     "@json2csv/node": "^7.0.6",
     "@lucia-auth/adapter-drizzle": "1.0.1",
     "@lucia-auth/adapter-postgresql": "3.1.0",
+    "@lucia-auth/oauth": "^3.5.3",
     "@nuxt/devtools-ui-kit": "^1.0.8",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.10.2",

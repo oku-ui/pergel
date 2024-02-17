@@ -17,7 +17,7 @@
     },
     "dependencies": {
       "@pergel/module-box": "0.4.0",
-      "@aws-sdk/client-ses": "^3.514.0",
+      "@aws-sdk/client-ses": "^3.515.0",
       "drizzle-kit": "^0.20.14",
       "drizzle-orm": "^0.29.3",
       "@faker-js/faker": "^8.4.1",
@@ -25,6 +25,7 @@
       "postgres": "^3.4.3",
       "lucia": "3.0.1",
       "oslo": "^1.1.1",
+      "@lucia-auth/oauth": "^3.5.3",
       "@lucia-auth/adapter-drizzle": "1.0.1",
       "@lucia-auth/adapter-postgresql": "3.1.0",
       "@pergel/module-graphql": "0.3.1",

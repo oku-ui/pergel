@@ -18,8 +18,9 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       const deps = nuxt._pergel.pergelPackageJson
       const [driver, db] = options.driver.split(':')
       const defaultData = {
-        lucia: deps.lucia,
-        oslo: deps.oslo,
+        'lucia': deps.lucia,
+        'oslo': deps.oslo,
+        '@lucia-auth/oauth': deps['@lucia-auth/oauth'],
       }
 
       switch (driver) {
@@ -142,8 +143,8 @@ export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.p
 
     addModuleDTS({
       pergelFolderTemplate: /* ts */`
-import type { Session, User } from '#${options.projectName}/server/drizzle/schema'
-import type { ${generatorFunctionName(options.projectName, 'Auth')} } from '#${options.projectName}/server/lucia'
+import type { Session, User } from '#${options.projectName}/drizzle/schema'
+import type { ${generatorFunctionName(options.projectName, 'Auth')} } from '#${options.projectName}/lucia'
 
 declare module 'lucia' {
   interface Register {

@@ -4,7 +4,7 @@
 /* eslint-disable */
 /* prettier-ignore */
 /* pergel - oku-ui.com/pergel */
-import type { RoleStatus } from '~/server/changeName -drizzle/schema';
+import type { RoleStatus } from '~/server/drizzle-changeName/schema';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphqlYogaContext } from 'pergel/changeName/types';
 export type Maybe<T> = T | null;

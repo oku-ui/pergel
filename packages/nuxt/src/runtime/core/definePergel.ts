@@ -55,12 +55,6 @@ export function definePergelModule<RootOptions extends PergelModuleOptions = Per
       options.serverDir,
     )
 
-    data.nuxt.options.nitro.alias ??= {}
-    data.nuxt.options.nitro.alias[`#${options.projectName}/server/${options.moduleName}`] = resolve(
-      data.nuxt.options.rootDir,
-      options.serverDir,
-    )
-
     addServerImportsDir(path)
 
     const packageExists = {

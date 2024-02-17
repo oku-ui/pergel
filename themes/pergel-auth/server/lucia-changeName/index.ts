@@ -1,4 +1,4 @@
-import { session, user } from '#changeName/server/drizzle/schema'
+import { session, user } from '#changeName/drizzle/schema'
 
 const connect = await pergelChangeName()
   .drizzle()
