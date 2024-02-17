@@ -115,13 +115,12 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
     nuxt.options.alias['#urql-client'] = clientPath
 
     addPluginTemplate({
-      filename: `${options.projectName}.urql.ts`,
+      filename: `${options.projectName}.urql.mjs`,
       write: true,
       async getContents() {
         return /* ts */`import { ref, defineNuxtPlugin, useState, usePergelRuntime } from "#imports"
-import { type Client, createClient, type SSRData, ssrExchange } from "@urql/core";
+import { createClient, ssrExchange } from "@urql/core";
 import nuxtURQLClient from '#urql-client'
-import type { ResolvedUrqlConfig } from '#pergel/modules/urql/types'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const { selectProject } = usePergelRuntime({
@@ -141,7 +140,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   })
 
   // ssr data in nuxt state
-  const ssrData = useState<SSRData>(selectProject.ssr.key || '__URQL_DATA__')
+  const ssrData = useState(selectProject.ssr.key || '__URQL_DATA__')
 
   // when app is created in browser, restore SSR state from nuxt payload
   if (import.meta.client) {
@@ -161,7 +160,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options = await nuxtURQLClient(ssr);
 
   // create urql client
-  const client: Client = createClient({
+  const client = createClient({
     url: (import.meta.server && selectProject.ssr.endpoint) || selectProject.endpoint,
     ...options,
   })
