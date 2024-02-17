@@ -193,6 +193,16 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           recursive: true,
         })
       }
+
+      if (!existsSync(resolve(options.serverDir, 'services'))) {
+        mkdirSync(resolve(options.serverDir, 'services'), {
+          recursive: true,
+        })
+
+        cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'services')), resolve(options.serverDir, 'services'), {
+          recursive: true,
+        })
+      }
     }
     else {
       if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
