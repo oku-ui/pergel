@@ -17,7 +17,7 @@
     "@lucia-auth/adapter-postgresql": "^3.1.0",
     "@pergel/module-box": "^0.4.0",
     "@pergel/module-graphql": "^0.4.0",
-    "@pergel/module-s3": "^0.0.0",
+    "@pergel/module-s3": "^0.1.0",
     "bullmq": "^5.2.0",
     "dotenv": "^16.4.4",
     "drizzle-kit": "^0.20.14",
