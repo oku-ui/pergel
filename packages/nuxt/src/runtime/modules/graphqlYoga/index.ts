@@ -1,7 +1,6 @@
 import { basename, join, resolve } from 'node:path'
 import { cpSync, existsSync, mkdirSync } from 'node:fs'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
-import { pascalCase } from 'scule'
 
 import { globbySync } from 'globby'
 import { isPackageExists } from 'local-pkg'
