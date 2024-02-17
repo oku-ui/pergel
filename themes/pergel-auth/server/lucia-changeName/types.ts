@@ -4,6 +4,8 @@ import type { changeNameAuth } from '#changeName/lucia'
 declare module 'lucia' {
   interface Register {
     Lucia: typeof changeNameAuth
+    DatabaseUserAttributes: DatabaseUserAttributes
+    DatabaseSessionAttributes: DatabaseSessionAttributes
   }
   interface DatabaseUserAttributes extends Omit<User, 'id'> {}
 

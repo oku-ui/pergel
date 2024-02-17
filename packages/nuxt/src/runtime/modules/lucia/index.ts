@@ -150,6 +150,8 @@ import type { ${generatorFunctionName(options.projectName, 'Auth')} } from '#${o
 declare module 'lucia' {
   interface Register {
     Lucia: typeof ${generatorFunctionName(options.projectName, 'Auth')}
+    DatabaseUserAttributes: DatabaseUserAttributes
+    DatabaseSessionAttributes: DatabaseSessionAttributes
   }
   interface DatabaseUserAttributes extends Omit<User, 'id'> {}
 

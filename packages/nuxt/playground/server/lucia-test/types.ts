@@ -4,6 +4,8 @@ import type { testAuth } from '#test/lucia'
 declare module 'lucia' {
   interface Register {
     Lucia: typeof testAuth
+    DatabaseUserAttributes: DatabaseUserAttributes
+    DatabaseSessionAttributes: DatabaseSessionAttributes
   }
   interface DatabaseUserAttributes extends Omit<User, 'id'> {}
 
