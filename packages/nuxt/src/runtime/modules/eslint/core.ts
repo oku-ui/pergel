@@ -24,6 +24,7 @@ export function pergelEslintConfig(input?: {
         'tailwindcss/no-contradicting-classname': 'error',
         'import/first': 'off',
         'symbol-description': 'off',
+        'ts/consistent-type-definitions': 'off',
       },
       ...input?.tailwindcss ?? {},
     },
