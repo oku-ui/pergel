@@ -126,9 +126,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const { selectProject } = usePergelRuntime({
     moduleName: 'urql',
     projectName: '${options.projectName}',
-  }, undefined, true) as {
-    selectProject: ResolvedUrqlConfig
-  }
+  }, undefined, true)
 
   if (!selectProject)
     throw new Error('Pergel is not defined')
