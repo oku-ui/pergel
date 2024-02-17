@@ -266,9 +266,15 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         `,
     })
 
-    if (isPackageExists('@pergel/module-graphql') || existsSync(join(options.serverDir, 'index.ts'))) {
-      const data = await import('./utils/generateGraphqlTemplate').catch(() => {
-        consola.error('Please `pergel install` run')
+    if (
+      (
+        isPackageExists('@pergel/module-graphql')
+        || existsSync(join(options.serverDir, 'index.ts'))
+      )
+    ) {
+      const data = await import('./utils/generateGraphqlTemplate').catch((e) => {
+        consola.error('Please upgrade `@pergel/module-graphql`')
+        consola.error(e)
         return undefined
       })
 
@@ -278,6 +284,9 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           options,
         })
       }
+    }
+    else {
+      consola.error('Please `pergel install` run or upgrade `@pergel/module-graphql`')
     }
   },
 })
