@@ -358,8 +358,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(vue@3.3.13)
       bullmq:
-        specifier: ^5.1.11
-        version: 5.1.11
+        specifier: ^5.2.0
+        version: 5.2.0
       c12:
         specifier: ^1.8.0
         version: 1.8.0
@@ -503,8 +503,8 @@ importers:
         specifier: workspace:*
         version: link:../../s3
       bullmq:
-        specifier: ^5.1.11
-        version: 5.1.11
+        specifier: ^5.2.0
+        version: 5.2.0
       dotenv:
         specifier: ^16.4.4
         version: 16.4.4
@@ -9526,8 +9526,8 @@ packages:
     dependencies:
       semver: 7.6.0
 
-  /bullmq@5.1.11:
-    resolution: {integrity: sha512-+IOAOi9X2ne691UcHEKL6mVq8ee6VNwAx0eAEEtxcjJM0EKYEsCGbBmLwsSHGh9NvCtmTdPZn7yHQS1GrbzF1A==}
+  /bullmq@5.2.0:
+    resolution: {integrity: sha512-h0lkO9dNBLuFRdjPZXyb9sq0gyaaLir5tY9+uE7qjZaMtDXKUOhZlI7KgVWFT9smotsKG204Mwa7Y7jHxPCctQ==}
     dependencies:
       cron-parser: 4.9.0
       glob: 8.1.0
