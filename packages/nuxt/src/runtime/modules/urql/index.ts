@@ -62,6 +62,7 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
       getContents() {
         return /* ts */`import { type ClientOptions, type SSRExchange, cacheExchange, fetchExchange } from '@urql/core'
 import type { ResolvedUrqlConfig } from '#pergel/modules/urql/types'
+import { usePergelRuntime } from '#imports'
 
 /**
  * client options except endpoint
