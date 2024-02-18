@@ -1,10 +1,4 @@
-import { camelCase } from 'scule'
-
-export default function (data: {
-  projectName: string
-}) {
-  const authFunctionName = camelCase(`${data.projectName}-Auth`)
-  return /* TS */ `import consola from 'consola'
+import consola from 'consola'
 import type { API } from './types'
 
 const logger = consola.withDefaults({
@@ -28,9 +22,9 @@ async function create(this: API, params: {
   if (!user)
     throw new GraphQLError('User not found')
 
-  const session = await ${authFunctionName}.createSession(user.id, {})
+  const session = await changeNameAuth.createSession(user.id, {})
 
-  appendHeader(this.context.event, 'Set-Cookie', ${authFunctionName}.createSessionCookie(session.id).serialize())
+  appendHeader(this.context.event, 'Set-Cookie', changeNameAuth.createSessionCookie(session.id).serialize())
   return {
     user,
     session,
@@ -42,6 +36,4 @@ export function auth(input: API) {
     create: create.bind(input),
     logger,
   }
-}
-`
 }

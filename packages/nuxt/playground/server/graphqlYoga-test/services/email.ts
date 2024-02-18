@@ -1,10 +1,4 @@
-import { camelCase } from 'scule'
-
-export default function (data: {
-  projectName: string
-}) {
-  const pergelFunctionName = camelCase(`pergel-${data.projectName}`)
-  return /* TS */ `import consola from 'consola'
+import consola from 'consola'
 import type { API } from './types'
 
 const logger = consola.withDefaults({
@@ -14,7 +8,7 @@ const logger = consola.withDefaults({
 async function verificationEmail(this: API, params: {
   email: string
 }) {
-  const { sendEmail, templates } = await ${pergelFunctionName}().ses().use({
+  const { sendEmail, templates } = await pergelChangeName().ses().use({
     event: this.context.event,
   })
 
@@ -25,7 +19,7 @@ async function verificationEmail(this: API, params: {
     code: generatedCode,
     projectName: 'Pergel',
     source: 'noreply@huntersofbook.com',
-    clickButtonUrl: \`https://oku-ui.com/verify-email?code=\${generatedCode}\`,
+    clickButtonUrl: `https://oku-ui.com/verify-email?code=${generatedCode}`,
     helpEmailAddress: 'help@huntersofbook.com',
   }))
 
@@ -40,6 +34,4 @@ export function email(input: API) {
     verificationEmail: verificationEmail.bind(input),
     logger,
   }
-}
-`
 }

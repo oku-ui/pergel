@@ -195,13 +195,22 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       }
 
       if (!existsSync(resolve(options.serverDir, 'services'))) {
-        mkdirSync(resolve(options.serverDir, 'services'), {
-          recursive: true,
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'services', '**/*')), {
+          onlyFiles: true,
         })
 
-        cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'services')), resolve(options.serverDir, 'services'), {
-          recursive: true,
-        })
+        for (const file of files) {
+          const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              nuxt,
+            })
+            const fileName = basename(file)
+
+            writeFilePergel(resolve(options.serverDir, fileName), fileData)
+          }
+        }
       }
     }
     else {
@@ -241,6 +250,25 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           cpSync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'empty', 'schemas')), resolve(options.serverDir, 'schemas'), {
             recursive: true,
           })
+        }
+
+        if (!existsSync(resolve(options.serverDir, 'services'))) {
+          const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'services', '**/*')), {
+            onlyFiles: true,
+          })
+
+          for (const file of files) {
+            const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+            if (readFile) {
+              const fileData = readFile({
+                projectName: options.projectName,
+                nuxt,
+              })
+              const fileName = basename(file)
+
+              writeFilePergel(resolve(options.serverDir, fileName), fileData)
+            }
+          }
         }
       }
     }
