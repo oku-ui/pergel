@@ -1,9 +1,15 @@
 import { eventHandler } from 'h3'
-import { defineNitroPlugin } from 'nitropack/dist/runtime/plugin'
+import type { NitroApp } from 'nitropack'
 import type { GraphQLYogaOptions, ResolvedGraphQLYogaConfig } from '../../types'
 import { nitroGraphqlYogaPlugin } from './nitroGraphqlYogaPlugin'
 import { useRuntimeConfig } from '#imports'
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
+
+export type NitroAppPlugin = (nitro: NitroApp) => void
+
+export function defineNitroPlugin(def: NitroAppPlugin): NitroAppPlugin {
+  return def
+}
 
 export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(this: PergelGlobalContextOmitModule, data: GraphQLYogaOptions<Context>) {
   return defineNitroPlugin(async (nitroApp) => {
@@ -55,22 +61,25 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
     nitroApp.router.add(
       options.endpoint,
       eventHandler(async (event) => {
-        await nitroGraphqlYogaPlugin(event, options, data)
+        return await nitroGraphqlYogaPlugin(event, options, data)
       }),
+      'post',
     )
 
     nitroApp.router.add(
       options.yogaConfig.health,
       eventHandler(async (event) => {
-        await nitroGraphqlYogaPlugin(event, options, data)
+        return await nitroGraphqlYogaPlugin(event, options, data)
       }),
+      'post',
     )
 
     nitroApp.router.add(
       options.yogaConfig.ready,
       eventHandler(async (event) => {
-        await nitroGraphqlYogaPlugin(event, options, data)
+        return await nitroGraphqlYogaPlugin(event, options, data)
       }),
+      'post',
     )
   })
 }
