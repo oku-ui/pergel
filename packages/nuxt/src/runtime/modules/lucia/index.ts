@@ -1,5 +1,4 @@
-import { existsSync, mkdirSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync } from 'node:fs'
 import { createResolver } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { addModuleDTS } from '../../core/utils/addModuleDTS'
@@ -111,18 +110,6 @@ export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.p
       }
     }
 
-    if (!existsSync(join(nuxt.options.serverDir, 'middleware', 'auth.ts'))) {
-      mkdirSync(join(nuxt.options.serverDir, 'middleware'), { recursive: true })
-
-      writeFilePergel(
-        join(nuxt.options.serverDir, 'middleware', 'auth.ts'),
-        /* ts */`export default ${options.projectNameCamelCaseWithPergel}().lucia().definePergelNitroMiddleware({
-  lucia: ${generatorFunctionName(options.projectName, 'Auth')},
-})
-        `,
-      )
-    }
-
     useNitroImports(nuxt, {
       presets: [
         {
@@ -136,7 +123,7 @@ export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.p
         {
           from: resolver.resolve('server/middleware'),
           imports: [
-            'definePergelNitroMiddleware',
+            'onRequestLucia',
           ],
         },
       ],
@@ -180,7 +167,7 @@ declare module 'h3' {
           function lucia() {
             return {
               use: ${_setupDrizzle.use},
-              definePergelNitroMiddleware: definePergelNitroMiddleware,
+              onRequestLucia: onRequestLucia,
             }
           }
         `,

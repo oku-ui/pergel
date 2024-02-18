@@ -63,7 +63,7 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
       eventHandler(async (event) => {
         return await nitroGraphqlYogaPlugin(event, options, data)
       }),
-      'post',
+      'get',
     )
 
     nitroApp.router.add(
@@ -71,7 +71,7 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
       eventHandler(async (event) => {
         return await nitroGraphqlYogaPlugin(event, options, data)
       }),
-      'post',
+      'get',
     )
 
     nitroApp.router.add(
@@ -79,7 +79,7 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
       eventHandler(async (event) => {
         return await nitroGraphqlYogaPlugin(event, options, data)
       }),
-      'post',
+      'get',
     )
   })
 }

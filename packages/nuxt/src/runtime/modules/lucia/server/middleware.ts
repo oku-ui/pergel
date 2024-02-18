@@ -1,20 +1,22 @@
 import { verifyRequestOrigin } from 'lucia'
-import { appendResponseHeader, defineEventHandler, getCookie, getHeader, getHeaders, isMethod } from 'h3'
+import { appendResponseHeader, defineRequestMiddleware, getCookie, getHeader, getHeaders, isMethod, send, setResponseStatus } from 'h3'
 
 import type { Lucia } from 'lucia'
 
-export function definePergelNitroMiddleware(data: {
+export function onRequestLucia(data: {
   lucia: Lucia
 }) {
   const { lucia } = data
-  return defineEventHandler(async (event) => {
+  return defineRequestMiddleware(async (event) => {
     const authorizationHeader = getHeaders(event).Authorization
 
     if (authorizationHeader) {
       const sessionId = lucia.readBearerToken(authorizationHeader)
 
-      if (!sessionId)
-        return event.node.res.writeHead(403).end()
+      if (!sessionId) {
+        setResponseStatus(event, 403)
+        return send(event, 'Forbidden')
+      }
 
       const { session, user } = await lucia.validateSession(sessionId)
       event.context.session = session
@@ -28,8 +30,10 @@ export function definePergelNitroMiddleware(data: {
       if (
         !originHeader
         || !hostHeader
-        || !verifyRequestOrigin(originHeader, [hostHeader]))
-        return event.node.res.writeHead(403).end()
+        || !verifyRequestOrigin(originHeader, [hostHeader])) {
+        setResponseStatus(event, 403)
+        return send(event, 'Forbidden')
+      }
     }
 
     const sessionId = getCookie(event, lucia.sessionCookieName) ?? null
