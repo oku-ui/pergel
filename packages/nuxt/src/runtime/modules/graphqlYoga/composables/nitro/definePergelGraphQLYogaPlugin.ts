@@ -11,7 +11,10 @@ export function defineNitroPlugin(def: NitroAppPlugin): NitroAppPlugin {
   return def
 }
 
-export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(this: PergelGlobalContextOmitModule, data: GraphQLYogaOptions<Context>) {
+export function definePergelGraphQLYogaPlugin<Context extends Record<string, any> = object>(
+  this: PergelGlobalContextOmitModule,
+  data: GraphQLYogaOptions<Context>,
+) {
   return defineNitroPlugin(async (nitroApp) => {
     if (!this?.projectName)
       throw new Error('Missing config.projectName')
@@ -22,11 +25,6 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
       throw new Error('Missing config.graphqlYoga')
 
     const options = yogaConfig as ResolvedGraphQLYogaConfig
-
-    // console.log('import.meta.dev', import.meta.dev)
-    // console.log('process.dev', process.dev)
-
-    // TODO: user maybe wants to disable or enable playground
 
     if (import.meta.dev) {
       const graphqlVoyager = await import('../../plugins/voyager')
@@ -60,8 +58,12 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
 
     nitroApp.router.add(
       options.endpoint,
-      eventHandler(async (event) => {
-        return await nitroGraphqlYogaPlugin(event, options, data)
+      eventHandler({
+        handler: async (event) => {
+          return await nitroGraphqlYogaPlugin(event, options, data)
+        },
+        onRequest: data.onRequest,
+        onBeforeResponse: data.onBeforeResponse,
       }),
       'get',
     )

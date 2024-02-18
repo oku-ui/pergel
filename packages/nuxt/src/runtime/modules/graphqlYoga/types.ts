@@ -1,5 +1,5 @@
 import type { YogaServerInstance, YogaServerOptions } from 'graphql-yoga'
-import type { H3Error, H3Event } from 'h3'
+import type { EventHandlerObject, H3Error, H3Event } from 'h3'
 
 import type { EmbeddableSandboxOptions } from '@apollo/sandbox/src/EmbeddedSandbox'
 import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../core/types/module'
@@ -316,6 +316,8 @@ export interface GraphQLYogaOptions<Context extends Record<string, any> = object
   onBeforeOptions?: (options: GraphqlYogaHandleOptions, event: H3Event) => Promise<void> | void
   onAfterOptions?: (serverInstance: YogaServerInstance<any, any>, event: H3Event) => Promise<void> | void
   onBeforeContext?: (options: GraphqlYogaContextOptions<Context>, event: H3Event) => Promise<void> | void
+  onRequest?: EventHandlerObject['onRequest']
+  onBeforeResponse?: EventHandlerObject['onBeforeResponse']
 }
 
 export interface ApolloSandBoxOptions extends Omit<EmbeddableSandboxOptions, 'target' | 'initialEndpoint'> {

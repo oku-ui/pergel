@@ -105,6 +105,10 @@ export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.p
   session,
   user,
 })
+
+export const  ${generatorFunctionName(options.projectName, 'LuciaOnRequest')} = ${options.projectNameCamelCaseWithPergel}().lucia().onRequestLucia({
+  lucia: ${generatorFunctionName(options.projectName, 'Auth')},
+})
         `,
         )
       }
