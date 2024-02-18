@@ -76,7 +76,7 @@ export const schema = \`${printSchema}\``
 
   // Create types in build dir
   addTemplatePergel({
-    filename: join('pergel', options.folderName, 'schema.d.ts'),
+    filename: join(options.folderName, 'schema.d.ts'),
     write: true,
     where: 'server',
     getContents() {
