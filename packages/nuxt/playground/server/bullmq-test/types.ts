@@ -1,7 +1,5 @@
-declare module 'pergel/test/types' {
-
-  interface BullmqContext {
+declare module '#test/bullmq/types' {
+  export interface TestBullmqContext {
     queueName: 'default' | 'email'
   }
-
 }

@@ -1,7 +1,6 @@
 import { join } from 'node:path'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
-import { addModuleDTS } from '../../../core/utils/addModuleDTS'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import { globsBuilderWatch } from '../../../core/utils/globs'
 import { useGenerateCodegen } from './generateCodegen'
@@ -12,31 +11,12 @@ export function generateGraphQLTemplate(data: {
 }) {
   const { codegen, dir } = data.options
 
-  addModuleDTS({
-    template: /* ts */`
-import type { H3Event } from 'h3'
-import type { IncomingMessage, ServerResponse } from 'node:http'
-import type { YogaInitialContext } from 'graphql-yoga'
-
-export interface GraphqlYogaContext extends YogaInitialContext {
-  res: ServerResponse
-  req: IncomingMessage
-  event: H3Event
-}
-      `,
-    moduleName: data.options.moduleName,
-    projectName: data.options.projectName,
-    nuxt: data.nuxt,
-    interfaceNames: ['GraphqlYogaContext'],
-    dir: data.options.serverDir,
-  })
-
   const { updatesFunction } = useGenerateCodegen({
     nuxt: data.nuxt,
     options: data.options,
     moduleDTS: {
       name: 'GraphqlYogaContext',
-      path: `pergel/${data.options.projectName}/types`,
+      path: `${data.options.importPath}/types`,
     },
   })
 

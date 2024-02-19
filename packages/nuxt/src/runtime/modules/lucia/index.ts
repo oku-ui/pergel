@@ -1,11 +1,11 @@
 import { existsSync } from 'node:fs'
+import { basename, join, resolve } from 'node:path'
 import { createResolver } from '@nuxt/kit'
+import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
-import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { useNitroImports } from '../../core/utils/useImports'
 import { createFolderModule } from '../../core/utils/createFolderModule'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
-import { generatorFunctionName } from '../../core/utils/generatorNames'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import type { LuciaModuleOptions, LuciaRuntimeConfig, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
@@ -96,42 +96,23 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
       const { driver } = setupDrizzle(db, resolver)
       _setupDrizzle.use = driver
 
-      if (!existsSync(`${options.serverDir}/index.ts`)) {
-        writeFilePergel(
-          `${options.serverDir}/index.ts`,
-          /* ts */`
-import { GitHub } from 'arctic'
-import { session, user } from '#${options.projectName}/drizzle/schema'
+      if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, '**/*')), {
+          onlyFiles: true,
+        })
 
-const connect = await ${options.projectNameCamelCaseWithPergel}()
-.drizzle()
-.postgresjs()
-.connect({
-  event: false
-})
+        for (const file of files) {
+          const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              nuxt,
+            })
+            const fileName = basename(file)
 
-export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.projectNameCamelCaseWithPergel}()
-.lucia()
-.use({
-  db: connect,
-  options: { },
-  session,
-  user,
-})
-
-export const  ${generatorFunctionName(options.projectName, 'LuciaOnRequest')} = ${options.projectNameCamelCaseWithPergel}().lucia().onRequestLucia({
-  lucia: ${generatorFunctionName(options.projectName, 'Auth')},
-})
-
-const config = useRuntimeConfig()
-
-// nuxt.config.ts lucia.oauth = ['github'] if you want to use github oauth ['github', 'google', ....]
-export const github = new GitHub(
-  config.${generatorFunctionName(options.projectName, 'Lucia')}.github.clientId,
-  config.${generatorFunctionName(options.projectName, 'Lucia')}.github.clientSecret,
-)
-        `,
-        )
+            writeFilePergel(resolve(options.serverDir, fileName), fileData)
+          }
+        }
       }
     }
 
@@ -152,37 +133,6 @@ export const github = new GitHub(
           ],
         },
       ],
-    })
-
-    addModuleDTS({
-      pergelFolderTemplate: /* ts */`
-import type { Session, User } from '#${options.projectName}/drizzle/schema'
-import type { ${generatorFunctionName(options.projectName, 'Auth')} } from '#${options.projectName}/lucia'
-
-declare module 'lucia' {
-  interface Register {
-    Lucia: typeof ${generatorFunctionName(options.projectName, 'Auth')}
-    DatabaseUserAttributes: DatabaseUserAttributes
-    DatabaseSessionAttributes: DatabaseSessionAttributes
-  }
-  interface DatabaseUserAttributes extends Omit<User, 'id'> {}
-
-  interface DatabaseSessionAttributes {
-  }
-}
-
-declare module 'h3' {
-  interface H3EventContext {
-    user: User | null
-    session: Session | null
-  }
-}
-      `,
-      nuxt,
-      moduleName: options.moduleName,
-      projectName: options.projectName,
-      interfaceNames: [],
-      dir: options.serverDir,
     })
 
     nuxt._pergel.contents.push({

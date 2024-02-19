@@ -1,4 +1,4 @@
-declare module 'pergel/changeName/types' {
+declare module '#changeName/graphqlYoga/types' {
 
   import type { IncomingMessage, ServerResponse } from 'node:http'
   import type { H3Event } from 'h3'

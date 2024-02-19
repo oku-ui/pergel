@@ -1,9 +1,13 @@
+import { existsSync } from 'node:fs'
+import { basename, join, resolve } from 'node:path'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
+import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
-import { addModuleDTS } from '../../core/utils/addModuleDTS'
 import { createDockerService } from '../../core/utils/createDockerService'
 import { createFolderModule } from '../../core/utils/createFolderModule'
+import { writeFilePergel } from '../../core/utils/writeFilePergel'
+import { generatorFunctionName } from '../../core/utils/generatorNames'
 import type { BullMQModuleRuntimeConfig } from './types'
 
 export default definePergelModule({
@@ -48,17 +52,27 @@ export default definePergelModule({
 
     addServerImportsDir(resolver.resolve('./composables/nitro'))
 
-    addModuleDTS({
-      template: /* ts */`
-export interface BullmqContext {
-  queueName: 'default' | 'email'
-}
-      `,
-      nuxt,
-      moduleName: options.moduleName,
-      projectName: options.projectName,
-      interfaceNames: ['BullmqContext'],
-      dir: options.serverDir,
+    if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+      const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, '**/*')), {
+        onlyFiles: true,
+      })
+
+      for (const file of files) {
+        const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+        if (readFile) {
+          const fileData = readFile({
+            projectName: options.projectName,
+            nuxt,
+          })
+          const fileName = basename(file)
+
+          writeFilePergel(resolve(options.serverDir, fileName), fileData)
+        }
+      }
+    }
+
+    const typeName = generatorFunctionName(options.projectName, 'BullmqContext', {
+      type: true,
     })
 
     nuxt._pergel.contents.push({
@@ -67,8 +81,8 @@ export interface BullmqContext {
       content: /* ts */`
           function bullmq() {
             return {
-              nitroPlugin: (definePergelNitroBullMQPlugin<BullmqContext>).bind(ctx),
-              useScheduler: (useScheduler<BullmqContext>).bind(ctx),
+              nitroPlugin: (definePergelNitroBullMQPlugin<${typeName}>).bind(ctx),
+              useScheduler: (useScheduler<${typeName}>).bind(ctx),
               context: (getPergelContextModule<'bullmq'>).bind({
                 ...ctx,
                 moduleName: '${options.moduleName}',
@@ -76,6 +90,9 @@ export interface BullmqContext {
             }
           }
         `,
+      before: [
+        `import type { ${typeName} } from '#${options.importPath}/types'`,
+      ],
       resolve: /* ts */`
             bullmq: bullmq,
         `,
