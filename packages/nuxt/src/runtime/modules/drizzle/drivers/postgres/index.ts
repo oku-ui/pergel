@@ -158,6 +158,7 @@ export default {
         'dev:migration': `pergel module -s=dev:migration -p=${projectName} -m=${moduleName}`,
         'dev:drop': `pergel module -s=dev:drop -p=${projectName} -m=${moduleName}`,
         'dev:seed': `pergel module -s=dev:seed -p=${projectName} -m=${moduleName}`,
+        'dev:drop:push:seed': `pnpm pergel module -s=dev:drop -p=${projectName} -m=${moduleName} && pergel module -s=push -p=${projectName} -m=${moduleName} && pergel module -s=dev:seed -p=${projectName} -m=${moduleName}`,
       },
     }),
     nuxt,

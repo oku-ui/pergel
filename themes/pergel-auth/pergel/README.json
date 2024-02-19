@@ -91,7 +91,8 @@
         "studio": "pergel module -s=studio -p=changeName -m=drizzle",
         "dev:migration": "pergel module -s=dev:migration -p=changeName -m=drizzle",
         "dev:drop": "pergel module -s=dev:drop -p=changeName -m=drizzle",
-        "dev:seed": "pergel module -s=dev:seed -p=changeName -m=drizzle"
+        "dev:seed": "pergel module -s=dev:seed -p=changeName -m=drizzle",
+        "dev:drop:push:seed": "pnpm pergel module -s=dev:drop -p=changeName -m=drizzle && pergel module -s=push -p=changeName -m=drizzle && pergel module -s=dev:seed -p=changeName -m=drizzle"
       },
       "env": {
         "NUXT_CHANGE_NAME_DRIZZLE_URL": "postgres://postgres:postgres@localhost:5432/postgres",
