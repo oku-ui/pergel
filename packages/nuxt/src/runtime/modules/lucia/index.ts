@@ -100,6 +100,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
         writeFilePergel(
           `${options.serverDir}/index.ts`,
           /* ts */`
+import { GitHub } from 'arctic'
 import { session, user } from '#${options.projectName}/drizzle/schema'
 
 const connect = await ${options.projectNameCamelCaseWithPergel}()
@@ -121,6 +122,14 @@ export const ${generatorFunctionName(options.projectName, 'Auth')} = ${options.p
 export const  ${generatorFunctionName(options.projectName, 'LuciaOnRequest')} = ${options.projectNameCamelCaseWithPergel}().lucia().onRequestLucia({
   lucia: ${generatorFunctionName(options.projectName, 'Auth')},
 })
+
+const config = useRuntimeConfig()
+
+// nuxt.config.ts lucia.oauth = ['github'] if you want to use github oauth ['github', 'google', ....]
+export const github = new GitHub(
+  config.${generatorFunctionName(options.projectName, 'Lucia')}.github.clientId,
+  config.${generatorFunctionName(options.projectName, 'Lucia')}.github.clientSecret,
+)
         `,
         )
       }
