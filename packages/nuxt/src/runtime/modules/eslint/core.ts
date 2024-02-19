@@ -47,6 +47,8 @@ export function pergelEslintConfig(input?: {
         '**/templates.json',
         'packages-core/pergel/nuxt.js',
         '**/pergel/**',
+        '**/migrations/**',
+        'migrations',
       ],
       ...input?.pergel ?? {},
     },
