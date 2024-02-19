@@ -1,3 +1,8 @@
-export default defineEventHandler((event) => {
-  return event.context.user
+export default eventHandler({
+  onRequest: [
+    changeNameLuciaRequest,
+  ],
+  handler: (event) => {
+    return event.context.user
+  },
 })

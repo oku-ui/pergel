@@ -1,4 +1,7 @@
 export default pergelChangeName().graphqlYoga().nitro().use({
+  onRequest: [
+    changeNameLuciaRequest,
+  ],
   onBeforeOptions: async ({ options }, event) => {
     // const allowedOrigins = (env.ORIGIN as string).split(',')
     const origin = event.node.req.headers.origin as string
