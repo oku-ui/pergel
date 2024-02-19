@@ -49,9 +49,6 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, par
 
   selectData.drizzle.postgressJSClient
     .execute(sql`SELECT 1;`)
-    .then(() => {
-      consola.success('PostgresJS is connected')
-    })
     .catch((e) => {
       if (e.code === 'ECONNREFUSED')
         consola.error('PostgresJS is not running, please start postgres and try again')
