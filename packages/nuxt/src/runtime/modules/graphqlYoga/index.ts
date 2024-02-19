@@ -195,7 +195,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       }
 
       if (!existsSync(resolve(options.serverDir, 'services'))) {
-        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'services', '**/*')), {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'services', '**/*')), {
           onlyFiles: true,
         })
 
@@ -208,7 +208,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             })
             const fileName = basename(file)
 
-            writeFilePergel(resolve(options.serverDir, fileName), fileData)
+            writeFilePergel(resolve(options.serverDir, 'services', fileName), fileData)
           }
         }
       }
@@ -253,7 +253,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         }
 
         if (!existsSync(resolve(options.serverDir, 'services'))) {
-          const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'services', '**/*')), {
+          const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'empty', 'services', '**/*')), {
             onlyFiles: true,
           })
 
@@ -266,7 +266,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
               })
               const fileName = basename(file)
 
-              writeFilePergel(resolve(options.serverDir, fileName), fileData)
+              writeFilePergel(resolve(options.serverDir, 'services', fileName), fileData)
             }
           }
         }
@@ -299,7 +299,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
       )
     ) {
       const data = await import('./utils/generateGraphqlTemplate').catch((e) => {
-        consola.error('Please upgrade `@pergel/module-graphql`')
+        consola.error('Please upgrade `@pergel/module-graphql` or if you have not installed it, please run `pergel install`')
         consola.error(e)
         return undefined
       })
