@@ -1,4 +1,4 @@
-import { camelCase } from 'scule'
+import { camelCase, pascalCase } from 'scule'
 
 export default function (data: {
   projectName: string
@@ -6,11 +6,18 @@ export default function (data: {
   const functionName = camelCase(`${data.projectName}-GraphQLCreateSchema`)
   const resolverFunctionName = camelCase(`${data.projectName}-GraphQLResolvers`)
   const authFunctionName = camelCase(`${data.projectName}-Auth`)
+  const serviceFunctionName = camelCase(`${data.projectName}-GraphQLService`)
+  const serviceInterfaceName = pascalCase(`${data.projectName}-GraphQLService`)
   return /* TS */ `import { DateTimeResolver, DateTimeTypeDefinition } from 'graphql-scalars'
 
+import type { ${serviceInterfaceName} } from './services'
+import { ${serviceFunctionName} } from './services'
 import { createSchema } from 'graphql-yoga'
-import type { Book, Resolvers, User } from '#${data.projectName}/graphqlYoga/generated/server'
+import type { Resolvers } from '#${data.projectName}/graphqlYoga/generated/server'
 import { schema } from '#${data.projectName}/graphqlYoga/generated/schema'
+
+export type { ${serviceInterfaceName} } 
+export { ${serviceFunctionName} }
 
 export const ${resolverFunctionName}: Resolvers = {
   DateTime: DateTimeResolver,

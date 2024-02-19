@@ -212,6 +212,25 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           }
         }
       }
+
+      if (!existsSync(resolve(options.serverDir, 'plugins'))) {
+        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'plugins', '**/*')), {
+          onlyFiles: true,
+        })
+
+        for (const file of files) {
+          const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+          if (readFile) {
+            const fileData = readFile({
+              projectName: options.projectName,
+              nuxt,
+            })
+            const fileName = basename(file)
+
+            writeFilePergel(resolve(options.serverDir, 'plugins', fileName), fileData)
+          }
+        }
+      }
     }
     else {
       if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
@@ -267,6 +286,25 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
               const fileName = basename(file)
 
               writeFilePergel(resolve(options.serverDir, 'services', fileName), fileData)
+            }
+          }
+        }
+
+        if (!existsSync(resolve(options.serverDir, 'plugins'))) {
+          const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'empty', 'plugins', '**/*')), {
+            onlyFiles: true,
+          })
+
+          for (const file of files) {
+            const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+            if (readFile) {
+              const fileData = readFile({
+                projectName: options.projectName,
+                nuxt,
+              })
+              const fileName = basename(file)
+
+              writeFilePergel(resolve(options.serverDir, 'plugins', fileName), fileData)
             }
           }
         }
