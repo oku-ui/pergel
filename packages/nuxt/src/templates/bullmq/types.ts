@@ -8,8 +8,11 @@ export default function (data: {
   const typeName = generatorFunctionName(data.projectName, 'BullmqContext', {
     type: true,
   })
-  return /* TS */ `export interface ${typeName} {
-  queueName: 'default' | 'email'
+
+  return /* TS */ `declare module '#${data.projectName}/bullmq/types' {
+  export interface ${typeName} {
+    queueName: 'default' | 'email'
+  }
 }
 `
 }

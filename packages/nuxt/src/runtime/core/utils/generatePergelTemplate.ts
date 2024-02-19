@@ -23,6 +23,7 @@ export function generatePergelTemplate(
     functionsContents[projectName] ??= {
       content: '',
       resolve: '',
+      before: [],
     }
     if (typeof item.content === 'string') {
       const valueToAppend = item.content.split('\n').map(line => line.trim()).join('\n')
@@ -33,7 +34,9 @@ export function generatePergelTemplate(
       const valueToAppend = item.resolve.split('\n').map(line => line.trim()).join('\n')
       functionsContents[projectName].resolve += `   ${valueToAppend}`
     }
-    functionsContents[projectName].before = item.before
+
+    if (Array.isArray(item.before))
+      functionsContents[projectName].before?.push(...item.before)
   }
 
   for (const [projectName, value] of Object.entries(functionsContents)) {

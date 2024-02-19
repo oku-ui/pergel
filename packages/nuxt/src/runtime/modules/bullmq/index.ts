@@ -82,7 +82,7 @@ export default definePergelModule({
           function bullmq() {
             return {
               nitroPlugin: (definePergelNitroBullMQPlugin<${typeName}>).bind(ctx),
-              useScheduler: (useScheduler<BullmqContext>).bind(ctx),
+              useScheduler: (useScheduler<${typeName}>).bind(ctx),
               context: (getPergelContextModule<'bullmq'>).bind({
                 ...ctx,
                 moduleName: '${options.moduleName}',
@@ -91,7 +91,7 @@ export default definePergelModule({
           }
         `,
       before: [
-        `import type { ${typeName} } from ${options.pergelModuleRoot}/types`,
+        `import type { ${typeName} } from '#${options.importPath}/types'`,
       ],
       resolve: /* ts */`
             bullmq: bullmq,
