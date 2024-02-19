@@ -361,8 +361,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(vue@3.3.13)
       arctic:
-        specifier: ^1.1.6
-        version: 1.1.6
+        specifier: ^1.2.0
+        version: 1.2.0
       bullmq:
         specifier: ^5.2.0
         version: 5.2.0
@@ -9215,8 +9215,8 @@ packages:
       tar-stream: 3.1.7
       zip-stream: 5.0.1
 
-  /arctic@1.1.6:
-    resolution: {integrity: sha512-tE24DLtMn0s7BBqH3D8f8kWSqrg2AFYS3FVAvnj8N9h1Pu/dYmhyAy7WmW1/rrpLY4yP8q3D5s+PqfF3XybI+A==}
+  /arctic@1.2.0:
+    resolution: {integrity: sha512-fzJQgTGrjPtRU69Oz0091w1cGdfAKlnEoawaKuTJ52DOnpyQM2N18i1aeyvsvJKqb9P/PbPPfsyXgOEQS9wMTQ==}
     dependencies:
       auri: 1.0.2
       oslo: 1.0.1
