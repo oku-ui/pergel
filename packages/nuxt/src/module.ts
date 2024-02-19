@@ -1,11 +1,8 @@
-import { join } from 'node:path'
-
 import {
   addImportsDir,
   addPlugin,
   addServerHandler,
   addServerImportsDir,
-  addTemplate,
   createResolver,
   defineNuxtModule,
   logger,
@@ -189,30 +186,6 @@ export default defineNuxtModule<PergelOptions>({
     })
 
     nuxt._pergel.devServerHandler.forEach(({ fn }) => fn())
-
-    for (const project of Object.keys(nuxt._pergel.dts)) {
-      const contents = Object.values(nuxt._pergel.dts[project]).map(module => module.template.join('\n\n')).join('\n\n')
-      const declareModules = Object.values(nuxt._pergel.dts[project]).map(module => module.declareModules).join('\n\n')
-      const _template = addTemplate({
-        filename: join('pergel', project, 'module-types.ts'),
-        write: true,
-        getContents: () => /* ts */`
-        ${contents}
-
-        ${declareModules}
-        `.trim(),
-      })
-
-      nuxt.hooks.hook('prepare:types', ({ references }) => {
-        references.push({
-          path: _template.dst,
-        })
-      })
-
-      nuxt.options.alias[`pergel/${project}/moduleTypes`] = _template.dst
-      nuxt.options.nitro.alias ??= {}
-      nuxt.options.nitro.alias[`pergel/${project}/moduleTypes`] = _template.dst
-    }
 
     if (nuxt.options.dev && isDevToolsEnabled) {
       setupDevToolsUI(options, _resolver.resolve, nuxt)

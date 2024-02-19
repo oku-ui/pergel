@@ -1,4 +1,4 @@
-declare module 'pergel/rocket/types' {
+declare module '#rocket/bullmq/types' {
 
   interface BullmqContext {
     queueName: 'default' | 'email'

@@ -2,7 +2,6 @@ import { join } from 'node:path'
 import { camelCase } from 'scule'
 import type { Nuxt } from '@nuxt/schema'
 import { addTemplate } from '@nuxt/kit'
-import type { NuxtPergel } from '../types/nuxtModule'
 import { useNitroImports, useNuxtImports } from './useImports'
 import { reformatSourceCode } from './utils'
 
@@ -15,6 +14,7 @@ export function generatePergelTemplate(
     [projectName: string]: {
       content: string
       resolve: string
+      before?: string[]
     }
   } = {}
 
@@ -33,34 +33,11 @@ export function generatePergelTemplate(
       const valueToAppend = item.resolve.split('\n').map(line => line.trim()).join('\n')
       functionsContents[projectName].resolve += `   ${valueToAppend}`
     }
+    functionsContents[projectName].before = item.before
   }
 
   for (const [projectName, value] of Object.entries(functionsContents)) {
     const funcName = camelCase(`pergel-${projectName}`)
-
-    /**
-     * Export pergel function
-     * @example `
-     * export function pergel() {
-     *  function drizzle() {
-     *  return {
-     *    driver: driver(),
-     *  }
-     *  return {
-     *    drizzle: drizzle(),
-     *  }
-     * }
-     * `
-     */
-    function forDTS(nuxt: NuxtPergel) {
-      let _interfaces = ''
-      for (const project of Object.keys(nuxt._pergel.dts)) {
-        const interfaces = Object.values(nuxt._pergel.dts[project]).map(module => module.interfaceNames.join(', ')).join(', ')
-        _interfaces += interfaces
-      }
-
-      return _interfaces
-    }
 
     const pergel = addTemplate({
       filename: join(data.nuxt._pergel.dir.pergel, projectName, 'types.ts'),
@@ -71,14 +48,8 @@ export function generatePergelTemplate(
         const source = /* ts */` // Pergel Auto Generated - https://oku-ui.com
           import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
-          ${typeof data.nuxt._pergel.dts[projectName] === 'object'
-? `
-import type {
-  ${forDTS(data.nuxt)}
-} from 'pergel/${projectName}/types'
-`
-: ''}
-
+          ${value.before?.join('\n') ?? ''}
+          // Function
           export function ${funcName}() {
               const ctx: PergelGlobalContextOmitModule = {
                 projectName: '${projectName}'
@@ -94,9 +65,9 @@ import type {
       },
     })
 
-    data.nuxt.options.alias[`#pergel/${projectName}/types`] = pergel.dst
+    data.nuxt.options.alias[`${projectName}/types`] = pergel.dst
     data.nuxt.options.nitro.alias ??= {}
-    data.nuxt.options.nitro.alias[`#pergel/${projectName}/types`] = pergel.dst
+    data.nuxt.options.nitro.alias[`${projectName}/types`] = pergel.dst
 
     useNuxtImports(data.nuxt, {
       presets: [

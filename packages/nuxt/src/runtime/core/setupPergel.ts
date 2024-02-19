@@ -155,7 +155,6 @@ declare module 'h3' {
     },
     resolver,
     devServerHandler: [],
-    dts: {},
     projects: {},
     dir: {
       pergel: pergelDir ?? 'pergel',

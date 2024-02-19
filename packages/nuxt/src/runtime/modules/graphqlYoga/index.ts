@@ -161,29 +161,6 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         })
       }
 
-      if (!existsSync(resolve(nuxt.options.serverDir, 'plugins', 'graphqlv1.ts'))) {
-        mkdirSync(resolve(nuxt.options.serverDir, 'plugins'), {
-          recursive: true,
-        })
-
-        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, 'drizzle-lucia', 'plugins', '**/*')), {
-          onlyFiles: true,
-        })
-
-        for (const file of files) {
-          const readFile = await nuxt._pergel.jitiDyanmicImport(file)
-          if (readFile) {
-            const fileData = readFile({
-              projectName: options.projectName,
-              nuxt,
-            })
-            const fileName = basename(file)
-
-            writeFilePergel(resolve(nuxt.options.serverDir, 'plugins', fileName), fileData)
-          }
-        }
-      }
-
       if (!existsSync(resolve(options.serverDir, 'schemas'))) {
         mkdirSync(resolve(options.serverDir, 'schemas'), {
           recursive: true,
@@ -325,6 +302,9 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
             }
           }
         `,
+      before: [
+        `import type { GraphqlYogaContext } from '#${options.importPath}/types'`,
+      ],
       resolve: /* ts */`
             graphqlYoga: graphqlYoga,
         `,

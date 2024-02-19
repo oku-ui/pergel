@@ -136,51 +136,8 @@ export interface ResolvedPergelOptions {
     fn: () => void
   }[]
 
-  dts: {
-    [projectName: string]: {
-      [moduleName: string]: {
-        interfaceNames: string[]
-        template: string[]
-        declareModules?: string
-      }
-    }
-  }
-
   projects: {
     [project: string]: ResolvedPergelNuxtModuleConfig<ResolvedPergelModuleOptions>
-    //   & {
-    //     /**
-    //      * @example
-    //      * 'users/productdevbook/nuxt3/pergel/${projectName}'
-    //      */
-    //     projectDir?: string
-    //     /**
-    //      * @example
-    //      * 'users/productdevbook/nuxt3/pergel/${projectName}/${moduleName}'
-    //      */
-    //     moduleDir?: string
-
-    //     dir: {
-
-    //       /**
-    //        * @example
-    //        * '${projectName}'
-    //        */
-    //       project: string
-
-    //       /**
-    //        * @example
-    //        * '${projectName}/${moduleName}'
-    //        */
-    //       module: string
-
-  //       /**
-  //        * @example
-  //        * 'pergel'
-  //        */
-  //       root: string
-  //     }
-  //   }
   }
 
   dir: {
@@ -208,6 +165,7 @@ export interface ResolvedPergelOptions {
     moduleName: string
     content: string | Promise<string>
     resolve: string | Promise<string>
+    before?: string[]
   }[]
 
   /**

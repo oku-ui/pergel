@@ -1,20 +1,22 @@
-import { camelCase } from 'scule'
 import type { NuxtPergel } from '../../../../runtime/core/types/nuxtModule'
+import { generatorFunctionName } from '../../../../runtime/core/utils/generatorNames'
 
 export default function (data: {
   nuxt: NuxtPergel
   projectName: string
 }) {
   const drizzleDriver = data.nuxt._pergel.projects[data.projectName].drizzle?.driver
-  const drizzleStorageName = data.projectName.slice(0, 1).toUpperCase() + camelCase(`${data.projectName}-DrizzleStorage`).slice(1)
 
+  const typeDrizzleStorageName = generatorFunctionName(data.projectName, 'DrizzleStorage', {
+    type: true,
+  })
   return /* TS */ `
-declare module 'pergel/${data.projectName}/types' {
+declare module '#${data.projectName}/graphqlYoga/types' {
 
-  import type { ${drizzleStorageName} } from '#${data.projectName}/drizzle/storage'
   import type { H3Event } from 'h3'
   import type { IncomingMessage, ServerResponse } from 'node:http'
   import type { YogaInitialContext } from 'graphql-yoga'
+  import type { ${typeDrizzleStorageName} } from '#${data.projectName}/drizzle/storage'
   ${drizzleDriver === 'postgresjs:pg' ? 'import type { PostgresJsDatabase } from \'drizzle-orm/postgres-js\'' : ''}
 
   interface GraphqlYogaContext extends YogaInitialContext {
@@ -22,7 +24,7 @@ declare module 'pergel/${data.projectName}/types' {
     req: IncomingMessage
     event: H3Event
     ${drizzleDriver === 'postgresjs:pg' ? 'db: PostgresJsDatabase' : ''.trim()}
-    storage: ${drizzleStorageName}
+    storage: ${typeDrizzleStorageName}
   }
 }
 `
