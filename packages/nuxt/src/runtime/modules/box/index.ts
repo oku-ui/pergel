@@ -38,12 +38,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       nuxtIcon: false,
       radixMode: false,
       tailwindIcon: ['ph', 'carbon'],
-      tailwindcss: {
-        form: true,
-        aspectRatio: true,
-        typography: true,
-        tailwindcssAnimate: true,
-      },
+      tailwindcss: false,
       veeValidate: false,
       zod: false,
       i18n: false,
@@ -185,22 +180,13 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       })
     }
 
-    if (options.packages.notivue) {
-      await installModule('notivue/nuxt')
-      nuxt.options.css.push('notivue/notifications.css')
-      nuxt.options.css.push('notivue/animations.css')
-    }
-
-    if (options.packages.radixMode && !options.packages.shadcnNuxt)
-      await installModule('radix-vue/nuxt')
-
-    if (options.packages.nuxtIcon)
-      await installModule('nuxt-icon')
-
-    if (options.packages.colorMode)
-      await installModule('@nuxtjs/color-mode', { classSuffix: '' })
-
     if (options.packages.tailwindcss) {
+      options.packages.tailwindcss = defu(options.packages.tailwindcss, {
+        form: true,
+        aspectRatio: true,
+        typography: true,
+        tailwindcssAnimate: true,
+      })
       const { getIconCollections, iconsPlugin } = await import('@egoist/tailwindcss-icons')
       // First we need to register the module hook
       // @ts-ignore
@@ -293,7 +279,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
                     },
                     boxShadow: {
                       switch:
-                'rgba(0, 0, 0, 0.3) 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 1px 2px',
+                      'rgba(0, 0, 0, 0.3) 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 1px 2px',
                     },
                     keyframes: {
                       'accordion-down': {
@@ -326,6 +312,21 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         },
       } as Partial<TailwindCSSOptions>)
     }
+
+    if (options.packages.notivue) {
+      await installModule('notivue/nuxt')
+      nuxt.options.css.push('notivue/notifications.css')
+      nuxt.options.css.push('notivue/animations.css')
+    }
+
+    if (options.packages.radixMode && !options.packages.shadcnNuxt)
+      await installModule('radix-vue/nuxt')
+
+    if (options.packages.nuxtIcon)
+      await installModule('nuxt-icon')
+
+    if (options.packages.colorMode)
+      await installModule('@nuxtjs/color-mode', { classSuffix: '' })
 
     if (options.packages.i18n) {
       // First we need to register the module hook
