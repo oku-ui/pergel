@@ -6,8 +6,10 @@ import { useNitroImports } from '../../core/utils/useImports'
 import { createFolderModule } from '../../core/utils/createFolderModule'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
 import { generatorFunctionName } from '../../core/utils/generatorNames'
-import type { LuciaModuleOptions, ResolvedLuciaModuleOptions } from './types'
+import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
+import type { LuciaModuleOptions, LuciaRuntimeConfig, ResolvedLuciaModuleOptions } from './types'
 import { setupDrizzle } from './drizzle'
+import { oauthLists } from './arcticLists'
 
 export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions>({
   meta: {
@@ -65,6 +67,7 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
     return {
       ...options,
       driver: rootOptions.driver ?? 'drizzle:postgre',
+      oauth: rootOptions.oauth ?? ['github'],
     }
   },
   async setup({ nuxt, options }) {
@@ -79,6 +82,15 @@ export default definePergelModule<LuciaModuleOptions, ResolvedLuciaModuleOptions
     const _setupDrizzle = {
       use: '',
     }
+
+    const reducedOAuthConfig = options.oauth.reduce((acc, provider) => {
+      (acc as any)[provider] = oauthLists[provider]
+      return acc
+    }, {}) as LuciaRuntimeConfig
+
+    generateModuleRuntimeConfig<LuciaRuntimeConfig>(nuxt, options, {
+      ...reducedOAuthConfig,
+    })
 
     if (driver === 'drizzle') {
       const { driver } = setupDrizzle(db, resolver)

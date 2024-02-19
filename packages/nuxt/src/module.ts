@@ -227,6 +227,13 @@ export default defineNuxtModule<PergelOptions>({
       }],
     })
 
+    useNitroImports(nuxt, {
+      presets: [{
+        from: _resolver.resolve('./runtime/core/utils/usePergelRuntime'),
+        imports: ['usePergelRuntime'],
+      }],
+    })
+
     nuxt.options.alias['#pergel'] = _resolver.resolve('./runtime')
 
     if (nuxt._pergel.exitPergelFolder) {
