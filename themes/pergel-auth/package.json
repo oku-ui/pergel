@@ -12,7 +12,7 @@
     "@aws-sdk/client-ses": "^3.515.0",
     "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.1.1",
-    "@lucia-auth/adapter-drizzle": "^1.0.1",
+    "@lucia-auth/adapter-drizzle": "^1.0.2",
     "@lucia-auth/adapter-postgresql": "^3.1.0",
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:^",
@@ -20,12 +20,12 @@
     "@urql/exchange-execute": "^2.2.2",
     "@urql/exchange-graphcache": "^6.4.1",
     "@urql/vue": "^1.1.2",
-    "dotenv": "^16.4.4",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
     "graphql": "^16.8.1",
     "lucia": "3.0.1",
-    "oslo": "^1.1.1",
+    "oslo": "^1.1.2",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "pergel": "^0.10.0",
     "pg": "^8.11.3",
     "playwright-core": "^1.41.2",
-    "vitest": "^1.3.0",
+    "vitest": "^1.3.1",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5"
   }
