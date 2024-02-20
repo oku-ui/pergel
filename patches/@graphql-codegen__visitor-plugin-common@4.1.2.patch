@@ -1,0 +1,172 @@
+diff --git a/cjs/base-resolvers-visitor.js b/cjs/base-resolvers-visitor.js
+index c722ab22f0deb3d4a83241f7b84ebbe414a28608..bb469d23af0275dbbe859e9109a2b0117c10e307 100644
+--- a/cjs/base-resolvers-visitor.js
++++ b/cjs/base-resolvers-visitor.js
+@@ -351,10 +351,15 @@ class BaseResolversVisitor extends base_visitor_js_1.BaseVisitor {
+     }
+     createFieldContextTypeMap() {
+         return this.config.fieldContextTypes.reduce((prev, fieldContextType) => {
++            const isScoped = fieldContextType.includes('\\#');
++            if (fieldContextType.includes('\\#')) {
++                fieldContextType = fieldContextType.replace('\\#', '');
++            }
+             const items = fieldContextType.split('#');
+             if (items.length === 3) {
+                 const [path, source, contextTypeName] = items;
+-                return { ...prev, [path]: (0, mappers_js_1.parseMapper)(`${source}#${contextTypeName}`) };
++                const sourceStr = isScoped ? `\\#${source}` : source;
++                return { ...prev, [path]: (0, mappers_js_1.parseMapper)(`${sourceStr}#${contextTypeName}`) };
+             }
+             const [path, contextType] = items;
+             return { ...prev, [path]: (0, mappers_js_1.parseMapper)(contextType) };
+@@ -362,10 +367,15 @@ class BaseResolversVisitor extends base_visitor_js_1.BaseVisitor {
+     }
+     createDirectivedContextType() {
+         return this.config.directiveContextTypes.reduce((prev, fieldContextType) => {
++            const isScoped = fieldContextType.includes('\\#');
++            if (fieldContextType.includes('\\#')) {
++                fieldContextType = fieldContextType.replace('\\#', '');
++            }
+             const items = fieldContextType.split('#');
+             if (items.length === 3) {
+                 const [path, source, contextTypeName] = items;
+-                return { ...prev, [path]: (0, mappers_js_1.parseMapper)(`${source}#${contextTypeName}`) };
++                const sourceStr = isScoped ? `\\#${source}` : source;
++                return { ...prev, [path]: (0, mappers_js_1.parseMapper)(`${sourceStr}#${contextTypeName}`) };
+             }
+             const [path, contextType] = items;
+             return { ...prev, [path]: (0, mappers_js_1.parseMapper)(contextType) };
+diff --git a/cjs/mappers.js b/cjs/mappers.js
+index a0de06c6b0ed46501050ccefdbbec3136d824b00..1797072157ba62201cf5e5af4ee3f30ac81baec0 100644
+--- a/cjs/mappers.js
++++ b/cjs/mappers.js
+@@ -12,10 +12,16 @@ var MapperKind;
+     MapperKind[MapperKind["Regular"] = 2] = "Regular";
+ })(MapperKind || (MapperKind = {}));
+ function prepareLegacy(mapper) {
++    const isScoped = mapper.includes('\\#');
++    if (mapper.includes('\\#')) {
++        mapper = mapper.replace('\\#', '');
++    }
+     const items = mapper.split('#');
+     const isNamespace = items.length === 3;
+     const isDefault = items[1].trim() === 'default' || items[1].startsWith('default ');
+     const hasAlias = items[1].includes(' as ');
++    const source = isScoped ? `#${items[0]}` : items[0];
++    items[0] = source;
+     return {
+         items,
+         isDefault,
+@@ -24,10 +30,15 @@ function prepareLegacy(mapper) {
+     };
+ }
+ function prepare(mapper) {
+-    const [source, path] = mapper.split('#');
++    const isScoped = mapper.includes('\\#');
++    if (mapper.includes('\\#')) {
++        mapper = mapper.replace('\\#', '');
++    }
++    let [source, path] = mapper.split('#');
+     const isNamespace = path.includes('.');
+     const isDefault = path.trim() === 'default' || path.startsWith('default ');
+     const hasAlias = path.includes(' as ');
++    source = isScoped ? `#${source}` : source;
+     return {
+         items: isNamespace ? [source, ...path.split('.')] : [source, path],
+         isDefault,
+@@ -36,6 +47,9 @@ function prepare(mapper) {
+     };
+ }
+ function isLegacyMode(mapper) {
++    if (mapper.includes('\\#')) {
++        mapper = mapper.replace('\\#', '');
++    }
+     return mapper.split('#').length === 3;
+ }
+ function parseMapper(mapper, gqlTypeName = null, suffix) {
+diff --git a/esm/base-resolvers-visitor.js b/esm/base-resolvers-visitor.js
+index a536b84f26731dcfdfe39207f824762fded74c6a..d9e753bffffa48e04bd97de650f812ed94dbe856 100644
+--- a/esm/base-resolvers-visitor.js
++++ b/esm/base-resolvers-visitor.js
+@@ -347,10 +347,15 @@ export class BaseResolversVisitor extends BaseVisitor {
+     }
+     createFieldContextTypeMap() {
+         return this.config.fieldContextTypes.reduce((prev, fieldContextType) => {
++            const isScoped = fieldContextType.includes('\\#');
++            if (fieldContextType.includes('\\#')) {
++                fieldContextType = fieldContextType.replace('\\#', '');
++            }
+             const items = fieldContextType.split('#');
+             if (items.length === 3) {
+                 const [path, source, contextTypeName] = items;
+-                return { ...prev, [path]: parseMapper(`${source}#${contextTypeName}`) };
++                const sourceStr = isScoped ? `\\#${source}` : source;
++                return { ...prev, [path]: parseMapper(`${sourceStr}#${contextTypeName}`) };
+             }
+             const [path, contextType] = items;
+             return { ...prev, [path]: parseMapper(contextType) };
+@@ -358,10 +363,15 @@ export class BaseResolversVisitor extends BaseVisitor {
+     }
+     createDirectivedContextType() {
+         return this.config.directiveContextTypes.reduce((prev, fieldContextType) => {
++            const isScoped = fieldContextType.includes('\\#');
++            if (fieldContextType.includes('\\#')) {
++                fieldContextType = fieldContextType.replace('\\#', '');
++            }
+             const items = fieldContextType.split('#');
+             if (items.length === 3) {
+                 const [path, source, contextTypeName] = items;
+-                return { ...prev, [path]: parseMapper(`${source}#${contextTypeName}`) };
++                const sourceStr = isScoped ? `\\#${source}` : source;
++                return { ...prev, [path]: parseMapper(`${sourceStr}#${contextTypeName}`) };
+             }
+             const [path, contextType] = items;
+             return { ...prev, [path]: parseMapper(contextType) };
+diff --git a/esm/mappers.js b/esm/mappers.js
+index 97a198b5b029d8f206a85e026c5dc1edb47d3faa..f49f9bd18ec3093d86015f9c2910ba995f678b03 100644
+--- a/esm/mappers.js
++++ b/esm/mappers.js
+@@ -8,10 +8,16 @@ var MapperKind;
+     MapperKind[MapperKind["Regular"] = 2] = "Regular";
+ })(MapperKind || (MapperKind = {}));
+ function prepareLegacy(mapper) {
++    const isScoped = mapper.includes('\\#');
++    if (mapper.includes('\\#')) {
++        mapper = mapper.replace('\\#', '');
++    }
+     const items = mapper.split('#');
+     const isNamespace = items.length === 3;
+     const isDefault = items[1].trim() === 'default' || items[1].startsWith('default ');
+     const hasAlias = items[1].includes(' as ');
++    const source = isScoped ? `#${items[0]}` : items[0];
++    items[0] = source;
+     return {
+         items,
+         isDefault,
+@@ -20,10 +26,15 @@ function prepareLegacy(mapper) {
+     };
+ }
+ function prepare(mapper) {
+-    const [source, path] = mapper.split('#');
++    const isScoped = mapper.includes('\\#');
++    if (mapper.includes('\\#')) {
++        mapper = mapper.replace('\\#', '');
++    }
++    let [source, path] = mapper.split('#');
+     const isNamespace = path.includes('.');
+     const isDefault = path.trim() === 'default' || path.startsWith('default ');
+     const hasAlias = path.includes(' as ');
++    source = isScoped ? `#${source}` : source;
+     return {
+         items: isNamespace ? [source, ...path.split('.')] : [source, path],
+         isDefault,
+@@ -32,6 +43,9 @@ function prepare(mapper) {
+     };
+ }
+ function isLegacyMode(mapper) {
++    if (mapper.includes('\\#')) {
++        mapper = mapper.replace('\\#', '');
++    }
+     return mapper.split('#').length === 3;
+ }
+ export function parseMapper(mapper, gqlTypeName = null, suffix) {

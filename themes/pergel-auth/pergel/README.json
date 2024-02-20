@@ -20,6 +20,11 @@
           "@vue/test-utils": "^2.4.4",
           "happy-dom": "^13.3.8",
           "playwright-core": "^1.41.2"
+        },
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
         }
       }
     },
@@ -36,7 +41,12 @@
           "@graphql-yoga/urql-exchange": "^3.1.1",
           "@urql/exchange-graphcache": "^6.4.1"
         },
-        "devDependencies": {}
+        "devDependencies": {},
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
+        }
       }
     },
     "graphqlYoga": {
@@ -48,7 +58,12 @@
         "dependencies": {
           "@pergel/module-graphql": "0.4.2"
         },
-        "devDependencies": {}
+        "devDependencies": {},
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
+        }
       }
     },
     "lucia": {
@@ -66,7 +81,12 @@
           "@lucia-auth/adapter-drizzle": "1.0.1",
           "@lucia-auth/adapter-postgresql": "3.1.0"
         },
-        "devDependencies": {}
+        "devDependencies": {},
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
+        }
       }
     },
     "drizzle": {
@@ -116,6 +136,11 @@
         },
         "devDependencies": {
           "pg": "^8.11.3"
+        },
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
         }
       }
     },
@@ -130,7 +155,12 @@
         "dependencies": {
           "@aws-sdk/client-ses": "^3.515.0"
         },
-        "devDependencies": {}
+        "devDependencies": {},
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
+        }
       }
     },
     "box": {
@@ -142,7 +172,12 @@
         "dependencies": {
           "@pergel/module-box": "0.4.0"
         },
-        "devDependencies": {}
+        "devDependencies": {},
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
+        }
       }
     }
   }

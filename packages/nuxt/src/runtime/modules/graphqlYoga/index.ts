@@ -23,6 +23,15 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
         '@pergel/module-graphql': deps['@pergel/module-graphql'],
       }
     },
+    // patches: (_options, _nuxt) => {
+    //   return {
+    //     pnpm: {
+    //       patchedDependencies: {
+    //         '@graphql-codegen/visitor-plugin-common@4.1.2': 'pergel/patches/@graphql-codegen/visitor-plugin-common@4.1.2',
+    //       },
+    //     },
+    //   }
+    // },
     dts: true,
   },
   defaults({ rootOptions, options, nuxt }) {

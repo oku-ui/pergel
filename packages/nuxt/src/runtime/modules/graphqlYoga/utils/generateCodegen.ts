@@ -113,7 +113,7 @@ export const schema = \`${printSchema}\``
       try {
         const type = await server.typescriptResolvers(schema, {
           useTypeImports: true,
-          contextType: `${moduleDTS.path}#${moduleDTS.name}`,
+          contextType: `\\#${moduleDTS.path}#${moduleDTS.name}`,
           ...typeof options.codegen.server.config === 'function'
             ? options.codegen.server.config({
               dir: {

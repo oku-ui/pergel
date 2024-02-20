@@ -42,6 +42,7 @@ export default defineBuildConfig([
             recursive: true,
           },
         )
+        cpSync('../../patches', './dist/patches', { recursive: true })
       },
     },
   },

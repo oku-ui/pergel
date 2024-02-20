@@ -239,6 +239,10 @@ export async function setupModules(data: {
         ? getMeta.devDependencies(module, data.nuxt)
         : getMeta.devDependencies ?? {}
 
+      const patches = getMeta.patches instanceof Function
+        ? getMeta.patches(module, data.nuxt)
+        : getMeta.patches ?? {}
+
       if (Object.keys(dependencies).length > 0 || Object.keys(devDependencies).length > 0) {
         generateProjectReadme({
           data: ({ addCommentBlock }) => ({
@@ -249,6 +253,13 @@ export async function setupModules(data: {
               },
               devDependencies: {
                 ...devDependencies,
+              },
+              patches: {
+                pnpm: {
+                  patchedDependencies: {
+                    ...patches.pnpm?.patchedDependencies,
+                  },
+                },
               },
             },
           }),

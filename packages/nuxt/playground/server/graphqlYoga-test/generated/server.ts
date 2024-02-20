@@ -5,7 +5,7 @@
 /* prettier-ignore */
 /* pergel - oku-ui.com/pergel */
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
-import type { GraphqlYogaContext } from 'test/graphqlYoga/types';
+import type { GraphqlYogaContext } from '#test/graphqlYoga/types';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };

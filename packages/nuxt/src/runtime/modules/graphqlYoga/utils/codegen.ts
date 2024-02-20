@@ -122,6 +122,7 @@ async function typescriptResolvers(
     enumsAsTypes: true,
     useTypeImports: true,
     strictScalars: true,
+    emitLegacyCommonJSImports: false,
   } as CodegenServerConfig)
   // See https://www.graphql-code-generator.com/docs/getting-started/programmatic-usage for more details
   const res = await codegen({
@@ -142,7 +143,7 @@ async function typescriptResolvers(
       typescript: typescriptPlugin,
       typescriptResolvers: typescriptResolversPlugin,
     },
-  }).catch((e) => {
+  }).catch((e: any) => {
     consola.warn('error', e)
     return ''
   })
@@ -174,7 +175,7 @@ async function urqlIntrospection(
       },
       urqlIntrospection: urqlIntrospectionPlugin,
     },
-  }).catch((e) => {
+  }).catch((e: any) => {
     consola.warn('error', e)
     return ''
   })
@@ -220,7 +221,7 @@ async function generateTypedDocumentNode(
       },
       urqlGraphqlCache: urqlGraphqlCachePlugin,
     },
-  }).catch((e) => {
+  }).catch((e: any) => {
     consola.warn('error', e)
     return ''
   })

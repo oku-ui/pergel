@@ -116,8 +116,12 @@ interface ModuleMeta<T extends ResolvedPergelModuleOptions = ResolvedPergelModul
 
   devDependencies?: Record<string, string> | ((options: T, nuxt: NuxtPergel) => Record<string, string>)
   dependencies?: Record<string, string> | ((options: T, nuxt: NuxtPergel) => Record<string, string>)
+  patches?: Record<string, any> | ((options: T, nuxt: NuxtPergel) => {
+    pnpm?: {
+      patchedDependencies: Record<string, string>
+    }
+  })
   dts?: boolean
-
   waitModule?: PergelModuleNames[] | ((options: T) => PergelModuleNames[] | undefined)
   rootModuleDir?: string
 
