@@ -1,7 +1,7 @@
 {
   "name": "pergel",
   "type": "module",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "packageManager": "pnpm@8.10.0",
   "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
   "author": "Mehmet @productdevbook",
