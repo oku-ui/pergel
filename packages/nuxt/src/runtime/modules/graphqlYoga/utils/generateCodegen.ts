@@ -1,4 +1,5 @@
 import { join, resolve } from 'node:path'
+import { existsSync } from 'node:fs'
 import consola from 'consola'
 import { buildTime } from '../utils'
 import { useNitroImports, useNuxtImports } from '../../../core/utils/useImports'
@@ -74,17 +75,19 @@ export const schema = \`${printSchema}\``
     },
   })
 
-  // Create types in build dir
-  addTemplatePergel({
-    filename: join(options.folderName, 'schema.d.ts'),
-    write: true,
-    where: 'server',
-    getContents() {
-      return `declare module '#${options.importPath}/generated/schema' {
-    const schema: string
-  }`
-    },
-  })
+  if (!existsSync(join(options.serverDir, 'schema.d.ts'))) {
+    // Create types in build dir
+    addTemplatePergel({
+      filename: join(options.folderName, 'schema.d.ts'),
+      write: true,
+      where: 'server',
+      getContents() {
+        return `declare module '#${options.importPath}/generated/schema' {
+  const schema: string
+}`
+      },
+    })
+  }
 
   // GraphQL Server
   const serverFile = addTemplatePergel({
