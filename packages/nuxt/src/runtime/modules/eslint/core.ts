@@ -52,6 +52,11 @@ export function pergelEslintConfig(input?: {
       ],
       ...input?.pergel ?? {},
     },
+    {
+      rules: {
+        'node/prefer-global/process': 'off',
+      },
+    },
   ]
 }
 

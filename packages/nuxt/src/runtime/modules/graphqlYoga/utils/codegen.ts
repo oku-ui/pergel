@@ -110,6 +110,14 @@ async function typescriptResolvers(
       JSONObject: JSONResolver.extensions.codegenScalarType as any,
       NonEmptyString: NonEmptyStringResolver.extensions.codegenScalarType as any,
       Currency: CurrencyResolver.extensions.codegenScalarType as any,
+      File: {
+        input: 'File',
+        output: 'File',
+      },
+      Cursor: {
+        input: 'string',
+        output: 'string',
+      },
     },
     enumsAsTypes: true,
     useTypeImports: true,
