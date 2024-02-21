@@ -86,17 +86,17 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
       '@pergel/module-box':
-        specifier: ^0.4.0
-        version: 0.4.0(nuxt@3.10.2)(rollup@4.12.0)(tailwindcss@3.4.1)(typescript@5.3.3)(vite@5.1.3)(vue@3.4.19)
+        specifier: ^0.5.0
+        version: 0.5.0(nuxt@3.10.2)(rollup@4.12.0)(tailwindcss@3.4.1)(typescript@5.3.3)(vite@5.1.3)(vue@3.4.19)
       '@pergel/module-graphql':
-        specifier: ^0.4.2
-        version: 0.4.2(@urql/exchange-graphcache@6.4.1)(graphql-tag@2.12.6)(graphql@16.8.1)(typescript@5.3.3)
+        specifier: ^0.5.0
+        version: 0.5.0(@urql/exchange-graphcache@6.4.1)(graphql-tag@2.12.6)(graphql@16.8.1)(typescript@5.3.3)
       '@pergel/module-s3':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.2.0
+        version: 0.2.0
       bullmq:
-        specifier: ^5.2.1
-        version: 5.2.1
+        specifier: ^5.3.0
+        version: 5.3.0
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -5554,8 +5554,8 @@ packages:
       webcrypto-core: 1.7.8
     dev: false
 
-  /@pergel/module-box@0.4.0(nuxt@3.10.2)(rollup@4.12.0)(tailwindcss@3.4.1)(typescript@5.3.3)(vite@5.1.3)(vue@3.4.19):
-    resolution: {integrity: sha512-did9g1dRLz3KTWMUOYXoKvOqG/3ji+MoaHcqB70ma2qVGRpK3S+KnqIR5uDLMq+CiCE8AjGzK+gQgUkcULJXdw==}
+  /@pergel/module-box@0.5.0(nuxt@3.10.2)(rollup@4.12.0)(tailwindcss@3.4.1)(typescript@5.3.3)(vite@5.1.3)(vue@3.4.19):
+    resolution: {integrity: sha512-LWi2bYcP+dUAxcp7CElbNdW5oLfKADijtdl6HpJVQKT/wD3bTv7rXvMHkoF7jZxR4O+SUfajeWxLgm6tyn23xQ==}
     dependencies:
       '@egoist/tailwindcss-icons': 1.7.4(tailwindcss@3.4.1)
       '@faker-js/faker': 8.4.1
@@ -5580,7 +5580,7 @@ packages:
       '@vueuse/nuxt': 10.8.0(nuxt@3.10.2)(rollup@4.12.0)(vue@3.4.19)
       class-variance-authority: 0.7.0
       clsx: 2.1.0
-      lucide-vue-next: 0.323.0(vue@3.4.19)
+      lucide-vue-next: 0.335.0(vue@3.4.19)
       nanoid: 5.0.6
       notivue: 2.2.1
       nuxt-icon: 0.6.8(nuxt@3.10.2)(rollup@4.12.0)(vite@5.1.3)(vue@3.4.19)
@@ -5611,8 +5611,8 @@ packages:
       - vue-i18n-bridge
     dev: false
 
-  /@pergel/module-graphql@0.4.2(@urql/exchange-graphcache@6.4.1)(graphql-tag@2.12.6)(graphql@16.8.1)(typescript@5.3.3):
-    resolution: {integrity: sha512-RNIvsiI7OZ9rpQb6AYZiCoYtzwnecrx72XoSRyBGeIxtMhsglnQDBs7eBM2y4Oeny5ME54p1AONp1jcED+iprw==}
+  /@pergel/module-graphql@0.5.0(@urql/exchange-graphcache@6.4.1)(graphql-tag@2.12.6)(graphql@16.8.1)(typescript@5.3.3):
+    resolution: {integrity: sha512-nlGN6jaOFujoh3HGZwdXlXkje3TWCGFduH3SCVhMiYQB/8HgOb73wPPjlWBifNJ9q9IRIEj72UHrIGkm9eCpKg==}
     peerDependencies:
       graphql: '>=16.8.1'
     dependencies:
@@ -5653,8 +5653,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@pergel/module-s3@0.1.0:
-    resolution: {integrity: sha512-V38qrucomKlCQo73DOpJAtywmYEZFQL0gOeQAY73lbK/VGUXFaXSmCznhFha00Rkhh2hdP/wdawJ5hycwkpEuA==}
+  /@pergel/module-s3@0.2.0:
+    resolution: {integrity: sha512-ZI7Drx/5rEbkNDKRUtvWnUv30CiIJdRq4EnGnLrGX0ZO2oylhp7Cc/aIHC23fG+Vv5iYxxfauRrmMv3mv4nyYA==}
     dependencies:
       '@aws-sdk/client-s3': 3.515.0
       '@aws-sdk/s3-request-presigner': 3.515.0
@@ -7600,8 +7600,8 @@ packages:
       semver: 7.6.0
     dev: false
 
-  /bullmq@5.2.1:
-    resolution: {integrity: sha512-uImDp9k4hiitA1Ve5W/7AlOAaHMXwLtM2gPay7X7O6Do0LlXHW5fD4M0SthBtZLhECBQtZCCvzJcd2COoCi40g==}
+  /bullmq@5.3.0:
+    resolution: {integrity: sha512-aQoPB5SymQ6kJjiuj7/WgVkgE3J7IgeFO7W8O5clZtVAG+G4zMz3uyIg58nYZap1v7ymIxlV4hQU97Eo4j4ctQ==}
     dependencies:
       cron-parser: 4.9.0
       glob: 8.1.0
@@ -10554,8 +10554,8 @@ packages:
       oslo: 1.0.1
     dev: false
 
-  /lucide-vue-next@0.323.0(vue@3.4.19):
-    resolution: {integrity: sha512-Hf++C/pHAZ7RUOw0J7ZBrxHr9KWlwecwK72HxvOgD9uYsqLCbPNSOaaol1ypMCpnTXIvjUIK7t/NVcd2J1u/wA==}
+  /lucide-vue-next@0.335.0(vue@3.4.19):
+    resolution: {integrity: sha512-TmsOVOCw7gL9LrYYKxqR+9+DlPJnI4JojfS87qd/IfwB/SNg548dacYFEZUzwPHVH3l3yvWsTfy343xdQVDBNw==}
     peerDependencies:
       vue: '>=3.0.1'
     dependencies:
