@@ -33,7 +33,7 @@
     "@vue/test-utils": "^2.4.4",
     "happy-dom": "^13.3.8",
     "nuxt": "^3.10.2",
-    "pergel": "^0.10.0",
+    "pergel": "^0.11.0",
     "pg": "^8.11.3",
     "playwright-core": "^1.41.2",
     "vitest": "^1.3.1",
