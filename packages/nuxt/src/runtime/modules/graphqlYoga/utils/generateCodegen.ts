@@ -75,10 +75,10 @@ export const schema = \`${printSchema}\``
     },
   })
 
-  if (!existsSync(join(options.serverDir, 'schema.d.ts'))) {
+  if (!existsSync(join(options.serverDir, 'generated', 'schema.d.ts'))) {
     // Create types in build dir
     addTemplatePergel({
-      filename: join(options.folderName, 'schema.d.ts'),
+      filename: join(options.folderName, 'generated', 'schema.d.ts'),
       write: true,
       where: 'server',
       getContents() {
