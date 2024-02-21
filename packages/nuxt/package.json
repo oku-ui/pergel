@@ -109,7 +109,7 @@
     "drizzle-orm": "^0.29.3",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
     "eslint": "^8.56.0",
-    "eslint-plugin-tailwindcss": "^3.14.2",
+    "eslint-plugin-tailwindcss": "^3.14.3",
     "graphql": "^16.8.1",
     "h3": "^1.10.2",
     "happy-dom": "^13.3.8",
