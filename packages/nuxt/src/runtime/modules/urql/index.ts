@@ -36,18 +36,22 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
     const resolver = createResolver(import.meta.url)
 
     generateModuleRuntimeConfigEnv(nuxt, options, {
-      endpoint: undefined,
+      productionEndpoint: undefined,
+      devEndpoint: undefined,
       default: {
-        endpoint: 'http://localhost:3000/api/graphql',
+        productionEndpoint: 'http://localhost:3000/api/graphql',
+        devEndpoint: 'http://localhost:3000/api/graphql',
       },
     })
 
     generateModuleRuntimeConfig<UrqlModuleRuntimeConfig>(nuxt, options, {
-      endpoint: undefined,
+      productionEndpoint: undefined,
+      devEndpoint: undefined,
       client: undefined,
       ssr: undefined,
       default: {
-        endpoint: 'http://localhost:3000/api/graphql',
+        productionEndpoint: 'http://localhost:3000/api/graphql',
+        devEndpoint: 'http://localhost:3000/api/graphql',
         ssr: {
           key: '__URQL_DATA__',
         },
@@ -90,9 +94,7 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
   const { selectProject } = usePergelRuntime({
     moduleName: 'urql',
     projectName: '${options.projectName}',
-  }, undefined, true) as {
-    selectProject: ResolvedUrqlConfig
-  }
+  }, undefined, true) as any
 
   if (!selectProject)
     throw new Error('Pergel is not defined')
@@ -128,7 +130,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const { selectProject } = usePergelRuntime({
     moduleName: 'urql',
     projectName: '${options.projectName}',
-  }, undefined, true)
+  }, undefined, true) as any
 
   if (!selectProject)
     throw new Error('Pergel is not defined')
@@ -159,9 +161,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // retrieve user client options to create client
   const options = await nuxtURQLClient(ssr);
 
+  const isDev = import.meta.dev
+  const ssrEndpoint = isDev ? selectProject.ssr.devEndpoint : selectProject.ssr.productionEndpoint
+  const endpoint = isDev ? selectProject.devEndpoint : selectProject.productionEndpoint
+
   // create urql client
   const client: Client = createClient({
-    url: (import.meta.server && selectProject.ssr.endpoint) || selectProject.endpoint,
+    url: (import.meta.server && ssrEndpoint) || endpoint,
     ...options,
   })
 
