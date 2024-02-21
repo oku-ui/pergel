@@ -23,11 +23,7 @@ const yogaStore: Map<string, {
   context: Partial<any> | null
 }> = new Map()
 
-export async function nitroGraphqlYogaPlugin<Context extends Record<string, any> = object>(event: H3Event, config: ResolvedGraphQLYogaConfig, {
-  onAfterOptions,
-  onBeforeContext,
-  onBeforeOptions,
-}: Omit<GraphQLYogaOptions<Context>, 'config'>) {
+export async function nitroGraphqlYogaPlugin<Context extends Record<string, any> = object>(event: H3Event, config: ResolvedGraphQLYogaConfig, params: Omit<GraphQLYogaOptions<Context>, 'config'>) {
   const { pathname } = parseURL(event.path)
 
   if (!yogaStore.has(pathname)) {
@@ -69,12 +65,12 @@ export async function nitroGraphqlYogaPlugin<Context extends Record<string, any>
       },
     }
 
-    await onBeforeOptions?.(beforeHandle, event)
+    params.onBeforeOptions && typeof params.onBeforeOptions === 'function' && (await params.onBeforeOptions(beforeHandle, event))
 
     // Create Yoga instance
     const yogaInstance = createYoga(graphQLOptions)
 
-    await onAfterOptions?.(yogaInstance, event)
+    params.onAfterOptions && typeof params.onAfterOptions === 'function' && (await params.onAfterOptions(yogaInstance, event))
     let context: Partial<Context> = {}
 
     const beforeHandleContext: GraphqlYogaContextOptions<Context> = {
@@ -93,7 +89,7 @@ export async function nitroGraphqlYogaPlugin<Context extends Record<string, any>
       },
     }
 
-    await onBeforeContext?.(beforeHandleContext, event)
+    params.onBeforeContext && typeof params.onBeforeContext === 'function' && (await params.onBeforeContext(beforeHandleContext, event))
 
     yogaStore.set(pathname, {
       instance: yogaInstance,

@@ -56,8 +56,8 @@ export function definePergelGraphQLYogaPlugin<Context extends Record<string, any
         handler: async (event) => {
           return await nitroGraphqlYogaPlugin(event, options, data)
         },
-        onRequest: data.onRequest,
-        onBeforeResponse: data.onBeforeResponse,
+        ...data.onRequest && { onRequest: data.onRequest },
+        ...data.onBeforeResponse && { onBeforeResponse: data.onBeforeResponse },
       }),
     )
 
