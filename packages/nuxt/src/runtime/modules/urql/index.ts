@@ -178,25 +178,23 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       },
     })
 
-    if (nuxt._pergel.projects[options.projectName]?.drizzle && nuxt._pergel.projects[options.projectName]?.lucia) {
-      if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
-        const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, '**/*')), {
-          onlyFiles: true,
-        })
+    if (!existsSync(resolve(options.rootModuleDir, 'urql.config.ts'))) {
+      const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, '**/*')), {
+        onlyFiles: true,
+      })
 
-        for (const file of files) {
-          const readFile = await nuxt._pergel.jitiDyanmicImport(file)
-          if (readFile) {
-            const fileData = readFile({
-              projectName: options.projectName,
-              projectNameCamelCaseWithPergel: options.projectNameCamelCaseWithPergel,
-              nuxt,
-              driver: options.driver,
-            })
-            const fileName = basename(file)
+      for (const file of files) {
+        const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+        if (readFile) {
+          const fileData = readFile({
+            projectName: options.projectName,
+            projectNameCamelCaseWithPergel: options.projectNameCamelCaseWithPergel,
+            nuxt,
+            driver: options.driver,
+          })
+          const fileName = basename(file)
 
-            writeFilePergel(resolve(options.rootModuleDir, fileName), fileData)
-          }
+          writeFilePergel(resolve(options.rootModuleDir, fileName), fileData)
         }
       }
     }
