@@ -121,6 +121,8 @@ export interface BoxOptions extends PergelModuleOptions {
      * @see https://www.shadcn-vue.com
      */
     shadcnNuxt?: boolean
+
+    typescript?: boolean
   }
 }
 
@@ -154,5 +156,6 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     uuid: boolean
     unsearch: boolean
     shadcnNuxt: boolean
+    typescript: boolean
   }
 }

@@ -5,7 +5,7 @@ import { isPackageExists } from 'local-pkg'
 import type { ModuleDefinition, ModuleSetupReturn, PergelModule, PergelModuleOptions, ResolvedPergelModuleOptions } from './types/module'
 import type { NuxtPergel } from './types/nuxtModule'
 
-export function definePergelModule<RootOptions extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions>(
+export function definePergelModule<RootOptions extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions = object>(
   definition: ModuleDefinition<RootOptions, ResolvedOptions> | PergelModule<RootOptions, ResolvedOptions>,
 ): PergelModule<RootOptions, ResolvedOptions> {
   if (typeof definition === 'function')

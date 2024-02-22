@@ -26,8 +26,15 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
     version: '0.3.0',
     dependencies(options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
+
       return {
         '@pergel/module-box': deps['@pergel/module-box'],
+        ...options.packages.typescript
+          ? {
+              'typescript': deps.typescript,
+              'vue-tsc': deps['vue-tsc'],
+            }
+          : {},
       }
     },
   },
@@ -390,8 +397,8 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       nuxt.options.runtimeConfig.public.slugify = defu(
         nuxt.options.runtimeConfig.public.slugify,
         {
-          extend: options.extend,
-          defaults: options.defaults,
+          extend: typeof options.packages.slugify === 'object' ? options.packages.slugify.extend : {},
+          defaults: typeof options.packages.slugify === 'object' ? options.packages.slugify.defaults : {},
         },
       )
 

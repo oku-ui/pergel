@@ -90,9 +90,6 @@ export interface ResolvedPergelModuleOptions {
    * false
    */
   devtoolsStatus?: boolean
-
-  [key: string]: any
-
 }
 
 interface ModuleMeta<T extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
@@ -138,15 +135,15 @@ export interface ModuleSetupReturn {
 export type Awaitable<T> = T | Promise<T>
 type _ModuleSetupReturn = Awaitable<void | false | ModuleSetupReturn>
 
-export interface ModuleDefinition<T extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
-  meta?: ModuleMeta<ResolvedPergelModuleOptions>
+export interface ModuleDefinition<T extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions = PergelModuleOptions> {
+  meta?: ModuleMeta<ResolvedPergelModuleOptions & ResolvedOptions>
   defaults?: T
   | ((data: {
     nuxt: NuxtPergel
-    options: ResolvedOptions & ResolvedPergelModuleOptions
+    options: ResolvedPergelModuleOptions & ResolvedOptions
     rootOptions: T
   })
-  => ResolvedOptions & ResolvedPergelModuleOptions)
+  => ResolvedOptions & Partial<ResolvedPergelModuleOptions>)
   setup?: (
     this: void,
     data: {
@@ -158,7 +155,7 @@ export interface ModuleDefinition<T extends PergelModuleOptions = PergelModuleOp
   _ModuleSetupReturn
 }
 
-export interface PergelModule<RootOptions extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions extends ResolvedPergelModuleOptions = ResolvedPergelModuleOptions> {
+export interface PergelModule<RootOptions extends PergelModuleOptions = PergelModuleOptions, ResolvedOptions = PergelModuleOptions> {
   (this: void, data: {
     nuxt: NuxtPergel
     options: ResolvedOptions & ResolvedPergelModuleOptions

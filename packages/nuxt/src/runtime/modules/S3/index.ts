@@ -7,7 +7,7 @@ export default definePergelModule({
   meta: {
     name: 'S3',
     version: '0.2.0',
-    dependencies(options, nuxt) {
+    dependencies(_options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
         '@pergel/module-s3': deps['@pergel/module-s3'],

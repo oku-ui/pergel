@@ -14,7 +14,7 @@ export default definePergelModule({
   meta: {
     name: 'bullmq',
     version: '0.1.0',
-    dependencies(options, nuxt) {
+    dependencies(_options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
         'bullmq': deps.bullmq,
