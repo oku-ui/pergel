@@ -1,6 +1,8 @@
 export default defineEventHandler(async (event) => {
   try {
-    const { sendEmail, templates } = await pergelTest().ses().use(event)
+    const { sendEmail, templates } = await pergelTest().ses().use({
+      event,
+    })
 
     const _emailParams = {
       Destination: {
@@ -22,9 +24,9 @@ export default defineEventHandler(async (event) => {
     // const sendtest = await sendEmail(_emailParams)
 
     const result = await sendEmail(templates().changeEmail({
-      to: 'hi@productdevbook.com',
+      toAddresses: ['hi@productdevbook.com'],
       code: '123456',
-      webUrl: 'https://productdevbook.com',
+      clickButtonUrl: 'https://productdevbook.com',
       source: 'noreply@productdevbook.com',
     }))
 

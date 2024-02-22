@@ -16,7 +16,7 @@ export function generateGraphQLTemplate(data: {
     options: data.options,
     moduleDTS: {
       name: 'GraphqlYogaContext',
-      path: `${data.options.importPath}/types`,
+      path: `${join(data.options.projectName, 'server', data.options.moduleName)}/types`,
     },
   })
 

@@ -1,5 +1,7 @@
 export default eventHandler(async (event) => {
-  const db = await pergelTest().drizzle().postgresjs().connect({})
+  const db = await pergelTest().drizzle().postgresjs().connect({
+    event,
+  })
   const body = await readBody(event)
   const username = body.username
   if (

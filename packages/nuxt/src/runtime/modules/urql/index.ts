@@ -29,7 +29,11 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
   defaults: {
     endpoint: '',
     client: undefined,
-    ssr: { key: '__URQL_DATA__' },
+    ssr: {
+      key: '__URQL_DATA__',
+      devEndpoint: 'http://localhost:3000/api/graphql',
+      productionEndpoint: 'http://localhost:3000/api/graphql',
+    },
     driver: 'graphqlYoga',
   },
   async setup({ nuxt, options }) {
@@ -94,7 +98,9 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
   const { selectProject } = usePergelRuntime({
     moduleName: 'urql',
     projectName: '${options.projectName}',
-  }, undefined, true) as any
+  }, undefined, true) as {
+    selectProject: ResolvedUrqlConfig
+  }
 
   if (!selectProject)
     throw new Error('Pergel is not defined')
@@ -125,12 +131,15 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
 import type { Client, SSRData } from "@urql/core"
 import { createClient, ssrExchange } from "@urql/core";
 import nuxtURQLClient from '#urql-client'
+import type { ResolvedUrqlConfig } from '#pergel/modules/urql/types'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const { selectProject } = usePergelRuntime({
     moduleName: 'urql',
     projectName: '${options.projectName}',
-  }, undefined, true) as any
+  }, undefined, true) as {
+    selectProject: ResolvedUrqlConfig
+  }
 
   if (!selectProject)
     throw new Error('Pergel is not defined')

@@ -52,7 +52,7 @@ export default definePergelModule({
 
     addServerImportsDir(resolver.resolve('./composables/nitro'))
 
-    if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+    if (!existsSync(resolve(options.serverDir, 'types.ts'))) {
       const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', options.moduleName, '**/*')), {
         onlyFiles: true,
       })
@@ -91,7 +91,7 @@ export default definePergelModule({
           }
         `,
       before: [
-        `import type { ${typeName} } from '#${options.importPath}/types'`,
+        `import type { ${typeName} } from '#${join(options.projectName, 'server', options.moduleName)}/types'`,
       ],
       resolve: /* ts */`
             bullmq: bullmq,

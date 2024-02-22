@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const { uploadObject, listAllObjects } = await pergelTest().S3().use({
+  const { uploadObject, listAllObjects } = pergelTest().S3().use({
     event,
   })
 

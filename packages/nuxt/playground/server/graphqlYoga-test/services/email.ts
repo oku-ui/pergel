@@ -8,7 +8,7 @@ const logger = consola.withDefaults({
 async function verificationEmail(this: API, params: {
   email: string
 }) {
-  const { sendEmail, templates } = await pergelChangeName().ses().use({
+  const { sendEmail, templates } = await pergelTest().ses().use({
     event: this.context.event,
   })
 

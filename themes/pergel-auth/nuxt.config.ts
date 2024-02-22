@@ -46,9 +46,7 @@ export default defineNuxtConfig({
           },
         },
         drizzle: true,
-        urql: {
-          client: 'custom',
-        },
+        urql: true,
         vitest: true,
       },
     },

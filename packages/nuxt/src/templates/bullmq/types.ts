@@ -9,7 +9,7 @@ export default function (data: {
     type: true,
   })
 
-  return /* TS */ `declare module '#${data.projectName}/bullmq/types' {
+  return /* TS */ `declare module '#${data.projectName}/server/bullmq/types' {
   export interface ${typeName} {
     queueName: 'default' | 'email'
   }

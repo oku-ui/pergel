@@ -1,6 +1,6 @@
 import { GitHub } from 'arctic'
 
-import { session, user } from '#changeName/drizzle/schema'
+import { session, user } from '#changeName/server/drizzle/schema'
 
 const connect = await pergelChangeName()
   .drizzle()

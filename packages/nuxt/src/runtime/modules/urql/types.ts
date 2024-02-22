@@ -20,7 +20,12 @@ export type ModuleSSRParams = Pick<SSRExchangeParams, 'staleWhileRevalidate' | '
   /**
    * server side graphql endpoint URL, defaults to module endpoint
    */
-  endpoint?: string
+  devEndpoint: string
+
+  /**
+   * client side graphql endpoint URL, defaults to module endpoint
+   */
+  productionEndpoint: string
 }
 
 export interface UrqlModuleOptions extends PergelModuleOptions {
@@ -30,6 +35,8 @@ export interface UrqlModuleOptions extends PergelModuleOptions {
    */
   endpoint?: string
 
+  devEndpoint?: string
+
   /**
    * client options object or path to client setup script
    */
@@ -38,7 +45,17 @@ export interface UrqlModuleOptions extends PergelModuleOptions {
   /**
    * SSR exchange options
    */
-  ssr?: ModuleSSRParams
+  ssr?: ModuleSSRParams & {
+    /**
+     * server side graphql endpoint URL, defaults to module endpoint
+     */
+    devEndpoint?: string
+
+    /**
+     * client side graphql endpoint URL, defaults to module endpoint
+     */
+    productionEndpoint?: string
+  }
 
   /**
    * module driver
@@ -48,14 +65,22 @@ export interface UrqlModuleOptions extends PergelModuleOptions {
 }
 
 export interface ResolvedUrqlConfig extends ResolvedPergelModuleOptions {
-  endpoint: string
+  devEndpoint: string
+  productionEndpoint: string
   client: ModuleClientOptions | 'custom'
-  ssr: ModuleSSRParams
+  ssr: ModuleSSRParams & {
+    devEndpoint: string
+    productionEndpoint: string
+  }
   driver: 'graphqlYoga'
 }
 
 export interface UrqlModuleRuntimeConfig {
-  endpoint: string
-  client: ModuleClientOptions
-  ssr: ModuleSSRParams
+  productionEndpoint: string
+  devEndpoint: string
+  client: ModuleClientOptions | 'custom'
+  ssr: ModuleSSRParams & {
+    devEndpoint: string
+    productionEndpoint: string
+  }
 }

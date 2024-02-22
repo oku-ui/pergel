@@ -82,7 +82,7 @@ export const schema = \`${printSchema}\``
       write: true,
       where: 'server',
       getContents() {
-        return `declare module '#${options.importPath}/generated/schema' {
+        return `declare module '#${join(options.projectName, 'server', options.moduleName)}/generated/schema' {
   const schema: string
 }`
       },

@@ -1,35 +1,32 @@
-import { createSchema } from 'graphql-yoga'
-import type { Resolvers } from '#test/graphqlYoga/generated/server'
-import { schema } from '#test/graphqlYoga/generated/schema'
-
-const resolvers: Resolvers = {
-  Query: {
-    book: (_root, _args, _context, _info) => {
-      return {
-        id: '1',
-        name: 'hello',
-        email: 'hello',
-        createdAt: 'hello',
-        password: 'hello',
-      }
-    },
-  },
-}
-const schemas = createSchema({
-  typeDefs: schema,
-  resolvers,
-})
-
+// Please move server/plugins/graphqlv1.ts. If you want to change graphqlv1.ts you can change it.
 export default pergelTest().graphqlYoga().nitro().use({
-  onBeforeOptions: async ({ options }) => {
+  onRequest: [
+    // If lucia true, remove comment
+    // testLuciaRequest,
+  ],
+  onBeforeOptions: async ({ options }, event) => {
+    // const allowedOrigins = (propscess.env.ORIGIN as string).split(',')
+    const origin = event.node.req.headers.origin as string
     options.add({
-      schema: schemas,
+      schema: testGraphQLCreateSchema,
+      cors: {
+        origin,
+        credentials: true,
+      },
     })
   },
-  async onBeforeContext({ options }) {
-    const data = await options.add({
+  async onBeforeContext({ options }, event) {
+    const db = await pergelTest().drizzle()
+      .postgresjs()
+      .connect({
+        event,
+      })
 
+    const storage = testDrizzleStorage({ db })
+
+    await options.add({
+      db,
+      storage,
     })
-    console.warn(data)
   },
 })

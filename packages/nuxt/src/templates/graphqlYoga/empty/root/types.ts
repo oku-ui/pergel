@@ -11,12 +11,12 @@ export default function (data: {
     type: true,
   })
   return /* TS */ `
-declare module '#${data.projectName}/graphqlYoga/types' {
+declare module '#${data.projectName}/server/graphqlYoga/types' {
 
   import type { H3Event } from 'h3'
   import type { IncomingMessage, ServerResponse } from 'node:http'
   import type { YogaInitialContext } from 'graphql-yoga'
-  import type { ${typeDrizzleStorageName} } from '#${data.projectName}/drizzle/storage'
+  import type { ${typeDrizzleStorageName} } from '#${data.projectName}/server/drizzle/storage'
   ${drizzleDriver === 'postgresjs:pg' ? 'import type { PostgresJsDatabase } from \'drizzle-orm/postgres-js\'' : ''}
 
   interface GraphqlYogaContext extends YogaInitialContext {

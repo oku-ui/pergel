@@ -10,7 +10,7 @@ export default function (params: {
   })
 
   return /* TS */ `import { GitHub } from 'arctic'
-import { session, user } from '#${params.projectName}/drizzle/schema'
+import { session, user } from '#${params.projectName}/server/drizzle/schema'
 
 const connect = await ${pergelProjectName}()
 .drizzle()
@@ -27,6 +27,11 @@ export const ${generatorFunctionName(params.projectName, 'Auth')} = ${pergelProj
   session,
   user,
 })
+
+export type ${generatorFunctionName(params.projectName, 'TestAuth', {
+  type: true,
+})} = typeof ${generatorFunctionName(params.projectName, 'Auth')}
+
 
 export const  ${generatorFunctionName(params.projectName, 'LuciaOnRequest')} = ${pergelProjectName}().lucia().onRequestLucia({
   lucia: ${generatorFunctionName(params.projectName, 'Auth')},

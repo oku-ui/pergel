@@ -312,7 +312,7 @@ export default definePergelModule<GraphQLYogaConfig, ResolvedGraphQLYogaConfig>(
           }
         `,
       before: [
-        `import type { GraphqlYogaContext } from '#${options.importPath}/types'`,
+        `import type { GraphqlYogaContext } from '#${join(options.projectName, 'server', options.moduleName)}/types'`,
       ],
       resolve: /* ts */`
             graphqlYoga: graphqlYoga,

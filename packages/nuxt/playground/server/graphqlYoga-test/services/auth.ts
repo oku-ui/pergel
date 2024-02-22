@@ -22,9 +22,9 @@ async function create(this: API, params: {
   if (!user)
     throw new GraphQLError('User not found')
 
-  const session = await changeNameAuth.createSession(user.id, {})
+  const session = await testAuth.createSession(user.id, {})
 
-  appendHeader(this.context.event, 'Set-Cookie', changeNameAuth.createSessionCookie(session.id).serialize())
+  appendHeader(this.context.event, 'Set-Cookie', testAuth.createSessionCookie(session.id).serialize())
   return {
     user,
     session,

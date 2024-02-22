@@ -9,8 +9,8 @@ export default function (data: {
   return /* TS */ `import { fetchExchange } from '@urql/core'
 import { cacheExchange } from '@urql/exchange-graphcache'
 import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
-import type { GraphCacheConfig } from '#${data.projectName}/graphqlYoga/generated/client'
-import schema from '#${data.projectName}/graphqlYoga/generated/urqlIntrospection'
+import type { GraphCacheConfig } from '#${data.projectName}/client/graphqlYoga/generated/client'
+import schema from '#${data.projectName}/client/graphqlYoga/generated/urqlIntrospection'
 import { useRequestHeaders } from '#app'
 
 export default ${data.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {

@@ -13,8 +13,8 @@ export default function (data: {
 import type { ${serviceInterfaceName} } from './services'
 import { ${serviceFunctionName} } from './services'
 import { createSchema } from 'graphql-yoga'
-import type { Resolvers } from '#${data.projectName}/graphqlYoga/generated/server'
-import { schema } from '#${data.projectName}/graphqlYoga/generated/schema'
+import type { Resolvers } from '#${data.projectName}/server/graphqlYoga/generated/server'
+import { schema } from '#${data.projectName}/server/graphqlYoga/generated/schema'
 
 export type { ${serviceInterfaceName} } 
 export { ${serviceFunctionName} }
