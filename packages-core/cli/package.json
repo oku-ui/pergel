@@ -84,7 +84,7 @@
   "dependencies": {
     "@antfu/ni": "^0.21.12",
     "@clack/prompts": "^0.7.0",
-    "c12": "^1.8.0",
+    "c12": "^1.9.0",
     "citty": "^0.1.6",
     "consola": "^3.2.3",
     "giget": "^1.2.1",
