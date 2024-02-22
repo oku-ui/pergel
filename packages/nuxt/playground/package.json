@@ -16,7 +16,7 @@
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:*",
     "@pergel/module-s3": "workspace:*",
-    "bullmq": "^5.3.0",
+    "bullmq": "^5.3.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
