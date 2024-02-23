@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '../../packages/nuxt/src/module',
   ],
   css: [
-    '~/assets/css/pergel.css',
+    '~/assets/css/tailwind.css',
   ],
   pergel: {
     projects: {
