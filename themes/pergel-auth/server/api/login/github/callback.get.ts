@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const state = query.state?.toString() ?? null
   const storedState = getCookie(event, 'github_oauth_state') ?? null
 
-  const returnToPage = '/'
+  const returnToPage = '/home'
 
   if (!code || !state || !storedState || (state !== storedState)) {
     throw createError({

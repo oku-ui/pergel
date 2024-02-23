@@ -30,3 +30,7 @@ mutation login($input: LoginInput!) {
     token
   }
 }
+
+mutation logout {
+  logout
+}

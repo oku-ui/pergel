@@ -2,28 +2,21 @@
 </script>
 
 <template>
-  <div class="md:hidden">
-    <AtomImage
-      alt="Dashboard" width="1280" height="1214" class="block" :image="{
-        dark: '/examples/dashboard-dark.png',
-        light: '/examples/dashboard-light.png',
-      }"
-    />
-  </div>
-
-  <div class="hidden flex-col md:flex">
+  <div class="flex-col md:flex">
     <div class="border-b">
       <div class="flex h-16 items-center px-4">
         <DasboardTeamSwitcher />
-        <DasboardMainNav class="mx-6" />
+        <DasboardMainNav
+          class="mx-6 hidden md:flex"
+        />
         <div class="ml-auto flex items-center space-x-4">
-          <DasboardSearch />
+          <!-- <DasboardSearch /> -->
           <DasboardUserNav />
         </div>
       </div>
     </div>
     <div class="flex-1 space-y-4 p-8 pt-6">
-      <div class="flex items-center justify-between space-y-2">
+      <div class="items-center justify-between space-y-2 md:flex">
         <h2 class="text-3xl font-bold tracking-tight">
           Dashboard
         </h2>

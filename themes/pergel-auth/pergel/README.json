@@ -176,7 +176,9 @@
         "dependencies": {
           "@pergel/module-box": "0.5.0"
         },
-        "devDependencies": {},
+        "devDependencies": {
+          "typescript": "^5.3.3"
+        },
         "patches": {
           "pnpm": {
             "patchedDependencies": {}

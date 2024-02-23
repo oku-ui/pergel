@@ -29,6 +29,12 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
       return {
         '@pergel/module-box': deps['@pergel/module-box'],
+      }
+    },
+    devDependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+
+      return {
         ...options.packages.typescript
           ? {
               'typescript': deps.typescript,

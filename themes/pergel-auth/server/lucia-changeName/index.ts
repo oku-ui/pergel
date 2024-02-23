@@ -1,5 +1,4 @@
 import { GitHub, Google } from 'arctic'
-
 import { session, user } from '#changeName/server/drizzle/schema'
 
 const connect = await pergelChangeName()
@@ -13,10 +12,18 @@ export const changeNameAuth = pergelChangeName()
   .lucia()
   .use({
     db: connect,
-    options: { },
+    options: {
+      getUserAttributes(databaseUserAttributes) {
+        // eslint-disable-next-line unused-imports/no-unused-vars
+        const { password, provider, providerId, ...attributes } = databaseUserAttributes
+        return attributes
+      },
+    },
     session,
     user,
   })
+
+export type ChangeNameAuth = typeof changeNameAuth
 
 export const changeNameLuciaRequest = pergelChangeName().lucia().onRequestLucia({
   lucia: changeNameAuth,

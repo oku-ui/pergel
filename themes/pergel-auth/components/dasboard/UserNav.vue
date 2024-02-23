@@ -1,5 +1,18 @@
 <script setup lang="ts">
+const user = useUser()
+const router = useRouter()
+const { executeMutation } = useMutation(changeNameGraphQLClient.LogoutDocument)
 
+async function logout() {
+  try {
+    await executeMutation({})
+    push.success('Logged out')
+  }
+  catch (error) {
+    console.error('Failed to logout', error)
+  }
+  router.push('/auth/login')
+}
 </script>
 
 <template>
@@ -7,8 +20,10 @@
     <DropdownMenuTrigger as-child>
       <Button variant="ghost" class="relative size-8 rounded-full">
         <Avatar class="size-8">
-          <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-          <AvatarFallback>SC</AvatarFallback>
+          <AvatarImage
+            :src="user?.picture || '/avatars/placeholder.jpg'"
+          />
+          <AvatarFallback>OKU</AvatarFallback>
         </Avatar>
       </Button>
     </DropdownMenuTrigger>
@@ -40,7 +55,9 @@
         <DropdownMenuItem>New Team</DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>
+      <DropdownMenuItem
+        @click="logout"
+      >
         Log out
         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
       </DropdownMenuItem>

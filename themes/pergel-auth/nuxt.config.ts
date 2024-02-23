@@ -29,6 +29,7 @@ export default defineNuxtConfig({
             neoconfetti: true,
             unovis: true,
             dateFns: true,
+            typescript: true,
           },
         },
         ses: true,

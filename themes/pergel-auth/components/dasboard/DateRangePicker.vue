@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import { addDays, format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
-
-// import { cn } from '@/lib/utils'
-// import { Button } from '@/lib/registry/new-york/ui/button'
-// import { Calendar } from '@/lib/registry/new-york/ui/calendar'
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from '@/lib/registry/new-york/ui/popover'
+import { cn } from '@/lib/utils'
 
 const date = ref({
   start: new Date(2023, 0, 20),

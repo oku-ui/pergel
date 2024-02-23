@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const state = query.state?.toString() ?? null
   const storedState = getCookie(event, 'google_oauth_state') ?? null
   const storedCodeVerifier = getCookie(event, 'google_oauth_code_verifier') ?? null
-  const returnToPage = '/'
+  const returnToPage = '/home'
 
   if (!code || !state || !storedState || !storedCodeVerifier || state !== storedState) {
     throw createError({
@@ -27,8 +27,6 @@ export default defineEventHandler(async (event) => {
       },
     })
     const authUser: GoogleUser = await response.json()
-
-    console.log('authUser', authUser)
 
     const { auth } = changeNameDrizzleStorage({ db })
 
