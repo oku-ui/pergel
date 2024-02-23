@@ -4,12 +4,6 @@ import type { FormSchema } from '~/components/auth/AuthFormSignup.vue'
 const { executeMutation } = useMutation(changeNameGraphQLClient.CreateUserDocument)
 
 async function submit(values: FormSchema) {
-  // loading(true)
-  // setTimeout(() => {
-  //   loading(false)
-  //   push.success('Signin success')
-  // }, 1000)
-
   if (values) {
     await executeMutation({
       input: {

@@ -93,12 +93,18 @@ export type UserToken = {
   token: Scalars['String']['output'];
 };
 
+export type LoginInput = {
+  usernameOrEmail: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: UserToken;
   updateUser: User;
   deleteUser: User;
   login: UserToken;
+  logout: Scalars['Boolean']['output'];
 };
 
 
@@ -119,8 +125,7 @@ export type MutationDeleteUserArgs = {
 
 
 export type MutationLoginArgs = {
-  email: Scalars['String']['input'];
-  password: Scalars['String']['input'];
+  input: LoginInput;
 };
 
 
@@ -210,6 +215,7 @@ export type ResolversTypes = {
   UserInput: UserInput;
   UserUpdateInput: UserUpdateInput;
   UserToken: ResolverTypeWrapper<UserToken>;
+  LoginInput: LoginInput;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
@@ -227,6 +233,7 @@ export type ResolversParentTypes = {
   UserInput: UserInput;
   UserUpdateInput: UserUpdateInput;
   UserToken: UserToken;
+  LoginInput: LoginInput;
   Mutation: {};
   Boolean: Scalars['Boolean']['output'];
 };
@@ -275,7 +282,8 @@ export type MutationResolvers<ContextType = GraphqlYogaContext, ParentType exten
   createUser?: Resolver<ResolversTypes['UserToken'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'input'>>;
   updateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'id' | 'input'>>;
   deleteUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationDeleteUserArgs, 'id'>>;
-  login?: Resolver<ResolversTypes['UserToken'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
+  login?: Resolver<ResolversTypes['UserToken'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
+  logout?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = GraphqlYogaContext> = {

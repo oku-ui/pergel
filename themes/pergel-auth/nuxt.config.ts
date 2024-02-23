@@ -26,6 +26,8 @@ export default defineNuxtConfig({
             unsearch: true,
             shadcnNuxt: true,
             nanoid: true,
+            otpComponent: true,
+            neoconfetti: true,
           },
         },
         ses: true,

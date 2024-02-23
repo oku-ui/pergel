@@ -9,4 +9,23 @@ export function changeNameGraphQLService({ context }: API) {
   }
 }
 
+export function checkSession(params: API) {
+  const session = params.context.event.context.session
+  const user = params.context.event.context.user
+
+  if (!session || !user) {
+    throw new GraphQLError('Session ignore', {
+      extensions: {
+        http: {
+          status: 403,
+        },
+      },
+    })
+  }
+  return {
+    user,
+    session,
+  }
+}
+
 export type ChangeNameGraphQLService = ReturnType<typeof changeNameGraphQLService>

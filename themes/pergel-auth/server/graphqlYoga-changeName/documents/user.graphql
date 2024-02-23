@@ -19,3 +19,14 @@ mutation createUser($input: UserInput!) {
 }
 
 
+mutation login($input: LoginInput!) {
+  login(input: $input){
+    user{
+        id
+        name
+        email
+        createdAt
+    }
+    token
+  }
+}

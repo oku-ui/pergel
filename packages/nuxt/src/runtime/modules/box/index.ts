@@ -58,6 +58,8 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       uuid: false,
       unsearch: false,
       shadcnNuxt: false,
+      typescript: false,
+      otpComponent: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -478,6 +480,22 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
     if (options.packages.shadcnNuxt)
       await installModule('shadcn-nuxt')
+
+    if (options.packages.otpComponent) {
+      useNuxtImports(nuxt, {
+        presets: [
+          {
+            imports: [
+              'OTPInput',
+              'REGEXP_ONLY_DIGITS',
+              'REGEXP_ONLY_CHARS',
+              'REGEXP_ONLY_DIGITS_AND_CHARS',
+            ] as Array<keyof typeof import('vue-input-otp')>,
+            from: 'vue-input-otp',
+          },
+        ],
+      })
+    }
 
     addDownloadTemplate({
       nuxt,

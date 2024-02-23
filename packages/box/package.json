@@ -58,6 +58,7 @@
     "unsearch": "^0.0.2",
     "uuid": "^9.0.1",
     "vee-validate": "^4.12.5",
+    "vue-input-otp": "^0.0.10",
     "zod": "^3.22.4"
   },
   "publishConfig": {

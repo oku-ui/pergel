@@ -1,16 +1,35 @@
 <script setup lang="ts">
+const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
-const isActivated = route.query.activated === 'true'
-function submit(values: any, loading: (value: boolean) => void) {
-  loading(true)
-  setTimeout(() => {
-    loading(false)
-    push.success('Signin success')
-  }, 1000)
+const { executeMutation } = useMutation(changeNameGraphQLClient.LoginDocument)
+
+async function submit(values: any, changeLoading: (value: boolean) => void) {
+  try {
+    const { data, error } = await executeMutation({
+      input: {
+        password: values.password,
+        usernameOrEmail: values.username,
+      },
+    })
+    if (error?.graphQLErrors)
+      push.error(error.graphQLErrors[0].message)
+
+    if (data?.login)
+      router.push('/')
+    else
+      push.error('Signin failed')
+  }
+  catch (error) {
+    push.error('Signin failed')
+  }
+  changeLoading(false)
 }
 
-const { t } = useI18n()
+const isActivated = computed(() => {
+  return route.query?.activated === 'true'
+})
 </script>
 
 <template>

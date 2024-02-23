@@ -95,12 +95,18 @@ export type UserToken = {
   token: Scalars['String']['output'];
 };
 
+export type LoginInput = {
+  usernameOrEmail: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: UserToken;
   updateUser: User;
   deleteUser: User;
   login: UserToken;
+  logout: Scalars['Boolean']['output'];
 };
 
 
@@ -121,8 +127,7 @@ export type MutationDeleteUserArgs = {
 
 
 export type MutationLoginArgs = {
-  email: Scalars['String']['input'];
-  password: Scalars['String']['input'];
+  input: LoginInput;
 };
 
 export type BookQueryVariables = Exact<{ [key: string]: never; }>;
@@ -142,10 +147,18 @@ export type CreateUserMutationVariables = Exact<{
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'UserToken', token: string, user: { __typename?: 'User', id: string, name?: string | null, email?: string | null, createdAt: any } } };
 
+export type LoginMutationVariables = Exact<{
+  input: LoginInput;
+}>;
+
+
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserToken', token: string, user: { __typename?: 'User', id: string, name?: string | null, email?: string | null, createdAt: any } } };
+
 
 export const BookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"book"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"book"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<BookQuery, BookQueryVariables>;
 export const UsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UsersQuery, UsersQueryVariables>;
 export const CreateUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
 export type WithTypename<T extends { __typename?: any }> = Partial<T> & { __typename: NonNullable<T['__typename']> };
 
 export type GraphCacheKeysConfig = {
@@ -184,7 +197,8 @@ export type GraphCacheOptimisticUpdaters = {
   createUser?: GraphCacheOptimisticMutationResolver<MutationCreateUserArgs, WithTypename<UserToken>>,
   updateUser?: GraphCacheOptimisticMutationResolver<MutationUpdateUserArgs, WithTypename<User>>,
   deleteUser?: GraphCacheOptimisticMutationResolver<MutationDeleteUserArgs, WithTypename<User>>,
-  login?: GraphCacheOptimisticMutationResolver<MutationLoginArgs, WithTypename<UserToken>>
+  login?: GraphCacheOptimisticMutationResolver<MutationLoginArgs, WithTypename<UserToken>>,
+  logout?: GraphCacheOptimisticMutationResolver<Record<string, never>, Scalars['Boolean']>
 };
 
 export type GraphCacheUpdaters = {
@@ -198,7 +212,8 @@ export type GraphCacheUpdaters = {
     createUser?: GraphCacheUpdateResolver<{ createUser: WithTypename<UserToken> }, MutationCreateUserArgs>,
     updateUser?: GraphCacheUpdateResolver<{ updateUser: WithTypename<User> }, MutationUpdateUserArgs>,
     deleteUser?: GraphCacheUpdateResolver<{ deleteUser: WithTypename<User> }, MutationDeleteUserArgs>,
-    login?: GraphCacheUpdateResolver<{ login: WithTypename<UserToken> }, MutationLoginArgs>
+    login?: GraphCacheUpdateResolver<{ login: WithTypename<UserToken> }, MutationLoginArgs>,
+    logout?: GraphCacheUpdateResolver<{ logout: Scalars['Boolean'] }, Record<string, never>>
   },
   Subscription?: {},
   Book?: {

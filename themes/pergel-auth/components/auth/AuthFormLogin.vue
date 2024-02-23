@@ -3,17 +3,19 @@ const emit = defineEmits<Emit>()
 const { t } = useI18n()
 const isLoading = ref(false)
 
-const formSchema = toTypedSchema(zod.object({
+const zodSchema = zod.object({
   username: zod.string().min(2).max(50),
   password: zod.string().min(8).max(50),
-}))
+})
+
+const formSchema = toTypedSchema(zodSchema)
 
 const form = useForm({
   validationSchema: formSchema,
 })
 
 type Emit = {
-  submit: [values: zod.infer<typeof formSchema>, loading: (value: boolean) => void]
+  submit: [values: Zod.infer<typeof zodSchema>, loading: (value: boolean) => void]
   githubButton: []
 }
 
