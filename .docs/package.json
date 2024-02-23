@@ -18,7 +18,7 @@
     "@iconify-json/solar": "^1.1.9",
     "@iconify-json/twemoji": "^1.1.15",
     "@nuxt/content": "^2.12.0",
-    "@nuxt/ui": "^2.14.0",
+    "@nuxt/ui": "^2.14.1",
     "@nuxt/ui-pro": "^0.7.5"
   },
   "devDependencies": {
