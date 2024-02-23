@@ -34,12 +34,12 @@
   "dependencies": {
     "@pergel/module-graphql": "workspace:*",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.29.3",
+    "drizzle-orm": "^0.29.4",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.20",
     "bumpp": "^9.3.0",
     "changelogithub": "^0.13.3",
     "eslint": "^8.56.0",

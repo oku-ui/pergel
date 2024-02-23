@@ -19,7 +19,7 @@
     "bullmq": "^5.3.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.29.3",
+    "drizzle-orm": "^0.29.4",
     "ioredis": "^5.3.2",
     "lucia": "3.0.1",
     "node-cron": "^3.0.3",

@@ -24,7 +24,7 @@
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.7.4",
     "@nuxt/devtools": "^1.0.8",
-    "nuxt": "^3.10.2",
+    "nuxt": "^3.10.3",
     "nuxt-og-image": "3.0.0-rc.38",
     "playwright": "^1.41.2",
     "typescript": "^5.3.3"
