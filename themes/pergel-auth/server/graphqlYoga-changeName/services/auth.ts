@@ -17,6 +17,8 @@ async function create(this: API, params: {
     email: params.email,
     hashedPassword,
     username: params.username,
+    loggedInAt: new Date(),
+    provider: 'password',
   })
 
   if (!user)

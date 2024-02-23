@@ -9,6 +9,10 @@ async function create(this: API, params: {
   username: string
   email: string
   hashedPassword: string
+  loggedInAt: Date
+  provider?: string
+  providerId?: string
+  picture?: string
 }) {
   const [_user] = await this.db
     .insert(changeNameTables.user)
@@ -16,6 +20,10 @@ async function create(this: API, params: {
       username: params.username,
       email: params.email,
       password: params.hashedPassword,
+      loggedInAt: params.loggedInAt,
+      provider: params.provider,
+      providerId: params.providerId,
+      picture: params.picture,
     }).returning()
 
   return _user
@@ -70,12 +78,31 @@ async function users(this: API) {
   return users
 }
 
+async function existingUserProvider(this: API, params: {
+  provider: 'github' | 'google'
+  providerId: string
+}) {
+  const [existingUser] = await this.db
+    .select()
+    .from(changeNameTables.user)
+    .where(
+      and(
+        eq(changeNameTables.user.provider, params.provider),
+        eq(changeNameTables.user.providerId, params.providerId),
+      ),
+    )
+    .execute()
+
+  return existingUser
+}
+
 export function auth({ db }: API) {
   return {
+    logger,
     create: create.bind({ db }),
     login: login.bind({ db }),
     logout: logout.bind({ db }),
-    logger,
     users: users.bind({ db }),
+    existingUserProvider: existingUserProvider.bind({ db }),
   }
 }

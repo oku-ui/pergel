@@ -1,4 +1,4 @@
-import { GitHub } from 'arctic'
+import { GitHub, Google } from 'arctic'
 
 import { session, user } from '#changeName/server/drizzle/schema'
 
@@ -18,6 +18,10 @@ export const changeNameAuth = pergelChangeName()
     user,
   })
 
+export const changeNameLuciaRequest = pergelChangeName().lucia().onRequestLucia({
+  lucia: changeNameAuth,
+})
+
 const config = useRuntimeConfig()
 
 export const github = new GitHub(
@@ -25,6 +29,8 @@ export const github = new GitHub(
   config.changeNameLucia.github.clientSecret,
 )
 
-export const changeNameLuciaRequest = pergelChangeName().lucia().onRequestLucia({
-  lucia: changeNameAuth,
-})
+export const google = new Google(
+  config.changeNameLucia.google.clientId,
+  config.changeNameLucia.google.clientSecret,
+  config.changeNameLucia.google.redirectURI,
+)

@@ -70,7 +70,10 @@
     "lucia": {
       "env": {
         "NUXT_CHANGE_NAME_LUCIA_GITHUB_CLIENT_ID": "",
-        "NUXT_CHANGE_NAME_LUCIA_GITHUB_CLIENT_SECRET": ""
+        "NUXT_CHANGE_NAME_LUCIA_GITHUB_CLIENT_SECRET": "",
+        "NUXT_CHANGE_NAME_LUCIA_GOOGLE_CLIENT_ID": "",
+        "NUXT_CHANGE_NAME_LUCIA_GOOGLE_CLIENT_SECRET": "",
+        "NUXT_CHANGE_NAME_LUCIA_GOOGLE_REDIRECT_URI": ""
       },
       "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {
@@ -130,7 +133,7 @@
       "packageJson": {
         "dependencies": {
           "drizzle-kit": "^0.20.14",
-          "drizzle-orm": "^0.29.3",
+          "drizzle-orm": "^0.29.4",
           "@faker-js/faker": "^8.4.1",
           "dotenv": "^16.4.5",
           "postgres": "^3.4.3"

@@ -27,6 +27,14 @@ async function submit(values: any, changeLoading: (value: boolean) => void) {
   changeLoading(false)
 }
 
+function githubAuth() {
+  window.location.href = '/api/login/github'
+}
+
+function googleAuth() {
+  window.location.href = '/api/login/google'
+}
+
 const isActivated = computed(() => {
   return route.query?.activated === 'true'
 })
@@ -72,6 +80,8 @@ const isActivated = computed(() => {
         <AuthFormLogin
           v-if="!isActivated"
           @submit="submit"
+          @github-click="githubAuth"
+          @google-click="googleAuth"
         />
         <div v-else>
           <p class="text-sm">

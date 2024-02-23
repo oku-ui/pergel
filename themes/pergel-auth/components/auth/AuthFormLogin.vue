@@ -16,7 +16,8 @@ const form = useForm({
 
 type Emit = {
   submit: [values: Zod.infer<typeof zodSchema>, loading: (value: boolean) => void]
-  githubButton: []
+  githubClick: []
+  googleClick: []
 }
 
 function changeLoading(value: boolean) {
@@ -93,11 +94,22 @@ const onSubmit = form.handleSubmit((values) => {
       variant="outline"
       type="button"
       :disabled="isLoading"
-      @click="emit('githubButton')"
+      @click="emit('githubClick')"
     >
       <AtomIcon dynamic name="i-simple-icons-github" class="mr-2 size-4" />
       <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
       GitHub
+    </AtomButton>
+    <!-- Google -->
+    <AtomButton
+      variant="outline"
+      type="button"
+      :disabled="isLoading"
+      @click="emit('googleClick')"
+    >
+      <AtomIcon dynamic name="i-simple-icons-google" class="mr-2 size-4" />
+      <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
+      Google
     </AtomButton>
   </div>
 </template>

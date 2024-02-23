@@ -33,6 +33,7 @@ export default defineNuxtConfig({
         ses: true,
         lucia: {
           driver: 'drizzle:postgre',
+          oauth: ['github', 'google'],
         },
         graphqlYoga: {
           codegen: {
