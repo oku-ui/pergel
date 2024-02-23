@@ -133,6 +133,18 @@ export interface BoxOptions extends PergelModuleOptions {
      * @see https://github.com/wobsoriano/vue-input-otp
      */
     otpComponent?: boolean
+
+    /**
+     * @default false
+     * @see https://unovis.dev
+     */
+    unovis?: boolean
+
+    /**
+     * @default false
+     * @see https://date-fns.org/
+     */
+    dateFns?: boolean
   }
 }
 
@@ -168,5 +180,7 @@ export interface ResolvedBoxOptions extends ResolvedPergelModuleOptions {
     shadcnNuxt: boolean
     typescript: boolean
     otpComponent: boolean
+    unovis: boolean
+    dateFns: boolean
   }
 }

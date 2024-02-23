@@ -1,4 +1,3 @@
-import { ofetch } from 'ofetch'
 import type { GoogleUser } from '@lucia-auth/oauth/providers'
 import { OAuth2RequestError } from 'arctic'
 

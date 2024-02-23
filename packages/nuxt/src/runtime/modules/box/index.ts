@@ -60,6 +60,8 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       shadcnNuxt: false,
       typescript: false,
       otpComponent: false,
+      unovis: false,
+      dateFns: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -495,6 +497,49 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
           },
         ],
       })
+    }
+
+    if (options.packages.unovis) {
+      const unovisComponents = [
+        'VisArea',
+        'VisAxis',
+        'VisBrush',
+        'VisBulletLegend',
+        'VisChordDiagram',
+        'VisCrosshair',
+        'VisDonut',
+        'VisFreeBrush',
+        'VisGraph',
+        'VisGroupedBar',
+        'VisLeafletFlowMap',
+        'VisLeafletMap',
+        'VisSankey',
+        'VisScatter',
+        'VisSingleContainer',
+        'VisStackedBar',
+        'VisTimeline',
+        'VisTooltip',
+        'VisTopoJSONMap',
+        'VisXYContainer',
+        'VisXYLabels',
+      ] as Array<keyof typeof import('@unovis/vue')>
+
+      unovisComponents.forEach((component) => {
+        addComponent({
+          name: component,
+          export: component,
+          filePath: '@unovis/vue',
+        })
+      })
+
+      nuxt.options.typescript.tsConfig ??= {}
+      nuxt.options.typescript.tsConfig.compilerOptions ??= {}
+      nuxt.options.typescript.tsConfig.compilerOptions = defu(nuxt.options.typescript.tsConfig.compilerOptions, {
+        allowSyntheticDefaultImports: true,
+      })
+
+      // nuxt.options.typescript.tsConfig.compilerOptions.types ??= []
+      // nuxt.options.typescript.tsConfig.compilerOptions.types.push('topojson-client')
     }
 
     addDownloadTemplate({
