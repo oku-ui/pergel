@@ -105,21 +105,13 @@ async function initModules(nuxt: Nuxt) {
           rootOptions: module,
         })
 
-        nuxt.options.alias[`#${serverFrom}`] = join(rootModuleDir)
+        nuxt.options.alias[`#${serverFrom}`] = join(serverDir)
         nuxt.options.nitro.alias ??= {}
         nuxt.options.nitro.alias[`#${serverFrom}`] = join(serverDir)
 
-        nuxt.options.alias[`#${serverFrom}/*`] = join(rootModuleDir, '*')
-        nuxt.options.nitro.alias ??= {}
-        nuxt.options.nitro.alias[`#${serverFrom}/*`] = join(serverDir, '*')
-
         nuxt.options.alias[`#${clientFrom}`] = join(rootModuleDir)
         nuxt.options.nitro.alias ??= {}
-        nuxt.options.nitro.alias[`#${clientFrom}`] = join(serverDir)
-
-        nuxt.options.alias[`#${clientFrom}/*`] = join(rootModuleDir, '*')
-        nuxt.options.nitro.alias ??= {}
-        nuxt.options.nitro.alias[`#${clientFrom}/*`] = join(serverDir, '*')
+        nuxt.options.nitro.alias[`#${clientFrom}`] = join(rootModuleDir)
 
         if (resolvedModule === false /* setup aborted */
           || resolvedModule === undefined /* setup failed */

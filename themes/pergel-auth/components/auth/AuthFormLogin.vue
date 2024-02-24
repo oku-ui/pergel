@@ -3,18 +3,21 @@ const emit = defineEmits<Emit>()
 const { t } = useI18n()
 const isLoading = ref(false)
 
-const formSchema = toTypedSchema(zod.object({
+const zodSchema = zod.object({
   username: zod.string().min(2).max(50),
   password: zod.string().min(8).max(50),
-}))
+})
+
+const formSchema = toTypedSchema(zodSchema)
 
 const form = useForm({
   validationSchema: formSchema,
 })
 
 type Emit = {
-  submit: [values: zod.infer<typeof formSchema>, loading: (value: boolean) => void]
-  githubButton: []
+  submit: [values: Zod.infer<typeof zodSchema>, loading: (value: boolean) => void]
+  githubClick: []
+  googleClick: []
 }
 
 function changeLoading(value: boolean) {
@@ -91,11 +94,22 @@ const onSubmit = form.handleSubmit((values) => {
       variant="outline"
       type="button"
       :disabled="isLoading"
-      @click="emit('githubButton')"
+      @click="emit('githubClick')"
     >
       <AtomIcon dynamic name="i-simple-icons-github" class="mr-2 size-4" />
       <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
       GitHub
+    </AtomButton>
+    <!-- Google -->
+    <AtomButton
+      variant="outline"
+      type="button"
+      :disabled="isLoading"
+      @click="emit('googleClick')"
+    >
+      <AtomIcon dynamic name="i-simple-icons-google" class="mr-2 size-4" />
+      <AtomIcon v-if="isLoading" dynamic name="i-ph-circle-notch-bold" class="mr-2 size-4 animate-spin" />
+      Google
     </AtomButton>
   </div>
 </template>

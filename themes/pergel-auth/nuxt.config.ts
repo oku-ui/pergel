@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '../../packages/nuxt/src/module',
   ],
   css: [
-    '~/assets/css/pergel.css',
+    '~/assets/css/tailwind.css',
   ],
   pergel: {
     projects: {
@@ -21,16 +21,22 @@ export default defineNuxtConfig({
             notivue: true,
             tailwindcss: true,
             nuxtIcon: true,
-            radixMode: true,
             uuid: true,
             unsearch: true,
             shadcnNuxt: true,
             nanoid: true,
+            otpComponent: true,
+            neoconfetti: true,
+            unovis: true,
+            dateFns: true,
+            typescript: true,
+            slugify: true,
           },
         },
         ses: true,
         lucia: {
           driver: 'drizzle:postgre',
+          oauth: ['github', 'google'],
         },
         graphqlYoga: {
           codegen: {

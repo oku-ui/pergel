@@ -3,6 +3,6 @@ export default eventHandler({
     changeNameLuciaRequest,
   ],
   handler: (event) => {
-    return event.context.user
+    return event.context.user || null
   },
 })

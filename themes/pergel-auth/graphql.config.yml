@@ -1,2 +1,0 @@
-schema: ./server/schema.graphql
-documents: 'server/*.graphql'

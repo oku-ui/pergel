@@ -1,7 +1,7 @@
-import type { User } from 'lucia'
+import type { AuthUser } from '#changeName/server/lucia/types'
 
 export function useUser() {
-  const user = useState<User | null>('user', () => null)
+  const user = useState<AuthUser | null>('user', () => null)
   return user
 }
 

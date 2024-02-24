@@ -17,6 +17,11 @@ export const user = pgTable('user', {
   provider: text('provider'),
   providerId: text('providerId'),
   roleStatus: roleStatusEnum('roleStatus').notNull().default('user'),
+  loggedInAt: timestamp('loggedInAt', {
+    withTimezone: true,
+    mode: 'date',
+  }),
+  picture: text('picture'),
   createdAt: timestamp('createdAt', {
     withTimezone: true,
     mode: 'date',

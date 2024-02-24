@@ -1,10 +1,12 @@
 import { FieldContextKey, useFieldError, useIsFieldDirty, useIsFieldTouched, useIsFieldValid } from 'vee-validate'
 import { inject } from 'vue'
-import { formItemInject } from './useInjects'
 
-export function useFormField(injectStatus: boolean = true) {
+// @ts-ignore
+import { FORM_ITEM_INJECTION_KEY } from './FormItem.vue'
+
+export function useFormField() {
   const fieldContext = inject(FieldContextKey)
-  const fieldItemContext = injectStatus ? inject(formItemInject) : ''
+  const fieldItemContext = inject(FORM_ITEM_INJECTION_KEY)
 
   const fieldState = {
     valid: useIsFieldValid(),

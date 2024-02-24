@@ -52,9 +52,15 @@ type UserToken {
   token: String!
 }
 
+input LoginInput {
+  usernameOrEmail: String!
+  password: String!
+}
+
 type Mutation {
   createUser(input: UserInput!): UserToken!
   updateUser(id: ID!, input: UserInput!): User!
   deleteUser(id: ID!): User!
-  login(email: String!, password: String!): UserToken!
+  login(input: LoginInput!): UserToken!
+  logout: Boolean!
 }

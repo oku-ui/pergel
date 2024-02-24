@@ -29,6 +29,12 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
       return {
         '@pergel/module-box': deps['@pergel/module-box'],
+      }
+    },
+    devDependencies(options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+
+      return {
         ...options.packages.typescript
           ? {
               'typescript': deps.typescript,
@@ -58,6 +64,10 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       uuid: false,
       unsearch: false,
       shadcnNuxt: false,
+      typescript: false,
+      otpComponent: false,
+      unovis: false,
+      dateFns: false,
     },
   },
   async setup({ nuxt, options }) {
@@ -478,6 +488,65 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
     if (options.packages.shadcnNuxt)
       await installModule('shadcn-nuxt')
+
+    if (options.packages.otpComponent) {
+      useNuxtImports(nuxt, {
+        presets: [
+          {
+            imports: [
+              'OTPInput',
+              'REGEXP_ONLY_DIGITS',
+              'REGEXP_ONLY_CHARS',
+              'REGEXP_ONLY_DIGITS_AND_CHARS',
+            ] as Array<keyof typeof import('vue-input-otp')>,
+            from: 'vue-input-otp',
+          },
+        ],
+      })
+    }
+
+    if (options.packages.unovis) {
+      const unovisComponents = [
+        'VisArea',
+        'VisAxis',
+        'VisBrush',
+        'VisBulletLegend',
+        'VisChordDiagram',
+        'VisCrosshair',
+        'VisDonut',
+        'VisFreeBrush',
+        'VisGraph',
+        'VisGroupedBar',
+        'VisLeafletFlowMap',
+        'VisLeafletMap',
+        'VisSankey',
+        'VisScatter',
+        'VisSingleContainer',
+        'VisStackedBar',
+        'VisTimeline',
+        'VisTooltip',
+        'VisTopoJSONMap',
+        'VisXYContainer',
+        'VisXYLabels',
+      ] as Array<keyof typeof import('@unovis/vue')>
+
+      unovisComponents.forEach((component) => {
+        addComponent({
+          name: component,
+          export: component,
+          filePath: '@unovis/vue',
+        })
+      })
+
+      nuxt.options.typescript.tsConfig ??= {}
+      nuxt.options.typescript.tsConfig.compilerOptions ??= {}
+      nuxt.options.typescript.tsConfig.compilerOptions = defu(nuxt.options.typescript.tsConfig.compilerOptions, {
+        allowSyntheticDefaultImports: true,
+      })
+
+      // nuxt.options.typescript.tsConfig.compilerOptions.types ??= []
+      // nuxt.options.typescript.tsConfig.compilerOptions.types.push('topojson-client')
+    }
 
     addDownloadTemplate({
       nuxt,

@@ -23,6 +23,8 @@ const isDark = computed({
     <Notifications :item="item" :theme="isDark ? darkTheme : lightTheme" />
   </Notivue>
 
+  <NuxtLoadingIndicator />
+
   <div class="h-full">
     <NuxtLayout>
       <NuxtPage />
@@ -31,7 +33,7 @@ const isDark = computed({
 </template>
 
 <style lang="postcss">
-@import url("~/assets/css/pergel.css");
+@import url("~/assets/css/tailwind.css");
 #__nuxt {
   @apply w-full h-full;
 }
