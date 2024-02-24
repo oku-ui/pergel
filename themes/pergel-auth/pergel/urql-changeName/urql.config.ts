@@ -1,8 +1,8 @@
 import { fetchExchange } from '@urql/core'
 import { cacheExchange } from '@urql/exchange-graphcache'
 import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
-import type { GraphCacheConfig } from '#changeName/graphqlYoga/generated/client'
-import schema from '#changeName/graphqlYoga/generated/urqlIntrospection'
+import type { GraphCacheConfig } from '#changeName/client/graphqlYoga/generated/client'
+import schema from '#changeName/client/graphqlYoga/generated/urqlIntrospection'
 import { useRequestHeaders } from '#app'
 
 export default pergelChangeNameUrqlClient((ssr) => {
