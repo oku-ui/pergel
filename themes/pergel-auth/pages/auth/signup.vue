@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { FormSchema } from '~/components/auth/AuthFormSignup.vue'
 
+definePageMeta({
+  middleware: ['user-to-home'],
+})
+
 const { executeMutation } = useMutation(changeNameGraphQLClient.CreateUserDocument)
 
 async function submit(values: FormSchema) {

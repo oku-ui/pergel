@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { Album } from './data/albums'
 import { playlists } from './data/playlists'
-
-// import PlusCircledIcon from '~icons/radix-icons/plus-circled'
 import { cn } from '@/lib/utils'
 
 interface AlbumArtworkProps {
@@ -40,9 +38,9 @@ withDefaults(defineProps<AlbumArtworkProps>(), {
           <ContextMenuSubTrigger>Add to Playlist</ContextMenuSubTrigger>
           <ContextMenuSubContent class="w-48">
             <ContextMenuItem>
-              <!-- <PlusCircledIcon class="mr-2 size-4" /> -->
               <AtomIcon
-                name="plus-circled"
+                dynamic
+                name="i-ph-plus-bold"
                 class="mr-2 size-4"
               />
               New Playlist

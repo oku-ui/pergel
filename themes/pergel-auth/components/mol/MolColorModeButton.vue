@@ -1,6 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
 const colorMode = useColorMode()
-
 const isDark = computed({
   get() {
     return colorMode.value === 'dark'
@@ -14,7 +16,7 @@ const isDark = computed({
 <template>
   <ClientOnly>
     <button
-      aria-label="Theme"
+      aria-label="change color mode"
       :class="cn(
         $attrs.class ?? '',
       )"

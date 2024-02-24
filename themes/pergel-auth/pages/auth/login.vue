@@ -3,6 +3,10 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 
+definePageMeta({
+  middleware: ['user-to-home'],
+})
+
 const { executeMutation } = useMutation(changeNameGraphQLClient.LoginDocument)
 
 async function submit(values: any, changeLoading: (value: boolean) => void) {

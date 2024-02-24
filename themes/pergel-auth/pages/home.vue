@@ -2,30 +2,31 @@
 import { listenNowAlbums, madeForYouAlbums } from '~/components/home/data/albums'
 import { playlists } from '~/components/home/data/playlists'
 
-// import PlusCircledIcon from '~icons/radix-icons/plus-circled'
+definePageMeta({
+  middleware: ['protected'],
+})
 
 // const user = useUser()
 // const { fetching } = useQuery({
 //   query: changeNameGraphQLClient.UsersDocument,
 // })
+const menu = ref(false)
 </script>
 
 <template>
-  <div class="md:hidden">
-    <VPImage
-      alt="Music" width="1280" height="1214" class="block" :image="{
-        dark: '/examples/music-dark.png',
-        light: '/examples/music-light.png',
-      }"
-    />
+  <div
+    v-show="menu"
+    class="fixed inset-0 z-50 size-full bg-black lg:hidden"
+  >
+    <HomeSidebar :playlists="playlists" />
   </div>
-  <div class="hidden md:block">
+  <div>
     <HomeMenu />
     <div class="border-t">
       <div class="bg-background">
         <div class="grid lg:grid-cols-5">
           <HomeSidebar :playlists="playlists" class="hidden lg:block" />
-          <div class="col-span-3 lg:col-span-4 lg:border-l">
+          <div class="col-span-3 overflow-hidden lg:col-span-4 lg:border-l">
             <div class="h-full px-4 py-6 lg:px-8">
               <Tabs default-value="music" class="h-full space-y-6">
                 <div class="space-between flex items-center">
@@ -42,7 +43,11 @@ import { playlists } from '~/components/home/data/playlists'
                   </TabsList>
                   <div class="ml-auto mr-4">
                     <Button>
-                      <PlusCircledIcon class="mr-2 size-4" />
+                      <AtomIcon
+                        dynamic
+                        name="i-ph-plus-bold"
+                        class="mr-2 size-4"
+                      />
                       Add music
                     </Button>
                   </div>
@@ -82,7 +87,7 @@ import { playlists } from '~/components/home/data/playlists'
                   <div class="relative">
                     <ScrollArea>
                       <div class="flex space-x-4 pb-4">
-                        <AlbumArtwork
+                        <HomeAlbumArtwork
                           v-for="album in madeForYouAlbums" :key="album.name" :album="album" class="w-[150px]"
                           aspect-ratio="square" :width="150" :height="150"
                         />
