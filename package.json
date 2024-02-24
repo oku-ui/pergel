@@ -46,7 +46,7 @@
     "eslint-plugin-tailwindcss": "^3.14.3",
     "json-editor-vue": "^0.12.0",
     "lint-staged": "^15.2.2",
-    "nx": "^18.0.4",
+    "nx": "^18.0.5",
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.3.3",
     "vite": "5.1.4",
