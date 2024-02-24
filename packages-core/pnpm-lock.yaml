@@ -95,8 +95,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       bullmq:
-        specifier: ^5.3.1
-        version: 5.3.1
+        specifier: ^5.3.2
+        version: 5.3.2
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -7889,6 +7889,7 @@ packages:
   /ansi-styles@3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       color-convert: 1.9.3
 
@@ -8266,8 +8267,8 @@ packages:
       semver: 7.6.0
     dev: false
 
-  /bullmq@5.3.1:
-    resolution: {integrity: sha512-ii7223OU8H6lwCywiMXnl0vOpE43nvHhJSQKCl6znKojohNwBlleQNDj/CHSW6dGO34Hh+1zOYcWwrj7SOYfwg==}
+  /bullmq@5.3.2:
+    resolution: {integrity: sha512-o9pNinjX+33fdwY22ilrZh20vL2/KwfdYb/csh2USrDqcqmtA65AFeYD0p5u9PHjWk/RWWFvc90mvBq8+taspQ==}
     dependencies:
       cron-parser: 4.9.0
       glob: 8.1.0
@@ -8664,6 +8665,7 @@ packages:
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
+    requiresBuild: true
     dependencies:
       color-name: 1.1.3
 
@@ -13942,6 +13944,7 @@ packages:
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       has-flag: 3.0.0
 
