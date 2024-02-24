@@ -31,7 +31,7 @@
     "@pergel/nuxt": "link:..",
     "@types/node-cron": "^3.0.11",
     "nuxt": "latest",
-    "pergel": "^0.11.0",
+    "pergel": "^0.12.0",
     "pg": "^8.11.3"
   }
 }
