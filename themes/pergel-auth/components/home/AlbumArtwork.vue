@@ -9,6 +9,7 @@ interface AlbumArtworkProps {
   width?: number
   height?: number
 }
+
 withDefaults(defineProps<AlbumArtworkProps>(), {
   aspectRatio: 'portrait',
 })

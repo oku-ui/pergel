@@ -30,6 +30,7 @@ export default defineNuxtConfig({
             unovis: true,
             dateFns: true,
             typescript: true,
+            slugify: true,
           },
         },
         ses: true,

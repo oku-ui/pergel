@@ -31,15 +31,21 @@ async function logout() {
       <DropdownMenuLabel class="flex font-normal">
         <div class="flex flex-col space-y-1">
           <p class="text-sm font-medium leading-none">
-            shadcn
+            {{ user?.username }}
           </p>
           <p class="text-muted-foreground text-xs leading-none">
-            m@example.com
+            {{ user?.email }}
           </p>
         </div>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
+        <DropdownMenuItem
+          @click="router.push('/home')"
+        >
+          Home
+          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           Profile
           <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>

@@ -34,26 +34,32 @@ async function logout() {
       <DropdownMenuLabel class="flex font-normal">
         <div class="flex flex-col space-y-1">
           <p class="text-sm font-medium leading-none">
-            shadcn
+            {{ user?.username }}
           </p>
           <p class="text-muted-foreground text-xs leading-none">
-            m@example.com
+            {{ user?.email }}
           </p>
         </div>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
+        <DropdownMenuItem
+          @click="router.push('/dashboard')"
+        >
+          Dashboard
+          <!-- <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> -->
+        </DropdownMenuItem>
         <DropdownMenuItem>
           Profile
-          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          <!-- <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> -->
         </DropdownMenuItem>
         <DropdownMenuItem>
           Billing
-          <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+          <!-- <DropdownMenuShortcut>⌘B</DropdownMenuShortcut> -->
         </DropdownMenuItem>
         <DropdownMenuItem>
           Settings
-          <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          <!-- <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> -->
         </DropdownMenuItem>
         <DropdownMenuItem>New Team</DropdownMenuItem>
       </DropdownMenuGroup>
@@ -62,7 +68,7 @@ async function logout() {
         @click="logout"
       >
         Log out
-        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        <!-- <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> -->
       </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>

@@ -23,6 +23,8 @@ const isDark = computed({
     <Notifications :item="item" :theme="isDark ? darkTheme : lightTheme" />
   </Notivue>
 
+  <NuxtLoadingIndicator />
+
   <div class="h-full">
     <NuxtLayout>
       <NuxtPage />
