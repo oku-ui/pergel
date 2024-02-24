@@ -1,0 +1,15 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "author": "Mehmet - productdevbook <hi@productdevbook.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "pergel": "^0.12.0",
+    "vitepress": "1.0.0-rc.44"
+  }
+}

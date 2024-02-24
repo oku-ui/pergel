@@ -1,18 +1,39 @@
 <h1 align='center'>Pergel</h1>
 
-<a href="https://github.com/oku-ui/pergel" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/oku-ui/pergel?flat&colorA=002438&colorB=28CF8D"></a>
-<span> <a href="https://oku-ui.com/pergel"><img src="https://img.shields.io/badge/Open%20Documentation-18181B" alt="Website"></a> </span>
-</p>
+<!-- automd:badges color="yellow" license name="pergel"  -->
+
+[![npm version](https://flat.badgen.net/npm/v/pergel?color=yellow)](https://npmjs.com/package/pergel)
+[![npm downloads](https://flat.badgen.net/npm/dm/pergel?color=yellow)](https://npmjs.com/package/pergel)
+[![license](https://flat.badgen.net/github/license/oku-ui/pergel?color=yellow)](https://github.com/oku-ui/pergel/blob/main/LICENSE)
+
+<!-- /automd -->
+
+<!-- automd:pm-install name="pergel" dev -->
+
+```sh
+# ✨ Auto-detect
+npx nypm install -D pergel
+
+# npm
+npm install -D pergel
+
+# yarn
+yarn add -D pergel
+
+# pnpm
+pnpm install -D pergel
+
+# bun
+bun install -D pergel
+```
+
+<!-- /automd -->
 
 🚀 Pergel Project: Accelerate Your Full-Stack Development with Nuxt and Nitro!
 
 Pergel is a tailor-made solution for Nuxt and Nitro, providing swift project kickstarts and seamless integration of various modules. Named with a Turkish touch, Pergel maximizes the power of TypeScript, streamlining and accelerating your project development process.
 </p>
 
-
-| Package | Version | Downloads |
-|---------|---------|-----------|
-| [Pergel](https://www.npmjs.com/package/pergel) | [![npm](https://img.shields.io/npm/v/pergel?style=flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/pergel) | [![npm](https://img.shields.io/npm/dm/pergel?flat&colorA=002438&colorB=28CF8D)](https://www.npmjs.com/package/pergel) |
 
 ![Pergel Cover](./.github/assets/pergel-cover.jpg)
 
@@ -84,3 +105,14 @@ Thanks to
 Licensed under the MIT License, Copyright © 2023-present [productdevbook](https://twitter.com/productdevbook).
 
 See [LICENSE](./LICENSE) for more information.
+
+<!-- automd:contributors author="pergel" license="MIT" -->
+
+Published under the [MIT](https://github.com/oku-ui/pergel/blob/main/LICENSE) license.
+Made by [@pergel](https://github.com/pergel) and [community](https://github.com/oku-ui/pergel/graphs/contributors) 💛
+<br><br>
+<a href="https://github.com/oku-ui/pergel/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=oku-ui/pergel" />
+</a>
+
+<!-- /automd -->
