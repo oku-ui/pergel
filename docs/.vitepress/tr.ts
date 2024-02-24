@@ -4,8 +4,8 @@ import { type DefaultTheme, defineConfig } from 'vitepress'
 const require = createRequire(import.meta.url)
 const pkg = require('pergel/package.json')
 
-export const en = defineConfig({
-  lang: 'en-US',
+export const tr = defineConfig({
+  lang: 'tr-TR',
   description: 'Full Stack Nuxt or Nitro Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.',
 
   themeConfig: {
