@@ -123,11 +123,11 @@ importers:
         specifier: ^9.0.8
         version: 9.0.8
       '@unovis/ts':
-        specifier: ^1.3.3
-        version: 1.3.3
+        specifier: ^1.3.4
+        version: 1.3.4
       '@unovis/vue':
-        specifier: ^1.3.3
-        version: 1.3.3(@unovis/ts@1.3.3)(vue@3.3.13)
+        specifier: ^1.3.4
+        version: 1.3.4(@unovis/ts@1.3.4)(vue@3.3.13)
       '@vee-validate/zod':
         specifier: ^4.12.5
         version: 4.12.5(vue@3.3.13)
@@ -189,8 +189,8 @@ importers:
         specifier: ^4.12.5
         version: 4.12.5(vue@3.3.13)
       vue-input-otp:
-        specifier: ^0.0.10
-        version: 0.0.10(vue@3.3.13)
+        specifier: ^0.0.11
+        version: 0.0.11(vue@3.3.13)
       zod:
         specifier: ^3.22.4
         version: 3.22.4
@@ -466,8 +466,8 @@ importers:
         specifier: ^1.3.1
         version: 1.3.1(@types/node@20.11.20)(happy-dom@13.5.0)
       vue-input-otp:
-        specifier: ^0.0.10
-        version: 0.0.10(vue@3.3.13)
+        specifier: ^0.0.11
+        version: 0.0.11(vue@3.3.13)
 
   packages/nuxt/client:
     dependencies:
@@ -8849,8 +8849,8 @@ packages:
       lodash-es: 4.17.21
     dev: false
 
-  /@unovis/ts@1.3.3:
-    resolution: {integrity: sha512-eHCDsymslgxeKCwG05KjziJLVWzMunwvaZW3sAUNkK8b8epI4U5Lc+6rvR5bggNNrzAJTlerrEbJ88yDPGvzCA==}
+  /@unovis/ts@1.3.4:
+    resolution: {integrity: sha512-fLoN7JiJw/F0O/MGjwTvixyy6QZ6XQrn2nh5nAo3NHmdgn9aeogTQxItW9I4bLE7wGRhOpLxYy9NedwMfKCH2w==}
     dependencies:
       '@emotion/css': 11.11.2
       '@juggle/resize-observer': 3.4.0
@@ -8886,13 +8886,13 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@unovis/vue@1.3.3(@unovis/ts@1.3.3)(vue@3.3.13):
-    resolution: {integrity: sha512-q+F92sPY/LBYmuC36zaoMoVf2nsgydcZh3KqiQVchu839kOwjAfjzwdY73FSTkBjcyGxSAvbRGgkQIlmf/OTOw==}
+  /@unovis/vue@1.3.4(@unovis/ts@1.3.4)(vue@3.3.13):
+    resolution: {integrity: sha512-B4btWET8pvLQDngxyd0GaZ9o9sRW75XZ/pIhflVwCgQiDdt9ijVJJB39iAk1wZbOzEkNaNbY2Ov2hoxiOOZA9A==}
     peerDependencies:
-      '@unovis/ts': 1.2.1
+      '@unovis/ts': 1.3.4
       vue: 3.3.13
     dependencies:
-      '@unovis/ts': 1.3.3
+      '@unovis/ts': 1.3.4
       vue: 3.3.13(typescript@5.3.3)
     dev: false
 
@@ -19260,8 +19260,8 @@ packages:
       vue: 3.3.13(typescript@5.3.3)
     dev: false
 
-  /vue-input-otp@0.0.10(vue@3.3.13):
-    resolution: {integrity: sha512-O1AbbE817eTRRXUOJ5u/rTuridpVzjnw9DcwvlQLlHZfI1NaPyyljfKcvMF7Sz5mrrBPK9HWbbqmc6LGvJ6IaQ==}
+  /vue-input-otp@0.0.11(vue@3.3.13):
+    resolution: {integrity: sha512-wy7e1zxB0R/QamWkB9lAvukVJJzQCsiUcx8Bws0Ezbh1OaddiF3wZRnk5hKKSB1Ohqv3VtWygRvB6lJTEcpJYg==}
     peerDependencies:
       vue: 3.3.13
     dependencies:

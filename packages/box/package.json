@@ -40,8 +40,8 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "@types/uuid": "^9.0.8",
-    "@unovis/ts": "^1.3.3",
-    "@unovis/vue": "^1.3.3",
+    "@unovis/ts": "^1.3.4",
+    "@unovis/vue": "^1.3.4",
     "@vee-validate/zod": "^4.12.5",
     "@vueuse/core": "^10.8.0",
     "@vueuse/nuxt": "^10.8.0",
@@ -62,7 +62,7 @@
     "uuid": "^9.0.1",
     "v-calendar": "^3.1.2",
     "vee-validate": "^4.12.5",
-    "vue-input-otp": "^0.0.10",
+    "vue-input-otp": "^0.0.11",
     "zod": "^3.22.4"
   },
   "publishConfig": {
