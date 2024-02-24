@@ -3,6 +3,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    // please install 'pnpm install pergel' and change 'pergel/nuxt'
     '../../packages/nuxt/src/module',
   ],
   css: [
