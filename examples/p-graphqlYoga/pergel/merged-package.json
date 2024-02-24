@@ -1,0 +1,15 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "rocket": {
+    "dependencies": {
+      "@pergel/module-graphql": "0.5.0"
+    },
+    "devDependencies": {},
+    "patches": {
+      "pnpm": {
+        "patchedDependencies": {}
+      }
+    }
+  }
+}

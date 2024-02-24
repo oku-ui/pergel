@@ -1,0 +1,15 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "rocket": {
+    "dependencies": {
+      "@aws-sdk/client-ses": "^3.521.0"
+    },
+    "devDependencies": {},
+    "patches": {
+      "pnpm": {
+        "patchedDependencies": {}
+      }
+    }
+  }
+}

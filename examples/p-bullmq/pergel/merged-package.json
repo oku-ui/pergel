@@ -1,0 +1,17 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "rocket": {
+    "dependencies": {
+      "bullmq": "^5.3.2",
+      "ioredis": "^5.3.2",
+      "p-timeout": "^6.1.2"
+    },
+    "devDependencies": {},
+    "patches": {
+      "pnpm": {
+        "patchedDependencies": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "rocket": {
+    "scripts": {
+      "migrate": "drizzle-kit generate:pg --config=server/drizzle-rocket/drizzle.config.js",
+      "generate": "drizzle-kit generate:pg --config=server/drizzle-rocket/drizzle.config.js",
+      "push": "drizzle-kit push:pg --config=server/drizzle-rocket/drizzle.config.js",
+      "drop": "drizzle-kit drop --config=server/drizzle-rocket/drizzle.config.js",
+      "up": "drizzle-kit up:pg --config=server/drizzle-rocket/drizzle.config.js",
+      "studio": "drizzle-kit studio --port 3105 --config=server/drizzle-rocket/drizzle.config.js",
+      "dev:migration": "tsx server/drizzle-rocket/seeds/devMigration.ts",
+      "dev:drop": "tsx server/drizzle-rocket/seeds/devDrop.ts",
+      "dev:seed": "tsx server/drizzle-rocket/seeds/devSeed.ts"
+    },
+    "dependencies": {
+      "drizzle-kit": "^0.20.14",
+      "drizzle-orm": "^0.29.4",
+      "@faker-js/faker": "^8.4.1",
+      "dotenv": "^16.4.5",
+      "postgres": "^3.4.3"
+    },
+    "devDependencies": {
+      "pg": "^8.11.3"
+    },
+    "patches": {
+      "pnpm": {
+        "patchedDependencies": {}
+      }
+    }
+  }
+}

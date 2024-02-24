@@ -1,4 +1,4 @@
-import type { GraphqlYogaContext } from 'pergel/test/types'
+import type { GraphqlYogaContext } from '#test/server/graphqlYoga/types'
 
 export interface API {
   context: GraphqlYogaContext

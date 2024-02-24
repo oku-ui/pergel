@@ -1,0 +1,15 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "rocket": {
+    "dependencies": {
+      "@pergel/module-s3": "0.2.0"
+    },
+    "devDependencies": {},
+    "patches": {
+      "pnpm": {
+        "patchedDependencies": {}
+      }
+    }
+  }
+}

@@ -1,7 +1,5 @@
-declare module '#rocket/bullmq/types' {
-
-  interface BullmqContext {
+declare module '#rocket/server/bullmq/types' {
+  export interface RocketBullmqContext {
     queueName: 'default' | 'email'
   }
-
 }

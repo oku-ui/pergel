@@ -1,0 +1,17 @@
+{
+  "projectName": {},
+  "pergel": {},
+  "rocket": {
+    "dependencies": {
+      "node-cron": "^3.0.3"
+    },
+    "devDependencies": {
+      "@types/node-cron": "^3.0.11"
+    },
+    "patches": {
+      "pnpm": {
+        "patchedDependencies": {}
+      }
+    }
+  }
+}

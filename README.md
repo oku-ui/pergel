@@ -45,13 +45,18 @@ Feel free to share your suggestions or change requests regarding Pergel. Togethe
 
 Please read our [contributing guide](https://github.com/oku-ui/pergel/blob/master/CONTRIBUTING.md)
 
+# Modules
+- [Modules](packages/nuxt/src/runtime/modules) bullmq, drizzle,eslint,ionic,graphqlYoga,ses, urql, vitest and more...
+- [Nuxt Module](packages/nuxt)
+- [Pergel CLI](packages-core/cli)
+- [Examples](examples)
+- [Themes](themes)
+
 # TODO
 
 - [] Add tests
 - [] Add more examples
 - [] Add more documentation
-- [] Add more modules (GraphQL, Drizzle, nodecron, BullMQ, SES, etc.)
-
 
 ## Community
 
