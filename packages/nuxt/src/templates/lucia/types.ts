@@ -29,5 +29,7 @@ declare module 'h3' {
     session: Session | null
   }
 }
+
+export type AuthUser = User
 `
 }
