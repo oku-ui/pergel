@@ -67,10 +67,13 @@ export default defineEventHandler(async (event) => {
 
     const hashedPassword = await new Argon2id().hash(uuidV4())
 
+    const slug = useSlugify()
+    const id = nanoidNanoid(4)
+
     const user = await auth.create({
       email: authUser.email,
       hashedPassword,
-      username: authUser.name,
+      username: slug(authUser.name + id, { lower: true }),
       loggedInAt: new Date(),
       provider: 'google',
       providerId: String(authUser.sub),
