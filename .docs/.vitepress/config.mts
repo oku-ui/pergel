@@ -2,7 +2,8 @@ import { defineConfig } from 'vitepress'
 import { transformerTwoslash } from 'vitepress-plugin-twoslash'
 
 import { en } from './en'
-import { tr } from './tr'
+
+// import { tr } from './tr'
 import {
   nuxtCompilerOptions,
   prepend,
@@ -12,7 +13,7 @@ import {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Pergel',
-  description: 'A VitePress Site',
+  description: 'Pergel is a tailor-made solution for Nuxt or Nitro, providing swift project kickstarts and seamless integration of various modules. Named with a Turkish touch, Pergel maximizes the power of TypeScript, streamlining and accelerating your project development process.',
   lastUpdated: true,
   cleanUrls: true,
   metaChunk: true,
@@ -61,6 +62,6 @@ export default defineConfig({
 
   locales: {
     root: { label: 'English', ...en },
-    tr: { label: 'Türkçe', ...tr },
+    // tr: { label: 'Türkçe', ...tr },
   },
 })

@@ -43,13 +43,21 @@ function nav(): DefaultTheme.NavItem[] {
     {
       text: pkg.version,
       items: [
-        {
-          text: 'Changelog',
-          link: 'https://github.com/oku-ui/pergel/blob/main/CHANGELOG.md',
-        },
+        // {
+        //   text: 'Changelog',
+        //   link: 'https://github.com/oku-ui/pergel/blob/main/CHANGELOG.md',
+        // },
         {
           text: 'Contributing',
           link: 'https://github.com/oku-ui/pergel/blob/main/.github/contributing.md',
+        },
+        {
+          text: 'Discord',
+          link: 'https://chat.productdevbook.com',
+        },
+        {
+          text: 'Twitter',
+          link: 'https://twitter.com/oku_ui',
         },
       ],
     },

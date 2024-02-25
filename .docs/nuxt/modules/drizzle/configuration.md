@@ -15,7 +15,7 @@ It’s the only ORM with both relational and SQL-like query APIs, providing you 
 ### Step 1: Install
 <div class="tip custom-block" style="padding-top: 8px">
 
-Install pergel nuxt module. [here](../../guide/nuxt-installation.md)
+Install pergel nuxt module. [here](../../../guide/nuxt-installation.md)
 
 </div>
 

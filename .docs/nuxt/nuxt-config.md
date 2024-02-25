@@ -56,4 +56,4 @@ If you have discovered a better structure, please contact us. We are open to sug
 
 ### Modules
 
-- [Drizzle](./modules/drizzle)
+- [Drizzle](./modules/drizzle/configuration.md)
