@@ -55,8 +55,8 @@ export default defineConfig({
       {
         'async': true,
         'defer': true,
-        'data-domain': 'rapor.vucod.com',
-        'src': 'https://plausible.io/js/plausible.js',
+        'data-domain': 'pergel.oku-ui.com',
+        'src': 'https://rapor.vucod.com/js/script.js',
       },
     ],
   ],
@@ -72,7 +72,7 @@ export default defineConfig({
     logo: { src: '/pergel-logo-mini.svg', width: 24, height: 24 },
 
     editLink: {
-      pattern: 'https://github.com/oku-ui/pergel/edit/main/docs/:path',
+      pattern: 'https://github.com/oku-ui/pergel/edit/main/.docs/:path',
       text: 'Edit this page on GitHub',
     },
 
