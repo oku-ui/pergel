@@ -88,7 +88,7 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
         {
           text: 'drizzle',
           base: '/nuxt/modules/drizzle/',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Configuration', link: 'configuration' },
             { text: 'Usage', link: 'usage' },
