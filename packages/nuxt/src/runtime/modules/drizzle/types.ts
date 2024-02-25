@@ -28,12 +28,6 @@ export interface DrizzleConfig extends PergelModuleOptions {
    */
   seedPaths?: string
 
-  /**
-   * Merge schemas
-   * @default true
-   */
-  mergeSchemas?: boolean
-
   autoImportPrefix?: {
     filters: string
   }
@@ -93,12 +87,6 @@ export interface ResolvedDrizzleConfig extends ResolvedPergelModuleOptions {
    * @default '{moduleName}-{projectName}/migrations'
    */
   migrationsPath: string
-
-  /**
-   * Merge schemas
-   * @default true
-   */
-  mergeSchemas: boolean
 
   /**
    * Database seeds

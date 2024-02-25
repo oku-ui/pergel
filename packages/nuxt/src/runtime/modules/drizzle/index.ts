@@ -69,7 +69,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       migrationsPath,
       schemaPath,
       seedPaths,
-      mergeSchemas: false,
       dir: {
         schema: basename(schemaPath),
         migrations: basename(migrationsPath),
