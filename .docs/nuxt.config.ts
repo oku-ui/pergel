@@ -1,68 +1,16 @@
+import { defineNuxtConfig } from 'nuxt/config'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { defu } from 'defu'
-import type { NuxtConfig } from 'nuxt/config'
-
-const routeRules = {
-  '/pergel/getting-started': { redirect: '/pergel/getting-started/introduction', prerender: false },
-  '/pergel/community': { redirect: '/pergel/community/getting-help', prerender: false },
-  '/pergel/examples': { redirect: '/pergel/examples/overview', prerender: false },
-  '/pergel/directory-structure': { redirect: '/pergel/directory-structure/projectname', prerender: false },
-  '/pergel/nuxt/s3': { redirect: '/pergel/nuxt/s3/installation', prerender: false },
-}
-
-const devConfig = {
-  $development: {
-    runtimeConfig: {
-      public: {
-        website: {
-          url: 'http://localhost:3000',
-        },
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  modules: [
+    'pergel/nuxt',
+  ],
+  pergel: {
+    projects: {
+      changeName: {
+        drizzle: true,
       },
     },
   },
-  modules: [
-    '@nuxt/content',
-    '@nuxt/ui',
-    // 'nuxt-og-image',
-  ],
-  extends: [
-    '@nuxt/ui-pro',
-  ],
-  devtools: { enabled: true },
-  ui: {
-    icons: ['heroicons', 'simple-icons', 'ph', 'game-icons'],
-  },
-  routeRules: {
-    '/': { redirect: '/pergel' },
-    ...routeRules,
-  },
-  ogImage: {
-    defaults: {
-      extension: 'png',
-    },
-  },
-  tailwindcss: {
-    viewer: false,
-  },
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      failOnError: false,
-    },
-  },
-
-} as NuxtConfig
-
-export default defineNuxtConfig(defu({}, process.env.DEV && devConfig, {
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-    },
-  },
-  ui: {
-    icons: ['heroicons', 'simple-icons', 'ph', 'game-icons', 'carbon', 'fa-brands'],
-  },
-  routeRules: {
-    ...routeRules,
-  },
-} as NuxtConfig))
+})

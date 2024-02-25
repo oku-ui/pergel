@@ -1,32 +1,26 @@
 {
-  "name": "pergel-docs",
-  "type": "module",
-  "private": true,
+  "name": "docs",
+  "version": "0.1.0",
+  "packageManager": "pnpm@8.15.0",
+  "author": "Mehmet - productdevbook <hi@productdevbook.com>",
+  "license": "MIT",
   "scripts": {
-    "dev": "DEV=true nuxi dev",
-    "build": "DEV=true nuxi build",
-    "prepare": "DEV=true nuxi prepare"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "prepare": "pnpm nuxt prepare && pnpm automd"
   },
   "dependencies": {
-    "@iconify-json/fa-brands": "^1.1.8",
-    "@iconify-json/game-icons": "^1.1.7",
-    "@iconify-json/heroicons": "^1.1.20",
-    "@iconify-json/ic": "^1.1.17",
-    "@iconify-json/logos": "^1.1.42",
-    "@iconify-json/ph": "^1.1.11",
-    "@iconify-json/simple-icons": "^1.1.92",
-    "@iconify-json/solar": "^1.1.9",
-    "@iconify-json/twemoji": "^1.1.15",
-    "@nuxt/content": "^2.12.0",
-    "@nuxt/ui": "^2.14.1",
-    "@nuxt/ui-pro": "^0.7.5"
+    "@typescript/twoslash": "^3.2.4"
   },
   "devDependencies": {
-    "@egoist/tailwindcss-icons": "^1.7.4",
-    "@nuxt/devtools": "^1.0.8",
+    "automd": "^0.3.6",
+    "fast-glob": "^3.3.2",
     "nuxt": "^3.10.3",
-    "nuxt-og-image": "3.0.0-rc.38",
-    "playwright": "^1.41.2",
-    "typescript": "^5.3.3"
+    "pathe": "^1.1.2",
+    "pergel": "^0.12.0",
+    "typescript": "^5.3.3",
+    "vitepress": "1.0.0-rc.44",
+    "vitepress-plugin-twoslash": "^0.10.2"
   }
 }
