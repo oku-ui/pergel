@@ -101,66 +101,105 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
           text: 'box',
           base: '/nuxt/modules/box/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'bullmq',
           base: '/nuxt/modules/bullmq/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'eslint',
           base: '/nuxt/modules/eslint/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'ionic',
           base: '/nuxt/modules/ionic/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'graphqlYoga',
           base: '/nuxt/modules/graphqlYoga/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'json2csv',
           base: '/nuxt/modules/json2csv/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'lucia',
           base: '/nuxt/modules/lucia/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'nodeCron',
           base: '/nuxt/modules/nodeCron/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'renovate',
           base: '/nuxt/modules/renovate/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'S3',
           base: '/nuxt/modules/S3/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'ses',
           base: '/nuxt/modules/ses/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'urql',
           base: '/nuxt/modules/urql/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
         {
           text: 'vitest',
           base: '/nuxt/modules/vitest/',
           collapsed: true,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+          ],
         },
       ],
     },
