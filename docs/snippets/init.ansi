@@ -1,0 +1,23 @@
+
+[0;90m┌[0m  [0;36;1mOku Pergel Select CLI![0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Select Project?[0m
+[0;36m│[0m  [0;32m●[0m changeName [0m
+[0;36m│[0m  [0;2m○[0m [0;2mbook [0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Select Module?[0m
+[0;36m│[0m  [0;32m●[0m drizzle
+[0;36m│[0m  [0;2m○[0m [0;2m...others [0m[0m
+[0;90m│[0m[0m
+[0;32m◇[0m  Select a cli command?[0m
+[0;36m│[0m  [0;32m●[0m [0;2mmigrate [0m
+[0;36m│[0m  [0;2m○[0m [0;2mpush [0m
+[0;36m│[0m  [0;2m○[0m [0;2mdrop [0m
+[0;36m│[0m  [0;2m○[0m [0;2mup [0m
+[0;36m│[0m  [0;2m○[0m [0;2mgenerate [0m
+[0;36m│[0m  [0;2m○[0m [0;2mstudio [0m
+[0;36m│[0m  [0;2m○[0m [0;2mdev:migration [0m
+[0;36m│[0m  [0;2m○[0m [0;2mdev:drop [0m
+[0;36m│[0m  [0;2m○[0m [0;2mdev:seed [0m
+[0;36m│[0m  [0;2m○[0m [0;2mdev:drop:push:seed [0m
+[0;36m└[0m
