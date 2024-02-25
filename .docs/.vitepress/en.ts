@@ -15,16 +15,6 @@ export const en = defineConfig({
       '/guide/': { base: '/guide/', items: sidebarGuide() },
       '/nuxt/': { base: '/nuxt/', items: sidebarReference() },
     },
-
-    editLink: {
-      pattern: 'https://github.com/oku-ui/pergel/edit/main/docs/:path',
-      text: 'Edit this page on GitHub',
-    },
-
-    footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2019-present Oku',
-    },
   },
 })
 
@@ -50,14 +40,6 @@ function nav(): DefaultTheme.NavItem[] {
         {
           text: 'Contributing',
           link: 'https://github.com/oku-ui/pergel/blob/main/.github/contributing.md',
-        },
-        {
-          text: 'Discord',
-          link: 'https://chat.productdevbook.com',
-        },
-        {
-          text: 'Twitter',
-          link: 'https://twitter.com/oku_ui',
         },
       ],
     },

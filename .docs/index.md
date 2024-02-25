@@ -16,6 +16,9 @@ hero:
     - theme: alt
       text: Nitro (Not Ready Yet)
       link: /#
+  image:
+    src: /pergel-logo-large.webp
+    alt: Pergel
 
 features:
   - title: About
@@ -32,3 +35,26 @@ features:
     details: If you're a developer, explore Pergel to enhance your projects. You can also contribute to our community by integrating the structures you use in your projects into Pergel and submitting pull requests.
 ---
 
+
+<style>
+:root {
+  --vp-home-hero-name-color: rgba(255, 255, 255, 0.8); /* Şeffaf beyaz metin rengi */
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, rgba(255, 165, 0, 0.5) 50%, rgba(255, 127, 0, 0.7)); /* Şeffaf turuncu tonları */
+
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, rgba(255, 165, 0, 0.2) 50%, rgba(255, 127, 0, 0.6) 50%); /* Şeffaf turuncu tonları */
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+</style>

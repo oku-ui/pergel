@@ -38,26 +38,48 @@ export default defineConfig({
     ],
   },
 
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-    ],
-
-    sidebar: [
+  /* prettier-ignore */
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/pergel-logo-mini.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/pergel-logo-mini.png' }],
+    ['meta', { name: 'theme-color', content: '#5f67ee' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'en' }],
+    ['meta', { property: 'og:title', content: 'Pergel | Nuxt & Nitro' }],
+    ['meta', { property: 'og:site_name', content: 'Pergel' }],
+    ['meta', { property: 'og:image', content: 'https://pergel.oku-ui.com/pergel-og.png' }],
+    ['meta', { property: 'og:url', content: 'https://pergel.oku-ui.com' }],
+    ['script', { 'src': 'https://cdn.usefathom.com/script.js', 'data-site': 'AZBRSFGG', 'data-spa': 'auto', 'defer': '' }],
+    [
+      'script',
       {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-        ],
+        'async': true,
+        'defer': true,
+        'data-domain': 'rapor.vucod.com',
+        'src': 'https://plausible.io/js/plausible.js',
       },
     ],
+  ],
 
+  appearance: 'dark',
+
+  themeConfig: {
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'github', link: 'https://github.com/oku-ui/pergel' },
+      { icon: 'discord', link: 'https://chat.productdevbook.com' },
+      { icon: 'twitter', link: 'https://twitter.com/oku_ui' },
     ],
+    logo: { src: '/pergel-logo-mini.svg', width: 24, height: 24 },
+
+    editLink: {
+      pattern: 'https://github.com/oku-ui/pergel/edit/main/docs/:path',
+      text: 'Edit this page on GitHub',
+    },
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2024 present Oku - oku-ui.com',
+    },
   },
 
   locales: {

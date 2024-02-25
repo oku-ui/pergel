@@ -1,6 +1,8 @@
 import Theme from 'vitepress/theme'
 import TwoslashFloatingVue from 'vitepress-plugin-twoslash/client'
 import 'vitepress-plugin-twoslash/style.css'
+import './style/main.css'
+import './style/vars.css'
 
 import type { EnhanceAppContext } from 'vitepress'
 
