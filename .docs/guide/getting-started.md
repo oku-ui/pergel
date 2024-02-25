@@ -31,6 +31,7 @@ pergel/
 ├─ [moduleName-projectName]/
 │  ├─ ...
 ├─ .env.example
+├─ projectName.docker-compose.yml
 ├─ merged-package.json
 ├─ README.json
 

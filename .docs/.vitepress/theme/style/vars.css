@@ -14,12 +14,11 @@
     --vp-c-brand-lightest: #8B4513;
     --vp-c-brand-2: #FF4500;
     --vp-c-brand-darker: #FF6347;
-    --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
-    --vp-code-color: rgba(60, 60, 67);
-    --vp-code-block-bg: #292b30;
-    --vp-code-block-bg-light: #1e1e20;
-    --vp-code-block-divider-color: #000000;
-    --vp-custom-block-tip-bg: #40644d29;
+    --vp-c-brand-dimm: rgba(204, 51, 0, 0.08);
+    --vp-code-color: #FF6347;
+    --vp-code-block-bg-light: #cc6600;
+    --vp-code-block-divider-color: #cc5200;
+    --vp-custom-block-tip-bg: #cc660033;
 }
 
 .dark {

@@ -38,7 +38,6 @@ features:
 
 <style>
 :root {
-  --vp-home-hero-name-color: rgba(255, 255, 255, 0.8); /* Şeffaf beyaz metin rengi */
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, rgba(255, 165, 0, 0.5) 50%, rgba(255, 127, 0, 0.7)); /* Şeffaf turuncu tonları */
 
   --vp-home-hero-image-background-image: linear-gradient(-45deg, rgba(255, 165, 0, 0.2) 50%, rgba(255, 127, 0, 0.6) 50%); /* Şeffaf turuncu tonları */
