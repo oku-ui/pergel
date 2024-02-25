@@ -70,8 +70,15 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           text: 'Getting Started',
           link: 'getting-started',
         },
-        // { text: 'Routing', link: 'routing' },
-        // { text: 'Deploy', link: 'deploy' },
+      ],
+    },
+    {
+      text: 'Installations',
+      collapsed: false,
+      items: [
+        { text: 'Nuxt', link: 'nuxt-installation' },
+        { text: 'CLI', link: 'cli-installation' },
+        { text: 'Nitro', link: 'nitro-installation' },
       ],
     },
   ]
@@ -83,12 +90,87 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
       text: 'Nuxt',
       items: [
         { text: 'Nuxt Config', link: 'nuxt-config' },
+      ],
+    },
+    {
+      text: 'Modules',
+      items: [
         {
-          text: 'Default Theme',
-          base: '/reference/default-theme',
+          text: 'drizzle',
+          base: '/nuxt/modules/drizzle/',
+          collapsed: true,
           items: [
-            { text: 'Overview', link: 'config' },
+            { text: 'Configuration', link: 'configuration' },
+            { text: 'Usage', link: 'usage' },
+            { text: 'Import', link: 'import' },
+            { text: 'API', link: 'api' },
+            { text: 'CLI', link: 'cli' },
           ],
+        },
+        {
+          text: 'box',
+          base: '/nuxt/modules/box/',
+          collapsed: true,
+        },
+        {
+          text: 'bullmq',
+          base: '/nuxt/modules/bullmq/',
+          collapsed: true,
+        },
+        {
+          text: 'eslint',
+          base: '/nuxt/modules/eslint/',
+          collapsed: true,
+        },
+        {
+          text: 'ionic',
+          base: '/nuxt/modules/ionic/',
+          collapsed: true,
+        },
+        {
+          text: 'graphqlYoga',
+          base: '/nuxt/modules/graphqlYoga/',
+          collapsed: true,
+        },
+        {
+          text: 'json2csv',
+          base: '/nuxt/modules/json2csv/',
+          collapsed: true,
+        },
+        {
+          text: 'lucia',
+          base: '/nuxt/modules/lucia/',
+          collapsed: true,
+        },
+        {
+          text: 'nodeCron',
+          base: '/nuxt/modules/nodeCron/',
+          collapsed: true,
+        },
+        {
+          text: 'renovate',
+          base: '/nuxt/modules/renovate/',
+          collapsed: true,
+        },
+        {
+          text: 'S3',
+          base: '/nuxt/modules/S3/',
+          collapsed: true,
+        },
+        {
+          text: 'ses',
+          base: '/nuxt/modules/ses/',
+          collapsed: true,
+        },
+        {
+          text: 'urql',
+          base: '/nuxt/modules/urql/',
+          collapsed: true,
+        },
+        {
+          text: 'vitest',
+          base: '/nuxt/modules/vitest/',
+          collapsed: true,
         },
       ],
     },

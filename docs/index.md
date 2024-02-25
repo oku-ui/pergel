@@ -8,11 +8,11 @@ hero:
   tagline: Full Stack Nuxt or Nitro Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.
   actions:
     - theme: brand
-      text: Nuxt ->
+      text: Get Started
       link: /guide/getting-started
     - theme: brand
-      text: Themes
-      link: /themes
+      text: Nuxt ->
+      link: /nuxt/nuxt-config
     - theme: alt
       text: Nitro (Not Ready Yet)
       link: /#

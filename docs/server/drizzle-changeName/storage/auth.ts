@@ -11,7 +11,7 @@ async function create(this: API, params: {
   hashedPassword: string
 }) {
   const [_user] = await this.db
-    .insert(rocketTables.user)
+    .insert(changeNameTables.user)
     .values({
       username: params.username,
       email: params.email,
@@ -27,8 +27,8 @@ async function login(this: API, params: {
 }) {
   const [existingUser] = await this.db
     .select()
-    .from(rocketTables.user)
-    .where(eq(rocketTables.user.username, params.username))
+    .from(changeNameTables.user)
+    .where(eq(changeNameTables.user.username, params.username))
     .execute()
 
   if (!existingUser) {
@@ -44,8 +44,8 @@ async function logout(this: API, params: {
 }) {
   const [existingUser] = await this.db
     .select()
-    .from(rocketTables.user)
-    .where(eq(rocketTables.user.username, params.username))
+    .from(changeNameTables.user)
+    .where(eq(changeNameTables.user.username, params.username))
     .execute()
 
   if (!existingUser) {
@@ -59,7 +59,7 @@ async function logout(this: API, params: {
 async function users(this: API) {
   const users = await this.db
     .select()
-    .from(rocketTables.user)
+    .from(changeNameTables.user)
     .execute()
 
   if (!users) {

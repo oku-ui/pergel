@@ -5,7 +5,7 @@ import { sql } from 'drizzle-orm'
 
 config()
 
-const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_URL
+const dbUrl = process.env.NUXT_CHANGE_NAME_DRIZZLE_URL
 
 async function rundevDrop() {
   if (!dbUrl)

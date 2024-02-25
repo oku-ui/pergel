@@ -1,16 +1,23 @@
 {
   "name": "docs",
-  "version": "1.0.0",
-  "packageManager": "pnpm@8.12.0",
+  "version": "0.1.0",
+  "packageManager": "pnpm@8.15.0",
   "author": "Mehmet - productdevbook <hi@productdevbook.com>",
   "license": "MIT",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview",
+    "prepare": "pnpm nuxt prepare && pnpm automd"
+  },
+  "dependencies": {
+    "@typescript/twoslash": "^3.2.4"
   },
   "devDependencies": {
+    "automd": "^0.3.6",
+    "nuxt": "^3.10.3",
     "pergel": "^0.12.0",
-    "vitepress": "1.0.0-rc.44"
+    "vitepress": "1.0.0-rc.44",
+    "vitepress-plugin-twoslash": "^0.10.2"
   }
 }

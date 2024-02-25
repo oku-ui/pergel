@@ -6,9 +6,9 @@ import { config } from 'dotenv'
 
 config()
 
-const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_URL
+const dbUrl = process.env.NUXT_CHANGE_NAME_DRIZZLE_URL
 
-const migrationDir = resolve('/Users/productdevbook/works/pergel/examples/p-drizzle/server/drizzle-rocket/migrations')
+const migrationDir = resolve('/Users/productdevbook/works/pergel/docs/server/drizzle-changeName/migrations')
 
 async function rundevMigration() {
   if (!dbUrl)

@@ -1,13 +1,13 @@
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
 import { faker } from '@faker-js/faker'
-import * as rocketTables from '../schema/index'
+import * as changeNameTables from '../schema/index'
 
 export async function seed1(db: PostgresJsDatabase) {
   console.warn('Seeding database...')
 
   await db.transaction(async (trx) => {
-    await trx.insert(rocketTables.user).values(
+    await trx.insert(changeNameTables.user).values(
       [
         {
           email: faker.internet.email(),

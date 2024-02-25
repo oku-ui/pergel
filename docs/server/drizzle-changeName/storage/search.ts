@@ -14,14 +14,14 @@ async function globalSearch(this: API, params: {
   const search = params?.text || ''
 
   const columKeys = {
-    username: rocketTables.user.username,
-    email: rocketTables.user.email,
-    id: rocketTables.user.id,
-    name: rocketTables.user.name,
+    username: changeNameTables.user.username,
+    email: changeNameTables.user.email,
+    id: changeNameTables.user.id,
+    name: changeNameTables.user.name,
   }
 
   const tables = {
-    user: rocketTables.user,
+    user: changeNameTables.user,
   }
 
   const scopeTags = {

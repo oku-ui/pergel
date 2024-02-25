@@ -1,136 +1,61 @@
 # Getting Started
 
-## Installation - Nuxt
-
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) version 20.11 or higher.
-- Terminal for accessing VitePress via its command line interface (CLI).
-- [VSCode](https://code.visualstudio.com/) is recommended, along with the [official Vue extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
+- [VSCode](https://code.visualstudio.com/) is recommended.
+- [PNPM](https://pnpm.io/) is recommended.
 
-VitePress can be used on its own, or be installed into an existing project. In both cases, you can install it with:
+## Directory Structure
 
-::: code-group
+The Pergel contains a structure like the one below. This structure keeps your project clean in a clean code layout and facilitates communication between modules.
 
-```sh [pnpm]
-$ pnpm add -D pergel
-```
+::: tip
+If you have discovered a better structure, please contact us. We are open to suggestions.
 
-```sh [npm]
-$ npm add -D pergel
-```
-
-```sh [yarn]
-$ yarn add -D pergel
-```
-
-```sh [bun]
-$ bun add -D pergel
-```
-
+[Twitter](https://twitter.com/oku_ui) |
+[Discord](https://chat.productdevbook.com) |
+[GitHub](https://github.com/oku-ui/pergel/discussions)
 :::
 
+```
+.config/
+├─ pergel.ts
 
-### Setup Wizard
+.nuxt/
+...
 
-Get started with Pergel by running the following command: 
-This will create a `pergel.ts` file in your project `.config` folder.
+pergel/
+├─ .vscode/
+│  ├─ settings.json
+├─ [moduleName-projectName]/
+│  ├─ ...
+├─ .env.example
+├─ merged-package.json
+├─ README.json
 
-::: code-group
-
-```sh [pnpm]
-$ pnpm pergel init
+server/
+├─ [moduleName-projectName]/
+│  ├─ ...
 ```
 
-```sh [npm]
-$ npm pergel init
-```
+## Installation
 
-```sh [yarn]
-$ yarn pergel init
-```
+<div class="tip custom-block" style="padding-top: 8px">
 
-```sh [bun]
-$ bun pergel init
-```
+Nuxt installation guide is [here](./nuxt-installation).
 
-:::
+</div>
 
 
-### Usage
+<div class="tip custom-block" style="padding-top: 8px">
 
-1. Go to `nuxt.config.ts` and add the following code:
+CLI installation guide is [here](./nuxt-installation).
 
-```ts [nuxt.config.ts] {4}
-// https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-  modules: [
-    'pergel/nuxt',
-  ],
-})
-```
+</div>
 
-2. The prepare command creates a .nuxt directory in your application and generates types.
+<div class="tip custom-block" style="padding-top: 8px">
 
-::: code-group
+Nitro installation guide is [here](./nuxt-installation). (Not ready yet)
 
-```sh [pnpm]
-$ pnpm nuxt prepare
-```
-
-```sh [npm]
-$ npm nuxt prepare
-```
-
-```sh [yarn]
-$ yarn nuxt prepare
-```
-
-```sh [bun]
-$ bun nuxt prepare
-```
-
-:::
-
-3. Crete project with the following command:
-
-
-```ts [nuxt.config.ts] {6-13}
-// https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-  modules: [
-    'pergel/nuxt',
-  ],
-  pergel: {
-    projects: {
-      // books -> Please change this to your project name camelCase
-      books: {
-
-      }
-    }
-  },
-})
-```
-
-4. Generates types and `pergel` folder upgrade.
-
-
-::: code-group
-
-```sh [pnpm]
-$ pnpm nuxt prepare
-```
-
-```sh [npm]
-$ npm nuxt prepare
-```
-
-```sh [yarn]
-$ yarn nuxt prepare
-```
-
-```sh [bun]
-$ bun nuxt prepare
-```
-
-:::
+</div>

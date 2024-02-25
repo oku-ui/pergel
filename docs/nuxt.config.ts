@@ -8,8 +8,8 @@ export default defineNuxtConfig({
   ],
   pergel: {
     projects: {
-      rocket: {
-        S3: true,
+      changeName: {
+        drizzle: true,
       },
     },
   },

@@ -5,7 +5,7 @@ import { seed1 } from './seed1'
 
 config()
 
-const dbUrl = process.env.NUXT_ROCKET_DRIZZLE_URL
+const dbUrl = process.env.NUXT_CHANGE_NAME_DRIZZLE_URL
 
 async function rundevSeed() {
   if (!dbUrl)

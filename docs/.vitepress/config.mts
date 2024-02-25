@@ -1,6 +1,13 @@
 import { defineConfig } from 'vitepress'
+import { transformerTwoslash } from 'vitepress-plugin-twoslash'
+
 import { en } from './en'
 import { tr } from './tr'
+import {
+  nuxtCompilerOptions,
+  prepend,
+  typeDecorations,
+} from './nuxtUtils'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -9,6 +16,26 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   metaChunk: true,
+
+  markdown: {
+    codeTransformers: [
+      transformerTwoslash({
+        twoslashOptions: {
+          compilerOptions: {
+            lib: ['esnext', 'dom'],
+            jsx: 1, // Preserve
+            jsxImportSource: 'vue',
+            ...nuxtCompilerOptions,
+          },
+          extraFiles: {
+            ...typeDecorations,
+            'index.ts': { prepend },
+            'index.tsx': { prepend },
+          },
+        },
+      }),
+    ],
+  },
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

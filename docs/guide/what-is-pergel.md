@@ -22,6 +22,10 @@ Just want to try it out? Skip to the [Quickstart](./getting-started).
 
   It contains all the building blocks you can have in a project as modules. You can use it to build almost anything as long as the data can be determined at build time. These modules increase over time.
 
+- **Operating system program support with Pergel CLI**
+  
+  You can quickly install the necessary programs to use Compass on operating systems such as Linux, macos, windows, etc. from the CLI. This is great for developers who want to get started quickly.
+
 
 ## Developer Experience
 
