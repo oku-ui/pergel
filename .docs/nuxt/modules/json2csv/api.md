@@ -40,39 +40,11 @@ Returns the CSV string.
 
 - Type: `string`
 
-```ts twoslash [server/example.ts]
-async function test() {
-  const json = await pergelChangeName()
-      .json2csv()
-      .use({
-        data: {},
-        opts: {}
-      })
-
-  const data = json.csv
-}
-```
-
 ### `setResponseCsv`
 
 Returns the HTTP response with the CSV string.
 
 - Type: `string`
-
-```ts twoslash [server/example.ts]
-async function test() {
-  const json = await pergelChangeName()
-      .json2csv()
-      .use({
-        data: {},
-        opts: {}
-      })
-
-  const data = json.csv
-
-  setResponseCsv(data)
-}
-```
 
 <!-- automd:changeName -->
 

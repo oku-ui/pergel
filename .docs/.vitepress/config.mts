@@ -49,7 +49,6 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'Pergel' }],
     ['meta', { property: 'og:image', content: 'https://pergel.oku-ui.com/pergel-og.png' }],
     ['meta', { property: 'og:url', content: 'https://pergel.oku-ui.com' }],
-    ['script', { 'src': 'https://cdn.usefathom.com/script.js', 'data-site': 'AZBRSFGG', 'data-spa': 'auto', 'defer': '' }],
     [
       'script',
       {
