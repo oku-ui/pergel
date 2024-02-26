@@ -10,9 +10,7 @@ outline: deep
 async function test() {
 const obj = await pergelChangeName().json2csv()
 
-// @noErrors
 const data = obj.
-//               ^|
 }
 ```
 
