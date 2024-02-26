@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # API
 
 ### `pergelChangeName().json2csv()`
@@ -9,8 +5,6 @@ outline: deep
 ```ts twoslash [server/example.ts]
 async function test() {
 const obj = await pergelChangeName().json2csv()
-
-const data = obj.
 }
 ```
 
@@ -25,9 +19,6 @@ async function test() {
         data: {},
         opts: {}
       })
-      
-  const data = json.
-
 }
 ```
 
