@@ -9,8 +9,10 @@ outline: deep
 ```ts twoslash [server/example.ts]
 async function test() {
 // @noErrors
-  const json = await pergelChangeName().json2csv().
-//                                                 ^|
+const obj = await pergelChangeName().json2csv()
+
+const data = obj.
+//               ^|
 }
 ```
 
@@ -26,9 +28,8 @@ async function test() {
         opts: {}
       })
       
-// @noErrors
   const data = json.
-//                  ^|
+
 }
 ```
 
