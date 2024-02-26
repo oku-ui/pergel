@@ -6,7 +6,7 @@ outline: deep
 
 ### `pergelChangeName().json2csv()`
 
-```ts twoslash [server]
+```ts twoslash [server/example.ts]
 // @noErrors
   const json = await pergelChangeName()
       .json2csv().
@@ -16,7 +16,7 @@ outline: deep
 
 ### `pergelChangeName().json2csv().use()`
 
-```ts twoslash [server]
+```ts twoslash [server/example.ts]
 
   const json = await pergelChangeName()
       .json2csv()
@@ -37,7 +37,7 @@ Returns the CSV string.
 
 - Type: `string`
 
-```ts twoslash [server]
+```ts twoslash [server/example.ts]
   const json = await pergelChangeName()
       .json2csv()
       .use({
@@ -54,7 +54,7 @@ Returns the HTTP response with the CSV string.
 
 - Type: `string`
 
-```ts twoslash [server]
+```ts twoslash [server/example.ts]
   const json = await pergelChangeName()
       .json2csv()
       .use({
@@ -64,7 +64,7 @@ Returns the HTTP response with the CSV string.
 
   const data = json.csv
 
-  return setResponseCsv(data)
+  setResponseCsv(data)
 ```
 
 <!-- automd:changeName -->
