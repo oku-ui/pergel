@@ -10,9 +10,6 @@
     "preview": "vitepress preview",
     "prepare": "pnpm nuxt prepare && pnpm automd"
   },
-  "dependencies": {
-    "@typescript/twoslash": "^3.2.4"
-  },
   "devDependencies": {
     "automd": "^0.3.6",
     "fast-glob": "^3.3.2",
