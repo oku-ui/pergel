@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const ID = Math.random().toString(36).substring(7) // generate random id
 
-  const { schedule } = pergelRocket().bullmq().useScheduler({
+  const { schedule } = pergelChangeName().bullmq().useScheduler({
     event,
   })
 

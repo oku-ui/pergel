@@ -1,0 +1,17 @@
+name: pergel
+version: 0.0.0
+services:
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+    command:
+      - redis-server
+      - --appendonly yes
+      - --requirepass redis
+volumes:
+  redis:
+    driver: local

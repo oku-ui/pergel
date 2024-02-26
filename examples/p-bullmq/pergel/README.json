@@ -5,15 +5,15 @@
       "version": "0.21.0"
     }
   },
-  "rocket": {
+  "changeName": {
     "bullmq": {
       "env": {
-        "NUXT_ROCKET_BULLMQ_OPTIONS_HOST": "localhost",
-        "NUXT_ROCKET_BULLMQ_OPTIONS_PORT": 6379,
-        "NUXT_ROCKET_BULLMQ_OPTIONS_DB": 0,
-        "NUXT_ROCKET_BULLMQ_OPTIONS_PASSWORD": "redis",
-        "NUXT_ROCKET_BULLMQ_OPTIONS_USERNAME": "default",
-        "NUXT_ROCKET_BULLMQ_URL": "redis://default:redis@localhost:6379/0"
+        "NUXT_CHANGE_NAME_BULLMQ_OPTIONS_HOST": "localhost",
+        "NUXT_CHANGE_NAME_BULLMQ_OPTIONS_PORT": 6379,
+        "NUXT_CHANGE_NAME_BULLMQ_OPTIONS_DB": 0,
+        "NUXT_CHANGE_NAME_BULLMQ_OPTIONS_PASSWORD": "redis",
+        "NUXT_CHANGE_NAME_BULLMQ_OPTIONS_USERNAME": "default",
+        "NUXT_CHANGE_NAME_BULLMQ_URL": "redis://default:redis@localhost:6379/0"
       },
       "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {

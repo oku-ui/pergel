@@ -1,6 +1,6 @@
 import type { Job } from 'bullmq'
 
-export default pergelRocket()
+export default pergelChangeName()
   .bullmq().nitroPlugin({
     setup: ({ useScheduler }) => {
       const { start } = useScheduler()
