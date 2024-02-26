@@ -7,16 +7,18 @@ outline: deep
 ### `pergelChangeName().json2csv()`
 
 ```ts twoslash [server/example.ts]
+async function test() {
 // @noErrors
   const json = await pergelChangeName().json2csv().
 //                                                 ^|
+}
 ```
 
 
 ### `pergelChangeName().json2csv().use()`
 
 ```ts twoslash [server/example.ts]
-
+async function test() {
   const json = await pergelChangeName()
       .json2csv()
       .use({
@@ -27,6 +29,7 @@ outline: deep
 // @noErrors
   const data = json.
 //                  ^|
+}
 ```
 
 ### `csv`
@@ -38,6 +41,7 @@ Returns the CSV string.
 - Type: `string`
 
 ```ts twoslash [server/example.ts]
+async function test() {
   const json = await pergelChangeName()
       .json2csv()
       .use({
@@ -46,6 +50,7 @@ Returns the CSV string.
       })
 
   const data = json.csv
+}
 ```
 
 ### `setResponseCsv`
@@ -55,6 +60,7 @@ Returns the HTTP response with the CSV string.
 - Type: `string`
 
 ```ts twoslash [server/example.ts]
+async function test() {
   const json = await pergelChangeName()
       .json2csv()
       .use({
@@ -65,6 +71,7 @@ Returns the HTTP response with the CSV string.
   const data = json.csv
 
   setResponseCsv(data)
+}
 ```
 
 <!-- automd:changeName -->
