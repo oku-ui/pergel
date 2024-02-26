@@ -13,12 +13,15 @@ const obj = await pergelChangeName().json2csv()
 
 ```ts twoslash [server/example.ts]
 async function test() {
-  const json = await pergelChangeName()
+  const hello = await pergelChangeName()
       .json2csv()
       .use({
         data: {},
         opts: {}
       })
+// @noErrors 
+const data = hello.
+//                 ^|
 }
 ```
 
