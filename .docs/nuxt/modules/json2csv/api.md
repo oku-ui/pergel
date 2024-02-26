@@ -17,11 +17,14 @@ async function test() {
       .json2csv()
       .use({
         data: {},
-        opts: {}
+        opts: {},
       })
+
 // @noErrors 
 const data = hello.
 //                 ^|
+}
+
 }
 ```
 
