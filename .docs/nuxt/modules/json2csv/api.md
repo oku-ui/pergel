@@ -12,6 +12,7 @@ const obj = await pergelChangeName().json2csv()
 ### `pergelChangeName().json2csv().use()`
 
 ```ts twoslash [server/example.ts]
+// @noErrors
 async function test() {
   const hello = await pergelChangeName()
       .json2csv()
@@ -20,7 +21,6 @@ async function test() {
         opts: {},
       })
 
-// @noErrors 
 const data = hello.
 //                 ^|
 }
