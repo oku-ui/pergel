@@ -18,7 +18,8 @@
       "drizzle-orm": "^0.29.4",
       "@faker-js/faker": "^8.4.1",
       "dotenv": "^16.4.5",
-      "postgres": "^3.4.3"
+      "postgres": "^3.4.3",
+      "@json2csv/node": "^7.0.6"
     },
     "devDependencies": {
       "pg": "^8.11.3"

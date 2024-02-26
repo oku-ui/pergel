@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ],
   pergel: {
     projects: {
-      rocket: {
+      changeName: {
         json2csv: true,
       },
     },

@@ -10,6 +10,14 @@ outline: deep
 - `#changeName/server/drizzle/storage`
 - `#changeName/server/drizzle/schema`
 
+<!-- automd:changeName -->
+
+::: tip changeName
+`changeName` is the name of your project. Please change it to your project name.
+:::
+
+<!-- /automd -->
+
 ## API 
 
 ```ts twoslash [nuxt.config.ts] {2,5}

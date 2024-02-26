@@ -22,8 +22,6 @@ Install pergel nuxt module. [here](../../../guide/nuxt-installation.md)
 
 ### Step 2: Configuration
 
-Change `changeName` to your module name.
-
 ```ts twoslash [nuxt.config.ts]
 // https://nuxt.com/docs/api/configuration-nuxt-config#projects
 export default defineNuxtConfig({
@@ -34,11 +32,20 @@ export default defineNuxtConfig({
     projects: {
       changeName: { // [!code focus]
         drizzle: true, // [!code focus]
+        // ... other modules
       } // [!code focus]
     },
   },
 })
 ```
+
+<!-- automd:changeName -->
+
+::: tip changeName
+`changeName` is the name of your project. Please change it to your project name.
+:::
+
+<!-- /automd -->
 
 ### Step 3: Generate Type and Pergel folders/files
 

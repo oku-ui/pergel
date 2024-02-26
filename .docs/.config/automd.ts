@@ -1,18 +1,22 @@
-import type { Config } from 'automd'
+import { type Config, defineGenerator } from 'automd'
 
 export default <Config>{
   input: [
     'nuxt/**/*.md',
+    'guide/**/*.md',
   ],
-  // generators: {
-  //   file: defineGenerator({
-  //     name: 'test',
-  //     generate(ctx) {
-  //       console.log(ctx)
-  //       return {
-  //         contents: 'Hello, world!',
-  //       }
-  //     },
-  //   }),
-  // },
+  generators: {
+    changeName: defineGenerator({
+      name: 'test',
+      generate() {
+        const data = `::: tip changeName
+\`changeName\` is the name of your project. Please change it to your project name.
+:::`
+        return {
+
+          contents: data,
+        }
+      },
+    }),
+  },
 }

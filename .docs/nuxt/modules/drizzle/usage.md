@@ -65,3 +65,11 @@ export default defineEventHandler(async (event) => {
 ```
 
 <!-- /automd -->
+
+<!-- automd:changeName -->
+
+::: tip changeName
+`changeName` is the name of your project. Please change it to your project name.
+:::
+
+<!-- /automd -->

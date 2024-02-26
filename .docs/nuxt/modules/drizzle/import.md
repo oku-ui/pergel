@@ -4,9 +4,22 @@ outline: deep
 
 # Auto Imports and Aliases
 
-`changeName` is the name of your project. Please change it to your project name.
+## Aliases
 
-## Auto Imports functions
+- `#changeName/server/drizzle`
+- `#changeName/server/drizzle/**`
+- `#changeName/server/drizzle/storage`
+- `#changeName/server/drizzle/schema`
+
+<!-- automd:changeName -->
+
+::: tip changeName
+`changeName` is the name of your project. Please change it to your project name.
+:::
+
+<!-- /automd -->
+
+# Auto Imports functions
 
 ### `pergelChangeName().drizzle() ...`
 
@@ -66,10 +79,3 @@ export default defineEventHandler(async (event) => {
   }
 })
 ```
-
-
-## Aliases
-
-- `#changeName/server/drizzle`
-- `#changeName/server/drizzle/storage`
-- `#changeName/server/drizzle/schema`

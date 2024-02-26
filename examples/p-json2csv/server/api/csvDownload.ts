@@ -1,4 +1,4 @@
-const datas = [
+const exampleData = [
   {
     car: 'Audi',
     price: 40000,
@@ -18,9 +18,11 @@ const datas = [
 
 export default defineEventHandler(async (event) => {
   try {
-    const { setResponseCsv } = await pergelRocket().json2csv().use({
-      data: datas,
-    })
+    const { setResponseCsv } = await pergelChangeName()
+      .json2csv()
+      .use({
+        data: exampleData,
+      })
 
     await setResponseCsv({
       event,

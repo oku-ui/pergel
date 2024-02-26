@@ -5,7 +5,7 @@
       "version": "0.21.0"
     }
   },
-  "rocket": {
+  "changeName": {
     "json2csv": {
       "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {

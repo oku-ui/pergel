@@ -116,6 +116,14 @@ export default defineNuxtConfig({
 })
 ```
 
+<!-- automd:changeName -->
+
+::: tip changeName
+`changeName` is the name of your project. Please change it to your project name.
+:::
+
+<!-- /automd -->
+
 4. Generates types and `pergel` folder upgrade.
 
 

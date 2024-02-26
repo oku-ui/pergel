@@ -98,6 +98,17 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
           ],
         },
         {
+          text: 'json2csv',
+          base: '/nuxt/modules/json2csv/',
+          collapsed: false,
+          items: [
+            { text: 'Configuration', link: 'configuration' },
+            { text: 'Usage', link: 'usage' },
+            { text: 'Import', link: 'import' },
+            { text: 'API', link: 'api' },
+          ],
+        },
+        {
           text: 'box',
           base: '/nuxt/modules/box/',
           collapsed: true,
@@ -132,14 +143,6 @@ function sidebarReference(): DefaultTheme.SidebarItem[] {
         {
           text: 'graphqlYoga',
           base: '/nuxt/modules/graphqlYoga/',
-          collapsed: true,
-          items: [
-            { text: 'Configuration', link: 'configuration' },
-          ],
-        },
-        {
-          text: 'json2csv',
-          base: '/nuxt/modules/json2csv/',
           collapsed: true,
           items: [
             { text: 'Configuration', link: 'configuration' },

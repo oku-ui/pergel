@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     projects: {
       changeName: {
         drizzle: true,
+        json2csv: true,
       },
     },
   },

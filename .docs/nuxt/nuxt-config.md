@@ -57,3 +57,4 @@ If you have discovered a better structure, please contact us. We are open to sug
 ### Modules
 
 - [Drizzle](./modules/drizzle/configuration.md)
+- [json2csv](./modules/json2csv/configuration.md)
