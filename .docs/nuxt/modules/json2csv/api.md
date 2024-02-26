@@ -17,14 +17,14 @@ outline: deep
 ### `pergelChangeName().json2csv().use()`
 
 ```ts twoslash [server]
-// @noErrors
+
   const json = await pergelChangeName()
       .json2csv()
       .use({
         data: {},
         opts: {}
       })
-
+// @noErrors
   const data = json.
 //                  ^|
 ```
@@ -38,7 +38,6 @@ Returns the CSV string.
 - Type: `string`
 
 ```ts twoslash [server]
-// @noErrors
   const json = await pergelChangeName()
       .json2csv()
       .use({
@@ -56,7 +55,6 @@ Returns the HTTP response with the CSV string.
 - Type: `string`
 
 ```ts twoslash [server]
-// @noErrors
   const json = await pergelChangeName()
       .json2csv()
       .use({
