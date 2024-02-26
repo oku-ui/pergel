@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "pnpm nuxt prepare && pnpm automd && vitepress build",
     "preview": "vitepress preview",
     "prepare": "pnpm nuxt prepare && pnpm automd"
   },

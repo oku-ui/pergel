@@ -7,8 +7,9 @@ outline: deep
 ### `pergelChangeName().json2csv()`
 
 ```ts twoslash [server/example.ts]
-// @noErrors
+
   const json = await pergelChangeName()
+// @noErrors
       .json2csv().
 //                ^|
 ```
@@ -24,6 +25,7 @@ outline: deep
         data: {},
         opts: {}
       })
+      
 // @noErrors
   const data = json.
 //                  ^|
