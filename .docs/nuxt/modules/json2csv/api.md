@@ -22,7 +22,7 @@ async function test() {
       })
 
 const data = hello.
-//                 ^|
+                 //^|
 }
 
 }
