@@ -23,9 +23,6 @@ export default defineConfig({
       transformerTwoslash({
         twoslashOptions: {
           compilerOptions: {
-            lib: ['esnext', 'dom'],
-            jsx: 1, // Preserve
-            jsxImportSource: 'vue',
             ...nuxtCompilerOptions,
           },
           extraFiles: {
