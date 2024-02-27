@@ -11,11 +11,18 @@ const obj = await pergelChangeName().json2csv()
 
 ### `pergelChangeName().json2csv().use()`
 
-```ts twoslash [server/utils/test.ts]
-
+```ts twoslash [server/example.ts]
 // @noErrors
-const table = changeNameTables.
-//                             ^|
+async function test() {
+
+const hello = await pergelChangeName().json2csv().use({
+        data: {}
+      })
+
+const data = hello.
+                 //^|
+
+}
 ```
 
 ### `csv`
