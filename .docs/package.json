@@ -19,5 +19,17 @@
     "typescript": "^5.3.3",
     "vitepress": "1.0.0-rc.44",
     "vitepress-plugin-twoslash": "^0.10.2"
+  },
+  "pnpm": {
+    "resolutions": {
+      "shikiji-twoslash": "^0.10.2",
+      "twoslash": "^0.2.4",
+      "twoslash-vue": "^0.2.4"
+    }
+  },
+  "resolutions": {
+    "shikiji-twoslash": "^0.10.2",
+    "twoslash": "^0.2.4",
+    "twoslash-vue": "^0.2.4"
   }
 }
