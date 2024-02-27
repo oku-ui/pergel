@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  shikiji-twoslash: ^0.10.2
-  twoslash: ^0.2.4
-  twoslash-vue: ^0.2.4
-
 importers:
 
   .:
@@ -6179,7 +6174,7 @@ packages:
     resolution: {integrity: sha512-BeIo3TsuWMh07dn0RjPvmAxJh6zeZu0kbPW1m6R0kvKOgh/jSa9+Mu75evHfPabNJumtMELT5osnzlv66x87wg==}
     dependencies:
       shikiji-core: 0.10.2
-      twoslash: 0.2.4(typescript@5.3.3)
+      twoslash: 0.1.2(typescript@5.3.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6561,30 +6556,24 @@ packages:
       - supports-color
     dev: true
 
-  /twoslash-protocol@0.2.4:
-    resolution: {integrity: sha512-AEGTJj4mFGfvQc/M6qi0+s82Zq+mxLcjWZU+EUHGG8LQElyHDs+uDR+/3+m1l+WP7WL+QmWrVzFXgFX+hBg+bg==}
-    dev: true
-
-  /twoslash-vue@0.2.4(typescript@5.3.3):
-    resolution: {integrity: sha512-AIcsYRSxn5WuZC+dD7/n99s1UEY6e5IljoGL3YijQvI/pylgsKk5sWXptp5NrRTH0srBLXoeVpE1re1Eo6eiJw==}
+  /twoslash-vue@0.1.2(typescript@5.3.3):
+    resolution: {integrity: sha512-LCD3VTw0+gKVMXou/nP8OAtpajGAoKuzFx9oyGteBkeMRgDj2DO95WDBHy/o+ihkckYZ0lUbvIFFjzmDy7zHag==}
     peerDependencies:
       typescript: '*'
     dependencies:
       '@vue/language-core': 1.8.27(typescript@5.3.3)
-      twoslash: 0.2.4(typescript@5.3.3)
-      twoslash-protocol: 0.2.4
+      twoslash: 0.1.2(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /twoslash@0.2.4(typescript@5.3.3):
-    resolution: {integrity: sha512-hc3y11BjLHP4kV37TR6lUKksxpZp0LQi9kCy95ka6qobye/gV49PqXZIuWlRaRVGNvp4AJBMg8aiwkp0M8x/nQ==}
+  /twoslash@0.1.2(typescript@5.3.3):
+    resolution: {integrity: sha512-q0jnapnD3b0umNGCJCRlo6Em1oSFl2OBPwsXqhLzijtEzuORrGVrJffG7E1k1KPHFlwBSRX2q6yYA61etn5hSg==}
     peerDependencies:
       typescript: '*'
     dependencies:
       '@typescript/vfs': 1.5.0
-      twoslash-protocol: 0.2.4
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
@@ -7063,7 +7052,7 @@ packages:
       mdast-util-to-hast: 13.1.0
       shikiji: 0.10.2
       shikiji-twoslash: 0.10.2(typescript@5.3.3)
-      twoslash-vue: 0.2.4(typescript@5.3.3)
+      twoslash-vue: 0.1.2(typescript@5.3.3)
       vue: 3.4.20(typescript@5.3.3)
     transitivePeerDependencies:
       - '@nuxt/kit'
