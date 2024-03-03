@@ -10,7 +10,7 @@ export async function useBullMQRedisClient(
   params: {
     options: RedisOptions
     context?: PergelGlobalContextOmitModule
-    event: H3Event | false
+    event?: H3Event
   },
 ) {
   const context = params.context ?? this
@@ -18,7 +18,7 @@ export async function useBullMQRedisClient(
   if (!context || !context.projectName)
     throw new Error('Pergel BullMQ is not defined')
 
-  const { selectData } = await usePergelContext<'bullmq'>({
+  const { selectData } = usePergelContext<'bullmq'>({
     projectName: context.projectName,
     moduleName: 'bullmq',
   }, (runtime) => {

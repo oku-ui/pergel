@@ -26,7 +26,7 @@ export function usePergelS3(
   this: PergelGlobalContextOmitModule,
   params: {
     pergel?: PergelGlobalContextOmitModule
-    event: H3Event | false
+    event?: H3Event
   },
 ) {
   const context = params.pergel || this

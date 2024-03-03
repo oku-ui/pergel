@@ -136,7 +136,6 @@ export function useScheduler<T extends object>(
         maxRetriesPerRequest: null,
         enableReadyCheck: false,
       },
-      event: false,
     })
 
     if (client && !redisConnection)

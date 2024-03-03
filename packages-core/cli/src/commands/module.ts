@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { execSync } from 'node:child_process'
 import { defineCommand } from 'citty'
 import { consola } from 'consola'
 import { parseNa, run } from '@antfu/ni'
@@ -27,6 +28,11 @@ export default defineCommand({
       description: 'Name of the script',
       alias: 's',
     },
+    customScript: {
+      type: 'boolean',
+      description: 'Custom script',
+      alias: 'cs',
+    },
   },
   async run({ args }) {
     try {
@@ -51,20 +57,26 @@ export default defineCommand({
       if (!selectedScript)
         consola.error('No script found')
 
-      console.log('command')
-
-      try {
-        await run(async (agent, args, ctx) => {
-          const command = await parseNa(agent, args, ctx)
-          return command ? command.replace(/"/g, '') : undefined
-        }, [selectedScript], { programmatic: true }).then(() => {
-          consola.success('Script executed successfully')
-        }).catch((error) => {
+      if (!args.customScript) {
+        try {
+          await run(async (agent, args, ctx) => {
+            const command = await parseNa(agent, args, ctx)
+            return command ? command.replace(/"/g, '') : undefined
+          }, [selectedScript], { programmatic: true }).then(() => {
+            consola.success('Script executed successfully')
+          }).catch((error) => {
+            consola.error(error)
+          })
+        }
+        catch (error) {
           consola.error(error)
-        })
+        }
       }
-      catch (error) {
-        consola.error(error)
+      else {
+        execSync(selectedScript, {
+          stdio: 'inherit',
+          cwd: file.config.dir.pergel,
+        })
       }
     }
     catch (error) {
