@@ -94,7 +94,7 @@
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.24",
     "@types/node-cron": "^3.0.11",
     "@urql/core": "^4.2.3",
     "@urql/exchange-execute": "^2.2.2",
