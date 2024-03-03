@@ -28,10 +28,10 @@ export default defineCommand({
       description: 'Name of the script',
       alias: 's',
     },
-    customScript: {
+    custom: {
       type: 'boolean',
       description: 'Custom script',
-      alias: 'cs',
+      alias: 'c',
     },
   },
   async run({ args }) {
@@ -57,7 +57,7 @@ export default defineCommand({
       if (!selectedScript)
         consola.error('No script found')
 
-      if (!args.customScript) {
+      if (!args.custom) {
         try {
           await run(async (agent, args, ctx) => {
             const command = await parseNa(agent, args, ctx)
