@@ -28,7 +28,7 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
   },
   defaults: {
     endpoint: '',
-    client: undefined,
+    client: 'custom',
     ssr: {
       key: '__URQL_DATA__',
       devEndpoint: 'http://localhost:3000/api/graphql',
@@ -119,8 +119,9 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
     // Load the client from the user's project
     const clientPath
       = options.client === 'custom'
-        ? (await findPath(options.client)) ?? urlClient.dst
+        ? await findPath(join(options.rootModuleDir, 'urql.config.ts')) ?? urlClient.dst
         : urlClient.dst
+
     nuxt.options.alias['#urql-client'] = clientPath
 
     addPluginTemplate({
