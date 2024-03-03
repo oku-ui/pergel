@@ -45,7 +45,7 @@
     "graphql-relay": "^0.10.0",
     "graphql-scalars": "^1.22.5",
     "graphql-yoga": "^5.1.1",
-    "ts-relay-cursor-paging": "^2.0.4"
+    "ts-relay-cursor-paging": "^2.1.0"
   },
   "devDependencies": {
     "graphql": "^16.8.1"
