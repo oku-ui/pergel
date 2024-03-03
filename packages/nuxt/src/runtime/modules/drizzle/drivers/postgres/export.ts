@@ -8,9 +8,9 @@ import { usePergelContext } from '../../../../server/utils/usePergelContext'
 
 import type { PergelGlobalContextOmitModule } from '#pergel/types'
 
-export async function connectPostgresJS(this: PergelGlobalContextOmitModule, params: {
+export function connectPostgresJS(this: PergelGlobalContextOmitModule, params: {
   pgOptions?: PostgresJSOptions
-  event: H3Event | false
+  event?: H3Event
   context?: PergelGlobalContextOmitModule
   drizzleConfig?: Parameters<typeof drizzle>[1]
 }) {
@@ -19,7 +19,7 @@ export async function connectPostgresJS(this: PergelGlobalContextOmitModule, par
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData } = await usePergelContext<'drizzle'>({
+  const { selectData } = usePergelContext<'drizzle'>({
     moduleName: 'drizzle',
     projectName: context.projectName,
   }, (runtime) => {

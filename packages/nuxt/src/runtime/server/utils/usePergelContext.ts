@@ -20,7 +20,7 @@ type RuntimeConfigTypeKeys = keyof RuntimeConfigType
 export function usePergelContext<T extends RuntimeConfigTypeKeys>(
   data: PergelGlobalContext,
   clientObject: (runtime: RuntimeConfigType[T]) => PergelH3ContextItem,
-  event: H3Event | false,
+  event?: H3Event,
   additionalMapValues?: object,
 ) {
   if (event) {

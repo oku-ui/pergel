@@ -29,7 +29,8 @@
     "release:local": "bumpp --no-push && pnpm build && pnpm publish --no-git-checks",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "check": "pnpm build && pnpm lint:fix && pnpm typecheck",
-    "prepare": "npx simple-git-hooks"
+    "prepare": "npx simple-git-hooks",
+    "rm:node": "find ./ -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
   "dependencies": {
     "@pergel/module-graphql": "workspace:*",
@@ -55,7 +56,6 @@
   },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt",
-    "unbuild": "3.0.0-rc.1",
     "vue": "3.3.13"
   },
   "simple-git-hooks": {
