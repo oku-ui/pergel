@@ -8,7 +8,7 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.521.0",
+    "@aws-sdk/client-ses": "^3.525.0",
     "@faker-js/faker": "^8.4.1",
     "@json2csv/node": "^7.0.6",
     "@lucia-auth/adapter-drizzle": "1.0.2",
@@ -16,7 +16,7 @@
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:*",
     "@pergel/module-s3": "workspace:*",
-    "bullmq": "^5.3.3",
+    "bullmq": "^5.4.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.4",
