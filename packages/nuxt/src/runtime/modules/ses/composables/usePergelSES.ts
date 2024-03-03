@@ -12,7 +12,7 @@ export interface Credentials {
 export async function usePergelSES(
   this: PergelGlobalContextOmitModule,
   params: {
-    event: H3Event | false
+    event?: H3Event
     context?: PergelGlobalContextOmitModule
   },
 ) {
@@ -21,7 +21,7 @@ export async function usePergelSES(
   if (!context || !context.projectName)
     throw new Error('Pergel is not defined')
 
-  const { selectData } = await usePergelContext<'ses'>({
+  const { selectData } = usePergelContext<'ses'>({
     moduleName: 'ses',
     projectName: context.projectName,
   }, (runtime) => {
