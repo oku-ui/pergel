@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   pergel: {
     projects: {
       changeName: {
+        capacitor: true,
       },
     },
   },
