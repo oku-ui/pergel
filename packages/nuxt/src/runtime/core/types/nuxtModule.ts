@@ -11,7 +11,7 @@ import type { IonicInterface, ResolvedIonicInterface } from '../../modules/ionic
 import type { EslintConfig, ResolvedEslintConfig } from '../../modules/eslint/types'
 import type { RenovateConfig, ResolvedRenovateConfig } from '../../modules/renovate/types'
 import type { ResolvedUrqlConfig, UrqlModuleOptions } from '../../modules/urql/types'
-import type { CapacitorOptions, ResolvedCapacitorConfig } from '../../modules/capacitor/types'
+import type { CapacitorOptions, ResolvedCapacitorOptions } from '../../modules/capacitor/types'
 import type { ResolvedPergelModuleOptions, UserModuleOptions } from './module'
 
 // @MODULE
@@ -48,7 +48,7 @@ export interface ResolvedPergelNuxtModuleConfig<T> {
   vitest?: true | T
   eslint?: true | ResolvedEslintConfig
   renovate?: true | ResolvedRenovateConfig
-  capacitor?: true | ResolvedCapacitorConfig
+  capacitor?: true | ResolvedCapacitorOptions
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules

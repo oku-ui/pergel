@@ -9,11 +9,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "dependencies": {
-  },
   "devDependencies": {
     "nuxt": "^3.10.3",
-    "pergel": "latest",
+    "pergel": "^0.12.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   }

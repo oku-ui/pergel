@@ -1,5 +1,14 @@
 import type { CapacitorConfig } from '@capacitor/cli'
 
-const config: CapacitorConfig = { appId: 'com.company.appname', appName: 'My Capacitor App', webDir: 'www' }
+const config: CapacitorConfig = {
+  appName: 'My App',
+  appId: 'com.example.app',
+  webDir: 'www',
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 0,
+    },
+  },
+}
 
 export default config

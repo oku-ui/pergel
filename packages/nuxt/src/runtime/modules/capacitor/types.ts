@@ -1,31 +1,13 @@
 // import type { AnimationBuilder, Mode, PlatformConfig, SpinnerTypes, TabButtonLayout } from '@ionic/core'
+import type { CapacitorConfig } from '@capacitor/cli'
 
-export interface ResolvedCapacitorConfig {
-  appName: string
-  defaultCss: boolean
-  themeCss: boolean
+export interface ResolvedCapacitorOptions {
   capacitorConfig: CapacitorOptions
 }
 
 export interface CapacitorOptions {
-  android?: {
-    // Android özel konfigürasyon değerleri eklenebilir
-  }
-  appId: string
-  appName: string
-  bundler?: string
-  cliVersion?: string
-  domain?: string
-  electron?: {
-    // Electron özel konfigürasyon değerleri eklenebilir
-  }
-  hostname?: string
-  ios?: {
-    // iOS özel konfigürasyon değerleri eklenebilir
-  }
-  npmClient?: string
-  plugins?: {
-    // Capacitor eklentileri için konfigürasyon değerleri eklenebilir
-  }
-  webDir?: string
+  /**
+   * This key capacitor.config.ts is used to configure Capacitor.
+   */
+  capacitorConfig: CapacitorConfig
 }
