@@ -57,7 +57,7 @@ export default defineCommand({
       if (!selectedScript)
         consola.error('No script found')
 
-      if (!args.npx) {
+      if (!args.customScript) {
         try {
           await run(async (agent, args, ctx) => {
             const command = await parseNa(agent, args, ctx)
