@@ -17,6 +17,35 @@
         "devDependencies": {}
       }
     },
+    "capacitor": {
+      "comment-block": "If pergel cli is installed, you can run `pergel install` automatically to install",
+      "scripts": {
+        "capacitor:init": "npx cap init",
+        "capacitor:sync": "npx cap sync",
+        "capacitor:android": "npx cap android",
+        "capacitor:ios": "npx cap ios",
+        "generate": "nuxt generate"
+      },
+      "cli": {
+        "capacitor:init": "pergel module -c=true -s=capacitor:init -p=test -m=capacitor",
+        "capacitor:sync": "pergel module -c=true -s=capacitor:sync -p=test -m=capacitor",
+        "capacitor:android": "pergel module -c=true -s=capacitor:android -p=test -m=capacitor",
+        "capacitor:ios": "pergel module -c=true -s=capacitor:ios -p=test -m=capacitor",
+        "generate": "pergel module -s=generate -p=changeName -m=capacitor"
+      },
+      "env": {},
+      "packageJson": {
+        "dependencies": {
+          "@capacitor/cli": "^5.7.1"
+        },
+        "devDependencies": {},
+        "patches": {
+          "pnpm": {
+            "patchedDependencies": {}
+          }
+        }
+      }
+    },
     "lucia": {
       "comment-block-hpaj9e": "If pergel cli is installed, you can run `pergel install` automatically to install",
       "packageJson": {

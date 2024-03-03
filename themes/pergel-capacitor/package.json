@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "capacitor-app",
   "type": "module",
   "private": true,
   "scripts": {

@@ -698,6 +698,21 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(vue@3.3.13)
 
+  themes/pergel-capacitor:
+    devDependencies:
+      nuxt:
+        specifier: ^3.10.3
+        version: 3.10.3(@types/node@20.11.24)(drizzle-orm@0.29.4)(eslint@8.57.0)(typescript@5.3.3)(vite@5.1.4)
+      pergel:
+        specifier: latest
+        version: 0.12.0
+      vue:
+        specifier: 3.3.13
+        version: 3.3.13(typescript@5.3.3)
+      vue-router:
+        specifier: ^4.3.0
+        version: 4.3.0(vue@3.3.13)
+
   themes/pergel-ionic:
     dependencies:
       '@capacitor/cli':
@@ -7246,6 +7261,23 @@ packages:
 
   /@pergel/cli@0.8.1:
     resolution: {integrity: sha512-UlruAkOlJgmG6KhZxdywjm//6w+XVK/lWhyV/FwBcsYOJkKLyGqsTegon+Xrs+uic8WPHQaYBS2wGvKMfVOnjg==}
+    engines: {node: '>=20'}
+    hasBin: true
+    dependencies:
+      '@antfu/ni': 0.21.12
+      '@clack/prompts': 0.7.0
+      c12: 1.9.0
+      citty: 0.1.6
+      consola: 3.2.3
+      giget: 1.2.1
+      globby: 14.0.1
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      shelljs: 0.8.5
+    dev: true
+
+  /@pergel/cli@0.9.1:
+    resolution: {integrity: sha512-Ls93ZYGHwNw3D+VILfPtYxCY+jVbi+ZUr735wu10N3uKLpbhYL2CWon1wwEf/GNcC9TRxLICGwQMqmsYSgm3VQ==}
     engines: {node: '>=20'}
     hasBin: true
     dependencies:
@@ -16563,7 +16595,7 @@ packages:
     resolution: {integrity: sha512-F2Htm219xKdnzdc4bP7ofKsz9l3lOXE917E+um98RB2GaRxTfPt/SaSBzye4ezjtBKRu+qzb4ovLJDQ6WvpS/w==}
     hasBin: true
     dependencies:
-      '@pergel/cli': 0.8.1
+      '@pergel/cli': 0.9.1
       '@pergel/nuxt': link:packages/nuxt
     dev: true
 
