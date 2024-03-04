@@ -31,7 +31,7 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
     capacitorConfig: {
       appName: 'My App',
       appId: 'com.example.app',
-      webDir: 'www',
+      webDir: 'dist',
       plugins: {
         SplashScreen: {
           launchShowDuration: 0,
