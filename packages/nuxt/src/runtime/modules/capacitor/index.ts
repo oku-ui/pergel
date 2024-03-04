@@ -7,6 +7,7 @@ import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../
 import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { CapacitorModuleRuntimeConfig, CapacitorOptions } from '../capacitor/types'
 import type { ResolvedCapacitorOptions } from './types'
+import { trapezedRun } from './configTrapezed'
 
 export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
   meta: {
@@ -38,6 +39,7 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
       const deps = nuxt._pergel.pergelPackageJson
       return {
         '@capacitor/cli': deps['@capacitor/cli'],
+        '@trapezedev/project': deps['@trapezedev/project'],
       }
     },
   },
@@ -135,6 +137,7 @@ export default config;`
           'capacitor:android:list': 'cap run android --list',
           'run:ios:device': `cap run ios --target=${envData.runtimeConfig?.runTargetIOSSimulator}`,
           'run:android:device': `cap run android --target=${envData.runtimeConfig?.runTargetAndroidEmulator}`,
+          'trapeze': 'trapeze run config.yaml --android-project android --ios-project ios/App',
         },
         cli: {
           'init': `pergel module -s=capacitor:init -p=${projectName} -m=${moduleName}`,
@@ -152,11 +155,14 @@ export default config;`
           'update': `pergel module -s=capacitor:update -p=${projectName} -m=${moduleName}`,
           'copy': `pergel module -s=capacitor:copy -p=${projectName} -m=${moduleName}`,
           'ls': `pergel module -s=capacitor:ls -p=${projectName} -m=${moduleName}`,
+          'trapeze': `pergel module -s=trapeze -p=${projectName} -m=${moduleName}`,
         },
       }),
       nuxt,
       moduleName,
       projectName,
     })
+
+    trapezedRun({ nuxt })
   },
 })

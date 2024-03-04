@@ -65,6 +65,7 @@
     "@nuxt/devtools": "^1.0.8",
     "@nuxt/devtools-kit": "^1.0.8",
     "@nuxt/kit": "^3.10.3",
+    "@trapezedev/project": "^7.0.10",
     "@vueuse/core": "^10.9.0",
     "consola": "^3.2.3",
     "defu": "^6.1.4",

@@ -17,15 +17,10 @@ export async function trapezedRun(params: {
   const project = new MobileProject(params.nuxt.options.rootDir, config)
   await project.load()
 
-  console.log('project', project)
-
   //   const appTarget = project.ios!.getAppTarget()
   //   await project.ios?.addEntitlements(appTarget?.name ?? null, null, {
   //     'keychain-access-groups': ['group1', 'group2'],
   //   })
-
-  // If you want to see the changes before committing
-  // const changes = project.vfs.all();
 
   await project.commit()
 }

@@ -1,5 +1,5 @@
-// import type { AnimationBuilder, Mode, PlatformConfig, SpinnerTypes, TabButtonLayout } from '@ionic/core'
 import type { CapacitorConfig } from '@capacitor/cli'
+import type { MobileProject } from '@trapezedev/project'
 
 export interface ResolvedCapacitorOptions {
   capacitorConfig: CapacitorOptions
@@ -31,6 +31,12 @@ export interface CapacitorOptions {
    */
   android?: boolean
 
+  /**
+   * Configure your mobile apps with confidence.
+   * @link https://trapeze.dev
+   */
+  trapeze?: true | ((project: MobileProject) => Promise<void>)
+
   plugins?: {
     official?: {
       actionSheet?: boolean
@@ -50,4 +56,11 @@ export interface CapacitorModuleRuntimeConfig {
 
   /** set the scheme of the iOS project */
   runScheme?: string
+
+  /**
+   * Configure your mobile apps with confidence.
+   * @link https://trapeze.dev
+   */
+  trapeze?: true | ((project: MobileProject) => Promise<void>)
+
 }
