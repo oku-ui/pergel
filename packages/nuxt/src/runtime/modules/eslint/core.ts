@@ -36,6 +36,7 @@ export function pergelEslintConfig(input?: {
         '**/dist/**',
         '**/.nuxt',
         '**/.output',
+        '**/.output/**',
         '**/.dist',
         '**/.github',
         '**/coverage',
@@ -49,6 +50,9 @@ export function pergelEslintConfig(input?: {
         '**/pergel/**',
         '**/migrations/**',
         'migrations',
+        // Capacitor specific ignores
+        '**/ios/**',
+        '**/android/**',
       ],
       ...input?.pergel ?? {},
     },

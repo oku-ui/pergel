@@ -18,7 +18,7 @@ export default defineNuxtConfig({
             i18n: true,
             veeValidate: true,
             zod: true,
-            radixVue: true,
+            shadcnNuxt: true,
             tailwindcss: true,
             nuxtIcon: true,
             colorMode: true,

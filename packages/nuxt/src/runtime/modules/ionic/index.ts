@@ -3,7 +3,6 @@ import { join, resolve } from 'node:path'
 import { installModule } from '@nuxt/kit'
 import type { ModuleOptions } from '@nuxtjs/ionic'
 import { definePergelModule } from '../../core/definePergel'
-import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { IonicInterface, ResolvedIonicInterface } from './types'
 
@@ -15,11 +14,13 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
   meta: {
     name: 'ionic',
     version: '0.0.1',
-    dependencies: {
-      '@nuxtjs/ionic': '^0.13.0',
-      '@ionic/cli': '^7.2.0',
-      '@ionic/core': '^7.6.3',
-      '@capacitor/cli': '^5.6.0',
+    dependencies(_options, nuxt) {
+      const deps = nuxt._pergel.pergelPackageJson
+      return {
+        '@nuxtjs/ionic': deps['@nuxtjs/ionic'],
+        '@ionic/cli': deps['@ionic/cli'],
+        '@ionic/core': deps['@ionic/core'],
+      }
     },
   },
   defaults: {
@@ -34,19 +35,6 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
   },
   async setup({ nuxt, options }) {
     console.log('ionic test', options.appName)
-    const capacitorConfig = `
-    import { CapacitorConfig } from '@capacitor/cli';
-
-      const config: CapacitorConfig = ${JSON.stringify(options.capacitorConfig)}
-
-      export default config;`
-    // const nuxtConfig = `
-    // export default defineNuxtConfig({
-    //   ${JSON.stringify(options.nuxtConfig)}
-    // })`
-    // env için
-    generateModuleRuntimeConfig(nuxt, options, {
-    })
 
     // TODO: add docs
     if (options.defaultCss)
