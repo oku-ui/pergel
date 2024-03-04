@@ -1,6 +1,6 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { execSync } from 'node:child_process'
 import { logger as _logger } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
@@ -67,7 +67,7 @@ export default config;`
 
     switch (true) {
       case options.ios:
-        spawnSync(
+        execSync(
           `pnpm pergel module -c=true -s=capacitor:ios -p=${projectName} -m=${moduleName}`,
           {
             stdio: 'inherit',
@@ -77,7 +77,7 @@ export default config;`
         _logger.info(`iOS platform added to ${projectName}`)
         break
       case options.android:
-        spawnSync(
+        execSync(
           `pnpm pergel module -c=true -s=capacitor:android -p=${projectName} -m=${moduleName}`,
           {
             stdio: 'inherit',
