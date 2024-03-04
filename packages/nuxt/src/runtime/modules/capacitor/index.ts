@@ -95,35 +95,26 @@ export default config;`
 
     const { projectName, moduleName } = options
 
-    switch (true) {
-      case options.ios:
-        if (existsSync(resolve(nuxt.options.rootDir, 'ios')))
-          break
-
-        execSync(
+    if (options.ios && !existsSync(resolve(nuxt.options.rootDir, 'ios'))) {
+      execSync(
           `pnpm pergel module -s=capacitor:add:ios -p=${projectName} -m=${moduleName}`,
           {
             stdio: 'inherit',
             cwd: nuxt.options.rootDir,
           },
-        )
-        _logger.info(`iOS platform added to ${projectName}`)
-        break
-      case options.android:
-        if (existsSync(resolve(nuxt.options.rootDir, 'android')))
-          break
+      )
+      _logger.info(`iOS platform added to ${projectName}`)
+    }
 
-        execSync(
+    if (options.android && !existsSync(resolve(nuxt.options.rootDir, 'android'))) {
+      execSync(
           `pnpm pergel module -s=capacitor:add:android -p=${projectName} -m=${moduleName}`,
           {
             stdio: 'inherit',
             cwd: nuxt.options.rootDir,
           },
-        )
-        _logger.info(`Android platform added to ${projectName}`)
-        break
-      default:
-        break
+      )
+      _logger.info(`Android platform added to ${projectName}`)
     }
 
     generateProjectReadme({

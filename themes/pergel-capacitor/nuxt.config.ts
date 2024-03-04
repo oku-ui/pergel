@@ -20,6 +20,7 @@ export default defineNuxtConfig({
             },
           },
           ios: true,
+          android: true,
           plugins: {
             official: {
               actionSheet: true,
