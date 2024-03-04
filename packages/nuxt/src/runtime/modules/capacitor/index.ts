@@ -101,6 +101,8 @@ export default config;`
           'capacitor:add:android': 'cap add android',
           'capacitor:add:ios': 'cap add ios',
           'generate': 'nuxt generate',
+          'capacitor:open:android': 'cap open android',
+          'capacitor:open:ios': 'cap open ios',
         },
         cli: {
           'init': `pergel module -s=capacitor:init -p=${projectName} -m=${moduleName}`,
@@ -109,6 +111,8 @@ export default config;`
           'add:android': `pergel module -s=capacitor:android -p=${projectName} -m=${moduleName}`,
           'add:ios': `pergel module -s=capacitor:ios -p=${projectName} -m=${moduleName}`,
           'generate': `pergel module -s=generate -p=${projectName} -m=${moduleName}`,
+          'open:android': `pergel module -s=capacitor:open:android -p=${projectName} -m=${moduleName}`,
+          'open:ios': `pergel module -s=capacitor:open:ios -p=${projectName} -m=${moduleName}`,
         },
       }),
       nuxt,
