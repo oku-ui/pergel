@@ -5,7 +5,14 @@ export interface ResolvedCapacitorOptions {
   capacitorConfig: CapacitorOptions
   ios: boolean
   android: boolean
-  mehmet: string
+  plugins: {
+    official: {
+      actionSheet: boolean
+    }
+    community: {
+      revenuecat: boolean
+    }
+  }
 }
 
 export interface CapacitorOptions {
@@ -23,6 +30,15 @@ export interface CapacitorOptions {
    * @default false
    */
   android?: boolean
+
+  plugins?: {
+    official?: {
+      actionSheet?: boolean
+    }
+    community?: {
+      revenuecat?: boolean
+    }
+  }
 }
 
 export interface CapacitorModuleRuntimeConfig {

@@ -12,12 +12,26 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
   meta: {
     name: 'capacitor',
     version: '0.0.1',
-    dependencies(_options, nuxt) {
+    dependencies(options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
-      return {
+      const defaultDeps = {
         '@capacitor/core': deps['@capacitor/core'],
         '@capacitor/ios': deps['@capacitor/ios'],
         '@capacitor/android': deps['@capacitor/android'],
+      } as Record<string, string>
+
+      if (options.plugins.official) {
+        if (options.plugins.official.actionSheet)
+          defaultDeps['@capacitor/action-sheet'] = deps['@capacitor/action-sheet']
+      }
+
+      if (options.plugins.community) {
+        if (options.plugins.community.revenuecat)
+          defaultDeps['@revenuecat/purchases-capacitor'] = deps['@revenuecat/purchases-capacitor']
+      }
+
+      return {
+        ...defaultDeps,
       }
     },
     devDependencies(_options, nuxt) {
@@ -40,6 +54,14 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
     },
     ios: false,
     android: false,
+    plugins: {
+      official: {
+        actionSheet: false,
+      },
+      community: {
+        revenuecat: false,
+      },
+    },
   },
   async setup({ nuxt, options }) {
     generateModuleRuntimeConfigEnv(nuxt, options, {

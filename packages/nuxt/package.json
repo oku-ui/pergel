@@ -78,6 +78,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.7.0",
     "@aws-sdk/client-ses": "^3.525.0",
+    "@capacitor/action-sheet": "^6.0.0-rc.0",
     "@capacitor/android": "^6.0.0-rc.0",
     "@capacitor/cli": "^6.0.0-rc.0",
     "@capacitor/core": "^6.0.0-rc.0",
@@ -101,6 +102,7 @@
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
+    "@revenuecat/purchases-capacitor": "^7.5.3",
     "@types/node": "^20.11.24",
     "@types/node-cron": "^3.0.11",
     "@urql/core": "^4.2.3",

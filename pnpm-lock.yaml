@@ -308,6 +308,9 @@ importers:
       '@aws-sdk/client-ses':
         specifier: ^3.525.0
         version: 3.525.0
+      '@capacitor/action-sheet':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/android':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
@@ -377,6 +380,9 @@ importers:
       '@pergel/module-s3':
         specifier: workspace:^
         version: link:../s3
+      '@revenuecat/purchases-capacitor':
+        specifier: ^7.5.3
+        version: 7.5.3(@capacitor/core@6.0.0-rc.0)
       '@types/node':
         specifier: ^20.11.24
         version: 20.11.24
@@ -709,6 +715,9 @@ importers:
 
   themes/pergel-capacitor:
     dependencies:
+      '@capacitor/action-sheet':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/android':
         specifier: 6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
@@ -2248,6 +2257,13 @@ packages:
       call-me-maybe: 1.0.2
       js-yaml: 4.1.0
     dev: true
+
+  /@capacitor/action-sheet@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-cHMRf8w583vP6QPxwkwjKh/RD083j8+S7AsInMzCZGi4GiE6TF6WBhG/uuWd1P0FtyJqBR4lpjevak15rfUFQA==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
 
   /@capacitor/android@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-8mi4byPz19XfZ+az3+vi9FnCkvNgPJHxOjJmzFt8/Pwi17V9V9YIqWSUz68dn3t9f04h7+WYC9pLUHpSY1jcPg==}
@@ -7489,6 +7505,19 @@ packages:
       '@codemirror/language': 6.10.1
       '@codemirror/state': 6.4.1
       '@codemirror/view': 6.24.1
+    dev: true
+
+  /@revenuecat/purchases-capacitor@7.5.3(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-tu9IWEbdRsoqYdR1Z8SILL0ziDCWqqazD29APQ1F091NI0NGj9/IR9wmMjM2YhcD7f+XVcS/cFzpgWm6f2tROQ==}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+      '@revenuecat/purchases-typescript-internal-esm': 9.8.0
+    dev: true
+
+  /@revenuecat/purchases-typescript-internal-esm@9.8.0:
+    resolution: {integrity: sha512-m5LpnBXsiDiyaXmFYdQzawOu6zQ9rLgTht6aNk/e1GeoFjVqUFivTdpwtn4gBugLqAhLESjNdkvzMX/pzQflVA==}
     dev: true
 
   /@rollup/plugin-alias@5.1.0(rollup@3.29.4):
