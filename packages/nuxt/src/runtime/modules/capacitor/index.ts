@@ -8,10 +8,6 @@ import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { CapacitorOptions } from '../capacitor/types'
 import type { ResolvedCapacitorOptions } from './types'
 
-// TODO: Ionic dependencies eklenecek
-// TODO: Ionic config dosyaları oluşturma
-// TODO: Capasitor configleri oluşturdur
-
 export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
   meta: {
     name: 'capacitor',
@@ -67,8 +63,11 @@ export default config;`
 
     switch (true) {
       case options.ios:
+        if (existsSync(resolve(nuxt.options.rootDir, 'ios')))
+          break
+
         execSync(
-          `pnpm pergel module -c=true -s=capacitor:ios -p=${projectName} -m=${moduleName}`,
+          `pnpm pergel module -s=capacitor:add:ios -p=${projectName} -m=${moduleName}`,
           {
             stdio: 'inherit',
             cwd: nuxt.options.rootDir,
@@ -77,8 +76,11 @@ export default config;`
         _logger.info(`iOS platform added to ${projectName}`)
         break
       case options.android:
+        if (existsSync(resolve(nuxt.options.rootDir, 'android')))
+          break
+
         execSync(
-          `pnpm pergel module -c=true -s=capacitor:android -p=${projectName} -m=${moduleName}`,
+          `pnpm pergel module -s=capacitor:add:android -p=${projectName} -m=${moduleName}`,
           {
             stdio: 'inherit',
             cwd: nuxt.options.rootDir,
@@ -94,20 +96,18 @@ export default config;`
       data: ({ addCommentBlock }) => ({
         ...addCommentBlock('Script Commands'),
         scripts: {
-          'capacitor:init': 'npx cap init',
-          'capacitor:sync': 'npx cap sync',
-          'capacitor:android': 'npx cap add android',
-          'capacitor:ios': 'npx cap add ios',
-          'capacitor:install:android': 'install @capacitor/android',
-          'capacitor:install:ios': 'install @capacitor/ios',
+          'capacitor:init': 'cap init',
+          'capacitor:sync': 'cap sync',
+          'capacitor:add:android': 'cap add android',
+          'capacitor:add:ios': 'cap add ios',
           'generate': 'nuxt generate',
         },
         cli: {
-          'capacitor:init': `pergel module -c=true -s=capacitor:init -p=${projectName} -m=${moduleName}`,
-          'capacitor:sync': `pergel module -c=true -s=capacitor:sync -p=${projectName} -m=${moduleName}`,
-          'capacitor:build:sync': `pergel module -c=true -s=generate -p=${projectName} -m=${moduleName} && pergel module -c=true -s=capacitor:sync -p=${projectName} -m=${moduleName}`,
-          'capacitor:android': `pergel module -c=true -s=capacitor:android -p=${projectName} -m=${moduleName}`,
-          'capacitor:ios': `pergel module -c=true -s=capacitor:ios -p=${projectName} -m=${moduleName}`,
+          'init': `pergel module -s=capacitor:init -p=${projectName} -m=${moduleName}`,
+          'sync': `pergel module -s=capacitor:sync -p=${projectName} -m=${moduleName}`,
+          'build:sync': `pergel module -s=generate -p=${projectName} -m=${moduleName} && pergel module -s=capacitor:sync -p=${projectName} -m=${moduleName}`,
+          'add:android': `pergel module -s=capacitor:android -p=${projectName} -m=${moduleName}`,
+          'add:ios': `pergel module -s=capacitor:ios -p=${projectName} -m=${moduleName}`,
           'generate': `pergel module -s=generate -p=${projectName} -m=${moduleName}`,
         },
       }),

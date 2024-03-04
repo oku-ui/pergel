@@ -708,7 +708,20 @@ importers:
         version: 4.3.0(vue@3.3.13)
 
   themes/pergel-capacitor:
+    dependencies:
+      '@capacitor/android':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/core':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0
+      '@capacitor/ios':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
     devDependencies:
+      '@capacitor/cli':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0
       nuxt:
         specifier: ^3.10.3
         version: 3.10.3(@types/node@20.11.24)(drizzle-orm@0.29.4)(eslint@8.57.0)(typescript@5.3.3)(vite@5.1.4)
@@ -2242,7 +2255,6 @@ packages:
       '@capacitor/core': ^6.0.0-rc.0
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
-    dev: true
 
   /@capacitor/cli@5.7.1:
     resolution: {integrity: sha512-iU+DufCBY2qmtD4ETss15eesMjpPclg7e3DyUDCQuruL1UKYAE5AeB8CctvNrafrC7EPRkuvLhC4dqGV1Vdy3w==}
@@ -2305,7 +2317,6 @@ packages:
     resolution: {integrity: sha512-qokde8OZFpzUPccoOAd90xD+vyEcAV90ISg96RLMc1l4Hdk/F79bdsslyaaWU/4azLhiEDBwSuk9Kxn+q5WyfA==}
     dependencies:
       tslib: 2.6.2
-    dev: true
 
   /@capacitor/ios@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-CJBm7oj8pZ0Bxci+swLtXa5vSsC3tAENxqTx4zvQInnRLIfKxB2MiQ/Oomcge3CjhMFxMYKhQ8MmsinyEANSIw==}
@@ -2313,7 +2324,6 @@ packages:
       '@capacitor/core': ^6.0.0-rc.0
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
-    dev: true
 
   /@clack/core@0.3.4:
     resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
