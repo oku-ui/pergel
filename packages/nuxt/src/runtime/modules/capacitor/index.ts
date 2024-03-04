@@ -1,5 +1,7 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { logger as _logger } from '@nuxt/kit'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig } from '../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../core/utils/generateYaml'
@@ -18,6 +20,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
       const deps = nuxt._pergel.pergelPackageJson
       return {
         '@capacitor/core': deps['@capacitor/core'],
+        '@capacitor/ios': deps['@capacitor/ios'],
+        '@capacitor/android': deps['@capacitor/android'],
       }
     },
     devDependencies(_options, nuxt) {
@@ -38,6 +42,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
         },
       },
     },
+    ios: false,
+    android: false,
   },
   async setup({ nuxt, options }) {
     const capacitorConfig = `import { type CapacitorConfig } from '@capacitor/cli';
@@ -59,14 +65,41 @@ export default config;`
 
     const { projectName, moduleName } = options
 
+    switch (true) {
+      case options.ios:
+        spawnSync(
+          `pnpm pergel module -c=true -s=capacitor:ios -p=${projectName} -m=${moduleName}`,
+          {
+            stdio: 'inherit',
+            cwd: nuxt.options.rootDir,
+          },
+        )
+        _logger.info(`iOS platform added to ${projectName}`)
+        break
+      case options.android:
+        spawnSync(
+          `pnpm pergel module -c=true -s=capacitor:android -p=${projectName} -m=${moduleName}`,
+          {
+            stdio: 'inherit',
+            cwd: nuxt.options.rootDir,
+          },
+        )
+        _logger.info(`Android platform added to ${projectName}`)
+        break
+      default:
+        break
+    }
+
     generateProjectReadme({
       data: ({ addCommentBlock }) => ({
         ...addCommentBlock('Script Commands'),
         scripts: {
           'capacitor:init': 'npx cap init',
           'capacitor:sync': 'npx cap sync',
-          'capacitor:android': 'npx cap android',
-          'capacitor:ios': 'npx cap ios',
+          'capacitor:android': 'npx cap add android',
+          'capacitor:ios': 'npx cap add ios',
+          'capacitor:install:android': 'install @capacitor/android',
+          'capacitor:install:ios': 'install @capacitor/ios',
           'generate': 'nuxt generate',
         },
         cli: {

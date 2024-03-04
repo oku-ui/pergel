@@ -8,7 +8,19 @@ export default defineNuxtConfig({
   pergel: {
     projects: {
       changeName: {
-        capacitor: true,
+        capacitor: {
+          capacitorConfig: {
+            appName: 'My App',
+            appId: 'com.example.app',
+            webDir: 'www',
+            plugins: {
+              SplashScreen: {
+                launchShowDuration: 0,
+              },
+            },
+          },
+          ios: true,
+        },
       },
     },
   },

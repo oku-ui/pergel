@@ -1,7 +1,13 @@
 {
   "name": "capacitor-app",
   "type": "module",
+  "version": "1.0.0",
   "private": true,
+  "description": "Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
