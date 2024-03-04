@@ -42,10 +42,12 @@ export interface CapacitorOptions {
 }
 
 export interface CapacitorModuleRuntimeConfig {
-  /** the type of the device to run the app on */
-  runType: 'ios' | 'android'
   /** set the target device to run the app on */
-  runTargetDevice?: string
+  runTargetIOSSimulator?: string
+
+  /** set the target emulator to run the app on */
+  runTargetAndroidEmulator?: string
+
   /** set the scheme of the iOS project */
   runScheme?: string
 }

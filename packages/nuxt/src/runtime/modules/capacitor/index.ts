@@ -65,14 +65,14 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
   },
   async setup({ nuxt, options }) {
     generateModuleRuntimeConfigEnv(nuxt, options, {
-      runType: undefined,
-      runTargetDevice: undefined,
+      runTargetAndroidEmulator: undefined,
+      runTargetIOSSimulator: undefined,
       runScheme: undefined,
     })
 
     const envData = generateModuleRuntimeConfig<CapacitorModuleRuntimeConfig>(nuxt, options, {
-      runType: 'ios',
-      runTargetDevice: undefined,
+      runTargetIOSSimulator: undefined,
+      runTargetAndroidEmulator: undefined,
       runScheme: undefined,
     }, true)
 
@@ -133,7 +133,8 @@ export default config;`
           'capacitor:open:ios': 'cap open ios',
           'capacitor:ios:list': 'cap run ios --list',
           'capacitor:android:list': 'cap run android --list',
-          'run:ios:device': `cap run ios --target=${envData.runtimeConfig?.runTargetDevice}`,
+          'run:ios:device': `cap run ios --target=${envData.runtimeConfig?.runTargetIOSSimulator}`,
+          'run:android:device': `cap run android --target=${envData.runtimeConfig?.runTargetAndroidEmulator}`,
         },
         cli: {
           'init': `pergel module -s=capacitor:init -p=${projectName} -m=${moduleName}`,
@@ -147,6 +148,7 @@ export default config;`
           'list:ios': `pergel module -s=capacitor:ios:list -p=${projectName} -m=${moduleName}`,
           'list:android': `pergel module -s=capacitor:android:list -p=${projectName} -m=${moduleName}`,
           'run:ios:device': `pergel module -s=run:ios:device -p=${projectName} -m=${moduleName}`,
+          'run:android:device': `pergel module -s=run:android:device -p=${projectName} -m=${moduleName}`,
           'update': `pergel module -s=capacitor:update -p=${projectName} -m=${moduleName}`,
           'copy': `pergel module -s=capacitor:copy -p=${projectName} -m=${moduleName}`,
           'ls': `pergel module -s=capacitor:ls -p=${projectName} -m=${moduleName}`,
