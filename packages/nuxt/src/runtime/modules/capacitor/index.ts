@@ -2,12 +2,14 @@ import { existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { logger as _logger } from '@nuxt/kit'
+import { isPackageExists } from 'local-pkg'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { CapacitorModuleRuntimeConfig, CapacitorOptions } from '../capacitor/types'
 import type { ResolvedCapacitorOptions } from './types'
 import { trapezedRun } from './configTrapezed'
+import { autoImportCapacitorPlugins } from './autoImport'
 
 export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
   meta: {
@@ -24,6 +26,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
       if (options.plugins.official) {
         if (options.plugins.official.actionSheet)
           defaultDeps['@capacitor/action-sheet'] = deps['@capacitor/action-sheet']
+        if (options.plugins.official.appLauncher)
+          defaultDeps['@capacitor/app-launcher'] = deps['@capacitor/app-launcher']
       }
 
       if (options.plugins.community) {
@@ -163,6 +167,9 @@ export default config;`
       projectName,
     })
 
-    trapezedRun({ nuxt })
+    if (isPackageExists('@trapezedev/project'))
+      await trapezedRun({ nuxt, options })
+
+    autoImportCapacitorPlugins({ nuxt, options })
   },
 })

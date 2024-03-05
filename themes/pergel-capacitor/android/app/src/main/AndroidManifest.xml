@@ -32,4 +32,7 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <package android:name="com.example.app" />
+    </queries>
 </manifest>

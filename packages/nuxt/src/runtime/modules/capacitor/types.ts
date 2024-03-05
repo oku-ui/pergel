@@ -1,16 +1,37 @@
 import type { CapacitorConfig } from '@capacitor/cli'
-import type { MobileProject } from '@trapezedev/project'
+import type { IosTarget, IosTargetBuildConfiguration, MobileProject } from '@trapezedev/project'
 
 export interface ResolvedCapacitorOptions {
-  capacitorConfig: CapacitorOptions
+  capacitorConfig: CapacitorConfig
   ios: boolean
   android: boolean
   plugins: {
     official: {
       actionSheet: boolean
+      appLauncher: boolean
     }
     community: {
       revenuecat: boolean
+    }
+  }
+  trapeze?: true | {
+    ios?: (
+      project: MobileProject['ios'],
+      context: {
+        build: IosTargetBuildConfiguration
+        target: IosTarget
+      }
+    ) => void
+    android?: (project: MobileProject['android']) => void
+    version: {
+      android?: {
+        versionCode: number
+        versionName: string
+      }
+      ios?: {
+        build: number
+        version: string
+      }
     }
   }
 }
@@ -35,11 +56,31 @@ export interface CapacitorOptions {
    * Configure your mobile apps with confidence.
    * @link https://trapeze.dev
    */
-  trapeze?: true | ((project: MobileProject) => Promise<void>)
+  trapeze?: true | {
+    ios?: (
+      project: MobileProject['ios'],
+      context: {
+        build: IosTargetBuildConfiguration
+        target: IosTarget
+      }
+    ) => void
+    android?: (project: MobileProject['android']) => void
+    version: {
+      android?: {
+        versionCode: number
+        versionName: string
+      }
+      ios?: {
+        build: number
+        version: string
+      }
+    }
+  }
 
   plugins?: {
     official?: {
       actionSheet?: boolean
+      appLauncher?: boolean
     }
     community?: {
       revenuecat?: boolean
@@ -56,11 +97,4 @@ export interface CapacitorModuleRuntimeConfig {
 
   /** set the scheme of the iOS project */
   runScheme?: string
-
-  /**
-   * Configure your mobile apps with confidence.
-   * @link https://trapeze.dev
-   */
-  trapeze?: true | ((project: MobileProject) => Promise<void>)
-
 }
