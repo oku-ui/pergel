@@ -5,6 +5,7 @@ import type { ResolvedCapacitorOptions, TrapezedPlugins } from '../types'
 
 const plugins = {
   appLauncher: () => import('./plugins/appLauncher'),
+  app: () => import('./plugins/app'),
 }
 
 export async function trapezedRun(params: {
@@ -38,15 +39,15 @@ export async function trapezedRun(params: {
   version.ios = typeof params.options.trapeze === 'object' && params.options.trapeze.version.ios ? params.options.trapeze.version.ios : version.ios
   version.android = typeof params.options.trapeze === 'object' && params.options.trapeze.version.android ? params.options.trapeze.version.android : version.android
 
-  const app_name = params.options.capacitorConfig.appName ?? 'My App'
-  const package_name = params.options.capacitorConfig.appId ?? 'com.example.app'
+  const appName = params.options.capacitorConfig.appName ?? 'My App'
+  const packageName = params.options.capacitorConfig.appId ?? 'com.example.app'
 
   if (project.ios && params.options.ios) {
     const getTargets = project.ios.getTargets()
     for await (const target of getTargets ?? []) {
       for await (const build of target.buildConfigurations) {
-        project.ios.setBundleId(target.name, build.name, package_name)
-        await project.ios.setDisplayName(target.name, build.name, app_name)
+        project.ios.setBundleId(target.name, build.name, packageName)
+        await project.ios.setDisplayName(target.name, build.name, appName)
         await project.ios.setVersion(target.name, build.name, version.ios.version)
         await project.ios.setBuild(target.name, build.name, version.ios.build)
 
@@ -57,8 +58,10 @@ export async function trapezedRun(params: {
 
             for await (const plugin of Object.keys(plugins)) {
               const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
-              if (pluginModule.meta && pluginModule.meta.name === selectPlugin)
-                typeof pluginModule.ios === 'function' && pluginModule.ios(project.ios, { build, target })
+              if (pluginModule.meta && pluginModule.meta.name === selectPlugin) {
+                typeof pluginModule.ios === 'function'
+                && pluginModule.ios(project.ios, { build, target, packageName, appName })
+              }
             }
           }
         }
@@ -70,8 +73,10 @@ export async function trapezedRun(params: {
 
             for await (const plugin of Object.keys(plugins)) {
               const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
-              if (pluginModule.meta && pluginModule.meta.name === selectPlugin)
-                typeof pluginModule.ios === 'function' && pluginModule.ios(project.ios, { build, target })
+              if (pluginModule.meta && pluginModule.meta.name === selectPlugin) {
+                typeof pluginModule.ios === 'function'
+                && pluginModule.ios(project.ios, { build, target, packageName, appName })
+              }
             }
           }
         }
@@ -88,9 +93,28 @@ export async function trapezedRun(params: {
 
   if (project.android && params.options.android) {
     const file = project.android?.getAndroidManifest()
+    const valuesStrings = project.android?.getResourceXmlFile('values/strings.xml')
+    await valuesStrings?.load()
     await file.load()
 
-    await project.android.setPackageName(package_name)
+    valuesStrings?.replaceFragment(
+      'resources/string[@name="app_name"]',
+      `<string name="app_name">${appName}</string>`,
+    )
+    valuesStrings?.replaceFragment(
+      'resources/string[@name="title_activity_main"]',
+      `<string name="title_activity_main">${appName}</string>`,
+    )
+    valuesStrings?.replaceFragment(
+      'resources/string[@name="package_name"]',
+      `<string name="package_name">${packageName}</string>`,
+    )
+    valuesStrings?.replaceFragment(
+      'resources/string[@name="custom_url_scheme"]',
+      `<string name="custom_url_scheme">${packageName}</string>`,
+    )
+
+    await project.android.setPackageName(packageName)
     await project.android.setVersionName(version.android.versionName)
     await project.android.setVersionCode(version.android.versionCode)
 
@@ -102,7 +126,7 @@ export async function trapezedRun(params: {
         for await (const plugin of Object.keys(plugins)) {
           const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
           if (pluginModule.meta && pluginModule.meta.name === selectPlugin)
-            typeof pluginModule.android === 'function' && pluginModule.android(project.android, { packageName: package_name, appName: app_name })
+            typeof pluginModule.android === 'function' && pluginModule.android(project.android, { packageName, appName })
         }
       }
     }
@@ -115,7 +139,7 @@ export async function trapezedRun(params: {
         for await (const plugin of Object.keys(plugins)) {
           const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
           if (pluginModule.meta && pluginModule.meta.name === selectPlugin)
-            typeof pluginModule.android === 'function' && pluginModule.android(project.android, { packageName: package_name, appName: app_name })
+            typeof pluginModule.android === 'function' && pluginModule.android(project.android, { packageName, appName })
         }
       }
     }

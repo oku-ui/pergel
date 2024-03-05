@@ -28,6 +28,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/action-sheet'] = deps['@capacitor/action-sheet']
         if (options.plugins.official.appLauncher)
           defaultDeps['@capacitor/app-launcher'] = deps['@capacitor/app-launcher']
+        if (options.plugins.official.app)
+          defaultDeps['@capacitor/app'] = deps['@capacitor/app']
       }
 
       if (options.plugins.community) {

@@ -9,6 +9,8 @@ export interface TrapezedPlugins {
   ios?: (project: MobileProject['ios'], context: {
     build: IosTargetBuildConfiguration
     target: IosTarget
+    packageName: string
+    appName: string
   }) => void
   // Resorces: 'https://developer.android.com/guide/topics/manifest/manifest-intro'
   android?: (project: MobileProject['android'], context: {
@@ -25,6 +27,7 @@ export interface ResolvedCapacitorOptions {
     official: {
       actionSheet: boolean
       appLauncher: boolean
+      app: boolean
     }
     community: {
       revenuecat: boolean
@@ -97,6 +100,7 @@ export interface CapacitorOptions {
     official?: {
       actionSheet?: boolean
       appLauncher?: boolean
+      app?: boolean
     }
     community?: {
       revenuecat?: boolean

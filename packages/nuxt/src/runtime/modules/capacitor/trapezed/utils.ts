@@ -17,6 +17,37 @@ export function addQueries(
   }
 }
 
+export function addIntentFilter(
+  file: XmlFile,
+) {
+  if (file.find('manifest/application/activity/intent-filter')?.length === 0) {
+    file.injectFragment('manifest', `
+<intent-filter>
+    <!-- intent-filter -->
+</intent-filter>
+`.trim())
+  }
+}
+
+export function addIntentFilterItem(
+  file: XmlFile,
+  where: string,
+  item: string,
+) {
+  if (file.find(`manifest/application/activity/intent-filter/${where}[@${item}]`)?.length === 0) {
+    file.injectFragment('manifest/application/activity/intent-filter', `
+      <${where} ${item} />
+      `.trim())
+    return
+  }
+
+  if (file.find(`manifest/application/activity/intent-filter/${where}[@${item}]`)?.length) {
+    file.replaceFragment(`manifest/application/activity/intent-filter/${where}[@${item}]`, `
+      <${where} ${item} />
+      `.trim())
+  }
+}
+
 /** 'manifest/queries' + 'package'(autoadd) */
 export function addPackage(
   file: XmlFile,
