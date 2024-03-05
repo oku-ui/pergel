@@ -1,5 +1,4 @@
-import { existsSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { join } from 'node:path'
 import { installModule } from '@nuxt/kit'
 import type { ModuleOptions } from '@nuxtjs/ionic'
 import { definePergelModule } from '../../core/definePergel'
@@ -34,8 +33,6 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
     themeCss: false,
   },
   async setup({ nuxt, options }) {
-    console.log('ionic test', options.appName)
-
     // TODO: add docs
     if (options.defaultCss)
       nuxt.options.css.push(join(nuxt.options.rootDir, 'assets/css/ionic.css'))
@@ -64,17 +61,6 @@ export default definePergelModule<IonicInterface, ResolvedIonicInterface>({
       },
 
     } satisfies ModuleOptions)
-
-    if (!existsSync(resolve(nuxt.options.rootDir, 'capacitor.config.ts'))) {
-      writeFileSync(resolve(nuxt.options.rootDir, 'capacitor.config.ts'), capacitorConfig, {
-        mode: 0o777,
-        encoding: 'utf8',
-      })
-    }
-    //     ionic config set -g npmClient pnpm
-    // ionic integrations enable capacitor
-    // ionic capacitor add ios
-    // ionic capacitor add android
 
     const { projectName, moduleName } = options
 

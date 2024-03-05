@@ -10,9 +10,8 @@ export default defineNuxtConfig({
       changeName: {
         capacitor: {
           capacitorConfig: {
-            appName: 'My App',
+            appName: 'Pergel App',
             appId: 'com.example.app',
-            webDir: 'www',
             plugins: {
               SplashScreen: {
                 launchShowDuration: 0,
@@ -21,9 +20,28 @@ export default defineNuxtConfig({
           },
           ios: true,
           android: true,
+          trapeze: {
+            ios: (project, { build, target }) => {
+              project?.setBuildProperty(target.name, build.name, 'IPHONEOS_DEPLOYMENT_TARGET', '15.0')
+            },
+            version: {
+              android: {
+                versionCode: 1,
+                versionName: '1.0.0',
+              },
+              ios: {
+                build: 1,
+                version: '1.0.0',
+              },
+            },
+          },
           plugins: {
             official: {
               actionSheet: true,
+              appLauncher: true,
+              app: {
+                CFBundleURLSchemes: ['pergelapp'],
+              },
             },
           },
         },

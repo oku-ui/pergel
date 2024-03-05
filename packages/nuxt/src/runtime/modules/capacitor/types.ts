@@ -1,16 +1,66 @@
-// import type { AnimationBuilder, Mode, PlatformConfig, SpinnerTypes, TabButtonLayout } from '@ionic/core'
 import type { CapacitorConfig } from '@capacitor/cli'
+import type { IosTarget, IosTargetBuildConfiguration, MobileProject } from '@trapezedev/project'
+
+export interface TrapezedPlugins {
+  meta: {
+    name: string
+    version: string
+  }
+  ios?: (
+    project: MobileProject['ios'],
+    context: {
+      build: IosTargetBuildConfiguration
+      target: IosTarget
+      packageName: string
+      appName: string
+    },
+    options: ResolvedCapacitorOptions
+  ) => void
+  // Resorces: 'https://developer.android.com/guide/topics/manifest/manifest-intro'
+  android?: (
+    project: MobileProject['android'],
+    context: {
+      packageName: string
+      appName: string
+    },
+    options: ResolvedCapacitorOptions
+  ) => void
+}
 
 export interface ResolvedCapacitorOptions {
-  capacitorConfig: CapacitorOptions
+  capacitorConfig: CapacitorConfig
   ios: boolean
   android: boolean
   plugins: {
     official: {
       actionSheet: boolean
+      appLauncher: boolean
+      app: {
+        CFBundleURLSchemes: string[]
+      }
     }
     community: {
       revenuecat: boolean
+    }
+  }
+  trapeze?: true | {
+    ios?: (
+      project: MobileProject['ios'],
+      context: {
+        build: IosTargetBuildConfiguration
+        target: IosTarget
+      }
+    ) => void
+    android?: (project: MobileProject['android']) => void
+    version: {
+      android?: {
+        versionCode: number
+        versionName: string
+      }
+      ios?: {
+        build: number
+        version: string
+      }
     }
   }
 }
@@ -31,9 +81,38 @@ export interface CapacitorOptions {
    */
   android?: boolean
 
+  /**
+   * Configure your mobile apps with confidence.
+   * @link https://trapeze.dev
+   */
+  trapeze?: true | {
+    ios?: (
+      project: MobileProject['ios'],
+      context: {
+        build: IosTargetBuildConfiguration
+        target: IosTarget
+      }
+    ) => void
+    android?: (project: MobileProject['android']) => void
+    version: {
+      android?: {
+        versionCode: number
+        versionName: string
+      }
+      ios?: {
+        build: number
+        version: string
+      }
+    }
+  }
+
   plugins?: {
     official?: {
       actionSheet?: boolean
+      appLauncher?: boolean
+      app?: {
+        CFBundleURLSchemes?: string[]
+      }
     }
     community?: {
       revenuecat?: boolean

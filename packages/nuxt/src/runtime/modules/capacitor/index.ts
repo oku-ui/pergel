@@ -2,11 +2,14 @@ import { existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { logger as _logger } from '@nuxt/kit'
+import { isPackageExists } from 'local-pkg'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
 import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { CapacitorModuleRuntimeConfig, CapacitorOptions } from '../capacitor/types'
 import type { ResolvedCapacitorOptions } from './types'
+import { trapezedRun } from './trapezed'
+import { autoImportCapacitorPlugins } from './autoImport'
 
 export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
   meta: {
@@ -23,6 +26,10 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
       if (options.plugins.official) {
         if (options.plugins.official.actionSheet)
           defaultDeps['@capacitor/action-sheet'] = deps['@capacitor/action-sheet']
+        if (options.plugins.official.appLauncher)
+          defaultDeps['@capacitor/app-launcher'] = deps['@capacitor/app-launcher']
+        if (options.plugins.official.app)
+          defaultDeps['@capacitor/app'] = deps['@capacitor/app']
       }
 
       if (options.plugins.community) {
@@ -38,6 +45,7 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
       const deps = nuxt._pergel.pergelPackageJson
       return {
         '@capacitor/cli': deps['@capacitor/cli'],
+        '@trapezedev/project': deps['@trapezedev/project'],
       }
     },
   },
@@ -135,6 +143,7 @@ export default config;`
           'capacitor:android:list': 'cap run android --list',
           'run:ios:device': `cap run ios --target=${envData.runtimeConfig?.runTargetIOSSimulator}`,
           'run:android:device': `cap run android --target=${envData.runtimeConfig?.runTargetAndroidEmulator}`,
+          'trapeze': 'trapeze run config.yaml --android-project android --ios-project ios/App',
         },
         cli: {
           'init': `pergel module -s=capacitor:init -p=${projectName} -m=${moduleName}`,
@@ -152,11 +161,17 @@ export default config;`
           'update': `pergel module -s=capacitor:update -p=${projectName} -m=${moduleName}`,
           'copy': `pergel module -s=capacitor:copy -p=${projectName} -m=${moduleName}`,
           'ls': `pergel module -s=capacitor:ls -p=${projectName} -m=${moduleName}`,
+          'trapeze': `pergel module -s=trapeze -p=${projectName} -m=${moduleName}`,
         },
       }),
       nuxt,
       moduleName,
       projectName,
     })
+
+    if (isPackageExists('@trapezedev/project'))
+      await trapezedRun({ nuxt, options })
+
+    autoImportCapacitorPlugins({ nuxt, options })
   },
 })
