@@ -60,7 +60,11 @@ export async function trapezedRun(params: {
               const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
               if (pluginModule.meta && pluginModule.meta.name === selectPlugin) {
                 typeof pluginModule.ios === 'function'
-                && pluginModule.ios(project.ios, { build, target, packageName, appName })
+                && pluginModule.ios(
+                  project.ios,
+                  { build, target, packageName, appName },
+                  params.options,
+                )
               }
             }
           }
@@ -75,7 +79,11 @@ export async function trapezedRun(params: {
               const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
               if (pluginModule.meta && pluginModule.meta.name === selectPlugin) {
                 typeof pluginModule.ios === 'function'
-                && pluginModule.ios(project.ios, { build, target, packageName, appName })
+                && pluginModule.ios(
+                  project.ios,
+                  { build, target, packageName, appName },
+                  params.options,
+                )
               }
             }
           }
@@ -125,8 +133,14 @@ export async function trapezedRun(params: {
 
         for await (const plugin of Object.keys(plugins)) {
           const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
-          if (pluginModule.meta && pluginModule.meta.name === selectPlugin)
-            typeof pluginModule.android === 'function' && pluginModule.android(project.android, { packageName, appName })
+          if (pluginModule.meta && pluginModule.meta.name === selectPlugin) {
+            typeof pluginModule.android === 'function'
+            && pluginModule.android(
+              project.android,
+              { packageName, appName },
+              params.options,
+            )
+          }
         }
       }
     }
@@ -138,8 +152,14 @@ export async function trapezedRun(params: {
 
         for await (const plugin of Object.keys(plugins)) {
           const pluginModule = await (plugins as any)[plugin]().then((m: any) => m.default).catch(() => null) as TrapezedPlugins
-          if (pluginModule.meta && pluginModule.meta.name === selectPlugin)
-            typeof pluginModule.android === 'function' && pluginModule.android(project.android, { packageName, appName })
+          if (pluginModule.meta && pluginModule.meta.name === selectPlugin) {
+            typeof pluginModule.android === 'function'
+            && pluginModule.android(
+              project.android,
+              { packageName, appName },
+              params.options,
+            )
+          }
         }
       }
     }

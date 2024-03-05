@@ -6,17 +6,25 @@ export interface TrapezedPlugins {
     name: string
     version: string
   }
-  ios?: (project: MobileProject['ios'], context: {
-    build: IosTargetBuildConfiguration
-    target: IosTarget
-    packageName: string
-    appName: string
-  }) => void
+  ios?: (
+    project: MobileProject['ios'],
+    context: {
+      build: IosTargetBuildConfiguration
+      target: IosTarget
+      packageName: string
+      appName: string
+    },
+    options: ResolvedCapacitorOptions
+  ) => void
   // Resorces: 'https://developer.android.com/guide/topics/manifest/manifest-intro'
-  android?: (project: MobileProject['android'], context: {
-    packageName: string
-    appName: string
-  }) => void
+  android?: (
+    project: MobileProject['android'],
+    context: {
+      packageName: string
+      appName: string
+    },
+    options: ResolvedCapacitorOptions
+  ) => void
 }
 
 export interface ResolvedCapacitorOptions {
@@ -27,7 +35,9 @@ export interface ResolvedCapacitorOptions {
     official: {
       actionSheet: boolean
       appLauncher: boolean
-      app: boolean
+      app: {
+        CFBundleURLSchemes: string[]
+      }
     }
     community: {
       revenuecat: boolean
@@ -100,7 +110,9 @@ export interface CapacitorOptions {
     official?: {
       actionSheet?: boolean
       appLauncher?: boolean
-      app?: boolean
+      app?: {
+        CFBundleURLSchemes?: string[]
+      }
     }
     community?: {
       revenuecat?: boolean
