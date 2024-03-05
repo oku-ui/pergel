@@ -24,7 +24,7 @@ export function addPackage(
   packageKey: string,
   packageValue: string,
 ) {
-  if (file.find(`${where}/package[@${packageKey}]`)?.length > 0) {
+  if (file.find(`${where}/package[@${packageKey}]`)?.length) {
     file.replaceFragment(`${where}/package[@${packageKey}]`, `
       <package ${packageKey}="${packageValue}" />
       `.trim())
