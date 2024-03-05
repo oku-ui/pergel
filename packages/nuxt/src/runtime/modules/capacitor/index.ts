@@ -8,7 +8,7 @@ import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../
 import { generateProjectReadme } from '../../core/utils/generateYaml'
 import type { CapacitorModuleRuntimeConfig, CapacitorOptions } from '../capacitor/types'
 import type { ResolvedCapacitorOptions } from './types'
-import { trapezedRun } from './configTrapezed'
+import { trapezedRun } from './trapezed'
 import { autoImportCapacitorPlugins } from './autoImport'
 
 export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({

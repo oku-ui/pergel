@@ -1,6 +1,22 @@
 import type { CapacitorConfig } from '@capacitor/cli'
 import type { IosTarget, IosTargetBuildConfiguration, MobileProject } from '@trapezedev/project'
 
+export interface TrapezedPlugins {
+  meta: {
+    name: string
+    version: string
+  }
+  ios?: (project: MobileProject['ios'], context: {
+    build: IosTargetBuildConfiguration
+    target: IosTarget
+  }) => void
+  // Resorces: 'https://developer.android.com/guide/topics/manifest/manifest-intro'
+  android?: (project: MobileProject['android'], context: {
+    packageName: string
+    appName: string
+  }) => void
+}
+
 export interface ResolvedCapacitorOptions {
   capacitorConfig: CapacitorConfig
   ios: boolean
