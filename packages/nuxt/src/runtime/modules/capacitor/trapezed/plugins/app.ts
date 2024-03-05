@@ -1,4 +1,4 @@
-import { addIntentFilter, addIntentFilterItem, addPackage, addQueries, trapezedPlugins } from '../utils'
+import { addIntentFilter, addIntentFilterItem, trapezedPlugins } from '../utils'
 
 export default trapezedPlugins({
   meta: {
