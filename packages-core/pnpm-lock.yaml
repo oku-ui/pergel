@@ -95,8 +95,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       bullmq:
-        specifier: ^5.4.1
-        version: 5.4.1
+        specifier: ^5.4.2
+        version: 5.4.2
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -1520,6 +1520,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -8267,14 +8268,12 @@ packages:
       semver: 7.6.0
     dev: false
 
-  /bullmq@5.4.1:
-    resolution: {integrity: sha512-0BD1F1CFPTEJAYyfv3KK344pDEeGkI1IefiblzZm9W59yEwB+kLnfAI3zVBEHlUwE+yJxyyPUmoVeUklts8hqg==}
+  /bullmq@5.4.2:
+    resolution: {integrity: sha512-dkR/KGUw18miLe3QWtvSlmGvEe08aZF+w1jZyqEHMWFW3RP4162qp6OGud0/QCAOjusiRI8UOxUhbnortPY+rA==}
     dependencies:
       cron-parser: 4.9.0
-      fast-glob: 3.3.2
       ioredis: 5.3.2
       lodash: 4.17.21
-      minimatch: 9.0.3
       msgpackr: 1.10.1
       node-abort-controller: 3.1.1
       semver: 7.6.0
@@ -8451,6 +8450,7 @@ packages:
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       ansi-styles: 3.2.1
       escape-string-regexp: 1.0.5
