@@ -111,6 +111,26 @@ export default {
     }
   }
 
+  if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+    mkdirSync(resolve(options.serverDir, 'root'), { recursive: true })
+
+    const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', 'drizzle', 'postgress', 'root', '**/*')), {
+      onlyFiles: true,
+    })
+
+    for (const file of files) {
+      const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+      if (readFile) {
+        const fileData = readFile({
+          projectName,
+        })
+        const fileName = basename(file)
+
+        writeFilePergel(resolve(options.serverDir, fileName), fileData)
+      }
+    }
+  }
+
   if (nuxt.options.dev) {
     const subprocess = startSubprocess({
       command: 'drizzle-kit',

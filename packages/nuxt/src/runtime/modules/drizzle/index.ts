@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { execSync } from 'node:child_process'
 import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
@@ -8,8 +7,6 @@ import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { globsBuilderWatch } from '../../core/utils/globs'
 import { createFolderModule } from '../../core/utils/createFolderModule'
-import { writeFilePergel } from '../../core/utils/writeFilePergel'
-import { generatorFunctionName } from '../../core/utils/generatorNames'
 import type { DrizzleConfig, ResolvedDrizzleConfig } from './types'
 import { setupPostgres } from './drivers/postgres'
 import { copyMigrationFolder } from './core'
@@ -148,28 +145,6 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
 
     copyMigrationFolder(nuxt)
 
-    if (!existsSync(`${options.serverDir}/index.ts`)) {
-      writeFilePergel(
-        `${options.serverDir}/index.ts`,
-        /* ts */`
-        export { ${generatorFunctionName(options.projectName, 'DrizzleStorage')} } from './storage'
-export * as ${generatorFunctionName(options.projectName, 'Tables')} from './schema'
-        `,
-      )
-    }
-
-    const returnDriver = /* ts */`
-     ${camelCase(options._driver.name ?? 'postgresjs')}() {
-        return {
-          connect: connectPostgresJS.bind(ctx),
-          context: (getPergelContextModule<'drizzle'>).bind({
-            ...ctx,
-            moduleName: '${options.moduleName}',
-          }),
-        }
-      },
-    `
-
     // Watch for changes
     nuxt.hook('builder:watch', async (event, path) => {
       const match = globsBuilderWatch(
@@ -242,6 +217,18 @@ export * as ${generatorFunctionName(options.projectName, 'Tables')} from './sche
         // })
         break
     }
+
+    const returnDriver = /* ts */`
+     ${camelCase(options._driver.name ?? 'postgresjs')}() {
+        return {
+          connect: connectPostgresJS.bind(ctx),
+          context: (getPergelContextModule<'drizzle'>).bind({
+            ...ctx,
+            moduleName: '${options.moduleName}',
+          }),
+        }
+      },
+    `
 
     nuxt._pergel.contents.push({
       moduleName: options.moduleName,
