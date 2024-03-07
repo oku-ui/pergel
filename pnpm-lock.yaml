@@ -611,6 +611,79 @@ importers:
         specifier: ^8.11.3
         version: 8.11.3
 
+  packages/nuxt/playgrounds/drizzle:
+    dependencies:
+      '@aws-sdk/client-ses':
+        specifier: ^3.525.0
+        version: 3.525.0
+      '@faker-js/faker':
+        specifier: ^8.4.1
+        version: 8.4.1
+      '@json2csv/node':
+        specifier: ^7.0.6
+        version: 7.0.6
+      '@lucia-auth/adapter-drizzle':
+        specifier: 1.0.2
+        version: 1.0.2(lucia@3.0.1)
+      '@lucia-auth/adapter-postgresql':
+        specifier: 3.1.0
+        version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
+      '@pergel/module-box':
+        specifier: workspace:^
+        version: link:../../../box
+      '@pergel/module-graphql':
+        specifier: workspace:*
+        version: link:../../../graphql
+      '@pergel/module-s3':
+        specifier: workspace:*
+        version: link:../../../s3
+      bullmq:
+        specifier: ^5.4.2
+        version: 5.4.2
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
+      drizzle-kit:
+        specifier: ^0.20.14
+        version: 0.20.14
+      drizzle-orm:
+        specifier: ^0.29.5
+        version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
+      ioredis:
+        specifier: ^5.3.2
+        version: 5.3.2
+      lucia:
+        specifier: 3.0.1
+        version: 3.0.1
+      node-cron:
+        specifier: ^3.0.3
+        version: 3.0.3
+      oslo:
+        specifier: ^1.1.3
+        version: 1.1.3
+      p-timeout:
+        specifier: ^6.1.2
+        version: 6.1.2
+      postgres:
+        specifier: ^3.4.3
+        version: 3.4.3
+    devDependencies:
+      '@pergel/nuxt':
+        specifier: link:../..
+        version: link:../..
+      '@types/node-cron':
+        specifier: ^3.0.11
+        version: 3.0.11
+      nuxt:
+        specifier: latest
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+      pergel:
+        specifier: ^0.12.0
+        version: 0.12.0
+      pg:
+        specifier: ^8.11.3
+        version: 8.11.3
+
   packages/nuxt/test/fixtures/basic: {}
 
   packages/s3:

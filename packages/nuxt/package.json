@@ -47,10 +47,9 @@
   "scripts": {
     "stub": "pnpm nuxt-build-module build --stub && nuxt-module-build prepare",
     "prepack": "pnpm nuxt-module-build build && pnpm run client:build",
-    "dev": "pnpm nuxi dev playground",
-    "dev:build": "pnpm nuxi build playground",
     "build": "pnpm nuxt-module-build build",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi prepare client",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare client && pnpm dev:playgrounds",
+    "dev:playgrounds": "pnpm --filter './playgrounds/**' prepare",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "client:build": "nuxi generate client",
