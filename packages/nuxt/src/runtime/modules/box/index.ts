@@ -112,7 +112,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
       veeValidateComponents.forEach((component) => {
         addComponent({
-          name: `Form${component}`,
+          name: `Vee${component}`,
           export: component,
           filePath: 'vee-validate',
         })
