@@ -51,6 +51,11 @@ export default defineNuxtConfig({
     projects: {
       changeName: {
         drizzle: true,
+        box: {
+          packages: {
+            unsearch: true,
+          },
+        },
       },
     },
   },
