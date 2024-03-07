@@ -40,7 +40,7 @@
           "@urql/exchange-execute": "^2.2.2",
           "graphql": "^16.8.1",
           "@graphql-yoga/urql-exchange": "^3.1.1",
-          "@urql/exchange-graphcache": "^6.4.1"
+          "@urql/exchange-graphcache": "^6.5.0"
         },
         "devDependencies": {},
         "patches": {
@@ -133,7 +133,7 @@
       "packageJson": {
         "dependencies": {
           "drizzle-kit": "^0.20.14",
-          "drizzle-orm": "^0.29.4",
+          "drizzle-orm": "^0.29.5",
           "@faker-js/faker": "^8.4.1",
           "dotenv": "^16.4.5",
           "postgres": "^3.4.3"
@@ -177,7 +177,7 @@
           "@pergel/module-box": "0.5.0"
         },
         "devDependencies": {
-          "typescript": "^5.3.3"
+          "typescript": "^5.4.2"
         },
         "patches": {
           "pnpm": {
