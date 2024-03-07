@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "unbuild": "^2.0.0"
+  },
+  "resolutions": {
+    "bumpp": "9.3.0"
   }
 }
