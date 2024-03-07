@@ -73,7 +73,7 @@
     "minimatch": "^9.0.3",
     "pathe": "^1.1.2",
     "sirv": "^2.0.4",
-    "yaml": "^2.4.0"
+    "yaml": "^2.4.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.7.0",
@@ -90,7 +90,7 @@
     "@iconify-json/carbon": "^1.1.31",
     "@iconify-json/ph": "^1.1.11",
     "@ionic/cli": "^7.2.0",
-    "@ionic/core": "^7.7.3",
+    "@ionic/core": "^7.7.4",
     "@json2csv/node": "^7.0.6",
     "@lucia-auth/adapter-drizzle": "1.0.2",
     "@lucia-auth/adapter-postgresql": "3.1.0",
@@ -104,9 +104,9 @@
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
-    "@revenuecat/purchases-capacitor": "^7.5.3",
+    "@revenuecat/purchases-capacitor": "^7.5.4",
     "@trapezedev/project": "^7.0.10",
-    "@types/node": "^20.11.24",
+    "@types/node": "^20.11.25",
     "@types/node-cron": "^3.0.11",
     "@urql/core": "^4.2.3",
     "@urql/exchange-execute": "^2.2.2",
@@ -118,7 +118,7 @@
     "c12": "^1.9.0",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.29.4",
+    "drizzle-orm": "^0.29.5",
     "esbuild-plugin-file-path-extensions": "^2.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-tailwindcss": "^3.14.3",

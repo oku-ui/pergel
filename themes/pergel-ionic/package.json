@@ -10,9 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@capacitor/cli": "^5.7.1",
+    "@capacitor/cli": "^5.7.2",
     "@ionic/cli": "^7.2.0",
-    "@ionic/core": "^7.7.3",
+    "@ionic/core": "^7.7.4",
     "@nuxtjs/ionic": "^0.13.1",
     "@pergel/module-box": "latest"
   },

@@ -24,7 +24,7 @@
     "arctic": "^1.2.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.29.4",
+    "drizzle-orm": "^0.29.5",
     "graphql": "^16.8.1",
     "lucia": "3.0.1",
     "oslo": "^1.1.3",
