@@ -1,4 +1,4 @@
-import { camelCase, pascalCase } from 'scule'
+import { camelCase } from 'scule'
 
 export default function (data: {
   projectName: string
