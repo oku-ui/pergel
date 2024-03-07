@@ -56,7 +56,7 @@
   },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt",
-    "bumpp": "9.3.0",
+    "bumpp": "9.4.0",
     "vue": "3.3.13"
   },
   "simple-git-hooks": {
