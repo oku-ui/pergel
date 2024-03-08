@@ -5,6 +5,7 @@ import { globbySync } from 'globby'
 import { definePergelModule } from '../../core/definePergel'
 import { generateProjectReadme } from '../../core/utils/generateYaml'
 import { writeFilePergel } from '../../core/utils/writeFilePergel'
+import { useNuxtImports } from '../../core/utils/useImports'
 import type { GQLTadaOptions, ResolvedGQLTadaOptions } from './types'
 
 export default definePergelModule<GQLTadaOptions, ResolvedGQLTadaOptions>({
@@ -34,8 +35,15 @@ export default definePergelModule<GQLTadaOptions, ResolvedGQLTadaOptions>({
     nuxt.options.typescript.tsConfig.compilerOptions.plugins ??= []
     nuxt.options.typescript.tsConfig.compilerOptions.plugins.push({
       name: '@0no-co/graphqlsp',
-      schema: relative(nuxt.options.buildDir, join(nuxt.options.serverDir, `${camelCase(`${options.projectName}-schema`)}.graphql`)),
-      tadaOutputLocation: relative(nuxt.options.buildDir, join(options.rootModuleDir, 'graphql-env.d.ts')),
+      schema: relative(
+        nuxt.options.buildDir,
+        join(nuxt.options.serverDir, `${camelCase(`${options.projectName}-schema`)}.graphql`),
+      ),
+      tadaOutputLocation: relative(
+        nuxt.options.buildDir,
+        join(options.rootModuleDir, 'graphql-env.d.ts'),
+      ),
+      template: camelCase(`${options.projectName}-GraphQL`),
     })
 
     if (!existsSync(resolve(options.rootModuleDir, 'index.ts'))) {
@@ -56,6 +64,27 @@ export default definePergelModule<GQLTadaOptions, ResolvedGQLTadaOptions>({
         }
       }
     }
+
+    useNuxtImports(nuxt, {
+      presets: [
+        {
+          type: true,
+          imports: [
+            'FragmentOf',
+            'ResultOf',
+            'VariablesOf',
+          ],
+          from: 'gql.tada',
+        },
+        {
+          imports: [
+            'readFragment',
+            'initGraphQLTada',
+          ] as Array<keyof typeof import('gql.tada')>,
+          from: 'gql.tada',
+        },
+      ],
+    })
 
     generateProjectReadme({
       nuxt,

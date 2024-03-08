@@ -3,7 +3,7 @@ import { camelCase } from 'scule'
 export default function (data: {
   projectName: string
 }) {
-  const graphqlService = camelCase(`${data.projectName}-Graphql`)
+  const graphqlService = camelCase(`${data.projectName}-GraphQL`)
 
   return /* TS */ `import { initGraphQLTada } from 'gql.tada'
 import type {
@@ -19,13 +19,5 @@ export const ${graphqlService} = initGraphQLTada<{
     ID: string
   }
 }>()
-
-export type {
-  FragmentOf,
-  ResultOf,
-  VariablesOf,
-} from 'gql.tada'
-
-export { readFragment } from 'gql.tada'
 `
 }
