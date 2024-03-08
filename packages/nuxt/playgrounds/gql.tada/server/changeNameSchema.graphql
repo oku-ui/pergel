@@ -1,0 +1,23 @@
+directive @auth on FIELD_DEFINITION
+
+directive @skipAuth on FIELD_DEFINITION
+
+
+type Query {
+  me: User
+  user(id: ID!): User
+  users: [User]
+}
+
+type Mutation {
+  changeName(name: String!): User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  createdAt: String!
+  updatedAt: String!
+}

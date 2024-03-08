@@ -547,9 +547,6 @@ importers:
 
   packages/nuxt/playgrounds/drizzle:
     dependencies:
-      '@aws-sdk/client-ses':
-        specifier: ^3.525.0
-        version: 3.525.0
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
@@ -565,39 +562,15 @@ importers:
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../../../box
-      '@pergel/module-graphql':
-        specifier: workspace:*
-        version: link:../../../graphql
-      '@pergel/module-s3':
-        specifier: workspace:*
-        version: link:../../../s3
-      bullmq:
-        specifier: ^5.4.2
-        version: 5.4.2
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
       drizzle-kit:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
         specifier: ^0.29.5
         version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
-      ioredis:
-        specifier: ^5.3.2
-        version: 5.3.2
       lucia:
         specifier: 3.0.1
         version: 3.0.1
-      node-cron:
-        specifier: ^3.0.3
-        version: 3.0.3
-      oslo:
-        specifier: ^1.1.3
-        version: 1.1.3
-      p-timeout:
-        specifier: ^6.1.2
-        version: 6.1.2
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
@@ -605,9 +578,6 @@ importers:
       '@pergel/nuxt':
         specifier: link:../..
         version: link:../..
-      '@types/node-cron':
-        specifier: ^3.0.11
-        version: 3.0.11
       nuxt:
         specifier: latest
         version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
@@ -620,76 +590,22 @@ importers:
 
   packages/nuxt/playgrounds/gql.tada:
     dependencies:
-      '@aws-sdk/client-ses':
-        specifier: ^3.525.0
-        version: 3.525.0
-      '@faker-js/faker':
-        specifier: ^8.4.1
-        version: 8.4.1
-      '@json2csv/node':
-        specifier: ^7.0.6
-        version: 7.0.6
-      '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.2
-        version: 1.0.2(lucia@3.0.1)
-      '@lucia-auth/adapter-postgresql':
-        specifier: 3.1.0
-        version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
-      '@pergel/module-box':
-        specifier: workspace:^
-        version: link:../../../box
-      '@pergel/module-graphql':
-        specifier: workspace:*
-        version: link:../../../graphql
-      '@pergel/module-s3':
-        specifier: workspace:*
-        version: link:../../../s3
-      bullmq:
-        specifier: ^5.4.2
-        version: 5.4.2
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
-      drizzle-kit:
-        specifier: ^0.20.14
-        version: 0.20.14
-      drizzle-orm:
-        specifier: ^0.29.5
-        version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
-      ioredis:
-        specifier: ^5.3.2
-        version: 5.3.2
-      lucia:
-        specifier: 3.0.1
-        version: 3.0.1
-      node-cron:
-        specifier: ^3.0.3
-        version: 3.0.3
-      oslo:
-        specifier: ^1.1.3
-        version: 1.1.3
-      p-timeout:
-        specifier: ^6.1.2
-        version: 6.1.2
-      postgres:
-        specifier: ^3.4.3
-        version: 3.4.3
+      gql.tada:
+        specifier: ^1.3.1
+        version: 1.3.1(graphql@16.8.1)
     devDependencies:
+      '@0no-co/graphqlsp':
+        specifier: ^1.4.2
+        version: 1.4.2
       '@pergel/nuxt':
         specifier: link:../..
         version: link:../..
-      '@types/node-cron':
-        specifier: ^3.0.11
-        version: 3.0.11
       nuxt:
         specifier: latest
         version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       pergel:
         specifier: ^0.12.0
         version: 0.12.0
-      pg:
-        specifier: ^8.11.3
-        version: 8.11.3
 
   packages/nuxt/test/fixtures/basic: {}
 
@@ -3392,7 +3308,6 @@ packages:
     dependencies:
       '@urql/introspection': 1.0.3(graphql@16.8.1)
       graphql: 16.8.1
-    dev: true
 
   /@graphql-codegen/add@5.0.2(graphql@16.8.1):
     resolution: {integrity: sha512-ouBkSvMFUhda5VoKumo/ZvsZM9P5ZTyDsI8LW18VxSNWOjrTeLXBWHG8Gfaai0HwhflPtCYVABbriEcOmrRShQ==}
@@ -4956,6 +4871,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-darwin-x64@3.0.2:
@@ -4963,6 +4879,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-linux-arm64@3.0.2:
@@ -4970,6 +4887,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-linux-arm@3.0.2:
@@ -4977,6 +4895,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-linux-x64@3.0.2:
@@ -4984,6 +4903,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@msgpackr-extract/msgpackr-extract-win32-x64@3.0.2:
@@ -4991,6 +4911,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@napi-rs/wasm-runtime@0.1.1:
@@ -7842,7 +7763,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       magic-string: 0.30.8
     dev: true
 
@@ -9686,7 +9607,6 @@ packages:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       graphql: 16.8.1
-    dev: true
 
   /@urql/vue@1.1.2(graphql@16.8.1)(vue@3.3.13):
     resolution: {integrity: sha512-ixfV0PTXcOl4KrZK24X+9B4rX9KSxqq1xhHZ0SOkAxgxMkomjJhtUl+9PuRL+LEzGWVr91OCEo68VPQ8uc5rBA==}
@@ -9843,7 +9763,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       '@vue/compiler-sfc': 3.4.21
       ast-kit: 0.11.3
       local-pkg: 0.5.0
@@ -10595,7 +10515,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -10627,7 +10547,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -10968,6 +10888,7 @@ packages:
       uuid: 9.0.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /bumpp@9.3.0:
     resolution: {integrity: sha512-P46VikoEZadYCqx7mbClKlaJnOyvc+JfRJPRf1YwlOjwqeYmutgFe1w9hvfXe819VhpU0N0TNXtxyVAUlAgaNA==}
@@ -11832,6 +11753,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       luxon: 3.4.4
+    dev: true
 
   /croner@8.0.1:
     resolution: {integrity: sha512-Hq1+lXVgjJjcS/U+uk6+yVmtxami0r0b+xVtlGyABgdz110l/kOnHWvlSI7nVzrTl8GCdZHwZS4pbBFT7hSL/g==}
@@ -14220,7 +14142,6 @@ packages:
       '@gql.tada/cli-utils': 0.1.0
     transitivePeerDependencies:
       - graphql
-    dev: true
 
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -15748,6 +15669,7 @@ packages:
   /luxon@3.4.4:
     resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
     engines: {node: '>=12'}
+    dev: true
 
   /macos-release@2.5.1:
     resolution: {integrity: sha512-DXqXhEM7gW59OjZO8NIjBCz9AQ1BEMrfiOAl4AYByHCtVHRF4KoGNO8mqQeM8lRCtQe/UnJ4imO/d2HdkKsd+A==}
@@ -16238,12 +16160,14 @@ packages:
       '@msgpackr-extract/msgpackr-extract-linux-arm64': 3.0.2
       '@msgpackr-extract/msgpackr-extract-linux-x64': 3.0.2
       '@msgpackr-extract/msgpackr-extract-win32-x64': 3.0.2
+    dev: true
     optional: true
 
   /msgpackr@1.10.1:
     resolution: {integrity: sha512-r5VRLv9qouXuLiIBrLpl2d5ZvPt8svdQTl5/vMvE4nzDMyEX4sgW5yWhuBBj5UmgwOTWj8CIdSXn5sAfsHAWIQ==}
     optionalDependencies:
       msgpackr-extract: 3.0.2
+    dev: true
 
   /murmurhash-js@1.0.0:
     resolution: {integrity: sha512-TvmkNhkv8yct0SVBSy+o8wYzXjE4Zz3PCesbfs8HiCXXdcTuocApFv11UWlNFWKYsP2okqrhb7JNlSm9InBhIw==}
@@ -16430,6 +16354,7 @@ packages:
 
   /node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
+    dev: true
 
   /node-addon-api@5.1.0:
     resolution: {integrity: sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA==}
@@ -16443,6 +16368,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       uuid: 8.3.2
+    dev: true
 
   /node-fetch-native@1.6.2:
     resolution: {integrity: sha512-69mtXOFZ6hSkYiXAVB5SqaRvrbITC/NPyqv7yuu/qw0nmgPyYbIMYYNIDhNtwPrzk0ptrimrLz/hhjvm4w5Z+w==}
@@ -16466,6 +16392,7 @@ packages:
     resolution: {integrity: sha512-YlCCc6Wffkx0kHkmam79GKvDQ6x+QZkMjFGrIMxgFNILFvGSbCp2fCBC55pGTT9gVaz8Na5CLmxt/urtzRv36w==}
     hasBin: true
     requiresBuild: true
+    dev: true
     optional: true
 
   /node-gyp-build@4.8.0:
@@ -17352,6 +17279,7 @@ packages:
   /p-timeout@6.1.2:
     resolution: {integrity: sha512-UbD77BuZ9Bc9aABo74gfXhNvzC9Tx7SxtHSh1fxvx3jTLLYvmVhiQZZrJzqqU0jKbN32kb5VOKiLEQI/3bIjgQ==}
     engines: {node: '>=14.16'}
+    dev: true
 
   /p-try@1.0.0:
     resolution: {integrity: sha512-U1etNYuMJoIz3ZXSrrySFjsXQTWOx2/jdi86L+2pRvph/qMKL6sbcCYdH23fqsbm8TH2Gn0OybpT4eSFlCVHww==}
@@ -20077,7 +20005,7 @@ packages:
   /unimport@3.7.1:
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       acorn: 8.11.3
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
@@ -20269,7 +20197,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       '@vue-macros/common': 1.10.1(vue@3.3.13)
       ast-walker-scope: 0.5.0
       chokidar: 3.6.0
@@ -20673,7 +20601,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.7
       '@nuxt/kit': 3.10.3
-      '@rollup/pluginutils': 5.1.0(rollup@4.12.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       debug: 4.3.4
       error-stack-parser-es: 0.1.1
       fs-extra: 11.2.0
