@@ -42,7 +42,7 @@
     "@types/uuid": "^9.0.8",
     "@unovis/ts": "^1.3.5",
     "@unovis/vue": "^1.3.5",
-    "@vee-validate/zod": "^4.12.5",
+    "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^10.9.0",
     "class-variance-authority": "^0.7.0",
@@ -61,7 +61,7 @@
     "unsearch": "^0.0.2",
     "uuid": "^9.0.1",
     "v-calendar": "^3.1.2",
-    "vee-validate": "^4.12.5",
+    "vee-validate": "^4.12.6",
     "vue-input-otp": "^0.1.0",
     "zod": "^3.22.4"
   },
