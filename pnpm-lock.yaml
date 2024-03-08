@@ -20,8 +20,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.29.5
-        version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.0
+        version: 0.30.0(pg@8.11.3)(postgres@3.4.3)
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
@@ -150,8 +150,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-vue-next:
-        specifier: ^0.349.0
-        version: 0.349.0(vue@3.3.13)
+        specifier: ^0.350.0
+        version: 0.350.0(vue@3.3.13)
       nanoid:
         specifier: ^5.0.6
         version: 5.0.6
@@ -192,8 +192,8 @@ importers:
         specifier: ^4.12.5
         version: 4.12.5(vue@3.3.13)
       vue-input-otp:
-        specifier: ^0.0.11
-        version: 0.0.11(vue@3.3.13)
+        specifier: ^0.1.0
+        version: 0.1.0(vue@3.3.13)
       zod:
         specifier: ^3.22.4
         version: 3.22.4
@@ -310,8 +310,8 @@ importers:
         specifier: ^2.8.0
         version: 2.8.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
       '@aws-sdk/client-ses':
-        specifier: ^3.525.0
-        version: 3.525.0
+        specifier: ^3.529.1
+        version: 3.529.1
       '@capacitor/action-sheet':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
@@ -379,8 +379,8 @@ importers:
         specifier: ^0.13.1
         version: 0.13.1(rollup@3.29.4)
       '@pergel/cli':
-        specifier: ^0.9.2
-        version: 0.9.2
+        specifier: ^0.10.0
+        version: 0.10.0
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../box
@@ -433,8 +433,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.29.5
-        version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.0
+        version: 0.30.0(pg@8.11.3)(postgres@3.4.3)
       esbuild-plugin-file-path-extensions:
         specifier: ^2.0.0
         version: 2.0.0
@@ -476,7 +476,7 @@ importers:
         version: 3.0.3
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       oslo:
         specifier: ^1.1.3
         version: 1.1.3
@@ -511,8 +511,8 @@ importers:
         specifier: ^1.3.1
         version: 1.3.1(@types/node@20.11.25)(happy-dom@13.6.2)
       vue-input-otp:
-        specifier: ^0.0.11
-        version: 0.0.11(vue@3.3.13)
+        specifier: ^0.1.0
+        version: 0.1.0(vue@3.3.13)
 
   packages/nuxt/client:
     dependencies:
@@ -526,8 +526,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.349.0
-        version: 0.349.0(vue@3.3.13)
+        specifier: ^0.350.0
+        version: 0.350.0(vue@3.3.13)
       radix-vue:
         specifier: ^1.5.1
         version: 1.5.1(vue@3.3.13)
@@ -566,8 +566,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.29.5
-        version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.0
+        version: 0.30.0(pg@8.11.3)(postgres@3.4.3)
       lucia:
         specifier: 3.0.1
         version: 3.0.1
@@ -580,10 +580,10 @@ importers:
         version: link:../..
       nuxt:
         specifier: latest
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       pergel:
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.13.0
+        version: 0.13.0
       pg:
         specifier: ^8.11.3
         version: 8.11.3
@@ -602,10 +602,10 @@ importers:
         version: link:../..
       nuxt:
         specifier: latest
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       pergel:
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.13.0
+        version: 0.13.0
       typescript:
         specifier: ^5.4.2
         version: 5.4.2
@@ -615,17 +615,17 @@ importers:
   packages/s3:
     dependencies:
       '@aws-sdk/client-s3':
-        specifier: ^3.525.0
-        version: 3.525.0
+        specifier: ^3.529.1
+        version: 3.529.1
       '@aws-sdk/s3-request-presigner':
-        specifier: ^3.525.0
-        version: 3.525.0
+        specifier: ^3.529.1
+        version: 3.529.1
 
   themes/pergel-auth:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: ^3.525.0
-        version: 3.525.0
+        specifier: ^3.529.1
+        version: 3.529.1
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
@@ -669,8 +669,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.29.5
-        version: 0.29.5(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.0
+        version: 0.30.0(pg@8.11.3)(postgres@3.4.3)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -698,10 +698,10 @@ importers:
         version: 13.6.2
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       pergel:
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.13.0
+        version: 0.13.0
       pg:
         specifier: ^8.11.3
         version: 8.11.3
@@ -744,10 +744,10 @@ importers:
         version: 7.0.10(@types/node@20.11.25)(typescript@5.4.2)
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       pergel:
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.13.0
+        version: 0.13.0
       vue:
         specifier: 3.3.13
         version: 3.3.13(typescript@5.4.2)
@@ -775,7 +775,7 @@ importers:
     devDependencies:
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       pergel:
         specifier: latest
         version: 0.12.0
@@ -1057,16 +1057,16 @@ packages:
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
 
-  /@aws-sdk/client-s3@3.525.0:
-    resolution: {integrity: sha512-hoMGH8G9rezZDiJPsMjsyRVNfVHHa4u6lcZ09SQMmtFHWK0FUcC0DIKR5ripV5qGDbnV54i2JotXlLzAv0aNCQ==}
+  /@aws-sdk/client-s3@3.529.1:
+    resolution: {integrity: sha512-ZpvyO4w3XWo/OjXLd3fm7CLcKUUYcyady9qzTnKKSnp8a2NqO7UvU/1zhYdm+yyy8TR/9t7sDy+q6AYd4Nsr8g==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/sha1-browser': 3.0.0
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/client-sts': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
-      '@aws-sdk/core': 3.525.0
-      '@aws-sdk/credential-provider-node': 3.525.0
+      '@aws-sdk/client-sts': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
+      '@aws-sdk/core': 3.529.1
+      '@aws-sdk/credential-provider-node': 3.529.1
       '@aws-sdk/middleware-bucket-endpoint': 3.525.0
       '@aws-sdk/middleware-expect-continue': 3.523.0
       '@aws-sdk/middleware-flexible-checksums': 3.523.0
@@ -1117,21 +1117,20 @@ packages:
       '@smithy/util-stream': 2.1.3
       '@smithy/util-utf8': 2.1.1
       '@smithy/util-waiter': 2.1.3
-      fast-xml-parser: 4.2.5
       tslib: 2.6.2
     transitivePeerDependencies:
       - aws-crt
     dev: false
 
-  /@aws-sdk/client-ses@3.525.0:
-    resolution: {integrity: sha512-wvsj/NiEyweJYns14RDwg4UCbCAba4rYgW9ESpCVZ3cx+deUqNUbfU+YcYrfZNcqApq42LPcSubU1Ynh/QHEsg==}
+  /@aws-sdk/client-ses@3.529.1:
+    resolution: {integrity: sha512-YWB45PyXnbWy9m02wcKpxDuaynr1LHGCkBaJe4Oaxk9b2xbAZMo6CTWalOCw1JunQDKZUDJ0I3shuBLE24b3xA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/client-sts': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
-      '@aws-sdk/core': 3.525.0
-      '@aws-sdk/credential-provider-node': 3.525.0
+      '@aws-sdk/client-sts': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
+      '@aws-sdk/core': 3.529.1
+      '@aws-sdk/credential-provider-node': 3.529.1
       '@aws-sdk/middleware-host-header': 3.523.0
       '@aws-sdk/middleware-logger': 3.523.0
       '@aws-sdk/middleware-recursion-detection': 3.523.0
@@ -1167,22 +1166,21 @@ packages:
       '@smithy/util-retry': 2.1.3
       '@smithy/util-utf8': 2.1.1
       '@smithy/util-waiter': 2.1.3
-      fast-xml-parser: 4.2.5
       tslib: 2.6.2
     transitivePeerDependencies:
       - aws-crt
 
-  /@aws-sdk/client-sso-oidc@3.525.0(@aws-sdk/credential-provider-node@3.525.0):
-    resolution: {integrity: sha512-zz13k/6RkjPSLmReSeGxd8wzGiiZa4Odr2Tv3wTcxClM4wOjD+zOgGv4Fe32b9AMqaueiCdjbvdu7AKcYxFA4A==}
+  /@aws-sdk/client-sso-oidc@3.529.1(@aws-sdk/credential-provider-node@3.529.1):
+    resolution: {integrity: sha512-bimxCWAvRnVcluWEQeadXvHyzWlBWsuGVligsaVZaGF0TLSn0eLpzpN9B1EhHzTf7m0Kh/wGtPSH1JxO6PpB+A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      '@aws-sdk/credential-provider-node': ^3.525.0
+      '@aws-sdk/credential-provider-node': ^3.529.1
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/client-sts': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
-      '@aws-sdk/core': 3.525.0
-      '@aws-sdk/credential-provider-node': 3.525.0
+      '@aws-sdk/client-sts': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
+      '@aws-sdk/core': 3.529.1
+      '@aws-sdk/credential-provider-node': 3.529.1
       '@aws-sdk/middleware-host-header': 3.523.0
       '@aws-sdk/middleware-logger': 3.523.0
       '@aws-sdk/middleware-recursion-detection': 3.523.0
@@ -1221,13 +1219,13 @@ packages:
     transitivePeerDependencies:
       - aws-crt
 
-  /@aws-sdk/client-sso@3.525.0:
-    resolution: {integrity: sha512-6KwGQWFoNLH1UupdWPFdKPfTgjSz1kN8/r8aCzuvvXBe4Pz+iDUZ6FEJzGWNc9AapjvZDNO1hs23slomM9rTaA==}
+  /@aws-sdk/client-sso@3.529.1:
+    resolution: {integrity: sha512-KT1U/ZNjDhVv2ZgjzaeAn9VM7l667yeSguMrRYC8qk5h91/61MbjZypi6eOuKuVM+0fsQvzKScTQz0Lio0eYag==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/core': 3.525.0
+      '@aws-sdk/core': 3.529.1
       '@aws-sdk/middleware-host-header': 3.523.0
       '@aws-sdk/middleware-logger': 3.523.0
       '@aws-sdk/middleware-recursion-detection': 3.523.0
@@ -1266,16 +1264,16 @@ packages:
     transitivePeerDependencies:
       - aws-crt
 
-  /@aws-sdk/client-sts@3.525.0(@aws-sdk/credential-provider-node@3.525.0):
-    resolution: {integrity: sha512-a8NUGRvO6rkfTZCbMaCsjDjLbERCwIUU9dIywFYcRgbFhkupJ7fSaZz3Het98U51M9ZbTEpaTa3fz0HaJv8VJw==}
+  /@aws-sdk/client-sts@3.529.1(@aws-sdk/credential-provider-node@3.529.1):
+    resolution: {integrity: sha512-Rvk2Sr3MACQTOtngUU+omlf4E17k47dRVXR7OFRD6Ow5iGgC9tkN2q/ExDPW/ktPOmM0lSgzWyQ6/PC/Zq3HUg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      '@aws-sdk/credential-provider-node': ^3.525.0
+      '@aws-sdk/credential-provider-node': ^3.529.1
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/core': 3.525.0
-      '@aws-sdk/credential-provider-node': 3.525.0
+      '@aws-sdk/core': 3.529.1
+      '@aws-sdk/credential-provider-node': 3.529.1
       '@aws-sdk/middleware-host-header': 3.523.0
       '@aws-sdk/middleware-logger': 3.523.0
       '@aws-sdk/middleware-recursion-detection': 3.523.0
@@ -1310,13 +1308,12 @@ packages:
       '@smithy/util-middleware': 2.1.3
       '@smithy/util-retry': 2.1.3
       '@smithy/util-utf8': 2.1.1
-      fast-xml-parser: 4.2.5
       tslib: 2.6.2
     transitivePeerDependencies:
       - aws-crt
 
-  /@aws-sdk/core@3.525.0:
-    resolution: {integrity: sha512-E3LtEtMWCriQOFZpVKpLYzbdw/v2PAOEAMhn2VRRZ1g0/g1TXzQrfhEU2yd8l/vQEJaCJ82ooGGg7YECviBUxA==}
+  /@aws-sdk/core@3.529.1:
+    resolution: {integrity: sha512-Sj42sYPfaL9PHvvciMICxhyrDZjqnnvFbPKDmQL5aFKyXy122qx7RdVqUOQERDmMQfvJh6+0W1zQlLnre89q4Q==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@smithy/core': 1.3.5
@@ -1324,6 +1321,7 @@ packages:
       '@smithy/signature-v4': 2.1.3
       '@smithy/smithy-client': 2.4.2
       '@smithy/types': 2.10.1
+      fast-xml-parser: 4.2.5
       tslib: 2.6.2
 
   /@aws-sdk/credential-provider-env@3.523.0:
@@ -1349,15 +1347,15 @@ packages:
       '@smithy/util-stream': 2.1.3
       tslib: 2.6.2
 
-  /@aws-sdk/credential-provider-ini@3.525.0(@aws-sdk/credential-provider-node@3.525.0):
-    resolution: {integrity: sha512-JDnccfK5JRb9jcgpc9lirL9PyCwGIqY0nKdw3LlX5WL5vTpTG4E1q7rLAlpNh7/tFD1n66Itarfv2tsyHMIqCw==}
+  /@aws-sdk/credential-provider-ini@3.529.1(@aws-sdk/credential-provider-node@3.529.1):
+    resolution: {integrity: sha512-RjHsuTvHIwXG7a/3ERexemiD3c9riKMCZQzY2/b0Gg0ButEVbBcMfERtUzWmQ0V4ufe/PEZjP68MH1gupcoF9A==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@aws-sdk/client-sts': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/client-sts': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/credential-provider-env': 3.523.0
       '@aws-sdk/credential-provider-process': 3.523.0
-      '@aws-sdk/credential-provider-sso': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
-      '@aws-sdk/credential-provider-web-identity': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/credential-provider-sso': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
+      '@aws-sdk/credential-provider-web-identity': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/types': 3.523.0
       '@smithy/credential-provider-imds': 2.2.5
       '@smithy/property-provider': 2.1.3
@@ -1368,16 +1366,16 @@ packages:
       - '@aws-sdk/credential-provider-node'
       - aws-crt
 
-  /@aws-sdk/credential-provider-node@3.525.0:
-    resolution: {integrity: sha512-RJXlO8goGXpnoHQAyrCcJ0QtWEOFa34LSbfdqBIjQX/fwnjUuEmiGdXTV3AZmwYQ7juk49tfBneHbtOP3AGqsQ==}
+  /@aws-sdk/credential-provider-node@3.529.1:
+    resolution: {integrity: sha512-mvY7F3dMmk/0dZOCfl5sUI1bG0osureBjxhELGCF0KkJqhWI0hIzh8UnPkYytSg3vdc97CMv7pTcozxrdA3b0g==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-sdk/credential-provider-env': 3.523.0
       '@aws-sdk/credential-provider-http': 3.525.0
-      '@aws-sdk/credential-provider-ini': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/credential-provider-ini': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/credential-provider-process': 3.523.0
-      '@aws-sdk/credential-provider-sso': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
-      '@aws-sdk/credential-provider-web-identity': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/credential-provider-sso': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
+      '@aws-sdk/credential-provider-web-identity': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/types': 3.523.0
       '@smithy/credential-provider-imds': 2.2.5
       '@smithy/property-provider': 2.1.3
@@ -1397,12 +1395,12 @@ packages:
       '@smithy/types': 2.10.1
       tslib: 2.6.2
 
-  /@aws-sdk/credential-provider-sso@3.525.0(@aws-sdk/credential-provider-node@3.525.0):
-    resolution: {integrity: sha512-7V7ybtufxdD3plxeIeB6aqHZeFIUlAyPphXIUgXrGY10iNcosL970rQPBeggsohe4gCM6UvY2TfMeEcr+ZE8FA==}
+  /@aws-sdk/credential-provider-sso@3.529.1(@aws-sdk/credential-provider-node@3.529.1):
+    resolution: {integrity: sha512-KFMKkaoTGDgSJG+o9Ii7AglWG5JQeF6IFw9cXLMwDdIrp3KUmRcUIqe0cjOoCqeQEDGy0VHsimHmKKJ3894i/A==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@aws-sdk/client-sso': 3.525.0
-      '@aws-sdk/token-providers': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/client-sso': 3.529.1
+      '@aws-sdk/token-providers': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/types': 3.523.0
       '@smithy/property-provider': 2.1.3
       '@smithy/shared-ini-file-loader': 2.3.4
@@ -1412,11 +1410,11 @@ packages:
       - '@aws-sdk/credential-provider-node'
       - aws-crt
 
-  /@aws-sdk/credential-provider-web-identity@3.525.0(@aws-sdk/credential-provider-node@3.525.0):
-    resolution: {integrity: sha512-sAukOjR1oKb2JXG4nPpuBFpSwGUhrrY17PG/xbTy8NAoLLhrqRwnErcLfdTfmj6tH+3094k6ws/Sh8a35ae7fA==}
+  /@aws-sdk/credential-provider-web-identity@3.529.1(@aws-sdk/credential-provider-node@3.529.1):
+    resolution: {integrity: sha512-AGuZDOKN+AttjwTjrF47WLqzeEut2YynyxjkXZhxZF/xn8i5Y51kUAUdXsXw1bgR25pAeXQIdhsrQlRa1Pm5kw==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@aws-sdk/client-sts': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/client-sts': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/types': 3.523.0
       '@smithy/property-provider': 2.1.3
       '@smithy/types': 2.10.1
@@ -1555,8 +1553,8 @@ packages:
       '@smithy/util-middleware': 2.1.3
       tslib: 2.6.2
 
-  /@aws-sdk/s3-request-presigner@3.525.0:
-    resolution: {integrity: sha512-EllqWqzzzLs8QgUENgOF8qlSuZI6QiPypazSVbCuaAR5B6+s6E8XuBPlX99bV28pGbmtG06d/qqwu2pzXORbBg==}
+  /@aws-sdk/s3-request-presigner@3.529.1:
+    resolution: {integrity: sha512-54nNN/LjqlyUDTLO3U9D7xkYK4/UttcqfKoHQuPI6QabqZGT1hMFs5SzsyihNchgxci6ZTo4pqQQ3lGfE/HHOA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-sdk/signature-v4-multi-region': 3.525.0
@@ -1581,11 +1579,11 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@aws-sdk/token-providers@3.525.0(@aws-sdk/credential-provider-node@3.525.0):
-    resolution: {integrity: sha512-puVjbxuK0Dq7PTQ2HdddHy2eQjOH8GZbump74yWJa6JVpRW84LlOcNmP+79x4Kscvz2ldWB8XDFw/pcCiSDe5A==}
+  /@aws-sdk/token-providers@3.529.1(@aws-sdk/credential-provider-node@3.529.1):
+    resolution: {integrity: sha512-NpgMjsfpqiugbxrYGXtta914N43Mx/H0niidqv8wKMTgWQEtsJvYtOni+kuLXB+LmpjaMFNlpadooFU/bK4buA==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@aws-sdk/client-sso-oidc': 3.525.0(@aws-sdk/credential-provider-node@3.525.0)
+      '@aws-sdk/client-sso-oidc': 3.529.1(@aws-sdk/credential-provider-node@3.529.1)
       '@aws-sdk/types': 3.523.0
       '@smithy/property-provider': 2.1.3
       '@smithy/shared-ini-file-loader': 2.3.4
@@ -5601,7 +5599,7 @@ packages:
       '@nuxt/kit': 3.10.3(rollup@3.29.4)
       '@nuxt/schema': 3.10.3(rollup@3.29.4)
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       vite: 5.1.5(@types/node@20.11.25)
     transitivePeerDependencies:
       - rollup
@@ -5616,7 +5614,7 @@ packages:
       '@nuxt/kit': 3.10.3(rollup@4.12.1)
       '@nuxt/schema': 3.10.3(rollup@4.12.1)
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5)
       vite: 5.1.5(@types/node@20.11.25)
     transitivePeerDependencies:
       - rollup
@@ -5632,7 +5630,7 @@ packages:
       '@nuxt/kit': 3.10.3
       '@nuxt/schema': 3.10.3
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       vite: 5.1.5(@types/node@20.11.25)
     transitivePeerDependencies:
       - rollup
@@ -5730,7 +5728,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       nypm: 0.3.8
       ohash: 1.1.3
       pacote: 17.0.6
@@ -5780,7 +5778,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5)
       nypm: 0.3.8
       ohash: 1.1.3
       pacote: 17.0.6
@@ -5831,7 +5829,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5)
       nypm: 0.3.8
       ohash: 1.1.3
       pacote: 17.0.6
@@ -7531,23 +7529,6 @@ packages:
 
   /@pergel/cli@0.10.0:
     resolution: {integrity: sha512-PxFLQYw/fvu2NHZ0OsGo2Kg1bnNY+JC67ZFcNZLTM4YigPAC5xYbEIFFaRzPW3E071Tn/HzQRo+kJOu9iUKeXA==}
-    engines: {node: '>=20'}
-    hasBin: true
-    dependencies:
-      '@antfu/ni': 0.21.12
-      '@clack/prompts': 0.7.0
-      c12: 1.10.0
-      citty: 0.1.6
-      consola: 3.2.3
-      giget: 1.2.1
-      globby: 14.0.1
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      shelljs: 0.8.5
-    dev: true
-
-  /@pergel/cli@0.9.2:
-    resolution: {integrity: sha512-YkwoBcEU/EI3toiyZwHvBmXr0uFUS7NOOgC7KZTJL+KRvE5796f5cbWinmlBJPn0UD1iGFpz1syOu8864W6F6g==}
     engines: {node: '>=20'}
     hasBin: true
     dependencies:
@@ -10015,7 +9996,7 @@ packages:
       '@vueuse/core': 10.9.0(vue@3.3.13)
       '@vueuse/metadata': 10.9.0
       local-pkg: 0.5.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       vue-demi: 0.14.7(vue@3.3.13)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -10033,7 +10014,7 @@ packages:
       '@vueuse/core': 10.9.0(vue@3.3.13)
       '@vueuse/metadata': 10.9.0
       local-pkg: 0.5.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5)
       vue-demi: 0.14.7(vue@3.3.13)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -12238,7 +12219,7 @@ packages:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
     dev: true
 
-  /db0@0.1.3(drizzle-orm@0.29.5):
+  /db0@0.1.3(drizzle-orm@0.30.0):
     resolution: {integrity: sha512-g8mXmj+t5MRXiA1ARjhfLd6Acy98VLVd8VL5LOBZ49P4A7qzoGgt6pC/gDWuP4zS3BiqSnKXTjTQXviMsD/sxA==}
     peerDependencies:
       '@libsql/client': ^0.5.2
@@ -12252,7 +12233,7 @@ packages:
       drizzle-orm:
         optional: true
     dependencies:
-      drizzle-orm: 0.29.5(pg@8.11.3)(postgres@3.4.3)
+      drizzle-orm: 0.30.0(pg@8.11.3)(postgres@3.4.3)
 
   /debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -12598,8 +12579,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /drizzle-orm@0.29.5(pg@8.11.3)(postgres@3.4.3):
-    resolution: {integrity: sha512-jS3+uyzTz4P0Y2CICx8FmRQ1eplURPaIMWDn/yq6k4ShRFj9V7vlJk67lSf2kyYPzQ60GkkNGXcJcwrxZ6QCRw==}
+  /drizzle-orm@0.30.0(pg@8.11.3)(postgres@3.4.3):
+    resolution: {integrity: sha512-SupNouCdvosjzQpLinqnyIu7bBfsUKiaWXfUZ0IyDtwK8rWa2zQ4AOWCda86VJVxgb8xZ1l8vKvlLHyTBalB/g==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -15662,8 +15643,8 @@ packages:
     dependencies:
       oslo: 1.0.1
 
-  /lucide-vue-next@0.349.0(vue@3.3.13):
-    resolution: {integrity: sha512-hcV2/67mCQZeVRjUK2e3HriZ2cb09sFBJzlCkAFCPBNnwJFDHT382eP95sJ7seXN1wen96Dbd/hx+oygRjjIjQ==}
+  /lucide-vue-next@0.350.0(vue@3.3.13):
+    resolution: {integrity: sha512-dVMoSGQfkrgWdHug4tRXeiCfytxnmbLQdlprFlEe9GGT92rbCypak4k0xNR46MPN9UZbd1yCjCeNeVTFb7PJdQ==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
@@ -16250,7 +16231,7 @@ packages:
   /next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  /nitropack@2.9.1(drizzle-orm@0.29.5):
+  /nitropack@2.9.1(drizzle-orm@0.30.0):
     resolution: {integrity: sha512-qgz2VKJoiFvEtC6JnFlaqVx5hirD/oonb6SIM6kQODeDjEHVaiOViZxg7pnAGq13Zu2vNHhaJe6Sf49AEG3J+A==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -16281,7 +16262,7 @@ packages:
       cookie-es: 1.0.0
       croner: 8.0.1
       crossws: 0.2.4
-      db0: 0.1.3(drizzle-orm@0.29.5)
+      db0: 0.1.3(drizzle-orm@0.30.0)
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 8.0.2
@@ -16644,7 +16625,7 @@ packages:
       - vue
     dev: false
 
-  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5):
+  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -16688,7 +16669,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.8
       mlly: 1.6.1
-      nitropack: 2.9.1(drizzle-orm@0.29.5)
+      nitropack: 2.9.1(drizzle-orm@0.30.0)
       nuxi: 3.10.1
       nypm: 0.3.8
       ofetch: 1.3.3
@@ -16753,7 +16734,7 @@ packages:
       - vue-tsc
       - xml2js
 
-  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5):
+  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.5):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -16797,7 +16778,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.8
       mlly: 1.6.1
-      nitropack: 2.9.1(drizzle-orm@0.29.5)
+      nitropack: 2.9.1(drizzle-orm@0.30.0)
       nuxi: 3.10.1
       nypm: 0.3.8
       ofetch: 1.3.3
@@ -16863,7 +16844,7 @@ packages:
       - xml2js
     dev: false
 
-  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.29.5)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5):
+  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.0)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.5):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -16907,7 +16888,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.8
       mlly: 1.6.1
-      nitropack: 2.9.1(drizzle-orm@0.29.5)
+      nitropack: 2.9.1(drizzle-orm@0.30.0)
       nuxi: 3.10.1
       nypm: 0.3.8
       ofetch: 1.3.3
@@ -17538,6 +17519,14 @@ packages:
 
   /pergel@0.12.0:
     resolution: {integrity: sha512-F2Htm219xKdnzdc4bP7ofKsz9l3lOXE917E+um98RB2GaRxTfPt/SaSBzye4ezjtBKRu+qzb4ovLJDQ6WvpS/w==}
+    hasBin: true
+    dependencies:
+      '@pergel/cli': 0.10.0
+      '@pergel/nuxt': link:packages/nuxt
+    dev: true
+
+  /pergel@0.13.0:
+    resolution: {integrity: sha512-s64T4SbIH+asYzhYH6KinCQxiAi1OdamonRCVlIJeJL730oTwsbAN+ReDQJFFBXhNAhAkk/+Ckd6IYWT/HpsMQ==}
     hasBin: true
     dependencies:
       '@pergel/cli': 0.10.0
@@ -20873,8 +20862,8 @@ packages:
       vue: 3.3.13(typescript@5.4.2)
     dev: false
 
-  /vue-input-otp@0.0.11(vue@3.3.13):
-    resolution: {integrity: sha512-wy7e1zxB0R/QamWkB9lAvukVJJzQCsiUcx8Bws0Ezbh1OaddiF3wZRnk5hKKSB1Ohqv3VtWygRvB6lJTEcpJYg==}
+  /vue-input-otp@0.1.0(vue@3.3.13):
+    resolution: {integrity: sha512-vRkb/ECwMMPOH7YRFJBJ9lLhE3MiVuxNSqitY5l/KJ7FHzlMIjfyhAW2y9nkhE1NMY/kmtiusYjkNSfCVrFFTA==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
