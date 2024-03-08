@@ -141,6 +141,7 @@ declare module 'h3' {
       'vitest',
       'eslint',
       'renovate',
+      'gqltada',
     ],
     projectNames,
     nitroImports: {},
