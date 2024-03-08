@@ -315,11 +315,11 @@ importers:
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/app':
-        specifier: ^5.0.7
-        version: 5.0.7(@capacitor/core@6.0.0-rc.0)
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/app-launcher':
-        specifier: ^5.0.7
-        version: 5.0.7(@capacitor/core@6.0.0-rc.0)
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/background-runner':
         specifier: ^1.0.5
         version: 1.0.5(@capacitor/core@6.0.0-rc.0)
@@ -2297,18 +2297,18 @@ packages:
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
 
-  /@capacitor/app-launcher@5.0.7(@capacitor/core@6.0.0-rc.0):
-    resolution: {integrity: sha512-FJacB/mK/iwWUKNf1PJz1d7sGyVNRLvEYyYSwbmn9F9+6onj/T2lCL7TU40qhsVwFt8oDmdvygjOnoIoqU9Bpg==}
+  /@capacitor/app-launcher@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-smxT8Gr/EvcWmOcsfMA4al9I6uFCDsjuhDL+SQDdkcu/V1DSF5TqMTGJFuW64wMzjVdFelBFEMpfWxRSgrTKiA==}
     peerDependencies:
-      '@capacitor/core': ^5.0.0
+      '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
     dev: true
 
-  /@capacitor/app@5.0.7(@capacitor/core@6.0.0-rc.0):
-    resolution: {integrity: sha512-oad0jwQu+vgQDukeS9UV56yG10dlxkAGGl26IQpZlTmg3dTI9qSJtvhmlLfkF0nEtoj5IsVQUPE+NLH1oZkgGQ==}
+  /@capacitor/app@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-hbe660wrHicLlLRCBuvwXglgMXcTpf7D3MvFNLm2p9sIC8PjvWa7eU+duVHCizcdEY8uG0RUI+I89WYKzMFiCw==}
     peerDependencies:
-      '@capacitor/core': ^5.0.0
+      '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
     dev: true
