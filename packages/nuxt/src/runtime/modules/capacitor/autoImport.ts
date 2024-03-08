@@ -88,6 +88,23 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.camera && isPackageExists('@capacitor/camera')) {
+    presets.push({
+      from: '@capacitor/camera',
+      imports: [
+        {
+          name: 'Camera',
+          as: 'CapacitorCamera',
+          from: '@capacitor/camera',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/camera')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (presets.length > 0) {
     useNuxtImports(params.nuxt, {
       presets,

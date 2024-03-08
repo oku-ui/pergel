@@ -1,6 +1,5 @@
-import fs from 'node:fs/promises'
-import path from 'node:path'
-import { useNuxt } from '@nuxt/kit'
+import { readFile, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { addFeature, addPermission, trapezedPlugins } from '../utils'
 
 export default trapezedPlugins({
@@ -8,7 +7,7 @@ export default trapezedPlugins({
     name: 'backgroundRunner',
     version: '0.0.1',
   },
-  async android(project, _ctx) {
+  async android(project) {
     const file = project?.getAndroidManifest()
     await file?.load()
 
@@ -18,8 +17,11 @@ export default trapezedPlugins({
     addPermission(file, 'android.permission.ACCESS_COARSE_LOCATION')
     addPermission(file, 'android.permission.ACCESS_FINE_LOCATION')
     addFeature(file, 'android.hardware.location.gps')
+
+    // Andorid 13 (API 30) requires this permission for exact alarms
+    addPermission(file, 'android.permission.SCHEDULE_EXACT_ALARM')
   },
-  async ios() {
+  async ios(_project, _ctx, _options, nuxt) {
     const filePath = '/ios/App/App/AppDelegate.swift'
     const additionalCode = `
         BackgroundRunnerPlugin.registerBackgroundTask()
@@ -27,15 +29,15 @@ export default trapezedPlugins({
     `
 
     try {
-      const rootDir = useNuxt().options.rootDir
-      const fullPath = path.join(rootDir, filePath)
+      const rootDir = nuxt.options.rootDir
+      const fullPath = join(rootDir, filePath)
 
-      let fileContent = await fs.readFile(fullPath, 'utf8')
+      let fileContent = await readFile(fullPath, 'utf8')
 
       const startIndex = fileContent.indexOf('func application')
       const endIndex = fileContent.indexOf('}', startIndex)
 
-      if (fileContent.includes(additionalCode.trim()))
+      if (fileContent.includes('BackgroundRunnerPlugin'))
         return
 
       if (startIndex !== -1 && endIndex !== -1) {
@@ -44,7 +46,7 @@ export default trapezedPlugins({
         if (returnIndex !== -1) {
           fileContent = fileContent.slice(0, returnIndex) + additionalCode + fileContent.slice(returnIndex)
 
-          await fs.writeFile(fullPath, fileContent, 'utf8')
+          await writeFile(fullPath, fileContent, 'utf8')
         }
         else {
           console.error('Error: "return true" statement not found in the "func application" function.')

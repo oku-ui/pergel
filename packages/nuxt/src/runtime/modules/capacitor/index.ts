@@ -34,6 +34,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/browser'] = deps['@capacitor/browser']
         if (options.plugins.official.app)
           defaultDeps['@capacitor/app'] = deps['@capacitor/app']
+        if (options.plugins.official.camera)
+          defaultDeps['@capacitor/camera'] = deps['@capacitor/camera']
       }
 
       if (options.plugins.community) {
@@ -72,6 +74,7 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
         appLauncher: false,
         backgroundRunner: false,
         browser: false,
+        camera: false,
       },
       community: {
         revenuecat: false,

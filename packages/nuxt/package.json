@@ -84,6 +84,7 @@
     "@capacitor/app-launcher": "^5.0.7",
     "@capacitor/background-runner": "^1.0.5",
     "@capacitor/browser": "^6.0.0-rc.0",
+    "@capacitor/camera": "^6.0.0-rc.0",
     "@capacitor/cli": "^6.0.0-rc.0",
     "@capacitor/core": "^6.0.0-rc.0",
     "@capacitor/ios": "^6.0.0-rc.0",
