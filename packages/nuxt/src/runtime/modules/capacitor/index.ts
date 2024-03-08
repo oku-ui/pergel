@@ -36,6 +36,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/app'] = deps['@capacitor/app']
         if (options.plugins.official.camera)
           defaultDeps['@capacitor/camera'] = deps['@capacitor/camera']
+        if (options.plugins.official.clipboard)
+          defaultDeps['@capacitor/clipboard'] = deps['@capacitor/clipboard']
       }
 
       if (options.plugins.community) {

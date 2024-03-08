@@ -37,6 +37,7 @@ export default defineNuxtConfig({
           },
           plugins: {
             official: {
+              browser: true,
               actionSheet: true,
               appLauncher: true,
               backgroundRunner: true,

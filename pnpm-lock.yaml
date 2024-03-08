@@ -332,6 +332,9 @@ importers:
       '@capacitor/cli':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0
+      '@capacitor/clipboard':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/core':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0
@@ -2385,6 +2388,14 @@ packages:
       xml2js: 0.5.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@capacitor/clipboard@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-XSQHaT5P/DYEHa/Fc6ZDg40IRiCsQ66CQHj78f0IxGFYQ++YJ/FIuOR7CNU3AGliWVlJu+OpHswdZBFisoHvPw==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
     dev: true
 
   /@capacitor/core@5.7.1:

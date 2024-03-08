@@ -45,6 +45,7 @@ export interface ResolvedCapacitorOptions {
         NSPhotoLibraryUsageDescription?: string
         NSMicrophoneUsageDescription?: string
       }
+      clipboard: boolean
       app: {
         CFBundleURLSchemes: string[]
       }
@@ -146,6 +147,7 @@ export interface CapacitorOptions {
       app?: {
         CFBundleURLSchemes?: string[]
       }
+      clipboard?: boolean
     }
     community?: {
       revenuecat?: boolean

@@ -105,6 +105,23 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.clipboard && isPackageExists('@capacitor/clipboard')) {
+    presets.push({
+      from: '@capacitor/clipboard',
+      imports: [
+        {
+          name: 'Clipboard',
+          as: 'CapacitorClipboard',
+          from: '@capacitor/clipboard',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/clipboard')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (presets.length > 0) {
     useNuxtImports(params.nuxt, {
       presets,

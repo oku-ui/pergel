@@ -19,6 +19,7 @@ export default trapezedPlugins({
     addFeature(file, 'android.hardware.location.gps')
 
     // Andorid 13 (API 30) requires this permission for exact alarms
+    // TODO: SDK version check
     addPermission(file, 'android.permission.SCHEDULE_EXACT_ALARM')
   },
   async ios(_project, _ctx, _options, nuxt) {
