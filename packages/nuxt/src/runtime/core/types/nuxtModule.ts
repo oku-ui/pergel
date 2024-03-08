@@ -12,7 +12,7 @@ import type { EslintConfig, ResolvedEslintConfig } from '../../modules/eslint/ty
 import type { RenovateConfig, ResolvedRenovateConfig } from '../../modules/renovate/types'
 import type { ResolvedUrqlConfig, UrqlModuleOptions } from '../../modules/urql/types'
 import type { CapacitorOptions, ResolvedCapacitorOptions } from '../../modules/capacitor/types'
-import type { GQLTadaOptions, ResolvedGQLTadaOptions } from '../../modules/gql.tada/types'
+import type { GQLTadaOptions, ResolvedGQLTadaOptions } from '../../modules/gqltada/types'
 import type { ResolvedPergelModuleOptions, UserModuleOptions } from './module'
 
 // @MODULE
