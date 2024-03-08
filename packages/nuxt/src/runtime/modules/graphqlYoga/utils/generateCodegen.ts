@@ -1,6 +1,7 @@
 import { join, resolve } from 'node:path'
 import { existsSync } from 'node:fs'
 import consola from 'consola'
+import { camelCase } from 'scule'
 import { buildTime } from '../utils'
 import { useNitroImports, useNuxtImports } from '../../../core/utils/useImports'
 import type { ResolvedGraphQLYogaConfig } from '../types'
@@ -14,11 +15,13 @@ export async function loadGraphQLFiles(
     rootDir,
     schemaDir,
     documentDir,
+    options,
   }:
   {
     rootDir: string
     schemaDir: string
     documentDir: string
+    options: ResolvedGraphQLYogaConfig
   },
 ) {
   const { loadSchemaFiles, loadDocumentsFiles, writeSchema } = useCodegen()
@@ -32,7 +35,7 @@ export async function loadGraphQLFiles(
     cwd: rootDir,
   })
 
-  const printSchema = await writeSchema(schema!, resolve(rootDir, 'schema.graphql'))
+  const printSchema = await writeSchema(schema!, resolve(rootDir, `${camelCase(`${options.projectName}-schema`)}.graphql`))
 
   return {
     schema,
@@ -64,6 +67,7 @@ export function useGenerateCodegen({
         rootDir: nuxt._pergel.serverDir,
         documentDir: options.documentDir,
         schemaDir: options.schemaDir,
+        options,
       })
       return `// THIS FILE IS GENERATED, DO NOT EDIT!
 /* eslint-disable eslint-comments/no-unlimited-disable */
@@ -101,6 +105,7 @@ export const schema = \`${printSchema}\``
         rootDir: nuxt._pergel.serverDir,
         documentDir: options.documentDir,
         schemaDir: options.schemaDir,
+        options,
       })
 
       const { server } = useCodegen()
@@ -148,6 +153,7 @@ export const schema = \`${printSchema}\``
         rootDir: nuxt._pergel.serverDir,
         documentDir: options.documentDir,
         schemaDir: options.schemaDir,
+        options,
       })
       const { server } = useCodegen()
 
@@ -180,6 +186,7 @@ export const schema = \`${printSchema}\``
         rootDir: nuxt._pergel.serverDir,
         documentDir: options.documentDir,
         schemaDir: options.schemaDir,
+        options,
       })
       const { client } = useCodegen()
 
