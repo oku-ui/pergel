@@ -148,6 +148,9 @@ export interface CapacitorOptions {
         CFBundleURLSchemes?: string[]
       }
       clipboard?: boolean
+      CapacitorCookies?: {
+        enable: boolean
+      }
     }
     community?: {
       revenuecat?: boolean
