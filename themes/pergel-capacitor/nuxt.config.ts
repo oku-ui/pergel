@@ -39,6 +39,7 @@ export default defineNuxtConfig({
             official: {
               actionSheet: true,
               appLauncher: true,
+              backgroundRunner: true,
               app: {
                 CFBundleURLSchemes: ['pergelapp'],
               },

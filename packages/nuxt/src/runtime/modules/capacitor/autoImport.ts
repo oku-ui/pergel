@@ -54,6 +54,40 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.backgroundRunner && isPackageExists('@capacitor/background-runner')) {
+    presets.push({
+      from: '@capacitor/background-runner',
+      imports: [
+        {
+          name: 'BackgroundRunner',
+          as: 'CapacitorBackgroundRunner',
+          from: '@capacitor/background-runner',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/background-runner')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.browser && isPackageExists('@capacitor/browser')) {
+    presets.push({
+      from: '@capacitor/browser',
+      imports: [
+        {
+          name: 'Browser',
+          as: 'CapacitorBrowser',
+          from: '@capacitor/browser',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/browser')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (presets.length > 0) {
     useNuxtImports(params.nuxt, {
       presets,

@@ -35,6 +35,8 @@ export interface ResolvedCapacitorOptions {
     official: {
       actionSheet: boolean
       appLauncher: boolean
+      backgroundRunner: boolean
+      browser: boolean
       app: {
         CFBundleURLSchemes: string[]
       }
@@ -110,6 +112,15 @@ export interface CapacitorOptions {
     official?: {
       actionSheet?: boolean
       appLauncher?: boolean
+      backgroundRunner?: boolean | {
+        label?: string
+        src?: string
+        event?: string
+        repeat?: boolean
+        interval?: number
+        autoStart?: boolean
+      }
+      browser?: boolean
       app?: {
         CFBundleURLSchemes?: string[]
       }

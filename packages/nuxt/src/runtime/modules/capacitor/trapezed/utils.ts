@@ -11,7 +11,7 @@ export function addQueries(
   if (file.find('manifest/queries')?.length === 0) {
     file.injectFragment('manifest', `
 <queries>
-   <!-- queries -->
+  <!-- queries -->
 </queries>
 `.trim())
   }
@@ -66,5 +66,25 @@ export function addPackage(
     file.injectFragment(where, `
       <package ${packageKey}="${packageValue}" />
   `.trim())
+  }
+}
+
+export function addPermission(
+  file: XmlFile,
+  permission: string,
+) {
+  if (file.find('Permissions') && file.find(`manifest/uses-permission[@android:name="${permission}"]`)?.length === 0) {
+    file.injectFragment('manifest', `<uses-permission android:name="${permission}" />
+`.trim())
+  }
+}
+
+export function addFeature(
+  file: XmlFile,
+  feature: string,
+) {
+  if (file.find('Permissions') && file.find(`manifest/uses-feature[@android:name="${feature}"]`)?.length === 0) {
+    file.injectFragment('manifest', `<uses-feature android:name="${feature}" />
+`.trim())
   }
 }

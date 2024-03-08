@@ -6,6 +6,7 @@ import type { ResolvedCapacitorOptions, TrapezedPlugins } from '../types'
 const plugins = {
   appLauncher: () => import('./plugins/appLauncher'),
   app: () => import('./plugins/app'),
+  backgroundRunner: () => import('./plugins/backgroundRunner'),
 }
 
 export async function trapezedRun(params: {

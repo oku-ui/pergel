@@ -28,6 +28,10 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/action-sheet'] = deps['@capacitor/action-sheet']
         if (options.plugins.official.appLauncher)
           defaultDeps['@capacitor/app-launcher'] = deps['@capacitor/app-launcher']
+        if (options.plugins.official.backgroundRunner)
+          defaultDeps['@capacitor/background-runner'] = deps['@capacitor/background-runner']
+        if (options.plugins.official.browser)
+          defaultDeps['@capacitor/browser'] = deps['@capacitor/browser']
         if (options.plugins.official.app)
           defaultDeps['@capacitor/app'] = deps['@capacitor/app']
       }
@@ -65,6 +69,9 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
     plugins: {
       official: {
         actionSheet: false,
+        appLauncher: false,
+        backgroundRunner: false,
+        browser: false,
       },
       community: {
         revenuecat: false,
