@@ -1,11 +1,17 @@
 import { join } from 'node:path'
 import type { Nuxt } from '@nuxt/schema'
-import consola from 'consola'
 import { camelCase } from 'scule'
+import consola from 'consola'
 import { generatePergelTemplate } from './utils/generatePergelTemplate'
 import { generateProjectReadme } from './utils/generateYaml'
 import type { PergelModule } from './types/module'
 import type { PergelModuleNames, ResolvedPergelOptions } from './types/nuxtModule'
+
+const logger = consola.create({
+  defaults: {
+    tag: 'pergel',
+  },
+})
 
 type PrepareModules = {
   [project: string]: {
@@ -65,13 +71,13 @@ async function initModules(nuxt: Nuxt) {
             throw new Error(`Module ${moduleName} does not exist`)
 
           pergelModule = await import(modulePath.path).then(m => m.default).catch((res) => {
-            consola.error(`Module ${moduleName} failed to import`)
-            consola.error(res)
+            logger.error(`Module ${moduleName} failed to import`)
+            logger.error(res)
           })
         }
 
         catch (error) {
-          consola.error(`Module ${moduleName} failed to import`)
+          logger.error(`Module ${moduleName} failed to import`)
           throw error
         }
         // Throw error if input is not a function
@@ -117,7 +123,7 @@ async function initModules(nuxt: Nuxt) {
           || resolvedModule === undefined /* setup failed */
           || typeof resolvedModule === 'string' /* setup failed */
         ) {
-          consola.error(`Module ${moduleName} failed to setup`)
+          logger.error(`Module ${moduleName} failed to setup`)
           continue
         }
 
@@ -134,7 +140,7 @@ async function initModules(nuxt: Nuxt) {
     }
   }
   catch (error) {
-    consola.error(error)
+    logger.error(error)
   }
 
   return prepareModules
@@ -212,13 +218,13 @@ export async function setupModules(data: {
     const sortedModules = smartSortModules(projectName, prepareModules)
 
     if (data.nuxt._pergel.debug) {
-      consola.info(`Project ${projectName} modules:`)
-      consola.info(sortedModules)
+      logger.info(`Project ${projectName} modules:`)
+      logger.info(sortedModules)
     }
 
     for await (const moduleName of sortedModules) {
       if (!(data.nuxt._pergel.projects[projectName as any] as any)[moduleName]) {
-        consola.error(`Module ${moduleName} does not exist in project ${projectName}. Please check your nuxt.config.ts and add ${moduleName} to ${projectName} project`)
+        logger.error(`Module ${moduleName} does not exist in project ${projectName}. Please check your nuxt.config.ts and add ${moduleName} to ${projectName} project`)
         process.exit(1)
       }
 
@@ -269,6 +275,11 @@ export async function setupModules(data: {
         })
       }
 
+      if (process.env.PERGEL_SETUP === 'true') {
+        logger.info(`Creating packages ${moduleName} for project ${projectName}`)
+        continue
+      }
+
       // Throw error if input is not a function
       if (typeof moduleSetup.defineModule !== 'function')
         throw new TypeError(`Nuxt module should be a function: ${moduleSetup.defineModule}`)
@@ -298,7 +309,7 @@ export async function setupModules(data: {
         || resolvedModule === undefined /* setup failed */
         || typeof resolvedModule === 'string' /* setup failed */
       ) {
-        consola.error(`Module ${
+        logger.error(`Module ${
           moduleName
         } failed to setup`)
         return 'continue'

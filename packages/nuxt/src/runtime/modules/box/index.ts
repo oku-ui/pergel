@@ -197,7 +197,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       })
     }
 
-    if (options.packages.tailwindcss) {
+    if (options.packages.tailwindcss || typeof options.packages.tailwindcss === 'object') {
       options.packages.tailwindcss = defu(options.packages.tailwindcss, {
         form: true,
         aspectRatio: true,
