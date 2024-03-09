@@ -5,7 +5,7 @@ export default function (data: {
 }) {
   const pergelFunctionName = camelCase(`pergel-${data.projectName}`)
 
-  const functionName = camelCase(`use-${data.projectName}-db-connect`)
+  const functionName = camelCase(`${data.projectName}-db-connect`)
 
   return /* TS */ `export function ${functionName}() {
   return ${pergelFunctionName}().drizzle()

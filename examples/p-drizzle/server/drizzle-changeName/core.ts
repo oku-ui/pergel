@@ -1,4 +1,4 @@
-export function useChangeNameDbConnect() {
+export function changeNameDbConnect() {
   return pergelChangeName().drizzle()
     .postgresjs()
     .connect({
