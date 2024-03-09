@@ -59,6 +59,7 @@ jobs:
         uses: nitrodeploy/nitrodeploy-github-action@v0.4.0
         with:
           TYPE: 'vitepress'
+          AUTO_BUILD: false
         env:
           # The Nitro Deploy token to use to authenticate with the Nitro Deploy API.
           NITRO_DEPLOY_TOKEN: ${{ secrets.NITRO_DEPLOY_TOKEN }}
