@@ -13,12 +13,8 @@ export default pergelChangeName().graphqlYoga().nitro().use({
       },
     })
   },
-  async onBeforeContext({ options }, event) {
-    const db = await pergelChangeName().drizzle()
-      .postgresjs()
-      .connect({
-        event,
-      })
+  async onBeforeContext({ options }) {
+    const db = changeNameDbConnect()
 
     const storage = changeNameDrizzleStorage({ db })
 

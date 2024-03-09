@@ -20,7 +20,12 @@ export default defineNuxtConfig({
             veeValidate: true,
             vueUse: true,
             notivue: true,
-            tailwindcss: true,
+            tailwindcss: {
+              aspectRatio: true,
+              form: true,
+              tailwindcssAnimate: true,
+              typography: true,
+            },
             nuxtIcon: true,
             uuid: true,
             unsearch: true,
