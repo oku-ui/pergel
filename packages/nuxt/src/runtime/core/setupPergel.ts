@@ -175,6 +175,8 @@ declare module 'h3' {
     pergelPackageJson: {
       ...packageJson.dependencies,
       ...packageJson.devDependencies,
+      ...s3PackageJson.dependencies,
+      ...boxPackageJson.dependencies,
       '@pergel/module-graphql': graphqlPackageJson.version,
       '@pergel/module-box': boxPackageJson.version,
       '@pergel/module-s3': s3PackageJson.version,
