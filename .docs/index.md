@@ -21,7 +21,7 @@ hero:
     alt: Pergel
 
 features:
-  - title: Aboutaaaabbb
+  - title: Aboutab
     details:  Pergel is a tailor-made solution for Nuxt and Nitro, providing swift project kickstarts and seamless integration of various modules. Named with a Turkish touch, Pergel maximizes the power of TypeScript, streamlining and accelerating your project development process.
   - title: Modular and Packaged Structure
     details: Pergel encompasses the core structure of your project, offering essential modules and packages to kickstart your development journey. This allows you to build the foundational infrastructure for your project with an advanced and modular approach.
