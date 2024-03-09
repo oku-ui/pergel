@@ -1,4 +1,4 @@
-name: Main
+name: Docs
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -6,32 +6,33 @@ concurrency:
 
 permissions:
   pull-requests: write
-  contents: read
+  contents: write
 
 on:
   push:
     branches:
       - main
-    paths-ignore: 
-      - .docs/**
+    paths: 
+      - '.docs/**'
 
-  pull_request:
-    branches:
-      - main
-    paths-ignore: 
-      - .docs/**
+defaults:
+  run:
+    working-directory: ./.docs
 
 jobs:
   build-test:
     name: 📚 Main
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: ./.docs
 
 
     strategy:
       matrix:
         os: [macos-14]
-
+        
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -54,27 +55,16 @@ jobs:
 
       - name: 📦 Install dependencies
         run: pnpm install
-        
-      - name: 👀 Lint
-        run: pnpm lint
-
-      - name: 🚀 Build (stub)
-        run: pnpm dev:prepare
 
       - name: 🚀 Build
         run: pnpm build
 
-      - name: Typecheck
-        run: pnpm typecheck
-
-
-
-      # - name: 🧪 Test
-      #   run: pnpm test
-
-      # - name: 🧪 Test with coverage
-      #   run: pnpm coverage
-
-      # - name: 📝 Upload coverage
-      #   if: always()
-      #   uses: davelosert/vitest-coverage-report-action@v2
+      - name: Nitro Deploy
+        uses: nitrodeploy/nitrodeploy-github-action@v0.4.2
+        with:
+          TYPE: 'vitepress'
+          AUTO_BUILD: false
+          EXPORT_FOLDER: '.docs/.vitepress/dist'
+        env:
+          # The Nitro Deploy token to use to authenticate with the Nitro Deploy API.
+          NITRO_DEPLOY_TOKEN: ${{ secrets.NITRO_DEPLOY_TOKEN }}
