@@ -54,7 +54,7 @@
     "test:watch": "vitest watch",
     "client:build": "nuxi generate client",
     "client:dev": "nuxi dev client --port 3300",
-    "release:latest": "pnpm bumpp --commit='version(nuxt): release %s' --no-tag && pnpm publish",
+    "release:latest": "pnpm bumpp --commit='version(nuxt): release %s' --no-tag --no-push && pnpm publish",
     "release:beta": "pnpm release --tag beta",
     "release:alpha": "pnpm release --tag alpha",
     "build:script": "pnpm --filter './build-script/**' build",

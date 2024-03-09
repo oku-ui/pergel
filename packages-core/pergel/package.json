@@ -61,7 +61,7 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "release:latest": "pnpm build && pnpm bumpp --commit='version(pergel): release %s' --no-tag && pnpm publish",
+    "release:latest": "pnpm build && pnpm bumpp --commit='version(pergel): release %s' --no-tag --no-push && pnpm publish",
     "release:beta": "pnpm release --tag beta",
     "release:alpha": "pnpm release --tag alpha"
   },
