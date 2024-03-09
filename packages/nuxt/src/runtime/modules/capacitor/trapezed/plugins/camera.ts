@@ -1,4 +1,4 @@
-import { addPermission, trapezedPlugins } from '../utils'
+import { addIntentFilter, addIntentFilterItem, addMiddleService, addPermission, addServiceAttribute, asyncFunc, trapezedPlugins } from '../utils'
 
 export default trapezedPlugins({
   meta: {
@@ -15,6 +15,21 @@ export default trapezedPlugins({
     addPermission(file, 'android.permission.READ_MEDIA_IMAGES')
     addPermission(file, 'android.permission.READ_EXTERNAL_STORAGE')
     addPermission(file, 'android.permission.WRITE_EXTERNAL_STORAGE')
+
+    const servicePath = 'android:name="com.google.android.gms.metadata.ModuleDependencies"'
+
+    addMiddleService(file, servicePath)
+
+    await asyncFunc(1000)
+
+    addServiceAttribute(file, servicePath, {
+      'android:enabled': 'false',
+      'android:exported': 'false',
+      'tools:ignore': 'MissingClass',
+    })
+
+    addIntentFilter(file, `manifest/application/service[@${servicePath}]`)
+    addIntentFilterItem(file, `manifest/application/service[@${servicePath}]/intent-filter`, 'action', 'android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES"')
   },
   async ios(project, { build, target }, options) {
     let infoPlist: typeof options.plugins.official.camera = {}

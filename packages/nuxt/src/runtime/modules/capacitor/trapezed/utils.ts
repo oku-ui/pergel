@@ -5,6 +5,10 @@ export function trapezedPlugins(options: TrapezedPlugins) {
   return options
 }
 
+export function asyncFunc(ms: number = 1000) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 export function addQueries(
   file: XmlFile,
 ) {
@@ -19,9 +23,10 @@ export function addQueries(
 
 export function addIntentFilter(
   file: XmlFile,
+  path: string,
 ) {
-  if (file.find('manifest/application/activity/intent-filter')?.length === 0) {
-    file.injectFragment('manifest', `
+  if (file.find(`${path}/intent-filter`)?.length === 0) {
+    file.injectFragment(path, `
 <intent-filter>
     <!-- intent-filter -->
 </intent-filter>
@@ -31,21 +36,56 @@ export function addIntentFilter(
 
 export function addIntentFilterItem(
   file: XmlFile,
+  path: string,
   where: string,
   item: string,
 ) {
-  if (file.find(`manifest/application/activity/intent-filter/${where}[@${item}]`)?.length === 0) {
-    file.injectFragment('manifest/application/activity/intent-filter', `
+  if (file.find(`${path}/${where}[@${item}]`)?.length === 0) {
+    file.injectFragment(path, `
       <${where} ${item} />
       `.trim())
     return
   }
 
-  if (file.find(`manifest/application/activity/intent-filter/${where}[@${item}]`)?.length) {
-    file.replaceFragment(`manifest/application/activity/intent-filter/${where}[@${item}]`, `
+  if (file.find(`${path}/${where}[@${item}]`)?.length) {
+    file.replaceFragment(`${path}/${where}[@${item}]`, `
       <${where} ${item} />
       `.trim())
   }
+}
+
+/*
+        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
+            android:enabled="false"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <intent-filter>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+            </intent-filter>
+            <meta-data android:name="photopicker_activity:0:required" android:value="" />
+        </service>
+*/
+
+export async function addMiddleService(
+  file: XmlFile,
+  item: string,
+) {
+  if (file.find(`manifest/application/service[@${item}]`)?.length === 0) {
+    file.injectFragment('manifest/application', `
+      <service ${item}>
+        <!-- service -->
+      </service>
+      `.trim())
+  }
+}
+
+export function addServiceAttribute(
+  file: XmlFile,
+  where: string,
+  item: Record<string, string>,
+) {
+  if (file.find(`manifest/application/service[@${where}]`)?.length)
+    file.setAttrs(`manifest/application/service[@${where}]`, item)
 }
 
 /** 'manifest/queries' + 'package'(autoadd) */
