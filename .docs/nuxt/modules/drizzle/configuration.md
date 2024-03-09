@@ -10,6 +10,16 @@ It looks and feels simple, performs on day 1000 of your project, lets you do thi
 
 It’s the only ORM with both relational and SQL-like query APIs, providing you best of both worlds when it comes to accessing your relational data. Drizzle is lightweight, performant, typesafe, non lactose, gluten-free, sober, flexible and serverless-ready by design. Drizzle is not just a library, it’s an experience 🤩
 
+
+## With Drizzle Pergel Module
+
+- 🚀 Lightweight and performant
+- 📋 Typesafe and flexible
+- 📈 Autochange schema folder in database
+- 🎛️ Autoimport and export schema, seeds, storage
+- 🔄 Smart seed manamanagement
+- 📊 CLI support 
+
 ## Installation
 
 ### Step 1: Install
@@ -118,6 +128,7 @@ server/
 │  ├─ storage/
 │  │  ├─ index.ts
 │  │  ├─ [names].ts
+|  ├─ core.ts
 │  ├─ drizzle.config.js
 │  ├─ index.ts
 

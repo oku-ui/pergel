@@ -1,6 +1,6 @@
 // Pergel auto generated please change this
 import { relations, sql } from 'drizzle-orm'
-import { pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
+import { boolean, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core'
 import { session } from './session'
 
 export const roleStatusEnum = pgEnum('role_status_enum', ['user', 'admin', 'superAdmin'])
@@ -17,6 +17,12 @@ export const user = pgTable('user', {
   provider: text('provider'),
   providerId: text('providerId'),
   roleStatus: roleStatusEnum('roleStatus').notNull().default('user'),
+  token: varchar('token', { length: 32 }).notNull().unique(),
+  active: boolean('active').notNull().default(false),
+  loggedInAt: timestamp('loggedInAt', {
+    withTimezone: true,
+    mode: 'date',
+  }),
   createdAt: timestamp('createdAt', {
     withTimezone: true,
     mode: 'date',
