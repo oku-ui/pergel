@@ -25,12 +25,8 @@ outline: deep
 
 ```ts twoslash [server/api/getUsers.ts]
 export default defineEventHandler(async (event) => {
-  const connect = await pergelChangeName()
-  .drizzle()
-  .postgresjs()
-  .connect({
-    event,
-  })
+  const connect = changeNameDbConnect()
+
   const result = await connect.select().from(changeNameTables.user)
   return {
     statusCode: 200,

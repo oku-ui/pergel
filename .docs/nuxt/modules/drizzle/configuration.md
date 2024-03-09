@@ -103,6 +103,10 @@ $ bun pergel install
 
 :::
 
+### Step 5: Environment Variables
+
+`pergel/.env.example` file will be created. You need to copy what belongs to drizzle in the envs and move root.
+
 
 ## Lifecycle
 
