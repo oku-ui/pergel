@@ -64,6 +64,7 @@ jobs:
         with:
           TYPE: 'vitepress'
           AUTO_BUILD: false
+          EXPORT_FOLDER: '.docs/.vitepress/dist'
         env:
           # The Nitro Deploy token to use to authenticate with the Nitro Deploy API.
           NITRO_DEPLOY_TOKEN: ${{ secrets.NITRO_DEPLOY_TOKEN }}
