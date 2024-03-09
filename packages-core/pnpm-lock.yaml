@@ -83,11 +83,11 @@ importers:
         specifier: ^7.0.6
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.2
-        version: 1.0.2(lucia@3.0.1)
+        specifier: 1.0.3
+        version: 1.0.3(lucia@3.0.1)
       '@lucia-auth/adapter-postgresql':
-        specifier: ^3.1.0
-        version: 3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^3.1.1
+        version: 3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
       '@pergel/module-box':
         specifier: ^0.6.0
         version: 0.6.0(@popperjs/core@2.11.8)(nuxt@3.10.2)(rollup@4.12.0)(tailwindcss@3.4.1)(typescript@5.4.2)(vite@5.1.3)(vue@3.4.19)
@@ -3454,16 +3454,16 @@ packages:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
     dev: false
 
-  /@lucia-auth/adapter-drizzle@1.0.2(lucia@3.0.1):
-    resolution: {integrity: sha512-GT2Mp0NaUZ5O4OAvzoNcX9bGotoxBfADo6mTzIEKKJ+uar3HgtQVn/m5Ogj3I2iMv0YBHWgMmlnkUHXN5xFNow==}
+  /@lucia-auth/adapter-drizzle@1.0.3(lucia@3.0.1):
+    resolution: {integrity: sha512-5C3O5PGV9IpGTM8cr5trE9+Pr3FM8LXOUPusQWD3svGW/S7vNebQit7uEfDUxFAuUhutoLoXTr7SQ1jZWjaBoA==}
     peerDependencies:
       lucia: 3.x
     dependencies:
       lucia: 3.0.1
     dev: false
 
-  /@lucia-auth/adapter-postgresql@3.1.0(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3):
-    resolution: {integrity: sha512-W6LXc9nfoyAwew5JCDnv63i4BKT3wLbmG9+QtnfmsD0xfOLOUiIi3wA1t0cpIXaJsq69/I3TRYXdb8e8yXRo9Q==}
+  /@lucia-auth/adapter-postgresql@3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3):
+    resolution: {integrity: sha512-FxAi/Uq42YqBNVBLKXmqu3SImUPZChnQiBNUU2DSknO5eT0Ma0j5aj9g9WXRO+1hd3qESUA7D4BTYpnwEbOkkQ==}
     peerDependencies:
       '@neondatabase/serverless': 0.7.x
       lucia: 3.x
