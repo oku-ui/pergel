@@ -60,7 +60,7 @@ jobs:
         run: pnpm build
 
       - name: Nitro Deploy
-        uses: nitrodeploy/nitrodeploy-github-action@v0.4.1
+        uses: nitrodeploy/nitrodeploy-github-action@v0.4.2
         with:
           TYPE: 'vitepress'
           AUTO_BUILD: false
