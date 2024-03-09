@@ -88,6 +88,7 @@
     "@capacitor/cli": "^6.0.0-rc.0",
     "@capacitor/clipboard": "^6.0.0-rc.0",
     "@capacitor/core": "^6.0.0-rc.0",
+    "@capacitor/device": "^6.0.0-rc.0",
     "@capacitor/ios": "^6.0.0-rc.0",
     "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.1.1",

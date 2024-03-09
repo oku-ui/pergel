@@ -49,6 +49,7 @@ export interface ResolvedCapacitorOptions {
       app: {
         CFBundleURLSchemes: string[]
       }
+      device: boolean
     }
     community: {
       revenuecat: boolean
@@ -151,6 +152,7 @@ export interface CapacitorOptions {
       CapacitorCookies?: {
         enable: boolean
       }
+      device?: boolean
     }
     community?: {
       revenuecat?: boolean

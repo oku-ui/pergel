@@ -97,6 +97,21 @@ export function autoImportCapacitorPlugins(params: {
           as: 'CapacitorCamera',
           from: '@capacitor/camera',
         },
+        {
+          name: 'CameraResultType',
+          as: 'CapacitorCameraResultType',
+          from: '@capacitor/camera',
+        },
+        {
+          name: 'CameraSource',
+          as: 'CapacitorCameraSource',
+          from: '@capacitor/camera',
+        },
+        {
+          name: 'CameraDirection',
+          as: 'CapacitorCameraDirection',
+          from: '@capacitor/camera',
+        },
       ] as {
         name: keyof typeof import('@capacitor/camera')
         as: string
@@ -116,6 +131,23 @@ export function autoImportCapacitorPlugins(params: {
         },
       ] as {
         name: keyof typeof import('@capacitor/clipboard')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.device && isPackageExists('@capacitor/device')) {
+    presets.push({
+      from: '@capacitor/device',
+      imports: [
+        {
+          name: 'Device',
+          as: 'CapacitorDevice',
+          from: '@capacitor/device',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/device')
         as: string
         from: string
       }[],
