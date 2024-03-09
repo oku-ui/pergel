@@ -84,10 +84,10 @@ importers:
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
         specifier: 1.0.3
-        version: 1.0.3(lucia@3.0.1)
+        version: 1.0.3(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: ^3.1.1
-        version: 3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
+        version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
       '@pergel/module-box':
         specifier: ^0.6.0
         version: 0.6.0(@popperjs/core@2.11.8)(nuxt@3.10.2)(rollup@4.12.0)(tailwindcss@3.4.1)(typescript@5.4.2)(vite@5.1.3)(vue@3.4.19)
@@ -113,8 +113,8 @@ importers:
         specifier: ^5.3.2
         version: 5.3.2
       lucia:
-        specifier: ^3.0.1
-        version: 3.0.1
+        specifier: ^3.1.1
+        version: 3.1.1
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
@@ -3454,15 +3454,15 @@ packages:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
     dev: false
 
-  /@lucia-auth/adapter-drizzle@1.0.3(lucia@3.0.1):
+  /@lucia-auth/adapter-drizzle@1.0.3(lucia@3.1.1):
     resolution: {integrity: sha512-5C3O5PGV9IpGTM8cr5trE9+Pr3FM8LXOUPusQWD3svGW/S7vNebQit7uEfDUxFAuUhutoLoXTr7SQ1jZWjaBoA==}
     peerDependencies:
       lucia: 3.x
     dependencies:
-      lucia: 3.0.1
+      lucia: 3.1.1
     dev: false
 
-  /@lucia-auth/adapter-postgresql@3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3):
+  /@lucia-auth/adapter-postgresql@3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3):
     resolution: {integrity: sha512-FxAi/Uq42YqBNVBLKXmqu3SImUPZChnQiBNUU2DSknO5eT0Ma0j5aj9g9WXRO+1hd3qESUA7D4BTYpnwEbOkkQ==}
     peerDependencies:
       '@neondatabase/serverless': 0.7.x
@@ -3477,7 +3477,7 @@ packages:
       postgres:
         optional: true
     dependencies:
-      lucia: 3.0.1
+      lucia: 3.1.1
       pg: 8.11.3
       postgres: 3.4.3
     dev: false
@@ -11607,8 +11607,8 @@ packages:
       es5-ext: 0.10.62
     dev: false
 
-  /lucia@3.0.1:
-    resolution: {integrity: sha512-srwUkTCGgr6N4mFpaKZVZy5kwiRZdsrbIDv9Wrjar+xyw1MjojYQQ7oRbegjRWOZ3yI8xOOclK3sz/rga2J7/w==}
+  /lucia@3.1.1:
+    resolution: {integrity: sha512-Ygvgnqq7Ha7lYVaZATPwkPD2s2Qlsm71Z2o0byx/abNBfFldCRow5sNii6RqMsuMpK957RAI3Gw4/aWoagkc7A==}
     dependencies:
       oslo: 1.0.1
     dev: false

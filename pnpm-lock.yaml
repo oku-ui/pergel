@@ -150,8 +150,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-vue-next:
-        specifier: ^0.352.0
-        version: 0.352.0(vue@3.3.13)
+        specifier: ^0.354.0
+        version: 0.354.0(vue@3.3.13)
       nanoid:
         specifier: ^5.0.6
         version: 5.0.6
@@ -356,13 +356,13 @@ importers:
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
         specifier: 1.0.3
-        version: 1.0.3(lucia@3.0.1)
+        version: 1.0.3(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.1
-        version: 3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
+        version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
       '@lucia-auth/oauth':
         specifier: ^3.5.3
-        version: 3.5.3(lucia@3.0.1)
+        version: 3.5.3(lucia@3.1.1)
       '@nuxt/devtools-ui-kit':
         specifier: ^1.0.8
         version: 1.0.8(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@3.29.4)(vite@5.1.5)(vue@3.3.13)(webpack@5.90.3)
@@ -379,8 +379,8 @@ importers:
         specifier: ^0.13.1
         version: 0.13.1(rollup@3.29.4)
       '@pergel/cli':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.11.0
+        version: 0.11.0
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../box
@@ -469,8 +469,8 @@ importers:
         specifier: ^15.2.2
         version: 15.2.2
       lucia:
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 3.1.1
+        version: 3.1.1
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
@@ -526,8 +526,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.352.0
-        version: 0.352.0(vue@3.3.13)
+        specifier: ^0.354.0
+        version: 0.354.0(vue@3.3.13)
       radix-vue:
         specifier: ^1.5.1
         version: 1.5.1(vue@3.3.13)
@@ -555,10 +555,10 @@ importers:
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
         specifier: 1.0.3
-        version: 1.0.3(lucia@3.0.1)
+        version: 1.0.3(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.1
-        version: 3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3)
+        version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../../../box
@@ -569,8 +569,8 @@ importers:
         specifier: ^0.30.1
         version: 0.30.1(pg@8.11.3)(postgres@3.4.3)
       lucia:
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 3.1.1
+        version: 3.1.1
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
@@ -4772,39 +4772,12 @@ packages:
       '@lezer/common': 1.2.1
     dev: true
 
-  /@lucia-auth/adapter-drizzle@1.0.3(lucia@3.0.1):
-    resolution: {integrity: sha512-5C3O5PGV9IpGTM8cr5trE9+Pr3FM8LXOUPusQWD3svGW/S7vNebQit7uEfDUxFAuUhutoLoXTr7SQ1jZWjaBoA==}
-    peerDependencies:
-      lucia: 3.x
-    dependencies:
-      lucia: 3.0.1
-
   /@lucia-auth/adapter-drizzle@1.0.3(lucia@3.1.1):
     resolution: {integrity: sha512-5C3O5PGV9IpGTM8cr5trE9+Pr3FM8LXOUPusQWD3svGW/S7vNebQit7uEfDUxFAuUhutoLoXTr7SQ1jZWjaBoA==}
     peerDependencies:
       lucia: 3.x
     dependencies:
       lucia: 3.1.1
-    dev: false
-
-  /@lucia-auth/adapter-postgresql@3.1.1(lucia@3.0.1)(pg@8.11.3)(postgres@3.4.3):
-    resolution: {integrity: sha512-FxAi/Uq42YqBNVBLKXmqu3SImUPZChnQiBNUU2DSknO5eT0Ma0j5aj9g9WXRO+1hd3qESUA7D4BTYpnwEbOkkQ==}
-    peerDependencies:
-      '@neondatabase/serverless': 0.7.x
-      lucia: 3.x
-      pg: ^8.8.0
-      postgres: ^3.3.0
-    peerDependenciesMeta:
-      '@neondatabase/serverless':
-        optional: true
-      pg:
-        optional: true
-      postgres:
-        optional: true
-    dependencies:
-      lucia: 3.0.1
-      pg: 8.11.3
-      postgres: 3.4.3
 
   /@lucia-auth/adapter-postgresql@3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3):
     resolution: {integrity: sha512-FxAi/Uq42YqBNVBLKXmqu3SImUPZChnQiBNUU2DSknO5eT0Ma0j5aj9g9WXRO+1hd3qESUA7D4BTYpnwEbOkkQ==}
@@ -4824,15 +4797,6 @@ packages:
       lucia: 3.1.1
       pg: 8.11.3
       postgres: 3.4.3
-    dev: false
-
-  /@lucia-auth/oauth@3.5.3(lucia@3.0.1):
-    resolution: {integrity: sha512-3blBldenf2zXsSJTZUwzB+NxI+0KJljfMHT0WR7hyLNwi4Ijss7F2cQqk2xW1lGH3lzdmsV93ZsY9Yv8ekBRUw==}
-    peerDependencies:
-      lucia: ^2.0.0
-    dependencies:
-      lucia: 3.0.1
-    dev: true
 
   /@lucia-auth/oauth@3.5.3(lucia@3.1.1):
     resolution: {integrity: sha512-3blBldenf2zXsSJTZUwzB+NxI+0KJljfMHT0WR7hyLNwi4Ijss7F2cQqk2xW1lGH3lzdmsV93ZsY9Yv8ekBRUw==}
@@ -4840,7 +4804,6 @@ packages:
       lucia: ^2.0.0
     dependencies:
       lucia: 3.1.1
-    dev: false
 
   /@mapbox/geojson-rewind@0.5.2:
     resolution: {integrity: sha512-tJaT+RbYGJYStt7wI3cq4Nl4SXxG8W7JDG5DMJu97V25RnbNg3QtQtf+KD+VLjNpWKYsRvXDNmNrBgEETr1ifA==}
@@ -7568,23 +7531,6 @@ packages:
       tslib: 2.6.2
       webcrypto-core: 1.7.8
     dev: false
-
-  /@pergel/cli@0.10.0:
-    resolution: {integrity: sha512-PxFLQYw/fvu2NHZ0OsGo2Kg1bnNY+JC67ZFcNZLTM4YigPAC5xYbEIFFaRzPW3E071Tn/HzQRo+kJOu9iUKeXA==}
-    engines: {node: '>=20'}
-    hasBin: true
-    dependencies:
-      '@antfu/ni': 0.21.12
-      '@clack/prompts': 0.7.0
-      c12: 1.10.0
-      citty: 0.1.6
-      consola: 3.2.3
-      giget: 1.2.1
-      globby: 14.0.1
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      shelljs: 0.8.5
-    dev: true
 
   /@pergel/cli@0.11.0:
     resolution: {integrity: sha512-u8EgBmx818yB/dgZRWzigZ8s34l0N1789tgWymkIgEQYdHIK4UZoKhi5e/VCADAoiNpd73yW0hG0hshQrZLChA==}
@@ -16001,19 +15947,13 @@ packages:
     dependencies:
       es5-ext: 0.10.64
 
-  /lucia@3.0.1:
-    resolution: {integrity: sha512-srwUkTCGgr6N4mFpaKZVZy5kwiRZdsrbIDv9Wrjar+xyw1MjojYQQ7oRbegjRWOZ3yI8xOOclK3sz/rga2J7/w==}
-    dependencies:
-      oslo: 1.0.1
-
   /lucia@3.1.1:
     resolution: {integrity: sha512-Ygvgnqq7Ha7lYVaZATPwkPD2s2Qlsm71Z2o0byx/abNBfFldCRow5sNii6RqMsuMpK957RAI3Gw4/aWoagkc7A==}
     dependencies:
       oslo: 1.0.1
-    dev: false
 
-  /lucide-vue-next@0.352.0(vue@3.3.13):
-    resolution: {integrity: sha512-69MsKENawidFEYUUFInlanAa1iVH0j3b7aFpCi/e8JjC1IaM5JgnwVGkfhx3EB1cCoS4jOJbeK4TEu0pQ16eOA==}
+  /lucide-vue-next@0.354.0(vue@3.3.13):
+    resolution: {integrity: sha512-FVs/VXBTVSqfLywln5U0MQsB/iBdov5BBa2R9hhOaKzP9XtvuUV1jTctevEL7cgLxHpK9J4RPWSjPbPJzu1EPA==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
