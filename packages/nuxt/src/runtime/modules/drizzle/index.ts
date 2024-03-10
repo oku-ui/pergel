@@ -1,17 +1,20 @@
 import { join } from 'node:path'
 import { execSync } from 'node:child_process'
-import { addServerImportsDir, createResolver, useLogger } from '@nuxt/kit'
+import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { camelCase } from 'scule'
 import { basename } from 'pathe'
+import defu from 'defu'
+import consola from 'consola'
 import { definePergelModule } from '../../core/definePergel'
 import { useNitroImports } from '../../core/utils/useImports'
 import { globsBuilderWatch } from '../../core/utils/globs'
 import { createFolderModule } from '../../core/utils/createFolderModule'
-import type { DrizzleConfig, ResolvedDrizzleConfig } from './types'
+import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
+import type { DrizzleConfig, DrizzleRuntimeConfig, ResolvedDrizzleConfig } from './types'
 import { setupPostgres } from './drivers/postgres'
 import { copyMigrationFolder } from './core'
 
-const _logger = useLogger('pergel:drizzle')
+const logger = consola.create({}).withTag('drizzle')
 
 export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
   meta: {
@@ -76,16 +79,31 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
         driver: driver ?? 'pg',
       } as any,
       studio: true,
-      watch: {
-        push: true,
-        seed: true,
-        drop: true,
-      },
       devtoolsStatus: true,
     }
   },
   async setup({ nuxt, options }) {
     const resolver = createResolver(import.meta.url)
+
+    const envData = generateModuleRuntimeConfig<DrizzleRuntimeConfig>(nuxt, options, {
+      drop: true, // Drop database before migration
+      seed: true, // Seed database after migration
+      migrate: true, // Migrate database
+      mode: 'dev', // Development mode || 'production'
+    }, true)
+
+    generateModuleRuntimeConfigEnv(nuxt, options, {
+      drop: true, // Drop database before migration
+      push: true, // Push database after migration
+      seed: true, // Seed database after migration
+      mode: 'dev', // Development mode || 'production'
+      default: {
+        drop: true, // Drop database before migration
+        push: true, // Push database after migration
+        seed: true, // Seed database after migration
+        mode: 'dev', // Development mode || 'production'
+      },
+    })
 
     // Driver setup
     switch (options._driver.name) {
@@ -145,76 +163,95 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
 
     copyMigrationFolder(nuxt)
 
+    if (nuxt.options.dev) {
     // Watch for changes
-    nuxt.hook('builder:watch', async (event, path) => {
-      const match = globsBuilderWatch(
-        nuxt,
-        path,
-        '.ts',
-        'schema',
-      )
-      if (!match)
-        return
-
-      const { projectName, moduleName } = match
-
-      if (projectName) {
-        const activeProject = (nuxt._pergel.rootOptions.projects as any)[projectName][moduleName] as DrizzleConfig
-
-        if (!activeProject)
+      nuxt.hook('builder:watch', async (event, path) => {
+        const match = globsBuilderWatch(
+          nuxt,
+          path,
+          '.ts',
+          'schema',
+        )
+        if (!match)
           return
 
-        if (match) {
-          if (activeProject.watch?.drop) {
-            execSync(
+        const { projectName, moduleName } = match
+
+        if (projectName) {
+          const activeProject = (nuxt._pergel.rootOptions.projects as any)[projectName][moduleName] as DrizzleConfig
+
+          if (!activeProject)
+            return
+
+          const config = defu({
+            drop: activeProject.watch?.drop ?? envData.runtimeConfig?.drop,
+            push: activeProject.watch?.push ?? envData.runtimeConfig?.push,
+            seed: activeProject.watch?.seed ?? envData.runtimeConfig?.seed,
+            mode: envData.runtimeConfig?.mode ?? 'dev',
+          }, {
+            drop: true,
+            push: true,
+            seed: true,
+            ssl: true,
+            mode: 'dev',
+          })
+
+          if (config.mode !== 'dev') {
+            consola.info('Drizzle, skipping drop, push and seed')
+            return
+          }
+
+          if (match && config.mode === 'dev') {
+            if (config.drop) {
+              execSync(
               `pergel module -s=dev:drop -p=${projectName} -m=${moduleName}`,
               {
                 stdio: 'inherit',
                 cwd: nuxt.options.rootDir,
               },
-            )
-            _logger.info(`Drop ${projectName} schema`)
-          }
+              )
+              logger.info(`Drop ${projectName} schema`)
+            }
 
-          if (activeProject.watch?.push) {
-            execSync(
+            if (config.push) {
+              execSync(
               `pergel module -s=push -p=${projectName} -m=${moduleName}`,
               {
                 stdio: 'inherit',
                 cwd: nuxt.options.rootDir,
               },
-            )
-            _logger.info(`Pushed ${projectName} schema`)
-          }
+              )
+              logger.info(`Pushed ${projectName} schema`)
+            }
 
-          if (activeProject.watch?.seed) {
-            execSync(
+            if (config.seed) {
+              execSync(
               `pergel module -s=dev:seed -p=${projectName} -m=${moduleName}`,
               {
                 stdio: 'inherit',
                 cwd: nuxt.options.rootDir,
               },
-            )
-            _logger.info(`Seeded ${projectName} schema`)
+              )
+              logger.info(`Seeded ${projectName} schema`)
+            }
           }
         }
-      }
-    })
+      })
+    }
 
     // Auto import
     switch (options._driver.name) {
       case 'postgresjs':
-        // TODO: bug https://github.com/unjs/mlly/issues/209
-        // useNitroImports(nuxt, {
-        //   presets: [
-        //     {
-        //       from: 'postgres',
-        //       imports: [
-        //         'PostgresError',
-        //       ],
-        //     },
-        //   ],
-        // })
+        useNitroImports(nuxt, {
+          presets: [
+            {
+              from: 'postgres',
+              imports: [
+                'PostgresError',
+              ] satisfies Array<keyof typeof import('postgres')>,
+            },
+          ],
+        })
         break
     }
 

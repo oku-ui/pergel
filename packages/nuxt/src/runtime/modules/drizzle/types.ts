@@ -155,3 +155,11 @@ export interface PostgresJSModuleRuntimeConfig {
   url?: string
   options?: Options<any>
 }
+
+export interface DrizzleRuntimeConfig {
+  drop: boolean
+  push: boolean
+  seed: boolean
+  migrate: boolean
+  mode: string
+}
