@@ -103,6 +103,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
         drop: true, // Drop database before migration
         push: true, // Push database after migration
         seed: true, // Seed database after migration
+        migrate: true, // Migrate database
         mode: 'dev', // Development mode || 'production'
       },
     })

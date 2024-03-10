@@ -82,6 +82,11 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
       runTargetIOSSimulator: 'process',
       runTargetAndroidEmulator: 'process',
       runScheme: 'process',
+      default: {
+        runTargetIOSSimulator: 'iPhone 11',
+        runTargetAndroidEmulator: 'Pixel_3a_API_30',
+        runScheme: 'MyApp',
+      },
     }, true)
 
     const capacitorConfig = `import { type CapacitorConfig } from '@capacitor/cli';
