@@ -741,33 +741,12 @@ importers:
 
   themes/pergel-capacitor:
     dependencies:
-      '@capacitor/action-sheet':
-        specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/android':
         specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
-      '@capacitor/app':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
-      '@capacitor/app-launcher':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
-      '@capacitor/background-runner':
-        specifier: ^1.0.5
-        version: 1.0.5(@capacitor/core@6.0.0-rc.0)
-      '@capacitor/browser':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
-      '@capacitor/camera':
-        specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/core':
         specifier: 6.0.0-rc.0
         version: 6.0.0-rc.0
-      '@capacitor/device':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/ios':
         specifier: 6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
@@ -2322,6 +2301,7 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/android@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-8mi4byPz19XfZ+az3+vi9FnCkvNgPJHxOjJmzFt8/Pwi17V9V9YIqWSUz68dn3t9f04h7+WYC9pLUHpSY1jcPg==}
@@ -2336,6 +2316,7 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/app@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-hbe660wrHicLlLRCBuvwXglgMXcTpf7D3MvFNLm2p9sIC8PjvWa7eU+duVHCizcdEY8uG0RUI+I89WYKzMFiCw==}
@@ -2343,6 +2324,7 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/background-runner@1.0.5(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-8WCPkhO42p3O5ENjf8FqvnbwMjNEPcFVxIwsp/Gi+CGWQlgGm7MbxlJAtGmGcNrglD1OqpYWWB0tvJzX2+I+sA==}
@@ -2351,6 +2333,7 @@ packages:
       '@capacitor/core': ^5.0.0
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/browser@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-NxmpCOptC7HMmLPlL+BopFalBjSmmQcPfJJehPMi9E0Ai/GrD5nreD+JVZcp/IjZ7yIu9S4qzY4PdGH8DUz0vQ==}
@@ -2358,6 +2341,7 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/camera@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-PIrUBdgRFmSmiT+k1UUXpSLHc6OIaXEADIy5M1bqKkleqz8ZJQvxXisvGdve0ADkMjQ2rmj2/j/OHUtDqMQuvA==}
@@ -2365,6 +2349,7 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/cli@5.7.1:
     resolution: {integrity: sha512-iU+DufCBY2qmtD4ETss15eesMjpPclg7e3DyUDCQuruL1UKYAE5AeB8CctvNrafrC7EPRkuvLhC4dqGV1Vdy3w==}
@@ -2469,6 +2454,7 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@capacitor/ios@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-CJBm7oj8pZ0Bxci+swLtXa5vSsC3tAENxqTx4zvQInnRLIfKxB2MiQ/Oomcge3CjhMFxMYKhQ8MmsinyEANSIw==}

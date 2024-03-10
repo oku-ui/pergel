@@ -56,11 +56,5 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Your camera will be used to take pictures and record video</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Your photo library will be used to select images and videos</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Your microphone will be used to record audio</string>
 </dict>
 </plist>
