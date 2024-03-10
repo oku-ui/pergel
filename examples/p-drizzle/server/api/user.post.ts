@@ -1,12 +1,7 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  const db = await pergelChangeName()
-    .drizzle()
-    .postgresjs()
-    .connect({
-      event,
-    })
+  const db = changeNameDbConnect()
 
   const result = await db
     .insert(changeNameTables.user)

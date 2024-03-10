@@ -7,13 +7,8 @@
 <!-- automd:file code src="../../../../examples/p-drizzle/server/api/test.ts" -->
 
 ```ts [test.ts]
-export default defineEventHandler(async (event) => {
-  const connect = await pergelChangeName()
-    .drizzle()
-    .postgresjs()
-    .connect({
-      event,
-    })
+export default defineEventHandler(async () => {
+  const connect = changeNameDbConnect()
 
   const result = await connect
     .select()
@@ -37,12 +32,7 @@ export default defineEventHandler(async (event) => {
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  const db = await pergelChangeName()
-    .drizzle()
-    .postgresjs()
-    .connect({
-      event,
-    })
+  const db = changeNameDbConnect()
 
   const result = await db
     .insert(changeNameTables.user)

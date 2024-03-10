@@ -1,10 +1,5 @@
-export default defineEventHandler(async (event) => {
-  const connect = await pergelChangeName()
-    .drizzle()
-    .postgresjs()
-    .connect({
-      event,
-    })
+export default defineEventHandler(async () => {
+  const connect = changeNameDbConnect()
 
   const result = await connect
     .select()

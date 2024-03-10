@@ -13,15 +13,15 @@
     "@faker-js/faker": "^8.4.1",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.29.4",
-    "pergel": "0.12.0",
+    "drizzle-orm": "^0.29.5",
+    "pergel": "0.13.0",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "nuxt": "^3.8.2",
+    "@nuxt/devtools": "^1.0.8",
+    "nuxt": "^3.10.3",
     "pg": "^8.11.3",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   }
 }

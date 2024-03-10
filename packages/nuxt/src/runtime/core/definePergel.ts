@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
 import defu from 'defu'
-import { addServerImportsDir, useNuxt } from '@nuxt/kit'
+import { addImportsDir, addServerImportsDir, useNuxt } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import type { ModuleDefinition, ModuleSetupReturn, PergelModule, PergelModuleOptions, ResolvedPergelModuleOptions } from './types/module'
 import type { NuxtPergel } from './types/nuxtModule'
@@ -55,7 +55,13 @@ export function definePergelModule<RootOptions extends PergelModuleOptions = Per
       options.serverDir,
     )
 
+    const rootPath = resolve(
+      data.nuxt.options.rootDir,
+      options.rootModuleDir,
+    )
+
     addServerImportsDir(path)
+    addImportsDir(rootPath)
 
     const packageExists = {
       dependencies: 0,
@@ -74,11 +80,6 @@ export function definePergelModule<RootOptions extends PergelModuleOptions = Per
         packageExists.devDependencies++
       }
     }
-
-    // if (packageExists.dependencies > 0)
-    //   consola.warn(`${packageExists.dependencies} dependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
-    // if (packageExists.devDependencies > 0)
-    //   consola.warn(`${packageExists.devDependencies} devDependencies required for the module are not uploaded at the moment. Run "pergel install" after the settings are finished."`)
 
     if (!this.prepare) {
       // Resolve module and options

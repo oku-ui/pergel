@@ -1,7 +1,7 @@
 {
   "name": "@pergel/module-graphql",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "packageManager": "pnpm@8.10.0",
   "description": "Pergel GraphQL",
   "author": {
@@ -19,7 +19,7 @@
   "bugs": "https://github.com/oku-ui/pergel/issues",
   "keywords": [],
   "scripts": {
-    "release": "pnpm bumpp --commit='version(graphql): release %s' --no-tag && pnpm publish"
+    "release": "pnpm bumpp --commit='version(graphql): release %s' --no-tag --no-push && pnpm publish"
   },
   "peerDependencies": {
     "graphql": ">=16.8.1"

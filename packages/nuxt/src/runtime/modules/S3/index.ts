@@ -10,7 +10,8 @@ export default definePergelModule({
     dependencies(_options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
-        '@pergel/module-s3': deps['@pergel/module-s3'],
+        '@aws-sdk/client-s3': deps['@aws-sdk/client-s3'],
+        '@aws-sdk/s3-request-presigner': deps['@aws-sdk/s3-request-presigner'],
       }
     },
   },

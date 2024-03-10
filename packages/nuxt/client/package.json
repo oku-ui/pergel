@@ -5,13 +5,13 @@
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "lucide-vue-next": "^0.344.0",
-    "radix-vue": "^1.4.9",
+    "lucide-vue-next": "^0.354.0",
+    "radix-vue": "^1.5.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "shadcn-nuxt": "^0.9.0"
+    "shadcn-nuxt": "^0.10.0"
   }
 }

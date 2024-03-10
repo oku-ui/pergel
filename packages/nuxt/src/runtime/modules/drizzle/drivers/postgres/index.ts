@@ -26,9 +26,6 @@ export async function setupPostgres(
     user: 'postgres', // Username of database user
     password: 'postgres', // Password of database user
     ssl: false, // Use SSL
-    drop: false, // Drop database before migration
-    seed: false, // Seed database after migration
-    migrate: false, // Migrate database
   }, false)
 
   // Config generation
@@ -107,6 +104,26 @@ export default {
         const fileName = basename(file)
 
         writeFilePergel(resolve(options.serverDir, 'storage', fileName), fileData)
+      }
+    }
+  }
+
+  if (!existsSync(resolve(options.serverDir, 'index.ts'))) {
+    mkdirSync(resolve(options.serverDir, 'root'), { recursive: true })
+
+    const files = globbySync((join(nuxt._pergel.pergelModuleRoot, 'templates', 'drizzle', 'postgress', 'root', '**/*')), {
+      onlyFiles: true,
+    })
+
+    for (const file of files) {
+      const readFile = await nuxt._pergel.jitiDyanmicImport(file)
+      if (readFile) {
+        const fileData = readFile({
+          projectName,
+        })
+        const fileName = basename(file)
+
+        writeFilePergel(resolve(options.serverDir, fileName), fileData)
       }
     }
   }

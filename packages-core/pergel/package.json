@@ -1,7 +1,7 @@
 {
   "name": "pergel",
   "type": "module",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "packageManager": "pnpm@8.10.0",
   "description": "Full Stack Nuxt Application. It contains the necessary toolkits for a software developer and a fast, clean, tested toolkit.",
   "author": "Mehmet @productdevbook",
@@ -61,7 +61,7 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "release:latest": "pnpm build && pnpm bumpp --commit='version(pergel): release %s' --no-tag && pnpm publish",
+    "release:latest": "pnpm build && pnpm bumpp --commit='version(pergel): release %s' --no-tag --no-push && pnpm publish",
     "release:beta": "pnpm release --tag beta",
     "release:alpha": "pnpm release --tag alpha"
   },

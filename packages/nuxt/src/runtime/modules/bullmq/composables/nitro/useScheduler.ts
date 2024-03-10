@@ -77,7 +77,7 @@ export function useScheduler<T extends object>(
     if (!redisConnection)
       return false
 
-    _myQueue.set(_pergel.projectName, new Queue(config.queueName, {
+    _myQueue.set(_pergel.projectName, new Queue(config.queueName as string, {
       prefix: config.prefix || 'pergel',
       connection: redisConnection,
     }))
@@ -88,7 +88,7 @@ export function useScheduler<T extends object>(
 
     // New Worker
     const worker = new Worker(
-      config.queueName,
+      config.queueName as string,
       async (job) => {
         await jobMethod(job)
       },
@@ -218,7 +218,9 @@ export function useScheduler<T extends object>(
     consola.info('Exiting')
   }
 
-  async function schedule(...data: Parameters<Queue<any, any, T extends { queueName: infer Q } ? Q : string>['add']>) {
+  // TODO: fix type
+  // async function schedule(...data: Parameters<Queue<any, any, T extends { queueName: infer Q } ? Q : string>['add']>) {
+  async function schedule(...data: Parameters<Queue<any, any, string>['add']>) {
     const name = data[0]
     const myQueue = _myQueue.get(_pergel.projectName)
     if (!myQueue)

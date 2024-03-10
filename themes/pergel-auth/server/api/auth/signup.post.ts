@@ -1,7 +1,5 @@
 export default eventHandler(async (event) => {
-  const db = await pergelChangeName().drizzle().postgresjs().connect({
-    event,
-  })
+  const db = changeNameDbConnect()
 
   const body = await readBody(event)
   const username = body.username

@@ -23,18 +23,171 @@ const logger = consola.create({
 export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
   meta: {
     name: 'box',
-    version: '0.3.0',
+    version: '0.4.0',
     dependencies(options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
+      let dependencies = {}
 
-      return {
-        '@pergel/module-box': deps['@pergel/module-box'],
+      if (options.packages.veeValidate) {
+        dependencies = {
+          ...dependencies,
+          'vee-validate': deps['vee-validate'],
+          '@vee-validate/zod': deps['@vee-validate/zod'],
+          'zod': deps.zod,
+        }
       }
+
+      if (options.packages.zod) {
+        dependencies = {
+          ...dependencies,
+          zod: deps.zod,
+        }
+      }
+
+      if (options.packages.tailwindcss) {
+        dependencies = {
+          ...dependencies,
+          '@nuxtjs/tailwindcss': deps['@nuxtjs/tailwindcss'],
+          '@tailwindcss/forms': deps['@tailwindcss/forms'],
+          '@tailwindcss/aspect-ratio': deps['@tailwindcss/aspect-ratio'],
+          '@tailwindcss/typography': deps['@tailwindcss/typography'],
+          'tailwindcss-animate': deps['tailwindcss-animate'],
+          'tailwind-merge': deps['tailwind-merge'],
+          'clsx': deps.clsx,
+          'class-variance-authority': deps['class-variance-authority'],
+          '@egoist/tailwindcss-icons': deps['@egoist/tailwindcss-icons'],
+        }
+      }
+
+      if (options.packages.notivue) {
+        dependencies = {
+          ...dependencies,
+          notivue: deps.notivue,
+        }
+      }
+
+      if (options.packages.radixMode) {
+        dependencies = {
+          ...dependencies,
+          'radix-vue': deps['radix-vue'],
+        }
+      }
+
+      if (options.packages.nuxtIcon) {
+        dependencies = {
+          ...dependencies,
+          'nuxt-icon': deps['nuxt-icon'],
+        }
+      }
+
+      if (options.packages.colorMode) {
+        dependencies = {
+          ...dependencies,
+          '@nuxtjs/color-mode': deps['@nuxtjs/color-mode'],
+        }
+      }
+
+      if (options.packages.i18n) {
+        dependencies = {
+          ...dependencies,
+          '@nuxtjs/i18n': deps['@nuxtjs/i18n'],
+        }
+      }
+
+      if (options.packages.pinia) {
+        dependencies = {
+          ...dependencies,
+          '@pinia/nuxt': deps['@pinia/nuxt'],
+          'pinia': deps.pinia,
+        }
+      }
+
+      if (options.packages.vueUse) {
+        dependencies = {
+          ...dependencies,
+          '@vueuse/core': deps['@vueuse/core'],
+          '@vueuse/nuxt': deps['@vueuse/nuxt'],
+        }
+      }
+
+      if (options.packages.neoconfetti) {
+        dependencies = {
+          ...dependencies,
+          '@neoconfetti/vue': deps['@neoconfetti/vue'],
+        }
+      }
+
+      if (options.packages.googleFonts) {
+        dependencies = {
+          ...dependencies,
+          '@nuxtjs/google-fonts': deps['@nuxtjs/google-fonts'],
+        }
+      }
+
+      if (options.packages.slugify) {
+        dependencies = {
+          ...dependencies,
+          slugify: deps.slugify,
+        }
+      }
+
+      if (options.packages.nanoid) {
+        dependencies = {
+          ...dependencies,
+          nanoid: deps.nanoid,
+        }
+      }
+
+      if (options.packages.uuid) {
+        dependencies = {
+          ...dependencies,
+          uuid: deps.uuid,
+        }
+      }
+
+      if (options.packages.unsearch) {
+        dependencies = {
+          ...dependencies,
+          unsearch: deps.unsearch,
+        }
+      }
+
+      if (options.packages.shadcnNuxt) {
+        dependencies = {
+          ...dependencies,
+          'shadcn-nuxt': deps['shadcn-nuxt'],
+          'radix-vue': deps['radix-vue'],
+        }
+      }
+
+      if (options.packages.otpComponent) {
+        dependencies = {
+          ...dependencies,
+          'vue-input-otp': deps['vue-input-otp'],
+        }
+      }
+
+      if (options.packages.unovis) {
+        dependencies = {
+          ...dependencies,
+          '@unovis/vue': deps['@unovis/vue'],
+          '@unovis/ts': deps['@unovis/ts'],
+        }
+      }
+
+      return dependencies
     },
     devDependencies(options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
-
+      const devDependencies = {
+        '@iconify-json/ph': deps['@iconify-json/ph'],
+        '@iconify-json/carbon': deps['@iconify-json/carbon'],
+        '@faker-js/faker': deps['@faker-js/faker'],
+        'date-fns': deps['date-fns'],
+        'v-calendar': deps['v-calendar'],
+      }
       return {
+        ...devDependencies,
         ...options.packages.typescript
           ? {
               'typescript': deps.typescript,
@@ -112,7 +265,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
 
       veeValidateComponents.forEach((component) => {
         addComponent({
-          name: `Form${component}`,
+          name: `Vee${component}`,
           export: component,
           filePath: 'vee-validate',
         })
@@ -197,7 +350,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       })
     }
 
-    if (options.packages.tailwindcss) {
+    if (options.packages.tailwindcss || typeof options.packages.tailwindcss === 'object') {
       options.packages.tailwindcss = defu(options.packages.tailwindcss, {
         form: true,
         aspectRatio: true,

@@ -18,10 +18,17 @@ export default defineCommand({
     try {
       const file = await definePergelLoadConfig()
 
+      process.env.PERGEL_SETUP = 'true'
+
       if (!file.config) {
         consola.error('No config file found')
         return
       }
+
+      await run(parseNa, ['nuxt', 'prepare'], { programmatic: true }).then(() => {
+        consola.success('Nuxt prepared')
+        process.env.PERGEL_SETUP = 'false'
+      })
 
       const readmeString = readFileSync(resolve(join(file.config.dir?.pergel, 'README.json')), 'utf-8')
       const jsonData: PergelReadme = JSON.parse(readmeString)

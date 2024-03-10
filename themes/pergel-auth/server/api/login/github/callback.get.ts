@@ -17,9 +17,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const { githubClientId } = useRuntimeConfig()
-  const db = await pergelChangeName().drizzle().postgresjs().connect({
-    event,
-  })
+  const db = changeNameDbConnect()
 
   try {
     const tokens = await github.validateAuthorizationCode(code)

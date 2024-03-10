@@ -12,6 +12,7 @@ import type { EslintConfig, ResolvedEslintConfig } from '../../modules/eslint/ty
 import type { RenovateConfig, ResolvedRenovateConfig } from '../../modules/renovate/types'
 import type { ResolvedUrqlConfig, UrqlModuleOptions } from '../../modules/urql/types'
 import type { CapacitorOptions, ResolvedCapacitorOptions } from '../../modules/capacitor/types'
+import type { GQLTadaOptions, ResolvedGQLTadaOptions } from '../../modules/gqltada/types'
 import type { ResolvedPergelModuleOptions, UserModuleOptions } from './module'
 
 // @MODULE
@@ -31,6 +32,7 @@ export interface PergelNuxtModules {
   vitest?: true
   eslint?: true | EslintConfig
   renovate?: true | RenovateConfig
+  gqltada?: true | GQLTadaOptions
 }
 
 export interface ResolvedPergelNuxtModuleConfig<T> {
@@ -49,6 +51,7 @@ export interface ResolvedPergelNuxtModuleConfig<T> {
   eslint?: true | ResolvedEslintConfig
   renovate?: true | ResolvedRenovateConfig
   capacitor?: true | ResolvedCapacitorOptions
+  gqltada?: true | ResolvedGQLTadaOptions
 }
 
 export type PergelModuleNames = keyof PergelNuxtModules

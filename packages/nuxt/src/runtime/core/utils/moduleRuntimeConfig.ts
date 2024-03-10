@@ -25,12 +25,12 @@ export function generateModuleRuntimeConfig<T>(
   const name = generateProjectName(projectName, moduleName)
   if (publicRuntime) {
     runtimeConfig.public[projectName] ??= {}
-    runtimeConfig.public[projectName] = defu(runtimeConfig.public[projectName] as any, {
+    runtimeConfig.public[projectName] = defu({
       [moduleName]: {
         ...Object.entries(config).map(([key, value]) => {
           return {
-            [key]: value === undefined
-              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`] ?? defaultConfig[key] ?? ''
+            [key]: value === 'process'
+              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`] ?? (runtimeConfig.public as any)[projectName]?.[moduleName]?.[key] ?? defaultConfig[key] ?? ''
               : value,
           }
         }).reduce((acc, cur) => {
@@ -40,6 +40,8 @@ export function generateModuleRuntimeConfig<T>(
           }
         }, {}),
       },
+    }, {
+      ...runtimeConfig.public[projectName] as any,
     }) as T
 
     const { keyEnvValue } = runtimeConfigToEnv(

@@ -15,9 +15,9 @@
     "fast-glob": "^3.3.2",
     "nuxt": "^3.10.3",
     "pathe": "^1.1.2",
-    "pergel": "^0.12.0",
-    "typescript": "^5.3.3",
-    "vitepress": "1.0.0-rc.44",
+    "pergel": "^0.13.0",
+    "typescript": "^5.4.2",
+    "vitepress": "1.0.0-rc.45",
     "vitepress-plugin-twoslash": "^0.10.2"
   }
 }

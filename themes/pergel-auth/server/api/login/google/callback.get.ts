@@ -15,9 +15,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const db = await pergelChangeName().drizzle().postgresjs().connect({
-    event,
-  })
+  const db = changeNameDbConnect()
 
   try {
     const tokens = await google.validateAuthorizationCode(code, storedCodeVerifier)

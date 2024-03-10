@@ -61,6 +61,7 @@
     "**/examples/**",
     "**/docs/**",
     "**/playground/**",
+    "**/playgrounds/**",
     "**/test/fixtures/**",
     "test/nuxt/**",
     "**/client/**",
