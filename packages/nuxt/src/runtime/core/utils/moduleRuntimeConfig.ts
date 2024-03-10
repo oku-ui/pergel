@@ -30,7 +30,7 @@ export function generateModuleRuntimeConfig<T>(
         ...Object.entries(config).map(([key, value]) => {
           return {
             [key]: value === 'process'
-              ? import.meta.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`] ?? (runtimeConfig.public as any)[projectName][moduleName][key] ?? defaultConfig[key] ?? ''
+              ? process.env[`NUXT_${snakeCase(`${projectName}_${moduleName}_${key}` as string).toUpperCase()}`] ?? (runtimeConfig.public as any)[projectName][moduleName][key] ?? defaultConfig[key] ?? ''
               : value,
           }
         }).reduce((acc, cur) => {
