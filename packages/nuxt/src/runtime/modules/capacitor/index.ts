@@ -79,9 +79,9 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
     })
 
     const envData = generateModuleRuntimeConfig<CapacitorModuleRuntimeConfig>(nuxt, options, {
-      runTargetIOSSimulator: undefined,
-      runTargetAndroidEmulator: undefined,
-      runScheme: undefined,
+      runTargetIOSSimulator: 'process',
+      runTargetAndroidEmulator: 'process',
+      runScheme: 'process',
     }, true)
 
     const capacitorConfig = `import { type CapacitorConfig } from '@capacitor/cli';

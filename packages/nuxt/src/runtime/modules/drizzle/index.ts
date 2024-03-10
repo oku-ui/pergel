@@ -86,10 +86,10 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     const resolver = createResolver(import.meta.url)
 
     const envData = generateModuleRuntimeConfig<DrizzleRuntimeConfig>(nuxt, options, {
-      drop: true, // Drop database before migration
-      seed: true, // Seed database after migration
-      migrate: true, // Migrate database
-      mode: 'dev', // Development mode || 'production'
+      drop: 'process', // Drop database before migration
+      seed: 'process', // Seed database after migration
+      migrate: 'process', // Migrate database
+      mode: 'process', // Development mode || 'production'
     }, true)
 
     generateModuleRuntimeConfigEnv(nuxt, options, {

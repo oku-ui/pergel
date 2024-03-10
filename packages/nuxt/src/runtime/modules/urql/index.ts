@@ -49,10 +49,10 @@ export default definePergelModule<UrqlModuleOptions, ResolvedUrqlConfig>({
     })
 
     generateModuleRuntimeConfig<UrqlModuleRuntimeConfig>(nuxt, options, {
-      productionEndpoint: undefined,
-      devEndpoint: undefined,
-      client: undefined,
-      ssr: undefined,
+      productionEndpoint: 'process',
+      devEndpoint: 'process',
+      client: 'process',
+      ssr: 'process',
       default: {
         productionEndpoint: 'http://localhost:3000/api/graphql',
         devEndpoint: 'http://localhost:3000/api/graphql',
