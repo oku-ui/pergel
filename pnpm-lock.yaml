@@ -45,8 +45,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       eslint-plugin-tailwindcss:
-        specifier: ^3.14.3
-        version: 3.14.3(tailwindcss@3.4.1)
+        specifier: ^3.15.0
+        version: 3.15.0(tailwindcss@3.4.1)
       json-editor-vue:
         specifier: ^0.12.0
         version: 0.12.0(@lezer/common@1.2.1)(vue@3.3.13)
@@ -67,7 +67,7 @@ importers:
         version: 5.1.6(@types/node@20.11.25)
       vitest:
         specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.25)
+        version: 1.3.1(@types/node@20.11.25)(happy-dom@13.7.3)
 
   packages/box:
     dependencies:
@@ -147,11 +147,11 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       date-fns:
-        specifier: ^3.3.1
-        version: 3.3.1
+        specifier: ^3.4.0
+        version: 3.4.0
       lucide-vue-next:
-        specifier: ^0.354.0
-        version: 0.354.0(vue@3.3.13)
+        specifier: ^0.356.0
+        version: 0.356.0(vue@3.3.13)
       nanoid:
         specifier: ^5.0.6
         version: 5.0.6
@@ -304,8 +304,8 @@ importers:
         version: 2.4.1
     devDependencies:
       '@0no-co/graphqlsp':
-        specifier: ^1.4.3
-        version: 1.4.3
+        specifier: ^1.5.0
+        version: 1.5.0
       '@antfu/eslint-config':
         specifier: ^2.8.0
         version: 2.8.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
@@ -442,8 +442,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       eslint-plugin-tailwindcss:
-        specifier: ^3.14.3
-        version: 3.14.3(tailwindcss@3.4.1)
+        specifier: ^3.15.0
+        version: 3.15.0(tailwindcss@3.4.1)
       gql.tada:
         specifier: ^1.3.3
         version: 1.3.3(graphql@16.8.1)
@@ -526,8 +526,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.354.0
-        version: 0.354.0(vue@3.3.13)
+        specifier: ^0.356.0
+        version: 0.356.0(vue@3.3.13)
       radix-vue:
         specifier: ^1.5.2
         version: 1.5.2(vue@3.3.13)
@@ -595,8 +595,8 @@ importers:
         version: 1.3.3(graphql@16.8.1)
     devDependencies:
       '@0no-co/graphqlsp':
-        specifier: ^1.4.3
-        version: 1.4.3
+        specifier: ^1.5.0
+        version: 1.5.0
       '@pergel/nuxt':
         specifier: link:../..
         version: link:../..
@@ -801,8 +801,8 @@ packages:
     dependencies:
       graphql: 16.8.1
 
-  /@0no-co/graphqlsp@1.4.3:
-    resolution: {integrity: sha512-12EE6a2KaAUHdti1j73awaCIK101GumZtZ66uI9ReDg54Hf0FZcS7lAfRDt2+KvNOWCXkYSIwpXxm2VjQQbhUw==}
+  /@0no-co/graphqlsp@1.5.0:
+    resolution: {integrity: sha512-NGMUwzj7m6DfIqudZxfTfUEmzKR2n9xphPssCKqkGsMEKe9qIzrNqLpXXwzXTWrGBS5FBELW+TXGUyTa0v1LAw==}
     dependencies:
       json5: 2.2.3
       node-fetch: 2.7.0
@@ -12513,8 +12513,8 @@ packages:
       '@babel/runtime': 7.24.0
     dev: false
 
-  /date-fns@3.3.1:
-    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
+  /date-fns@3.4.0:
+    resolution: {integrity: sha512-Akz4R8J9MXBsOgF1QeWeCsbv6pntT5KCPjU0Q9prBxVmWJYPLhwAIsNg3b0QAdr0ttiozYLD3L/af7Ra0jqYXw==}
     dev: false
 
   /dateformat@3.0.3:
@@ -13474,8 +13474,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-tailwindcss@3.14.3(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-1MKT8CrVuqVJleHxb7ICHsF2QwO0G+VJ28athTtlcOkccp0qmwK7nCUa1C9paCZ+VVgQU4fonsjLz/wUxoMHJQ==}
+  /eslint-plugin-tailwindcss@3.15.0(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-mRs8OGJMxkCl8cD0wGjr9NbcRYJCN3D1TfgmIGb1L+3opqYyTT1jjVau1s6SUdVJqci3EfbxG60TJQtgqfEtTw==}
     engines: {node: '>=12.13.0'}
     peerDependencies:
       tailwindcss: ^3.4.0
@@ -15952,8 +15952,8 @@ packages:
     dependencies:
       oslo: 1.0.1
 
-  /lucide-vue-next@0.354.0(vue@3.3.13):
-    resolution: {integrity: sha512-FVs/VXBTVSqfLywln5U0MQsB/iBdov5BBa2R9hhOaKzP9XtvuUV1jTctevEL7cgLxHpK9J4RPWSjPbPJzu1EPA==}
+  /lucide-vue-next@0.356.0(vue@3.3.13):
+    resolution: {integrity: sha512-giWqqnnqAVCfgGXFzsrKaHC4cwxnX8ySB/5UMy0t2ZUBmOXYRo+0JI+bYHWTdqOEW5nfgjcSUUObt/M8s9HodQ==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
@@ -21081,62 +21081,6 @@ packages:
       - vitest
       - vue
       - vue-router
-    dev: true
-
-  /vitest@1.3.1(@types/node@20.11.25):
-    resolution: {integrity: sha512-/1QJqXs8YbCrfv/GPQ05wAZf2eakUPLPa18vkJAKE7RXOKfVHqMZZ1WlTjiwl6Gcn65M5vpNUB6EFLnEdRdEXQ==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@edge-runtime/vm': '*'
-      '@types/node': ^18.0.0 || >=20.0.0
-      '@vitest/browser': 1.3.1
-      '@vitest/ui': 1.3.1
-      happy-dom: '*'
-      jsdom: '*'
-    peerDependenciesMeta:
-      '@edge-runtime/vm':
-        optional: true
-      '@types/node':
-        optional: true
-      '@vitest/browser':
-        optional: true
-      '@vitest/ui':
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-    dependencies:
-      '@types/node': 20.11.25
-      '@vitest/expect': 1.3.1
-      '@vitest/runner': 1.3.1
-      '@vitest/snapshot': 1.3.1
-      '@vitest/spy': 1.3.1
-      '@vitest/utils': 1.3.1
-      acorn-walk: 8.3.2
-      chai: 4.4.1
-      debug: 4.3.4
-      execa: 8.0.1
-      local-pkg: 0.5.0
-      magic-string: 0.30.8
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      std-env: 3.7.0
-      strip-literal: 2.0.0
-      tinybench: 2.6.0
-      tinypool: 0.8.2
-      vite: 5.1.6(@types/node@20.11.25)
-      vite-node: 1.3.1(@types/node@20.11.25)
-      why-is-node-running: 2.2.2
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
     dev: true
 
   /vitest@1.3.1(@types/node@20.11.25)(happy-dom@13.7.3):
