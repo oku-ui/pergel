@@ -256,19 +256,26 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         ],
       })
 
-      const veeValidateComponents = [
-        'Field',
-        'Form',
-        'ErrorMessage',
-        'FieldArray',
-      ]
-
-      veeValidateComponents.forEach((component) => {
-        addComponent({
-          name: `Vee${component}`,
-          export: component,
-          filePath: 'vee-validate',
-        })
+      useNuxtImports(nuxt, {
+        presets: [
+          {
+            imports: [
+              'Form',
+              'ErrorMessage',
+              {
+                name: 'FieldArray',
+                as: 'FormFieldArray',
+                from: 'vee-validate',
+              },
+              {
+                name: 'Field',
+                as: 'FormField',
+                from: 'vee-validate',
+              },
+            ],
+            from: 'vee-validate',
+          },
+        ],
       })
 
       useNuxtImports(nuxt, {
