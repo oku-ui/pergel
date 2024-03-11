@@ -1,5 +1,6 @@
 import type { CapacitorConfig } from '@capacitor/cli'
 import type { IosTarget, IosTargetBuildConfiguration, MobileProject } from '@trapezedev/project'
+import type { NuxtPergel } from '../../core/types/nuxtModule'
 
 export interface TrapezedPlugins {
   meta: {
@@ -14,7 +15,8 @@ export interface TrapezedPlugins {
       packageName: string
       appName: string
     },
-    options: ResolvedCapacitorOptions
+    options: ResolvedCapacitorOptions,
+    nuxt: NuxtPergel
   ) => void
   // Resorces: 'https://developer.android.com/guide/topics/manifest/manifest-intro'
   android?: (
@@ -23,7 +25,8 @@ export interface TrapezedPlugins {
       packageName: string
       appName: string
     },
-    options: ResolvedCapacitorOptions
+    options: ResolvedCapacitorOptions,
+    nuxt: NuxtPergel
   ) => void
 }
 
@@ -35,9 +38,18 @@ export interface ResolvedCapacitorOptions {
     official: {
       actionSheet: boolean
       appLauncher: boolean
+      backgroundRunner: boolean
+      browser: boolean
+      camera: boolean | {
+        NSCameraUsageDescription?: string
+        NSPhotoLibraryUsageDescription?: string
+        NSMicrophoneUsageDescription?: string
+      }
+      clipboard: boolean
       app: {
         CFBundleURLSchemes: string[]
       }
+      device: boolean
     }
     community: {
       revenuecat: boolean
@@ -110,9 +122,37 @@ export interface CapacitorOptions {
     official?: {
       actionSheet?: boolean
       appLauncher?: boolean
+      backgroundRunner?: boolean | {
+        label?: string
+        src?: string
+        event?: string
+        repeat?: boolean
+        interval?: number
+        autoStart?: boolean
+      }
+      browser?: boolean
+      camera?: boolean | {
+        /**
+         * Your camera will be used to take pictures and record video
+         */
+        NSCameraUsageDescription?: string
+        /**
+         * Your photo library will be used to select images and videos
+         */
+        NSPhotoLibraryUsageDescription?: string
+        /**
+         * Your microphone will be used to record audio
+         */
+        NSMicrophoneUsageDescription?: string
+      }
       app?: {
         CFBundleURLSchemes?: string[]
       }
+      clipboard?: boolean
+      CapacitorCookies?: {
+        enable: boolean
+      }
+      device?: boolean
     }
     community?: {
       revenuecat?: boolean

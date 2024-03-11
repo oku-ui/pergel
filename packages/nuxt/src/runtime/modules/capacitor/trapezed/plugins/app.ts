@@ -13,11 +13,11 @@ export default trapezedPlugins({
     if (!file)
       return
 
-    addIntentFilter(file)
-    addIntentFilterItem(file, 'action', 'android:name="android.intent.action.VIEW"')
-    addIntentFilterItem(file, 'category', 'android:name="android.intent.category.DEFAULT"')
-    addIntentFilterItem(file, 'category', 'android:name="android.intent.category.BROWSABLE"')
-    addIntentFilterItem(file, 'data', 'android:scheme="@string/custom_url_scheme"')
+    addIntentFilter(file, 'manifest/application/activity')
+    addIntentFilterItem(file, 'manifest/application/activity/intent-filter', 'action', 'android:name="android.intent.action.VIEW"')
+    addIntentFilterItem(file, 'manifest/application/activity/intent-filter', 'category', 'android:name="android.intent.category.DEFAULT"')
+    addIntentFilterItem(file, 'manifest/application/activity/intent-filter', 'category', 'android:name="android.intent.category.BROWSABLE"')
+    addIntentFilterItem(file, 'manifest/application/activity/intent-filter', 'data', 'android:scheme="@string/custom_url_scheme"')
   },
 
   async ios(project, { build, packageName, target }, options) {

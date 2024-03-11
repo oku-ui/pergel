@@ -54,6 +54,106 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.backgroundRunner && isPackageExists('@capacitor/background-runner')) {
+    presets.push({
+      from: '@capacitor/background-runner',
+      imports: [
+        {
+          name: 'BackgroundRunner',
+          as: 'CapacitorBackgroundRunner',
+          from: '@capacitor/background-runner',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/background-runner')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.browser && isPackageExists('@capacitor/browser')) {
+    presets.push({
+      from: '@capacitor/browser',
+      imports: [
+        {
+          name: 'Browser',
+          as: 'CapacitorBrowser',
+          from: '@capacitor/browser',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/browser')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.camera && isPackageExists('@capacitor/camera')) {
+    presets.push({
+      from: '@capacitor/camera',
+      imports: [
+        {
+          name: 'Camera',
+          as: 'CapacitorCamera',
+          from: '@capacitor/camera',
+        },
+        {
+          name: 'CameraResultType',
+          as: 'CapacitorCameraResultType',
+          from: '@capacitor/camera',
+        },
+        {
+          name: 'CameraSource',
+          as: 'CapacitorCameraSource',
+          from: '@capacitor/camera',
+        },
+        {
+          name: 'CameraDirection',
+          as: 'CapacitorCameraDirection',
+          from: '@capacitor/camera',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/camera')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.clipboard && isPackageExists('@capacitor/clipboard')) {
+    presets.push({
+      from: '@capacitor/clipboard',
+      imports: [
+        {
+          name: 'Clipboard',
+          as: 'CapacitorClipboard',
+          from: '@capacitor/clipboard',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/clipboard')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.device && isPackageExists('@capacitor/device')) {
+    presets.push({
+      from: '@capacitor/device',
+      imports: [
+        {
+          name: 'Device',
+          as: 'CapacitorDevice',
+          from: '@capacitor/device',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/device')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (presets.length > 0) {
     useNuxtImports(params.nuxt, {
       presets,

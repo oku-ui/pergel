@@ -6,6 +6,8 @@ import type { ResolvedCapacitorOptions, TrapezedPlugins } from '../types'
 const plugins = {
   appLauncher: () => import('./plugins/appLauncher'),
   app: () => import('./plugins/app'),
+  backgroundRunner: () => import('./plugins/backgroundRunner'),
+  camera: () => import('./plugins/camera'),
 }
 
 export async function trapezedRun(params: {
@@ -64,6 +66,7 @@ export async function trapezedRun(params: {
                   project.ios,
                   { build, target, packageName, appName },
                   params.options,
+                  params.nuxt,
                 )
               }
             }
@@ -83,6 +86,7 @@ export async function trapezedRun(params: {
                   project.ios,
                   { build, target, packageName, appName },
                   params.options,
+                  params.nuxt,
                 )
               }
             }
@@ -139,6 +143,7 @@ export async function trapezedRun(params: {
               project.android,
               { packageName, appName },
               params.options,
+              params.nuxt,
             )
           }
         }
@@ -158,6 +163,7 @@ export async function trapezedRun(params: {
               project.android,
               { packageName, appName },
               params.options,
+              params.nuxt,
             )
           }
         }

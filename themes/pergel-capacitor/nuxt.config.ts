@@ -37,11 +37,15 @@ export default defineNuxtConfig({
           },
           plugins: {
             official: {
-              actionSheet: true,
-              appLauncher: true,
+              browser: false,
+              actionSheet: false,
+              appLauncher: false,
+              backgroundRunner: false,
               app: {
                 CFBundleURLSchemes: ['pergelapp'],
               },
+              camera: false,
+              device: false,
             },
           },
         },

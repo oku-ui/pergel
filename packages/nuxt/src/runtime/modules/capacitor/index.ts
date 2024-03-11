@@ -28,8 +28,18 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/action-sheet'] = deps['@capacitor/action-sheet']
         if (options.plugins.official.appLauncher)
           defaultDeps['@capacitor/app-launcher'] = deps['@capacitor/app-launcher']
+        if (options.plugins.official.backgroundRunner)
+          defaultDeps['@capacitor/background-runner'] = deps['@capacitor/background-runner']
+        if (options.plugins.official.browser)
+          defaultDeps['@capacitor/browser'] = deps['@capacitor/browser']
         if (options.plugins.official.app)
           defaultDeps['@capacitor/app'] = deps['@capacitor/app']
+        if (options.plugins.official.camera)
+          defaultDeps['@capacitor/camera'] = deps['@capacitor/camera']
+        if (options.plugins.official.clipboard)
+          defaultDeps['@capacitor/clipboard'] = deps['@capacitor/clipboard']
+        if (options.plugins.official.device)
+          defaultDeps['@capacitor/device'] = deps['@capacitor/device']
       }
 
       if (options.plugins.community) {
@@ -65,6 +75,10 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
     plugins: {
       official: {
         actionSheet: false,
+        appLauncher: false,
+        backgroundRunner: false,
+        browser: false,
+        camera: false,
       },
       community: {
         revenuecat: false,
