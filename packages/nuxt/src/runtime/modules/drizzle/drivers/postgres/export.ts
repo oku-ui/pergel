@@ -8,7 +8,7 @@ import type { PergelGlobalContextOmitModule } from '#pergel/types'
 export async function postgresJSClient(this: PergelGlobalContextOmitModule, params: {
   pgOptions?: PostgresJSOptions
   context?: PergelGlobalContextOmitModule
-}) {
+}): Promise<ReturnType<typeof postgres>> {
   const context = params.context ?? this
 
   if (!context || !context.projectName)
