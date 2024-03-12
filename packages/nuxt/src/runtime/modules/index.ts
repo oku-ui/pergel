@@ -3,14 +3,14 @@ import type {
 } from '@aws-sdk/client-s3'
 import type { Redis } from 'ioredis'
 import type { SESClient } from '@aws-sdk/client-ses'
-import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
+import type postgres from 'postgres'
 
 export interface PergelH3ContextItem {
   s3?: {
     client?: S3Client
   }
   drizzle?: {
-    postgressJSClient: PostgresJsDatabase
+    postgressJSClient: postgres.Sql
   }
   bullmq?: {
     client?: Redis
