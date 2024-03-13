@@ -6,7 +6,7 @@ import type { S3ModuleRuntimeConfig } from './types'
 export default definePergelModule({
   meta: {
     name: 'S3',
-    version: '0.2.0',
+    version: '0.3.0',
     dependencies(_options, nuxt) {
       const deps = nuxt._pergel.pergelPackageJson
       return {
@@ -54,7 +54,8 @@ export default definePergelModule({
                 ...ctx,
                 moduleName: '${options.moduleName}',
               }),
-              use: usePergelS3.bind(ctx),
+              use: useS3.bind(ctx),
+              client: s3Client.bind(ctx),
             }
           }
         `,
