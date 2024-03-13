@@ -263,7 +263,7 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
       })
 
       addComponent({
-        name: 'ErrorMessage',
+        name: 'FormErrorMessage',
         export: 'ErrorMessage',
         filePath: 'vee-validate',
       })
