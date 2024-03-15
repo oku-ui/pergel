@@ -10,6 +10,7 @@ import { plugin as typescriptOperationsPlugin } from '@graphql-codegen/typescrip
 import type { TypeScriptPluginConfig } from '@graphql-codegen/typescript'
 import type { TypeScriptTypedDocumentNodesConfig } from '@graphql-codegen/typed-document-node'
 import { plugin as typedDocumentNode } from '@graphql-codegen/typed-document-node'
+import { printSchemaWithDirectives } from '@graphql-tools/utils'
 import type { Source } from '@graphql-tools/utils'
 import * as typescriptPlugin from '@graphql-codegen/typescript'
 import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers'
@@ -127,7 +128,7 @@ async function typescriptResolvers(
   // See https://www.graphql-code-generator.com/docs/getting-started/programmatic-usage for more details
   const res = await codegen({
     filename: '',
-    schema: parse(printSchema(schema)),
+    schema: parse(printSchemaWithDirectives(schema)),
     // TODO: Add support for fragments
     documents: [],
     config: mergeConfig,
