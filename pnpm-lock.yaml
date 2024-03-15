@@ -90,11 +90,11 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2(rollup@4.12.1)
       '@nuxtjs/google-fonts':
-        specifier: ^3.1.3
-        version: 3.1.3(rollup@4.12.1)
+        specifier: ^3.2.0
+        version: 3.2.0(rollup@4.12.1)
       '@nuxtjs/i18n':
-        specifier: ^8.1.1
-        version: 8.1.1(rollup@4.12.1)(vue@3.3.13)
+        specifier: ^8.2.0
+        version: 8.2.0(rollup@4.12.1)(vue@3.3.13)
       '@nuxtjs/tailwindcss':
         specifier: ^6.11.4
         version: 6.11.4(rollup@4.12.1)
@@ -147,11 +147,11 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       date-fns:
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.5.0
+        version: 3.5.0
       lucide-vue-next:
-        specifier: ^0.357.0
-        version: 0.357.0(vue@3.3.13)
+        specifier: ^0.358.0
+        version: 0.358.0(vue@3.3.13)
       nanoid:
         specifier: ^5.0.6
         version: 5.0.6
@@ -526,8 +526,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.357.0
-        version: 0.357.0(vue@3.3.13)
+        specifier: ^0.358.0
+        version: 0.358.0(vue@3.3.13)
       radix-vue:
         specifier: ^1.5.2
         version: 1.5.2(vue@3.3.13)
@@ -615,11 +615,11 @@ importers:
   packages/s3:
     dependencies:
       '@aws-sdk/client-s3':
-        specifier: ^3.533.0
-        version: 3.533.0
+        specifier: ^3.534.0
+        version: 3.534.0
       '@aws-sdk/s3-request-presigner':
-        specifier: ^3.533.0
-        version: 3.533.0
+        specifier: ^3.534.0
+        version: 3.534.0
 
   themes/pergel-auth:
     dependencies:
@@ -1061,8 +1061,8 @@ packages:
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
 
-  /@aws-sdk/client-s3@3.533.0:
-    resolution: {integrity: sha512-KkzRS3Dt+dmNBe0a627RGr5aFqI+xw5UhqB+8Gr4r6Xy1/8sMGE+AXKVl/sYVbRQo/9aSCBak71baGE3XCm/pQ==}
+  /@aws-sdk/client-s3@3.534.0:
+    resolution: {integrity: sha512-ulu0M9kj9KVXBluAfFPL4Bm/b7VReH4mu/kC45A4lai0zBRHtBsr274vOBaLESGcV6wiMNPU18Xb+oxV91DTcw==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/sha1-browser': 3.0.0
@@ -1079,7 +1079,7 @@ packages:
       '@aws-sdk/middleware-logger': 3.533.0
       '@aws-sdk/middleware-recursion-detection': 3.533.0
       '@aws-sdk/middleware-sdk-s3': 3.533.0
-      '@aws-sdk/middleware-signing': 3.533.0
+      '@aws-sdk/middleware-signing': 3.534.0
       '@aws-sdk/middleware-ssec': 3.533.0
       '@aws-sdk/middleware-user-agent': 3.533.0
       '@aws-sdk/region-config-resolver': 3.533.0
@@ -1514,8 +1514,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@aws-sdk/middleware-signing@3.533.0:
-    resolution: {integrity: sha512-qJZBoNKoSacIkHZfHcQfxmrogQcb0OPEaeEwwH563f8D5qYjQ3yuSaq7X9BKL7W8f9GjUYUJYZJwK3tbDh1ccg==}
+  /@aws-sdk/middleware-signing@3.534.0:
+    resolution: {integrity: sha512-TUjCjK6o8TZ5w4NEllGtGFaq4kVet0ysoocnjMoOqBUTKBSYLwRe6bkrd5rF+onJj0fMIazGz6vaQyy/0iRNjQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-sdk/types': 3.533.0
@@ -1557,8 +1557,8 @@ packages:
       '@smithy/util-middleware': 2.1.4
       tslib: 2.6.2
 
-  /@aws-sdk/s3-request-presigner@3.533.0:
-    resolution: {integrity: sha512-xS0Gp+zgRAMkiSdG2cYyHDX8BRjzKLGrWiPnH/ete+C9Qzfp+OkJAdZuqQQ+33S9M8Z0PwrIR/79RCOz2TRI3Q==}
+  /@aws-sdk/s3-request-presigner@3.534.0:
+    resolution: {integrity: sha512-fm0APpOeINGmqtDq8dtC70KezvMQtA0azA0lYkZUksbmVddJwr3n+lgSRV0Bt0nUH49gLSy04RiQwM1/26/POw==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-sdk/signature-v4-multi-region': 3.533.0
@@ -4299,7 +4299,7 @@ packages:
       pathe: 1.1.2
       picocolors: 1.0.0
       source-map-js: 1.0.2
-      unplugin: 1.8.3
+      unplugin: 1.9.0
       vue-i18n: 9.10.1(vue@3.3.13)
     transitivePeerDependencies:
       - rollup
@@ -6471,19 +6471,19 @@ packages:
       - supports-color
     dev: false
 
-  /@nuxtjs/google-fonts@3.1.3(rollup@4.12.1):
-    resolution: {integrity: sha512-gHwstHXQKd/r9O2WnQR4UJbi7Rfb9No1/gF4gqP+y18h1DAAZUOYPBF5EAPGjZKgDOW2XbZHP8Rw3oSDTpIT1A==}
+  /@nuxtjs/google-fonts@3.2.0(rollup@4.12.1):
+    resolution: {integrity: sha512-cGAjDJoeQ2jm6VJCo4AtSmKO6KjsbO9RSLj8q261fD0lMVNMZCxkCxBkg8L0/2Vfgp+5QBHWVXL71p1tiybJFw==}
     dependencies:
       '@nuxt/kit': 3.10.3(rollup@4.12.1)
-      google-fonts-helper: 3.4.1
+      google-fonts-helper: 3.5.0
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: false
 
-  /@nuxtjs/i18n@8.1.1(rollup@4.12.1)(vue@3.3.13):
-    resolution: {integrity: sha512-woq2gdXv+soVRc2yeE2pwWODiLnF7fx1eAEXi5Zx+StQDxHegAHTbKX/ZqcsW8VZ3mqlcpzfqN399KCZ9qXJ8g==}
+  /@nuxtjs/i18n@8.2.0(rollup@4.12.1)(vue@3.3.13):
+    resolution: {integrity: sha512-t37aF/WOD1g8CA/iCyCJrURXocjPy7diZG+kJcHLkLmJh1v4/2Zhe0AeUsjXubGgvQKLSL3b5w8rZuPkG4yhUw==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/h3': 0.5.0
@@ -6502,9 +6502,10 @@ packages:
       magic-string: 0.30.8
       mlly: 1.6.1
       pathe: 1.1.2
+      scule: 1.3.0
       sucrase: 3.35.0
       ufo: 1.4.0
-      unplugin: 1.8.3
+      unplugin: 1.9.0
       vue-i18n: 9.10.1(vue@3.3.13)
       vue-router: 4.3.0(vue@3.3.13)
     transitivePeerDependencies:
@@ -9574,7 +9575,7 @@ packages:
       chokidar: 3.6.0
       fast-glob: 3.3.2
       magic-string: 0.30.8
-      unplugin: 1.8.3
+      unplugin: 1.9.0
       webpack: 5.90.3(esbuild@0.19.12)
       webpack-sources: 3.2.3
     transitivePeerDependencies:
@@ -12311,8 +12312,8 @@ packages:
       '@babel/runtime': 7.24.0
     dev: false
 
-  /date-fns@3.4.0:
-    resolution: {integrity: sha512-Akz4R8J9MXBsOgF1QeWeCsbv6pntT5KCPjU0Q9prBxVmWJYPLhwAIsNg3b0QAdr0ttiozYLD3L/af7Ra0jqYXw==}
+  /date-fns@3.5.0:
+    resolution: {integrity: sha512-a+DwyXn7NOfdJireCzAA0B9p7jIXEu/Q9JKCyMYvH6+0vPUNbQceA0neXrdfJ/xzl3mhOh5vibQQ3936Tssm6A==}
     dev: false
 
   /dateformat@3.0.3:
@@ -14211,8 +14212,8 @@ packages:
       slash: 5.1.0
       unicorn-magic: 0.1.0
 
-  /google-fonts-helper@3.4.1:
-    resolution: {integrity: sha512-unq9c1NF771916DrVR2MTpMJ5iHiMSjMBApErjhWT1FZIE+7x+Qik+w6cYi5jw/KtHELz+tyGAKgQetTU9wrlA==}
+  /google-fonts-helper@3.5.0:
+    resolution: {integrity: sha512-QcKvB3Y+jJFpvBUp/iG1oe9BbKirrjwU2mzJzKGGb5czz6T93CCP9A8IlfCoZnko7b1+gPH3yVghXP5EBvunDg==}
     dependencies:
       deepmerge: 4.3.1
       hookable: 5.5.3
@@ -15750,8 +15751,8 @@ packages:
     dependencies:
       oslo: 1.0.1
 
-  /lucide-vue-next@0.357.0(vue@3.3.13):
-    resolution: {integrity: sha512-Nvrh3UMaNk+wYH6+FP8wfqyNk/IYQuByMvBLDEeNuSB2fYPwErvoWvEiSo/xJ4S7nJMtYfcUrtIdIIC0JAOa/w==}
+  /lucide-vue-next@0.358.0(vue@3.3.13):
+    resolution: {integrity: sha512-XLC5kLwpcSSv16xrJ1WA6rxt5eyDRGw0EYBUjUBbrynSdspmiGL2z8az79pvli4pto/trcAF/KlxptlF03M2nw==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
@@ -20090,7 +20091,7 @@ packages:
       acorn: 8.11.3
       estree-walker: 3.0.3
       magic-string: 0.30.8
-      unplugin: 1.8.3
+      unplugin: 1.9.0
 
   /undefsafe@2.0.5:
     resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
@@ -20141,7 +20142,7 @@ packages:
       pkg-types: 1.0.3
       scule: 1.3.0
       strip-literal: 1.3.0
-      unplugin: 1.8.3
+      unplugin: 1.9.0
     transitivePeerDependencies:
       - rollup
 
@@ -20160,7 +20161,7 @@ packages:
       pkg-types: 1.0.3
       scule: 1.3.0
       strip-literal: 1.3.0
-      unplugin: 1.8.3
+      unplugin: 1.9.0
     transitivePeerDependencies:
       - rollup
 
@@ -20179,7 +20180,7 @@ packages:
       pkg-types: 1.0.3
       scule: 1.3.0
       strip-literal: 1.3.0
-      unplugin: 1.8.3
+      unplugin: 1.9.0
     transitivePeerDependencies:
       - rollup
 
@@ -20347,6 +20348,7 @@ packages:
       chokidar: 3.6.0
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
+    dev: true
 
   /unplugin@1.9.0:
     resolution: {integrity: sha512-14PslvMY3gNbXnQtNIRB566Q057L5Fe7f5LDEamxVi0QQVxoz5hrveBwwZLcKyHtZ09ysmipxRRj5Lv+BGz2Iw==}
