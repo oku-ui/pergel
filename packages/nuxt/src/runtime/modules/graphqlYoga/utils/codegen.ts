@@ -4,7 +4,7 @@ import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import type { PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
 import type { GraphQLSchema } from 'graphql'
 import { codegen } from '@graphql-codegen/core'
-import { parse, printSchema } from 'graphql'
+import { parse } from 'graphql'
 import type { TypeScriptDocumentsPluginConfig } from '@graphql-codegen/typescript-operations'
 import { plugin as typescriptOperationsPlugin } from '@graphql-codegen/typescript-operations'
 import type { TypeScriptPluginConfig } from '@graphql-codegen/typescript'
@@ -163,7 +163,7 @@ async function urqlIntrospection(
 
   const res = await codegen({
     filename: 'a.ts',
-    schema: parse(printSchema(schema)),
+    schema: parse(printSchemaWithDirectives(schema)),
     documents: [],
     config: mergeConfig,
     plugins: [
@@ -198,7 +198,7 @@ async function generateTypedDocumentNode(
   const res = await codegen({
     // Filename is not used. This is because the typescript plugin returns a string instead of writing to a file.
     filename: 'a.ts',
-    schema: parse(printSchema(schema)),
+    schema: parse(printSchemaWithDirectives(schema)),
     // TODO: Add support for fragments
     documents,
     config: mergeConfig,
@@ -231,7 +231,7 @@ async function generateTypedDocumentNode(
 }
 
 async function writeSchema(schema: GraphQLSchema, path: string) {
-  const schemaString = printSchema(schema)
+  const schemaString = printSchemaWithDirectives(schema)
 
   writeFilePergel(path, schemaString)
   return schemaString

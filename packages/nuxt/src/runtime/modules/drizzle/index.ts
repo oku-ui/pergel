@@ -164,7 +164,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
       ],
     })
 
-    copyMigrationFolder(nuxt)
+    copyMigrationFolder(nuxt, options)
 
     if (nuxt.options.dev) {
     // Watch for changes

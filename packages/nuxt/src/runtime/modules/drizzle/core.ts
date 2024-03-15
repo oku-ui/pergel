@@ -1,11 +1,13 @@
 import { cpSync, existsSync, lstatSync, mkdirSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { useLogger } from '@nuxt/kit'
 import { consola } from 'consola'
 import type { NuxtPergel } from '../../core/types/nuxtModule'
+import type { ResolvedDrizzleConfig } from './types'
 
 export async function copyMigrationFolder(
   nuxt: NuxtPergel,
+  options: ResolvedDrizzleConfig,
 ) {
   /**
    * Public Assets
@@ -18,7 +20,7 @@ export async function copyMigrationFolder(
         for (const [moduleName, _module] of Object.entries(modules)) {
           if (moduleName === 'drizzle') {
             const outDir = resolve(nitroCtx.options.output.dir, 'pergel', projectName, moduleName, 'migrations')
-            const folderDir = resolve(nitroCtx.options.rootDir, 'pergel', projectName, moduleName, 'migrations')
+            const folderDir = resolve(join(options.serverDir, 'migrations'))
             // check folder in files > 0
             const folderSize = lstatSync(folderDir).size
 
