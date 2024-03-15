@@ -12,6 +12,6 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "shadcn-nuxt": "^0.10.0"
+    "shadcn-nuxt": "^0.10.2"
   }
 }

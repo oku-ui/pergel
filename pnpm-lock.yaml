@@ -20,15 +20,15 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.30.1
-        version: 0.30.1(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.2
+        version: 0.30.2(pg@8.11.3)(postgres@3.4.3)
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.8.1
-        version: 2.8.1(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
+        specifier: ^2.8.2
+        version: 2.8.2(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
       '@types/node':
         specifier: ^20.11.27
         version: 20.11.27
@@ -67,7 +67,7 @@ importers:
         version: 5.1.6(@types/node@20.11.27)
       vitest:
         specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.4)
+        version: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.6)
 
   packages/box:
     dependencies:
@@ -168,8 +168,8 @@ importers:
         specifier: ^1.5.2
         version: 1.5.2(vue@3.3.13)
       shadcn-nuxt:
-        specifier: ^0.10.0
-        version: 0.10.0(rollup@4.12.1)
+        specifier: ^0.10.2
+        version: 0.10.2(rollup@4.12.1)
       slugify:
         specifier: ^1.6.6
         version: 1.6.6
@@ -307,8 +307,8 @@ importers:
         specifier: ^1.5.1
         version: 1.5.1
       '@antfu/eslint-config':
-        specifier: ^2.8.1
-        version: 2.8.1(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
+        specifier: ^2.8.2
+        version: 2.8.2(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
       '@aws-sdk/client-ses':
         specifier: ^3.533.0
         version: 3.533.0
@@ -355,8 +355,8 @@ importers:
         specifier: ^7.0.6
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.3
-        version: 1.0.3(lucia@3.1.1)
+        specifier: 1.0.4
+        version: 1.0.4(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -374,7 +374,7 @@ importers:
         version: 3.10.3(rollup@3.29.4)
       '@nuxt/test-utils':
         specifier: ^3.11.0
-        version: 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
+        version: 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
       '@nuxtjs/ionic':
         specifier: ^0.13.1
         version: 0.13.1(rollup@3.29.4)
@@ -433,8 +433,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.30.1
-        version: 0.30.1(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.2
+        version: 0.30.2(pg@8.11.3)(postgres@3.4.3)
       esbuild-plugin-file-path-extensions:
         specifier: ^2.0.0
         version: 2.0.0
@@ -454,8 +454,8 @@ importers:
         specifier: ^1.11.1
         version: 1.11.1
       happy-dom:
-        specifier: ^13.8.4
-        version: 13.8.4
+        specifier: ^13.8.6
+        version: 13.8.6
       ioredis:
         specifier: ^5.3.2
         version: 5.3.2
@@ -476,7 +476,7 @@ importers:
         version: 3.0.3
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
+        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
       oslo:
         specifier: ^1.1.3
         version: 1.1.3
@@ -509,7 +509,7 @@ importers:
         version: 3.7.1(rollup@3.29.4)
       vitest:
         specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.4)
+        version: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.6)
       vue-input-otp:
         specifier: ^0.1.0
         version: 0.1.0(vue@3.3.13)
@@ -542,8 +542,8 @@ importers:
         specifier: ^6.11.4
         version: 6.11.4
       shadcn-nuxt:
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.10.2
+        version: 0.10.2
 
   packages/nuxt/playgrounds/drizzle:
     dependencies:
@@ -554,8 +554,8 @@ importers:
         specifier: ^7.0.6
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.3
-        version: 1.0.3(lucia@3.1.1)
+        specifier: 1.0.4
+        version: 1.0.4(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -566,8 +566,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.30.1
-        version: 0.30.1(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.2
+        version: 0.30.2(pg@8.11.3)(postgres@3.4.3)
       lucia:
         specifier: 3.1.1
         version: 3.1.1
@@ -580,7 +580,7 @@ importers:
         version: link:../..
       nuxt:
         specifier: latest
-        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       pergel:
         specifier: ^0.13.0
         version: 0.13.0
@@ -602,7 +602,7 @@ importers:
         version: link:../..
       nuxt:
         specifier: latest
-        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       pergel:
         specifier: ^0.13.0
         version: 0.13.0
@@ -633,8 +633,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(@types/node@20.11.27)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
       '@lucia-auth/adapter-drizzle':
-        specifier: ^1.0.3
-        version: 1.0.3(lucia@3.1.1)
+        specifier: ^1.0.4
+        version: 1.0.4(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: ^3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -669,8 +669,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.30.1
-        version: 0.30.1(pg@8.11.3)(postgres@3.4.3)
+        specifier: ^0.30.2
+        version: 0.30.2(pg@8.11.3)(postgres@3.4.3)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -686,7 +686,7 @@ importers:
     devDependencies:
       '@nuxt/test-utils':
         specifier: ^3.11.0
-        version: 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
+        version: 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
       '@pergel/module-box':
         specifier: workspace:^
         version: link:../../packages/box
@@ -694,11 +694,11 @@ importers:
         specifier: ^2.4.5
         version: 2.4.5
       happy-dom:
-        specifier: ^13.8.4
-        version: 13.8.4
+        specifier: ^13.8.6
+        version: 13.8.6
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       pergel:
         specifier: ^0.13.0
         version: 0.13.0
@@ -716,7 +716,7 @@ importers:
         version: 5.4.2
       vitest:
         specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.4)
+        version: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.6)
       vue:
         specifier: 3.3.13
         version: 3.3.13(typescript@5.4.2)
@@ -747,7 +747,7 @@ importers:
         version: 7.0.10(@types/node@20.11.27)(typescript@5.4.2)
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       pergel:
         specifier: ^0.13.0
         version: 0.13.0
@@ -778,7 +778,7 @@ importers:
     devDependencies:
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+        version: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       pergel:
         specifier: latest
         version: 0.12.0
@@ -825,8 +825,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  /@antfu/eslint-config@2.8.1(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1):
-    resolution: {integrity: sha512-9fgSdaycCj4odiejWrCMET/Ub+dktRUSxFr8rMJ9SfiOlimav86SHo0myEtj14422yTrw8J9XkVUW6Q9ASt2Og==}
+  /@antfu/eslint-config@2.8.2(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1):
+    resolution: {integrity: sha512-lmB7C0DE1dMwp9b+kRWCF/EP3Wc18DUeT+STuX9OskOherX3P/eQ5PxmOslBVZalD9/mbft0s257mQL+LxJ37A==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -870,7 +870,7 @@ packages:
       '@eslint-types/jsdoc': 46.8.2-1
       '@eslint-types/typescript-eslint': 7.0.2
       '@eslint-types/unicorn': 51.0.1
-      '@stylistic/eslint-plugin': 1.6.3(eslint@8.57.0)(typescript@5.4.2)
+      '@stylistic/eslint-plugin': 1.7.0(eslint@8.57.0)(typescript@5.4.2)
       '@typescript-eslint/eslint-plugin': 7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.4.2)
       '@typescript-eslint/parser': 7.2.0(eslint@8.57.0)(typescript@5.4.2)
       eslint: 8.57.0
@@ -4793,8 +4793,8 @@ packages:
       '@lezer/common': 1.2.1
     dev: true
 
-  /@lucia-auth/adapter-drizzle@1.0.3(lucia@3.1.1):
-    resolution: {integrity: sha512-5C3O5PGV9IpGTM8cr5trE9+Pr3FM8LXOUPusQWD3svGW/S7vNebQit7uEfDUxFAuUhutoLoXTr7SQ1jZWjaBoA==}
+  /@lucia-auth/adapter-drizzle@1.0.4(lucia@3.1.1):
+    resolution: {integrity: sha512-eF0DyebhgG8SLBpEG0BiDLm9DLCCYJj3EFN4TvU/oaJ7expEuY5nPZj4mvUpxX8I9DYwC7ROhMWC9WyjY1pQ9Q==}
     peerDependencies:
       lucia: 3.x
     dependencies:
@@ -5625,7 +5625,7 @@ packages:
       '@nuxt/kit': 3.10.3(rollup@3.29.4)
       '@nuxt/schema': 3.10.3(rollup@3.29.4)
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
       vite: 5.1.6(@types/node@20.11.27)
     transitivePeerDependencies:
       - rollup
@@ -5640,7 +5640,7 @@ packages:
       '@nuxt/kit': 3.10.3(rollup@4.12.1)
       '@nuxt/schema': 3.10.3(rollup@4.12.1)
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6)
       vite: 5.1.6(@types/node@20.11.27)
     transitivePeerDependencies:
       - rollup
@@ -5656,7 +5656,7 @@ packages:
       '@nuxt/kit': 3.10.3
       '@nuxt/schema': 3.10.3
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       vite: 5.1.6(@types/node@20.11.27)
     transitivePeerDependencies:
       - rollup
@@ -5754,7 +5754,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
       nypm: 0.3.8
       ohash: 1.1.3
       pacote: 17.0.6
@@ -5804,7 +5804,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6)
       nypm: 0.3.8
       ohash: 1.1.3
       pacote: 17.0.6
@@ -5855,7 +5855,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6)
       nypm: 0.3.8
       ohash: 1.1.3
       pacote: 17.0.6
@@ -6115,7 +6115,7 @@ packages:
       - supports-color
     dev: false
 
-  /@nuxt/test-utils@3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
+  /@nuxt/test-utils@3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
     resolution: {integrity: sha512-9ovgpQZkZpVg/MhYVVn2169WjH/IL0XUqwGryTa/lkx0/BCi1LMVEp3HTPkmt4qbRcxitO+kL4vFqqrFGVaSVg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -6164,7 +6164,7 @@ packages:
       fake-indexeddb: 5.0.2
       get-port-please: 3.1.2
       h3: 1.11.1
-      happy-dom: 13.8.4
+      happy-dom: 13.8.6
       local-pkg: 0.5.0
       magic-string: 0.30.8
       node-fetch-native: 1.6.2
@@ -6179,8 +6179,8 @@ packages:
       unenv: 1.9.0
       unplugin: 1.8.3
       vite: 5.1.6(@types/node@20.11.27)
-      vitest: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.4)
-      vitest-environment-nuxt: 1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
+      vitest: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.6)
+      vitest-environment-nuxt: 1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
       vue: 3.3.13(typescript@5.4.2)
       vue-router: 4.3.0(vue@3.3.13)
     transitivePeerDependencies:
@@ -6188,7 +6188,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/test-utils@3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
+  /@nuxt/test-utils@3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
     resolution: {integrity: sha512-9ovgpQZkZpVg/MhYVVn2169WjH/IL0XUqwGryTa/lkx0/BCi1LMVEp3HTPkmt4qbRcxitO+kL4vFqqrFGVaSVg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -6237,7 +6237,7 @@ packages:
       fake-indexeddb: 5.0.2
       get-port-please: 3.1.2
       h3: 1.11.1
-      happy-dom: 13.8.4
+      happy-dom: 13.8.6
       local-pkg: 0.5.0
       magic-string: 0.30.8
       node-fetch-native: 1.6.2
@@ -6252,8 +6252,8 @@ packages:
       unenv: 1.9.0
       unplugin: 1.9.0
       vite: 5.1.6(@types/node@20.11.27)
-      vitest: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.4)
-      vitest-environment-nuxt: 1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
+      vitest: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.6)
+      vitest-environment-nuxt: 1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
       vue: 3.3.13(typescript@5.4.2)
       vue-router: 4.3.0(vue@3.3.13)
     transitivePeerDependencies:
@@ -7344,57 +7344,57 @@ packages:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
     dev: true
 
-  /@oxc-parser/binding-darwin-arm64@0.7.0:
-    resolution: {integrity: sha512-6ADI2g5zTvkywFdKTVZiJ8BdaWIhck7eX8H1WRuB2IomQec8Mc3mK6IoWz7xxGjbHq3sM7hL3y8bJEkUrFtn1w==}
+  /@oxc-parser/binding-darwin-arm64@0.8.0:
+    resolution: {integrity: sha512-3Dws5Wzj9efojjqvhS4ZF+Abh0EoiI5ciOE2kdLifMzSg4fnmYAIOktoUnPEo87TNIb4SiFJ5JgPBgEyq42Eow==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-darwin-x64@0.7.0:
-    resolution: {integrity: sha512-OWqt1G/MuvVuefn0mzDbgrbs6a+e7rJfW+tnxSgdig+2vKduUezdaU7RsP04nljn/cU1zZ8yAdpk4HnZTJgthw==}
+  /@oxc-parser/binding-darwin-x64@0.8.0:
+    resolution: {integrity: sha512-DAUJ/mfq0Jn2VDYn69bhHTsIWj+aZ/viamexFwaLL7ntkIFmGpzAJZUlWofpY1IRJynKWW+P5AOLYXMllw4qUw==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-linux-arm64-gnu@0.7.0:
-    resolution: {integrity: sha512-anPfPFlvVOVenxxoaUuYf7mjkC5shOtX1x2PxXjCIXpichtXW1wX/6QhOA+ttRjXzzy056ckKOa4f6GjdMZmqQ==}
+  /@oxc-parser/binding-linux-arm64-gnu@0.8.0:
+    resolution: {integrity: sha512-ZHQVey/O4K3zTIKtpfsbtJIE8MPTRHRxgY3dejaoeFQGf9C3HasgF132Yp4zN/jOUx+x8czKPVa/Af40ViyhGQ==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-linux-arm64-musl@0.7.0:
-    resolution: {integrity: sha512-iHzwpm1W+HmejCNP8s7g2aISHE3yRYwE2eGGUKR39oVnW5nMkMeX+3OK8+UqwQwv2kXN3oOQaZovcswIr+CSLA==}
+  /@oxc-parser/binding-linux-arm64-musl@0.8.0:
+    resolution: {integrity: sha512-Diw+Tnf5v+zAYXzDoSKCZsMaroU6GoqZMS7smfDtFnZYTHWZrsTmPBLUQe7AFiG7O7tkhsCdcWjOYgbVkrSVOA==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-linux-x64-gnu@0.7.0:
-    resolution: {integrity: sha512-GzI2vXISF3lZ/DnoRfYRu1vv+DwjaBs6+/wjktluts/F6frsy901HODTaH90ZnsVHHeAgFuCDe0kyEeTodzx4Q==}
+  /@oxc-parser/binding-linux-x64-gnu@0.8.0:
+    resolution: {integrity: sha512-WloqcRrtQUVEP/Sy8ZeEgF0HgBKQjOv3zLFZqbC5ipkerKriGcVbsq3fOIMOi/55AM6/UhIAjeZGnoeco72JjQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-linux-x64-musl@0.7.0:
-    resolution: {integrity: sha512-xjfbQR9TGdodzWErAaBwGHx4NTwJzNx/xxspXbyym4gP9RQ77fnWaOAugvNv8RQgQi1InMJgvYY9wLmSzx0gZQ==}
+  /@oxc-parser/binding-linux-x64-musl@0.8.0:
+    resolution: {integrity: sha512-2j7BD9szwSXTvSj0Q8VE98UHGYvrgZzdLy4EyB0FilhQnopEfz+YV674rWGY2Il1VYxHJwGctrTJHvARolu37g==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-win32-arm64-msvc@0.7.0:
-    resolution: {integrity: sha512-LbW6MAkHqbOUoptuABmkHHGDILr6/uq66pNDcAjyqwVmsuqf6W7Z+4c+NzEB7WdM1dO9I0W8QbLkZB4n2Dsujg==}
+  /@oxc-parser/binding-win32-arm64-msvc@0.8.0:
+    resolution: {integrity: sha512-mcomr1og17yCmnwn8Q7CRzrH9Va0HccWe4Ld3/u/elBsw0SEzYGVvECRzCyRglYAbKTtusz7as9Jee0RiMOMmg==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     optional: true
 
-  /@oxc-parser/binding-win32-x64-msvc@0.7.0:
-    resolution: {integrity: sha512-+3H+bE2Dyns2uxP7LEMmcVkRLoiX4UPWUhHt/bi4SOFRqyHgTKxvw1L6sn1yP1Zd4t8aLRgMkRSrRxlLSvl5CA==}
+  /@oxc-parser/binding-win32-x64-msvc@0.8.0:
+    resolution: {integrity: sha512-nIBkc1KZOVYUaHT3+U+gM354P3byMAIXMvlmLMbs0kWVRcI4vrzL8qwWpC6QdBQxWKZGqPEqGolv8H4dDYA9nQ==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -8437,8 +8437,8 @@ packages:
   /@streamparser/json@0.0.20:
     resolution: {integrity: sha512-VqAAkydywPpkw63WQhPVKCD3SdwXuihCUVZbbiY3SfSTGQyHmwRoq27y4dmJdZuJwd5JIlQoMPyGvMbUPY0RKQ==}
 
-  /@stylistic/eslint-plugin-js@1.6.3(eslint@8.57.0):
-    resolution: {integrity: sha512-ckdz51oHxD2FaxgY2piJWJVJiwgp8Uu96s+as2yB3RMwavn3nHBrpliVukXY9S/DmMicPRB2+H8nBk23GDG+qA==}
+  /@stylistic/eslint-plugin-js@1.7.0(eslint@8.57.0):
+    resolution: {integrity: sha512-PN6On/+or63FGnhhMKSQfYcWutRlzOiYlVdLM6yN7lquoBTqUJHYnl4TA4MHwiAt46X5gRxDr1+xPZ1lOLcL+Q==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: '>=8.40.0'
@@ -8451,21 +8451,21 @@ packages:
       espree: 9.6.1
     dev: true
 
-  /@stylistic/eslint-plugin-jsx@1.6.3(eslint@8.57.0):
-    resolution: {integrity: sha512-SRysCIg59Zvn3dJPqHziiHwuni4NNj1et5stAmivmyQ3Cdp2ULCB7tGxCF1OxpkwRlZQue3ZgdiM7EXfJKaf9w==}
+  /@stylistic/eslint-plugin-jsx@1.7.0(eslint@8.57.0):
+    resolution: {integrity: sha512-BACdBwXakQvjYIST5N2WWhRbvhRsIxa/F59BiZol+0IH4FSmDXhie7v/yaxDIIA9CbfElzOmIA5nWNYTVXcnwQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: '>=8.40.0'
     dependencies:
-      '@stylistic/eslint-plugin-js': 1.6.3(eslint@8.57.0)
+      '@stylistic/eslint-plugin-js': 1.7.0(eslint@8.57.0)
       '@types/eslint': 8.56.5
       eslint: 8.57.0
       estraverse: 5.3.0
       picomatch: 4.0.1
     dev: true
 
-  /@stylistic/eslint-plugin-plus@1.6.3(eslint@8.57.0)(typescript@5.4.2):
-    resolution: {integrity: sha512-TuwQOdyVGycDPw5XeF7W4f3ZonAVzOAzORSaD2yGAJ0fRAbJ+l/v3CkKzIAqBBwWkc+c2aRMsWtLP2+viBnmlQ==}
+  /@stylistic/eslint-plugin-plus@1.7.0(eslint@8.57.0)(typescript@5.4.2):
+    resolution: {integrity: sha512-AabDw8sXsc70Ydx3qnbeTlRHZnIwY6UKEenBPURPhY3bfYWX+/pDpZH40HkOu94v8D0DUrocPkeeEUxl4e0JDg==}
     peerDependencies:
       eslint: '*'
     dependencies:
@@ -8477,13 +8477,13 @@ packages:
       - typescript
     dev: true
 
-  /@stylistic/eslint-plugin-ts@1.6.3(eslint@8.57.0)(typescript@5.4.2):
-    resolution: {integrity: sha512-v5GwZsPLblWM9uAIdaSi31Sed3XBWlTFQJ3b5upEmj6QsKYivA5nmIYutwqqL133QdVWjmC86pINlx2Muq3uNQ==}
+  /@stylistic/eslint-plugin-ts@1.7.0(eslint@8.57.0)(typescript@5.4.2):
+    resolution: {integrity: sha512-QsHv98mmW1xaucVYQTyLDgEpybPJ/6jPPxVBrIchntWWwj74xCWKUiw79hu+TpYj/Pbhd9rkqJYLNq3pQGYuyA==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: '>=8.40.0'
     dependencies:
-      '@stylistic/eslint-plugin-js': 1.6.3(eslint@8.57.0)
+      '@stylistic/eslint-plugin-js': 1.7.0(eslint@8.57.0)
       '@types/eslint': 8.56.5
       '@typescript-eslint/utils': 6.21.0(eslint@8.57.0)(typescript@5.4.2)
       eslint: 8.57.0
@@ -8492,16 +8492,16 @@ packages:
       - typescript
     dev: true
 
-  /@stylistic/eslint-plugin@1.6.3(eslint@8.57.0)(typescript@5.4.2):
-    resolution: {integrity: sha512-WDa4FjhImp7YcztRaMG09svhKYYhi2Hc4p9ltQRSqyB4fsUUFm+GKzStqqH7xfjHnxacMJaOnaMGRTUqIIZDLA==}
+  /@stylistic/eslint-plugin@1.7.0(eslint@8.57.0)(typescript@5.4.2):
+    resolution: {integrity: sha512-ThMUjGIi/jeWYNvOdjZkoLw1EOVs0tEuKXDgWvTn8uWaEz55HuPlajKxjKLpv19C+qRDbKczJfzUODfCdME53A==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: '>=8.40.0'
     dependencies:
-      '@stylistic/eslint-plugin-js': 1.6.3(eslint@8.57.0)
-      '@stylistic/eslint-plugin-jsx': 1.6.3(eslint@8.57.0)
-      '@stylistic/eslint-plugin-plus': 1.6.3(eslint@8.57.0)(typescript@5.4.2)
-      '@stylistic/eslint-plugin-ts': 1.6.3(eslint@8.57.0)(typescript@5.4.2)
+      '@stylistic/eslint-plugin-js': 1.7.0(eslint@8.57.0)
+      '@stylistic/eslint-plugin-jsx': 1.7.0(eslint@8.57.0)
+      '@stylistic/eslint-plugin-plus': 1.7.0(eslint@8.57.0)(typescript@5.4.2)
+      '@stylistic/eslint-plugin-ts': 1.7.0(eslint@8.57.0)(typescript@5.4.2)
       '@types/eslint': 8.56.5
       eslint: 8.57.0
     transitivePeerDependencies:
@@ -9089,14 +9089,6 @@ packages:
       '@typescript-eslint/visitor-keys': 6.21.0
     dev: true
 
-  /@typescript-eslint/scope-manager@7.1.1:
-    resolution: {integrity: sha512-cirZpA8bJMRb4WZ+rO6+mnOJrGFDd38WoXCEI57+CYBqta8Yc8aJym2i7vyqLL1vVYljgw0X27axkUXz32T8TA==}
-    engines: {node: ^16.0.0 || >=18.0.0}
-    dependencies:
-      '@typescript-eslint/types': 7.1.1
-      '@typescript-eslint/visitor-keys': 7.1.1
-    dev: true
-
   /@typescript-eslint/scope-manager@7.2.0:
     resolution: {integrity: sha512-Qh976RbQM/fYtjx9hs4XkayYujB/aPwglw2choHmf3zBjB4qOywWSdt9+KLRdHubGcoSwBnXUH2sR3hkyaERRg==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -9130,11 +9122,6 @@ packages:
     engines: {node: ^16.0.0 || >=18.0.0}
     dev: true
 
-  /@typescript-eslint/types@7.1.1:
-    resolution: {integrity: sha512-KhewzrlRMrgeKm1U9bh2z5aoL4s7K3tK5DwHDn8MHv0yQfWFz/0ZR6trrIHHa5CsF83j/GgHqzdbzCXJ3crx0Q==}
-    engines: {node: ^16.0.0 || >=18.0.0}
-    dev: true
-
   /@typescript-eslint/types@7.2.0:
     resolution: {integrity: sha512-XFtUHPI/abFhm4cbCDc5Ykc8npOKBSJePY3a3s+lwumt7XWJuzP5cZcfZ610MIPHjQjNsOLlYK8ASPaNG8UiyA==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -9151,28 +9138,6 @@ packages:
     dependencies:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/visitor-keys': 6.21.0
-      debug: 4.3.4
-      globby: 11.1.0
-      is-glob: 4.0.3
-      minimatch: 9.0.3
-      semver: 7.6.0
-      ts-api-utils: 1.2.1(typescript@5.4.2)
-      typescript: 5.4.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@typescript-eslint/typescript-estree@7.1.1(typescript@5.4.2):
-    resolution: {integrity: sha512-9ZOncVSfr+sMXVxxca2OJOPagRwT0u/UHikM2Rd6L/aB+kL/QAuTnsv6MeXtjzCJYb8PzrXarypSGIPx3Jemxw==}
-    engines: {node: ^16.0.0 || >=18.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 7.1.1
-      '@typescript-eslint/visitor-keys': 7.1.1
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
@@ -9225,25 +9190,6 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/utils@7.1.1(eslint@8.57.0)(typescript@5.4.2):
-    resolution: {integrity: sha512-thOXM89xA03xAE0lW7alstvnyoBUbBX38YtY+zAUcpRPcq9EIhXPuJ0YTv948MbzmKh6e1AUszn5cBFK49Umqg==}
-    engines: {node: ^16.0.0 || >=18.0.0}
-    peerDependencies:
-      eslint: ^8.56.0
-    dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
-      '@types/json-schema': 7.0.15
-      '@types/semver': 7.5.8
-      '@typescript-eslint/scope-manager': 7.1.1
-      '@typescript-eslint/types': 7.1.1
-      '@typescript-eslint/typescript-estree': 7.1.1(typescript@5.4.2)
-      eslint: 8.57.0
-      semver: 7.6.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: true
-
   /@typescript-eslint/utils@7.2.0(eslint@8.57.0)(typescript@5.4.2):
     resolution: {integrity: sha512-YfHpnMAGb1Eekpm3XRK8hcMwGLGsnT6L+7b2XyRv6ouDuJU1tZir1GS2i0+VXRatMwSI1/UfcyPe53ADkU+IuA==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -9268,14 +9214,6 @@ packages:
     engines: {node: ^16.0.0 || >=18.0.0}
     dependencies:
       '@typescript-eslint/types': 6.21.0
-      eslint-visitor-keys: 3.4.3
-    dev: true
-
-  /@typescript-eslint/visitor-keys@7.1.1:
-    resolution: {integrity: sha512-yTdHDQxY7cSoCcAtiBzVzxleJhkGB9NncSIyMYe2+OGON1ZsP9zOPws/Pqgopa65jvknOjlk/w7ulPlZ78PiLQ==}
-    engines: {node: ^16.0.0 || >=18.0.0}
-    dependencies:
-      '@typescript-eslint/types': 7.1.1
       eslint-visitor-keys: 3.4.3
     dev: true
 
@@ -10079,7 +10017,7 @@ packages:
       '@vueuse/core': 10.9.0(vue@3.3.13)
       '@vueuse/metadata': 10.9.0
       local-pkg: 0.5.0
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6)
       vue-demi: 0.14.7(vue@3.3.13)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -10097,7 +10035,7 @@ packages:
       '@vueuse/core': 10.9.0(vue@3.3.13)
       '@vueuse/metadata': 10.9.0
       local-pkg: 0.5.0
-      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6)
+      nuxt: 3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6)
       vue-demi: 0.14.7(vue@3.3.13)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -12320,7 +12258,7 @@ packages:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
     dev: true
 
-  /db0@0.1.4(drizzle-orm@0.30.1):
+  /db0@0.1.4(drizzle-orm@0.30.2):
     resolution: {integrity: sha512-Ft6eCwONYxlwLjBXSJxw0t0RYtA5gW9mq8JfBXn9TtC0nDPlqePAhpv9v4g9aONBi6JI1OXHTKKkUYGd+BOrCA==}
     peerDependencies:
       '@libsql/client': ^0.5.2
@@ -12334,7 +12272,7 @@ packages:
       drizzle-orm:
         optional: true
     dependencies:
-      drizzle-orm: 0.30.1(pg@8.11.3)(postgres@3.4.3)
+      drizzle-orm: 0.30.2(pg@8.11.3)(postgres@3.4.3)
 
   /debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -12680,8 +12618,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /drizzle-orm@0.30.1(pg@8.11.3)(postgres@3.4.3):
-    resolution: {integrity: sha512-5P6CXl4XyWtDDiYOX/jYOJp1HTUmBlXRAwaq+muUOgaSykMEy5sJesCxceMT0oCGvxeWkKfSXo5owLnfKwCIdw==}
+  /drizzle-orm@0.30.2(pg@8.11.3)(postgres@3.4.3):
+    resolution: {integrity: sha512-DNd3djg03o+WxZX3pGD8YD+qrWT8gbrbhaZ2W0PVb6yH4rtM/VTB92cTGvumcRh7SSd2KfV0NWYDB70BHIXQTg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -13355,9 +13293,9 @@ packages:
         optional: true
     dependencies:
       '@typescript-eslint/eslint-plugin': 7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.4.2)
-      '@typescript-eslint/utils': 7.1.1(eslint@8.57.0)(typescript@5.4.2)
+      '@typescript-eslint/utils': 7.2.0(eslint@8.57.0)(typescript@5.4.2)
       eslint: 8.57.0
-      vitest: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.4)
+      vitest: 1.3.1(@types/node@20.11.27)(happy-dom@13.8.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -14400,8 +14338,8 @@ packages:
       lodash.throttle: 4.1.1
       sisteransi: 1.0.5
 
-  /happy-dom@13.8.4:
-    resolution: {integrity: sha512-FjLmsOMgwpX9gc00nz830RVGCG1V6Rj+AB4amdEAbKmbeIL3Ude1peC8bcTCzTvrtm2TFKimY3Ws6Xeh5Q1XhA==}
+  /happy-dom@13.8.6:
+    resolution: {integrity: sha512-Urcv2jvNel19QirWimOwYTW3slpEYGS8PLtzEwAlpTWpnKycXF8s0I7xUBK9fPvWAIc8uZf/CnV2cIwWE8jptw==}
     engines: {node: '>=16.0.0'}
     dependencies:
       entities: 4.5.0
@@ -16339,7 +16277,7 @@ packages:
   /next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  /nitropack@2.9.2(drizzle-orm@0.30.1):
+  /nitropack@2.9.2(drizzle-orm@0.30.2):
     resolution: {integrity: sha512-0anZb+7xChw3sErT05Hc/usroBxDHD/6TwKgHIXjZioYZ7c3wKtCl1xwb/59RugyW5AdqF34u7GdmRzqPUIa5Q==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -16370,7 +16308,7 @@ packages:
       cookie-es: 1.0.0
       croner: 8.0.1
       crossws: 0.2.4
-      db0: 0.1.4(drizzle-orm@0.30.1)
+      db0: 0.1.4(drizzle-orm@0.30.2)
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 8.0.2
@@ -16733,7 +16671,7 @@ packages:
       - vue
     dev: false
 
-  /nuxt@3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6):
+  /nuxt@3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.6):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -16777,7 +16715,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.8
       mlly: 1.6.1
-      nitropack: 2.9.2(drizzle-orm@0.30.1)
+      nitropack: 2.9.2(drizzle-orm@0.30.2)
       nuxi: 3.10.1
       nypm: 0.3.8
       ofetch: 1.3.3
@@ -16842,7 +16780,7 @@ packages:
       - vue-tsc
       - xml2js
 
-  /nuxt@3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6):
+  /nuxt@3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(rollup@4.12.1)(typescript@5.4.2)(vite@5.1.6):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -16886,7 +16824,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.8
       mlly: 1.6.1
-      nitropack: 2.9.2(drizzle-orm@0.30.1)
+      nitropack: 2.9.2(drizzle-orm@0.30.2)
       nuxi: 3.10.1
       nypm: 0.3.8
       ofetch: 1.3.3
@@ -16952,7 +16890,7 @@ packages:
       - xml2js
     dev: false
 
-  /nuxt@3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.1)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6):
+  /nuxt@3.10.3(@types/node@20.11.27)(drizzle-orm@0.30.2)(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.6):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -16996,7 +16934,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.8
       mlly: 1.6.1
-      nitropack: 2.9.2(drizzle-orm@0.30.1)
+      nitropack: 2.9.2(drizzle-orm@0.30.2)
       nuxi: 3.10.1
       nypm: 0.3.8
       ofetch: 1.3.3
@@ -17295,17 +17233,17 @@ packages:
       '@node-rs/argon2': 1.7.0
       '@node-rs/bcrypt': 1.9.0
 
-  /oxc-parser@0.7.0:
-    resolution: {integrity: sha512-HmaOLQXPYvx39Zk+gCMXSGxeN+ZQqOE+EeH8Vh8noIua3oXW4SFauE2lH5vs/LhATENVjeXBYzuv3Z2hSvE8rA==}
+  /oxc-parser@0.8.0:
+    resolution: {integrity: sha512-ObPeMkbDX7igb7NyyAC8CbVC3fY+YmlMsxsRQ2oyFBkpQtI5tjoyqSDKbS9A9EcJvt2q89C4UoC+HjVBdLYYJg==}
     optionalDependencies:
-      '@oxc-parser/binding-darwin-arm64': 0.7.0
-      '@oxc-parser/binding-darwin-x64': 0.7.0
-      '@oxc-parser/binding-linux-arm64-gnu': 0.7.0
-      '@oxc-parser/binding-linux-arm64-musl': 0.7.0
-      '@oxc-parser/binding-linux-x64-gnu': 0.7.0
-      '@oxc-parser/binding-linux-x64-musl': 0.7.0
-      '@oxc-parser/binding-win32-arm64-msvc': 0.7.0
-      '@oxc-parser/binding-win32-x64-msvc': 0.7.0
+      '@oxc-parser/binding-darwin-arm64': 0.8.0
+      '@oxc-parser/binding-darwin-x64': 0.8.0
+      '@oxc-parser/binding-linux-arm64-gnu': 0.8.0
+      '@oxc-parser/binding-linux-arm64-musl': 0.8.0
+      '@oxc-parser/binding-linux-x64-gnu': 0.8.0
+      '@oxc-parser/binding-linux-x64-musl': 0.8.0
+      '@oxc-parser/binding-win32-arm64-msvc': 0.8.0
+      '@oxc-parser/binding-win32-x64-msvc': 0.8.0
 
   /p-limit@1.3.0:
     resolution: {integrity: sha512-vvcXsLAJ9Dr5rQOPk7toZQZJApBl2K4J6dANSsEuh6QI41JYcsS/qhTGa9ErIUUgK3WNQoJYvylxvjqmiqEA9Q==}
@@ -18897,21 +18835,21 @@ packages:
   /setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  /shadcn-nuxt@0.10.0:
-    resolution: {integrity: sha512-zn0HuKxtzMqLnFcYz08nRbsL6IUbNwu4mLm3LXKZM7mDu28+YbiHniyzBENADksSj24+xzh4FmBEVS6RyWbhDw==}
+  /shadcn-nuxt@0.10.2:
+    resolution: {integrity: sha512-97et6ArSKS/oclRIH80lLgs8f3ks/gvEVogOpQUsXBZ92omoC24/6JgxBpOzjHba10i5wqGGkuHa2QgJ8CP5ig==}
     dependencies:
       '@nuxt/kit': 3.10.3
-      oxc-parser: 0.7.0
+      oxc-parser: 0.8.0
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
 
-  /shadcn-nuxt@0.10.0(rollup@4.12.1):
-    resolution: {integrity: sha512-zn0HuKxtzMqLnFcYz08nRbsL6IUbNwu4mLm3LXKZM7mDu28+YbiHniyzBENADksSj24+xzh4FmBEVS6RyWbhDw==}
+  /shadcn-nuxt@0.10.2(rollup@4.12.1):
+    resolution: {integrity: sha512-97et6ArSKS/oclRIH80lLgs8f3ks/gvEVogOpQUsXBZ92omoC24/6JgxBpOzjHba10i5wqGGkuHa2QgJ8CP5ig==}
     dependencies:
       '@nuxt/kit': 3.10.3(rollup@4.12.1)
-      oxc-parser: 0.7.0
+      oxc-parser: 0.8.0
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -20839,10 +20777,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vitest-environment-nuxt@1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
+  /vitest-environment-nuxt@1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
     resolution: {integrity: sha512-AWMO9h4HdbaFdPWZw34gALFI8gbBiOpvfbyeZwHIPfh4kWg/TwElYHvYMQ61WPUlCGaS5LebfHkaI0WPyb//Iw==}
     dependencies:
-      '@nuxt/test-utils': 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
+      '@nuxt/test-utils': 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(rollup@3.29.4)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
     transitivePeerDependencies:
       - '@cucumber/cucumber'
       - '@jest/globals'
@@ -20861,10 +20799,10 @@ packages:
       - vue-router
     dev: true
 
-  /vitest-environment-nuxt@1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
+  /vitest-environment-nuxt@1.0.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13):
     resolution: {integrity: sha512-AWMO9h4HdbaFdPWZw34gALFI8gbBiOpvfbyeZwHIPfh4kWg/TwElYHvYMQ61WPUlCGaS5LebfHkaI0WPyb//Iw==}
     dependencies:
-      '@nuxt/test-utils': 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.4)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
+      '@nuxt/test-utils': 3.11.0(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@13.8.6)(playwright-core@1.42.1)(vite@5.1.6)(vitest@1.3.1)(vue-router@4.3.0)(vue@3.3.13)
     transitivePeerDependencies:
       - '@cucumber/cucumber'
       - '@jest/globals'
@@ -20883,7 +20821,7 @@ packages:
       - vue-router
     dev: true
 
-  /vitest@1.3.1(@types/node@20.11.27)(happy-dom@13.8.4):
+  /vitest@1.3.1(@types/node@20.11.27)(happy-dom@13.8.6):
     resolution: {integrity: sha512-/1QJqXs8YbCrfv/GPQ05wAZf2eakUPLPa18vkJAKE7RXOKfVHqMZZ1WlTjiwl6Gcn65M5vpNUB6EFLnEdRdEXQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -20918,7 +20856,7 @@ packages:
       chai: 4.4.1
       debug: 4.3.4
       execa: 8.0.1
-      happy-dom: 13.8.4
+      happy-dom: 13.8.6
       local-pkg: 0.5.0
       magic-string: 0.30.8
       pathe: 1.1.2
