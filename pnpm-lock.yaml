@@ -27,8 +27,8 @@ importers:
         version: 3.4.3
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.8.2
-        version: 2.8.2(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0)
+        specifier: ^2.8.3
+        version: 2.8.3(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0)
       '@types/node':
         specifier: ^20.11.28
         version: 20.11.28
@@ -307,32 +307,32 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       '@antfu/eslint-config':
-        specifier: ^2.8.2
-        version: 2.8.2(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0)
+        specifier: ^2.8.3
+        version: 2.8.3(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0)
       '@aws-sdk/client-ses':
         specifier: ^3.535.0
         version: 3.535.0
       '@capacitor/action-sheet':
         specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.1)
       '@capacitor/android':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+        specifier: ^6.0.0-rc.1
+        version: 6.0.0-rc.1(@capacitor/core@6.0.0-rc.1)
       '@capacitor/app':
         specifier: ^5.0.7
-        version: 5.0.7(@capacitor/core@6.0.0-rc.0)
+        version: 5.0.7(@capacitor/core@6.0.0-rc.1)
       '@capacitor/app-launcher':
         specifier: ^5.0.7
-        version: 5.0.7(@capacitor/core@6.0.0-rc.0)
+        version: 5.0.7(@capacitor/core@6.0.0-rc.1)
       '@capacitor/cli':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0
+        specifier: ^6.0.0-rc.1
+        version: 6.0.0-rc.1
       '@capacitor/core':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0
+        specifier: ^6.0.0-rc.1
+        version: 6.0.0-rc.1
       '@capacitor/ios':
-        specifier: ^6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+        specifier: ^6.0.0-rc.1
+        version: 6.0.0-rc.1(@capacitor/core@6.0.0-rc.1)
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
@@ -391,8 +391,8 @@ importers:
         specifier: workspace:^
         version: link:../s3
       '@revenuecat/purchases-capacitor':
-        specifier: ^7.5.4
-        version: 7.5.4(@capacitor/core@6.0.0-rc.0)
+        specifier: ^7.5.5
+        version: 7.5.5(@capacitor/core@6.0.0-rc.1)
       '@trapezedev/project':
         specifier: ^7.0.10
         version: 7.0.10(@types/node@20.11.28)(typescript@5.4.2)
@@ -445,8 +445,8 @@ importers:
         specifier: ^3.15.1
         version: 3.15.1(tailwindcss@3.4.1)
       gql.tada:
-        specifier: ^1.3.4
-        version: 1.3.4(graphql@16.8.1)
+        specifier: ^1.3.5
+        version: 1.3.5(graphql@16.8.1)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -591,8 +591,8 @@ importers:
   packages/nuxt/playgrounds/gql.tada:
     dependencies:
       gql.tada:
-        specifier: ^1.3.4
-        version: 1.3.4(graphql@16.8.1)
+        specifier: ^1.3.5
+        version: 1.3.5(graphql@16.8.1)
     devDependencies:
       '@0no-co/graphqlsp':
         specifier: ^1.6.0
@@ -728,20 +728,20 @@ importers:
     dependencies:
       '@capacitor/action-sheet':
         specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.1)
       '@capacitor/android':
-        specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+        specifier: 6.0.0-rc.1
+        version: 6.0.0-rc.1(@capacitor/core@6.0.0-rc.1)
       '@capacitor/core':
-        specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0
+        specifier: 6.0.0-rc.1
+        version: 6.0.0-rc.1
       '@capacitor/ios':
-        specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+        specifier: 6.0.0-rc.1
+        version: 6.0.0-rc.1(@capacitor/core@6.0.0-rc.1)
     devDependencies:
       '@capacitor/cli':
-        specifier: 6.0.0-rc.0
-        version: 6.0.0-rc.0
+        specifier: 6.0.0-rc.1
+        version: 6.0.0-rc.1
       '@trapezedev/project':
         specifier: ^7.0.10
         version: 7.0.10(@types/node@20.11.28)(typescript@5.4.2)
@@ -761,8 +761,8 @@ importers:
   themes/pergel-ionic:
     dependencies:
       '@capacitor/cli':
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^5.7.3
+        version: 5.7.3
       '@ionic/cli':
         specifier: ^7.2.0
         version: 7.2.0
@@ -825,8 +825,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  /@antfu/eslint-config@2.8.2(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0):
-    resolution: {integrity: sha512-lmB7C0DE1dMwp9b+kRWCF/EP3Wc18DUeT+STuX9OskOherX3P/eQ5PxmOslBVZalD9/mbft0s257mQL+LxJ37A==}
+  /@antfu/eslint-config@2.8.3(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0):
+    resolution: {integrity: sha512-M3l7KwDrtAaF90km8D0G0bhkEDl2/V4yh/Qi08uiFHoMAEzbqwF73HRIJxJgL1YwRcyUnJy7yEUkA04cI1GFEQ==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -867,6 +867,7 @@ packages:
     dependencies:
       '@antfu/eslint-define-config': 1.23.0-2
       '@antfu/install-pkg': 0.3.1
+      '@clack/prompts': 0.7.0
       '@eslint-types/jsdoc': 46.8.2-1
       '@eslint-types/typescript-eslint': 7.0.2
       '@eslint-types/unicorn': 51.0.1
@@ -897,7 +898,6 @@ packages:
       local-pkg: 0.5.0
       parse-gitignore: 2.0.0
       picocolors: 1.0.0
-      prompts: 2.4.2
       toml-eslint-parser: 0.9.3
       vue-eslint-parser: 9.4.2(eslint@8.57.0)
       yaml-eslint-parser: 1.2.2
@@ -2283,38 +2283,38 @@ packages:
       js-yaml: 4.1.0
     dev: true
 
-  /@capacitor/action-sheet@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+  /@capacitor/action-sheet@6.0.0-rc.0(@capacitor/core@6.0.0-rc.1):
     resolution: {integrity: sha512-cHMRf8w583vP6QPxwkwjKh/RD083j8+S7AsInMzCZGi4GiE6TF6WBhG/uuWd1P0FtyJqBR4lpjevak15rfUFQA==}
     peerDependencies:
       '@capacitor/core': next
     dependencies:
-      '@capacitor/core': 6.0.0-rc.0
+      '@capacitor/core': 6.0.0-rc.1
 
-  /@capacitor/android@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
-    resolution: {integrity: sha512-8mi4byPz19XfZ+az3+vi9FnCkvNgPJHxOjJmzFt8/Pwi17V9V9YIqWSUz68dn3t9f04h7+WYC9pLUHpSY1jcPg==}
+  /@capacitor/android@6.0.0-rc.1(@capacitor/core@6.0.0-rc.1):
+    resolution: {integrity: sha512-7HKkyNDo6Go4iDSoyxLdfsp2VgMCf/hpxS4DeAzp7XywGo7AsUV2homiNyu+undEJQRLWgC45GJKFI9Q+uIa6Q==}
     peerDependencies:
-      '@capacitor/core': ^6.0.0-rc.0
+      '@capacitor/core': ^6.0.0-rc.1
     dependencies:
-      '@capacitor/core': 6.0.0-rc.0
+      '@capacitor/core': 6.0.0-rc.1
 
-  /@capacitor/app-launcher@5.0.7(@capacitor/core@6.0.0-rc.0):
+  /@capacitor/app-launcher@5.0.7(@capacitor/core@6.0.0-rc.1):
     resolution: {integrity: sha512-FJacB/mK/iwWUKNf1PJz1d7sGyVNRLvEYyYSwbmn9F9+6onj/T2lCL7TU40qhsVwFt8oDmdvygjOnoIoqU9Bpg==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 6.0.0-rc.0
+      '@capacitor/core': 6.0.0-rc.1
     dev: true
 
-  /@capacitor/app@5.0.7(@capacitor/core@6.0.0-rc.0):
+  /@capacitor/app@5.0.7(@capacitor/core@6.0.0-rc.1):
     resolution: {integrity: sha512-oad0jwQu+vgQDukeS9UV56yG10dlxkAGGl26IQpZlTmg3dTI9qSJtvhmlLfkF0nEtoj5IsVQUPE+NLH1oZkgGQ==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 6.0.0-rc.0
+      '@capacitor/core': 6.0.0-rc.1
     dev: true
 
-  /@capacitor/cli@5.7.2:
-    resolution: {integrity: sha512-dTW48klx39Mm2twkRU5pHw7tFRGtGk80fw5psopmbx8Ep5FG08HprqnwK5DXsFPhgJaC+ax4VDwmFCvb8uAGFA==}
+  /@capacitor/cli@5.7.3:
+    resolution: {integrity: sha512-bfc2QraYS5AsMyYCrhKqcPlZ9bFpsCfnjLKTWLLPJOgOhCdTALPIbzTEtjHyjMPMfch3SFuxdfog57PCCKyJWg==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -2338,8 +2338,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@capacitor/cli@6.0.0-rc.0:
-    resolution: {integrity: sha512-vaprQBnfVGGWezwgilWv5Lj+lOd3ih67LiutazhQsgNzf09avDyWgwGwAGWstSEgF4G3a0EowK95gSMq70nHhA==}
+  /@capacitor/cli@6.0.0-rc.1:
+    resolution: {integrity: sha512-ESlYOG0ncEelwcJIglh5zAmiC7JxZhn4gWsxY4+jOLr8zEopyJggjNo3DDfigsW/rbcX3DjUL4AK0N2or2Uaog==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
@@ -2370,17 +2370,17 @@ packages:
     dependencies:
       tslib: 2.6.2
 
-  /@capacitor/core@6.0.0-rc.0:
-    resolution: {integrity: sha512-qokde8OZFpzUPccoOAd90xD+vyEcAV90ISg96RLMc1l4Hdk/F79bdsslyaaWU/4azLhiEDBwSuk9Kxn+q5WyfA==}
+  /@capacitor/core@6.0.0-rc.1:
+    resolution: {integrity: sha512-kZLM8tAP1XUlnnZsDTEqOEJGqKAvgKYuNABfziGr2rTZDAdsJMIgESvISAVcA3wl51zbNlYSTTuMudTbrXU+Hw==}
     dependencies:
       tslib: 2.6.2
 
-  /@capacitor/ios@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
-    resolution: {integrity: sha512-CJBm7oj8pZ0Bxci+swLtXa5vSsC3tAENxqTx4zvQInnRLIfKxB2MiQ/Oomcge3CjhMFxMYKhQ8MmsinyEANSIw==}
+  /@capacitor/ios@6.0.0-rc.1(@capacitor/core@6.0.0-rc.1):
+    resolution: {integrity: sha512-tvsQi/odddo0ddh+VQ0gYyjVgbzeeCVcYEMD7BS6C5mC8g5E2B1kfzCeOuj85o+FtDNcfI69k9UDeWSDHNN+0g==}
     peerDependencies:
-      '@capacitor/core': ^6.0.0-rc.0
+      '@capacitor/core': ^6.0.0-rc.1
     dependencies:
-      '@capacitor/core': 6.0.0-rc.0
+      '@capacitor/core': 6.0.0-rc.1
 
   /@clack/core@0.3.4:
     resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
@@ -3309,8 +3309,8 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.5.1
     dev: true
 
-  /@gql.tada/cli-utils@0.1.2:
-    resolution: {integrity: sha512-eydhCLeAKq8WVXtRAkYBbPFXvyACbHvs5oSlkx3qVMiLTaN8TGjzKpua69KKvPJ5jWVoS2d0Pt+YJU/nyx8Rwg==}
+  /@gql.tada/cli-utils@0.2.0:
+    resolution: {integrity: sha512-S/1KdJ08G9wKbsHUrBBT6GK38OtGaC82lY9MIFwkIziR9rf/N1PmDxWOThvMWJsaKQaEf5PhioRxquVCjeIbtw==}
     dependencies:
       '@urql/introspection': 1.0.3(graphql@16.8.1)
       graphql: 16.8.1
@@ -6519,7 +6519,7 @@ packages:
   /@nuxtjs/ionic@0.13.1:
     resolution: {integrity: sha512-t2+EqWFhTGrGI6s2ANHuuJQ7YUqyS2ZuTBQ9u/dDDcAcHLh9ghG8keNlcYqukEG4QM6v8EyuSH0CqcziXXt0wQ==}
     dependencies:
-      '@capacitor/cli': 5.7.2
+      '@capacitor/cli': 5.7.3
       '@capacitor/core': 5.7.2
       '@ionic/cli': 7.2.0
       '@ionic/vue': 7.7.4
@@ -6539,7 +6539,7 @@ packages:
   /@nuxtjs/ionic@0.13.1(rollup@3.29.4):
     resolution: {integrity: sha512-t2+EqWFhTGrGI6s2ANHuuJQ7YUqyS2ZuTBQ9u/dDDcAcHLh9ghG8keNlcYqukEG4QM6v8EyuSH0CqcziXXt0wQ==}
     dependencies:
-      '@capacitor/cli': 5.7.2
+      '@capacitor/cli': 5.7.3
       '@capacitor/core': 5.7.2
       '@ionic/cli': 7.2.0
       '@ionic/vue': 7.7.4
@@ -7619,17 +7619,17 @@ packages:
       '@codemirror/view': 6.25.1
     dev: true
 
-  /@revenuecat/purchases-capacitor@7.5.4(@capacitor/core@6.0.0-rc.0):
-    resolution: {integrity: sha512-J4KAH0hs8ASFLYXZcztDyCPTqKLnYr9J4p5Ksu29rAaBfELOqX7/xM+lyeiB3s7eNd4euA1yN2kFFIwB1RvIcw==}
+  /@revenuecat/purchases-capacitor@7.5.5(@capacitor/core@6.0.0-rc.1):
+    resolution: {integrity: sha512-AfT7cFi72dtaWs9SZdXlZfLpW2nLgmsrIc9AhZ8CthQtfLN794JT1WCfCEFi6q5BPOdVYqAGm0MUWv3ta4657w==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 6.0.0-rc.0
-      '@revenuecat/purchases-typescript-internal-esm': 9.9.0
+      '@capacitor/core': 6.0.0-rc.1
+      '@revenuecat/purchases-typescript-internal-esm': 10.2.0
     dev: true
 
-  /@revenuecat/purchases-typescript-internal-esm@9.9.0:
-    resolution: {integrity: sha512-NmSkyLU6yYTYh8ArvaA3ILkU913Oy9E6hl6S7t7+BtrBpW8Z7doVbM1MJB9WG7Jf5DGgqad4MgrrwamQnvgl8A==}
+  /@revenuecat/purchases-typescript-internal-esm@10.2.0:
+    resolution: {integrity: sha512-D6MInHvpGboulGaYxl0g9cWYx9RcGgGtUbtfg0qZwSLNGuIOQ9rZvuXxd2KQIASvlUsnZLlU31O+xQMUqDGmxg==}
     dev: true
 
   /@rollup/plugin-alias@5.1.0(rollup@3.29.4):
@@ -14164,12 +14164,12 @@ packages:
     dependencies:
       get-intrinsic: 1.2.4
 
-  /gql.tada@1.3.4(graphql@16.8.1):
-    resolution: {integrity: sha512-vnaWyLO6V5i8fL2I9EkXVecpNHrGDCuwfKSeyF+A4Q4s0XiFhQSYlGcHlJzDkt7M2Odw1Oe8QQX/cVOuofPbXA==}
+  /gql.tada@1.3.5(graphql@16.8.1):
+    resolution: {integrity: sha512-g5ZtNc72fuOHrrMgxnok6vhDoXMt6Q1RJefiuFzAusHMPR0L3/8a3Yyc2HSfEnHBt+tYBgIrvKmWDYIRNl80jg==}
     hasBin: true
     dependencies:
       '@0no-co/graphql.web': 1.0.4(graphql@16.8.1)
-      '@gql.tada/cli-utils': 0.1.2
+      '@gql.tada/cli-utils': 0.2.0
     transitivePeerDependencies:
       - graphql
 
