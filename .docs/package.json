@@ -13,7 +13,7 @@
   "devDependencies": {
     "automd": "^0.3.6",
     "fast-glob": "^3.3.2",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "pathe": "^1.1.2",
     "pergel": "^0.13.0",
     "typescript": "^5.4.2",

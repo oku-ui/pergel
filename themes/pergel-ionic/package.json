@@ -17,7 +17,7 @@
     "@pergel/module-box": "latest"
   },
   "devDependencies": {
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "pergel": "latest",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
