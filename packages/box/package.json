@@ -56,7 +56,7 @@
     "radix-vue": "^1.5.2",
     "shadcn-nuxt": "^0.10.2",
     "slugify": "^1.6.6",
-    "tailwind-merge": "^2.2.1",
+    "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "unsearch": "^0.0.2",
     "uuid": "^9.0.1",
