@@ -1,22 +1,52 @@
 PODS:
   - Capacitor (6.0.0-rc.0):
     - CapacitorCordova
+  - CapacitorActionSheet (6.0.0-rc.0):
+    - Capacitor
+  - CapacitorApp (6.0.0-rc.0):
+    - Capacitor
+  - CapacitorAppLauncher (6.0.0-rc.0):
+    - Capacitor
+  - CapacitorBackgroundRunner (1.0.5):
+    - Capacitor
+  - CapacitorBrowser (6.0.0-rc.0):
+    - Capacitor
   - CapacitorCordova (6.0.0-rc.0)
 
 DEPENDENCIES:
   - "Capacitor (from `../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios`)"
+  - "CapacitorActionSheet (from `../../../../node_modules/.pnpm/@capacitor+action-sheet@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/action-sheet`)"
+  - "CapacitorApp (from `../../../../node_modules/.pnpm/@capacitor+app@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app`)"
+  - "CapacitorAppLauncher (from `../../../../node_modules/.pnpm/@capacitor+app-launcher@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app-launcher`)"
+  - "CapacitorBackgroundRunner (from `../../../../node_modules/.pnpm/@capacitor+background-runner@1.0.5_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/background-runner`)"
+  - "CapacitorBrowser (from `../../../../node_modules/.pnpm/@capacitor+browser@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/browser`)"
   - "CapacitorCordova (from `../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios`)"
 
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios"
+  CapacitorActionSheet:
+    :path: "../../../../node_modules/.pnpm/@capacitor+action-sheet@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/action-sheet"
+  CapacitorApp:
+    :path: "../../../../node_modules/.pnpm/@capacitor+app@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app"
+  CapacitorAppLauncher:
+    :path: "../../../../node_modules/.pnpm/@capacitor+app-launcher@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app-launcher"
+  CapacitorBackgroundRunner:
+    :path: "../../../../node_modules/.pnpm/@capacitor+background-runner@1.0.5_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/background-runner"
+  CapacitorBrowser:
+    :path: "../../../../node_modules/.pnpm/@capacitor+browser@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/browser"
   CapacitorCordova:
     :path: "../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios"
 
 SPEC CHECKSUMS:
   Capacitor: c5b8b4e73032b078db259f1bbe71afd09fd84250
+  CapacitorActionSheet: 312d6e231ac2ffd46c83bcaeebe99bc67fd5d921
+  CapacitorApp: 8bdf8c1f3f6f9435e28e5125601c7074aaf264ab
+  CapacitorAppLauncher: 51cba67ad47f95a5416bf57ba2621997d216f0fc
+  CapacitorBackgroundRunner: f2415aebbcea4e744eb45f785a50f07ba72f1d0b
+  CapacitorBrowser: 37861d3df0b0f9909d9e69127776b6b685db12a6
   CapacitorCordova: e8930c71b1bf90e793253f3057b3354a88ed83b3
 
-PODFILE CHECKSUM: 8982ac2bb7c97978308fb0a990bb1a74b095d95a
+PODFILE CHECKSUM: d889f4bd8ffd06d5c144e23d540c9810b7302749
 
 COCOAPODS: 1.15.2

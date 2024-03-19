@@ -1,4 +1,7 @@
+import { join } from 'node:path'
+import { readFile, writeFile } from 'node:fs/promises'
 import type { XmlFile } from '@trapezedev/project'
+import { useNuxt } from '@nuxt/kit'
 import type { TrapezedPlugins } from '../types'
 
 export function trapezedPlugins(options: TrapezedPlugins) {
@@ -126,5 +129,53 @@ export function addFeature(
   if (file.find('Permissions') && file.find(`manifest/uses-feature[@android:name="${feature}"]`)?.length === 0) {
     file.injectFragment('manifest', `<uses-feature android:name="${feature}" />
 `.trim())
+  }
+}
+
+export async function AppDelegateAdditionalCode(
+  options: {
+    additionalCode: string
+    where: {
+      startContent: {
+        startIndex: string
+        endIndex?: string
+      }
+      endContent: string
+    }
+    hasChecker?: string
+  },
+) {
+  const filePath = '/ios/App/App/AppDelegate.swift'
+
+  try {
+    const rootDir = useNuxt().options.rootDir
+    const fullPath = join(rootDir, filePath)
+
+    let fileContent = await readFile(fullPath, 'utf8')
+
+    const startIndex = fileContent.indexOf(options.where.startContent.startIndex)
+    const endIndex = fileContent.indexOf(options.where.endContent, startIndex)
+
+    if (!!options?.hasChecker && fileContent.includes(options.hasChecker))
+      return
+
+    if (startIndex !== -1 && endIndex !== -1) {
+      const returnIndex = fileContent.indexOf(options.where.endContent, startIndex)
+
+      if (returnIndex !== -1) {
+        fileContent = fileContent.slice(0, returnIndex) + options.additionalCode + fileContent.slice(returnIndex)
+
+        await writeFile(fullPath, fileContent, 'utf8')
+      }
+      else {
+        console.error(`Error: ${options.where.endContent} statement not found in the ${options.where.startContent.startIndex}.`)
+      }
+    }
+    else {
+      console.error(`Error: ${options.where.startContent.startIndex} function not found in the file.`)
+    }
+  }
+  catch (e) {
+    console.error(e)
   }
 }

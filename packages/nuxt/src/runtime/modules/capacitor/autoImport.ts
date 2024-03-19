@@ -37,6 +37,23 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.appLauncher && isPackageExists('@capacitor/app')) {
+    presets.push({
+      from: '@capacitor/app',
+      imports: [
+        {
+          name: 'App',
+          as: 'CapacitorApp',
+          from: '@capacitor/app',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/app')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (params.options.plugins.official.appLauncher && isPackageExists('@capacitor/app-launcher')) {
     presets.push({
       from: '@capacitor/app-launcher',

@@ -1,7 +1,7 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
-import { logger as _logger } from '@nuxt/kit'
+import { logger as _logger, addTemplate } from '@nuxt/kit'
 import { isPackageExists } from 'local-pkg'
 import { definePergelModule } from '../../core/definePergel'
 import { generateModuleRuntimeConfig, generateModuleRuntimeConfigEnv } from '../../core/utils/moduleRuntimeConfig'
@@ -86,6 +86,22 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
     },
   },
   async setup({ nuxt, options }) {
+    const pergelType = addTemplate({
+      filename: 'types/capacitor.d.ts',
+      write: true,
+      getContents: () => {
+        return /* TypeScript */ ` // @ts-ignore
+import type { AppPlugin } from '@capacitor/app/dist/esm/definitions';
+
+declare const CapacitorApp: AppPlugin;
+  `.trim().replace(/ {10}/g, '')
+      },
+    })
+
+    nuxt.hook('prepare:types', async (ctx) => {
+      ctx.references.push({ path: pergelType.dst })
+    })
+
     generateModuleRuntimeConfigEnv(nuxt, options, {
       runTargetAndroidEmulator: undefined,
       runTargetIOSSimulator: undefined,
@@ -124,22 +140,22 @@ export default config;`
 
     if (options.ios && !existsSync(resolve(nuxt.options.rootDir, 'ios'))) {
       execSync(
-          `pnpm pergel module -s=capacitor:add:ios -p=${projectName} -m=${moduleName}`,
-          {
-            stdio: 'inherit',
-            cwd: nuxt.options.rootDir,
-          },
+        `pnpm pergel module -s=capacitor:add:ios -p=${projectName} -m=${moduleName}`,
+        {
+          stdio: 'inherit',
+          cwd: nuxt.options.rootDir,
+        },
       )
       _logger.info(`iOS platform added to ${projectName}`)
     }
 
     if (options.android && !existsSync(resolve(nuxt.options.rootDir, 'android'))) {
       execSync(
-          `pnpm pergel module -s=capacitor:add:android -p=${projectName} -m=${moduleName}`,
-          {
-            stdio: 'inherit',
-            cwd: nuxt.options.rootDir,
-          },
+        `pnpm pergel module -s=capacitor:add:android -p=${projectName} -m=${moduleName}`,
+        {
+          stdio: 'inherit',
+          cwd: nuxt.options.rootDir,
+        },
       )
       _logger.info(`Android platform added to ${projectName}`)
     }

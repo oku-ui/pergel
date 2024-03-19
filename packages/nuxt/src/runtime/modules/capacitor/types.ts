@@ -38,7 +38,14 @@ export interface ResolvedCapacitorOptions {
     official: {
       actionSheet: boolean
       appLauncher: boolean
-      backgroundRunner: boolean
+      backgroundRunner: boolean | {
+        label: string
+        src: string
+        event: string
+        repeat: boolean
+        interval: number
+        autoStart: boolean
+      }
       browser: boolean
       camera: boolean | {
         NSCameraUsageDescription?: string
@@ -123,12 +130,12 @@ export interface CapacitorOptions {
       actionSheet?: boolean
       appLauncher?: boolean
       backgroundRunner?: boolean | {
-        label?: string
-        src?: string
-        event?: string
-        repeat?: boolean
-        interval?: number
-        autoStart?: boolean
+        label: string
+        src: string
+        event: string
+        repeat: boolean
+        interval: number
+        autoStart: boolean
       }
       browser?: boolean
       camera?: boolean | {

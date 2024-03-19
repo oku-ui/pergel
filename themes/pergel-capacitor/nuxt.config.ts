@@ -37,10 +37,17 @@ export default defineNuxtConfig({
           },
           plugins: {
             official: {
-              browser: false,
-              actionSheet: false,
-              appLauncher: false,
-              backgroundRunner: false,
+              browser: true,
+              actionSheet: true,
+              appLauncher: true,
+              backgroundRunner: {
+                label: 'com.example.app.task',
+                autoStart: true,
+                event: 'testLoad',
+                interval: 2,
+                src: '/runners/runner.js',
+                repeat: true,
+              },
               app: {
                 CFBundleURLSchemes: ['pergelapp'],
               },

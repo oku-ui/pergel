@@ -11,7 +11,11 @@ install! 'cocoapods', :disable_input_output_paths => true
 def capacitor_pods
   pod 'Capacitor', :path => '../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios'
-
+  pod 'CapacitorActionSheet', :path => '../../../../node_modules/.pnpm/@capacitor+action-sheet@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/action-sheet'
+  pod 'CapacitorApp', :path => '../../../../node_modules/.pnpm/@capacitor+app@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app'
+  pod 'CapacitorAppLauncher', :path => '../../../../node_modules/.pnpm/@capacitor+app-launcher@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app-launcher'
+  pod 'CapacitorBackgroundRunner', :path => '../../../../node_modules/.pnpm/@capacitor+background-runner@1.0.5_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/background-runner'
+  pod 'CapacitorBrowser', :path => '../../../../node_modules/.pnpm/@capacitor+browser@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/browser'
 end
 
 target 'App' do

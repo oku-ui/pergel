@@ -1,6 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
-import { addFeature, addPermission, trapezedPlugins } from '../utils'
+import { AppDelegateAdditionalCode, addFeature, addPermission, trapezedPlugins } from '../utils'
 
 export default trapezedPlugins({
   meta: {
@@ -22,43 +20,65 @@ export default trapezedPlugins({
     // TODO: SDK version check
     addPermission(file, 'android.permission.SCHEDULE_EXACT_ALARM')
   },
-  async ios(_project, _ctx, _options, nuxt) {
-    const filePath = '/ios/App/App/AppDelegate.swift'
-    const additionalCode = `
-        BackgroundRunnerPlugin.registerBackgroundTask()
+  async ios(project, { build, target }, options) {
+    await AppDelegateAdditionalCode({
+      additionalCode: `import CapacitorBackgroundRunner
+`,
+      where: {
+        startContent: {
+          startIndex: 'import UIKit',
+          endIndex: '',
+        },
+        endContent: 'import Capacitor',
+      },
+      hasChecker: 'import CapacitorBackgroundRunner',
+    })
+
+    await AppDelegateAdditionalCode(
+      {
+        additionalCode: `
+        BackgroundRunnerPlugin.registerBackgroundTask() // test1
         BackgroundRunnerPlugin.handleApplicationDidFinishLaunching(launchOptions: launchOptions)
-    `
+    `,
+        where: {
+          startContent: {
+            startIndex: 'func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {',
+            endIndex: '}',
+          },
+          endContent: 'return true',
+        },
+        hasChecker: 'BackgroundRunnerPlugin',
+      },
+    )
 
-    try {
-      const rootDir = nuxt.options.rootDir
-      const fullPath = join(rootDir, filePath)
+    await AppDelegateAdditionalCode({
+      additionalCode: `}
 
-      let fileContent = await readFile(fullPath, 'utf8')
-
-      const startIndex = fileContent.indexOf('func application')
-      const endIndex = fileContent.indexOf('}', startIndex)
-
-      if (fileContent.includes('BackgroundRunnerPlugin'))
-        return
-
-      if (startIndex !== -1 && endIndex !== -1) {
-        const returnIndex = fileContent.indexOf('return true', startIndex)
-
-        if (returnIndex !== -1) {
-          fileContent = fileContent.slice(0, returnIndex) + additionalCode + fileContent.slice(returnIndex)
-
-          await writeFile(fullPath, fileContent, 'utf8')
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        BackgroundRunnerPlugin.dispatchEvent(event: "remoteNotification", eventArgs: userInfo) { result in
+            switch result {
+            case .success:
+                completionHandler(.newData)
+            case .failure:
+                completionHandler(.failed)
+            }
         }
-        else {
-          console.error('Error: "return true" statement not found in the "func application" function.')
-        }
-      }
-      else {
-        console.error('Error: "func application" function not found in the file.')
-      }
-    }
-    catch (e) {
-      console.error(e)
-    }
+    `,
+      where: {
+        startContent: {
+          startIndex: `return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)`,
+          endIndex: '',
+        },
+        endContent: '}',
+      },
+      hasChecker: 'BackgroundRunnerPlugin.dispatchEvent',
+    })
+
+    if (typeof options.plugins.official.backgroundRunner !== 'object')
+      return
+
+    await project?.updateInfoPlist(target.name, build.name, {
+      BGTaskSchedulerPermittedIdentifiers: options.plugins.official.backgroundRunner.label,
+    })
   },
 })
