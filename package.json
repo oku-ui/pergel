@@ -51,7 +51,7 @@
     "nx": "^18.1.2",
     "simple-git-hooks": "^2.11.0",
     "typescript": "^5.4.3",
-    "vite": "5.1.6",
+    "vite": "5.2.2",
     "vitest": "^1.4.0"
   },
   "resolutions": {
