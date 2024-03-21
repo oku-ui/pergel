@@ -83,8 +83,8 @@ importers:
         specifier: ^7.0.6
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.5
-        version: 1.0.5(lucia@3.1.1)
+        specifier: 1.0.6
+        version: 1.0.6(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: ^3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -98,8 +98,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       bullmq:
-        specifier: ^5.4.3
-        version: 5.4.3
+        specifier: ^5.4.4
+        version: 5.4.4
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -3841,8 +3841,8 @@ packages:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
     dev: false
 
-  /@lucia-auth/adapter-drizzle@1.0.5(lucia@3.1.1):
-    resolution: {integrity: sha512-DfSfgsHN1QemuW3LuCQFMWMQi12WVhsZ1t38FaFquA0YT5ePVjTYPvdceBDngOV6Zp2+yuOr9sJasjp1ZIHX+g==}
+  /@lucia-auth/adapter-drizzle@1.0.6(lucia@3.1.1):
+    resolution: {integrity: sha512-lyh4Fzhpe0ktWdt3+VOQhBkZfob/xjXmwP7RBu0STTLOBQm1LxE470RmdP2Lp0QMC07NlSDXbj/SJQkMdSSivQ==}
     peerDependencies:
       lucia: 3.x
     dependencies:
@@ -9242,8 +9242,8 @@ packages:
       semver: 7.6.0
     dev: false
 
-  /bullmq@5.4.3:
-    resolution: {integrity: sha512-JWzwAjX2LLn969W2R4ExoftOV646YX5rpB4q117vDaKYKT8cgAx+n94virnlLKVPK+X4WO8qSDJHzsiIepF2OA==}
+  /bullmq@5.4.4:
+    resolution: {integrity: sha512-W5cZ2z7y434LnmdyyVPiE8q5Ok3znQKykyMi0xBQNxUrEx0NgbA+ZkOBmVw8bZ/fgn+qTnR2opbUNYAzGjzpnA==}
     dependencies:
       cron-parser: 4.9.0
       ioredis: 5.3.2
