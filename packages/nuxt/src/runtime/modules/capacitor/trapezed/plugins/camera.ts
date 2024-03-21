@@ -18,18 +18,16 @@ export default trapezedPlugins({
 
     const servicePath = 'android:name="com.google.android.gms.metadata.ModuleDependencies"'
 
-    addMiddleService(file, servicePath)
+    await addMiddleService(file, servicePath)
 
-    await asyncFunc(1000)
-
-    addServiceAttribute(file, servicePath, {
+    await addServiceAttribute(file, servicePath, {
       'android:enabled': 'false',
       'android:exported': 'false',
       'tools:ignore': 'MissingClass',
     })
 
-    addIntentFilter(file, `manifest/application/service[@${servicePath}]`)
-    addIntentFilterItem(file, `manifest/application/service[@${servicePath}]/intent-filter`, 'action', 'android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES"')
+    await addIntentFilter(file, `manifest/application/service[@${servicePath}]`)
+    await addIntentFilterItem(file, `manifest/application/service[@${servicePath}]/intent-filter`, 'action', 'android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES"')
   },
   async ios(project, { build, target }, options) {
     let infoPlist: typeof options.plugins.official.camera = {}

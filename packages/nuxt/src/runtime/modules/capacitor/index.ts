@@ -94,6 +94,7 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
 import type { AppPlugin } from '@capacitor/app/dist/esm/definitions';
 
 declare const CapacitorApp: AppPlugin;
+export type { CapacitorApp }
   `.trim().replace(/ {10}/g, '')
       },
     })
