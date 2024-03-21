@@ -355,8 +355,8 @@ importers:
         specifier: ^7.0.6
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.5
-        version: 1.0.5(lucia@3.1.1)
+        specifier: 1.0.6
+        version: 1.0.6(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -365,10 +365,10 @@ importers:
         version: 3.5.3(lucia@3.1.1)
       '@nuxt/devtools-ui-kit':
         specifier: ^1.1.1
-        version: 1.1.1(@nuxt/devtools@1.1.1)(@vue/compiler-core@3.4.21)(nuxt@3.11.1)(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)(vue@3.3.13)(webpack@5.90.3)
+        version: 1.1.1(@nuxt/devtools@1.1.1)(@vue/compiler-core@3.4.21)(nuxt@3.11.1)(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)(vue@3.3.13)(webpack@5.90.3)
       '@nuxt/module-builder':
         specifier: ^0.5.5
-        version: 0.5.5(@nuxt/kit@3.11.1)(nuxi@3.10.1)(typescript@5.4.3)
+        version: 0.5.5(@nuxt/kit@3.11.1)(nuxi@3.11.1)(typescript@5.4.3)
       '@nuxt/schema':
         specifier: ^3.11.1
         version: 3.11.1(rollup@3.29.4)
@@ -421,7 +421,7 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       bullmq:
-        specifier: ^5.4.3
+        specifier: ^5.4.4
         version: 5.4.4
       c12:
         specifier: ^1.10.0
@@ -554,8 +554,8 @@ importers:
         specifier: ^7.0.6
         version: 7.0.6
       '@lucia-auth/adapter-drizzle':
-        specifier: 1.0.5
-        version: 1.0.5(lucia@3.1.1)
+        specifier: 1.0.6
+        version: 1.0.6(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: 3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -633,8 +633,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
       '@lucia-auth/adapter-drizzle':
-        specifier: ^1.0.5
-        version: 1.0.5(lucia@3.1.1)
+        specifier: ^1.0.6
+        version: 1.0.6(lucia@3.1.1)
       '@lucia-auth/adapter-postgresql':
         specifier: ^3.1.1
         version: 3.1.1(lucia@3.1.1)(pg@8.11.3)(postgres@3.4.3)
@@ -4780,8 +4780,8 @@ packages:
       '@lezer/common': 1.2.1
     dev: true
 
-  /@lucia-auth/adapter-drizzle@1.0.5(lucia@3.1.1):
-    resolution: {integrity: sha512-DfSfgsHN1QemuW3LuCQFMWMQi12WVhsZ1t38FaFquA0YT5ePVjTYPvdceBDngOV6Zp2+yuOr9sJasjp1ZIHX+g==}
+  /@lucia-auth/adapter-drizzle@1.0.6(lucia@3.1.1):
+    resolution: {integrity: sha512-lyh4Fzhpe0ktWdt3+VOQhBkZfob/xjXmwP7RBu0STTLOBQm1LxE470RmdP2Lp0QMC07NlSDXbj/SJQkMdSSivQ==}
     peerDependencies:
       lucia: 3.x
     dependencies:
@@ -5666,7 +5666,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/devtools-ui-kit@1.1.1(@nuxt/devtools@1.1.1)(@vue/compiler-core@3.4.21)(nuxt@3.11.1)(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)(vue@3.3.13)(webpack@5.90.3):
+  /@nuxt/devtools-ui-kit@1.1.1(@nuxt/devtools@1.1.1)(@vue/compiler-core@3.4.21)(nuxt@3.11.1)(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)(vue@3.3.13)(webpack@5.90.3):
     resolution: {integrity: sha512-WwMepQaHX7rFKIqhb5HEwbgxGRSacuKJHceqepz6bVVoD2mCIU3LK6/kKepdMJ8fpZVVU3pycIph+TdltbsXYw==}
     peerDependencies:
       '@nuxt/devtools': 1.1.1
@@ -5680,7 +5680,7 @@ packages:
       '@nuxt/kit': 3.11.1(rollup@3.29.4)
       '@nuxtjs/color-mode': 3.3.3(rollup@3.29.4)
       '@unocss/core': 0.58.6
-      '@unocss/nuxt': 0.58.6(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)(webpack@5.90.3)
+      '@unocss/nuxt': 0.58.6(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)(webpack@5.90.3)
       '@unocss/preset-attributify': 0.58.6
       '@unocss/preset-icons': 0.58.6
       '@unocss/preset-mini': 0.58.6
@@ -5691,7 +5691,7 @@ packages:
       defu: 6.1.4
       focus-trap: 7.5.4
       splitpanes: 3.1.5
-      unocss: 0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)
+      unocss: 0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)
       v-lazy-show: 0.2.4(@vue/compiler-core@3.4.21)
     transitivePeerDependencies:
       - '@unocss/webpack'
@@ -6148,7 +6148,7 @@ packages:
       - supports-color
     dev: false
 
-  /@nuxt/module-builder@0.5.5(@nuxt/kit@3.11.1)(nuxi@3.10.1)(typescript@5.4.3):
+  /@nuxt/module-builder@0.5.5(@nuxt/kit@3.11.1)(nuxi@3.11.1)(typescript@5.4.3):
     resolution: {integrity: sha512-ifFfwA1rbSXSae25RmqA2kAbV3xoShZNrq1yK8VXB/EnIcDn4WiaYR1PytaSxIt5zsvWPn92BJXiIUBiMQZ0hw==}
     hasBin: true
     peerDependencies:
@@ -6159,7 +6159,7 @@ packages:
       citty: 0.1.6
       consola: 3.2.3
       mlly: 1.6.1
-      nuxi: 3.10.1
+      nuxi: 3.11.1
       pathe: 1.1.2
       unbuild: 2.0.0(typescript@5.4.3)
     transitivePeerDependencies:
@@ -7753,6 +7753,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     bundledDependencies:
       - napi-wasm
 
@@ -9618,7 +9619,7 @@ packages:
       gzip-size: 6.0.0
       sirv: 2.0.4
 
-  /@unocss/nuxt@0.58.6(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)(webpack@5.90.3):
+  /@unocss/nuxt@0.58.6(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)(webpack@5.90.3):
     resolution: {integrity: sha512-DDKnoLhp/1kVpWGCSn+7l9OkaKkMefjQsc0jM4B0e5ihCYeZgP3O7GeJdoX/wSj4QVoJQh4Prosyf8Ili0F8/A==}
     dependencies:
       '@nuxt/kit': 3.11.1(rollup@3.29.4)
@@ -9634,7 +9635,7 @@ packages:
       '@unocss/reset': 0.58.6
       '@unocss/vite': 0.58.6(rollup@3.29.4)(vite@5.2.2)
       '@unocss/webpack': 0.58.6(rollup@3.29.4)(webpack@5.90.3)
-      unocss: 0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)
+      unocss: 0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -9643,7 +9644,7 @@ packages:
       - webpack
     dev: true
 
-  /@unocss/postcss@0.58.6(postcss@8.4.35):
+  /@unocss/postcss@0.58.6(postcss@8.4.38):
     resolution: {integrity: sha512-jTwu7llhRm7luscsk0JekCeo6RS2W98CXiCJRE1H6IDQnjGQQ/9uRAqW4wuLsv7OQ1ThF8m9NKEj0wFJv7ePNg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -9655,7 +9656,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.3.2
       magic-string: 0.30.8
-      postcss: 8.4.35
+      postcss: 8.4.38
 
   /@unocss/preset-attributify@0.58.6:
     resolution: {integrity: sha512-IW2aIBH0RiYsP50VckgxXhMwjDk/XVZykUUklgko9aT+gNC2xDBm3936RWLVLmHdBHG1Vnnjc71BG6aUAqrtEA==}
@@ -10223,7 +10224,7 @@ packages:
       colord: 2.9.3
       floating-vue: 5.2.2(@nuxt/kit@3.11.1)(vue@3.3.13)
       focus-trap: 7.5.4
-      unocss: 0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2)
+      unocss: 0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2)
       vue: 3.3.13(typescript@5.4.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -16619,6 +16620,9 @@ packages:
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+
   /native-run@2.0.1:
     resolution: {integrity: sha512-XfG1FBZLM50J10xH9361whJRC9SHZ0Bub4iNRhhI61C8Jv0e1ud19muex6sNKB51ibQNUJNuYn25MuYET/rE6w==}
     engines: {node: '>=16.0.0'}
@@ -21100,7 +21104,7 @@ packages:
       normalize-path: 2.1.1
     dev: false
 
-  /unocss@0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.35)(rollup@3.29.4)(vite@5.2.2):
+  /unocss@0.58.6(@unocss/webpack@0.58.6)(postcss@8.4.38)(rollup@3.29.4)(vite@5.2.2):
     resolution: {integrity: sha512-HBstDtC6KKD5yCYh5hHpPdHGZai0B/iLlDwkOIK+xfQYrvl8tNBvKfRz3xgiaI5MJ+fLmEOxbfXQIjleU1A0iA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -21116,7 +21120,7 @@ packages:
       '@unocss/cli': 0.58.6(rollup@3.29.4)
       '@unocss/core': 0.58.6
       '@unocss/extractor-arbitrary-variants': 0.58.6
-      '@unocss/postcss': 0.58.6(postcss@8.4.35)
+      '@unocss/postcss': 0.58.6(postcss@8.4.38)
       '@unocss/preset-attributify': 0.58.6
       '@unocss/preset-icons': 0.58.6
       '@unocss/preset-mini': 0.58.6
