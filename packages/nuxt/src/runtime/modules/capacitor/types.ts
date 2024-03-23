@@ -57,6 +57,11 @@ export interface ResolvedCapacitorOptions {
         CFBundleURLSchemes: string[]
       }
       device: boolean
+      dialog: boolean
+      filesystem: boolean | {
+        UIFileSharingEnabled?: string
+        LSSupportsOpeningDocumentsInPlace?: string
+      }
     }
     community: {
       revenuecat: boolean
@@ -138,17 +143,20 @@ export interface CapacitorOptions {
         autoStart: boolean
       }
       browser?: boolean
+      /**
+       * BUG: Nuxt adds the preparation to the service after running it twice
+       */
       camera?: boolean | {
         /**
-         * Your camera will be used to take pictures and record video
+         * @default 'Your camera will be used to take pictures and record video'
          */
         NSCameraUsageDescription?: string
         /**
-         * Your photo library will be used to select images and videos
+         * @default 'Your photo library will be used to select images and videos'
          */
         NSPhotoLibraryUsageDescription?: string
         /**
-         * Your microphone will be used to record audio
+         * @default 'Your microphone will be used to record audio'
          */
         NSMicrophoneUsageDescription?: string
       }
@@ -160,6 +168,17 @@ export interface CapacitorOptions {
         enable: boolean
       }
       device?: boolean
+      dialog?: boolean
+      filesystem?: boolean | {
+        /**
+         * @default 'Your camera will be used to take pictures and record video'
+         */
+        UIFileSharingEnabled?: string
+        /**
+         * @default 'Supports opening documents in place'
+         */
+        LSSupportsOpeningDocumentsInPlace?: string
+      }
     }
     community?: {
       revenuecat?: boolean

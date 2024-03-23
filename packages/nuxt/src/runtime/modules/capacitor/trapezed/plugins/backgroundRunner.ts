@@ -37,7 +37,7 @@ export default trapezedPlugins({
     await AppDelegateAdditionalCode(
       {
         additionalCode: `
-        BackgroundRunnerPlugin.registerBackgroundTask() // test1
+        BackgroundRunnerPlugin.registerBackgroundTask()
         BackgroundRunnerPlugin.handleApplicationDidFinishLaunching(launchOptions: launchOptions)
     `,
         where: {

@@ -51,8 +51,10 @@ export default defineNuxtConfig({
               app: {
                 CFBundleURLSchemes: ['pergelapp'],
               },
-              camera: false,
-              device: false,
+              camera: false, // BUG
+              device: true,
+              dialog: true,
+              filesystem: true,
             },
           },
         },

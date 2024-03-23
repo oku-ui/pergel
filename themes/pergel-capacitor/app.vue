@@ -44,16 +44,62 @@ CapacitorApp.addListener('appStateChange', ({ isActive }: { isActive: boolean })
   appStates.value.push(isActive)
 })
 
-// BackgroundRunner
+// Device
+async function logDeviceInfo() {
+  const info = await CapacitorDevice.getInfo()
+
+  console.log(info)
+}
+
+// Dialog
+async function showAlert() {
+  await CapacitorDialog.alert({
+    title: 'Stop',
+    message: 'this is an error',
+  })
+}
+
+// Filesystem
+async function handleFilesystem() {
+  const writeSecretFile = async () => {
+    await CapacitorFSFilesystem.writeFile({
+      path: 'secrets/text.txt',
+      data: 'This is a test',
+      directory: CapacitorFSDirectory.Documents,
+      encoding: CapacitorFSEncoding.UTF8,
+    })
+  }
+
+  const readSecretFile = async () => {
+    const contents = await CapacitorFSFilesystem.readFile({
+      path: 'secrets/text.txt',
+      directory: CapacitorFSDirectory.Documents,
+      encoding: CapacitorFSEncoding.UTF8,
+    })
+
+    console.log('secrets:', contents)
+  }
+
+  if (!CapacitorFSFilesystem.checkPermissions())
+    return console.log('permission required')
+
+  await writeSecretFile()
+  await readSecretFile()
+}
+
 onMounted(() => {
+  // Permissions
   CapacitorBackgroundRunner.requestPermissions({
     apis: ['geolocation', 'notifications'],
   })
+  CapacitorFSFilesystem.requestPermissions()
+
+  logDeviceInfo()
 })
 </script>
 
 <template>
-  <div style="padding: 74px">
+  <div :style="{ padding: '100px' }">
     <button @click="showActions">
       Action Sheet
     </button>
@@ -64,6 +110,14 @@ onMounted(() => {
 
     <button @click="checkCanOpenUrl">
       App Launcher
+    </button>
+
+    <button @click="showAlert">
+      Dialog
+    </button>
+
+    <button @click="handleFilesystem">
+      Filesystem
     </button>
 
     <div>

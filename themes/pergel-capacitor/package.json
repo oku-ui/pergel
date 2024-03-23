@@ -11,6 +11,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "ps": "pnpm pergel select",
+    "pi": "pnpm pergel install",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -23,6 +25,9 @@
     "@capacitor/background-runner": "^1.0.5",
     "@capacitor/browser": "6.0.0-rc.0",
     "@capacitor/core": "6.0.0-rc.0",
+    "@capacitor/device": "6.0.0-rc.0",
+    "@capacitor/dialog": "6.0.0-rc.0",
+    "@capacitor/filesystem": "^6.0.0-rc.0",
     "@capacitor/ios": "6.0.0-rc.0"
   },
   "devDependencies": {

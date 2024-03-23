@@ -1,5 +1,6 @@
 import { addIntentFilter, addIntentFilterItem, addMiddleService, addPermission, addServiceAttribute, asyncFunc, trapezedPlugins } from '../utils'
 
+// BUG: nuxt adds the preparation to the service after running it twice
 export default trapezedPlugins({
   meta: {
     name: 'camera',
@@ -18,9 +19,9 @@ export default trapezedPlugins({
 
     const servicePath = 'android:name="com.google.android.gms.metadata.ModuleDependencies"'
 
-    await addMiddleService(file, servicePath)
+    addMiddleService(file, servicePath)
 
-    await addServiceAttribute(file, servicePath, {
+    addServiceAttribute(file, servicePath, {
       'android:enabled': 'false',
       'android:exported': 'false',
       'tools:ignore': 'MissingClass',

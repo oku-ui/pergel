@@ -16,6 +16,9 @@ def capacitor_pods
   pod 'CapacitorAppLauncher', :path => '../../../../node_modules/.pnpm/@capacitor+app-launcher@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/app-launcher'
   pod 'CapacitorBackgroundRunner', :path => '../../../../node_modules/.pnpm/@capacitor+background-runner@1.0.5_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/background-runner'
   pod 'CapacitorBrowser', :path => '../../../../node_modules/.pnpm/@capacitor+browser@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/browser'
+  pod 'CapacitorDevice', :path => '../../../../node_modules/.pnpm/@capacitor+device@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/device'
+  pod 'CapacitorDialog', :path => '../../../../node_modules/.pnpm/@capacitor+dialog@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/dialog'
+  pod 'CapacitorFilesystem', :path => '../../../../node_modules/.pnpm/@capacitor+filesystem@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/filesystem'
 end
 
 target 'App' do

@@ -8,6 +8,7 @@ const plugins = {
   app: () => import('./plugins/app'),
   backgroundRunner: () => import('./plugins/backgroundRunner'),
   camera: () => import('./plugins/camera'),
+  filesystem: () => import('./plugins/filesystem'),
 }
 
 export async function trapezedRun(params: {

@@ -40,6 +40,10 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/clipboard'] = deps['@capacitor/clipboard']
         if (options.plugins.official.device)
           defaultDeps['@capacitor/device'] = deps['@capacitor/device']
+        if (options.plugins.official.dialog)
+          defaultDeps['@capacitor/dialog'] = deps['@capacitor/dialog']
+        if (options.plugins.official.filesystem)
+          defaultDeps['@capacitor/filesystem'] = deps['@capacitor/filesystem']
       }
 
       if (options.plugins.community) {

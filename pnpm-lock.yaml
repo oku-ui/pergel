@@ -345,6 +345,12 @@ importers:
       '@capacitor/device':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/dialog':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/filesystem':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/ios':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
@@ -762,6 +768,15 @@ importers:
       '@capacitor/core':
         specifier: 6.0.0-rc.0
         version: 6.0.0-rc.0
+      '@capacitor/device':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/dialog':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/filesystem':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/ios':
         specifier: 6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
@@ -2463,7 +2478,20 @@ packages:
       '@capacitor/core': next
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
-    dev: true
+
+  /@capacitor/dialog@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-FLBvPlE1X2W64IwhhMEa9PMPmiJCVC5mKUJ+YTGRUvNjPpOs7rBXYSdTWfbbDsM0O6GBi3V7Pblrfu6Q3P6/bQ==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+
+  /@capacitor/filesystem@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-mxKSKrldwbGwKcEJtN4Dfpvzfh99DdobUprDudJLwBvlpeyA0zpVbnrNKSvWwm27oMaZY4AyJdh174xyvPUJEQ==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
 
   /@capacitor/ios@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-CJBm7oj8pZ0Bxci+swLtXa5vSsC3tAENxqTx4zvQInnRLIfKxB2MiQ/Oomcge3CjhMFxMYKhQ8MmsinyEANSIw==}

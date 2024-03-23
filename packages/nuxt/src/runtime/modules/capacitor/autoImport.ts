@@ -171,6 +171,60 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.dialog && isPackageExists('@capacitor/dialog')) {
+    presets.push({
+      from: '@capacitor/dialog',
+      imports: [
+        {
+          name: 'Dialog',
+          as: 'CapacitorDialog',
+          from: '@capacitor/dialog',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/dialog')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
+  if (params.options.plugins.official.filesystem && isPackageExists('@capacitor/filesystem')) {
+    presets.push({
+      from: '@capacitor/filesystem',
+      imports: [
+        {
+          name: 'Directory',
+          as: 'CapacitorFSDirectory',
+          from: '@capacitor/filesystem',
+        },
+        {
+          name: 'Encoding',
+          as: 'CapacitorFSEncoding',
+          from: '@capacitor/filesystem',
+        },
+        {
+          name: 'Filesystem',
+          as: 'CapacitorFSFilesystem',
+          from: '@capacitor/filesystem',
+        },
+        {
+          name: 'FilesystemDirectory',
+          as: 'CapacitorFSFilesystemDirectory',
+          from: '@capacitor/filesystem',
+        },
+        {
+          name: 'FilesystemEncoding',
+          as: 'CapacitorFSFilesystemEncoding',
+          from: '@capacitor/filesystem',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/filesystem')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (presets.length > 0) {
     useNuxtImports(params.nuxt, {
       presets,
