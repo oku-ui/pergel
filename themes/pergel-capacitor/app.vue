@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Geolocation } from '@capacitor/geolocation'
+
 const appStates = ref<any[]>([])
 
 // Action Sheet
@@ -87,12 +89,21 @@ async function handleFilesystem() {
   await readSecretFile()
 }
 
+// Geolocation
+async function printCurrentPosition() {
+  const coordinates = await CapacitorGeolocation.getCurrentPosition()
+
+  console.log('Current position:', coordinates)
+}
+
 onMounted(() => {
   // Permissions
   CapacitorBackgroundRunner.requestPermissions({
     apis: ['geolocation', 'notifications'],
   })
   CapacitorFSFilesystem.requestPermissions()
+
+  CapacitorGeolocation.requestPermissions()
 
   logDeviceInfo()
 })
@@ -118,6 +129,10 @@ onMounted(() => {
 
     <button @click="handleFilesystem">
       Filesystem
+    </button>
+
+    <button @click="printCurrentPosition">
+      Geolocation
     </button>
 
     <div>

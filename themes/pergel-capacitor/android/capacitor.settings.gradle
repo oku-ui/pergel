@@ -25,3 +25,6 @@ project(':capacitor-dialog').projectDir = new File('../../../node_modules/.pnpm/
 
 include ':capacitor-filesystem'
 project(':capacitor-filesystem').projectDir = new File('../../../node_modules/.pnpm/@capacitor+filesystem@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/filesystem/android')
+
+include ':capacitor-geolocation'
+project(':capacitor-geolocation').projectDir = new File('../../../node_modules/.pnpm/@capacitor+geolocation@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/geolocation/android')

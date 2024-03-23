@@ -18,6 +18,8 @@ PODS:
     - Capacitor
   - CapacitorFilesystem (6.0.0-rc.0):
     - Capacitor
+  - CapacitorGeolocation (6.0.0-rc.0):
+    - Capacitor
 
 DEPENDENCIES:
   - "Capacitor (from `../../../../node_modules/.pnpm/@capacitor+ios@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/ios`)"
@@ -30,6 +32,7 @@ DEPENDENCIES:
   - "CapacitorDevice (from `../../../../node_modules/.pnpm/@capacitor+device@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/device`)"
   - "CapacitorDialog (from `../../../../node_modules/.pnpm/@capacitor+dialog@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/dialog`)"
   - "CapacitorFilesystem (from `../../../../node_modules/.pnpm/@capacitor+filesystem@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/filesystem`)"
+  - "CapacitorGeolocation (from `../../../../node_modules/.pnpm/@capacitor+geolocation@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/geolocation`)"
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -52,6 +55,8 @@ EXTERNAL SOURCES:
     :path: "../../../../node_modules/.pnpm/@capacitor+dialog@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/dialog"
   CapacitorFilesystem:
     :path: "../../../../node_modules/.pnpm/@capacitor+filesystem@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/filesystem"
+  CapacitorGeolocation:
+    :path: "../../../../node_modules/.pnpm/@capacitor+geolocation@6.0.0-rc.0_@capacitor+core@6.0.0-rc.0/node_modules/@capacitor/geolocation"
 
 SPEC CHECKSUMS:
   Capacitor: c5b8b4e73032b078db259f1bbe71afd09fd84250
@@ -64,7 +69,8 @@ SPEC CHECKSUMS:
   CapacitorDevice: 5a51d98383f548d2e36d4df39ed9e4643d6f096f
   CapacitorDialog: 016b1a7734216f9e4d60fd7c314bbdb0a4d31b9e
   CapacitorFilesystem: bdaae310d07dfdf0c0c0632746e03ba9648623ee
+  CapacitorGeolocation: c8fe7064af1e1a12f89721afc8605006efc3c1ca
 
-PODFILE CHECKSUM: 0514eab0a107d98a782f5c3e0f498620f02bf076
+PODFILE CHECKSUM: 7143d6596fe94ca91c0a8fcc299dfecedc79ca20
 
 COCOAPODS: 1.15.2

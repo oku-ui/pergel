@@ -55,6 +55,7 @@ export default defineNuxtConfig({
               device: true,
               dialog: true,
               filesystem: true,
+              geolocation: true,
             },
           },
         },

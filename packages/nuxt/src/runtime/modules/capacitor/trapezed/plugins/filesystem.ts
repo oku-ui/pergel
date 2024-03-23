@@ -1,4 +1,4 @@
-import { AppDelegateAdditionalCode, addFeature, addPermission, trapezedPlugins } from '../utils'
+import { addPermission, trapezedPlugins } from '../utils'
 
 export default trapezedPlugins({
   meta: {

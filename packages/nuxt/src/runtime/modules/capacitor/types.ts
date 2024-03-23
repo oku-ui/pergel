@@ -62,6 +62,9 @@ export interface ResolvedCapacitorOptions {
         UIFileSharingEnabled?: string
         LSSupportsOpeningDocumentsInPlace?: string
       }
+      geolocation: boolean | {
+        NSLocationWhenInUseUsageDescription: string
+      }
     }
     community: {
       revenuecat: boolean
@@ -178,6 +181,12 @@ export interface CapacitorOptions {
          * @default 'Supports opening documents in place'
          */
         LSSupportsOpeningDocumentsInPlace?: string
+      }
+      geolocation?: boolean | {
+        /**
+         * @default 'Privacy - Location When In Use Usage Description'
+         */
+        NSLocationWhenInUseUsageDescription?: string
       }
     }
     community?: {

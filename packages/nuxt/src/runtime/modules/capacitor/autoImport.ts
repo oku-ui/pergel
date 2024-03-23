@@ -225,6 +225,23 @@ export function autoImportCapacitorPlugins(params: {
     })
   }
 
+  if (params.options.plugins.official.geolocation && isPackageExists('@capacitor/geolocation')) {
+    presets.push({
+      from: '@capacitor/geolocation',
+      imports: [
+        {
+          name: 'Geolocation',
+          as: 'CapacitorGeolocation',
+          from: '@capacitor/geolocation',
+        },
+      ] as {
+        name: keyof typeof import('@capacitor/geolocation')
+        as: string
+        from: string
+      }[],
+    })
+  }
+
   if (presets.length > 0) {
     useNuxtImports(params.nuxt, {
       presets,

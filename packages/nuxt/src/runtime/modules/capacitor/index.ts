@@ -44,6 +44,8 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/dialog'] = deps['@capacitor/dialog']
         if (options.plugins.official.filesystem)
           defaultDeps['@capacitor/filesystem'] = deps['@capacitor/filesystem']
+        if (options.plugins.official.geolocation)
+          defaultDeps['@capacitor/geolocation'] = deps['@capacitor/geolocation']
       }
 
       if (options.plugins.community) {
@@ -83,6 +85,14 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
         backgroundRunner: false,
         browser: false,
         camera: false,
+        CapacitorCookies: {
+          enable: false,
+        },
+        clipboard: false,
+        device: false,
+        dialog: false,
+        filesystem: false,
+        geolocation: false,
       },
       community: {
         revenuecat: false,
