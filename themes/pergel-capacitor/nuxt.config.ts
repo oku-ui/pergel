@@ -56,6 +56,10 @@ export default defineNuxtConfig({
               dialog: true,
               filesystem: true,
               geolocation: true,
+              googleMaps: {
+                api_key: 'AIzaSyCskrZzvgKPFQnJMBAlt79peEFYK2HoNA0',
+              },
+
             },
           },
         },

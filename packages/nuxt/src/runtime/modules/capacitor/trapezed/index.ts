@@ -2,7 +2,6 @@ import type { MobileProjectConfig } from '@trapezedev/project'
 import { MobileProject } from '@trapezedev/project'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import type { ResolvedCapacitorOptions, TrapezedPlugins } from '../types'
-import geolocation from './plugins/geolocation'
 
 const plugins = {
   appLauncher: () => import('./plugins/appLauncher'),
@@ -11,6 +10,7 @@ const plugins = {
   camera: () => import('./plugins/camera'),
   filesystem: () => import('./plugins/filesystem'),
   geolocation: () => import('./plugins/geolocation'),
+  googleMaps: () => import('./plugins/googleMaps'),
 }
 
 export async function trapezedRun(params: {

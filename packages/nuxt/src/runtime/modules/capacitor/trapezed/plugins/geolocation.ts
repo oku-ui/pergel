@@ -1,4 +1,5 @@
 import consola from 'consola'
+import type { AndroidGradleInjectType } from '@trapezedev/project'
 import { addFeature, addPermission, trapezedPlugins } from '../utils'
 
 export default trapezedPlugins({
@@ -19,14 +20,13 @@ export default trapezedPlugins({
 
     const variablesGradle = await project?.getGradleFile('variables.gradle')
 
-    if (!variablesGradle)
-      return consola.error('Variables.gradle not founded')
-
-    variablesGradle.insertProperties(
+    // BUG: gradle inseretion not workoing on nuxt prepare
+    await variablesGradle?.insertProperties(
       {
         ext: {},
       },
       [{ playServicesLocationVersion: '21.1.0' }],
+      'variable' as AndroidGradleInjectType.Variable,
     )
   },
   async ios(project, { build, target }, options) {

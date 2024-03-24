@@ -46,6 +46,36 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
           defaultDeps['@capacitor/filesystem'] = deps['@capacitor/filesystem']
         if (options.plugins.official.geolocation)
           defaultDeps['@capacitor/geolocation'] = deps['@capacitor/geolocation']
+        if (options.plugins.official.googleMaps)
+          defaultDeps['@capacitor/google-maps'] = deps['@capacitor/google-maps']
+        if (options.plugins.official.haptics)
+          defaultDeps['@capacitor/haptics'] = deps['@capacitor/haptics']
+        if (options.plugins.official.keyboard)
+          defaultDeps['@capacitor/keyboard'] = deps['@capacitor/keyboard']
+        if (options.plugins.official.preferences)
+          defaultDeps['@capacitor/preferences'] = deps['@capacitor/preferences']
+        if (options.plugins.official.pushNotifications)
+          defaultDeps['@capacitor/push-notifications'] = deps['@capacitor/push-notifications']
+        if (options.plugins.official.localNotifications)
+          defaultDeps['@capacitor/local-notifications'] = deps['@capacitor/local-notifications']
+        if (options.plugins.official.motion)
+          defaultDeps['@capacitor/motion'] = deps['@capacitor/motion']
+        if (options.plugins.official.network)
+          defaultDeps['@capacitor/network'] = deps['@capacitor/network']
+        if (options.plugins.official.preferences)
+          defaultDeps['@capacitor/preferences'] = deps['@capacitor/preferences']
+        if (options.plugins.official.screenOrientation)
+          defaultDeps['@capacitor/screen-orientation'] = deps['@capacitor/screen-orientation']
+        if (options.plugins.official.share)
+          defaultDeps['@capacitor/share'] = deps['@capacitor/share']
+        if (options.plugins.official.splashScreen)
+          defaultDeps['@capacitor/splash-screen'] = deps['@capacitor/splash-screen']
+        if (options.plugins.official.statusBar)
+          defaultDeps['@capacitor/status-bar'] = deps['@capacitor/status-bar']
+        if (options.plugins.official.textZoom)
+          defaultDeps['@capacitor/text-zoom'] = deps['@capacitor/text-zoom']
+        if (options.plugins.official.toast)
+          defaultDeps['@capacitor/toast'] = deps['@capacitor/toast']
       }
 
       if (options.plugins.community) {
@@ -86,13 +116,31 @@ export default definePergelModule<CapacitorOptions, ResolvedCapacitorOptions>({
         browser: false,
         camera: false,
         CapacitorCookies: {
-          enable: false,
+          enabled: false,
         },
         clipboard: false,
         device: false,
         dialog: false,
         filesystem: false,
         geolocation: false,
+        googleMaps: false,
+        haptics: false,
+        CapacitorHttp: {
+          enabled: false,
+        },
+        keyboard: false,
+        localNotifications: false,
+        motion: false,
+        network: false,
+        preferences: false,
+        pushNotifications: false,
+        screenOrientation: false,
+        screenReader: false,
+        share: false,
+        splashScreen: false,
+        statusBar: false,
+        textZoom: false,
+        toast: false,
       },
       community: {
         revenuecat: false,

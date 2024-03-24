@@ -28,7 +28,8 @@
     "@capacitor/device": "6.0.0-rc.0",
     "@capacitor/dialog": "6.0.0-rc.0",
     "@capacitor/filesystem": "6.0.0-rc.0",
-    "@capacitor/geolocation": "^6.0.0-rc.0",
+    "@capacitor/geolocation": "6.0.0-rc.0",
+    "@capacitor/google-maps": "^6.0.0-rc.0",
     "@capacitor/ios": "6.0.0-rc.0"
   },
   "devDependencies": {

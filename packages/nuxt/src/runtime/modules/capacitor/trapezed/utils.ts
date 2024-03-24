@@ -1,7 +1,7 @@
-import { join } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
-import type { XmlFile } from '@trapezedev/project'
+import { join } from 'node:path'
 import { useNuxt } from '@nuxt/kit'
+import type { XmlFile } from '@trapezedev/project'
 import type { TrapezedPlugins } from '../types'
 
 export function trapezedPlugins(options: TrapezedPlugins) {
@@ -128,7 +128,19 @@ export function addFeature(
 ) {
   if (file.find('Permissions') && file.find(`manifest/uses-feature[@android:name="${feature}"]`)?.length === 0) {
     file.injectFragment('manifest', `<uses-feature android:name="${feature}" />
-`.trim())
+      `.trim())
+  }
+}
+
+export function addMetaData(
+  file: XmlFile,
+  name: string,
+  value: string,
+  where: string,
+) {
+  if (file.find(`${where}/meta-data[@android:name="${name}"]`)?.length === 0) {
+    file.injectFragment(where, `<meta-data android:name="${name}" android:value="${value}" />
+  `.trim())
   }
 }
 

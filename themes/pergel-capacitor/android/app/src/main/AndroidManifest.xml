@@ -42,6 +42,10 @@
                 <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
             </intent-filter>
         </service>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCskrZzvgKPFQnJMBAlt79peEFYK2HoNA0"
+        />
     </application>
 
     <!-- Permissions -->

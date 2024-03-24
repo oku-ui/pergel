@@ -53,6 +53,9 @@ export interface ResolvedCapacitorOptions {
         NSMicrophoneUsageDescription?: string
       }
       clipboard: boolean
+      CapacitorCookies: {
+        enabled: boolean
+      }
       app: {
         CFBundleURLSchemes: string[]
       }
@@ -65,6 +68,32 @@ export interface ResolvedCapacitorOptions {
       geolocation: boolean | {
         NSLocationWhenInUseUsageDescription: string
       }
+      googleMaps: boolean | {
+        api_key: string
+        info: {
+          NSLocationAlwaysUsageDescription: string
+          NSLocationWhenInUseUsageDescription: string
+        }
+      }
+      haptics: boolean
+      CapacitorHttp: {
+        enabled: boolean
+      }
+      keyboard: boolean
+      localNotifications: boolean
+      motion: boolean
+      network: boolean
+      preferences: boolean
+      pushNotifications: boolean
+      screenOrientation: boolean
+      screenReader: boolean
+      share: boolean
+      splashScreen: boolean
+      statusBar: boolean
+      textZoom: boolean | {
+        preferredContentMode: string
+      }
+      toast: boolean
     }
     community: {
       revenuecat: boolean
@@ -168,7 +197,7 @@ export interface CapacitorOptions {
       }
       clipboard?: boolean
       CapacitorCookies?: {
-        enable: boolean
+        enabled: boolean
       }
       device?: boolean
       dialog?: boolean
@@ -188,6 +217,42 @@ export interface CapacitorOptions {
          */
         NSLocationWhenInUseUsageDescription?: string
       }
+      googleMaps?: boolean | {
+        /**
+         * The Google Maps SDK for Android requires you to add your API key
+         */
+        api_key?: string
+
+        info?: {
+          /**
+           * @default 'Privacy - Location Always Usage Description'
+           */
+          NSLocationAlwaysUsageDescription: string
+          /**
+           * @default 'Privacy - Location When In Use Usage Description'
+           */
+          NSLocationWhenInUseUsageDescription: string
+        }
+      }
+      haptics?: boolean
+      CapacitorHttp?: {
+        enabled: boolean
+      }
+      keyboard?: boolean
+      localNotifications?: boolean
+      motion?: boolean
+      network?: boolean
+      preferences?: boolean
+      pushNotifications?: boolean
+      screenOrientation?: boolean
+      screenReader?: boolean
+      share?: boolean
+      splashScreen?: boolean
+      statusBar?: boolean
+      textZoom?: boolean | {
+        preferredContentMode: string
+      }
+      toast?: boolean
     }
     community?: {
       revenuecat?: boolean

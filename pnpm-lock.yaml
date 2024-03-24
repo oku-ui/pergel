@@ -354,7 +354,52 @@ importers:
       '@capacitor/geolocation':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/google-maps':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/haptics':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/ios':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/keyboard':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/local-notifications':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/motion':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/network':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/preferences':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/push-notifications':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/screen-orientation':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/screen-reader':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/share':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/splash-screen':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/status-bar':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/text-zoom':
+        specifier: ^6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/toast':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@faker-js/faker':
@@ -500,7 +545,7 @@ importers:
         version: 3.0.3
       nuxt:
         specifier: ^3.10.3
-        version: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+        version: 3.10.3(@capacitor/preferences@6.0.0-rc.0)(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       oslo:
         specifier: ^1.1.3
         version: 1.1.3
@@ -781,6 +826,9 @@ importers:
         specifier: 6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/geolocation':
+        specifier: 6.0.0-rc.0
+        version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
+      '@capacitor/google-maps':
         specifier: ^6.0.0-rc.0
         version: 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       '@capacitor/ios':
@@ -2506,12 +2554,133 @@ packages:
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
 
+  /@capacitor/google-maps@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-1BarY4WB+bbg6myJJabDZ0f2O2v+Dego8fv9V2j4FGF6hpcZDGidGdXGQtNRXKVmzvchr7bt6ivJWfu6uGTjOA==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+      '@googlemaps/js-api-loader': 1.13.11
+      '@googlemaps/markerclusterer': 2.0.15
+      '@types/google.maps': 3.50.5
+
+  /@capacitor/haptics@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-B8POju1wh3PHCx2WOcRA32qJi0KMDCxSkk2FOjZwalini+do5AqXYZyVkr8fXDzxzqXYsOPVtKRMy2gACYvF5g==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
   /@capacitor/ios@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
     resolution: {integrity: sha512-CJBm7oj8pZ0Bxci+swLtXa5vSsC3tAENxqTx4zvQInnRLIfKxB2MiQ/Oomcge3CjhMFxMYKhQ8MmsinyEANSIw==}
     peerDependencies:
       '@capacitor/core': ^6.0.0-rc.0
     dependencies:
       '@capacitor/core': 6.0.0-rc.0
+
+  /@capacitor/keyboard@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-2nemo6GRPwYlApukqpChvnzHUFjXGSY8HX8rLuzGgUuKJLZk7+WDtk8xfseM0XMiTqU8JNoSnH9Tz+lVyTelDQ==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/local-notifications@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-UXvFDuloHroXzvSbMv44e55vicjDE+tNR48Os3qeld0eqrS8cQsRPJ85UO9y4stuY1e3dUvi8vevVWRMJCWNjA==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/motion@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-xQrNL7izuGD0lmTLmeASNZYC1NLuiymCt9+i9NO2H7zTGHKtKd0w1Res7b+zgaeu0aUFettS6h285cz7j2mhHw==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/network@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-Orc7mvQEwGp2VAwv1tkWpGSQ/fsouClQGB882nU3edpm7VCofqtQNWe7Vz4lFwPRVukRza+hizPHXSlQHRZQPg==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/preferences@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-6QealZzLzn6IASbzn8mpuHiMPFDXYnRwvdwzZoDpozOhzgVy2jRR7ir/OLp0y3XEx0oLQdL2qw5wWfvyQjFkIQ==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+
+  /@capacitor/push-notifications@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-P3+vreni476A0lX+IupDEHu8C/5546AttjuosaCKGAzjHvSNxczGHaRt6ZsevKjxfMoT2MiV9kuQ/hxxhpdmBA==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/screen-orientation@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-dJCWdPc907QMZOFPsRGzcVhtlpMxb/vJjCXufHaGE60PHvpDh55GRf6urew/cCN5qN783TwuTtDB292Beug82w==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/screen-reader@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-fHKZTfYWpNh5snptk0U/yHIVczGQ/oFn6kiiq2vSj806lC7OXwRRxdUBCvtoUGYY2i4r1gX08iw/4WDS5Ejy1A==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/share@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-5f75MTXVjjU5ocjT+Nm/dHAA2k3Z5W03ptaiyUb44DCte+MAdDzgErrlivXKnwgdlLfIpOE27rSRXpCdbW7j0w==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/splash-screen@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-Nwqmk9PUIC/92YJ2nHxUmX19NkIHaF4Hl1SS0FM0V5Po2peD/nYG21IiLGgr2PYKs4wHS0xAzpJLQx2G6980UQ==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/status-bar@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-SogwlmU8DeEUzZrSdgU6TN5iyAn14IK2aVJEbdYyERvVNNgzC4jdSVUECn82RPzw+geOinTsHLWbC+0lVWC71Q==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/text-zoom@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-e5W8oylfT38UM0xy1JSBxj3c2+n2yDzS/WfMtthgPB21y98Y2yenw6uGiloDHOxhQEEOMd079tnneRJLVqNtUg==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
+
+  /@capacitor/toast@6.0.0-rc.0(@capacitor/core@6.0.0-rc.0):
+    resolution: {integrity: sha512-5Itco69MZZMo7DqlwicvQ9O1o+E8XFfs+9EDgILvOITUqrONTqB4CNsm+43BW5y7HMkMS4MImmMoRn23rrkDjg==}
+    peerDependencies:
+      '@capacitor/core': next
+    dependencies:
+      '@capacitor/core': 6.0.0-rc.0
+    dev: true
 
   /@clack/core@0.3.4:
     resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
@@ -3638,6 +3807,17 @@ packages:
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.5.1
     dev: true
+
+  /@googlemaps/js-api-loader@1.13.11:
+    resolution: {integrity: sha512-8gKvtDYGtUa3Wg2iC0e53jBOiN5UQ1T12RMq66hjmhAtZMRjI7iuoQn1WdUyoTfYJDmYN3HHc+3l+XOT21p3bQ==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+
+  /@googlemaps/markerclusterer@2.0.15:
+    resolution: {integrity: sha512-/I6Esi5FtyeVHsezN9Kut8zRJoqe7KkTIJXGVqpKFf6BjC7qQ1xRajLMkOz0s8XKgLevbr+KdYjuvmj+LohOGg==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      supercluster: 7.1.5
 
   /@gql.tada/cli-utils@0.1.1:
     resolution: {integrity: sha512-UwT7N1hY3WVUeqeq80MoRovV2mqqu4A8dUEcZThC5KklIYlvxOux6ql3XqKTV1dd9Sva8uCfm+Eym2i7eMFeEg==}
@@ -5941,7 +6121,7 @@ packages:
       '@nuxt/kit': 3.10.3(rollup@3.29.4)
       '@nuxt/schema': 3.10.3(rollup@3.29.4)
       execa: 7.2.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@capacitor/preferences@6.0.0-rc.0)(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       vite: 5.1.5(@types/node@20.11.25)
     transitivePeerDependencies:
       - rollup
@@ -6070,7 +6250,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@capacitor/preferences@6.0.0-rc.0)(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       nypm: 0.3.6
       ohash: 1.1.3
       pacote: 17.0.6
@@ -6132,7 +6312,7 @@ packages:
       semver: 7.6.0
       simple-git: 3.22.0
       sirv: 2.0.4
-      unimport: 3.7.1
+      unimport: 3.7.1(rollup@4.12.0)
       vite: 5.1.5(@types/node@20.11.25)
       vite-plugin-inspect: 0.8.3(@nuxt/kit@3.10.3)(vite@5.1.5)
       vite-plugin-vue-inspector: 4.0.2(vite@5.1.5)
@@ -6217,7 +6397,7 @@ packages:
       semver: 7.6.0
       ufo: 1.4.0
       unctx: 2.3.1
-      unimport: 3.7.1
+      unimport: 3.7.1(rollup@4.12.0)
       untyped: 1.4.2
     transitivePeerDependencies:
       - rollup
@@ -6336,7 +6516,7 @@ packages:
       scule: 1.3.0
       std-env: 3.7.0
       ufo: 1.4.0
-      unimport: 3.7.1
+      unimport: 3.7.1(rollup@4.12.0)
       untyped: 1.4.2
     transitivePeerDependencies:
       - rollup
@@ -6695,7 +6875,7 @@ packages:
       vue: 3.3.13
     dependencies:
       '@nuxt/kit': 3.10.3
-      '@rollup/plugin-replace': 5.0.5
+      '@rollup/plugin-replace': 5.0.5(rollup@4.12.0)
       '@vitejs/plugin-vue': 5.0.4(vite@5.1.5)(vue@3.3.13)
       '@vitejs/plugin-vue-jsx': 3.1.0(vite@5.1.5)(vue@3.3.13)
       autoprefixer: 10.4.18(postcss@8.4.35)
@@ -6892,7 +7072,7 @@ packages:
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.4.0
-      unimport: 3.7.1
+      unimport: 3.7.1(rollup@4.12.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -8205,19 +8385,6 @@ packages:
       rollup: 4.13.0
     dev: false
 
-  /@rollup/plugin-replace@5.0.5:
-    resolution: {integrity: sha512-rYO4fOi8lMaTg/z5Jb+hKnrHHVn8j2lwkqwyS4kTRhKyWOLf2wST2sWXr4WzWiTcoHTp2sTjqUbqIj2E39slKQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
-      magic-string: 0.30.7
-    dev: true
-
   /@rollup/plugin-replace@5.0.5(rollup@3.29.4):
     resolution: {integrity: sha512-rYO4fOi8lMaTg/z5Jb+hKnrHHVn8j2lwkqwyS4kTRhKyWOLf2wST2sWXr4WzWiTcoHTp2sTjqUbqIj2E39slKQ==}
     engines: {node: '>=14.0.0'}
@@ -9450,6 +9617,9 @@ packages:
       '@types/node': 20.11.25
     dev: true
 
+  /@types/google.maps@3.50.5:
+    resolution: {integrity: sha512-RuZf1MJtctGlpW+Gd4a/eGtAufUDjMf+eyN1l+B3fbe2YLScJbg8KEljJfb+6vnSPFAeM1/48geVIEg3vqOkxw==}
+
   /@types/http-proxy@1.17.14:
     resolution: {integrity: sha512-SSrD0c1OQzlFX7pGu1eXxSEjemej64aaNPRhhVYUGqXh0BtldAAx37MG8btcumvpgKyZp1F5Gn3JkktdxiFv6w==}
     dependencies:
@@ -10428,7 +10598,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       '@vue/compiler-sfc': 3.4.21
       ast-kit: 0.11.3
       local-pkg: 0.5.0
@@ -10676,7 +10846,7 @@ packages:
       '@vueuse/core': 10.9.0(vue@3.3.13)
       '@vueuse/metadata': 10.9.0
       local-pkg: 0.5.0
-      nuxt: 3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
+      nuxt: 3.10.3(@capacitor/preferences@6.0.0-rc.0)(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5)
       vue-demi: 0.14.7(vue@3.3.13)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -11214,7 +11384,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -11246,7 +11416,7 @@ packages:
     engines: {node: '>=16.14.0'}
     dependencies:
       '@babel/parser': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
@@ -16063,7 +16233,6 @@ packages:
 
   /kdbush@3.0.0:
     resolution: {integrity: sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==}
-    dev: false
 
   /keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
@@ -17122,7 +17291,7 @@ packages:
   /next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  /nitropack@2.9.1(drizzle-orm@0.30.1):
+  /nitropack@2.9.1(@capacitor/preferences@6.0.0-rc.0)(drizzle-orm@0.30.1):
     resolution: {integrity: sha512-qgz2VKJoiFvEtC6JnFlaqVx5hirD/oonb6SIM6kQODeDjEHVaiOViZxg7pnAGq13Zu2vNHhaJe6Sf49AEG3J+A==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -17196,7 +17365,7 @@ packages:
       unctx: 2.3.1
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.12.0)
-      unstorage: 1.10.1
+      unstorage: 1.10.1(@capacitor/preferences@6.0.0-rc.0)
       unwasm: 0.3.7
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -17621,7 +17790,7 @@ packages:
       - vue
     dev: false
 
-  /nuxt@3.10.3(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5):
+  /nuxt@3.10.3(@capacitor/preferences@6.0.0-rc.0)(@types/node@20.11.25)(drizzle-orm@0.30.1)(eslint@8.57.0)(rollup@3.29.4)(typescript@5.4.2)(vite@5.1.5):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -17665,7 +17834,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.7
       mlly: 1.6.1
-      nitropack: 2.9.1(drizzle-orm@0.30.1)
+      nitropack: 2.9.1(@capacitor/preferences@6.0.0-rc.0)(drizzle-orm@0.30.1)
       nuxi: 3.10.1
       nypm: 0.3.6
       ofetch: 1.3.3
@@ -17774,7 +17943,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.7
       mlly: 1.6.1
-      nitropack: 2.9.1(drizzle-orm@0.30.1)
+      nitropack: 2.9.1(@capacitor/preferences@6.0.0-rc.0)(drizzle-orm@0.30.1)
       nuxi: 3.10.1
       nypm: 0.3.6
       ofetch: 1.3.3
@@ -17791,7 +17960,7 @@ packages:
       uncrypto: 0.1.3
       unctx: 2.3.1
       unenv: 1.9.0
-      unimport: 3.7.1
+      unimport: 3.7.1(rollup@4.12.0)
       unplugin: 1.7.1
       unplugin-vue-router: 0.7.0(vue-router@4.3.0)(vue@3.3.13)
       untyped: 1.4.2
@@ -20697,7 +20866,6 @@ packages:
     resolution: {integrity: sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg==}
     dependencies:
       kdbush: 3.0.0
-    dev: false
 
   /superjson@2.2.1:
     resolution: {integrity: sha512-8iGv75BYOa0xRJHK5vRLEjE2H/i4lulTjzpUXic3Eg8akftYjkmQDa8JARQ42rlczXyFR3IeRoeFCc7RxHsYZA==}
@@ -21396,25 +21564,6 @@ packages:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
     engines: {node: '>=18'}
 
-  /unimport@3.7.1:
-    resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
-    dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
-      acorn: 8.11.3
-      escape-string-regexp: 5.0.0
-      estree-walker: 3.0.3
-      fast-glob: 3.3.2
-      local-pkg: 0.5.0
-      magic-string: 0.30.7
-      mlly: 1.6.1
-      pathe: 1.1.2
-      pkg-types: 1.0.3
-      scule: 1.3.0
-      strip-literal: 1.3.0
-      unplugin: 1.7.1
-    transitivePeerDependencies:
-      - rollup
-
   /unimport@3.7.1(rollup@3.29.4):
     resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
     dependencies:
@@ -21611,7 +21760,7 @@ packages:
         optional: true
     dependencies:
       '@babel/types': 7.24.0
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       '@vue-macros/common': 1.10.1(vue@3.3.13)
       ast-walker-scope: 0.5.0
       chokidar: 3.6.0
@@ -21652,7 +21801,7 @@ packages:
     engines: {node: '>=20'}
     dev: false
 
-  /unstorage@1.10.1:
+  /unstorage@1.10.1(@capacitor/preferences@6.0.0-rc.0):
     resolution: {integrity: sha512-rWQvLRfZNBpF+x8D3/gda5nUCQL2PgXy2jNG4U7/Rc9BGEv9+CAJd0YyGCROUBKs9v49Hg8huw3aih5Bf5TAVw==}
     peerDependencies:
       '@azure/app-configuration': ^1.4.1
@@ -21693,6 +21842,7 @@ packages:
       idb-keyval:
         optional: true
     dependencies:
+      '@capacitor/preferences': 6.0.0-rc.0(@capacitor/core@6.0.0-rc.0)
       anymatch: 3.1.3
       chokidar: 3.6.0
       destr: 2.0.3
@@ -22166,7 +22316,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.7
       '@nuxt/kit': 3.10.3
-      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       debug: 4.3.4
       error-stack-parser-es: 0.1.1
       fs-extra: 11.2.0
