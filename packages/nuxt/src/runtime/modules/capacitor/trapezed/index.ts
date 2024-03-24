@@ -1,5 +1,6 @@
 import type { MobileProjectConfig } from '@trapezedev/project'
-import { MobileProject } from '@trapezedev/project'
+import consola from 'consola'
+import { isPackageExists } from 'local-pkg'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
 import type { ResolvedCapacitorOptions, TrapezedPlugins } from '../types'
 
@@ -22,8 +23,22 @@ export async function trapezedRun(params: {
     projectRoot: params.nuxt.options.rootDir,
   }
 
-  const project = new MobileProject(params.nuxt.options.rootDir, config)
-  await project.load()
+  let project
+
+  if (isPackageExists('@trapezedev/project')) {
+    const trapezeProject = await import('@trapezedev/project').catch((e) => {
+      consola.error('Please upgrade `@trapezedev/project` or if you have not installed it, please run `pergel install`')
+      consola.error(e)
+
+      return undefined
+    }).then(r => r?.default || r)
+
+    if (trapezeProject)
+      project = new trapezeProject.MobileProject(params.nuxt.options.rootDir, config)
+  }
+  else {
+    consola.error('Please `pergel install` run or upgrade `@trapezedev/project`')
+  }
 
   const version = {
     ios: {
@@ -35,6 +50,11 @@ export async function trapezedRun(params: {
       versionName: '0.0.0',
     },
   }
+
+  if (!project)
+    return consola.error('Please `pergel install` run or upgrade `@trapezedev/project`')
+
+  await project.load()
 
   version.ios = typeof params.options.trapeze === 'object' && params.options.trapeze.version.ios ? params.options.trapeze.version.ios : version.ios
   version.android = typeof params.options.trapeze === 'object' && params.options.trapeze.version.android ? params.options.trapeze.version.android : version.android
