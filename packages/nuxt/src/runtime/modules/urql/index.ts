@@ -108,7 +108,7 @@ export default ${options.projectNameCamelCaseWithPergel}UrqlClient((ssr) => {
   const options = selectProject.client === 'custom' ? {} : selectProject.client
   return {
     ...options,
-    exchanges: process.server ? [ssr, fetchExchange] : [cacheExchange, ssr, fetchExchange],
+    exchanges: import.meta.server ? [ssr, fetchExchange] : [cacheExchange, ssr, fetchExchange],
   }
 })
 

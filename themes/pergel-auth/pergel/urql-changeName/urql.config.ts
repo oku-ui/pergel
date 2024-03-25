@@ -8,7 +8,7 @@ import { useRequestHeaders } from '#app'
 export default pergelChangeNameUrqlClient((ssr) => {
   const exchanges = [ssr, fetchExchange]
 
-  if (process.client) {
+  if (import.meta.client) {
     // configure urql graphcache with codegen types
     const cacheConfig: GraphCacheConfig = {
       schema,
