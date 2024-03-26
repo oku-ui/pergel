@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { relative, resolve, join } from 'node:path'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
@@ -22,6 +22,7 @@ export function generateGraphQLTemplate(data: {
 
   if (data.nuxt.options.dev) {
     data.nuxt.hook('builder:watch', async (event, path) => {
+      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
       const test = globsBuilderWatch(data.nuxt, path, '.graphql')
       if (!test)
         return

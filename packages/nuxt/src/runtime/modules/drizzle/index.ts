@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { relative, resolve, join } from 'node:path'
 import { execSync } from 'node:child_process'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { camelCase } from 'scule'
@@ -169,6 +169,7 @@ export default definePergelModule<DrizzleConfig, ResolvedDrizzleConfig>({
     if (nuxt.options.dev) {
     // Watch for changes
       nuxt.hook('builder:watch', async (event, path) => {
+        path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
         const match = globsBuilderWatch(
           nuxt,
           path,
