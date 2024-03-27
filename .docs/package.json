@@ -11,7 +11,7 @@
     "prepare": "pnpm nuxt prepare && pnpm automd"
   },
   "devDependencies": {
-    "automd": "^0.3.6",
+    "automd": "^0.3.7",
     "fast-glob": "^3.3.2",
     "nuxt": "^3.11.1",
     "pathe": "^1.1.2",

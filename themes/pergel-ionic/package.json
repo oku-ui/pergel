@@ -12,7 +12,7 @@
   "dependencies": {
     "@capacitor/cli": "^5.7.4",
     "@ionic/cli": "^7.2.0",
-    "@ionic/core": "^7.8.1",
+    "@ionic/core": "^7.8.2",
     "@nuxtjs/ionic": "^0.13.1",
     "@pergel/module-box": "latest"
   },
