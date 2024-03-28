@@ -35,7 +35,7 @@
   "dependencies": {
     "@pergel/module-graphql": "workspace:*",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.30.5",
+    "drizzle-orm": "^0.30.6",
     "postgres": "^3.4.4"
   },
   "devDependencies": {
