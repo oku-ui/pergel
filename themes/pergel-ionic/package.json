@@ -19,7 +19,7 @@
   "devDependencies": {
     "nuxt": "^3.11.1",
     "pergel": "latest",
-    "vue": "3.3.13",
+    "vue": "3.4.21",
     "vue-router": "^4.3.0"
   }
 }
