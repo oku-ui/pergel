@@ -1,4 +1,4 @@
-import { relative, resolve, join } from 'node:path'
+import { join, relative, resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 import { addServerImportsDir, createResolver } from '@nuxt/kit'
 import { camelCase } from 'scule'

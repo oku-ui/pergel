@@ -1,4 +1,4 @@
-import { relative, resolve, join } from 'node:path'
+import { join, relative, resolve } from 'node:path'
 import { matchGlobs } from '../utils'
 import type { ResolvedGraphQLYogaConfig } from '../types'
 import type { NuxtPergel } from '../../../core/types/nuxtModule'
