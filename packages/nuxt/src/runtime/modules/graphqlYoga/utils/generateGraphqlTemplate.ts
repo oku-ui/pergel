@@ -22,7 +22,7 @@ export function generateGraphQLTemplate(data: {
 
   if (data.nuxt.options.dev) {
     data.nuxt.hook('builder:watch', async (event, path) => {
-      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
+      path = relative(data.nuxt.options.srcDir, resolve(data.nuxt.options.srcDir, path))
       const test = globsBuilderWatch(data.nuxt, path, '.graphql')
       if (!test)
         return
