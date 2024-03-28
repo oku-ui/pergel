@@ -6,7 +6,7 @@ settings:
 
 overrides:
   '@pergel/nuxt': link:./packages/nuxt
-  bumpp: 9.3.0
+  bumpp: 9.4.0
   vue: 3.3.13
 
 importers:
@@ -36,8 +36,8 @@ importers:
         specifier: ^0.3.7
         version: 0.3.7
       bumpp:
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       changelogithub:
         specifier: ^0.13.5
         version: 0.13.5
@@ -418,8 +418,8 @@ importers:
         specifier: ^2.4.5
         version: 2.4.5
       arctic:
-        specifier: ^1.3.0
-        version: 1.3.0
+        specifier: ^1.4.0
+        version: 1.4.0
       bullmq:
         specifier: ^5.4.6
         version: 5.4.6
@@ -478,8 +478,8 @@ importers:
         specifier: ^3.11.1
         version: 3.11.1(@types/node@20.11.30)(@unocss/reset@0.58.7)(drizzle-orm@0.30.5)(eslint@8.57.0)(floating-vue@5.2.2)(ioredis@5.3.2)(rollup@3.29.4)(typescript@5.4.3)(unocss@0.58.7)(vite@5.2.6)
       oslo:
-        specifier: ^1.1.3
-        version: 1.1.3
+        specifier: ^1.2.0
+        version: 1.2.0
       p-timeout:
         specifier: ^6.1.2
         version: 6.1.2
@@ -660,8 +660,8 @@ importers:
         specifier: ^4.12.6
         version: 4.12.6(vue@3.3.13)
       arctic:
-        specifier: ^1.3.0
-        version: 1.3.0
+        specifier: ^1.4.0
+        version: 1.4.0
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -678,8 +678,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1
       oslo:
-        specifier: ^1.1.3
-        version: 1.1.3
+        specifier: ^1.2.0
+        version: 1.2.0
       postgres:
         specifier: ^3.4.4
         version: 3.4.4
@@ -10567,10 +10567,10 @@ packages:
       tar-stream: 3.1.7
       zip-stream: 6.0.1
 
-  /arctic@1.3.0:
-    resolution: {integrity: sha512-W0b6M54M3ix1Xm0V3vYGHgOSAiqTxl001C1IkGZTt+ud0M9GKEvIg6YTIl9iGu4eAeftLtjAkLrC6xHEYIXvRQ==}
+  /arctic@1.4.0:
+    resolution: {integrity: sha512-1EvpysJTT9ZjnwlBgJIg9M+HOcvOk/R66F5t98k2bprky6HE5VtToaU22qC5G76dy7V/h1h62tHGl29u/FAA1w==}
     dependencies:
-      oslo: 1.0.1
+      oslo: 1.2.0
 
   /are-docs-informative@0.0.2:
     resolution: {integrity: sha512-ixiS0nLNNG5jNQzgZJNoUpBKdo9yTYZMGJ+QgT2jmjR7G7+QHRCc4v6LQ3NgE7EBJq+o0ams3waJwkrlBom8Ig==}
@@ -10999,14 +10999,15 @@ packages:
       - supports-color
     dev: true
 
-  /bumpp@9.3.0:
-    resolution: {integrity: sha512-P46VikoEZadYCqx7mbClKlaJnOyvc+JfRJPRf1YwlOjwqeYmutgFe1w9hvfXe819VhpU0N0TNXtxyVAUlAgaNA==}
+  /bumpp@9.4.0:
+    resolution: {integrity: sha512-T+N+B5mSSvsTt7kgxGXCKQd957IxmEZwMn2nWirspGUY08u/cBNrpQDMXk43fzLegZtKtXS1v9S06vq2zf6lXQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       '@jsdevtools/ez-spawn': 3.0.4
       c12: 1.10.0
       cac: 6.7.14
+      escalade: 3.1.2
       fast-glob: 3.3.2
       js-yaml: 4.1.0
       prompts: 2.4.2
@@ -17336,8 +17337,8 @@ packages:
       '@node-rs/argon2': 1.7.2
       '@node-rs/bcrypt': 1.9.2
 
-  /oslo@1.1.3:
-    resolution: {integrity: sha512-hCz528UlNTiegplcyBg6AvG0HLNrnq06EJMp88Ze308GX1hszkb8u3puhNC4aqLMbYQ0hXpl+wQGnwxMtt5+5w==}
+  /oslo@1.2.0:
+    resolution: {integrity: sha512-OoFX6rDsNcOQVAD2gQD/z03u4vEjWZLzJtwkmgfRF+KpQUXwdgEXErD7zNhyowmHwHefP+PM9Pw13pgpHMRlzw==}
     dependencies:
       '@node-rs/argon2': 1.7.0
       '@node-rs/bcrypt': 1.9.0
