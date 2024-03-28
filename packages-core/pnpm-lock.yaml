@@ -107,8 +107,8 @@ importers:
         specifier: ^0.20.14
         version: 0.20.14
       drizzle-orm:
-        specifier: ^0.30.5
-        version: 0.30.5(pg@8.11.3)(postgres@3.4.4)
+        specifier: ^0.30.6
+        version: 0.30.6(pg@8.11.3)(postgres@3.4.4)
       ioredis:
         specifier: ^5.3.2
         version: 5.3.2
@@ -9932,11 +9932,12 @@ packages:
       - supports-color
     dev: false
 
-  /drizzle-orm@0.30.5(pg@8.11.3)(postgres@3.4.4):
-    resolution: {integrity: sha512-oImmwGpe1jTWvhPkpsnramZA8m/lE8krTj7Ws7KHSFCMshMXmcZWX2g2Ki793PQOBmwI50KYzWJ9yNKKhWYLyA==}
+  /drizzle-orm@0.30.6(pg@8.11.3)(postgres@3.4.4):
+    resolution: {integrity: sha512-8RgNUmY7J03GRuRgBV5SaJNbYgLVPjdSWNS/bRkIMIHt2TFCA439lJsNpqYX8asyKMqkw8ceBiamUnCIXZIt9w==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
+      '@electric-sql/pglite': '>=0.1.1'
       '@libsql/client': '*'
       '@neondatabase/serverless': '>=0.1'
       '@op-engineering/op-sqlite': '>=2'
@@ -9963,6 +9964,8 @@ packages:
       '@aws-sdk/client-rds-data':
         optional: true
       '@cloudflare/workers-types':
+        optional: true
+      '@electric-sql/pglite':
         optional: true
       '@libsql/client':
         optional: true
