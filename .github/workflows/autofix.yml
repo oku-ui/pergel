@@ -45,6 +45,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cache
 
+      - name: 📦 Install dependencies
+        run: pnpm install
+        
+
       - name: Fix lint issues
         run: npm run lint:fix
       - uses: autofix-ci/action@ea32e3a12414e6d3183163c3424a7d7a8631ad84

@@ -3,7 +3,8 @@
   "pergel": {},
   "rocket": {
     "dependencies": {
-      "@pergel/module-s3": "0.3.0"
+      "@aws-sdk/client-s3": "^3.534.0",
+      "@aws-sdk/s3-request-presigner": "^3.534.0"
     },
     "devDependencies": {},
     "patches": {

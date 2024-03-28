@@ -1,7 +1,7 @@
 export default defineEventHandler(async () => {
-  const connect = changeNameDbConnect()
+  const connect = await changeNameDbConnect()
 
-  const result = await connect
+  const result = connect
     .select()
     .from(changeNameTables.user)
 

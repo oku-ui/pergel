@@ -15,17 +15,13 @@ export default pergelRocket().graphqlYoga().nitro().use({
       },
     })
   },
-  async onBeforeContext({ options }, event) {
-    const db = await pergelRocket().drizzle()
-      .postgresjs()
-      .connect({
-        event,
-      })
+  async onBeforeContext({ options }) {
+    // const db = await pergelRocket()
 
-    const storage = rocketDrizzleStorage({ db })
+    // const storage = rocketDrizzleStorage({ db })
 
     await options.add({
-      db,
+      // db,
       storage,
     })
   },

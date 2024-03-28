@@ -25,11 +25,7 @@ export default ${pergelFunction}().graphqlYoga().nitro().use({
     })
   },
   async onBeforeContext({ options }, event) {
-    const db = await ${pergelFunction}().drizzle()
-      .postgresjs()
-      .connect({
-        event,
-      })
+    const db = await ${pergelFunction}()
 
     const storage = ${drizzleStorage}({ db })
 

@@ -10,13 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.521.0",
+    "@aws-sdk/client-ses": "^3.540.0",
     "pergel": "0.12.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.8.2",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "nuxt": "^3.11.1",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   }
 }

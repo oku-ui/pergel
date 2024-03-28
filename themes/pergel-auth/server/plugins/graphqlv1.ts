@@ -14,7 +14,7 @@ export default pergelChangeName().graphqlYoga().nitro().use({
     })
   },
   async onBeforeContext({ options }) {
-    const db = changeNameDbConnect()
+    const db = await changeNameDbConnect()
 
     const storage = changeNameDrizzleStorage({ db })
 

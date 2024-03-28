@@ -25,9 +25,9 @@ outline: deep
 
 ```ts twoslash [server/api/getUsers.ts]
 export default defineEventHandler(async (event) => {
-  const connect = changeNameDbConnect()
+  const connect = await changeNameDbConnect()
 
-  const result = await connect.select().from(changeNameTables.user)
+  const result =  connect.select().from(changeNameTables.user)
   return {
     statusCode: 200,
     body: result,
@@ -58,13 +58,9 @@ const table = changeNameTables.
 Storage is automatically added to the server.
 
 ```ts twoslash [server/api/getUsers.ts]
-export default defineEventHandler(async (event) => {
-  const db = await pergelChangeName()
-  .drizzle()
-  .postgresjs()
-  .connect({
-    event,
-  })
+export default defineEventHandler(async () => {
+  const db = await changeNameDbConnect()
+
 
   const store = changeNameDrizzleStorage({
     db

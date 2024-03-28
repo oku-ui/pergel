@@ -1,9 +1,9 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  const db = changeNameDbConnect()
+  const db = await changeNameDbConnect()
 
-  const result = await db
+  const result = db
     .insert(changeNameTables.user)
     .values({
       name: body.name,
