@@ -20,7 +20,7 @@
     "postgres": "^3.4.4"
   },
   "devDependencies": {
-    "@pergel/nuxt": "link:..",
+    "@pergel/nuxt": "link:../..",
     "nuxt": "latest",
     "pergel": "^0.13.0",
     "pg": "^8.11.3"

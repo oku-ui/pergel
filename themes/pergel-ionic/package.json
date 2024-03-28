@@ -14,12 +14,12 @@
     "@ionic/cli": "^7.2.0",
     "@ionic/core": "^7.8.2",
     "@nuxtjs/ionic": "^0.13.1",
-    "@pergel/module-box": "latest"
+    "@pergel/module-box": "workspace:latest"
   },
   "devDependencies": {
     "nuxt": "^3.11.1",
     "pergel": "latest",
-    "vue": "^3.4.21",
+    "vue": "3.3.13",
     "vue-router": "^4.3.0"
   }
 }
