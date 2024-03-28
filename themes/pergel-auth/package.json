@@ -42,7 +42,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0",
-    "vue": "3.4.21",
+    "vue": "3.3.13",
     "vue-router": "^4.3.0"
   }
 }
