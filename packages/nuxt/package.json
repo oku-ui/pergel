@@ -61,8 +61,8 @@
     "types:docker-compose": "esno scripts/compose-spec.ts"
   },
   "dependencies": {
-    "@nuxt/devtools": "^1.1.4",
-    "@nuxt/devtools-kit": "^1.1.4",
+    "@nuxt/devtools": "^1.1.5",
+    "@nuxt/devtools-kit": "^1.1.5",
     "@nuxt/kit": "^3.11.1",
     "@vueuse/core": "^10.9.0",
     "consola": "^3.2.3",
@@ -76,7 +76,7 @@
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.7.1",
-    "@antfu/eslint-config": "^2.11.3",
+    "@antfu/eslint-config": "^2.11.4",
     "@aws-sdk/client-ses": "^3.540.0",
     "@capacitor/action-sheet": "6.0.0-rc.1",
     "@capacitor/android": "6.0.0-rc.2",
@@ -95,7 +95,7 @@
     "@lucia-auth/adapter-drizzle": "1.0.7",
     "@lucia-auth/adapter-postgresql": "3.1.2",
     "@lucia-auth/oauth": "^3.5.3",
-    "@nuxt/devtools-ui-kit": "^1.1.4",
+    "@nuxt/devtools-ui-kit": "^1.1.5",
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.11.1",
     "@nuxt/test-utils": "^3.12.0",
