@@ -1,11 +1,11 @@
-import type { UserConfigItem } from '@antfu/eslint-config'
+import type { OptionsConfig } from '@antfu/eslint-config'
 
 // @ts-ignore
 import tailwindcssPlugin from 'eslint-plugin-tailwindcss'
 
 export function pergelEslintConfig(input?: {
-  tailwindcss?: UserConfigItem
-  pergel?: UserConfigItem
+  tailwindcss?: OptionsConfig
+  pergel?: OptionsConfig
 }) {
   return [
     {
