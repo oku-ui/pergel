@@ -67,7 +67,7 @@ importers:
         version: 5.2.7(@types/node@20.11.30)
       vitest:
         specifier: ^1.4.0
-        version: 1.4.0(@types/node@20.11.30)
+        version: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.9)
 
   packages/box:
     dependencies:
@@ -258,8 +258,8 @@ importers:
         specifier: ^1.23.0
         version: 1.23.0(graphql@16.8.1)
       graphql-yoga:
-        specifier: ^5.2.0
-        version: 5.2.0(graphql@16.8.1)
+        specifier: ^5.3.0
+        version: 5.3.0(graphql@16.8.1)
       ts-relay-cursor-paging:
         specifier: ^2.1.0
         version: 2.1.0(graphql@16.8.1)
@@ -337,8 +337,8 @@ importers:
         specifier: ^8.4.1
         version: 8.4.1
       '@graphql-yoga/urql-exchange':
-        specifier: ^3.2.0
-        version: 3.2.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
+        specifier: ^3.3.0
+        version: 3.3.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
       '@iconify-json/carbon':
         specifier: ^1.1.31
         version: 1.1.31
@@ -630,8 +630,8 @@ importers:
         specifier: ^8.4.1
         version: 8.4.1
       '@graphql-yoga/urql-exchange':
-        specifier: ^3.2.0
-        version: 3.2.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
+        specifier: ^3.3.0
+        version: 3.3.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
       '@lucia-auth/adapter-drizzle':
         specifier: ^1.0.7
         version: 1.0.7(lucia@3.1.1)
@@ -3791,6 +3791,20 @@ packages:
       value-or-promise: 1.0.12
     dev: false
 
+  /@graphql-tools/executor@1.2.5(graphql@16.8.1):
+    resolution: {integrity: sha512-s7sW4K3BUNsk9sjq+vNicwb9KwcR3G55uS/CI8KZQ4x0ZdeYMIwpeU9MVeORCCpHuQyTaV+/VnO0hFrS/ygzsg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      '@graphql-tools/utils': 10.1.2(graphql@16.8.1)
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
+      '@repeaterjs/repeater': 3.0.5
+      graphql: 16.8.1
+      tslib: 2.6.2
+      value-or-promise: 1.0.12
+    dev: false
+
   /@graphql-tools/git-loader@8.0.5(graphql@16.8.1):
     resolution: {integrity: sha512-P97/1mhruDiA6D5WUmx3n/aeGPLWj2+4dpzDOxFGGU+z9NcI/JdygMkeFpGZNHeJfw+kHfxgPcMPnxHcyhAoVA==}
     engines: {node: '>=16.0.0'}
@@ -4107,8 +4121,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@graphql-yoga/urql-exchange@3.2.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4):
-    resolution: {integrity: sha512-c13/SfG3/P6bImE0JUBkJMZ7q5wlzc2yvYTLthqN9+PYMZMPbQFfLOBCZ7VesjGBmJ8oPLy8tbw8k89w/hhlyg==}
+  /@graphql-yoga/urql-exchange@3.3.0(@types/node@20.11.30)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4):
+    resolution: {integrity: sha512-QssrxJy86wxPH2cP0AaWxOh+vmz9KBG9wx+RWgZjMoZeMNufFYg7bXhEF3oLoEuYttiOoKRhPu6KFXTvxhXUHg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@urql/core': ^3.0.0 || ^4.0.0
@@ -14361,14 +14375,14 @@ packages:
       graphql: 16.8.1
     dev: false
 
-  /graphql-yoga@5.2.0(graphql@16.8.1):
-    resolution: {integrity: sha512-wazpTEK0B6fSgcGge1EDpP69Oet5Gdp4VmzhqKJD7Uu9S1tP9vUR7AoeuWcrURoCWP2WTv/3dWTQWVt9RxmB1Q==}
+  /graphql-yoga@5.3.0(graphql@16.8.1):
+    resolution: {integrity: sha512-6mXoGE5AMN6YNugJvjBFIQ0dFUiOMloN0dAzLL8GFt4iJ5WlWRgjdzGHod2zZz7yWQokEVD42DHgrc7NY3Dm0w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       graphql: ^15.2.0 || ^16.0.0
     dependencies:
       '@envelop/core': 5.0.0
-      '@graphql-tools/executor': 1.2.4(graphql@16.8.1)
+      '@graphql-tools/executor': 1.2.5(graphql@16.8.1)
       '@graphql-tools/schema': 10.0.3(graphql@16.8.1)
       '@graphql-tools/utils': 10.1.2(graphql@16.8.1)
       '@graphql-yoga/logger': 2.0.0
@@ -20933,62 +20947,6 @@ packages:
       - vitest
       - vue
       - vue-router
-    dev: true
-
-  /vitest@1.4.0(@types/node@20.11.30):
-    resolution: {integrity: sha512-gujzn0g7fmwf83/WzrDTnncZt2UiXP41mHuFYFrdwaLRVQ6JYQEiME2IfEjU3vcFL3VKa75XhI3lFgn+hfVsQw==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@edge-runtime/vm': '*'
-      '@types/node': ^18.0.0 || >=20.0.0
-      '@vitest/browser': 1.4.0
-      '@vitest/ui': 1.4.0
-      happy-dom: '*'
-      jsdom: '*'
-    peerDependenciesMeta:
-      '@edge-runtime/vm':
-        optional: true
-      '@types/node':
-        optional: true
-      '@vitest/browser':
-        optional: true
-      '@vitest/ui':
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-    dependencies:
-      '@types/node': 20.11.30
-      '@vitest/expect': 1.4.0
-      '@vitest/runner': 1.4.0
-      '@vitest/snapshot': 1.4.0
-      '@vitest/spy': 1.4.0
-      '@vitest/utils': 1.4.0
-      acorn-walk: 8.3.2
-      chai: 4.4.1
-      debug: 4.3.4
-      execa: 8.0.1
-      local-pkg: 0.5.0
-      magic-string: 0.30.8
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      std-env: 3.7.0
-      strip-literal: 2.0.0
-      tinybench: 2.6.0
-      tinypool: 0.8.3
-      vite: 5.2.7(@types/node@20.11.30)
-      vite-node: 1.4.0(@types/node@20.11.30)
-      why-is-node-running: 2.2.2
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
     dev: true
 
   /vitest@1.4.0(@types/node@20.11.30)(happy-dom@14.3.9):
