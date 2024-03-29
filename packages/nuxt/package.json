@@ -86,7 +86,7 @@
     "@capacitor/core": "6.0.0-rc.2",
     "@capacitor/ios": "6.0.0-rc.2",
     "@faker-js/faker": "^8.4.1",
-    "@graphql-yoga/urql-exchange": "^3.2.0",
+    "@graphql-yoga/urql-exchange": "^3.3.0",
     "@iconify-json/carbon": "^1.1.31",
     "@iconify-json/ph": "^1.1.11",
     "@ionic/cli": "^7.2.0",
