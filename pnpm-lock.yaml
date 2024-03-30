@@ -27,8 +27,8 @@ importers:
         version: 3.4.4
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.11.5
-        version: 2.11.5(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^2.11.6
+        version: 2.11.6(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
       '@types/node':
         specifier: ^20.12.2
         version: 20.12.2
@@ -307,8 +307,8 @@ importers:
         specifier: ^1.7.1
         version: 1.7.1(typescript@5.4.3)
       '@antfu/eslint-config':
-        specifier: ^2.11.5
-        version: 2.11.5(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^2.11.6
+        version: 2.11.6(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
       '@aws-sdk/client-ses':
         specifier: ^3.540.0
         version: 3.540.0
@@ -828,8 +828,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  /@antfu/eslint-config@2.11.5(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
-    resolution: {integrity: sha512-Aixz/pYx4egbCgHjOMgJJHL2HITgvscrq5DowTLd3B5V4cRQaKcpa6eRlT/zhlF72LPxBa65DqnRCTV5IiNAJw==}
+  /@antfu/eslint-config@2.11.6(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
+    resolution: {integrity: sha512-v8f1uskX9w3c7IwvQu1pw02d19qc0o//LjILVlzv3B81bsO22x4hJkwQdJEhvypR3Z82vhCnCXfa6yoMddW1pg==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
