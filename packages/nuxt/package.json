@@ -76,7 +76,7 @@
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.7.1",
-    "@antfu/eslint-config": "^2.11.5",
+    "@antfu/eslint-config": "^2.11.6",
     "@aws-sdk/client-ses": "^3.540.0",
     "@capacitor/action-sheet": "6.0.0-rc.1",
     "@capacitor/android": "6.0.0-rc.2",
