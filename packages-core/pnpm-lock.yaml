@@ -98,8 +98,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       bullmq:
-        specifier: ^5.4.6
-        version: 5.4.6
+        specifier: ^5.5.0
+        version: 5.5.0
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -8627,8 +8627,8 @@ packages:
       semver: 7.6.0
     dev: false
 
-  /bullmq@5.4.6:
-    resolution: {integrity: sha512-LfxMT+nfbq/Z1cMo5SJH0/P9sp9K2joZsX6ErDB+0IV6aYMqLaiV4p7nKtyWjoE8GoKy2ZdQU6DZJDHVjEhCIw==}
+  /bullmq@5.5.0:
+    resolution: {integrity: sha512-pmWnAFTJpw0NgOzEPwpwvUPnVk691bbzXt4QZGS9bM61DnaoxrQi8zzaP/nRH3PYmsUfNUdHwbxJVxa0kDZrIg==}
     dependencies:
       cron-parser: 4.9.0
       ioredis: 5.3.2
