@@ -391,8 +391,8 @@ importers:
         specifier: workspace:^
         version: link:../s3
       '@revenuecat/purchases-capacitor':
-        specifier: ^7.5.5
-        version: 7.5.5(@capacitor/core@6.0.0-rc.2)
+        specifier: ^7.5.6
+        version: 7.5.6(@capacitor/core@6.0.0-rc.2)
       '@trapezedev/project':
         specifier: ^7.0.10
         version: 7.0.10(@types/node@20.12.2)(typescript@5.4.3)
@@ -7687,17 +7687,17 @@ packages:
       '@codemirror/view': 6.26.0
     dev: true
 
-  /@revenuecat/purchases-capacitor@7.5.5(@capacitor/core@6.0.0-rc.2):
-    resolution: {integrity: sha512-AfT7cFi72dtaWs9SZdXlZfLpW2nLgmsrIc9AhZ8CthQtfLN794JT1WCfCEFi6q5BPOdVYqAGm0MUWv3ta4657w==}
+  /@revenuecat/purchases-capacitor@7.5.6(@capacitor/core@6.0.0-rc.2):
+    resolution: {integrity: sha512-R3MQJtST9NUstd3f00hcW20n6HRoYwENnYHbtwrXRpmLEaP+2FBpqHulTOxfvMBqn+WOWL/dlKuIo7BV6PXAdw==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
       '@capacitor/core': 6.0.0-rc.2
-      '@revenuecat/purchases-typescript-internal-esm': 10.2.0
+      '@revenuecat/purchases-typescript-internal-esm': 10.3.2
     dev: true
 
-  /@revenuecat/purchases-typescript-internal-esm@10.2.0:
-    resolution: {integrity: sha512-D6MInHvpGboulGaYxl0g9cWYx9RcGgGtUbtfg0qZwSLNGuIOQ9rZvuXxd2KQIASvlUsnZLlU31O+xQMUqDGmxg==}
+  /@revenuecat/purchases-typescript-internal-esm@10.3.2:
+    resolution: {integrity: sha512-aR2ObXmEgtmnKjdBSAZlmOWdoZ169k/HIpvJNN2JIBP6p2cQfWtXsnNxua98PNEo3rmFlJv0Er7wrHL7ipCmQA==}
     dev: true
 
   /@rollup/plugin-alias@5.1.0(rollup@3.29.4):
