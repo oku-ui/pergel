@@ -104,7 +104,7 @@
     "@pergel/module-box": "workspace:^",
     "@pergel/module-graphql": "workspace:^",
     "@pergel/module-s3": "workspace:^",
-    "@revenuecat/purchases-capacitor": "^7.5.5",
+    "@revenuecat/purchases-capacitor": "^7.5.6",
     "@trapezedev/project": "^7.0.10",
     "@types/node": "^20.12.2",
     "@types/node-cron": "^3.0.11",
