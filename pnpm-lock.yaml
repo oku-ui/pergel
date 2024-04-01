@@ -150,8 +150,8 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       lucide-vue-next:
-        specifier: ^0.363.0
-        version: 0.363.0(vue@3.3.13)
+        specifier: ^0.364.0
+        version: 0.364.0(vue@3.3.13)
       nanoid:
         specifier: ^5.0.6
         version: 5.0.6
@@ -526,8 +526,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.363.0
-        version: 0.363.0(vue@3.3.13)
+        specifier: ^0.364.0
+        version: 0.364.0(vue@3.3.13)
       radix-vue:
         specifier: ^1.6.1
         version: 1.6.1(vue@3.3.13)
@@ -15777,8 +15777,8 @@ packages:
     dependencies:
       oslo: 1.0.1
 
-  /lucide-vue-next@0.363.0(vue@3.3.13):
-    resolution: {integrity: sha512-dc5KgrXhCPMEzKz6voDVvxXkwEr7n+Q4b7qLyS2e3DTlH9GMFydS4fHoSvpZR/a5M7i1EOpFI8/BA8SPjAOwEQ==}
+  /lucide-vue-next@0.364.0(vue@3.3.13):
+    resolution: {integrity: sha512-O8MQEEktkd5zL+1S40P3UnEXotR6lrN0oaV/8uyVQCwvBMWlnTKlwIg4Rd8yDBGrALFOAiyCLu69y4gh82fNew==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
