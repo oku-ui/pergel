@@ -412,8 +412,8 @@ importers:
         specifier: ^6.5.1
         version: 6.5.1(graphql@16.8.1)
       '@urql/vue':
-        specifier: ^1.1.2
-        version: 1.1.2(graphql@16.8.1)(vue@3.3.13)
+        specifier: ^1.1.3
+        version: 1.1.3(graphql@16.8.1)(vue@3.3.13)
       '@vue/test-utils':
         specifier: ^2.4.5
         version: 2.4.5
@@ -654,8 +654,8 @@ importers:
         specifier: ^6.5.1
         version: 6.5.1(graphql@16.8.1)
       '@urql/vue':
-        specifier: ^1.1.2
-        version: 1.1.2(graphql@16.8.1)(vue@3.3.13)
+        specifier: ^1.1.3
+        version: 1.1.3(graphql@16.8.1)(vue@3.3.13)
       '@vee-validate/zod':
         specifier: ^4.12.6
         version: 4.12.6(vue@3.3.13)
@@ -793,6 +793,16 @@ packages:
 
   /@0no-co/graphql.web@1.0.4(graphql@16.8.1):
     resolution: {integrity: sha512-W3ezhHGfO0MS1PtGloaTpg0PbaT8aZSmmaerL7idtU5F7oCI+uu25k+MsMS31BVFlp4aMkHSrNRxiD72IlK8TA==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    peerDependenciesMeta:
+      graphql:
+        optional: true
+    dependencies:
+      graphql: 16.8.1
+
+  /@0no-co/graphql.web@1.0.5(graphql@16.8.1):
+    resolution: {integrity: sha512-/ODdeNNFksS9hUvpjWFldMEpq0OqCFEIV3NVM0eU8HLUYU0Szf+2iKvr63kkbGchQwk2/1IxPF1PfoCabVkgLw==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
     peerDependenciesMeta:
@@ -9684,6 +9694,14 @@ packages:
     transitivePeerDependencies:
       - graphql
 
+  /@urql/core@5.0.0(graphql@16.8.1):
+    resolution: {integrity: sha512-kFkZxusq/VBQKEUcQFtf7AilMotLO+oGpE4WFhCiminZm8ZU2aulXSDWla50TaD0pj704FnWlXts6lRm0uHdDg==}
+    dependencies:
+      '@0no-co/graphql.web': 1.0.5(graphql@16.8.1)
+      wonka: 6.3.4
+    transitivePeerDependencies:
+      - graphql
+
   /@urql/exchange-execute@2.2.2(graphql@16.8.1):
     resolution: {integrity: sha512-1KGl06CRiQhi9mxfNWRzSPlX5wQI0zkU/7xG2BrM1zbaI3LdFJtIIXxSh1ML18OrR61STtTxO7aodirQ2NVswQ==}
     peerDependencies:
@@ -9710,12 +9728,12 @@ packages:
       graphql: 16.8.1
     dev: false
 
-  /@urql/vue@1.1.2(graphql@16.8.1)(vue@3.3.13):
-    resolution: {integrity: sha512-ixfV0PTXcOl4KrZK24X+9B4rX9KSxqq1xhHZ0SOkAxgxMkomjJhtUl+9PuRL+LEzGWVr91OCEo68VPQ8uc5rBA==}
+  /@urql/vue@1.1.3(graphql@16.8.1)(vue@3.3.13):
+    resolution: {integrity: sha512-LpFHHM1a3jBB4eVUF/yIwXurmE1q1kSbJ2Ldw0o8++4TQ+usFKmsehrveAfH3YyKGlWB6QR4gW61YadKJHbzpg==}
     peerDependencies:
       vue: 3.3.13
     dependencies:
-      '@urql/core': 4.3.0(graphql@16.8.1)
+      '@urql/core': 5.0.0(graphql@16.8.1)
       vue: 3.3.13(typescript@5.4.3)
       wonka: 6.3.4
     transitivePeerDependencies:
