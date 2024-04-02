@@ -23,6 +23,6 @@
     "@pergel/nuxt": "link:../..",
     "nuxt": "latest",
     "pergel": "^0.13.0",
-    "pg": "^8.11.4"
+    "pg": "^8.11.5"
   }
 }
