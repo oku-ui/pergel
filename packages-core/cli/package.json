@@ -94,7 +94,7 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "@types/node": "^20.12.2",
+    "@types/node": "^20.12.3",
     "@types/shelljs": "^0.8.15",
     "@vitest/coverage-v8": "^1.4.0",
     "esno": "^4.7.0",
