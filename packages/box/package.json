@@ -29,7 +29,7 @@
     "@neoconfetti/vue": "^2.2.1",
     "@nuxtjs/color-mode": "^3.3.3",
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/i18n": "^8.2.0",
+    "@nuxtjs/i18n": "^8.3.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@oku-ui/label": "^0.6.1",
     "@oku-ui/primitives": "^0.6.1",
