@@ -15,7 +15,7 @@
     "@0no-co/graphqlsp": "^1.7.1",
     "@pergel/nuxt": "link:../..",
     "nuxt": "latest",
-    "pergel": "^0.13.0",
+    "pergel": "^0.13.1",
     "typescript": "^5.4.3"
   }
 }

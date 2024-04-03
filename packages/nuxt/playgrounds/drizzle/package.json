@@ -15,14 +15,14 @@
     "@lucia-auth/adapter-postgresql": "3.1.2",
     "@pergel/module-box": "workspace:^",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.30.6",
+    "drizzle-orm": "^0.30.7",
     "lucia": "3.1.1",
     "postgres": "^3.4.4"
   },
   "devDependencies": {
     "@pergel/nuxt": "link:../..",
     "nuxt": "latest",
-    "pergel": "^0.13.0",
+    "pergel": "^0.13.1",
     "pg": "^8.11.5"
   }
 }
