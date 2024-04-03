@@ -338,7 +338,7 @@ importers:
         version: 8.4.1
       '@graphql-yoga/urql-exchange':
         specifier: ^3.3.0
-        version: 3.3.0(@types/node@20.12.3)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
+        version: 3.3.0(@types/node@20.12.3)(@urql/core@5.0.0)(graphql@16.8.1)(wonka@6.3.4)
       '@iconify-json/carbon':
         specifier: ^1.1.31
         version: 1.1.31
@@ -403,14 +403,14 @@ importers:
         specifier: ^3.0.11
         version: 3.0.11
       '@urql/core':
-        specifier: ^4.3.0
-        version: 4.3.0(graphql@16.8.1)
+        specifier: ^5.0.0
+        version: 5.0.0(graphql@16.8.1)
       '@urql/exchange-execute':
         specifier: ^2.2.2
         version: 2.2.2(graphql@16.8.1)
       '@urql/exchange-graphcache':
-        specifier: ^6.5.1
-        version: 6.5.1(graphql@16.8.1)
+        specifier: ^7.0.0
+        version: 7.0.0(graphql@16.8.1)
       '@urql/vue':
         specifier: ^1.1.3
         version: 1.1.3(graphql@16.8.1)(vue@3.3.13)
@@ -631,7 +631,7 @@ importers:
         version: 8.4.1
       '@graphql-yoga/urql-exchange':
         specifier: ^3.3.0
-        version: 3.3.0(@types/node@20.12.3)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
+        version: 3.3.0(@types/node@20.12.3)(@urql/core@5.0.0)(graphql@16.8.1)(wonka@6.3.4)
       '@lucia-auth/adapter-drizzle':
         specifier: ^1.0.7
         version: 1.0.7(lucia@3.1.1)
@@ -645,14 +645,14 @@ importers:
         specifier: workspace:^
         version: link:../../packages/graphql
       '@urql/core':
-        specifier: ^4.3.0
-        version: 4.3.0(graphql@16.8.1)
+        specifier: ^5.0.0
+        version: 5.0.0(graphql@16.8.1)
       '@urql/exchange-execute':
         specifier: ^2.2.2
         version: 2.2.2(graphql@16.8.1)
       '@urql/exchange-graphcache':
-        specifier: ^6.5.1
-        version: 6.5.1(graphql@16.8.1)
+        specifier: ^7.0.0
+        version: 7.0.0(graphql@16.8.1)
       '@urql/vue':
         specifier: ^1.1.3
         version: 1.1.3(graphql@16.8.1)(vue@3.3.13)
@@ -3773,7 +3773,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@graphql-tools/executor-urql-exchange@1.0.1(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4):
+  /@graphql-tools/executor-urql-exchange@1.0.1(@urql/core@5.0.0)(graphql@16.8.1)(wonka@6.3.4):
     resolution: {integrity: sha512-KYKI5geeLIefXTaABXDAK+OJDnmKOpgOyvHNXe50sv96WqJyJPWTsTh+KO9jbZKOEs8yqcMy/utyUmnFA6Dc5g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -3782,7 +3782,7 @@ packages:
       wonka: ^6.0.0
     dependencies:
       '@graphql-tools/utils': 10.1.2(graphql@16.8.1)
-      '@urql/core': 4.3.0(graphql@16.8.1)
+      '@urql/core': 5.0.0(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.6.2
       wonka: 6.3.4
@@ -4131,7 +4131,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@graphql-yoga/urql-exchange@3.3.0(@types/node@20.12.3)(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4):
+  /@graphql-yoga/urql-exchange@3.3.0(@types/node@20.12.3)(@urql/core@5.0.0)(graphql@16.8.1)(wonka@6.3.4):
     resolution: {integrity: sha512-QssrxJy86wxPH2cP0AaWxOh+vmz9KBG9wx+RWgZjMoZeMNufFYg7bXhEF3oLoEuYttiOoKRhPu6KFXTvxhXUHg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
@@ -4140,8 +4140,8 @@ packages:
       wonka: ^6.0.0
     dependencies:
       '@graphql-tools/executor-http': 1.0.9(@types/node@20.12.3)(graphql@16.8.1)
-      '@graphql-tools/executor-urql-exchange': 1.0.1(@urql/core@4.3.0)(graphql@16.8.1)(wonka@6.3.4)
-      '@urql/core': 4.3.0(graphql@16.8.1)
+      '@graphql-tools/executor-urql-exchange': 1.0.1(@urql/core@5.0.0)(graphql@16.8.1)(wonka@6.3.4)
+      '@urql/core': 5.0.0(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.6.2
       wonka: 6.3.4
@@ -9686,14 +9686,6 @@ packages:
       vue: 3.3.13(typescript@5.4.3)
     dev: false
 
-  /@urql/core@4.3.0(graphql@16.8.1):
-    resolution: {integrity: sha512-wT+FeL8DG4x5o6RfHEnONNFVDM3616ouzATMYUClB6CB+iIu2mwfBKd7xSUxYOZmwtxna5/hDRQdMl3nbQZlnw==}
-    dependencies:
-      '@0no-co/graphql.web': 1.0.4(graphql@16.8.1)
-      wonka: 6.3.4
-    transitivePeerDependencies:
-      - graphql
-
   /@urql/core@5.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-kFkZxusq/VBQKEUcQFtf7AilMotLO+oGpE4WFhCiminZm8ZU2aulXSDWla50TaD0pj704FnWlXts6lRm0uHdDg==}
     dependencies:
@@ -9707,15 +9699,25 @@ packages:
     peerDependencies:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@urql/core': 4.3.0(graphql@16.8.1)
+      '@urql/core': 5.0.0(graphql@16.8.1)
       graphql: 16.8.1
       wonka: 6.3.4
 
   /@urql/exchange-graphcache@6.5.1(graphql@16.8.1):
     resolution: {integrity: sha512-Ky77kuaTuo1H+VKZatXyNDqTMw+z03KV3Ep/6TQjktlc+0RDhEZq3rI4F/ViwqLaDUtGqPCYjmnHdoupXqdK0g==}
     dependencies:
-      '@0no-co/graphql.web': 1.0.4(graphql@16.8.1)
-      '@urql/core': 4.3.0(graphql@16.8.1)
+      '@0no-co/graphql.web': 1.0.5(graphql@16.8.1)
+      '@urql/core': 5.0.0(graphql@16.8.1)
+      wonka: 6.3.4
+    transitivePeerDependencies:
+      - graphql
+    dev: false
+
+  /@urql/exchange-graphcache@7.0.0(graphql@16.8.1):
+    resolution: {integrity: sha512-xKk+MVt6ZKokKcrreK09n4s04dPwzu2BF/rHWvV0Aun7BhlLU4Kzmvsq1sTMZArUxwB4aaKhI0StMbPMfxICSg==}
+    dependencies:
+      '@0no-co/graphql.web': 1.0.5(graphql@16.8.1)
+      '@urql/core': 5.0.0(graphql@16.8.1)
       wonka: 6.3.4
     transitivePeerDependencies:
       - graphql
