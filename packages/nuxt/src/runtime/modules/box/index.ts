@@ -260,24 +260,28 @@ export default definePergelModule<BoxOptions, ResolvedBoxOptions>({
         name: 'Form',
         export: 'Form',
         filePath: 'vee-validate',
+        priority: 2,
       })
 
       addComponent({
         name: 'FormErrorMessage',
         export: 'ErrorMessage',
         filePath: 'vee-validate',
+        priority: 2,
       })
 
       addComponent({
         name: 'FormFieldArray',
         export: 'FieldArray',
         filePath: 'vee-validate',
+        priority: 2,
       })
 
       addComponent({
         name: 'FormField',
         export: 'Field',
         filePath: 'vee-validate',
+        priority: 2,
       })
 
       useNuxtImports(nuxt, {

@@ -128,7 +128,7 @@ export default {
   }
 
   if (nuxt.options.dev) {
-    const { startSubprocess } = await import('@nuxt/devtools-kit').then(m => m.default)
+    const { startSubprocess } = await import('@nuxt/devtools-kit')
     const consola = await import('consola').then(m => m.default)
     const subprocess = startSubprocess({
       command: 'drizzle-kit',
