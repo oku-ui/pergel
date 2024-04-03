@@ -35,7 +35,7 @@
   "dependencies": {
     "@pergel/module-graphql": "workspace:*",
     "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.30.6",
+    "drizzle-orm": "^0.30.7",
     "postgres": "^3.4.4"
   },
   "devDependencies": {
@@ -51,7 +51,7 @@
     "nx": "^18.2.2",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.4.3",
-    "vite": "5.2.7",
+    "vite": "5.2.8",
     "vitest": "^1.4.0"
   },
   "resolutions": {
