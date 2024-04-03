@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { defineNuxtModule } from '@nuxt/kit'
 import { startSubprocess } from '@nuxt/devtools-kit'
+import consola from 'consola'
 
 import { DEVTOOLS_UI_PORT } from '../../src/constants'
 
@@ -36,8 +37,10 @@ export default defineNuxtConfig({
         )
 
         subprocess.getProcess().stdout?.on('data', (data) => {
-          // eslint-disable-next-line no-console
-          console.log(` sub: ${data.toString()}`)
+          consola.log(` - drizzle: ${data.toString()}`)
+        })
+        subprocess.getProcess().stderr?.on('data', (data) => {
+          consola.error(` - drizzle: ${data.toString()}`)
         })
 
         process.on('exit', () => {

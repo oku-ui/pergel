@@ -1,6 +1,5 @@
 import { cpSync, existsSync, mkdirSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
-import { startSubprocess } from '@nuxt/devtools-kit'
 import { globbySync } from 'globby'
 import type { ResolvedDrizzleConfig } from '../../types'
 
@@ -129,6 +128,8 @@ export default {
   }
 
   if (nuxt.options.dev) {
+    const { startSubprocess } = await import('@nuxt/devtools-kit').then(m => m.default)
+    const consola = await import('consola').then(m => m.default)
     const subprocess = startSubprocess({
       command: 'drizzle-kit',
       args: ['studio', '--port', '3105', `--config=${options._dir.server}/drizzle.config.js`],
@@ -142,8 +143,11 @@ export default {
     })
 
     subprocess.getProcess().stdout?.on('data', (data) => {
-    // eslint-disable-next-line no-console
-      console.log(` sub: ${data.toString()}`)
+      consola.log(` sub: ${data.toString()}`)
+    })
+
+    subprocess.getProcess().stderr?.on('data', (data) => {
+      consola.error(` - drizzle: ${data.toString()}`)
     })
 
     process.on('exit', () => {
