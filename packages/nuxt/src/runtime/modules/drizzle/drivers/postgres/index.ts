@@ -127,34 +127,6 @@ export default {
     }
   }
 
-  if (nuxt.options.dev) {
-    const { startSubprocess } = await import('@nuxt/devtools-kit')
-    const consola = await import('consola').then(m => m.default)
-    const subprocess = startSubprocess({
-      command: 'drizzle-kit',
-      args: ['studio', '--port', '3105', `--config=${options._dir.server}/drizzle.config.js`],
-      cwd: nuxt.options.rootDir,
-      env: {
-        ...process.env,
-      },
-    }, {
-      id: `drizzle-kit-${projectName}`,
-      name: `drizzle-kit ${projectName}`,
-    })
-
-    subprocess.getProcess().stdout?.on('data', (data) => {
-      consola.log(` sub: ${data.toString()}`)
-    })
-
-    subprocess.getProcess().stderr?.on('data', (data) => {
-      consola.error(` - drizzle: ${data.toString()}`)
-    })
-
-    process.on('exit', () => {
-      subprocess.terminate()
-    })
-  }
-
   generateProjectReadme({
     data: ({ addCommentBlock }) => ({
       ...addCommentBlock('Script Commands'),
