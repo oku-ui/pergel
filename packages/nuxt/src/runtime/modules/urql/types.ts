@@ -5,7 +5,7 @@ import type { PergelModuleOptions, ResolvedPergelModuleOptions } from '../../cor
  * serializable URQL client options
  * @see {@link ClientOptions}
  */
-export type ModuleClientOptions = Pick<ClientOptions, 'preferGetMethod' | 'requestPolicy' | 'maskTypename'>
+export type ModuleClientOptions = Pick<ClientOptions, 'preferGetMethod' | 'requestPolicy'>
 
 /**
  * SSR exchange params

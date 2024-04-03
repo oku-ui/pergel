@@ -56,8 +56,7 @@
   },
   "resolutions": {
     "@pergel/nuxt": "link:./packages/nuxt",
-    "bumpp": "9.4.0",
-    "vue": "3.3.13"
+    "bumpp": "9.4.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
