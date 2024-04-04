@@ -80,8 +80,8 @@ importers:
         specifier: ^1.1.31
         version: 1.1.31
       '@iconify-json/ph':
-        specifier: ^1.1.11
-        version: 1.1.11
+        specifier: ^1.1.12
+        version: 1.1.12
       '@neoconfetti/vue':
         specifier: ^2.2.1
         version: 2.2.1
@@ -164,8 +164,8 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.4.3)(vue@3.4.21)
       radix-vue:
-        specifier: ^1.6.1
-        version: 1.6.1(vue@3.4.21)
+        specifier: ^1.6.2
+        version: 1.6.2(vue@3.4.21)
       shadcn-nuxt:
         specifier: ^0.10.2
         version: 0.10.2(rollup@4.14.0)
@@ -342,8 +342,8 @@ importers:
         specifier: ^1.1.31
         version: 1.1.31
       '@iconify-json/ph':
-        specifier: ^1.1.11
-        version: 1.1.11
+        specifier: ^1.1.12
+        version: 1.1.12
       '@ionic/cli':
         specifier: ^7.2.0
         version: 7.2.0
@@ -444,8 +444,8 @@ importers:
         specifier: ^3.15.1
         version: 3.15.1(tailwindcss@3.4.3)
       gql.tada:
-        specifier: ^1.4.1
-        version: 1.4.1(graphql@16.8.1)(typescript@5.4.3)
+        specifier: ^1.4.2
+        version: 1.4.2(graphql@16.8.1)(typescript@5.4.3)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -528,8 +528,8 @@ importers:
         specifier: ^0.364.0
         version: 0.364.0(vue@3.4.21)
       radix-vue:
-        specifier: ^1.6.1
-        version: 1.6.1(vue@3.4.21)
+        specifier: ^1.6.2
+        version: 1.6.2(vue@3.4.21)
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.2.2
@@ -590,8 +590,8 @@ importers:
   packages/nuxt/playgrounds/gql.tada:
     dependencies:
       gql.tada:
-        specifier: ^1.4.1
-        version: 1.4.1(graphql@16.8.1)(typescript@5.4.3)
+        specifier: ^1.4.2
+        version: 1.4.2(graphql@16.8.1)(typescript@5.4.3)
     devDependencies:
       '@0no-co/graphqlsp':
         specifier: ^1.7.1
@@ -3311,12 +3311,12 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.5.2
     dev: true
 
-  /@gql.tada/cli-utils@0.3.1(typescript@5.4.3):
-    resolution: {integrity: sha512-Eq7lV0059AqqdM8TL53k3gtxKWQ+aPAG3Nn8ZyTZUM5DNniwqH3CHnHg+pTR67Q51rX8CXRpyAXEHlJvS8GvqQ==}
+  /@gql.tada/cli-utils@0.3.2(typescript@5.4.3):
+    resolution: {integrity: sha512-V0wLW/ZOJUxNBKcg8suF7sh+Rs7TPKxJNXwc5D0qBAur40U8i97jsI7914d5Cc3Cn7MW8QvxDx0vvOsa3afekg==}
     peerDependencies:
       typescript: ^5.0.0
     dependencies:
-      '@gql.tada/internal': 0.1.1(typescript@5.4.3)
+      '@gql.tada/internal': 0.1.2(graphql@16.8.1)(typescript@5.4.3)
       graphql: 16.8.1
       typescript: 5.4.3
 
@@ -3325,6 +3325,17 @@ packages:
     peerDependencies:
       typescript: ^5.0.0
     dependencies:
+      graphql: 16.8.1
+      typescript: 5.4.3
+    dev: true
+
+  /@gql.tada/internal@0.1.2(graphql@16.8.1)(typescript@5.4.3):
+    resolution: {integrity: sha512-8I4Z1zxYYGK66FWdB3yIZBn3cITLPnciEgjChp3K2+Ha1e/AEBGtZv9AUlodraO/RZafDMkpFhoi+tMpluBjeg==}
+    peerDependencies:
+      graphql: ^16.8.1
+      typescript: ^5.0.0
+    dependencies:
+      '@0no-co/graphql.web': 1.0.6(graphql@16.8.1)
       graphql: 16.8.1
       typescript: 5.4.3
 
@@ -4156,8 +4167,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/ph@1.1.11:
-    resolution: {integrity: sha512-izLvLZrU7WM03zNwNWNrAySv3i45hM3D3K6USjCGBSQMUG0HB8zxwrMf4O0leDrganmuQBH7Z0DWTgyH1ET/fg==}
+  /@iconify-json/ph@1.1.12:
+    resolution: {integrity: sha512-m+rXTW084YaQQHT+F8TxdkCoAh+i/5MWRoSuPmxCWPlxwMAaLT/QfyVsbEiV95HM5806U/jKpBV6F1b7Pmr3Vg==}
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -14140,15 +14151,15 @@ packages:
     dependencies:
       get-intrinsic: 1.2.4
 
-  /gql.tada@1.4.1(graphql@16.8.1)(typescript@5.4.3):
-    resolution: {integrity: sha512-AnDA26jbbyc4COiNzovgEwI1XKmRz4F5XoFFSI8Gh6TQqqzulOVNafv/1l8/C5S/iIqV9uwQmy33AJ89peCLBg==}
+  /gql.tada@1.4.2(graphql@16.8.1)(typescript@5.4.3):
+    resolution: {integrity: sha512-PJycAWoenmq4tzt0Lrb7Y808sNW+uFFsBLkSyAZraf/qpslDhGPyU0uX+7Mfv2Dm6nl97xe8ScpVpiPc0Y7cYg==}
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
     dependencies:
       '@0no-co/graphql.web': 1.0.6(graphql@16.8.1)
-      '@gql.tada/cli-utils': 0.3.1(typescript@5.4.3)
-      '@gql.tada/internal': 0.1.1(typescript@5.4.3)
+      '@gql.tada/cli-utils': 0.3.2(typescript@5.4.3)
+      '@gql.tada/internal': 0.1.2(graphql@16.8.1)(typescript@5.4.3)
       typescript: 5.4.3
     transitivePeerDependencies:
       - graphql
@@ -18287,8 +18298,8 @@ packages:
     resolution: {integrity: sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==}
     dev: false
 
-  /radix-vue@1.6.1(vue@3.4.21):
-    resolution: {integrity: sha512-/nnA4u8oYAZK86unEjRuIROrTDDU0HHiwkCgGI0YeCNpyObSnbC1CZJlXUBErdY51yxcqV4cU4WJBKwQC8iRFA==}
+  /radix-vue@1.6.2(vue@3.4.21):
+    resolution: {integrity: sha512-uHyj8YaA+O2ZF1Ouxl2EJUzXXEFLzN/CtOE1HVFG3h60aFD7E9HNZ5RxODnXSD7j0vZLFS/dHU9Z2+Yjljj2Lg==}
     peerDependencies:
       vue: '>= 3.2.0'
     dependencies:
