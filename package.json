@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.12.1",
-    "@types/node": "^20.12.3",
+    "@types/node": "^20.12.4",
     "automd": "^0.3.7",
     "bumpp": "9.4.0",
     "changelogithub": "^0.13.5",
