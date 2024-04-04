@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.540.0",
+    "@aws-sdk/client-ses": "^3.549.0",
     "@faker-js/faker": "^8.4.1",
     "@json2csv/node": "^7.0.6",
     "@lucia-auth/adapter-drizzle": "1.0.7",

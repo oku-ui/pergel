@@ -9,7 +9,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.540.0",
+    "@aws-sdk/client-ses": "^3.549.0",
     "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.3.0",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
@@ -34,11 +34,11 @@
     "@nuxt/test-utils": "^3.12.0",
     "@pergel/module-box": "workspace:^",
     "@vue/test-utils": "^2.4.5",
-    "happy-dom": "^14.4.0",
+    "happy-dom": "^14.5.1",
     "nuxt": "^3.11.1",
     "pergel": "^0.13.1",
     "pg": "^8.11.5",
-    "playwright-core": "^1.42.1",
+    "playwright-core": "^1.43.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0",
