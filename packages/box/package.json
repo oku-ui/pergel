@@ -50,7 +50,7 @@
     "date-fns": "^3.6.0",
     "lucide-vue-next": "^0.365.0",
     "nanoid": "^5.0.6",
-    "notivue": "^2.2.1",
+    "notivue": "^2.3.0",
     "nuxt-icon": "^0.6.10",
     "pinia": "^2.1.7",
     "radix-vue": "^1.6.2",
