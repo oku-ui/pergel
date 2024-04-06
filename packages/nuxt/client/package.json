@@ -5,7 +5,7 @@
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "lucide-vue-next": "^0.364.0",
+    "lucide-vue-next": "^0.365.0",
     "radix-vue": "^1.6.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7"

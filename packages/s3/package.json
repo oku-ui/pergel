@@ -22,8 +22,8 @@
     "release": "pnpm bumpp --commit='version(module-s3): release %s' --no-tag --no-push && pnpm publish"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.549.0",
-    "@aws-sdk/s3-request-presigner": "^3.549.0"
+    "@aws-sdk/client-s3": "^3.550.0",
+    "@aws-sdk/s3-request-presigner": "^3.550.0"
   },
   "publishConfig": {
     "access": "public"
