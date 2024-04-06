@@ -48,7 +48,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
-    "lucide-vue-next": "^0.364.0",
+    "lucide-vue-next": "^0.365.0",
     "nanoid": "^5.0.6",
     "notivue": "^2.2.1",
     "nuxt-icon": "^0.6.10",

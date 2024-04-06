@@ -75,7 +75,7 @@
     "yaml": "^2.4.1"
   },
   "devDependencies": {
-    "@0no-co/graphqlsp": "^1.8.0",
+    "@0no-co/graphqlsp": "^1.9.1",
     "@antfu/eslint-config": "^2.12.1",
     "@aws-sdk/client-ses": "^3.549.0",
     "@capacitor/action-sheet": "6.0.0-rc.1",
@@ -125,7 +125,7 @@
     "gql.tada": "^1.4.2",
     "graphql": "^16.8.1",
     "h3": "^1.11.1",
-    "happy-dom": "^14.5.1",
+    "happy-dom": "^14.6.1",
     "ioredis": "^5.3.2",
     "jiti": "^1.21.0",
     "json-schema-to-typescript": "^13.1.2",
