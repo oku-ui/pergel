@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.549.0",
+    "@aws-sdk/client-ses": "^3.552.0",
     "@faker-js/faker": "^8.4.1",
     "@json2csv/node": "^7.0.6",
     "@lucia-auth/adapter-drizzle": "1.0.7",
@@ -18,7 +18,7 @@
     "@pergel/module-box": "^0.6.0",
     "@pergel/module-graphql": "^0.6.0",
     "@pergel/module-s3": "^0.3.0",
-    "bullmq": "^5.6.0",
+    "bullmq": "^5.7.0",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.30.7",
