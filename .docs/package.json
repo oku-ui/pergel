@@ -17,7 +17,7 @@
     "pathe": "^1.1.2",
     "pergel": "^0.13.1",
     "typescript": "^5.4.3",
-    "vitepress": "1.0.2",
+    "vitepress": "1.1.0",
     "vitepress-plugin-twoslash": "^0.10.2"
   }
 }
