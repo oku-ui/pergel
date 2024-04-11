@@ -9,7 +9,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.552.0",
+    "@aws-sdk/client-ses": "^3.554.0",
     "@faker-js/faker": "^8.4.1",
     "@graphql-yoga/urql-exchange": "^3.3.0",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
@@ -41,7 +41,7 @@
     "playwright-core": "^1.43.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.4.3",
-    "vitest": "^1.4.0",
+    "vitest": "^1.5.0",
     "vue": "3.4.21",
     "vue-router": "^4.3.0"
   }
