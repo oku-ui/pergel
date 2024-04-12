@@ -149,8 +149,8 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       lucide-vue-next:
-        specifier: ^0.367.0
-        version: 0.367.0(vue@3.4.21)
+        specifier: ^0.368.0
+        version: 0.368.0(vue@3.4.21)
       nanoid:
         specifier: ^5.0.6
         version: 5.0.6
@@ -525,8 +525,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-vue-next:
-        specifier: ^0.367.0
-        version: 0.367.0(vue@3.4.21)
+        specifier: ^0.368.0
+        version: 0.368.0(vue@3.4.21)
       radix-vue:
         specifier: ^1.7.0
         version: 1.7.0(vue@3.4.21)
@@ -6636,7 +6636,7 @@ packages:
       unenv: 1.9.0
       unplugin: 1.10.1
       vite: 5.2.8(@types/node@20.12.4)
-      vite-node: 1.4.0(@types/node@20.12.4)
+      vite-node: 1.5.0(@types/node@20.12.4)
       vite-plugin-checker: 0.6.4(eslint@8.57.0)(typescript@5.4.3)(vite@5.2.8)
       vue: 3.4.21(typescript@5.4.3)
       vue-bundle-renderer: 2.0.0
@@ -15892,8 +15892,8 @@ packages:
     dependencies:
       oslo: 1.0.1
 
-  /lucide-vue-next@0.367.0(vue@3.4.21):
-    resolution: {integrity: sha512-U3c3OVZxq316dcj1Oe0yBlu4LOm5kEJWjKqbFtwcGPjBHhsAvL/fIJpXYonHveZFp071x76qL1HsZw7+oHiFZQ==}
+  /lucide-vue-next@0.368.0(vue@3.4.21):
+    resolution: {integrity: sha512-ZP5p4ndnPsI858xLFN5Jsz2OrG4e2XPV5T5R7MHOUL4HHg1nHOMWncJBclbX3/1wQP+1AiwqcNARbr0ZoNuGNg==}
     peerDependencies:
       vue: '>=3.0.1'
     dependencies:
@@ -20844,7 +20844,6 @@ packages:
       - sugarss
       - supports-color
       - terser
-    dev: true
 
   /vite-plugin-checker@0.6.4(eslint@8.57.0)(typescript@5.4.3)(vite@5.2.8):
     resolution: {integrity: sha512-2zKHH5oxr+ye43nReRbC2fny1nyARwhxdm0uNYp/ERy4YvU9iZpNOsueoi/luXw5gnpqRSvjcEPxXbS153O2wA==}
