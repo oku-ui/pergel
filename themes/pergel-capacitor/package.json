@@ -24,7 +24,7 @@
   "devDependencies": {
     "@capacitor/cli": "6.0.0-rc.2",
     "@trapezedev/project": "^7.0.10",
-    "nuxt": "^3.11.1",
+    "nuxt": "^3.11.2",
     "pergel": "^0.13.1",
     "vue": "3.4.21",
     "vue-router": "^4.3.0"

@@ -13,10 +13,10 @@
   "devDependencies": {
     "automd": "^0.3.7",
     "fast-glob": "^3.3.2",
-    "nuxt": "^3.11.1",
+    "nuxt": "^3.11.2",
     "pathe": "^1.1.2",
     "pergel": "^0.13.1",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.5",
     "vitepress": "1.1.0",
     "vitepress-plugin-twoslash": "^0.10.2"
   }

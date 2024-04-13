@@ -9,13 +9,13 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "gql.tada": "^1.4.2"
+    "gql.tada": "^1.4.3"
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.9.1",
     "@pergel/nuxt": "link:../..",
     "nuxt": "latest",
     "pergel": "^0.13.1",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   }
 }
