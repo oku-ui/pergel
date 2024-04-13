@@ -94,12 +94,12 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "@types/node": "^20.12.4",
+    "@types/node": "^20.12.7",
     "@types/shelljs": "^0.8.15",
     "@vitest/coverage-v8": "^1.5.0",
     "esno": "^4.7.0",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "publishConfig": {
     "access": "public"
