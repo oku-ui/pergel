@@ -44,7 +44,7 @@
     "automd": "^0.3.7",
     "bumpp": "9.4.0",
     "changelogithub": "^0.13.5",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
     "json-editor-vue": "^0.13.0",
     "lint-staged": "^15.2.2",
