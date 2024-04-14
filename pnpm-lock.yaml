@@ -155,8 +155,8 @@ importers:
         specifier: ^5.0.6
         version: 5.0.6
       notivue:
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^2.4.0
+        version: 2.4.0
       nuxt-icon:
         specifier: ^0.6.10
         version: 0.6.10(nuxt@3.11.2)(rollup@4.14.0)(vite@5.2.8)(vue@3.4.21)
@@ -303,8 +303,8 @@ importers:
         version: 2.4.1
     devDependencies:
       '@0no-co/graphqlsp':
-        specifier: ^1.9.1
-        version: 1.9.1(typescript@5.4.3)
+        specifier: ^1.10.0
+        version: 1.10.0(typescript@5.4.3)
       '@antfu/eslint-config':
         specifier: ^2.13.0
         version: 2.13.0(@vue/compiler-sfc@3.4.21)(eslint@9.0.0)(typescript@5.4.3)(vitest@1.5.0)
@@ -594,8 +594,8 @@ importers:
         version: 1.4.2(graphql@16.8.1)(typescript@5.4.3)
     devDependencies:
       '@0no-co/graphqlsp':
-        specifier: ^1.9.1
-        version: 1.9.1(typescript@5.4.3)
+        specifier: ^1.10.0
+        version: 1.10.0(typescript@5.4.3)
       '@pergel/nuxt':
         specifier: link:../..
         version: link:../..
@@ -800,8 +800,8 @@ packages:
     dependencies:
       graphql: 16.8.1
 
-  /@0no-co/graphqlsp@1.9.1(typescript@5.4.3):
-    resolution: {integrity: sha512-3mLLCNponLK84hVbBUZIXZhw1nvmWblRwFTJE7WCs312iqlCdLW+SZEt+HfhEgM03XhN0D0gQB/8KnZHKs9qwg==}
+  /@0no-co/graphqlsp@1.10.0(typescript@5.4.3):
+    resolution: {integrity: sha512-qPNjG9WOf2YwUKvyLazaj8piTffjKJ1m4gCuqRIbHy0iwsmquTSn0JtyNtO3aewjsfyI13pmsKqWs+v2BJPg1A==}
     peerDependencies:
       typescript: ^5.0.0
     dependencies:
@@ -16795,8 +16795,8 @@ packages:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
 
-  /notivue@2.3.0:
-    resolution: {integrity: sha512-fdfdqdIRF9ZE3cRJo9nK/7wHL/1zfwzCCy6z03d1C1q1uFLlz2pSV5zeGGZYF2zi3v4tS7vnzN/wjk6PrVAOFw==}
+  /notivue@2.4.0:
+    resolution: {integrity: sha512-YQX78feWwdfV2Biak978s2aIlfEtnjs4DzsOiVGScohdVkRdKFXah0nUMhlPpOSCUP8sV3PItyW2tFhbIYDFYA==}
     peerDependencies:
       '@nuxt/kit': '>=3.5.0'
       '@nuxt/schema': '>=3.5.0'
