@@ -47,8 +47,8 @@ importers:
         specifier: ^3.15.1
         version: 3.15.1(tailwindcss@3.4.3)
       json-editor-vue:
-        specifier: ^0.13.0
-        version: 0.13.0(@lezer/common@1.2.1)(vue@3.4.21)
+        specifier: ^0.14.0
+        version: 0.14.0(@lezer/common@1.2.1)(vue@3.4.21)
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.2
@@ -15345,8 +15345,8 @@ packages:
       difflib: 0.2.4
       dreamopt: 0.8.0
 
-  /json-editor-vue@0.13.0(@lezer/common@1.2.1)(vue@3.4.21):
-    resolution: {integrity: sha512-lxYJgeF9NLuDdju3RgjSC2NdVFoxzIGUTF8nur+9L/YOOuUMmXJCzKM1VyjkdEG6udEK3SQT44mvtgiKrH5ZHA==}
+  /json-editor-vue@0.14.0(@lezer/common@1.2.1)(vue@3.4.21):
+    resolution: {integrity: sha512-QSLgm5z8d33DUh8o1aWl+zcz5N9hx/+wJ0ZINmjx/tbIsvU1qJljC1M6HMkStxhqXwVf2CCn77SogM2ed2e4aQ==}
     requiresBuild: true
     peerDependencies:
       '@vue/composition-api': '>=1'
