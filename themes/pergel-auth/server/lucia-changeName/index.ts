@@ -14,7 +14,6 @@ export const changeNameAuth = pergelChangeName()
     db: connect,
     options: {
       getUserAttributes(databaseUserAttributes) {
-        // eslint-disable-next-line unused-imports/no-unused-vars
         const { password, provider, providerId, ...attributes } = databaseUserAttributes
         return attributes
       },
