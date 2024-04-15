@@ -39,7 +39,7 @@
     "postgres": "^3.4.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.13.0",
+    "@antfu/eslint-config": "^2.14.0",
     "@types/node": "^20.12.4",
     "automd": "^0.3.7",
     "bumpp": "9.4.0",
