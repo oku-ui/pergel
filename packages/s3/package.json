@@ -2,7 +2,7 @@
   "name": "@pergel/module-s3",
   "type": "module",
   "version": "0.3.0",
-  "packageManager": "pnpm@8.10.0",
+  "packageManager": "pnpm@9.1.3",
   "description": "Pergel Module for S3 Management",
   "author": {
     "name": "Mehmet @productdevbook",
