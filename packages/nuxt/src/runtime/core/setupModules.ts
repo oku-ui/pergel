@@ -43,8 +43,9 @@ async function initModules(nuxt: Nuxt) {
         if (
           (typeof moduleValue === 'object' && moduleValue === null)
           || (typeof moduleValue === 'object' && !moduleValue)
-        )
+        ) {
           continue
+        }
 
         if (typeof moduleValue === 'string' && moduleValue === '')
           continue
