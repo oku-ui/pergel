@@ -93,8 +93,9 @@ export async function trapezedRun(params: {
         if (
           typeof params.options.trapeze === 'object'
           && typeof params.options.trapeze.ios === 'function'
-        )
+        ) {
           params.options.trapeze.ios(project.ios, { build, target })
+        }
       }
     }
   }
@@ -168,8 +169,9 @@ export async function trapezedRun(params: {
     if (
       typeof params.options.trapeze === 'object'
       && typeof params.options.trapeze.android === 'function'
-    )
+    ) {
       params.options.trapeze.android(project.android)
+    }
   }
 
   await project.commit()
