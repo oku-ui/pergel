@@ -1,7 +1,6 @@
 import type { H3Event } from 'h3'
-import type { PergelH3ContextItem } from '../../modules'
+import type { PergelContextKeys, PergelH3ContextItem } from '../../modules'
 import { getPergelContextProject } from './getPergelContextProject'
-import type { PergelContextKeys } from '#pergel/types'
 
 export function getPergelContextModule<T extends PergelContextKeys>(this: {
   projectName: string
